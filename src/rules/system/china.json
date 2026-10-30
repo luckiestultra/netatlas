@@ -1,0 +1,83 @@
+{
+  "version": 1,
+  "id": "china",
+  "category": "system",
+  "entries": [
+    {
+      "type": "domain-suffix",
+      "value": "12306.cn"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "163.com"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "alicdn.com"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "alipay.com"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "aliyun.com"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "baidu.com"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "biliapi.net"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "bilibili.com"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "bilivideo.com"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "douyin.com"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "jd.com"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "qq.com"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "taobao.com"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "tencent.com"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "tmall.com"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "weibo.com"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "weixin.qq.com"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "xiaohongshu.com"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "zhihu.com"
+    }
+  ]
+}

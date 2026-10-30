@@ -1,0 +1,468 @@
+{
+  "version": 1,
+  "client": "singBox",
+  "builder": "netatlas@0.1.0",
+  "inputSha256": "ece62f160594be2bbdf799fea19d4cb6a7f095472e1269b99300dfc577091523",
+  "baseUrl": "https://raw.githubusercontent.com/luckiestultra/netatlas/main",
+  "targetVersion": "1.14.4",
+  "validation": {
+    "profile": "structural-and-references",
+    "rules": "canonical-semantic-round-trip",
+    "native": "not-run",
+    "nativeRequirement": "available",
+    "features": "host-contract-tests-run-separately"
+  },
+  "sources": {
+    "repositories": [
+      {
+        "id": "domain-list-community",
+        "repository": "v2fly/domain-list-community",
+        "branch": "master",
+        "revision": "1daade8c4bb957d21d1f5c09c2b050d699e8e96c",
+        "license": "MIT",
+        "licensePath": "LICENSE",
+        "licenseSha256": "b9d84a22870d3f21c91a4c6e410c9cc51d00902f5233ad0c84011479244bf7d2",
+        "documentation": "https://github.com/v2fly/domain-list-community#structure-of-data",
+        "licenseUrl": "https://raw.githubusercontent.com/v2fly/domain-list-community/1daade8c4bb957d21d1f5c09c2b050d699e8e96c/LICENSE",
+        "author": "v2fly/domain-list-community contributors",
+        "revisionDate": "2026-10-30T13:25:16Z"
+      }
+    ],
+    "rules": [
+      {
+        "id": "openai",
+        "tag": "ai",
+        "source": {
+          "repository": "domain-list-community",
+          "list": "openai"
+        },
+        "sha256": "f17af9afded802389e299929e57160d77d9c5714d1cbe0ce8ed6b4a518aea0e1",
+        "entries": 24,
+        "updatedAt": "2026-10-30T13:25:16Z",
+        "projection": "selected files and explicit includes; not global affiliation expansion",
+        "excludedExpressions": [
+          {
+            "file": "openai",
+            "line": 21,
+            "rule": "regexp:^chatgpt-async-webps-prod-\\S+-\\d+\\.webpubsub\\.azure\\.com$",
+            "sourceLine": "regexp:^chatgpt-async-webps-prod-\\S+-\\d+\\.webpubsub\\.azure\\.com$",
+            "reason": "Excluded from the four-type portable catalog: no equivalent cross-client regex matcher. Keep this exact expression recorded; newly introduced expressions block sync."
+          }
+        ]
+      },
+      {
+        "id": "claude",
+        "tag": "ai",
+        "source": {
+          "repository": "domain-list-community",
+          "list": "anthropic"
+        },
+        "sha256": "9c87150e6ce6dd28bd6f21646c6fa6588ceccccfed7d7ac9d38479f8ecb4e190",
+        "entries": 19,
+        "updatedAt": "2026-10-30T13:25:16Z",
+        "projection": "selected files and explicit includes; not global affiliation expansion",
+        "excludedExpressions": []
+      },
+      {
+        "id": "gemini",
+        "tag": "ai",
+        "source": {
+          "repository": "domain-list-community",
+          "list": "google-deepmind"
+        },
+        "sha256": "9fc0d48ab6e13f31c4df712a98fa96b275e9eacc30e45e27121bf156405b653d",
+        "entries": 49,
+        "updatedAt": "2026-10-30T13:25:16Z",
+        "projection": "selected files and explicit includes; not global affiliation expansion",
+        "excludedExpressions": []
+      },
+      {
+        "id": "google",
+        "tag": "system",
+        "source": {
+          "repository": "domain-list-community",
+          "list": "google"
+        },
+        "sha256": "9bfa4c5dc2c83b50434aa55acfa6c1368d533da35e3276ed16025f0500aa84e1",
+        "entries": 1123,
+        "updatedAt": "2026-10-30T13:25:16Z",
+        "projection": "selected files and explicit includes; not global affiliation expansion",
+        "excludedExpressions": [
+          {
+            "file": "google-play",
+            "line": 12,
+            "rule": "regexp:^r+[0-9]+(---|\\.)sn-(2x3|ni5|j5o)\\w{5}\\.xn--ngstr-lra8j\\.com$",
+            "sourceLine": "regexp:^r+[0-9]+(---|\\.)sn-(2x3|ni5|j5o)\\w{5}\\.xn--ngstr-lra8j\\.com$ @cn",
+            "reason": "Excluded from the four-type portable catalog: no equivalent cross-client regex matcher. Keep this exact expression recorded; newly introduced expressions block sync."
+          },
+          {
+            "file": "google-play",
+            "line": 14,
+            "rule": "regexp:^r+[0-9]+(---|\\.)sn-(2x3|ni5|j5o)\\w{5}\\.googlevideo\\.com$",
+            "sourceLine": "regexp:^r+[0-9]+(---|\\.)sn-(2x3|ni5|j5o)\\w{5}\\.googlevideo\\.com$ @cn",
+            "reason": "Excluded from the four-type portable catalog: no equivalent cross-client regex matcher. Keep this exact expression recorded; newly introduced expressions block sync."
+          }
+        ]
+      },
+      {
+        "id": "microsoft",
+        "tag": "system",
+        "source": {
+          "repository": "domain-list-community",
+          "list": "microsoft"
+        },
+        "sha256": "fb0cb416dc6536d87c9659e622aa06a0216af23c40a8612d54180f0a9d971b6d",
+        "entries": 760,
+        "updatedAt": "2026-10-30T13:25:16Z",
+        "projection": "selected files and explicit includes; not global affiliation expansion",
+        "excludedExpressions": []
+      },
+      {
+        "id": "apple",
+        "tag": "system",
+        "source": {
+          "repository": "domain-list-community",
+          "list": "apple"
+        },
+        "sha256": "15a0f78055fababd85a1307cf43b1ddcfdd1962e858ef5b967e662b396e04745",
+        "entries": 1826,
+        "updatedAt": "2026-10-30T13:25:16Z",
+        "projection": "selected files and explicit includes; not global affiliation expansion",
+        "excludedExpressions": []
+      },
+      {
+        "id": "github",
+        "tag": "development",
+        "source": {
+          "repository": "domain-list-community",
+          "list": "github"
+        },
+        "sha256": "f8fdabd4e96d450f370e7fa13f83fcda8c1e358f7b309d0215efb2e6c75c7aea",
+        "entries": 65,
+        "updatedAt": "2026-10-30T13:25:16Z",
+        "projection": "selected files and explicit includes; not global affiliation expansion",
+        "excludedExpressions": []
+      },
+      {
+        "id": "telegram",
+        "tag": "social",
+        "source": {
+          "repository": "domain-list-community",
+          "list": "telegram"
+        },
+        "sha256": "11e4b489354b2ce7d53742c8c65c7cbe441732b6d9a137488ca50b6872b3bcf9",
+        "entries": 21,
+        "updatedAt": "2026-10-30T13:25:16Z",
+        "projection": "selected files and explicit includes; not global affiliation expansion",
+        "excludedExpressions": []
+      },
+      {
+        "id": "youtube",
+        "tag": "media",
+        "source": {
+          "repository": "domain-list-community",
+          "list": "youtube"
+        },
+        "sha256": "f8b41812508a1352f708a971d1dde23f889654309d5c96c3b9ce4c0ae036a914",
+        "entries": 178,
+        "updatedAt": "2026-10-30T13:25:16Z",
+        "projection": "selected files and explicit includes; not global affiliation expansion",
+        "excludedExpressions": []
+      },
+      {
+        "id": "netflix",
+        "tag": "media",
+        "source": {
+          "repository": "domain-list-community",
+          "list": "netflix"
+        },
+        "sha256": "41049917d778640f04d2b679e8cf11ecc3304cce65f2fb92188a5db19fc3e6e3",
+        "entries": 24,
+        "updatedAt": "2026-10-30T13:25:16Z",
+        "projection": "selected files and explicit includes; not global affiliation expansion",
+        "excludedExpressions": [
+          {
+            "file": "netflix",
+            "line": 28,
+            "rule": "regexp:(^|\\.)apiproxy-device-prod-nlb-.+\\.amazonaws\\.com$",
+            "sourceLine": "regexp:(^|\\.)apiproxy-device-prod-nlb-.+\\.amazonaws\\.com$",
+            "reason": "Excluded from the four-type portable catalog: no equivalent cross-client regex matcher. Keep this exact expression recorded; newly introduced expressions block sync."
+          },
+          {
+            "file": "netflix",
+            "line": 29,
+            "rule": "regexp:(^|\\.)apiproxy-website-nlb-prod-.+\\.amazonaws\\.com$",
+            "sourceLine": "regexp:(^|\\.)apiproxy-website-nlb-prod-.+\\.amazonaws\\.com$",
+            "reason": "Excluded from the four-type portable catalog: no equivalent cross-client regex matcher. Keep this exact expression recorded; newly introduced expressions block sync."
+          },
+          {
+            "file": "netflix",
+            "line": 30,
+            "rule": "regexp:(^|\\.)dualstack\\.apiproxy-.+\\.amazonaws\\.com$",
+            "sourceLine": "regexp:(^|\\.)dualstack\\.apiproxy-.+\\.amazonaws\\.com$",
+            "reason": "Excluded from the four-type portable catalog: no equivalent cross-client regex matcher. Keep this exact expression recorded; newly introduced expressions block sync."
+          },
+          {
+            "file": "netflix",
+            "line": 31,
+            "rule": "regexp:(^|\\.)dualstack\\.ichnaea-web-.+\\.amazonaws\\.com$",
+            "sourceLine": "regexp:(^|\\.)dualstack\\.ichnaea-web-.+\\.amazonaws\\.com$",
+            "reason": "Excluded from the four-type portable catalog: no equivalent cross-client regex matcher. Keep this exact expression recorded; newly introduced expressions block sync."
+          }
+        ]
+      },
+      {
+        "id": "spotify",
+        "tag": "media",
+        "source": {
+          "repository": "domain-list-community",
+          "list": "spotify"
+        },
+        "sha256": "f0ac15b8db784eae05db6be36737697253aff3f909e1df259d3846f0ee07a041",
+        "entries": 28,
+        "updatedAt": "2026-10-30T13:25:16Z",
+        "projection": "selected files and explicit includes; not global affiliation expansion",
+        "excludedExpressions": []
+      },
+      {
+        "id": "speedtest",
+        "tag": "network",
+        "source": {
+          "repository": "domain-list-community",
+          "list": "ookla-speedtest"
+        },
+        "sha256": "fbfc31b5701de55d4305fb8d75f08690359f280f9094134235fab381e438b1b9",
+        "entries": 20,
+        "updatedAt": "2026-10-30T13:25:16Z",
+        "projection": "selected files and explicit includes; not global affiliation expansion",
+        "excludedExpressions": [
+          {
+            "file": "ookla-speedtest",
+            "line": 26,
+            "rule": "regexp:^speed\\.(coe|open)\\.ad\\.[a-z]{2,6}\\.prod\\.hosts\\.ooklaserver\\.net$",
+            "sourceLine": "regexp:^speed\\.(coe|open)\\.ad\\.[a-z]{2,6}\\.prod\\.hosts\\.ooklaserver\\.net$ @ads",
+            "reason": "Excluded from the four-type portable catalog: no equivalent cross-client regex matcher. Keep this exact expression recorded; newly introduced expressions block sync."
+          }
+        ]
+      },
+      {
+        "id": "adblock",
+        "tag": "privacy",
+        "source": {
+          "repository": "domain-list-community",
+          "list": "category-ads-all"
+        },
+        "sha256": "b496b379af943dc48ce71591effc2de88e232629c4eb3e00f3da7269cc65628d",
+        "entries": 904,
+        "updatedAt": "2026-10-30T13:25:16Z",
+        "projection": "selected files and explicit includes; not global affiliation expansion",
+        "excludedExpressions": [
+          {
+            "file": "ookla-speedtest",
+            "line": 26,
+            "rule": "regexp:^speed\\.(coe|open)\\.ad\\.[a-z]{2,6}\\.prod\\.hosts\\.ooklaserver\\.net$",
+            "sourceLine": "regexp:^speed\\.(coe|open)\\.ad\\.[a-z]{2,6}\\.prod\\.hosts\\.ooklaserver\\.net$ @ads",
+            "reason": "Excluded from the four-type portable catalog: no equivalent cross-client regex matcher. Keep this exact expression recorded; newly introduced expressions block sync."
+          }
+        ]
+      },
+      {
+        "id": "lan",
+        "tag": "network",
+        "source": {
+          "type": "local",
+          "license": "MIT",
+          "references": [
+            "https://www.rfc-editor.org/rfc/rfc1918",
+            "https://www.rfc-editor.org/rfc/rfc4193",
+            "https://www.rfc-editor.org/rfc/rfc4291",
+            "https://www.rfc-editor.org/rfc/rfc6598",
+            "https://www.rfc-editor.org/rfc/rfc6762",
+            "https://www.rfc-editor.org/rfc/rfc8375",
+            "https://www.iana.org/assignments/iana-ipv4-special-registry/iana-ipv4-special-registry.xhtml"
+          ],
+          "description": "First-party selection of local/private/special destination facts; not a complete IANA special registry.",
+          "author": "netatlas contributors",
+          "updatedAt": "2026-10-31"
+        },
+        "sha256": "47154f24fd63ae78749dc484933d428aa2cc716446790c7b31d5cbcdf8df6ee7",
+        "entries": 17,
+        "updatedAt": "2026-10-31",
+        "projection": "first-party-selection",
+        "excludedExpressions": []
+      },
+      {
+        "id": "china",
+        "tag": "system",
+        "source": {
+          "type": "local",
+          "license": "MIT",
+          "references": [
+            "https://www.baidu.com/",
+            "https://www.qq.com/",
+            "https://www.taobao.com/",
+            "https://www.bilibili.com/",
+            "https://www.jd.com/"
+          ],
+          "description": "First-party curated convenience list, not a complete China domain or IP database.",
+          "author": "netatlas contributors",
+          "updatedAt": "2026-10-31"
+        },
+        "sha256": "281bf28fb2c6aa887f82684cc41c2af5fadefe9ee9cbf6d7ea9272ae94ef4c29",
+        "entries": 19,
+        "updatedAt": "2026-10-31",
+        "projection": "first-party-selection",
+        "excludedExpressions": []
+      }
+    ],
+    "inputs": [
+      {
+        "path": "src/rules/ai/claude.json",
+        "sha256": "9c87150e6ce6dd28bd6f21646c6fa6588ceccccfed7d7ac9d38479f8ecb4e190"
+      },
+      {
+        "path": "src/rules/ai/gemini.json",
+        "sha256": "9fc0d48ab6e13f31c4df712a98fa96b275e9eacc30e45e27121bf156405b653d"
+      },
+      {
+        "path": "src/rules/ai/openai.json",
+        "sha256": "f17af9afded802389e299929e57160d77d9c5714d1cbe0ce8ed6b4a518aea0e1"
+      },
+      {
+        "path": "src/rules/development/github.json",
+        "sha256": "f8fdabd4e96d450f370e7fa13f83fcda8c1e358f7b309d0215efb2e6c75c7aea"
+      },
+      {
+        "path": "src/rules/media/netflix.json",
+        "sha256": "41049917d778640f04d2b679e8cf11ecc3304cce65f2fb92188a5db19fc3e6e3"
+      },
+      {
+        "path": "src/rules/media/spotify.json",
+        "sha256": "f0ac15b8db784eae05db6be36737697253aff3f909e1df259d3846f0ee07a041"
+      },
+      {
+        "path": "src/rules/media/youtube.json",
+        "sha256": "f8b41812508a1352f708a971d1dde23f889654309d5c96c3b9ce4c0ae036a914"
+      },
+      {
+        "path": "src/rules/network/lan.json",
+        "sha256": "47154f24fd63ae78749dc484933d428aa2cc716446790c7b31d5cbcdf8df6ee7"
+      },
+      {
+        "path": "src/rules/network/speedtest.json",
+        "sha256": "fbfc31b5701de55d4305fb8d75f08690359f280f9094134235fab381e438b1b9"
+      },
+      {
+        "path": "src/rules/privacy/adblock.json",
+        "sha256": "b496b379af943dc48ce71591effc2de88e232629c4eb3e00f3da7269cc65628d"
+      },
+      {
+        "path": "src/rules/social/telegram.json",
+        "sha256": "11e4b489354b2ce7d53742c8c65c7cbe441732b6d9a137488ca50b6872b3bcf9"
+      },
+      {
+        "path": "src/rules/system/apple.json",
+        "sha256": "15a0f78055fababd85a1307cf43b1ddcfdd1962e858ef5b967e662b396e04745"
+      },
+      {
+        "path": "src/rules/system/china.json",
+        "sha256": "281bf28fb2c6aa887f82684cc41c2af5fadefe9ee9cbf6d7ea9272ae94ef4c29"
+      },
+      {
+        "path": "src/rules/system/google.json",
+        "sha256": "9bfa4c5dc2c83b50434aa55acfa6c1368d533da35e3276ed16025f0500aa84e1"
+      },
+      {
+        "path": "src/rules/system/microsoft.json",
+        "sha256": "fb0cb416dc6536d87c9659e622aa06a0216af23c40a8612d54180f0a9d971b6d"
+      }
+    ]
+  },
+  "artifacts": [
+    {
+      "path": "profiles/default.json",
+      "sha256": "c2bd696f22d1e188cdeaf1b92cd11d8c693a9f665ceac587891e6118c8e249a1",
+      "bytes": 686456
+    },
+    {
+      "path": "README.md",
+      "sha256": "372eb0874b6f8bfba24612356dc9d5c1700f6cec37adfa6adc104313cb7b7a40",
+      "bytes": 2134
+    },
+    {
+      "path": "rules/adblock.json",
+      "sha256": "c7f27cf3e322d97832e4939c1206f72ed1fc3db6571b67c37a3f2ae2aa4722a8",
+      "bytes": 25964
+    },
+    {
+      "path": "rules/apple.json",
+      "sha256": "21f57fcc4d97cbd98f32431ae3a7cfcf51bc848042e8c8886d04c17f32e1d67b",
+      "bytes": 54636
+    },
+    {
+      "path": "rules/china.json",
+      "sha256": "80c27c8a66ac94a57f190eeae68d9010d58dcd98c4db9332f6d041f52aa23708",
+      "bytes": 497
+    },
+    {
+      "path": "rules/claude.json",
+      "sha256": "7ae6c2ae1d183c8dc4f9068c89d03d89938dbc24ce51950bb625592cf5e530e0",
+      "bytes": 606
+    },
+    {
+      "path": "rules/gemini.json",
+      "sha256": "4ab8875619f6e1bfd2e9770ebfc84e6eb8fdf7087a9605bb7825a16cdd879cc5",
+      "bytes": 1818
+    },
+    {
+      "path": "rules/github.json",
+      "sha256": "26ed34002908d8774874217a9fd0cfe50683f197ab17a2c3995ae04b6837380a",
+      "bytes": 2699
+    },
+    {
+      "path": "rules/google.json",
+      "sha256": "4101a12ed5e238499cd19057219820b29eb1f66496934a0ce1d3adf2d2425731",
+      "bytes": 30217
+    },
+    {
+      "path": "rules/lan.json",
+      "sha256": "7144efd0d0d99e83492b8dde1d1a901a3f9bf1461d7636f91d8c88deada2fdf4",
+      "bytes": 486
+    },
+    {
+      "path": "rules/microsoft.json",
+      "sha256": "6e06b3bd56e67d191876e2d2071262408ea7e1c050eb547fc4c96d456cad75a3",
+      "bytes": 22931
+    },
+    {
+      "path": "rules/netflix.json",
+      "sha256": "15dc80aafe9d05779beef39fd27236d81fb5e546e52400e20f614907db31200f",
+      "bytes": 752
+    },
+    {
+      "path": "rules/openai.json",
+      "sha256": "527f0927a315822ab65ac23ded0e35e3f15aca26ca3de243c72955cbf49b20f7",
+      "bytes": 906
+    },
+    {
+      "path": "rules/speedtest.json",
+      "sha256": "3dc5796a577bd71d56be6ef1904e194e313811c8341dd5a507dfe3a8d1a79e83",
+      "bytes": 645
+    },
+    {
+      "path": "rules/spotify.json",
+      "sha256": "14d5e6dd516610884e3b6bb958665a8ad3a869354b485eee13ac8970c1be668e",
+      "bytes": 1004
+    },
+    {
+      "path": "rules/telegram.json",
+      "sha256": "ccf72cd85a09e8c4c0566b2bb2ae339ee55c3fd441e43c38a15fbbfa73de7d93",
+      "bytes": 564
+    },
+    {
+      "path": "rules/youtube.json",
+      "sha256": "377122ab35979f32a2f0df8ceb1b8ea15ae8b33b11c9790fad15afcb487263ef",
+      "bytes": 4455
+    }
+  ]
+}

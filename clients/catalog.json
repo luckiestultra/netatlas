@@ -1,0 +1,252 @@
+{
+  "version": 1,
+  "builder": "netatlas@0.1.0",
+  "input": {
+    "sha256": "ece62f160594be2bbdf799fea19d4cb6a7f095472e1269b99300dfc577091523",
+    "files": [
+      {
+        "path": "LICENSE",
+        "sha256": "776c85bc1a19c4abe7608ef40b935cdd9be24523a981f70c89ca3f444a604068"
+      },
+      {
+        "path": "THIRD_PARTY_NOTICES.md",
+        "sha256": "528a9ad46c0130d0f9a2e3a40f901d216340bf7989abaef5db385d1a66036b49"
+      },
+      {
+        "path": "metadata/clients.json",
+        "sha256": "409554f35246b6836d2350bafc22bb745f3321313c3e257f69d8d1bb68390301"
+      },
+      {
+        "path": "metadata/features.json",
+        "sha256": "c323a53481c5ba0a22c6df5737f8604353db284734dc7ce249a90aecb46a9e56"
+      },
+      {
+        "path": "metadata/native-tools.json",
+        "sha256": "8f330d3d9772e3cfc11fdbbf2bbb53763cee24d1999675319bf10bb51ae05b14"
+      },
+      {
+        "path": "metadata/routing.json",
+        "sha256": "1f90a7651a3ee0431f652241f16601f642d3a39a7e2777050616cb56940152ac"
+      },
+      {
+        "path": "metadata/upstreams.json",
+        "sha256": "142997e9be3765cc860b9944520e949e85519d74d96612c5479c8434399e2965"
+      },
+      {
+        "path": "package-lock.json",
+        "sha256": "288b6e157ca17268bcc7d6c4377f4799eb08b8b039be3d0923a23c6928263e11"
+      },
+      {
+        "path": "package.json",
+        "sha256": "17812832951522671a5df2fe496c6ace797ef6eb1f033b539bd466f160eae5dd"
+      },
+      {
+        "path": "src/features/geoip/core.mjs",
+        "sha256": "81ac6d399bf8be561ef75f00b2d37eb945d05ba913c7f38b69d350b38095aef3"
+      },
+      {
+        "path": "src/features/geoip/quantumultX.js",
+        "sha256": "808aea344372fdc8a78ff4063da2e41ba4af4e271114768e5108fdebfdc5daf8"
+      },
+      {
+        "path": "src/features/geoip/surge.js",
+        "sha256": "dc89a389d5da37bc544bca308e42e874a672a0d5d4755c2fcc2ce951b9a1b74d"
+      },
+      {
+        "path": "src/features/search-redirect/quantumultX.snippet",
+        "sha256": "1e57ffc35d7d5c66350431e76ab4ca1d3e85986ad7f00b65c602cb56ba0f0653"
+      },
+      {
+        "path": "src/features/search-redirect/surge.sgmodule",
+        "sha256": "42b142986c354a55f09557b73180f34c9fd14393d51a8a3ee199bdf71b5d7bd8"
+      },
+      {
+        "path": "src/rules/ai/claude.json",
+        "sha256": "9c87150e6ce6dd28bd6f21646c6fa6588ceccccfed7d7ac9d38479f8ecb4e190"
+      },
+      {
+        "path": "src/rules/ai/gemini.json",
+        "sha256": "9fc0d48ab6e13f31c4df712a98fa96b275e9eacc30e45e27121bf156405b653d"
+      },
+      {
+        "path": "src/rules/ai/openai.json",
+        "sha256": "f17af9afded802389e299929e57160d77d9c5714d1cbe0ce8ed6b4a518aea0e1"
+      },
+      {
+        "path": "src/rules/development/github.json",
+        "sha256": "f8fdabd4e96d450f370e7fa13f83fcda8c1e358f7b309d0215efb2e6c75c7aea"
+      },
+      {
+        "path": "src/rules/media/netflix.json",
+        "sha256": "41049917d778640f04d2b679e8cf11ecc3304cce65f2fb92188a5db19fc3e6e3"
+      },
+      {
+        "path": "src/rules/media/spotify.json",
+        "sha256": "f0ac15b8db784eae05db6be36737697253aff3f909e1df259d3846f0ee07a041"
+      },
+      {
+        "path": "src/rules/media/youtube.json",
+        "sha256": "f8b41812508a1352f708a971d1dde23f889654309d5c96c3b9ce4c0ae036a914"
+      },
+      {
+        "path": "src/rules/network/lan.json",
+        "sha256": "47154f24fd63ae78749dc484933d428aa2cc716446790c7b31d5cbcdf8df6ee7"
+      },
+      {
+        "path": "src/rules/network/speedtest.json",
+        "sha256": "fbfc31b5701de55d4305fb8d75f08690359f280f9094134235fab381e438b1b9"
+      },
+      {
+        "path": "src/rules/privacy/adblock.json",
+        "sha256": "b496b379af943dc48ce71591effc2de88e232629c4eb3e00f3da7269cc65628d"
+      },
+      {
+        "path": "src/rules/social/telegram.json",
+        "sha256": "11e4b489354b2ce7d53742c8c65c7cbe441732b6d9a137488ca50b6872b3bcf9"
+      },
+      {
+        "path": "src/rules/system/apple.json",
+        "sha256": "15a0f78055fababd85a1307cf43b1ddcfdd1962e858ef5b967e662b396e04745"
+      },
+      {
+        "path": "src/rules/system/china.json",
+        "sha256": "281bf28fb2c6aa887f82684cc41c2af5fadefe9ee9cbf6d7ea9272ae94ef4c29"
+      },
+      {
+        "path": "src/rules/system/google.json",
+        "sha256": "9bfa4c5dc2c83b50434aa55acfa6c1368d533da35e3276ed16025f0500aa84e1"
+      },
+      {
+        "path": "src/rules/system/microsoft.json",
+        "sha256": "fb0cb416dc6536d87c9659e622aa06a0216af23c40a8612d54180f0a9d971b6d"
+      },
+      {
+        "path": "tools/build.mjs",
+        "sha256": "2e15940246e12e7e7925733027d7eecb2616b3f29a68fdc5323510f0945bf695"
+      },
+      {
+        "path": "tools/lib/build.mjs",
+        "sha256": "36868b09731712fe6ba02e40e9ff22148c1747aa4633d037d7f24ae548d3cf5d"
+      },
+      {
+        "path": "tools/lib/clients.mjs",
+        "sha256": "1fb094a7ceeffd1a11fb3c85cd9d7f5a47fa7ebc9f63bf3fd3381302b67f3e24"
+      },
+      {
+        "path": "tools/lib/exporters.mjs",
+        "sha256": "90a81cb5897ae23da7afa1b29afbae38f1cd8f56a725288550c8ab61943f72f4"
+      },
+      {
+        "path": "tools/lib/features.mjs",
+        "sha256": "f22094b971c5c490eb8972148826a1641a642d00f49121dfd35189118b80fcd1"
+      },
+      {
+        "path": "tools/lib/native.mjs",
+        "sha256": "b5a5a4fb41fa9a467e5e3ba1e8da0ea67f06130da3cd5b4ea92dcc9a2b8509e0"
+      },
+      {
+        "path": "tools/lib/policies.mjs",
+        "sha256": "11504e681f874659f555a07c517d5cf57bf68376ee962b19eb3d57e717381a72"
+      },
+      {
+        "path": "tools/lib/profiles.mjs",
+        "sha256": "73847d069f94d6d1de916b92d3e77f6761f8d08e52d3d55d3e72cf490b5741c1"
+      },
+      {
+        "path": "tools/lib/rules.mjs",
+        "sha256": "363fb56265f6efcf4ba09442ec26ae74aa2d4f21ce88a4e1a58069b94dae9ecd"
+      },
+      {
+        "path": "tools/lib/sync.mjs",
+        "sha256": "c71cf7b805032410e4541b3073f779cd7a943671423cc87368c0bb4c9f71ec7c"
+      },
+      {
+        "path": "tools/lib/validation.mjs",
+        "sha256": "630844fd7b1888979a9a04e1111ed8f70572060c074437f265890c5bcb975ec4"
+      },
+      {
+        "path": "tools/live.mjs",
+        "sha256": "736249a8d459dfc2d96448e68a4804fbe5f51e4402b2fe974d249902df36d15a"
+      },
+      {
+        "path": "tools/native.mjs",
+        "sha256": "3134763a21f46cb45507005b4ae957a2fe6ec70ce8803d33b4b9a206e31f0b64"
+      },
+      {
+        "path": "tools/sync.mjs",
+        "sha256": "8a66eb34d88b4e1712818324d279be2b54e7fb053b0b72f6e1753f77a7a59698"
+      },
+      {
+        "path": "tools/validate.mjs",
+        "sha256": "04fbaef6f13b3002a005dbad761bb44a42a86cb6a568dcf66b810c09d2372182"
+      }
+    ]
+  },
+  "clients": [
+    {
+      "id": "quantumultX",
+      "name": "Quantumult X",
+      "manifest": "quantumultX/manifest.json",
+      "sha256": "538b8bda2bcf9d191c81554286696cb175c03a7d7fa416531c59c801d889df03",
+      "rulesets": 15,
+      "entries": 5077
+    },
+    {
+      "id": "surge",
+      "name": "Surge",
+      "manifest": "surge/manifest.json",
+      "sha256": "11fae77de7df635ffe948817bc9784f57b8fc3352d56f79ba4cd644d6566e96d",
+      "rulesets": 15,
+      "entries": 5077
+    },
+    {
+      "id": "loon",
+      "name": "Loon",
+      "manifest": "loon/manifest.json",
+      "sha256": "ae4d5c9ad594b1343b25972f7caff224c28e1bae50250287d2a624b9bfc69c30",
+      "rulesets": 15,
+      "entries": 5077
+    },
+    {
+      "id": "shadowrocket",
+      "name": "Shadowrocket",
+      "manifest": "shadowrocket/manifest.json",
+      "sha256": "079015bdd2b292ae605f509cdc278a227dea0eea59d39fed244bbf034d425f7e",
+      "rulesets": 15,
+      "entries": 5077
+    },
+    {
+      "id": "egern",
+      "name": "Egern",
+      "manifest": "egern/manifest.json",
+      "sha256": "36cdeccc0e826fff1143b750ae72667f1103427521413986135df189bdbb92c3",
+      "rulesets": 15,
+      "entries": 5077
+    },
+    {
+      "id": "stash",
+      "name": "Stash",
+      "manifest": "stash/manifest.json",
+      "sha256": "db23b1b9a9ea74db43931cfc27d03092264279aa845878d63bf58e627f05f0f4",
+      "rulesets": 15,
+      "entries": 5077
+    },
+    {
+      "id": "mihomo",
+      "name": "Mihomo",
+      "manifest": "mihomo/manifest.json",
+      "sha256": "dc9a32fbacfe87784fd875796b0f13b860ba811d2e32d355d8a85cfa9a736e21",
+      "rulesets": 15,
+      "entries": 5077
+    },
+    {
+      "id": "singBox",
+      "name": "sing-box",
+      "manifest": "singBox/manifest.json",
+      "sha256": "0e9358392d06206ce8fb97b51ba8690fb3b2fcc792d7c84acc6a0efa8c36ade9",
+      "rulesets": 15,
+      "entries": 5077
+    }
+  ],
+  "contentSha256": "baa73e75b485456bf80ec434afeceb3aa7eee13a55156c1171714cc89c7d4992"
+}

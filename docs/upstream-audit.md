@@ -1,36 +1,49 @@
-# 来源与参考记录
+# 规则来源审计
 
-核对时间：2026-10-31，Asia/Shanghai。星标与维护信息是这次查询的快照，不作为质量保证。
+本文件记录实际进入构建的来源和复用范围。机器可读的固定提交、校验值、来源文件及精确排除项以 [upstreams.json](../metadata/upstreams.json) 为准，许可原文保存在[第三方声明](../THIRD_PARTY_NOTICES.md)。
 
-## 账号与参考范围
+## 当前数据快照
 
-- 新仓库所有者为 [luckiestultra](https://github.com/luckiestultra)。
-- 与当前连接身份对应的原星标账号为 [luckiestmax](https://github.com/luckiestmax?tab=stars)。已查看其公开星标，筛选与本项目目标相关的内容。
-- 用户明确指定 [Centralmatrix3/Matrix-io](https://github.com/Centralmatrix3/Matrix-io) 作为完整多客户端仓库的组织参考。
+核对日期：2026-10-31，Asia/Shanghai。
 
-## 当前参考来源
+| 来源 | 固定版本与许可 | 使用范围 |
+|---|---|---|
+| [v2fly/domain-list-community](https://github.com/v2fly/domain-list-community) | 1daade8c4bb957d21d1f5c09c2b050d699e8e96c，2026-10-30，MIT | 十三组登记列表及显式 include 的可移植投影 |
+| 本项目 lan | 2026-10-31，MIT | 从登记的 RFC/IANA 来源选择常见本地与特殊地址事实，非完整登记表 |
+| 本项目 china | 2026-10-31，MIT | 常用中国服务域名便利集，非完整地理域名/IP 数据库 |
 
-| 来源 | 本次核对 | 参考用途 | 复用边界 |
-|---|---|---|---|
-| [Centralmatrix3/Matrix-io](https://github.com/Centralmatrix3/Matrix-io) | 809 stars；最近推送 2026-10-30 | 多客户端分发、独立规则和功能模块 | 未见明确许可证；不直接复制代码、模块和图标 |
-| [iab0x00/ProxyRules](https://github.com/iab0x00/ProxyRules) | luckiestmax 已星标；832 stars；2026-10-14 推送 | 服务分类与可选重写的组织方式 | 本次 API 未识别许可证；只参考设计和原始来源 |
-| [xykt/IPQuality](https://github.com/xykt/IPQuality) | luckiestmax 已星标；10,929 stars；AGPL-3.0 | 多来源检测、结果分歧与异常状态的表达 | 首版不移植其代码；未来复用时单独处理许可证 |
-| [xykt/NetQuality](https://github.com/xykt/NetQuality) | luckiestmax 已星标；5,966 stars；AGPL-3.0 | 网络诊断方法和结果验证 | 不把 VPS 检测脚本直接当客户端脚本发布 |
-| [yding-git/personal-edge-proxy](https://github.com/yding-git/personal-edge-proxy) | luckiestmax 已星标；MIT | 节点、出站策略与客户端内容的分离 | 不把服务端部署扩进当前客户端仓库范围 |
-| [v2fly/domain-list-community](https://github.com/v2fly/domain-list-community) | 9,792 stars；2026-10-30 推送；MIT | 后续公共域名规则数据的候选来源 | 这是额外筛选的候选，不冒称用户已星标；接入前固定提交并保留许可 |
+当前共 15 组、5,077 条规范规则。DLC 的许可文件 URL 与 SHA-256 已登记，作者署名和完整许可继续保留，不用本项目许可覆盖第三方原有权利。
 
-## Matrix-io 的具体发现
+| 规则集 | 条数 | 已审查的不可移植表达式排除 |
+|---|---:|---:|
+| openai | 24 | 1 |
+| claude | 19 | 0 |
+| gemini | 49 | 0 |
+| google | 1,123 | 2 |
+| microsoft | 760 | 0 |
+| apple | 1,826 | 0 |
+| github | 65 | 0 |
+| telegram | 21 | 0 |
+| youtube | 178 | 0 |
+| netflix | 24 | 4 |
+| spotify | 28 | 0 |
+| speedtest | 20 | 1 |
+| adblock | 904 | 1 |
+| lan | 17 | 0 |
+| china | 19 | 0 |
 
-- 有八种客户端配置目录，但 `Config/Sing-box/Matrix.json` 内容为 `{}`，只是占位。
-- `Ruleset` 中的规则由 workflow 从另一个仓库 `Centralmatrix3/Network` 取得 Surge 格式输入，再转换多种格式；生成 sing-box 的 JSON 与 SRS。
-- 现有构建没有统一生成配置、模块、图标与脚本；这些内容另行维护。
-- Matrix-io 和 Network 的完整文件树均未见 LICENSE；Matrix-io 的 readme 也没有额外给出复用授权。
-- QX 的 GeoIP 文件仍含之前遇到的空 ASN 解析缺陷，因此不继承该实现。
+## 转换范围
 
-证据入口：[配置目录](https://github.com/Centralmatrix3/Matrix-io/tree/master/Config)、[构建 workflow](https://github.com/Centralmatrix3/Matrix-io/blob/master/.github/workflows/Build.yml)、[GeoIP 脚本](https://github.com/Centralmatrix3/Matrix-io/blob/master/Scripts/QuantumultX/IP-API.js)。
+依据[上游数据格式](https://github.com/v2fly/domain-list-community#structure-of-data)，裸域名和 domain: 转换为后缀，full: 转换为精确域名；显式 include 递归展开并处理属性筛选。本仓库没有执行全仓库 affiliation 反向聚合，也不声称生成完整 geosite 数据库。
 
-## 后续接入规则
+当前九次正则排除涉及无法在首版四种规则类型间无损表达的条目，均以“来源文件、确切表达式、原因”逐条登记，并保留源行号和原文。同一表达式可在不同规则集各登记一次。它们没有被近似放大为后缀。任何新增、未经登记的正则或关键词表达式会阻止整批更新。
 
-来源进入构建之前，要登记原始 URL、作者、用途、许可证、固定提交或版本、内容校验值和转换方法。明确许可的数据可以按其许可复用；许可未明的内容仅作参考，不以本项目许可证覆盖。
+这些排除范围仍可能由其他规则或最终策略处理，但规则集不承诺覆盖原表达式的全部匹配对象。重叠服务集合的先后关系和默认出站属于 [routing.json](../metadata/routing.json)，与 category 标签分离。
 
-不自动执行下载来的上游代码。上游数据更新先校验，失败保留上一份已验证产物，不发布部分更新。
+## 更新与复用
+
+每次接入核对原始 URL、作者、许可、固定提交及内容 SHA-256。下载内容只作为规则数据，不执行上游代码。新的来源、许可变化和不可移植类型需要显式审查。
+
+同步先校验所有候选，再发布规范目录和来源清单；网络失败、许可变化、未审查表达式或本地手工修改会阻止覆盖。恢复信息保存在被忽略的 .cache/sync/。手动 upstream-check 工作流只生成候选差异与 review artifact，不自动提交、推送或创建 PR。
+
+客户端格式来自各自官方手册或开发者示例，见[客户端格式依据](client-formats.md)。功能脚本是本项目独立实现，API 响应格式与原生宿主契约见[功能说明](features.md)。

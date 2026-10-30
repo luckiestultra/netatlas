@@ -1,0 +1,87 @@
+{
+  "version": 1,
+  "id": "speedtest",
+  "category": "network",
+  "entries": [
+    {
+      "type": "domain-suffix",
+      "value": "cdnst.net"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "cellmaps.com"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "ekahau.cloud"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "ekahau.com"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "ookla-speedtest-central.hgconair.hgc.com.hk"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "ookla.com"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "ooklaserver.net"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "pingtest.net"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "speedtest.app"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "speedtest.cc"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "speedtest.co"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "speedtest.ee"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "speedtest.in"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "speedtest.me"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "speedtest.net"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "speedtest.ng"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "speedtest.tv"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "speedtestcustom.com"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "webtest.net"
+    },
+    {
+      "type": "domain",
+      "value": "www.speedtest.net.cdn.cloudflare.net"
+    }
+  ]
+}

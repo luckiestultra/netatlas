@@ -1,0 +1,13 @@
+{
+  "version": 1,
+  "clients": [
+    { "id": "quantumultX", "name": "Quantumult X", "ruleExtension": "list", "ruleFormat": "quantumultX", "profileExtension": "conf", "profileFormat": "ini", "reference": "https://github.com/crossutility/Quantumult-X/blob/master/sample.conf", "nativeVerification": "manual-import-required" },
+    { "id": "surge", "name": "Surge", "ruleExtension": "list", "ruleFormat": "classical", "profileExtension": "conf", "profileFormat": "ini", "reference": "https://manual.nssurge.com/rules/ruleset.html", "nativeVerification": "manual-import-required" },
+    { "id": "loon", "name": "Loon", "ruleExtension": "list", "ruleFormat": "classical", "profileExtension": "conf", "profileFormat": "ini", "reference": "https://nsloon.app/docs/intro", "nativeVerification": "manual-import-required" },
+    { "id": "shadowrocket", "name": "Shadowrocket", "ruleExtension": "list", "ruleFormat": "classical", "profileExtension": "conf", "profileFormat": "ini", "reference": "https://apps.apple.com/us/app/shadowrocket/id932747118", "nativeVerification": "manual-import-required" },
+    { "id": "egern", "name": "Egern", "ruleExtension": "yaml", "ruleFormat": "egern", "profileExtension": "yaml", "profileFormat": "yaml", "reference": "https://egernapp.com/docs/configuration/rules/", "nativeVerification": "manual-import-required" },
+    { "id": "stash", "name": "Stash", "ruleExtension": "yaml", "ruleFormat": "classical-yaml", "profileExtension": "yaml", "profileFormat": "yaml", "reference": "https://stash.wiki/rules/rule-set", "nativeVerification": "manual-import-required" },
+    { "id": "mihomo", "name": "Mihomo", "ruleExtension": "yaml", "ruleFormat": "classical-yaml", "profileExtension": "yaml", "profileFormat": "yaml", "reference": "https://wiki.metacubex.one/en/config/rule-providers/", "targetVersion": "1.19.33", "nativeVerification": "available" },
+    { "id": "singBox", "name": "sing-box", "ruleExtension": "json", "ruleFormat": "singBox", "profileExtension": "json", "profileFormat": "json", "reference": "https://sing-box.sagernet.org/configuration/rule-set/source-format/", "targetVersion": "1.14.4", "nativeVerification": "available" }
+  ]
+}

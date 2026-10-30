@@ -1,0 +1,41 @@
+{
+  "version": 1,
+  "tools": [
+    {
+      "id": "mihomo",
+      "version": "1.19.33",
+      "repo": "MetaCubeX/mihomo",
+      "assets": {
+        "darwin-arm64": {
+          "file": "mihomo-darwin-arm64-v1.19.33.gz",
+          "sha256": "060b64b0f2c9a310831db0fe4adb2878de67bfa606c311813c1f13966aa504b6",
+          "kind": "gzip"
+        },
+        "linux-x64": {
+          "file": "mihomo-linux-amd64-compatible-v1.19.33.gz",
+          "sha256": "386508bfb1c72c43b6a0eda73708ecdce82546581b0ebcb16366c53757c622b6",
+          "kind": "gzip"
+        }
+      }
+    },
+    {
+      "id": "singBox",
+      "version": "1.14.4",
+      "repo": "SagerNet/sing-box",
+      "assets": {
+        "darwin-arm64": {
+          "file": "sing-box-1.14.4-darwin-arm64.tar.gz",
+          "sha256": "0d8c7f5ed5d587b0f1a5e9772a708ec3bfa4ac4c9329604b01d8d9c2ba406838",
+          "kind": "tar",
+          "member": "sing-box-1.14.4-darwin-arm64/sing-box"
+        },
+        "linux-x64": {
+          "file": "sing-box-1.14.4-linux-amd64.tar.gz",
+          "sha256": "699a1b510aa4396b2176d32d1181920399ebf1e267835da6f3b598d0f7c24968",
+          "kind": "tar",
+          "member": "sing-box-1.14.4-linux-amd64/sing-box"
+        }
+      }
+    }
+  ]
+}

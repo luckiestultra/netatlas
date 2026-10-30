@@ -1,0 +1,20 @@
+{
+  "name": "netatlas",
+  "version": "0.1.0",
+  "private": true,
+  "type": "module",
+  "engines": { "node": ">=24 <25" },
+  "scripts": {
+    "test": "node --test",
+    "test:rules": "node --test tests/rules/*.test.mjs",
+    "test:profiles": "node --test tests/profiles/*.test.mjs",
+    "test:scripts": "node --test tests/scripts/*.test.mjs",
+    "build": "node tools/build.mjs",
+    "validate": "node tools/validate.mjs",
+    "sync": "node tools/sync.mjs",
+    "check": "node tools/build.mjs --check && node tools/validate.mjs",
+    "test:live": "node tools/live.mjs",
+    "test:native": "node tools/native.mjs"
+  },
+  "dependencies": { "yaml": "2.9.1" }
+}

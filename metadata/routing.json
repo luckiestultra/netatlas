@@ -1,0 +1,7 @@
+{
+  "version": 1,
+  "fixed": { "lan": "DIRECT", "china": "DIRECT", "adblock": "REJECT" },
+  "initialSelection": { "apple": "DIRECT" },
+  "first": ["lan", "adblock"],
+  "last": ["google", "microsoft"]
+}

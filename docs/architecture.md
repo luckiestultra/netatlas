@@ -1,70 +1,74 @@
-# 目录与接口设计
+# 架构与目录
 
-## 为什么这样安排
+用户从客户端目录取用文件，维护者从规范源修改数据。这样可以同时保留单一规则来源与客户端原生行为。
 
-Matrix-io 把配置、规则、模块、图标和脚本分别作为顶层目录，再在其中选择客户端。Proxy Atlas 把用户的选择顺序改为“软件 → 内容”，内部仍保留公共维护源。
-
-```text
-proxy-atlas/
-├── clients/                         # 用户直接取用；由构建生成
-│   ├── quantumult-x/
-│   ├── surge/
-│   ├── loon/
-│   ├── shadowrocket/
-│   ├── egern/
-│   ├── stash/
-│   ├── mihomo/
-│   └── sing-box/
-├── src/                             # 我们维护的原始内容
-│   ├── rules/<分类>/<规则集>.json
-│   ├── profiles/<软件>/
-│   └── features/<功能>/
-│       ├── manifest.json
-│       └── <软件>/
-├── assets/icons/                    # 自有或已明确许可的图标
+~~~text
+netatlas/
+├── clients/<client>/                 # 构建生成的公开内容
+│   ├── profiles/
+│   ├── rules/<service-id>.*
+│   ├── rewrites/
+│   ├── scripts/
+│   └── modules/
+├── src/
+│   ├── rules/<category>/<id>.json     # 规范匹配事实
+│   └── features/<feature>/           # 纯解析与明确的原生适配器
 ├── metadata/
-│   ├── upstreams.json               # 来源、许可、固定版本、校验值
-│   └── clients.json                 # 能力、目标版本、官方依据
+│   ├── routing.json                 # 默认策略、初始选项、规则顺序
+│   ├── clients.json                 # 格式、版本与官方来源
+│   ├── features.json                # 可选功能、路径、验证范围
+│   ├── upstreams.json               # 数据来源、许可与校验值
+│   └── native-tools.json            # 固定二进制版本与 SHA-256
 ├── tools/
-│   ├── adapters/                    # 明确保留规则语义的格式适配
+│   ├── lib/profiles.mjs              # 八种原生配置渲染器
+│   ├── lib/exporters.mjs             # 规则格式导出
+│   ├── lib/features.mjs              # 功能产物组合
 │   ├── build.mjs
 │   ├── validate.mjs
-│   └── sync.mjs
-├── tests/
-│   ├── fixtures/                    # 去标识化的接口响应和规则样本
-│   ├── rules/
-│   ├── scripts/
-│   └── profiles/
-├── docs/
-└── .github/workflows/               # 后续在实现通过后加入
-```
+│   ├── sync.mjs
+│   ├── native.mjs
+│   └── live.mjs
+├── tests/{rules,profiles,scripts}/
+├── docs/specs/{rules,profiles,features,build}.md
+└── .github/workflows/
+~~~
 
-这是一张目标结构图，不是当前已有文件清单。只有产生真实内容时才新增相应目录。
+上图表示实现边界；只有存在真实产物时才生成相应可选目录。配置模板当前由 tools/lib/profiles.mjs 中的原生渲染器维护，没有另外一套 src/profiles/ 副本。
 
-## 统一命名
+## 数据流
 
-软件标识固定为 `quantumult-x`、`surge`、`loon`、`shadowrocket`、`egern`、`stash`、`mihomo`、`sing-box`。规则、功能和文件采用小写英文与短横线，如 `openai`、`geoip`、`apple-intelligence`。
+~~~mermaid
+flowchart LR
+  R[规范规则] --> P[原生配置和规则适配器]
+  M[路由与能力清单] --> P
+  F[纯功能核心和客户端适配器] --> B[统一构建]
+  P --> B
+  B --> C[clients 下的发布产物]
+  C --> V[语义、结构及可用原生检查]
+~~~
 
-规则分类先使用 `ai`、`development`、`media`、`social`、`system`、`network`、`privacy`，随真实内容扩展。分类只用于查找，不决定分流优先级。
+规则源只描述精确域名、域名后缀、IPv4 CIDR 和 IPv6 CIDR。category 是内部标签，公开 rules/ 按具体应用或服务 ID 平铺。策略与优先级只由 routing.json 决定；新增服务可自动生成同名选择组，不必为八个客户端分别复制规则事实。
 
-## 什么可以共享
+DNS、策略组、最终策略、规则执行阶段和 MITM 要求保留客户端差异。Egern、Mihomo、sing-box 的 YAML/JSON 结构分别适配；文件后缀相同也不隐含兼容。
 
-可以共享的是域名与网段事实、来源信息、功能说明，以及经独立验证的纯解析函数。公共规则首版只接受精确域名、域名后缀、IPv4 CIDR、IPv6 CIDR。
+## 如何扩展
 
-DNS、策略组名、策略选择、规则顺序、最终策略、脚本执行时机和 MITM 要求保留客户端差异。不建立覆盖一切的万能配置语言，不因为文件后缀类似就声明兼容。
+- 新增应用分流：在 metadata/upstreams.json 登记稳定服务 ID、来源与许可，按规范写入 src/rules/<标签>/<服务ID>.json；外部来源通过 sync 获取。只有默认策略或优先级需要例外时才调整 routing.json。构建会为八个客户端自动生成同名规则与服务选择组，无需复制八份数据。
+- 新增重写或脚本：在 src/features/<功能ID>/ 保存原生适配与测试，在 metadata/features.json 登记支持范围，再由 tools/lib/features.mjs 输出到对应客户端。不把尚未验证的宿主 API 当作通用接口。
+- 新增客户端：在 metadata/clients.json 登记 ID、格式与来源，增加原生配置和规则适配、结构验证与语义测试。客户端能力差异明确保留。
 
-## 功能包如何组织
+扩展后运行 npm test、npm run build、npm run check；涉及原生配置时另跑对应内核或应用验证。发布目录不作为维护源。
 
-`src/features/geoip/` 可以同时包含 QX 和 Surge 的适配，但只有各自实现与验证存在时才登记支持。Mihomo 和 sing-box 没有相同的客户端脚本显示入口，不为凑目录生成假的同名模块。
+## 功能与发布路径
 
-每个功能的清单说明：用途、支持的软件和版本、依赖、是否需要 MITM、数据来源、许可、验证等级和输出路径。
+scripts/ 保存已适配的 JS，rewrites/ 保存纯重写，modules/ 保存组合功能安装包及明确标注的配置片段。一个功能可以共享纯解析函数，但客户端宿主 API、请求路由和完成契约分别测试。QX General 合并片段不是重写订阅。
 
-## 稳定下载地址
+主配置内联规则，所以无需先发布远程资源。可选功能使用的 baseUrl 只构造远程地址；推送前这些地址不能视为可用链接。公开发布采用 clients/<client>/ 的稳定路径，来源与校验值保存在清单；固定提交可用于复现和回退。
 
-正式发布后，主配置使用固定路径，例如 `clients/quantumult-x/profiles/default.conf`。功能模块和规则集有各自独立路径，不要求导入整个仓库。
+## 验证与私人数据
 
-主分支提供更新入口，已发布标签或固定提交提供可回退入口。发布清单记录来源提交、输入校验值、输出校验值、构建版本和验证证据。
+结构、规则语义、VM 契约、真实内核和原生应用导入分别记录。Mihomo、sing-box 有固定版本检查入口，六个图形应用仍需逐一导入；目录存在或结构通过不代表设备实测。
 
-## 私人内容
+用户节点、订阅、令牌和证书保留在本地。公开模板、fixture、生成文件和日志不包含这些内容，工具不读取用户正在运行的客户端配置。
 
-自己的节点、订阅、令牌和证书由用户在本地单独提供；不进入公共模板、fixture、日志或构建产物。仓库不读取或上传用户当前客户端配置。
+接口和验收分别见[规则](specs/rules.md)、[配置](specs/profiles.md)、[功能](specs/features.md)及[构建](specs/build.md)规格；实际证据见[验证记录](validation.md)。

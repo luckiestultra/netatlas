@@ -1,0 +1,267 @@
+{
+  "version": 1,
+  "id": "github",
+  "category": "development",
+  "entries": [
+    {
+      "type": "domain-suffix",
+      "value": "atom.io"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "cafe.github.com"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "collector.github.com"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "dependabot.com"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "gh.io"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "ghcr.io"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "ghe.com"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "git.io"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "github.ai"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "github.blog"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "github.career"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "github.com"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "github.community"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "github.dev"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "github.io"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "githubapp.com"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "githubassets.com"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "githubcopilot.com"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "githubhackathon.com"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "githubnext.com"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "githubpreview.dev"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "githubstatus.com"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "githubsupport.com"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "githubuniverse.com"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "githubusercontent.com"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "myoctocat.com"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "npm.community"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "npmjs.com"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "npmjs.org"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "octocaptcha.com"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "opensource.guide"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "repo.new"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "thegithubshop.com"
+    },
+    {
+      "type": "domain",
+      "value": "copilot-proxy.githubusercontent.com"
+    },
+    {
+      "type": "domain",
+      "value": "copilot-telemetry-service.githubusercontent.com"
+    },
+    {
+      "type": "domain",
+      "value": "copilot-telemetry.githubusercontent.com"
+    },
+    {
+      "type": "domain",
+      "value": "copilot-workspace.githubnext.com"
+    },
+    {
+      "type": "domain",
+      "value": "copilotprodattachments.blob.core.windows.net"
+    },
+    {
+      "type": "domain",
+      "value": "github-api.arkoselabs.com"
+    },
+    {
+      "type": "domain",
+      "value": "github-cloud.s3.amazonaws.com"
+    },
+    {
+      "type": "domain",
+      "value": "github-production-release-asset-2e65be.s3.amazonaws.com"
+    },
+    {
+      "type": "domain",
+      "value": "github-production-repository-file-5c1aeb.s3.amazonaws.com"
+    },
+    {
+      "type": "domain",
+      "value": "github-production-repository-image-32fea6.s3.amazonaws.com"
+    },
+    {
+      "type": "domain",
+      "value": "github-production-upload-manifest-file-7fdce7.s3.amazonaws.com"
+    },
+    {
+      "type": "domain",
+      "value": "github-production-user-asset-6210df.s3.amazonaws.com"
+    },
+    {
+      "type": "domain",
+      "value": "productionresultssa0.blob.core.windows.net"
+    },
+    {
+      "type": "domain",
+      "value": "productionresultssa1.blob.core.windows.net"
+    },
+    {
+      "type": "domain",
+      "value": "productionresultssa10.blob.core.windows.net"
+    },
+    {
+      "type": "domain",
+      "value": "productionresultssa11.blob.core.windows.net"
+    },
+    {
+      "type": "domain",
+      "value": "productionresultssa12.blob.core.windows.net"
+    },
+    {
+      "type": "domain",
+      "value": "productionresultssa13.blob.core.windows.net"
+    },
+    {
+      "type": "domain",
+      "value": "productionresultssa14.blob.core.windows.net"
+    },
+    {
+      "type": "domain",
+      "value": "productionresultssa15.blob.core.windows.net"
+    },
+    {
+      "type": "domain",
+      "value": "productionresultssa16.blob.core.windows.net"
+    },
+    {
+      "type": "domain",
+      "value": "productionresultssa17.blob.core.windows.net"
+    },
+    {
+      "type": "domain",
+      "value": "productionresultssa18.blob.core.windows.net"
+    },
+    {
+      "type": "domain",
+      "value": "productionresultssa19.blob.core.windows.net"
+    },
+    {
+      "type": "domain",
+      "value": "productionresultssa2.blob.core.windows.net"
+    },
+    {
+      "type": "domain",
+      "value": "productionresultssa3.blob.core.windows.net"
+    },
+    {
+      "type": "domain",
+      "value": "productionresultssa4.blob.core.windows.net"
+    },
+    {
+      "type": "domain",
+      "value": "productionresultssa5.blob.core.windows.net"
+    },
+    {
+      "type": "domain",
+      "value": "productionresultssa6.blob.core.windows.net"
+    },
+    {
+      "type": "domain",
+      "value": "productionresultssa7.blob.core.windows.net"
+    },
+    {
+      "type": "domain",
+      "value": "productionresultssa8.blob.core.windows.net"
+    },
+    {
+      "type": "domain",
+      "value": "productionresultssa9.blob.core.windows.net"
+    }
+  ]
+}

@@ -1,0 +1,203 @@
+{
+  "version": 1,
+  "id": "gemini",
+  "category": "ai",
+  "entries": [
+    {
+      "type": "domain-suffix",
+      "value": "ai.studio"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "aicode.googleapis.com"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "aida.googleapis.com"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "aisandbox-pa.googleapis.com"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "aistudio.google.com"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "antigravity-unleash.goog"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "antigravity.google"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "bard.google.com"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "deepmind.com"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "deepmind.google"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "flow.google"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "flow.google.com"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "geller-pa.googleapis.com"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "gemini.google"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "gemini.google.com"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "gemini.gstatic.com"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "generativeai.google"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "generativelanguage.googleapis.com"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "jules.google"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "jules.google.com"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "labs.google"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "labs.google.com"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "labstailwind.pa.googleapis.com"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "makersuite.google.com"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "notebook.google"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "notebook.google.com"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "notebooklm.google"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "notebooklm.google.com"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "opal.google"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "opal.google.com"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "proactivebackend-pa.googleapis.com"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "robinfrontend-pa.googleapis.com"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "stitch.withgoogle.com"
+    },
+    {
+      "type": "domain",
+      "value": "ai.google.dev"
+    },
+    {
+      "type": "domain",
+      "value": "alkalicore-pa.clients6.google.com"
+    },
+    {
+      "type": "domain",
+      "value": "alkalimakersuite-pa.clients6.google.com"
+    },
+    {
+      "type": "domain",
+      "value": "antigravity-pa.googleapis.com"
+    },
+    {
+      "type": "domain",
+      "value": "antigravity.googleapis.com"
+    },
+    {
+      "type": "domain",
+      "value": "appsgenaiserver-pa.clients.google.com"
+    },
+    {
+      "type": "domain",
+      "value": "appsgenaiserver-pa.clients6.google.com"
+    },
+    {
+      "type": "domain",
+      "value": "appsgenaiserver-pa.googleapis.com"
+    },
+    {
+      "type": "domain",
+      "value": "cloudaicompanion.googleapis.com"
+    },
+    {
+      "type": "domain",
+      "value": "cloudcode-pa.googleapis.com"
+    },
+    {
+      "type": "domain",
+      "value": "daily-cloudcode-pa.googleapis.com"
+    },
+    {
+      "type": "domain",
+      "value": "geminiweb-pa.clients.google.com"
+    },
+    {
+      "type": "domain",
+      "value": "geminiweb-pa.clients6.google.com"
+    },
+    {
+      "type": "domain",
+      "value": "notebooklm-pa.googleapis.com"
+    },
+    {
+      "type": "domain",
+      "value": "notebooklm.googleapis.com"
+    },
+    {
+      "type": "domain",
+      "value": "webchannel-alkalimakersuite-pa.clients6.google.com"
+    }
+  ]
+}

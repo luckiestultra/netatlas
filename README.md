@@ -1,65 +1,69 @@
-# Proxy Atlas
+# NetAtlas
 
-面向多个代理客户端的配置、规则、模块与脚本仓库。先选软件，再找需要的内容。
+面向 Quantumult X、Surge、Loon、Shadowrocket、Egern、Stash、Mihomo 和 sing-box 的原生配置与规则仓库。先选客户端，再取用主配置、具体服务分流或可选功能。
 
-**当前阶段：架构与规格评审。尚未发布可导入配置。** 不把规划中的目录或未验证的配置标记为可用。
+当前规范目录包含 **15 个规则集、5,077 条规则**。主配置将规则内联，可以从本地文件使用；可选脚本直链需要对应文件已经推送到公开提交。八种格式都做结构与语义检查；Mihomo、sing-box 有固定版本原生检查入口，其余六个应用仍需实际导入。执行证据见[验证记录](docs/validation.md)。
 
-## 使用时怎么看
+## 使用入口
 
-以下是已确认的目录设计；文件随实际实现与验证后发布，不预先创建空配置。
+| 客户端 | 主配置 | 目录 |
+|---|---|---|
+| Quantumult X | [default.conf](clients/quantumultX/profiles/default.conf) | [quantumultX](clients/quantumultX/) |
+| Surge | [default.conf](clients/surge/profiles/default.conf) | [surge](clients/surge/) |
+| Loon | [default.conf](clients/loon/profiles/default.conf) | [loon](clients/loon/) |
+| Shadowrocket | [default.conf](clients/shadowrocket/profiles/default.conf) | [shadowrocket](clients/shadowrocket/) |
+| Egern | [default.yaml](clients/egern/profiles/default.yaml) | [egern](clients/egern/) |
+| Stash | [default.yaml](clients/stash/profiles/default.yaml) | [stash](clients/stash/) |
+| Mihomo | [default.yaml](clients/mihomo/profiles/default.yaml) | [mihomo](clients/mihomo/) |
+| sing-box | [default.json](clients/singBox/profiles/default.json) | [singBox](clients/singBox/) |
 
-```text
-clients/
-├── quantumult-x/       # Quantumult X
-├── surge/             # Surge
-├── loon/              # Loon
-├── shadowrocket/      # Shadowrocket
-├── egern/             # Egern
-├── stash/             # Stash
-├── mihomo/            # Mihomo / Clash.Meta
-└── sing-box/          # sing-box
-```
+每个客户端目录按用途排列：
 
-进入对应软件目录后，按需要取用：
-
-```text
-clients/quantumult-x/
+~~~text
+clients/<client>/
 ├── profiles/          # 主配置
-├── rules/             # 分流规则
-├── modules/           # 可选功能片段
-├── scripts/           # 已适配该软件的脚本
-├── manifest.json      # 版本、来源和验证结果
-└── README.md          # 导入方式与已知限制
-```
+├── rules/             # 按具体应用或服务 ID 平铺的分流规则
+├── rewrites/          # 纯重写资源
+├── scripts/           # 明确适配的 JavaScript
+├── modules/           # 组合功能包或标注用途的配置片段
+├── manifest.json      # 文件、来源与验证边界
+└── README.md          # 使用方式
+~~~
 
-并非每个软件都支持这些能力。没有实现、客户端不支持或未达到验证要求的产物不发布。
+未实现的可选能力不生成占位文件。独立规则例如 clients/surge/rules/openai.list，不增加 ai、media 等公开类别层；category 只用于内部整理，路由默认值与先后顺序由 [routing.json](metadata/routing.json) 单独管理。
 
-## 维护时怎么改
+主配置不包含私人节点。Proxy 组以 REJECT 为首项，DIRECT 是明确可选项；添加自有节点、将其加入 Proxy 并主动选择后，再核对实际出站。图形应用可能保留旧选择，导入后应检查当前选项。LAN、China 等规则的明确 DIRECT 行为以路由清单为准。
 
-公共规则只维护一份，再生成各软件需要的格式。例如添加一个 OpenAI 域名，只修改规则源；构建工具负责更新各客户端产物。DNS、策略组、规则顺序和最终策略保留各客户端原生写法。
+QX 的 modules/geoip.conf 是合并到 [general] 的配置片段，不能作为重写订阅导入。GeoIP、Surge 面板和搜索重定向的路径、路由语义与验证限制见[可选功能说明](docs/features.md)。
 
-```text
-src/rules/ ─────┐
-src/profiles/ ──┼── 构建与校验 ──→ clients/<软件>/
-src/features/ ──┘
-```
+## 本地维护
 
-## 设计与规格
+要求 Node.js 24.x。
 
-- [模块边界与依赖](CAPABILITY_MAP.md)
-- [目录、命名和兼容原则](docs/architecture.md)
-- [参考项目与来源审计](docs/upstream-audit.md)
-- [规则数据规格](SPEC-rule-data.md)
-- [客户端配置规格](SPEC-client-configs.md)
-- [功能包规格](SPEC-feature-packages.md)
-- [构建与验证规格](SPEC-build-validation.md)
+~~~sh
+npm ci
+npm test
+npm run build
+npm run validate
+npm run test:native
+~~~
 
-## 边界
+~~~sh
+npm run build -- --check             # 比较生成结果，不写入
+npm run validate -- --client singBox # 筛选一个客户端的校验
+npm run sync -- --latest --dry-run   # 检查候选上游，不更新源文件
+npm run test:live                    # 单独联网检查 GeoIP；不打印真实出口 IP
+~~~
 
-- 发布的示例不包含私人节点、订阅地址、访问令牌、证书私钥或账户数据。
-- 未明确授权的第三方代码与图标只作为设计参考，不直接复制再发布。
-- 规则转换不能悄悄删除不支持的类型，或改变规则的匹配含义。
-- 脚本通过响应样本测试，不等于已经在每个客户端中实测。
-- 当前没有“全部客户端已支持”的声明；实际支持范围以将来生成的能力与验证清单为准。
+构建全量生成八种客户端；不提供 --client 构建开关。生成文件由规范源、路由清单和明确的客户端适配器维护，不手工编辑 clients/。CI 执行离线测试、构建一致性、校验和 Linux 原生内核检查；上游更新工作流只由手动触发产生 review artifact，不自动提交或发布。
 
-原创部分采用 [MIT License](LICENSE)。第三方内容的许可证与声明单独保留。
+## 文档
+
+- [能力与验证范围](docs/capabilities.md)
+- [架构与目录](docs/architecture.md)
+- [客户端格式与官方依据](docs/client-formats.md)
+- [可选功能](docs/features.md)
+- [来源审计](docs/upstream-audit.md)与[第三方声明](THIRD_PARTY_NOTICES.md)
+- 规格：[规则](docs/specs/rules.md)、[配置](docs/specs/profiles.md)、[功能](docs/specs/features.md)、[构建](docs/specs/build.md)
+
+原创部分采用 [MIT License](LICENSE)。规则数据的来源、固定提交、许可和可移植范围单独登记；不读取或发布用户节点、订阅、令牌及证书。

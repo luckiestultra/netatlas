@@ -1,0 +1,82 @@
+{
+  "version": 1,
+  "features": [
+    {
+      "id": "geoip",
+      "description": "Provider-response normalization with explicit Quantumult X and Surge adapters.",
+      "defaultEnabled": false,
+      "providers": {
+        "ipinfo": "https://ipinfo.io/json",
+        "ipwho.de": "http://ipwho.de/json",
+        "ip-api": "http://ip-api.com/json/"
+      },
+      "clients": {
+        "quantumultX": {
+          "artifacts": ["scripts/geoip.js", "modules/geoip.conf"],
+          "kind": "general-fragment",
+          "requiresPublicBaseUrl": true,
+          "routing": "The native geo_location_checker supplies the response; the script only parses it.",
+          "documentationBaseline": "1.5.5 build 914"
+        },
+        "surge": {
+          "artifacts": ["scripts/geoip.js", "modules/geoip.sgmodule"],
+          "kind": "generic-panel",
+          "routing": "One lookup request uses the existing policy named by the script argument, Proxy by default; it does not change a group selection or represent every request.",
+          "minimumVersion": {"ios": "4.9.3", "macos": "5.7.5"}
+        }
+      },
+      "validation": {
+        "unit": "node-test",
+        "hostContract": "node-vm",
+        "nativeApp": "not-run",
+        "liveApi": "Run separately; public IP responses are never committed as fixtures."
+      },
+      "sources": [
+        "https://github.com/crossutility/Quantumult-X/blob/master/sample-location-with-script.js",
+        "https://github.com/crossutility/Quantumult-X/blob/master/sample-fetch-opts-policy.js",
+        "https://manual.nssurge.com/scripting/api.html",
+        "https://manual.nssurge.com/scripting/generic.html",
+        "https://manual.nssurge.com/tools/panel.html",
+        "https://ipwho.de/",
+        "https://ipinfo.io/developers",
+        "https://ip-api.com/docs/api:json"
+      ]
+    },
+    {
+      "id": "search-redirect",
+      "description": "Optional native Bing-to-Google 302 redirect when q is the first query parameter.",
+      "defaultEnabled": false,
+      "requiresMitmForHttps": ["www.bing.com"],
+      "clients": {
+        "quantumultX": {
+          "artifacts": ["rewrites/search-redirect.snippet"],
+          "kind": "rewrite-resource",
+          "documentationBaseline": "1.5.5 build 914"
+        },
+        "surge": {
+          "artifacts": ["rewrites/search-redirect.sgmodule"],
+          "kind": "sgmodule"
+        }
+      },
+      "validation": {
+        "unit": "encoded-query-positive-and-negative-fixtures",
+        "hostContract": "native-syntax-reviewed-against-official-examples",
+        "nativeApp": "not-run"
+      },
+      "sources": [
+        "https://github.com/crossutility/Quantumult-X/blob/master/sample.conf",
+        "https://github.com/crossutility/Quantumult-X/blob/master/sample-import-rewrite.snippet",
+        "https://manual.nssurge.com/http/url-rewrite.html",
+        "https://manual.nssurge.com/profile/module.html"
+      ]
+    }
+  ],
+  "unimplementedNativeAdapters": {
+    "loon": "No feature artifact is emitted until its native host contract is implemented and verified.",
+    "shadowrocket": "No feature artifact is emitted until its native host contract is implemented and verified.",
+    "egern": "No feature artifact is emitted until its native host contract is implemented and verified.",
+    "stash": "No feature artifact is emitted until its native host contract is implemented and verified.",
+    "mihomo": "No JavaScript or HTTP-rewrite compatibility is claimed by these feature packages.",
+    "singBox": "No JavaScript or HTTP-rewrite compatibility is claimed by these feature packages."
+  }
+}

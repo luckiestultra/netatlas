@@ -1,0 +1,52 @@
+name: Upstream review candidate
+
+on:
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  candidate:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 20
+    steps:
+      - name: Check out repository
+        uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+        with:
+          persist-credentials: false
+      - name: Set up Node.js 24
+        uses: actions/setup-node@949feb2413d6458794dcd2491c4babbbce0c15c1 # v7.1.0
+        with:
+          node-version: '24'
+          cache: npm
+      - name: Install locked dependencies
+        run: npm ci
+      - name: Prepare review directory
+        run: mkdir -p work/upstream-review
+      - name: Generate candidate catalog in this temporary checkout
+        run: npm run sync -- --latest | tee work/upstream-review/sync.txt
+      - name: Test candidate
+        run: npm test
+      - name: Build candidate
+        run: npm run build
+      - name: Validate candidate
+        run: npm run validate
+      - name: Export review material
+        if: always()
+        run: |
+          mkdir -p work/upstream-review
+          git diff --stat -- src/rules metadata/upstreams.json clients > work/upstream-review/diffstat.txt
+          git diff --binary -- src/rules metadata/upstreams.json clients > work/upstream-review/candidate.patch
+          cp metadata/upstreams.json work/upstream-review/upstreams.json
+          cp -R src/rules work/upstream-review/rules
+          if [ -d clients ]; then cp -R clients work/upstream-review/clients; fi
+      - name: Upload candidate for manual review
+        if: always()
+        uses: actions/upload-artifact@cf430e030ddbb5b0abf93d22962f4752f3646cd9 # v7.0.2
+        with:
+          name: upstream-review
+          path: work/upstream-review/
+          retention-days: 14
+          if-no-files-found: error
+          include-hidden-files: false

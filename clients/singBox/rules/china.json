@@ -1,0 +1,28 @@
+{
+  "version": 3,
+  "rules": [
+    {
+      "domain_suffix": [
+        "12306.cn",
+        "163.com",
+        "alicdn.com",
+        "alipay.com",
+        "aliyun.com",
+        "baidu.com",
+        "biliapi.net",
+        "bilibili.com",
+        "bilivideo.com",
+        "douyin.com",
+        "jd.com",
+        "qq.com",
+        "taobao.com",
+        "tencent.com",
+        "tmall.com",
+        "weibo.com",
+        "weixin.qq.com",
+        "xiaohongshu.com",
+        "zhihu.com"
+      ]
+    }
+  ]
+}

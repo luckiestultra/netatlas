@@ -1,0 +1,8 @@
+#!name=NetAtlas Search Redirect
+#!desc=Optional Bing-to-Google redirect; q must be the first parameter. HTTPS requires your existing trusted MITM CA.
+
+[URL Rewrite]
+^https?://www\.bing\.com/search\?q=([^&]*)(?:&.*)?$ https://www.google.com/search?q=$1 302
+
+[MITM]
+hostname = %APPEND% www.bing.com

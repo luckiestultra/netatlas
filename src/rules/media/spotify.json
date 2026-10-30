@@ -1,0 +1,119 @@
+{
+  "version": 1,
+  "id": "spotify",
+  "category": "media",
+  "entries": [
+    {
+      "type": "domain-suffix",
+      "value": "byspotify.com"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "lifeatspotify.com"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "pscdn.co"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "scdn.co"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "spoti.fi"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "spotify-everywhere.com"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "spotify.com"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "spotify.com.edgesuite.net"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "spotify.design"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "spotify.link"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "spotifycdn.com"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "spotifycdn.net"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "spotifycharts.com"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "spotifycodes.com"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "spotifyforbrands.com"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "spotifyforvendors.com"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "spotifyjobs.com"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "tospotify.com"
+    },
+    {
+      "type": "domain",
+      "value": "adeventtracker.spotify.com"
+    },
+    {
+      "type": "domain",
+      "value": "adstudio-assets.scdn.co"
+    },
+    {
+      "type": "domain",
+      "value": "audio-ak-spotify-com.akamaized.net"
+    },
+    {
+      "type": "domain",
+      "value": "audio4-ak-spotify-com.akamaized.net"
+    },
+    {
+      "type": "domain",
+      "value": "bloodhound.spotify.com"
+    },
+    {
+      "type": "domain",
+      "value": "cdn-spotify-experiments.conductrics.com"
+    },
+    {
+      "type": "domain",
+      "value": "heads-ak-spotify-com.akamaized.net"
+    },
+    {
+      "type": "domain",
+      "value": "heads4-ak-spotify-com.akamaized.net"
+    },
+    {
+      "type": "domain",
+      "value": "spotify.map.fastly.net"
+    },
+    {
+      "type": "domain",
+      "value": "spotify.map.fastlylb.net"
+    }
+  ]
+}

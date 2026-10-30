@@ -1,0 +1,4 @@
+; Optional Bing-to-Google redirect. Import as a rewrite resource.
+; Only matches URLs whose first query parameter is q. Existing MITM CA setup is required for HTTPS.
+hostname = www.bing.com
+^https?://www\.bing\.com/search\?q=([^&]*)(?:&.*)?$ url 302 https://www.google.com/search?q=$1

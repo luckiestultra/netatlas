@@ -1,0 +1,103 @@
+{
+  "version": 1,
+  "id": "netflix",
+  "category": "media",
+  "entries": [
+    {
+      "type": "domain-suffix",
+      "value": "fast.com"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "netflix.ca"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "netflix.com"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "netflix.com.edgesuite.net"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "netflix.net"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "netflixdnstest0.com"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "netflixdnstest1.com"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "netflixdnstest10.com"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "netflixdnstest2.com"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "netflixdnstest3.com"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "netflixdnstest4.com"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "netflixdnstest5.com"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "netflixdnstest6.com"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "netflixdnstest7.com"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "netflixdnstest8.com"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "netflixdnstest9.com"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "netflixinvestor.com"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "netflixtechblog.com"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "nflxext.com"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "nflximg.com"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "nflximg.net"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "nflxsearch.net"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "nflxso.net"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "nflxvideo.net"
+    }
+  ]
+}

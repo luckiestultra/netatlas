@@ -1,0 +1,75 @@
+{
+  "version": 1,
+  "id": "lan",
+  "category": "network",
+  "entries": [
+    {
+      "type": "domain-suffix",
+      "value": "home.arpa"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "local"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "localhost"
+    },
+    {
+      "type": "ip-cidr",
+      "value": "0.0.0.0/8"
+    },
+    {
+      "type": "ip-cidr",
+      "value": "10.0.0.0/8"
+    },
+    {
+      "type": "ip-cidr",
+      "value": "100.64.0.0/10"
+    },
+    {
+      "type": "ip-cidr",
+      "value": "127.0.0.0/8"
+    },
+    {
+      "type": "ip-cidr",
+      "value": "169.254.0.0/16"
+    },
+    {
+      "type": "ip-cidr",
+      "value": "172.16.0.0/12"
+    },
+    {
+      "type": "ip-cidr",
+      "value": "192.168.0.0/16"
+    },
+    {
+      "type": "ip-cidr",
+      "value": "224.0.0.0/4"
+    },
+    {
+      "type": "ip-cidr",
+      "value": "255.255.255.255/32"
+    },
+    {
+      "type": "ip-cidr6",
+      "value": "::/128"
+    },
+    {
+      "type": "ip-cidr6",
+      "value": "::1/128"
+    },
+    {
+      "type": "ip-cidr6",
+      "value": "fc00::/7"
+    },
+    {
+      "type": "ip-cidr6",
+      "value": "fe80::/10"
+    },
+    {
+      "type": "ip-cidr6",
+      "value": "ff00::/8"
+    }
+  ]
+}
