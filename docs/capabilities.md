@@ -27,7 +27,8 @@ Mihomo 固定检查版本为 1.19.33，sing-box 为 1.14.4；二进制资产及 
 | 按具体应用或服务订阅分流 | clients/<client>/rules/<id>.<原生扩展名> |
 | 纯重写资源 | clients/<client>/rewrites/ |
 | 已适配的 JavaScript | clients/<client>/scripts/ |
-| 组合功能安装包或明确标注的配置片段 | clients/<client>/modules/ |
+| 原生功能安装包 | clients/<client>/modules/ |
+| 需要手工合并的配置片段 | clients/<client>/fragments/ |
 | 输出文件与验证边界 | 对应客户端 README.md、manifest.json |
 
 rules/ 直接放 openai、netflix、github 等具体服务 ID，不增加 ai、media、system 目录。规范源中的 category 只是内部整理标签，不能改变分流策略或规则顺序。

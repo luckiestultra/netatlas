@@ -86,7 +86,7 @@ test('Surge synchronous HTTP-client failure produces an error panel instead of a
 
 test('feature URLs use the requested public base, including a trailing slash', () => {
   const qx = files('quantumultX');
-  assert.match(qx.get('modules/geoip.conf'), /geo_location_checker=http:\/\/ipwho\.de\/json, https:\/\/raw\.githubusercontent\.com\/luckiestultra\/netatlas\/main\/clients\/quantumultX\/scripts\/geoip\.js/);
+  assert.match(qx.get('fragments/geoip.conf'), /geo_location_checker=http:\/\/ipwho\.de\/json, https:\/\/raw\.githubusercontent\.com\/luckiestultra\/netatlas\/main\/clients\/quantumultX\/scripts\/geoip\.js/);
   const surge = files('surge');
   assert.match(surge.get('modules/geoip.sgmodule'), /script-path=https:\/\/raw\.githubusercontent\.com\/luckiestultra\/netatlas\/main\/clients\/surge\/scripts\/geoip\.js/);
   assert.deepEqual(renderFeatures('surge', { baseUrl: baseUrl + '/' }), renderFeatures('surge', { baseUrl }));

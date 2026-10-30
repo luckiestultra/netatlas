@@ -12,7 +12,7 @@
       },
       "clients": {
         "quantumultX": {
-          "artifacts": ["scripts/geoip.js", "modules/geoip.conf"],
+          "artifacts": ["scripts/geoip.js", "fragments/geoip.conf"],
           "kind": "general-fragment",
           "requiresPublicBaseUrl": true,
           "routing": "The native geo_location_checker supplies the response; the script only parses it.",

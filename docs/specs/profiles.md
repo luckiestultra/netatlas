@@ -17,6 +17,7 @@ clients/<client>/
 ├── rewrites/
 ├── scripts/
 ├── modules/
+├── fragments/
 ├── README.md
 └── manifest.json
 ~~~

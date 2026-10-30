@@ -2,7 +2,7 @@
   "version": 1,
   "client": "egern",
   "builder": "netatlas@0.1.0",
-  "inputSha256": "ece62f160594be2bbdf799fea19d4cb6a7f095472e1269b99300dfc577091523",
+  "inputSha256": "1842152dc130f6e31469f174549598b89b4497cefb72645f9d2fd73c6460880f",
   "baseUrl": "https://raw.githubusercontent.com/luckiestultra/netatlas/main",
   "targetVersion": null,
   "validation": {
@@ -386,8 +386,8 @@
     },
     {
       "path": "README.md",
-      "sha256": "c46d9f1baa687a45af319657832b29949239f76bc6373370022cbb3176fbfca3",
-      "bytes": 2058
+      "sha256": "b3f0e7b490354e535cb24b23d41e47a1a5a68450f1bf84ff8fc9e1b2746abd70",
+      "bytes": 2060
     },
     {
       "path": "rules/adblock.yaml",

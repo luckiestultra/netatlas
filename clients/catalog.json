@@ -2,7 +2,7 @@
   "version": 1,
   "builder": "netatlas@0.1.0",
   "input": {
-    "sha256": "ece62f160594be2bbdf799fea19d4cb6a7f095472e1269b99300dfc577091523",
+    "sha256": "1842152dc130f6e31469f174549598b89b4497cefb72645f9d2fd73c6460880f",
     "files": [
       {
         "path": "LICENSE",
@@ -18,7 +18,7 @@
       },
       {
         "path": "metadata/features.json",
-        "sha256": "c323a53481c5ba0a22c6df5737f8604353db284734dc7ce249a90aecb46a9e56"
+        "sha256": "5c4851cf1c7a90177bb7cc5138c6366b7df53f7c66b27707052921d7b859aae7"
       },
       {
         "path": "metadata/native-tools.json",
@@ -126,7 +126,7 @@
       },
       {
         "path": "tools/lib/build.mjs",
-        "sha256": "36868b09731712fe6ba02e40e9ff22148c1747aa4633d037d7f24ae548d3cf5d"
+        "sha256": "fb7c80fda2bab3262ab4d2b2fc8f95974257c6862463045461769679eb5c6049"
       },
       {
         "path": "tools/lib/clients.mjs",
@@ -138,7 +138,7 @@
       },
       {
         "path": "tools/lib/features.mjs",
-        "sha256": "f22094b971c5c490eb8972148826a1641a642d00f49121dfd35189118b80fcd1"
+        "sha256": "4fcf39abf139d3d16477fa49bed013d809a048a075f793ebd25e3273d6f75fc6"
       },
       {
         "path": "tools/lib/native.mjs",
@@ -187,7 +187,7 @@
       "id": "quantumultX",
       "name": "Quantumult X",
       "manifest": "quantumultX/manifest.json",
-      "sha256": "538b8bda2bcf9d191c81554286696cb175c03a7d7fa416531c59c801d889df03",
+      "sha256": "06b337fadef6d466398cc445c4d123760db142288ef4210067819ea79184b224",
       "rulesets": 15,
       "entries": 5077
     },
@@ -195,7 +195,7 @@
       "id": "surge",
       "name": "Surge",
       "manifest": "surge/manifest.json",
-      "sha256": "11fae77de7df635ffe948817bc9784f57b8fc3352d56f79ba4cd644d6566e96d",
+      "sha256": "797e45f022eb22a2cbf91fe76272a88e8dc759cc0636949d5797bd2c4c852566",
       "rulesets": 15,
       "entries": 5077
     },
@@ -203,7 +203,7 @@
       "id": "loon",
       "name": "Loon",
       "manifest": "loon/manifest.json",
-      "sha256": "ae4d5c9ad594b1343b25972f7caff224c28e1bae50250287d2a624b9bfc69c30",
+      "sha256": "78e305c2c35daed230782f3c195beb5e3783974567c3618f427536086e2ba9cc",
       "rulesets": 15,
       "entries": 5077
     },
@@ -211,7 +211,7 @@
       "id": "shadowrocket",
       "name": "Shadowrocket",
       "manifest": "shadowrocket/manifest.json",
-      "sha256": "079015bdd2b292ae605f509cdc278a227dea0eea59d39fed244bbf034d425f7e",
+      "sha256": "210101e497411b7f73f9b2bfcf03a6f4b73dd76ce826a3cb0e2dcd03f83b5bfc",
       "rulesets": 15,
       "entries": 5077
     },
@@ -219,7 +219,7 @@
       "id": "egern",
       "name": "Egern",
       "manifest": "egern/manifest.json",
-      "sha256": "36cdeccc0e826fff1143b750ae72667f1103427521413986135df189bdbb92c3",
+      "sha256": "8e87b64256c31b2a065f9cdf403349b52838615577c46f207679168501656e15",
       "rulesets": 15,
       "entries": 5077
     },
@@ -227,7 +227,7 @@
       "id": "stash",
       "name": "Stash",
       "manifest": "stash/manifest.json",
-      "sha256": "db23b1b9a9ea74db43931cfc27d03092264279aa845878d63bf58e627f05f0f4",
+      "sha256": "b0fd5eb6be7664ac93e1b5e12ce7e44de6fdc650ae49157e33691b84d196b999",
       "rulesets": 15,
       "entries": 5077
     },
@@ -235,7 +235,7 @@
       "id": "mihomo",
       "name": "Mihomo",
       "manifest": "mihomo/manifest.json",
-      "sha256": "dc9a32fbacfe87784fd875796b0f13b860ba811d2e32d355d8a85cfa9a736e21",
+      "sha256": "7c4f3ec55d73818ee67a13d32f68fe7a643383ee189feb7a6206b5b842115e54",
       "rulesets": 15,
       "entries": 5077
     },
@@ -243,10 +243,10 @@
       "id": "singBox",
       "name": "sing-box",
       "manifest": "singBox/manifest.json",
-      "sha256": "0e9358392d06206ce8fb97b51ba8690fb3b2fcc792d7c84acc6a0efa8c36ade9",
+      "sha256": "49e13386960e233291cb5e73e27fcc6e133eb245170792b37b0d347863ae5dae",
       "rulesets": 15,
       "entries": 5077
     }
   ],
-  "contentSha256": "baa73e75b485456bf80ec434afeceb3aa7eee13a55156c1171714cc89c7d4992"
+  "contentSha256": "c3ccdd51d7298cad51df80561650d9df41df47f58abb7d1b4391817be6f39ee0"
 }

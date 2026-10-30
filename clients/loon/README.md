@@ -28,6 +28,6 @@
 
 该客户端本次没有脚本或重写成品；不创建空目录。
 
-可选功能单独导入，默认不启用。Quantumult X 的 modules/geoip.conf 是 [general] 合并片段，不是重写订阅。GeoIP 只显示查询源返回的出口归属；它不证明服务器物理位置。公共脚本 URL 需要对应文件已发布；本地构建不会自动发布。见 [功能说明](../../docs/features.md)。
+可选功能单独导入，默认不启用。Quantumult X 的 fragments/geoip.conf 是 [general] 合并片段，不是重写订阅。GeoIP 只显示查询源返回的出口归属；它不证明服务器物理位置。公共脚本 URL 需要对应文件已发布；本地构建不会自动发布。见 [功能说明](../../docs/features.md)。
 
 规则、配置结构和策略引用在构建时校验。原生状态：仍需在真实应用中导入验证。参见 [验证范围](../../docs/validation.md) 与 [官方参考](https://nsloon.app/docs/intro)。

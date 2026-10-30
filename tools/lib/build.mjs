@@ -68,7 +68,7 @@ async function inputIdentity(root){
 function clientReadme(client,rulesets,features){
   const ruleRows=rulesets.map(rule=>`| [${rule.id}](rules/${rule.id}.${client.ruleExtension}) | ${rule.category} | ${rule.entries.length} |`).join('\n');
   const featureList=features.length?features.map(file=>`- [${file.path}](${file.path})`).join('\n'):'该客户端本次没有脚本或重写成品；不创建空目录。';
-  return `# ${client.name}\n\n[完整配置](profiles/default.${client.profileExtension}) · [构建清单](manifest.json)\n\n先导入完整配置，再在本地添加自己的节点并加入 Proxy 策略组。新建 Proxy 默认 REJECT；应用可能保留旧选择，导入后核对实际选项。DIRECT 可手动选择。配置不含订阅、账号或节点凭据。主配置已内联规则，不需要远程规则地址。\n\n规则按应用或服务平铺；分类只是索引标签。单独导入规则时自行指定策略，Quantumult X 文件含原生策略名，可在导入时设置 force-policy。不要把其他客户端的同名规则文件互换。\n\n| 应用/服务 | 标签 | 条目 |\n| --- | --- | ---: |\n${ruleRows}\n\n## 可选重写、脚本与模块\n\n${featureList}\n\n可选功能单独导入，默认不启用。Quantumult X 的 modules/geoip.conf 是 [general] 合并片段，不是重写订阅。GeoIP 只显示查询源返回的出口归属；它不证明服务器物理位置。公共脚本 URL 需要对应文件已发布；本地构建不会自动发布。见 [功能说明](../../docs/features.md)。\n\n规则、配置结构和策略引用在构建时校验。原生状态：${client.nativeVerification==='available'?'可运行 npm run test:native，结果保存在忽略的 .cache/native-check/latest.json':'仍需在真实应用中导入验证'}。参见 [验证范围](../../docs/validation.md) 与 [官方参考](${client.reference})。\n`;
+  return `# ${client.name}\n\n[完整配置](profiles/default.${client.profileExtension}) · [构建清单](manifest.json)\n\n先导入完整配置，再在本地添加自己的节点并加入 Proxy 策略组。新建 Proxy 默认 REJECT；应用可能保留旧选择，导入后核对实际选项。DIRECT 可手动选择。配置不含订阅、账号或节点凭据。主配置已内联规则，不需要远程规则地址。\n\n规则按应用或服务平铺；分类只是索引标签。单独导入规则时自行指定策略，Quantumult X 文件含原生策略名，可在导入时设置 force-policy。不要把其他客户端的同名规则文件互换。\n\n| 应用/服务 | 标签 | 条目 |\n| --- | --- | ---: |\n${ruleRows}\n\n## 可选重写、脚本与模块\n\n${featureList}\n\n可选功能单独导入，默认不启用。Quantumult X 的 fragments/geoip.conf 是 [general] 合并片段，不是重写订阅。GeoIP 只显示查询源返回的出口归属；它不证明服务器物理位置。公共脚本 URL 需要对应文件已发布；本地构建不会自动发布。见 [功能说明](../../docs/features.md)。\n\n规则、配置结构和策略引用在构建时校验。原生状态：${client.nativeVerification==='available'?'可运行 npm run test:native，结果保存在忽略的 .cache/native-check/latest.json':'仍需在真实应用中导入验证'}。参见 [验证范围](../../docs/validation.md) 与 [官方参考](${client.reference})。\n`;
 }
 
 export async function createBuild(root,{baseUrl=defaultBaseUrl}={}){
@@ -127,7 +127,7 @@ async function assertGeneratedUnmodified(directory){
     allowed.add(client.manifest);
     const manifest=JSON.parse(content);
     for(const artifact of manifest.artifacts??[]){
-      if(!/^(?:profiles|rules|rewrites|scripts|modules)\/[^/]+$/.test(artifact.path)&&artifact.path!=='README.md')throw new Error('Invalid generated artifact path');
+      if(!/^(?:profiles|rules|rewrites|scripts|modules|fragments)\/[^/]+$/.test(artifact.path)&&artifact.path!=='README.md')throw new Error('Invalid generated artifact path');
       const path=client.id+'/'+artifact.path;allowed.add(path);
       if(!paths.includes(path)||sha256(await readFile(resolve(directory,path)))!==artifact.sha256)throw new Error('Modified or missing generated artifact; preserve manual changes: '+path);
     }

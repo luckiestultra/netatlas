@@ -4,7 +4,7 @@ Approved scope: implement all eight clients locally; remove previous reference-p
 
 ## Naming and boundaries
 
-- Consumer paths: `clients/<client>/{profiles,rules,rewrites,modules,scripts}`; rules are flat by concrete service ID; emit only real supported artifacts.
+- Consumer paths: `clients/<client>/{profiles,rules,rewrites,modules,scripts,fragments}`; rules are flat by concrete service ID; emit only real supported artifacts.
 - Canonical IDs: `quantumultX`, `surge`, `loon`, `shadowrocket`, `egern`, `stash`, `mihomo`, `singBox`.
 - Rule/feature IDs and filenames: lowercase kebab-case; native extensions stay native.
 - Shared portable data and parsing functions; explicit native adapters. No universal runtime/config DSL.

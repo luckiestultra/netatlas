@@ -2,7 +2,7 @@
   "version": 1,
   "client": "shadowrocket",
   "builder": "netatlas@0.1.0",
-  "inputSha256": "ece62f160594be2bbdf799fea19d4cb6a7f095472e1269b99300dfc577091523",
+  "inputSha256": "1842152dc130f6e31469f174549598b89b4497cefb72645f9d2fd73c6460880f",
   "baseUrl": "https://raw.githubusercontent.com/luckiestultra/netatlas/main",
   "targetVersion": null,
   "validation": {
@@ -386,8 +386,8 @@
     },
     {
       "path": "README.md",
-      "sha256": "26b47a51d69b24bdfe31a20b2915443c94a4ed526933c79e236da463a31fef62",
-      "bytes": 2073
+      "sha256": "59ae660f3e8eb4755d15b766c4ff39d621e070c0da833307f45521b1a77634d1",
+      "bytes": 2075
     },
     {
       "path": "rules/adblock.list",

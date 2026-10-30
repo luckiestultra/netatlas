@@ -2,7 +2,7 @@
   "version": 1,
   "client": "stash",
   "builder": "netatlas@0.1.0",
-  "inputSha256": "ece62f160594be2bbdf799fea19d4cb6a7f095472e1269b99300dfc577091523",
+  "inputSha256": "1842152dc130f6e31469f174549598b89b4497cefb72645f9d2fd73c6460880f",
   "baseUrl": "https://raw.githubusercontent.com/luckiestultra/netatlas/main",
   "targetVersion": null,
   "validation": {
@@ -386,8 +386,8 @@
     },
     {
       "path": "README.md",
-      "sha256": "0dfb67082013b33a17ff702387b2f161c41af2850b2f9d27d2863d665851d933",
-      "bytes": 2045
+      "sha256": "c86b0425226d796fb81194ab3b22faa39629f94c02d4776518102785166f6bbc",
+      "bytes": 2047
     },
     {
       "path": "rules/adblock.yaml",

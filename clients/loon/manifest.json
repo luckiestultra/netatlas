@@ -2,7 +2,7 @@
   "version": 1,
   "client": "loon",
   "builder": "netatlas@0.1.0",
-  "inputSha256": "ece62f160594be2bbdf799fea19d4cb6a7f095472e1269b99300dfc577091523",
+  "inputSha256": "1842152dc130f6e31469f174549598b89b4497cefb72645f9d2fd73c6460880f",
   "baseUrl": "https://raw.githubusercontent.com/luckiestultra/netatlas/main",
   "targetVersion": null,
   "validation": {
@@ -386,8 +386,8 @@
     },
     {
       "path": "README.md",
-      "sha256": "2f4af7d896bf7440592ba2c68e97727cd66beef1e4fd6c8c734459e155fa919d",
-      "bytes": 2040
+      "sha256": "503b223208e2214dbd50c049355249fc29c83444eee411075813230e721bcc87",
+      "bytes": 2042
     },
     {
       "path": "rules/adblock.list",

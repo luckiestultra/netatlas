@@ -25,7 +25,7 @@ export function renderFeatures(client, { baseUrl } = {}) {
     ];
     // A remote URL is required: local GeoIP script path support is not established.
     if (scriptUrl) artifacts.push({
-      path: 'modules/geoip.conf',
+      path: 'fragments/geoip.conf',
       content: '# General-section fragment. Merge into the existing profile; this is not a rewrite subscription.\n[general]\ngeo_location_checker=http://ipwho.de/json, ' + scriptUrl + '\n',
     });
     return artifacts;

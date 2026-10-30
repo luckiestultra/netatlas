@@ -1,6 +1,6 @@
 # 功能包
 
-分流规则在各客户端的 rules/，纯重写资源在 rewrites/，JavaScript 在 scripts/。modules/ 只放组合功能安装包或明确标注的配置片段。完整基础配置不自动启用这里的可选功能。
+分流规则在各客户端的 rules/，纯重写资源在 rewrites/，JavaScript 在 scripts/。modules/ 只放原生功能安装包；fragments/ 保存需要手工合并的配置片段。完整基础配置不自动启用这里的可选功能。
 
 行为契约见[功能规格](specs/features.md)，整体范围见[能力表](capabilities.md)，当前执行证据见[验证记录](validation.md)。
 
@@ -15,7 +15,7 @@
 产物：
 
 - clients/quantumultX/scripts/geoip.js
-- clients/quantumultX/modules/geoip.conf：只有设置了公开构建 baseUrl 才生成。
+- clients/quantumultX/fragments/geoip.conf：只有设置了公开构建 baseUrl 才生成。
 
 geoip.conf 是需要合并到已有 [general] 的配置片段，**不是重写订阅，也不是完整配置**。它使用 http://ipwho.de/json，并引用本仓库生成的公开脚本地址。内置 geo_location_checker 仅支持 HTTP 查询源；脚本接收原生 $response，只调用一次 $done，不会再发请求或更改节点。
 

@@ -25,7 +25,8 @@ clients/<client>/
 ├── rules/             # 按具体应用或服务 ID 平铺的分流规则
 ├── rewrites/          # 纯重写资源
 ├── scripts/           # 明确适配的 JavaScript
-├── modules/           # 组合功能包或标注用途的配置片段
+├── modules/           # 原生功能安装包
+├── fragments/         # 需要手工合并的配置片段
 ├── manifest.json      # 文件、来源与验证边界
 └── README.md          # 使用方式
 ~~~
@@ -34,7 +35,7 @@ clients/<client>/
 
 主配置不包含私人节点。Proxy 组以 REJECT 为首项，DIRECT 是明确可选项；添加自有节点、将其加入 Proxy 并主动选择后，再核对实际出站。图形应用可能保留旧选择，导入后应检查当前选项。LAN、China 等规则的明确 DIRECT 行为以路由清单为准。
 
-QX 的 modules/geoip.conf 是合并到 [general] 的配置片段，不能作为重写订阅导入。GeoIP、Surge 面板和搜索重定向的路径、路由语义与验证限制见[可选功能说明](docs/features.md)。
+QX 的 fragments/geoip.conf 是合并到 [general] 的配置片段，不能作为重写订阅导入。GeoIP、Surge 面板和搜索重定向的路径、路由语义与验证限制见[可选功能说明](docs/features.md)。
 
 ## 本地维护
 

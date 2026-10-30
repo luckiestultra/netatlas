@@ -9,7 +9,8 @@ netatlas/
 │   ├── rules/<service-id>.*
 │   ├── rewrites/
 │   ├── scripts/
-│   └── modules/
+│   ├── modules/
+│   └── fragments/
 ├── src/
 │   ├── rules/<category>/<id>.json     # 规范匹配事实
 │   └── features/<feature>/           # 纯解析与明确的原生适配器
@@ -61,7 +62,7 @@ DNS、策略组、最终策略、规则执行阶段和 MITM 要求保留客户�
 
 ## 功能与发布路径
 
-scripts/ 保存已适配的 JS，rewrites/ 保存纯重写，modules/ 保存组合功能安装包及明确标注的配置片段。一个功能可以共享纯解析函数，但客户端宿主 API、请求路由和完成契约分别测试。QX General 合并片段不是重写订阅。
+scripts/ 保存已适配的 JS，rewrites/ 保存纯重写，modules/ 保存原生功能安装包，fragments/ 保存需要手工合并的配置片段。一个功能可以共享纯解析函数，但客户端宿主 API、请求路由和完成契约分别测试。QX General 合并片段不是重写订阅。
 
 主配置内联规则，所以无需先发布远程资源。可选功能使用的 baseUrl 只构造远程地址；推送前这些地址不能视为可用链接。公开发布采用 clients/<client>/ 的稳定路径，来源与校验值保存在清单；固定提交可用于复现和回退。
 
