@@ -25,6 +25,44 @@ test('QX native response parser completes once and never performs another networ
   assert.doesNotMatch(script, /\$task|\$prefs|\$persistentStore|\$surge/);
 });
 
+// QX's built-in checker defines $done as an identity function and consumes
+// evaluateScript's final value; a side-effect-only callback mock misses this.
+test('QX built-in GeoIP returns the final evaluation object consumed by the native host', () => {
+  const script = files('quantumultX').get('scripts/geoip.js');
+  const cases = [
+    { name: 'ipwho', statusCode: 200, body: apiBody, ip: '192.0.2.10', title: /英国/ },
+    {
+      name: 'ip-api empty ASN', statusCode: 200,
+      body: JSON.stringify({ status: 'success', query: '203.0.113.10', countryCode: 'JP', country: '日本', regionName: '东京都', city: '东京', as: '', isp: 'Example Network' }),
+      ip: '203.0.113.10', title: /日本/,
+    },
+    {
+      name: 'ipinfo IPv6', statusCode: 200,
+      body: JSON.stringify({ ip: '2001:db8::10', country: 'US', city: 'Los Angeles', org: 'AS64500 Example Network' }),
+      ip: '2001:db8::10', title: /美国/,
+    },
+    { name: 'invalid JSON', statusCode: 200, body: '{broken', ip: '', title: /响应无效/ },
+    { name: 'rate limit', statusCode: 429, body: '', ip: '', title: /查询限流/ },
+    { name: 'absent response', ip: '', title: /网络错误/ },
+  ];
+  for (const fixture of cases) {
+    const supplied = fixture.statusCode ? { statusCode: fixture.statusCode, body: fixture.body } : undefined;
+    const context = vm.createContext({ $response: supplied });
+    vm.runInContext('var $done = function(result) {return result}', context);
+    const result = vm.runInContext(script, context, { timeout: 1000 });
+    assert.equal(typeof result, 'object', fixture.name + ' must yield the object, not undefined');
+    assert.notEqual(result, null, fixture.name);
+    assert.deepEqual(Object.keys(result).sort(), ['description', 'ip', 'subtitle', 'title'], fixture.name);
+    for (const field of ['description', 'ip', 'subtitle', 'title']) assert.equal(typeof result[field], 'string', fixture.name + ': ' + field);
+    assert.equal(result.ip, fixture.ip, fixture.name);
+    assert.match(result.title, fixture.title, fixture.name);
+    if (fixture.ip) {
+      assert.ok(result.title.includes(fixture.ip), fixture.name);
+      assert.ok(result.subtitle.includes(fixture.ip), fixture.name);
+    }
+  }
+});
+
 test('QX native parser also completes once with absent response and malformed JSON', () => {
   for (const supplied of [undefined, { statusCode: 200, body: '{broken' }, { statusCode: 429, body: '' }]) {
     const results = [];

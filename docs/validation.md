@@ -1,5 +1,15 @@
 # 完整配置验证记录
 
+## QX 内置 GeoIP 最终返回值修复（2026-10-31）
+
+冻结输入 `56aa01baf190db5992e2a615a66bf87367b03a4516b33a1fb94cffbfc19f8cbf`。完整离线测试 544 项：539 通过、0 失败、5 项原生 opt-in 跳过；八客户端 1137 个产物无漂移检查、语义/引用/来源/哈希校验通过。GeoIP 产物 SHA-256 为 `b391998446b08cbc671b23fa4490dc573ff080b54f0460f8525e379971d51fac`。
+
+已确认修复前适配器的外层函数丢弃了 $done 返回值。QX 1.8.0 build 946 的只读静态检查显示，QTXDashboardManager 的 checkServerLocation: 路径先注入 `var $done = function(result) {return result}`，随后消费 evaluateScript: 的最终 JSValue；仅接受对象并读取 title、subtitle、ip。旧适配器最终求值为 undefined，会走定位未知分支。静态依据为安装程序 arm64 薄片（SHA-256 `77ea2dcc2e3e4bea406e799d55d5fb71431061bddbacb02b0a482366ce560abe`）的 Apple dyld_info 反汇编：注入点 0x10042fdd4，脚本执行点 0x100430d2c，对象检查点 0x10043050c。检查未附加进程，也未改变应用运行状态或安装内容。
+
+修复仅让 QX 适配器 return $done(...)，不更换 API 或资源解析器。新增测试运行完整渲染产物，按上述宿主定义检查最终结果，覆盖 ipwho、空 ASN 的 ip-api、IPv6 的 IPinfo、错误 JSON、限流和无响应。新增测试在修复前因 undefined 失败；本机 Apple JavaScriptCore 同样复现了旧产物 undefined、修复产物返回四字段对象的差异。此前只收集 $done 调用副作用的 VM/JSC 测试未覆盖这个宿主契约。
+
+这确认了代码缺陷与原生拒绝结果的路径；QX 界面恢复仍须在重新加载修复脚本后验证。本次未操作用户 QX、私有配置、连接、节点或订阅，没有把静态分析与 JSC 重放记为原生界面实测通过。
+
 ## QX 自有资源解析器与中文 GeoIP 显示
 
 最终冻结输入 `62871f1c206fb7a8200a3bb330b5f80cc292f6b54e05f2d91cc3200685082bed`，289 个构建输入。离线测试 543 项：538 通过、0 失败、5 项显式原生 opt-in 跳过；另行执行的两个内核原生 308 个流量案例通过。八客户端 1137 个产物构建、无漂移检查、规则语义/配置引用/来源/哈希校验均通过。14 份非 QX default/standalone 与前提交逐字节相同；规则数据、14/24 严格正则覆盖和 10 个原生缺口没有改变。

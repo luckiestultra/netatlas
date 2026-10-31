@@ -2,7 +2,7 @@
   "version": 1,
   "client": "quantumultX",
   "builder": "netatlas@0.1.0",
-  "inputSha256": "62871f1c206fb7a8200a3bb330b5f80cc292f6b54e05f2d91cc3200685082bed",
+  "inputSha256": "56aa01baf190db5992e2a615a66bf87367b03a4516b33a1fb94cffbfc19f8cbf",
   "baseUrl": "https://raw.githubusercontent.com/luckiestultra/netatlas/main",
   "targetVersion": null,
   "counts": {
@@ -11331,8 +11331,8 @@
     },
     {
       "path": "scripts/geoip.js",
-      "sha256": "313c6144278a23aafb537523fad22630ce58a3a207ad41b884af826ae9a22eeb",
-      "bytes": 20563
+      "sha256": "b391998446b08cbc671b23fa4490dc573ff080b54f0460f8525e379971d51fac",
+      "bytes": 20661
     },
     {
       "path": "scripts/resource-parser.js",

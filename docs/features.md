@@ -17,7 +17,7 @@
 - clients/quantumultX/scripts/geoip.js
 - clients/quantumultX/fragments/geoip.conf：只有设置了公开构建 baseUrl 才生成。
 
-主配置 default.conf 已包含该 checker；其他既有配置可使用 geoip.conf 合并到 [general]。该片段**不是重写订阅，也不是完整配置**。它使用 http://ipwho.de/json，并引用本仓库生成的公开脚本地址。内置 geo_location_checker 仅支持 HTTP 查询源；脚本接收原生 $response，只调用一次 $done，不会再发请求或更改节点。
+主配置 default.conf 已包含该 checker；其他既有配置可使用 geoip.conf 合并到 [general]。该片段**不是重写订阅，也不是完整配置**。它使用 http://ipwho.de/json，并引用本仓库生成的公开脚本地址。内置 geo_location_checker 仅支持 HTTP 查询源；脚本接收原生 $response，只调用一次 $done，不会再发请求或更改节点。内置定位宿主将 $done 定义为返回参数本身的函数，并消费整段脚本的最终求值结果；适配器的外层函数必须 return $done(...)，否则即使调用了 $done，宿主拿到的仍是 undefined。回归测试同时校验四字段对象和最终求值结果。
 
 QX标题输出国旗、中文国家和完整IP，例如`🇺🇸 美国 · 192.0.2.10`；副标题再次保留完整IP，并显示实际返回的城市/地区、ASN和组织。独立`ip`字段和详情也保留IP，避免原生卡片折叠某一行后看不到出口地址。常见城市/地区按已登记名称显示中文，未登记的地名及组织保持原文；不推断缺失地点。生成脚本的VM结果已测，原生QX界面截图与设备运行尚未验证。
 
