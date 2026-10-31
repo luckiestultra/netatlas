@@ -16,6 +16,8 @@ import { orderedRulesets, profileRulesetsFor } from './policies.mjs';
 import { matchesEntry, normalizeRuleset } from './rules.mjs';
 import { renderRuleset } from './exporters.mjs';
 import { renderAntiAd } from './anti-ad.mjs';
+import { nativeRoutingFor } from './native-routing.mjs';
+import { regexRoutingFor } from './regex-routing.mjs';
 import { assertManagedPaths } from './managed-paths.mjs';
 
 const execute = promisify(execFile);
@@ -30,6 +32,9 @@ const fixtureHosts = new Set([
   'copilot-proxy.githubusercontent.com', 'sub.copilot-proxy.githubusercontent.com',
   'registry.npmjs.org', 'www.apple.com', 'api.github.com',
   'prefix-nativekw-suffix.netatlas.test', 'prefix-nativek-suffix.netatlas.test',
+  'chatgpt-async-webps-prod-a-1.webpubsub.azure.com', 'evil.chatgpt-async-webps-prod-a-1.webpubsub.azure.com',
+  'apiproxy-device-prod-nlb-a.amazonaws.com', 'xapiproxy-device-prod-nlb-a.amazonaws.com',
+  'app.adjust.com', 'ads.app.adjust.com', 'googletraveladservices.com', 'cdn.googletraveladservices.com', 'wb_ad.example',
 ]);
 
 export function artifactFor(registry, id, platform = `${process.platform}-${process.arch}`) {
@@ -162,6 +167,7 @@ async function cacheDirectory(root, prefix) {
 
 export async function checkNativeProfiles({ root, binaries, onProgress = () => {} }) {
   const directory = await cacheDirectory(root, 'catalog-');
+  const databaseFixtures = await seedNativeDatabaseFixtures(directory);
   const rulesets = await catalog(root);
   const results = [];
   for (const id of ['mihomo', 'singBox']) {
@@ -199,7 +205,20 @@ export async function checkNativeProfiles({ root, binaries, onProgress = () => {
     assert.ok(bytes.length > 3, `Empty SRS: ${ruleset.id}`);
     compiled.push({ id: ruleset.id, status: 'passed', input: path.relative(root, input), checkedSnapshot: path.relative(root, generated), inputSha256: sha256(inputBytes), bytes: bytes.length, sha256: sha256(bytes) });
   }
-  return { profiles: results, compiled, directory: path.relative(root, directory), unavailableNativeCli: ['quantumultX', 'surge', 'loon', 'shadowrocket', 'egern', 'stash'] };
+  const compiledNativeRouting = [];
+  for (const resource of regexRoutingFor('singBox').resources) {
+    const published = path.join(root, 'clients/singBox', resource.path);
+    const generated = path.join(directory, resource.id + '.json');
+    const bytes = await fileExists(published) ? await readFile(published) : Buffer.from(resource.content);
+    if (!bytes.equals(Buffer.from(resource.content))) throw new Error(`Generated singBox native routing ${resource.id} is stale; run npm run build before native verification`);
+    await writeFile(generated, bytes);
+    const binary = path.join(directory, resource.id + '.srs');
+    await run(binaries.singBox, ['rule-set', 'compile', generated, '-o', binary], directory);
+    const compiledBytes = await readFile(binary);
+    assert.ok(compiledBytes.length > 3, `Empty native routing SRS: ${resource.id}`);
+    compiledNativeRouting.push({ id: resource.id, status: 'passed', input: path.relative(root, await fileExists(published) ? published : generated), checkedSnapshot: path.relative(root, generated), inputSha256: sha256(bytes), bytes: compiledBytes.length, sha256: sha256(compiledBytes) });
+  }
+  return { profiles: results, compiled, compiledNativeRouting, databaseFixtures, directory: path.relative(root, directory), unavailableNativeCli: ['quantumultX', 'surge', 'loon', 'shadowrocket', 'egern', 'stash'] };
 }
 
 async function listen(server, host = '127.0.0.1') {
@@ -473,7 +492,7 @@ async function stop(child) {
 export async function testLocalRouting({ root, binaries, onProgress = () => {} }) {
   const directory = await cacheDirectory(root, 'routing-');
   const currentCatalog = await catalog(root);
-  const serviceRulesets = ['apple', 'apple-tvplus', 'github', 'github-copilot', 'npmjs'].map(id => {
+  const serviceRulesets = ['apple', 'apple-tvplus', 'github', 'github-copilot', 'npmjs', 'netflix', 'openai', 'unbreak'].map(id => {
     const ruleset = currentCatalog.find(item => item.id === id);
     assert.ok(ruleset, `Missing canonical service ruleset for native parent/child routing: ${id}`);
     return ruleset;
@@ -490,7 +509,7 @@ export async function testLocalRouting({ root, binaries, onProgress = () => {} }
   let upstream;
   const rulesets = orderedRulesets([
     { version: 1, id: 'lan', category: 'network', entries: [{ type: 'domain', value: 'allowed.netatlas.test' }] },
-    { version: 1, id: 'adblock', category: 'privacy', entries: [{ type: 'domain', value: 'blocked.netatlas.test' }, { type: 'domain-suffix', value: 'doubleclick.net' }, { type: 'domain-keyword', value: 'nativekw' }] },
+    { version: 1, id: 'adblock', category: 'privacy', entries: [{ type: 'domain', value: 'blocked.netatlas.test' }, { type: 'domain-suffix', value: 'doubleclick.net' }, { type: 'domain-keyword', value: 'nativekw' }, { type: 'domain-suffix', value: 'adjust.com' }] },
     ...serviceRulesets,
   ]);
   const cases = [];
@@ -508,12 +527,12 @@ export async function testLocalRouting({ root, binaries, onProgress = () => {} }
         if (id === 'mihomo') {
           config['mixed-port'] = proxyPort;
           config.dns = { enable: true, ipv6: false, 'enhanced-mode': 'redir-host', nameserver: [`udp://127.0.0.1:${dns.port}`], 'default-nameserver': [`127.0.0.1:${dns.port}`] };
-          for (const name of ['apple', 'github']) config['proxy-groups'].find(group => group.name === name).proxies = ['DIRECT', 'Proxy'];
+          for (const name of ['apple', 'github', 'openai', 'netflix']) config['proxy-groups'].find(group => group.name === name).proxies = ['DIRECT', 'Proxy'];
         } else {
           config.inbounds[0].listen_port = proxyPort;
           config.dns = { servers: [{ type: 'udp', tag: 'fixture-dns', server: '127.0.0.1', server_port: dns.port }], final: 'fixture-dns' };
           config.route.default_domain_resolver = 'fixture-dns';
-          for (const tag of ['apple', 'github']) config.outbounds.find(outbound => outbound.tag === tag).default = 'DIRECT';
+          for (const tag of ['apple', 'github', 'openai', 'netflix']) config.outbounds.find(outbound => outbound.tag === tag).default = 'DIRECT';
         }
         const configPath = path.join(directory, `${id}-${selection}.${id === 'mihomo' ? 'yaml' : 'json'}`);
         await writeFile(configPath, id === 'mihomo' ? stringifyYaml(config) : `${JSON.stringify(config, null, 2)}\n`);
@@ -549,6 +568,17 @@ export async function testLocalRouting({ root, binaries, onProgress = () => {} }
                 ['sub.copilot-proxy.githubusercontent.com', true, 'copilot-exact-child-parent', false]];
           targets.push(['prefix-nativekw-suffix.netatlas.test',false,'keyword-substring-reject',false]);
           targets.push(['prefix-nativek-suffix.netatlas.test',selection!=='REJECT','keyword-near-miss-fallback',selection==='FixtureProxy']);
+          targets.push(
+            ['chatgpt-async-webps-prod-a-1.webpubsub.azure.com', true, 'regex-openai-match', false],
+            ['evil.chatgpt-async-webps-prod-a-1.webpubsub.azure.com', selection !== 'REJECT', 'regex-openai-near-miss', selection === 'FixtureProxy'],
+            ['apiproxy-device-prod-nlb-a.amazonaws.com', true, 'regex-netflix-match', false],
+            ['xapiproxy-device-prod-nlb-a.amazonaws.com', selection !== 'REJECT', 'regex-netflix-near-miss', selection === 'FixtureProxy'],
+            ['app.adjust.com', true, 'unbreak-exact-before-adblock', false],
+            ['ads.app.adjust.com', false, 'unbreak-exact-child-blocked', false],
+            ['googletraveladservices.com', true, 'unbreak-suffix-root', false],
+            ['cdn.googletraveladservices.com', true, 'unbreak-suffix-child', false],
+            ['wb_ad.example', true, 'unbreak-keyword', false],
+          );
           for (const [protocol, request] of [['http', httpThroughProxy], ['socks5', socksThroughProxy]]) {
             for (const [host, permitted, behavior, usesUpstream] of targets) {
               const before = targetRequests;
@@ -574,6 +604,155 @@ export async function testLocalRouting({ root, binaries, onProgress = () => {} }
     if (dns) await new Promise(resolve => dns.server.close(resolve));
   }
   return { status: 'passed', cases, targetRequests, upstreamRequests: upstream.requests(), serviceRulesets: serviceRulesets.map(set => ({ id: set.id, entries: set.entries.length, sourceSha256: sha256(`${JSON.stringify(set, null, 2)}\n`) })), targets: 'loopback HTTP, SOCKS5 and allowlisted DNS only; system proxy unchanged', directory: path.relative(root, directory) };
+}
+
+// Artificial single-address MMDBs for native routing tests, not real geography.
+// Encoding follows the official format and intentionally has no dependencies:
+// https://maxmind.github.io/MaxMind-DB/
+// ASN database_type is the compatibility signature the pinned reader requires:
+// https://github.com/MetaCubeX/mihomo/blob/v1.19.33/component/mmdb/reader.go
+function fixtureMmdb(kind, value) {
+  const control = (type, size) => {
+    assert.ok(Number.isInteger(size) && size >= 0 && size <= 284);
+    return Buffer.from([((type < 8 ? type : 0) << 5) | Math.min(size, 29), ...(type >= 8 ? [type - 7] : []), ...(size >= 29 ? [size - 29] : [])]);
+  };
+  const text = value => { const bytes = Buffer.from(value); return Buffer.concat([control(2, bytes.length), bytes]); };
+  const uint = (type, number) => {
+    const bytes = Buffer.alloc(type === 5 ? 2 : type === 6 ? 4 : 8);
+    if (type === 9) bytes.writeBigUInt64BE(BigInt(number));
+    else bytes.writeUIntBE(number, 0, bytes.length);
+    let start = 0;
+    while (start < bytes.length && bytes[start] === 0) start++;
+    return Buffer.concat([control(type, bytes.length - start), bytes.subarray(start)]);
+  };
+  const map = value => Buffer.concat([control(7, Object.keys(value).length), ...Object.entries(value).flatMap(([key, item]) => [text(key), Buffer.isBuffer(item) ? item : typeof item === 'string' ? text(item) : map(item)])]);
+  const record = kind === 'country' ? map({ country: { iso_code: value } })
+    : map({ autonomous_system_number: uint(6, value), autonomous_system_organization: 'NetAtlas artificial fixture' });
+  const nodeCount = 32;
+  const tree = Buffer.alloc(nodeCount * 6);
+  const address = 0x7f000001;
+  for (let node = 0; node < nodeCount; node++) {
+    const bit = (address >>> (31 - node)) & 1;
+    const children = [nodeCount, nodeCount];
+    children[bit] = node === nodeCount - 1 ? nodeCount + 16 : node + 1;
+    tree.writeUIntBE(children[0], node * 6, 3);
+    tree.writeUIntBE(children[1], node * 6 + 3, 3);
+  }
+  const metadata = map({ node_count: uint(6, nodeCount), record_size: uint(5, 24), ip_version: uint(5, 4), database_type: kind === 'country' ? 'NetAtlas-Fixture-Country' : 'GeoLite2-ASN', binary_format_major_version: uint(5, 2), binary_format_minor_version: uint(5, 0), build_epoch: uint(9, 1_793_361_600), description: { en: 'Artificial loopback-only test data' } });
+  return Buffer.concat([tree, Buffer.alloc(16), record, Buffer.from([0xab, 0xcd, 0xef]), Buffer.from('MaxMind.com'), metadata]);
+}
+
+// Only new isolated fixture directories may be seeded. Fresh files avoid both
+// first-run external downloads and an overdue automatic refresh; production
+// settings and the public profile bytes remain unchanged. No real geography
+// is asserted by syntax or other local-routing fixtures using these files.
+export async function seedNativeDatabaseFixtures(directory) {
+  const files = [];
+  for (const [kind, filename, value] of [['country', 'geoip.metadb', 'US'], ['asn', 'ASN.mmdb', 13335]]) {
+    const bytes = fixtureMmdb(kind, value);
+    await writeFile(path.join(directory, filename), bytes, { flag: 'wx' });
+    files.push({ filename, bytes: bytes.length, sha256: sha256(bytes) });
+  }
+  return { kind: 'artificial-loopback-only', country: 'US', asn: 13335, files, purpose: 'Prevent external MMDB downloads in isolated syntax/workflow tests; not public-IP location evidence' };
+}
+
+export async function testNativeDatabaseRouting({ root, binaries, onProgress = () => {} }) {
+  const directory = await cacheDirectory(root, 'native-databases-');
+  const token = `netatlas-databases-${randomUUID()}`;
+  let targetRequests = 0;
+  const target = http.createServer((request, response) => { targetRequests++; response.writeHead(200, { Connection: 'close' }); response.end(token); });
+  const targetPort = await listen(target);
+  const databaseRequests = [];
+  const versions = [
+    { country: 'CN', asn: 4134, permitted: true, viaUpstream: false, behavior: 'asn-before-country' },
+    { country: 'CN', asn: 13335, permitted: true, viaUpstream: true, behavior: 'country-after-asn-miss' },
+    { country: 'US', asn: 13335, permitted: false, viaUpstream: false, behavior: 'asn-and-country-miss' },
+    { country: 'US', asn: 4134, permitted: true, viaUpstream: false, behavior: 'asn-independent-of-country' },
+  ];
+  let version = 0;
+  const databases = http.createServer((request, response) => {
+    const kind = request.url === '/country.mmdb' ? 'country' : request.url === '/asn.mmdb' ? 'asn' : null;
+    if (!kind || request.method !== 'GET') { response.writeHead(404); response.end(); return; }
+    const bytes = fixtureMmdb(kind, versions[version][kind]);
+    databaseRequests.push({ path: request.url, version, bytes: bytes.length, sha256: sha256(bytes) });
+    response.writeHead(200, { 'Content-Type': 'application/octet-stream', 'Content-Length': bytes.length, Connection: 'close' });
+    response.end(bytes);
+  });
+  const databasePort = await listen(databases);
+  const cases = [];
+  const updates = [];
+  let upstream;
+  let child;
+  let log = '';
+  try {
+    upstream = await localSocksUpstream(targetPort);
+    const proxyPort = await freePort();
+    const controllerPort = await freePort();
+    const secret = randomUUID();
+    const resources = nativeRoutingFor('mihomo');
+    for (const resource of resources) await writeFile(path.join(directory, `${resource.id}.yaml`), resource.content);
+    const config = {
+      'mixed-port': proxyPort, 'external-controller': `127.0.0.1:${controllerPort}`, secret,
+      mode: 'rule', 'log-level': 'info', 'allow-lan': false, 'bind-address': '127.0.0.1', ipv6: false,
+      'geodata-mode': false, 'geo-auto-update': false,
+      'geox-url': { mmdb: `http://127.0.0.1:${databasePort}/country.mmdb`, asn: `http://127.0.0.1:${databasePort}/asn.mmdb` },
+      proxies: [{ name: 'FixtureProxy', type: 'socks5', server: '127.0.0.1', port: upstream.port, udp: false }],
+      'rule-providers': Object.fromEntries(resources.map(resource => [resource.id, { type: 'file', behavior: 'classical', format: 'yaml', path: `./${resource.id}.yaml` }])),
+      // Only the fixture source port bypasses database matching, so the core
+      // can bootstrap its own MMDBs without recursing into an unloaded rule.
+      rules: [`DST-PORT,${databasePort},DIRECT`, 'RULE-SET,china-asn,DIRECT', 'RULE-SET,geoip-cn,FixtureProxy', 'MATCH,REJECT'],
+    };
+    assert.ok(!config.tun, 'Native database fixture must never capture system traffic');
+    const configPath = path.join(directory, 'mihomo.yaml');
+    await writeFile(configPath, stringifyYaml(config));
+    const marker = `netatlas-mihomo-running-${randomUUID()}`;
+    const markerPath = path.join(directory, marker);
+    onProgress('Native databases: full ASN and GeoIP providers, four MMDB revisions, live refresh, HTTP + SOCKS5');
+    child = spawn(binaries.mihomo, ['-f', configPath, '-d', directory, '-post-up', `printf %s ${marker} > ${marker}.pending && mv ${marker}.pending ${marker}`], { cwd: directory, stdio: ['ignore', 'pipe', 'pipe'] });
+    child.on('error', error => { child.startupError = error.message; });
+    child.stdout.on('data', bytes => { log = (log + bytes).slice(-200_000); });
+    child.stderr.on('data', bytes => { log = (log + bytes).slice(-200_000); });
+    await waitForPort(child, proxyPort);
+    await waitForMihomoRunning({ child, markerPath });
+    const providerResponse = await fetch(`http://127.0.0.1:${controllerPort}/providers/rules`, { headers: { Authorization: `Bearer ${secret}` }, signal: AbortSignal.timeout(5_000) });
+    assert.equal(providerResponse.status, 200);
+    const providers = (await providerResponse.json()).providers;
+    assert.equal(providers['china-asn'].ruleCount, 5231);
+    assert.equal(providers['geoip-cn'].ruleCount, 1);
+    for (const [index, expected] of versions.entries()) {
+      version = index;
+      if (index) {
+        const before = databaseRequests.length;
+        const response = await fetch(`http://127.0.0.1:${controllerPort}/configs/geo`, { method: 'POST', headers: { Authorization: `Bearer ${secret}` }, signal: AbortSignal.timeout(8_000) });
+        assert.equal(response.status, 204, `Database refresh failed: ${await response.text()}`);
+        assert.equal(databaseRequests.length - before, 2);
+        for (const [kind, file] of [['country', 'geoip.metadb'], ['asn', 'ASN.mmdb']]) {
+          assert.equal(sha256(await readFile(path.join(directory, file))), sha256(fixtureMmdb(kind, expected[kind])), `${kind} database bytes did not refresh`);
+        }
+        updates.push({ version: index, status: 'passed', country: expected.country, asn: expected.asn });
+      }
+      for (const [protocol, request] of [['http', httpThroughProxy], ['socks5', socksThroughProxy]]) {
+        const before = targetRequests;
+        const upstreamBefore = upstream.requests();
+        const result = await request(proxyPort, '127.0.0.1', targetPort);
+        assert.equal(Boolean(result.body?.includes(token)), expected.permitted, `${protocol} ${expected.behavior}: ${JSON.stringify(result)}`);
+        assert.equal(targetRequests - before, expected.permitted ? 1 : 0);
+        assert.equal(upstream.requests() - upstreamBefore, expected.viaUpstream ? 1 : 0, `${protocol} ${expected.behavior}: wrong native condition selected`);
+        cases.push({ client: 'mihomo', protocol, behavior: expected.behavior, version: index, country: expected.country, asn: expected.asn, viaUpstream: expected.viaUpstream, status: 'passed' });
+      }
+    }
+  } catch (error) {
+    error.message += `\nNative database log:\n${log.slice(-6000)}`;
+    throw error;
+  } finally {
+    if (child) await stop(child);
+    await writeFile(path.join(directory, 'mihomo.log'), log);
+    if (upstream) await upstream.close();
+    target.closeAllConnections();
+    databases.closeAllConnections();
+    await Promise.all([new Promise(resolve => target.close(resolve)), new Promise(resolve => databases.close(resolve))]);
+  }
+  return { status: 'passed', cases, updates, databaseRequests, targetRequests, actualNativeConditions: { asnProviderRules: 5231, geoipProviderRules: 1, types: ['IP-ASN', 'GEOIP'], staticCidrSubstitute: false, database: 'artificial single-address MMDBs; not public-IP geography', refresh: 'Mihomo native POST /configs/geo, followed by real HTTP/SOCKS requests and on-disk digest checks' }, directory: path.relative(root, directory), targets: 'loopback-only HTTP, SOCKS5, source HTTP and authenticated refresh API; artificial databases; no TUN or system proxy changes' };
 }
 
 export async function prepareAntiAdNativeInputs({ root }) {
@@ -777,12 +956,13 @@ export async function runNativeVerification({ root, onProgress = () => {} }) {
   const installed = await installNativeTools({ root, onProgress });
   const checks = await checkNativeProfiles({ root, binaries: installed.binaries, onProgress });
   const routing = await testLocalRouting({ root, binaries: installed.binaries, onProgress });
+  const nativeDatabases = await testNativeDatabaseRouting({ root, binaries: installed.binaries, onProgress });
   const optionalRulesets = await testOptionalRulesets({ root, binaries: installed.binaries, onProgress });
   const { testPrivateProfileWorkflow } = await import('./profile-workflow.mjs');
   const privateWorkflow = await testPrivateProfileWorkflow({ root, binaries: installed.binaries, onProgress });
   const { runManagedProfileVerification } = await import('./managed-workflow.mjs');
   const managedWorkflow = await runManagedProfileVerification({ root, binaries: installed.binaries, onProgress });
-  const report = { status: 'passed', startedAt, completedAt: new Date().toISOString(), artifacts: installed.artifacts, checks, routing, optionalRulesets, privateWorkflow, managedWorkflow };
+  const report = { status: 'passed', startedAt, completedAt: new Date().toISOString(), artifacts: installed.artifacts, checks, routing, nativeDatabases, optionalRulesets, privateWorkflow, managedWorkflow };
   await writeNativeReport({ root, report });
   return report;
 }

@@ -119,7 +119,7 @@
       ],
       "status": "partial",
       "semanticIdentity": false,
-      "note": "amazon-portable 明确保留三个不能无损转换的源正则遗漏。"
+      "note": "公共文件保持可移植投影；原生正则补充单独接入，逐客户端完整/部分/不支持见regex-routing.json，不扩大为后缀。"
     },
     {
       "reference": "Android",
@@ -195,13 +195,13 @@
     },
     {
       "reference": "ChinaASN",
-      "canonicalIds": [
-        "china-ipv4",
-        "china-ipv6"
-      ],
-      "status": "native-difference",
-      "semanticIdentity": false,
-      "note": "没有提供 ASN 编号匹配数据；使用 CN IPv4/IPv6 兜底。ASN 归属与静态国家 CIDR 不等价。"
+      "canonicalIds": [],
+      "status": "native",
+      "semanticIdentity": true,
+      "note": "完整5231原始ASN编号在七端使用原生数据库匹配；sing-box1.14无该原生能力，明确不支持。国家CIDR不计为ASN覆盖。",
+      "nativeResourceIds": [
+        "china-asn"
+      ]
     },
     {
       "reference": "ChinaBGP",
@@ -380,13 +380,13 @@
     },
     {
       "reference": "GEOIPCN",
-      "canonicalIds": [
-        "china-ipv4",
-        "china-ipv6"
-      ],
-      "status": "native-difference",
-      "semanticIdentity": false,
-      "note": "使用固定许可来源 CN CIDR，未伪装为动态 GeoIP 数据库匹配。"
+      "canonicalIds": [],
+      "status": "native",
+      "semanticIdentity": true,
+      "note": "七端使用原生CN国家数据库查询，实际数据库和更新方式依客户端；sing-box1.14已移除该条件，不以CIDR冒充。条件相同不保证不同数据库结果相等。",
+      "nativeResourceIds": [
+        "geoip-cn"
+      ]
     },
     {
       "reference": "Gemini",
@@ -449,7 +449,7 @@
       ],
       "status": "partial",
       "semanticIdentity": false,
-      "note": "独立 @cn 可选选择，不改变 Google 默认代理；两个正则遗漏原文与原因已登记。"
+      "note": "公共文件保持可移植投影；原生正则补充单独接入，逐客户端完整/部分/不支持见regex-routing.json，不扩大为后缀。"
     },
     {
       "reference": "HBO",
@@ -898,9 +898,9 @@
       "canonicalIds": [
         "unbreak"
       ],
-      "status": "alternative",
-      "semanticIdentity": false,
-      "note": "自有三个精确连接探测白名单，非参考集合逐条等价，不能声称完整修正所有误拦截。"
+      "status": "exact-conditions",
+      "semanticIdentity": true,
+      "note": "完整50个匹配条件逐条一致（35精确域、14后缀、1关键词），48GPL+2原创MIT精确端点；八端原生保留，不包含另列的3连接探测。策略可选，默认DIRECT。"
     },
     {
       "reference": "Vercel",
@@ -1533,5 +1533,8 @@
     "External JS dependency entry points were fetched/hashed/syntax checked, not executed.",
     "QX/Loon parser fragments link upstream implementations, not an original NetAtlas parser.",
     "Mihomo and sing-box do not gain GUI HTTP scripting by renaming formats."
-  ]
+  ],
+  "nativeRoutingRegistry": "metadata/native-routing.json",
+  "regexRoutingRegistry": "metadata/regex-routing.json",
+  "nativeSemanticIdentityScope": "Matching condition identity only; not cross-database answers, app version support or GUI runtime verification."
 }

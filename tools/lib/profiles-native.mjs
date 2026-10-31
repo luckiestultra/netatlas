@@ -1,4 +1,5 @@
 import net from 'node:net';
+import { classicRoutingTypes } from './routing-extensions.mjs';
 
 // Native references (checked against Mihomo 1.19.33 / sing-box 1.14.4):
 // https://wiki.metacubex.one/en/config/proxy-groups/
@@ -11,7 +12,7 @@ import net from 'node:net';
 // The public profile has no private credentials. The local profile command
 // supplies native node objects and/or native provider URLs through options.
 
-const ruleTypes = { domain: 'DOMAIN', 'domain-suffix': 'DOMAIN-SUFFIX', 'domain-keyword': 'DOMAIN-KEYWORD', 'ip-cidr': 'IP-CIDR', 'ip-cidr6': 'IP-CIDR6' };
+const ruleTypes = { ...classicRoutingTypes, domain: 'DOMAIN', 'domain-suffix': 'DOMAIN-SUFFIX', 'domain-keyword': 'DOMAIN-KEYWORD', 'ip-cidr': 'IP-CIDR', 'ip-cidr6': 'IP-CIDR6' };
 const lanDomains = ['home.arpa', 'local', 'localhost', 'lan'];
 // Endpoint-style proxy types from each client's native protocol registry.
 // Overlay/group/DNS/script objects are not user proxy nodes for this input API.
@@ -201,8 +202,8 @@ function singDnsRules(entries, groups) {
   const result = [{ domain_suffix: [...lanDomains], action: 'route', server: 'local' }];
   // Preserve routing order for domain rules: service-specific policies precede CN.
   for (const entry of entries) {
-    if (!['domain', 'domain-suffix', 'domain-keyword'].includes(entry.type)) continue;
-    const field = entry.type === 'domain' ? 'domain' : entry.type === 'domain-keyword' ? 'domain_keyword' : 'domain_suffix';
+    if (!['domain', 'domain-suffix', 'domain-keyword', 'domain-regex'].includes(entry.type)) continue;
+    const field = entry.type === 'domain' ? 'domain' : entry.type === 'domain-keyword' ? 'domain_keyword' : entry.type === 'domain-regex' ? 'domain_regex' : 'domain_suffix';
     const action = entry.policy === 'REJECT' ? 'reject' : 'route';
     const server = action === 'route' ? direct.has(entry.policy) ? 'domestic' : 'remote' : undefined;
     const last = result.at(-1);
@@ -244,7 +245,7 @@ export function singBox(entries, groups, options = {}) {
       default_domain_resolver: 'bootstrap',
       rules: [{ action: 'resolve' }, ...entries.map(({ type, value, policy }) => {
         if (!Object.hasOwn(ruleTypes, type)) throw new Error('Unsupported native profile rule type');
-        const field = type === 'domain' ? 'domain' : type === 'domain-suffix' ? 'domain_suffix' : type === 'domain-keyword' ? 'domain_keyword' : 'ip_cidr';
+        const field = type === 'domain' ? 'domain' : type === 'domain-suffix' ? 'domain_suffix' : type === 'domain-keyword' ? 'domain_keyword' : type === 'domain-regex' ? 'domain_regex' : 'ip_cidr';
         return { [field]: [value], ...(policy === 'REJECT' ? { action: 'reject' } : { action: 'route', outbound: policy }) };
       })], final: 'Proxy',
     },

@@ -1,0 +1,31 @@
+# NetAtlas native routing fragment. The default and standalone profiles already enable these conditions.
+# Merge into a custom profile after explicit service/domain rules and before static CN CIDRs/final.
+# This is a manual merge fragment; do not replace a complete profile with it.
+# MMDB country/ASN lookups are enabled with native GEO automatic update every 24 hours.
+# Mutable upstream database URLs are intentional for refresh; their future contents are not pinned or represented as reproducible source rule data.
+geodata-mode: false
+geo-auto-update: true
+geo-update-interval: 24
+geox-url:
+  mmdb: https://raw.githubusercontent.com/P3TERX/GeoLite.mmdb/download/GeoLite2-Country.mmdb
+  asn: https://raw.githubusercontent.com/P3TERX/GeoLite.mmdb/download/GeoLite2-ASN.mmdb
+rule-providers:
+  netatlas-china-asn:
+    type: http
+    proxy: DIRECT
+    behavior: classical
+    format: yaml
+    url: https://raw.githubusercontent.com/luckiestultra/netatlas/main/clients/mihomo/rules/china-asn.yaml
+    path: ./rules/netatlas-china-asn.yaml
+    interval: 86400
+  netatlas-geoip-cn:
+    type: http
+    proxy: DIRECT
+    behavior: classical
+    format: yaml
+    url: https://raw.githubusercontent.com/luckiestultra/netatlas/main/clients/mihomo/rules/geoip-cn.yaml
+    path: ./rules/netatlas-geoip-cn.yaml
+    interval: 86400
+rules:
+  - RULE-SET,netatlas-china-asn,DIRECT
+  - RULE-SET,netatlas-geoip-cn,DIRECT

@@ -1,0 +1,8 @@
+host-wildcard,*.apiproxy-device-prod-nlb-?*.amazonaws.com,global-media
+host-wildcard,*.apiproxy-website-nlb-prod-?*.amazonaws.com,global-media
+host-wildcard,*.dualstack.apiproxy-?*.amazonaws.com,global-media
+host-wildcard,*.dualstack.ichnaea-web-?*.amazonaws.com,global-media
+host-wildcard,apiproxy-device-prod-nlb-?*.amazonaws.com,global-media
+host-wildcard,apiproxy-website-nlb-prod-?*.amazonaws.com,global-media
+host-wildcard,dualstack.apiproxy-?*.amazonaws.com,global-media
+host-wildcard,dualstack.ichnaea-web-?*.amazonaws.com,global-media

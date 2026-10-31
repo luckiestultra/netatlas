@@ -24,6 +24,8 @@ dns:
     +.local: system
     +.localhost: system
     +.lan: system
+    rule-set:connectivity-probes:
+      - https://223.5.5.5/dns-query#DIRECT
     rule-set:unbreak:
       - https://223.5.5.5/dns-query#DIRECT
     rule-set:abc:
@@ -116,6 +118,8 @@ dns:
       - https://1.1.1.1/dns-query#节点选择
     rule-set:netease-music:
       - https://223.5.5.5/dns-query#DIRECT
+    rule-set:netflix-regex:
+      - https://1.1.1.1/dns-query#节点选择
     rule-set:netflix:
       - https://1.1.1.1/dns-query#节点选择
     rule-set:niconico:
@@ -127,6 +131,8 @@ dns:
     rule-set:olevod:
       - https://1.1.1.1/dns-query#节点选择
     rule-set:onedrive:
+      - https://1.1.1.1/dns-query#节点选择
+    rule-set:openai-regex:
       - https://1.1.1.1/dns-query#节点选择
     rule-set:openai:
       - https://1.1.1.1/dns-query#节点选择
@@ -156,6 +162,8 @@ dns:
       - https://1.1.1.1/dns-query#节点选择
     rule-set:soundcloud:
       - https://1.1.1.1/dns-query#节点选择
+    rule-set:speedtest-regex:
+      - https://1.1.1.1/dns-query#节点选择
     rule-set:speedtest:
       - https://1.1.1.1/dns-query#节点选择
     rule-set:spotify:
@@ -177,6 +185,8 @@ dns:
     rule-set:twitter:
       - https://1.1.1.1/dns-query#节点选择
     rule-set:vercel:
+      - https://1.1.1.1/dns-query#节点选择
+    rule-set:viu-portable-regex:
       - https://1.1.1.1/dns-query#节点选择
     rule-set:viu-portable:
       - https://1.1.1.1/dns-query#节点选择
@@ -218,9 +228,15 @@ dns:
       - https://1.1.1.1/dns-query#节点选择
     rule-set:china-media:
       - https://223.5.5.5/dns-query#DIRECT
+    rule-set:hmt-media-regex:
+      - https://1.1.1.1/dns-query#节点选择
     rule-set:hmt-media:
       - https://1.1.1.1/dns-query#节点选择
+    rule-set:global-media-regex:
+      - https://1.1.1.1/dns-query#节点选择
     rule-set:global-media:
+      - https://1.1.1.1/dns-query#节点选择
+    rule-set:amazon-portable-regex:
       - https://1.1.1.1/dns-query#节点选择
     rule-set:amazon-portable:
       - https://1.1.1.1/dns-query#节点选择
@@ -238,10 +254,14 @@ dns:
       - https://223.5.5.5/dns-query#DIRECT
     rule-set:github:
       - https://1.1.1.1/dns-query#节点选择
+    rule-set:google-regex:
+      - https://1.1.1.1/dns-query#节点选择
     rule-set:google:
       - https://1.1.1.1/dns-query#节点选择
     rule-set:microsoft:
       - https://1.1.1.1/dns-query#节点选择
+    rule-set:china-regex:
+      - https://223.5.5.5/dns-query#DIRECT
     rule-set:china:
       - https://223.5.5.5/dns-query#DIRECT
   direct-nameserver:
@@ -274,6 +294,18 @@ proxy-groups:
     interval: 300
     tolerance: 50
     lazy: true
+  - name: 规则修正
+    type: select
+    proxies:
+      - DIRECT
+      - 节点选择
+      - 自动选择
+      - 香港节点
+      - 台湾节点
+      - 日本节点
+      - 韩国节点
+      - 新加坡节点
+      - 美国节点
   - name: AI服务
     type: select
     proxies:
@@ -480,7 +512,9 @@ proxy-groups:
     lazy: true
 rules:
   - RULE-SET,lan,DIRECT
-  - RULE-SET,unbreak,DIRECT
+  - RULE-SET,connectivity-probes,DIRECT
+  - RULE-SET,unbreak,规则修正
+  - RULE-SET,adblock-regex,REJECT
   - RULE-SET,adblock,REJECT
   - RULE-SET,abc,国外媒体
   - RULE-SET,abema,国外媒体
@@ -527,12 +561,14 @@ rules:
   - RULE-SET,mudvod,国外媒体
   - RULE-SET,mytvsuper,国外媒体
   - RULE-SET,netease-music,国内媒体
+  - RULE-SET,netflix-regex,国外媒体
   - RULE-SET,netflix,国外媒体
   - RULE-SET,niconico,国外媒体
   - RULE-SET,notion,开发服务
   - RULE-SET,npmjs,开发服务
   - RULE-SET,olevod,国外媒体
   - RULE-SET,onedrive,微软服务
+  - RULE-SET,openai-regex,AI服务
   - RULE-SET,openai,AI服务
   - RULE-SET,oracle,开发服务
   - RULE-SET,paypal,国外网站
@@ -547,6 +583,7 @@ rules:
   - RULE-SET,signal,即时通讯
   - RULE-SET,slack,即时通讯
   - RULE-SET,soundcloud,国外媒体
+  - RULE-SET,speedtest-regex,国外网站
   - RULE-SET,speedtest,国外网站
   - RULE-SET,spotify,国外媒体
   - RULE-SET,steam-cn,国内服务
@@ -558,6 +595,7 @@ rules:
   - RULE-SET,twitch,国外媒体
   - RULE-SET,twitter,即时通讯
   - RULE-SET,vercel,开发服务
+  - RULE-SET,viu-portable-regex,国外媒体
   - RULE-SET,viu-portable,国外媒体
   - RULE-SET,wechat,国内服务
   - RULE-SET,weibo,国内服务
@@ -578,8 +616,11 @@ rules:
   - RULE-SET,tvb,国外媒体
   - RULE-SET,disney,国外媒体
   - RULE-SET,china-media,国内媒体
+  - RULE-SET,hmt-media-regex,国外媒体
   - RULE-SET,hmt-media,国外媒体
+  - RULE-SET,global-media-regex,国外媒体
   - RULE-SET,global-media,国外媒体
+  - RULE-SET,amazon-portable-regex,国外网站
   - RULE-SET,amazon-portable,国外网站
   - RULE-SET,akamai,国外网站
   - RULE-SET,alibaba,国内服务
@@ -588,9 +629,13 @@ rules:
   - RULE-SET,tencent,国内服务
   - RULE-SET,apple,苹果服务
   - RULE-SET,github,开发服务
+  - RULE-SET,google-regex,谷歌服务
   - RULE-SET,google,谷歌服务
   - RULE-SET,microsoft,微软服务
+  - RULE-SET,china-regex,DIRECT
   - RULE-SET,china,DIRECT
+  - RULE-SET,china-asn,DIRECT
+  - RULE-SET,geoip-cn,DIRECT
   - RULE-SET,china-ipv4,DIRECT
   - RULE-SET,china-ipv6,DIRECT
   - MATCH,漏网之鱼
@@ -614,6 +659,14 @@ rule-providers:
     url: https://raw.githubusercontent.com/luckiestultra/netatlas/main/clients/mihomo/rules/lan.yaml
     path: ./rules/netatlas-lan.yaml
     interval: 86400
+  connectivity-probes:
+    type: http
+    proxy: DIRECT
+    behavior: classical
+    format: yaml
+    url: https://raw.githubusercontent.com/luckiestultra/netatlas/main/clients/mihomo/rules/connectivity-probes.yaml
+    path: ./rules/netatlas-connectivity-probes.yaml
+    interval: 86400
   unbreak:
     type: http
     proxy: DIRECT
@@ -621,6 +674,14 @@ rule-providers:
     format: yaml
     url: https://raw.githubusercontent.com/luckiestultra/netatlas/main/clients/mihomo/rules/unbreak.yaml
     path: ./rules/netatlas-unbreak.yaml
+    interval: 86400
+  adblock-regex:
+    type: http
+    proxy: DIRECT
+    behavior: classical
+    format: yaml
+    url: https://raw.githubusercontent.com/luckiestultra/netatlas/main/clients/mihomo/rules/adblock-regex.yaml
+    path: ./rules/netatlas-adblock-regex.yaml
     interval: 86400
   adblock:
     type: http
@@ -990,6 +1051,14 @@ rule-providers:
     url: https://raw.githubusercontent.com/luckiestultra/netatlas/main/clients/mihomo/rules/netease-music.yaml
     path: ./rules/netatlas-netease-music.yaml
     interval: 86400
+  netflix-regex:
+    type: http
+    proxy: DIRECT
+    behavior: classical
+    format: yaml
+    url: https://raw.githubusercontent.com/luckiestultra/netatlas/main/clients/mihomo/rules/netflix-regex.yaml
+    path: ./rules/netatlas-netflix-regex.yaml
+    interval: 86400
   netflix:
     type: http
     proxy: DIRECT
@@ -1037,6 +1106,14 @@ rule-providers:
     format: yaml
     url: https://raw.githubusercontent.com/luckiestultra/netatlas/main/clients/mihomo/rules/onedrive.yaml
     path: ./rules/netatlas-onedrive.yaml
+    interval: 86400
+  openai-regex:
+    type: http
+    proxy: DIRECT
+    behavior: classical
+    format: yaml
+    url: https://raw.githubusercontent.com/luckiestultra/netatlas/main/clients/mihomo/rules/openai-regex.yaml
+    path: ./rules/netatlas-openai-regex.yaml
     interval: 86400
   openai:
     type: http
@@ -1150,6 +1227,14 @@ rule-providers:
     url: https://raw.githubusercontent.com/luckiestultra/netatlas/main/clients/mihomo/rules/soundcloud.yaml
     path: ./rules/netatlas-soundcloud.yaml
     interval: 86400
+  speedtest-regex:
+    type: http
+    proxy: DIRECT
+    behavior: classical
+    format: yaml
+    url: https://raw.githubusercontent.com/luckiestultra/netatlas/main/clients/mihomo/rules/speedtest-regex.yaml
+    path: ./rules/netatlas-speedtest-regex.yaml
+    interval: 86400
   speedtest:
     type: http
     proxy: DIRECT
@@ -1237,6 +1322,14 @@ rule-providers:
     format: yaml
     url: https://raw.githubusercontent.com/luckiestultra/netatlas/main/clients/mihomo/rules/vercel.yaml
     path: ./rules/netatlas-vercel.yaml
+    interval: 86400
+  viu-portable-regex:
+    type: http
+    proxy: DIRECT
+    behavior: classical
+    format: yaml
+    url: https://raw.githubusercontent.com/luckiestultra/netatlas/main/clients/mihomo/rules/viu-portable-regex.yaml
+    path: ./rules/netatlas-viu-portable-regex.yaml
     interval: 86400
   viu-portable:
     type: http
@@ -1398,6 +1491,14 @@ rule-providers:
     url: https://raw.githubusercontent.com/luckiestultra/netatlas/main/clients/mihomo/rules/china-media.yaml
     path: ./rules/netatlas-china-media.yaml
     interval: 86400
+  hmt-media-regex:
+    type: http
+    proxy: DIRECT
+    behavior: classical
+    format: yaml
+    url: https://raw.githubusercontent.com/luckiestultra/netatlas/main/clients/mihomo/rules/hmt-media-regex.yaml
+    path: ./rules/netatlas-hmt-media-regex.yaml
+    interval: 86400
   hmt-media:
     type: http
     proxy: DIRECT
@@ -1406,6 +1507,14 @@ rule-providers:
     url: https://raw.githubusercontent.com/luckiestultra/netatlas/main/clients/mihomo/rules/hmt-media.yaml
     path: ./rules/netatlas-hmt-media.yaml
     interval: 86400
+  global-media-regex:
+    type: http
+    proxy: DIRECT
+    behavior: classical
+    format: yaml
+    url: https://raw.githubusercontent.com/luckiestultra/netatlas/main/clients/mihomo/rules/global-media-regex.yaml
+    path: ./rules/netatlas-global-media-regex.yaml
+    interval: 86400
   global-media:
     type: http
     proxy: DIRECT
@@ -1413,6 +1522,14 @@ rule-providers:
     format: yaml
     url: https://raw.githubusercontent.com/luckiestultra/netatlas/main/clients/mihomo/rules/global-media.yaml
     path: ./rules/netatlas-global-media.yaml
+    interval: 86400
+  amazon-portable-regex:
+    type: http
+    proxy: DIRECT
+    behavior: classical
+    format: yaml
+    url: https://raw.githubusercontent.com/luckiestultra/netatlas/main/clients/mihomo/rules/amazon-portable-regex.yaml
+    path: ./rules/netatlas-amazon-portable-regex.yaml
     interval: 86400
   amazon-portable:
     type: http
@@ -1478,6 +1595,14 @@ rule-providers:
     url: https://raw.githubusercontent.com/luckiestultra/netatlas/main/clients/mihomo/rules/github.yaml
     path: ./rules/netatlas-github.yaml
     interval: 86400
+  google-regex:
+    type: http
+    proxy: DIRECT
+    behavior: classical
+    format: yaml
+    url: https://raw.githubusercontent.com/luckiestultra/netatlas/main/clients/mihomo/rules/google-regex.yaml
+    path: ./rules/netatlas-google-regex.yaml
+    interval: 86400
   google:
     type: http
     proxy: DIRECT
@@ -1494,6 +1619,14 @@ rule-providers:
     url: https://raw.githubusercontent.com/luckiestultra/netatlas/main/clients/mihomo/rules/microsoft.yaml
     path: ./rules/netatlas-microsoft.yaml
     interval: 86400
+  china-regex:
+    type: http
+    proxy: DIRECT
+    behavior: classical
+    format: yaml
+    url: https://raw.githubusercontent.com/luckiestultra/netatlas/main/clients/mihomo/rules/china-regex.yaml
+    path: ./rules/netatlas-china-regex.yaml
+    interval: 86400
   china:
     type: http
     proxy: DIRECT
@@ -1501,6 +1634,22 @@ rule-providers:
     format: yaml
     url: https://raw.githubusercontent.com/luckiestultra/netatlas/main/clients/mihomo/rules/china.yaml
     path: ./rules/netatlas-china.yaml
+    interval: 86400
+  china-asn:
+    type: http
+    proxy: DIRECT
+    behavior: classical
+    format: yaml
+    url: https://raw.githubusercontent.com/luckiestultra/netatlas/main/clients/mihomo/rules/china-asn.yaml
+    path: ./rules/netatlas-china-asn.yaml
+    interval: 86400
+  geoip-cn:
+    type: http
+    proxy: DIRECT
+    behavior: classical
+    format: yaml
+    url: https://raw.githubusercontent.com/luckiestultra/netatlas/main/clients/mihomo/rules/geoip-cn.yaml
+    path: ./rules/netatlas-geoip-cn.yaml
     interval: 86400
   china-ipv4:
     type: http
@@ -1518,3 +1667,9 @@ rule-providers:
     url: https://raw.githubusercontent.com/luckiestultra/netatlas/main/clients/mihomo/rules/china-ipv6.yaml
     path: ./rules/netatlas-china-ipv6.yaml
     interval: 86400
+geodata-mode: false
+geo-auto-update: true
+geo-update-interval: 24
+geox-url:
+  mmdb: https://raw.githubusercontent.com/P3TERX/GeoLite.mmdb/download/GeoLite2-Country.mmdb
+  asn: https://raw.githubusercontent.com/P3TERX/GeoLite.mmdb/download/GeoLite2-ASN.mmdb

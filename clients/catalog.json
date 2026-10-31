@@ -2,7 +2,7 @@
   "version": 1,
   "builder": "netatlas@0.1.0",
   "input": {
-    "sha256": "cd467a13326c5eebed7f4ad5b84bda0ff3fada8bfc270938edd1c697d9788265",
+    "sha256": "8e6fb11a3cb682e8def873065fb045eaaaaeb084d91a02cc472e12647f221779",
     "files": [
       {
         "path": "LICENSE",
@@ -10,7 +10,7 @@
       },
       {
         "path": "THIRD_PARTY_NOTICES.md",
-        "sha256": "da1de71b8cdb2ff0cb6bc850fe49b72137b802db2c2a24cd3bbaff69036154b9"
+        "sha256": "ea52e3e78a5efda7bc70d05f145862524e738cf6910d16b024fa5219dbc31514"
       },
       {
         "path": "metadata/clients.json",
@@ -18,7 +18,7 @@
       },
       {
         "path": "metadata/coverage.json",
-        "sha256": "e876bc9c7bc41477ab1361b33a1378ed214fa0f764ec8b65b6d491b000c45755"
+        "sha256": "dece7335a46ec97ca7bb8afd4a204e007143b79a1e5588ae7c68e1b62fb08cbb"
       },
       {
         "path": "metadata/features.json",
@@ -34,7 +34,11 @@
       },
       {
         "path": "metadata/managed-policies.json",
-        "sha256": "848f4aa18b9648145216a598f6a1f93bb84dfa512c55bfaaffc29026c2f930a3"
+        "sha256": "5e66754f76b66feb0b2e4b77da83967afcbb8e7e11275b944110810aa0760fb1"
+      },
+      {
+        "path": "metadata/native-routing.json",
+        "sha256": "c71e750297cc43cf8147f880498384a5250fb316d193faa1edc820c75ffe721a"
       },
       {
         "path": "metadata/native-tools.json",
@@ -45,16 +49,20 @@
         "sha256": "60b32c2e7cdaa2cc3386f41e16721755928cb94e18b68168e5aae6f3e8055b20"
       },
       {
+        "path": "metadata/regex-routing.json",
+        "sha256": "bf5c6969eae14a3358c24333f7e3c549a272e5260b6ef30c9a4a381b3e1d06d7"
+      },
+      {
         "path": "metadata/resource-parsers.json",
         "sha256": "95059e909756195d2ddb8b202b4f99b513b9682757eeb79f3a3b2a6d9cc25ec9"
       },
       {
         "path": "metadata/routing.json",
-        "sha256": "fdf9bf7e6dfbc53900072f33d1bb85eeb830cec379f6199dab599cf8dbb67ffa"
+        "sha256": "e64cc1a63bf6a139ce04c879f42dc7798a0d4a76880b19898b608f0e33c0917a"
       },
       {
         "path": "metadata/upstreams.json",
-        "sha256": "08ee71b71cdcb95e390f0e16c9c944b31278b3fa75aed8323967bfc7c2746241"
+        "sha256": "37728be0f340716ac180523c247abc30082a2b810f5ba8e5e0ebe395faa8233d"
       },
       {
         "path": "package-lock.json",
@@ -135,6 +143,10 @@
       {
         "path": "src/features/search-redirect/surge.sgmodule",
         "sha256": "42b142986c354a55f09557b73180f34c9fd14393d51a8a3ee199bdf71b5d7bd8"
+      },
+      {
+        "path": "src/native-rules/china-asn.json",
+        "sha256": "8dd87520bf787d20c117fd5803b8f20b6af4c9b3f1319546ef2489a877a5ddb6"
       },
       {
         "path": "src/rules/ai/claude.json",
@@ -413,6 +425,10 @@
         "sha256": "c3eda4cfb286512bb1cb6adda7f5618ad801fe402f713cf265e9a4b6a4f347a0"
       },
       {
+        "path": "src/rules/network/connectivity-probes.json",
+        "sha256": "d0f902ac099e1ecd4daa1c047c365ad1e24a1403fade7be447f80d75fc8a3a7e"
+      },
+      {
         "path": "src/rules/network/global.json",
         "sha256": "8146a29792be17bb023c40e753c808c06b25ad886c766c3c570e6b888f1b57ea"
       },
@@ -426,7 +442,7 @@
       },
       {
         "path": "src/rules/network/unbreak.json",
-        "sha256": "ef5fcf5a4f68fef49ff6f8a43949fe63c7ed0f12df3c78cfad878dffbd0e83bc"
+        "sha256": "3019ffda054102679c1a8bb7451a7a855cc2655032227bc135a26bc3eda92a8f"
       },
       {
         "path": "src/rules/privacy/adblock.json",
@@ -603,6 +619,10 @@
       {
         "path": "src/rules/system/z-library.json",
         "sha256": "6d8f583117a2f8fec8844ce7c9b16d1a82b1bddbc642f6d8e6a7c82e0b420893"
+      },
+      {
+        "path": "src/supplements/unbreak.json",
+        "sha256": "25e6eb74533dd8aa1d78fdc400878f66d2db6cbeec65f09468f25c8ccb1ff816"
       },
       {
         "path": "src/vendor/anti-ad/LICENSE",
@@ -830,15 +850,19 @@
       },
       {
         "path": "src/vendor/rule-sources/blackmatrix7/NOTICE.md",
-        "sha256": "651a75f1ccd35abd047394caf3afbee8fc1e9f7fbdc728bfe18613c6035a8b4d"
+        "sha256": "9ed0c76923f150c452c7104e331f421dc9436204d9cbe5092fa8681dcbbdc600"
       },
       {
         "path": "src/vendor/rule-sources/blackmatrix7/manifest.json",
-        "sha256": "f875f4fa71338b037b947f6b7ae974f0ae56df20dab20a549bf0bbc6913a997a"
+        "sha256": "e79fa025d0fc51bcad4c8632ae827cb5bc672f150cce37f909d6a851633a07f0"
       },
       {
         "path": "src/vendor/rule-sources/blackmatrix7/rule/Clash/All4/All4.yaml",
         "sha256": "7160d5263a0223e6a65e0e0645d69b2854c63f531089745c358d7996e3aef1ad"
+      },
+      {
+        "path": "src/vendor/rule-sources/blackmatrix7/rule/Clash/Direct/Direct.yaml",
+        "sha256": "059ab2909b5c55fde7d7cb7b0c171dea2566c6e8d0d9e0bed5947db5452dfbdc"
       },
       {
         "path": "src/vendor/rule-sources/blackmatrix7/rule/Clash/GlobalMedia/GlobalMedia_Classical.yaml",
@@ -861,6 +885,58 @@
         "sha256": "656153887fa693031a6d9e1586bbef99de907e1a3f2a3c6be8705d3f992b8a94"
       },
       {
+        "path": "src/vendor/rule-sources/domain-list-community/regex/LICENSE",
+        "sha256": "b9d84a22870d3f21c91a4c6e410c9cc51d00902f5233ad0c84011479244bf7d2"
+      },
+      {
+        "path": "src/vendor/rule-sources/domain-list-community/regex/NOTICE.md",
+        "sha256": "4e93506f3ce0423d2b7e9165a466a53e5c55cbb172680ef827dc11efe83e08b5"
+      },
+      {
+        "path": "src/vendor/rule-sources/domain-list-community/regex/aws-cn.txt",
+        "sha256": "34526fe863186a859ea254e538df52e212df4ea886a13cde5a29e788fc4a5457"
+      },
+      {
+        "path": "src/vendor/rule-sources/domain-list-community/regex/aws.txt",
+        "sha256": "cdb3797a5ba28abc72a82bb6334a6ec777100469994e6a50d3840fb8e1ced802"
+      },
+      {
+        "path": "src/vendor/rule-sources/domain-list-community/regex/google-play.txt",
+        "sha256": "ea1a161c52a443b2c0a105f8a94bcfc86e5c8a267d483f34e53848b7310fc65e"
+      },
+      {
+        "path": "src/vendor/rule-sources/domain-list-community/regex/mihoyo-cn.txt",
+        "sha256": "4877e54041046c9e5fc56a6b21e0c3756b9b73a3260eb1932457eea9b221b265"
+      },
+      {
+        "path": "src/vendor/rule-sources/domain-list-community/regex/netflix.txt",
+        "sha256": "fbcf90283b3c3482e2178d450793219f9592ea60b2dfa3d16a7a9d40074aa284"
+      },
+      {
+        "path": "src/vendor/rule-sources/domain-list-community/regex/ookla-speedtest.txt",
+        "sha256": "7afce58fcf2355bd6031e8c8075eb70a95cc34914cdfee37b242de1d6469b5e9"
+      },
+      {
+        "path": "src/vendor/rule-sources/domain-list-community/regex/openai.txt",
+        "sha256": "25d53e9af3e04d926210d6436bd791594ef4b86f2dc3c108510ac8059d76d969"
+      },
+      {
+        "path": "src/vendor/rule-sources/domain-list-community/regex/viu.txt",
+        "sha256": "b5f7fee76f52977905322001c98350297dbbb010ba5b77afb6a1ddf62be0919a"
+      },
+      {
+        "path": "src/vendor/rule-sources/missuo/ASN.China.list",
+        "sha256": "5b677ef5897dba253e82b5f1cd7960ee26a1c6381994c473d673217d9c2fde52"
+      },
+      {
+        "path": "src/vendor/rule-sources/missuo/LICENSE",
+        "sha256": "04587ff2ac17096c1e7e191942ee85bb67a594f05df3f6e208ed81eb5b001451"
+      },
+      {
+        "path": "src/vendor/rule-sources/missuo/NOTICE.md",
+        "sha256": "82aebb71ad828ed9e452b00d2e86601f3650b1c236ad86ccfdf323fa617f938e"
+      },
+      {
         "path": "tools/build.mjs",
         "sha256": "2e15940246e12e7e7925733027d7eecb2616b3f29a68fdc5323510f0945bf695"
       },
@@ -874,7 +950,7 @@
       },
       {
         "path": "tools/lib/build.mjs",
-        "sha256": "ab6ac28faee645e36f86af75fcbc32b0e548e01c97b3ed793c00f0a7d66dfc74"
+        "sha256": "5076ab0827b81ab2a291f43527cb576afcd3246f3aa1bc20aedf1ea633dcf880"
       },
       {
         "path": "tools/lib/classical-source.mjs",
@@ -906,11 +982,11 @@
       },
       {
         "path": "tools/lib/managed-apple.mjs",
-        "sha256": "ab279f8c4c708b8e1722aa15468046841357eece8c05de7d6e7e6cfdb1ebb8d2"
+        "sha256": "643acb9d441a742a6af5d5e00387f4bafb91857e60acd3adeff393d5da2d9fa3"
       },
       {
         "path": "tools/lib/managed-native.mjs",
-        "sha256": "d2915e6278cfb612fef9572066ea6f23c4c771ece18366366d29e0e55e693bf4"
+        "sha256": "43f91c4159433dc9f40b46cd5a4ecbb4e6b53a36e3212678e4791adbdda6f883"
       },
       {
         "path": "tools/lib/managed-paths.mjs",
@@ -918,19 +994,23 @@
       },
       {
         "path": "tools/lib/managed-profiles.mjs",
-        "sha256": "54a7db5e77e545065009b859e91c275b7e6ae80e7a5f97813339c5bb3e16bb17"
+        "sha256": "b4c31c05ad8cf0bc30aaf76a5e607d11fe3ce0bf0fd75a0353b89368ef206fa7"
       },
       {
         "path": "tools/lib/managed-validation.mjs",
-        "sha256": "6e817a08f4ea92d976193c3dfd7b8a66dbe4a0fe67459b290084e7f5b6686a8f"
+        "sha256": "793fe50756fb808874d808a2e6da7658eb8ea5096be7922a90af3ee741c00633"
       },
       {
         "path": "tools/lib/managed-workflow.mjs",
-        "sha256": "f7f3381e4e69472af1f0b76b94f92e793efedbc38f8899359aafeea6cd02162e"
+        "sha256": "d1317c1441ecb4a228e3ec2cb444546949a7ec03428218830cb33a5a707aac2e"
+      },
+      {
+        "path": "tools/lib/native-routing.mjs",
+        "sha256": "18f885845e2244a29999c0c5c710d2fbf4ec05b5c06c9bfd7b648f9cf3fb0839"
       },
       {
         "path": "tools/lib/native.mjs",
-        "sha256": "507ffd6d9f6f6dcf869148d8e9185504a3877590fb655c5b584805bb487f0dfc"
+        "sha256": "f52485d853fb878c4955f27ed867bb3d3eef3428e0f7a080f723bb920a17d220"
       },
       {
         "path": "tools/lib/policies.mjs",
@@ -942,19 +1022,19 @@
       },
       {
         "path": "tools/lib/profile-workflow.mjs",
-        "sha256": "0e4f3fa83be6914e6af326288be6592fb549f96b55d8411d13f309caff629227"
+        "sha256": "f16b41054cd9e343fc9621925cf241bfe9d64b0759521e9eb9c24db0d722c517"
       },
       {
         "path": "tools/lib/profiles-apple.mjs",
-        "sha256": "18053baed5f2b0e5a08b009543b751b6294f2e3bf056f6a7f135df5cf92bf97c"
+        "sha256": "d7bbbbcde3bd4f574a894fc82e9c7131477c83c790f39560b0889fb390fcd6d4"
       },
       {
         "path": "tools/lib/profiles-native.mjs",
-        "sha256": "57bd86a84732b67c271de5916d68d27f7c012cb654dab4b16a95a1f985ff1c9f"
+        "sha256": "e1234109b5765b56b4457f4ba71e3c4976da4dab30d2cd7a3d66916bd34ca011"
       },
       {
         "path": "tools/lib/profiles.mjs",
-        "sha256": "e4661e1112246cac24a542b9a9cc59bd5f264f322b03cfd9de98d9b339fdca3e"
+        "sha256": "e972a1f644a0e79e5ed78141930de551e0ceea48d850fc7a5af49e9cdeff7571"
       },
       {
         "path": "tools/lib/public-url.mjs",
@@ -969,20 +1049,32 @@
         "sha256": "a52221b05efad2fc9ce4399aa548d180a12d6d5a8eb2b1b5b937d80d69c71d17"
       },
       {
+        "path": "tools/lib/regex-routing.mjs",
+        "sha256": "c61f76721331a1475a76c440fb01b47d01897eb60f46e11a3c7f9e3c406660f7"
+      },
+      {
         "path": "tools/lib/resource-parsers.mjs",
         "sha256": "d32233f17a2b08b19f04925349810030776977304d173c7ebeb00e7aad8ffc62"
       },
       {
+        "path": "tools/lib/routing-extensions.mjs",
+        "sha256": "300ac18816dcf570b18682356bf9576ac35dd8b41474af24189358606dff155f"
+      },
+      {
+        "path": "tools/lib/rule-supplements.mjs",
+        "sha256": "56ce220c6cb3d274b594ff15426fbe66570a7dcf309d1204dd486d44239c1adf"
+      },
+      {
         "path": "tools/lib/rules.mjs",
-        "sha256": "bfaf5d49b5e6d0f67ab6db55c2fd163a48c8ed7f88fc26e71e226e64cee5724e"
+        "sha256": "7a28b74dd4a39a87c870cb33d56cffd4acb5d1981070b269bc6f609f509121f9"
       },
       {
         "path": "tools/lib/sync.mjs",
-        "sha256": "4bc3f72631940d1d9fc4ccc8c12f145c4edb72096a78b9f8e8d3afce047b99fe"
+        "sha256": "62e720b1ea6ee45da0911d8a2804ea2b9c946abb08c9c3f977dc000023cbc713"
       },
       {
         "path": "tools/lib/validation.mjs",
-        "sha256": "7ea78695e9c1e7036da5c21fb62a266153a59f4022ca9dd853c19252a38a0104"
+        "sha256": "720b72999279b4c90ec87847479f538c804780f3ffb94ba4a379f4e8964efb4b"
       },
       {
         "path": "tools/live.mjs",
@@ -1011,82 +1103,82 @@
       "id": "quantumultX",
       "name": "Quantumult X",
       "manifest": "quantumultX/manifest.json",
-      "sha256": "7bf557c491a40578aa3b0e6555954e90d5b08fec9ba744cdd0a1dd0a52e187b5",
-      "rulesets": 117,
-      "entries": 136894,
-      "defaultRuleSets": 114,
-      "defaultEntries": 29103
+      "sha256": "04b578e22f932ef14101f0d37a5027bb9485b0cd721c5a986a7b2889ababaa20",
+      "rulesets": 118,
+      "entries": 136944,
+      "defaultRuleSets": 115,
+      "defaultEntries": 29153
     },
     {
       "id": "surge",
       "name": "Surge",
       "manifest": "surge/manifest.json",
-      "sha256": "ee511d3a69d7c9d2a5285c7bebaa8f720171f261089c40f530bf253cc623d7e5",
-      "rulesets": 117,
-      "entries": 136894,
-      "defaultRuleSets": 114,
-      "defaultEntries": 29103
+      "sha256": "678afe7f9b4954e43de8d4a0edc78f86762d610638e9e8eeb43051c58adbbda3",
+      "rulesets": 118,
+      "entries": 136944,
+      "defaultRuleSets": 115,
+      "defaultEntries": 29153
     },
     {
       "id": "loon",
       "name": "Loon",
       "manifest": "loon/manifest.json",
-      "sha256": "3257a117b7343997ae84cf14a116764ab047b941e1df5335c0c1ae1e085d2843",
-      "rulesets": 117,
-      "entries": 136894,
-      "defaultRuleSets": 114,
-      "defaultEntries": 29103
+      "sha256": "f8c49b4f7367260b6ac6b6e6b0078a233637c2df1daa80437e2c64462412e573",
+      "rulesets": 118,
+      "entries": 136944,
+      "defaultRuleSets": 115,
+      "defaultEntries": 29153
     },
     {
       "id": "shadowrocket",
       "name": "Shadowrocket",
       "manifest": "shadowrocket/manifest.json",
-      "sha256": "43f32b4b8274b4ac379cedfa41b92b443833a8630ba8117bb791ea56f9e5f1f6",
-      "rulesets": 117,
-      "entries": 136894,
-      "defaultRuleSets": 114,
-      "defaultEntries": 29103
+      "sha256": "59e1c50ed7380b7887f1c538b20b0e05439b3d2bd01a08970990a1b3264b6585",
+      "rulesets": 118,
+      "entries": 136944,
+      "defaultRuleSets": 115,
+      "defaultEntries": 29153
     },
     {
       "id": "egern",
       "name": "Egern",
       "manifest": "egern/manifest.json",
-      "sha256": "5d4211251a2a1e0282f57e53a53b92e7b8e1870709cbe671adcfb3055c80b9c9",
-      "rulesets": 117,
-      "entries": 136894,
-      "defaultRuleSets": 114,
-      "defaultEntries": 29103
+      "sha256": "a423d263f0b33d9855581b8580105574f1953005ea40c01f55bfe2a92bba4ba7",
+      "rulesets": 118,
+      "entries": 136944,
+      "defaultRuleSets": 115,
+      "defaultEntries": 29153
     },
     {
       "id": "stash",
       "name": "Stash",
       "manifest": "stash/manifest.json",
-      "sha256": "b20efe0621193526ed2b86a1fdc0575d6dff0d507f71ea026cccf6e85eb44458",
-      "rulesets": 117,
-      "entries": 136894,
-      "defaultRuleSets": 114,
-      "defaultEntries": 29103
+      "sha256": "e9e3d854b5873c33396eab13c0fde8c634e5b1aadc55b7af6f5b052ce3aa1951",
+      "rulesets": 118,
+      "entries": 136944,
+      "defaultRuleSets": 115,
+      "defaultEntries": 29153
     },
     {
       "id": "mihomo",
       "name": "Mihomo",
       "manifest": "mihomo/manifest.json",
-      "sha256": "2cdfcf69099db42a839befabae53aa546db394ef5ba9d1553df9881abd340924",
-      "rulesets": 117,
-      "entries": 136894,
-      "defaultRuleSets": 114,
-      "defaultEntries": 29103
+      "sha256": "31e3992d30a92a1d915112b6b5c9bcc938cd1629734de17e20b33d10fd983355",
+      "rulesets": 118,
+      "entries": 136944,
+      "defaultRuleSets": 115,
+      "defaultEntries": 29153
     },
     {
       "id": "singBox",
       "name": "sing-box",
       "manifest": "singBox/manifest.json",
-      "sha256": "fd8dc40b6ac2d999414d94cd3331809c96bea88ebc82bd28af2509de3feedfe6",
-      "rulesets": 117,
-      "entries": 136894,
-      "defaultRuleSets": 114,
-      "defaultEntries": 29103
+      "sha256": "b48f26071fb7c44a1671bdaff3436de7fdf984d87737b10854ffcd4c9d7c53d6",
+      "rulesets": 118,
+      "entries": 136944,
+      "defaultRuleSets": 115,
+      "defaultEntries": 29153
     }
   ],
-  "contentSha256": "c3901ebd8ffce380e3c1e1b175e49b227b7529131528d7091a9fb90ba2689593"
+  "contentSha256": "78f21093f7866467419add075d2c917a1c81159ab09378e44eabf32f79f8ef2c"
 }

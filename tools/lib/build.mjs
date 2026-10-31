@@ -13,6 +13,10 @@ import { validateProfile } from './validation.mjs';
 import { assertManagedPaths } from './managed-paths.mjs';
 import { loadFeatureRegistry } from './feature-registry.mjs';
 import { profileRulesetsFor } from './policies.mjs';
+import { loadNativeRouting, nativeRoutingSettings, renderNativeRoutingFragment } from './native-routing.mjs';
+import { loadRegexRouting, regexRoutingFor } from './regex-routing.mjs';
+import { profileRoutingResources } from './routing-extensions.mjs';
+import { loadRuleSupplement } from './rule-supplements.mjs';
 
 export const defaultBaseUrl='https://raw.githubusercontent.com/luckiestultra/netatlas/main';
 export const sha256=value=>createHash('sha256').update(value).digest('hex');
@@ -56,6 +60,10 @@ export async function loadCatalog(root){
       const upstream=registry.repositories.find(repo=>repo.id===record.source.repository);
       if(!upstream||!['MIT','GPL-2.0-only'].includes(upstream.license)||!/^[a-f0-9]{40}$/.test(upstream.revision)||!/^[a-f0-9]{64}$/.test(upstream.licenseSha256))throw new Error(`Missing licensed pinned source: ${rule.id}`);
       if(!record.files?.length||record.files.some(file=>!/^[a-f0-9]{64}$/.test(file.sha256)))throw new Error(`Missing source file integrity: ${rule.id}`);
+      if(record.source.localSupplement){
+        const supplement=await loadRuleSupplement(root,record.source.localSupplement,rule.id);
+        if(supplement.entries.some(entry=>!rule.entries.some(actual=>actual.type===entry.type&&actual.value===entry.value)))throw new Error(`Local supplement is absent from catalog: ${rule.id}`);
+      }
     }else if(record.source.type!=='local'||record.source.license!=='MIT'||!record.source.references?.length)throw new Error(`Missing local source references: ${rule.id}`);
     seen.add(rule.id);rulesets.push(rule);sources.push({path:'src/rules/'+path,sha256:sha256(bytes)});
   }
@@ -86,6 +94,9 @@ function clientReadme(client,rulesets,features,baseUrl,featureRegistry,sourceReg
   };
   const licenseFor=id=>{const record=sourceRegistry.rulesets.find(item=>item.id===id);return record.source.repository?sourceRegistry.repositories.find(repo=>repo.id===record.source.repository).license:record.source.license;};
   const rows=rulesets.map(rule=>`| [${rule.id}${ids.has(rule.id)?'':'（可选）'}](rules/${rule.id}.${client.ruleExtension}) | ${rule.entries.length.toLocaleString('en-US')} | ${licenseFor(rule.id)} |`).join('\n');
+  const extensions=profileRoutingResources(client.id,rulesets),activeExtensions=profileRoutingResources(client.id,embedded);
+  const regex=regexRoutingFor(client.id),native=nativeRoutingSettings(client.id);
+  const extensionRows=extensions.map(rule=>`| [${rule.id}${ids.has(rule.sourceId)?'':'（可选）'}](${rule.path}) | ${rule.entries.length.toLocaleString('en-US')} | ${rule.license} |`).join('\n');
   const names={geoip:'出口定位','search-redirect':'Bing 搜索跳转','quick-search':'47 项快速搜索',redirects:'59 项网站重定向','biliintl-region':'BiliIntl 菲律宾参数','anti-ad':'可选反广告','https-upgrade':'六站 HTTPS 升级',boxjs:'BoxJS','script-hub':'ScriptHub','sub-store':'Sub-Store','body-replacement':'正文替换工具','resource-parser':'外部资源解析器'};
   const available=featureRegistry.features.filter(feature=>feature.clients?.[client.id]);
   const featureList=available.length?'| 功能 | 实际入口/导入方式 |\n| --- | --- |\n'+available.map(feature=>`| ${names[feature.id]??feature.id} | ${feature.clients[client.id].artifacts.map(path=>`[${path}](${path})`).join(' · ')}；${feature.clients[client.id].kind} |`).join('\n'):'该核心不支持原生 HTTP 重写/JS 模块。';
@@ -97,7 +108,7 @@ function clientReadme(client,rulesets,features,baseUrl,featureRegistry,sourceReg
 
 ${steps[client.id]}
 
-首次使用需由客户端下载远程规则。主配置引用本客户端的 ${embedded.length} 份规则资源，覆盖 ${embedded.reduce((n,rule)=>n+rule.entries.length,0).toLocaleString('en-US')} 条规则，更新由客户端处理；主配置升级与规则刷新是两件事。没有私人节点，配置不会凭空提供代理服务。除 QX/SR 使用 App 内置节点选择外，无节点时节点选择保持 REJECT，导入后核对实际选择。
+首次使用需由客户端下载远程规则。主配置引用本客户端的 ${embedded.length+activeExtensions.length} 份规则资源（${embedded.length} 份公共规则、${activeExtensions.length} 份原生条件补充），更新由客户端处理；主配置升级与规则刷新是两件事。没有私人节点，配置不会凭空提供代理服务。除 QX/SR 使用 App 内置节点选择外，无节点时节点选择保持 REJECT，导入后核对实际选择。
 
 AI、苹果、谷歌、微软、开发、通讯、游戏、媒体与最终兜底可独立选策略；支持手选、自动选择及六地区测速组。地区名来自节点标签，不是 IP 定位结论；没有匹配节点时不要选择该组，不承诺空组自动回退。苹果服务初始直连，其余业务默认走节点选择。
 
@@ -110,6 +121,15 @@ rules/ 按具体应用或服务 ID 平铺，可单独订阅；QX 资源的 force
 | 规则资源 | 条目 | 许可 |
 | --- | ---: | --- |
 ${rows}
+${extensionRows}
+
+## ASN、GeoIP、正则与白名单
+
+${native.supported?'主配置和 standalone 已启用完整 5,231 个 ASN 编号匹配及 CN GeoIP 数据库条件，位于业务规则之后、静态 CN CIDR 之前。二者查询宿主真实数据库，不展开为国家 IP 集合。':'此版本核心不支持原生 ASN 和 GeoIP 数据库条件；没有生成冒充二者的 CIDR 集合。'} 数据库更新方式见 [原生条件片段](fragments/native-routing.${native.supported?(client.profileFormat==='ini'?'conf':'yaml'):'md'})。数据库归属信息不保证物理位置，ASN 归属也不等于 IP 国家。
+
+固定源的 24 个正则引用中，本客户端可无损表达 ${regex.supportedExpressions} 个，无法原生表达 ${regex.unsupportedExpressions} 个；正则资源与原服务同策略同优先级，google-cn 仍为可选。只有零未支持项才称本客户端源正则完整，详见[逐项覆盖](../../docs/coverage.md)。
+
+Unbreak 是完整 50 条条件，保留精确域名/后缀/关键词语义；默认在广告规则之前按“规则修正”直连（standalone 策略名 unbreak），包含若干 Google 下载及推送域。可将该策略切到节点选择；三个原有连接探测域仍独立固定直连。此白名单会明确豁免其中的统计/广告样式域，并非隐私拦截集合。
 
 ## 可选功能
 
@@ -144,6 +164,7 @@ export async function createBuild(root,{baseUrl=defaultBaseUrl}={}){
   const input=await inputIdentity(root);
   const {rulesets,sources,registry}=await loadCatalog(root);
   const featureRegistry=await loadFeatureRegistry(root);
+  await Promise.all([loadNativeRouting(root),loadRegexRouting(root)]);
   for(const source of sources)if(input.files.find(file=>file.path===source.path)?.sha256!==source.sha256)throw new Error('Build inputs changed while reading the catalog');
   const files=new Map(),catalog=[];
   const put=(path,content)=>{if(files.has(path))throw new Error('Duplicate artifact: '+path);files.set(path,content);};
@@ -161,6 +182,10 @@ export async function createBuild(root,{baseUrl=defaultBaseUrl}={}){
       if(json(decodeRuleset(client.id,artifact.content))!==json(ruleset.entries))throw new Error(`Rule semantic round-trip failed: ${client.id}/${ruleset.id}`);
       put(prefix+artifact.path,artifact.content);
     }
+    const routingResources=profileRoutingResources(client.id,rulesets);
+    for(const resource of routingResources)put(prefix+resource.path,resource.content);
+    const nativeFragment=renderNativeRoutingFragment(client.id,undefined,{baseUrl});
+    put(prefix+nativeFragment.path,nativeFragment.content);
     const features=renderFeatures(client.id,{baseUrl});
     const clientFeatures=featureRegistry.features.filter(feature=>feature.clients?.[client.id]);
     const emitted=new Set(features.map(artifact=>artifact.path));
@@ -173,6 +198,11 @@ export async function createBuild(root,{baseUrl=defaultBaseUrl}={}){
     const manifest={
       version:1,client:client.id,builder:'netatlas@0.1.0',inputSha256:input.sha256,baseUrl,targetVersion:client.targetVersion??null,
       counts:{defaultRuleSets:embedded.length,defaultEntries:embedded.reduce((sum,rule)=>sum+rule.entries.length,0),optionalRuleSets:rulesets.length-embedded.length,totalEntries:rulesets.reduce((sum,rule)=>sum+rule.entries.length,0)},
+      routingExtensions:{
+        native:nativeRoutingSettings(client.id),
+        regex:{supportedExpressions:regexRoutingFor(client.id).supportedExpressions,unsupportedExpressions:regexRoutingFor(client.id).unsupportedExpressions,expressions:regexRoutingFor(client.id).expressions},
+        resources:routingResources.map(resource=>({id:resource.id,sourceId:resource.sourceId,path:resource.path,entries:resource.entries.length,license:resource.license,defaultProfile:embeddedIds.has(resource.sourceId)})),
+      },
       validation:{profile:validation.level,rules:'canonical-semantic-round-trip',native:'not-run',nativeRequirement:client.nativeVerification,features:'host-contract-tests-run-separately'},
       features:clientFeatures.map(feature=>({id:feature.id,defaultEnabled:client.id==='quantumultX'&&feature.id==='geoip',license:feature.license??'MIT (original code)',adapter:feature.clients[client.id],upstream:feature.upstream??null,sourceRegistry:feature.sourceRegistry??null})),
       sources:{repositories:registry.repositories,rules:registry.rulesets.map(record=>({id:record.id,tag:record.category,defaultProfile:embeddedIds.has(record.id),source:record.source,license:record.source.repository?registry.repositories.find(repo=>repo.id===record.source.repository).license:record.source.license,sha256:record.outputSha256,entries:record.entryCount,updatedAt:record.updatedAt,projection:record.selection??'first-party-selection',excludedExpressions:record.appliedExclusions??[]})),inputs:sources},

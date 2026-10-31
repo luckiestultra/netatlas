@@ -1,0 +1,16 @@
+# NetAtlas native routing fragment. The default and standalone profiles already enable these conditions.
+# Merge into a custom profile after explicit service/domain rules and before static CN CIDRs/final.
+# This is a manual merge fragment; do not replace a complete profile with it.
+# Native geoip_db_url and asn_db_url select real MaxMind database files.
+# Database downloads/refresh are managed by Egern; no invented update interval field is emitted.
+geoip_db_url: https://raw.githubusercontent.com/P3TERX/GeoLite.mmdb/download/GeoLite2-Country.mmdb
+asn_db_url: https://raw.githubusercontent.com/P3TERX/GeoLite.mmdb/download/GeoLite2-ASN.mmdb
+rules:
+  - rule_set:
+      match: https://raw.githubusercontent.com/luckiestultra/netatlas/main/clients/egern/rules/china-asn.yaml
+      policy: DIRECT
+      update_interval: 86400
+  - rule_set:
+      match: https://raw.githubusercontent.com/luckiestultra/netatlas/main/clients/egern/rules/geoip-cn.yaml
+      policy: DIRECT
+      update_interval: 86400

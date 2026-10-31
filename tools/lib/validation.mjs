@@ -1,11 +1,13 @@
 import { parse } from 'yaml';
 import { getClient } from './clients.mjs';
-import { normalizeEntry } from './rules.mjs';
-import { policyForRuleset, profileRulesetsFor } from './policies.mjs';
+import { normalizeRoutingEntry, expandedProfileEntries, classicRoutingTypes, qxRoutingTypes, egernRoutingTypes, validateNativeRoutingSettings } from './routing-extensions.mjs';
 
 const classicTypes = { DOMAIN:'domain', 'DOMAIN-SUFFIX':'domain-suffix', 'DOMAIN-KEYWORD':'domain-keyword', 'IP-CIDR':'ip-cidr', 'IP-CIDR6':'ip-cidr6' };
 const qxTypes = { host:'domain', 'host-suffix':'domain-suffix', 'host-keyword':'domain-keyword', 'ip-cidr':'ip-cidr', 'ip6-cidr':'ip-cidr6' };
 const egernTypes = { domain:'domain', domain_suffix:'domain-suffix', domain_keyword:'domain-keyword', ip_cidr:'ip-cidr', ip_cidr6:'ip-cidr6' };
+for (const [native, portable] of [[classicRoutingTypes, classicTypes], [qxRoutingTypes, qxTypes], [egernRoutingTypes, egernTypes]]) {
+  for (const [type, name] of Object.entries(native)) portable[name] = type;
+}
 function ini(text) {
   const sections = {}; let section;
   for (const raw of text.split(/\r?\n/)) {
@@ -56,24 +58,24 @@ export function inspectProfile(clientId,text) {
       }
       return {name:match[1].trim(),choices,...(Object.keys(matchers).length?{matchers}:{})};
     });
-    for(const line of lines){const [type,value,policy]=line.split(',').map(x=>x.trim());if(/^(final|match)$/i.test(type)){if(fallback)throw new Error('Multiple final rules');fallback=value;continue;}if(fallback)throw new Error('Rules after final fallback');rules.push({...normalizeEntry({type:(isQx?qxTypes:classicTypes)[type],value}),policy});}
+    for(const line of lines){const [type,value,policy]=line.split(',').map(x=>x.trim());if(/^(final|match)$/i.test(type)){if(fallback)throw new Error('Multiple final rules');fallback=value;continue;}if(fallback)throw new Error('Rules after final fallback');rules.push({...normalizeRoutingEntry({type:(isQx?qxTypes:classicTypes)[type],value}),policy});}
   }else if(clientId==='singBox'){
     object=JSON.parse(text);
     if(!Array.isArray(object.inbounds)||object.inbounds.some(inbound=>inbound.listen!=='127.0.0.1'||inbound.set_system_proxy!==false))throw new Error('Nonlocal or system proxy listener');
     if(!Array.isArray(object.outbounds)||!object.route)throw new Error('Missing native outbounds or route');
     groups=object.outbounds.filter(out=>out.type==='selector').map(out=>({name:out.tag,choices:out.outbounds}));
-    for(const rule of object.route.rules??[]){if(rule.action==='resolve'&&Object.keys(rule).length===1)continue;const fields=Object.keys(rule).filter(key=>!['action','outbound'].includes(key));if(!['route','reject'].includes(rule.action)||fields.length!==1||(rule.action==='reject'&&rule.outbound))throw new Error('Unexpected route shape');const field=fields[0];if(!Array.isArray(rule[field]))throw new Error('Invalid route values');for(const value of rule[field])rules.push({...normalizeEntry({type:field==='domain'?'domain':field==='domain_suffix'?'domain-suffix':field==='domain_keyword'?'domain-keyword':field==='ip_cidr'?(value.includes(':')?'ip-cidr6':'ip-cidr'):null,value}),policy:rule.action==='reject'?'REJECT':rule.outbound});}
+    for(const rule of object.route.rules??[]){if(rule.action==='resolve'&&Object.keys(rule).length===1)continue;const fields=Object.keys(rule).filter(key=>!['action','outbound'].includes(key));if(!['route','reject'].includes(rule.action)||fields.length!==1||(rule.action==='reject'&&rule.outbound))throw new Error('Unexpected route shape');const field=fields[0];if(!Array.isArray(rule[field]))throw new Error('Invalid route values');for(const value of rule[field])rules.push({...normalizeRoutingEntry({type:field==='domain'?'domain':field==='domain_suffix'?'domain-suffix':field==='domain_keyword'?'domain-keyword':field==='domain_regex'?'domain-regex':field==='ip_cidr'?(value.includes(':')?'ip-cidr6':'ip-cidr'):null,value}),policy:rule.action==='reject'?'REJECT':rule.outbound});}
     fallback=object.route.final;
   }else if(clientId==='egern'){
     object=parse(text);
     if(object.allow_external_connections!==false)throw new Error('External listener must be disabled');
     groups=(object.policy_groups??[]).map(item=>({name:item.select?.name,choices:item.select?.policies??[]}));
-    for(const rule of object.rules??[]){const keys=Object.keys(rule);if(keys.length!==1)throw new Error('Invalid native rule shape');const key=keys[0];if(key==='default'){if(fallback)throw new Error('Multiple default rules');fallback=rule.default.policy;continue;}if(fallback)throw new Error('Rule after default');rules.push({...normalizeEntry({type:egernTypes[key],value:rule[key].match}),policy:rule[key].policy});}
+    for(const rule of object.rules??[]){const keys=Object.keys(rule);if(keys.length!==1)throw new Error('Invalid native rule shape');const key=keys[0];if(key==='default'){if(fallback)throw new Error('Multiple default rules');fallback=rule.default.policy;continue;}if(fallback)throw new Error('Rule after default');rules.push({...normalizeRoutingEntry({type:egernTypes[key],value:key==='asn'?String(rule[key].match).replace(/^AS/,''):rule[key].match}),policy:rule[key].policy});}
   }else{
     object=parse(text);
     if(object['allow-lan']!==false||object['bind-address']!=='127.0.0.1')throw new Error('LAN listener must stay local');
     groups=(object['proxy-groups']??[]).map(group=>({name:group.name,choices:group.proxies??[]}));
-    for(const line of object.rules??[]){const [type,value,policy]=line.split(',');if(type==='MATCH'){if(fallback)throw new Error('Multiple MATCH rules');fallback=value;continue;}if(fallback)throw new Error('Rule after MATCH');rules.push({...normalizeEntry({type:classicTypes[type],value}),policy});}
+    for(const line of object.rules??[]){const [type,value,policy]=line.split(',');if(type==='MATCH'){if(fallback)throw new Error('Multiple MATCH rules');fallback=value;continue;}if(fallback)throw new Error('Rule after MATCH');rules.push({...normalizeRoutingEntry({type:classicTypes[type],value}),policy});}
   }
   if(!fallback)throw new Error('Missing explicit final policy');
   const extra=client.profileFormat==='ini'?iniNodes:clientId==='singBox'?(object.outbounds??[]).filter(out=>out.type!=='selector'&&!['DIRECT','REJECT'].includes(out.tag)).map(out=>out.tag):clientId==='egern'?(object.proxies??[]).flatMap(proxy=>Object.values(proxy).map(settings=>settings?.name).filter(name=>typeof name==='string')):(object?.proxies??[]).map(proxy=>proxy.name);
@@ -84,8 +86,9 @@ export function inspectProfile(clientId,text) {
 }
 
 export function validateProfile(clientId,text,rulesets,{requireRejectDefault=false}={}) {
+  validateNativeRoutingSettings(clientId,text,rulesets);
   const inspected=inspectProfile(clientId,text);
-  const expected=profileRulesetsFor(rulesets).flatMap(ruleset=>ruleset.entries.map(entry=>({...normalizeEntry(entry),policy:policyForRuleset(ruleset)})));
+  const expected=expandedProfileEntries(clientId,rulesets).map(({rulesetId,...entry})=>entry);
   if(JSON.stringify(inspected.rules)!==JSON.stringify(expected))throw new Error(`${clientId}: profile rules differ from the ordered canonical rules or policies`);
   if(inspected.fallback!=='Proxy')throw new Error('Final policy must explicitly use Proxy');
   if(requireRejectDefault&&normalizedPolicy(inspected.groups.find(group=>group.name==='Proxy')?.choices[0])!=='REJECT')throw new Error('Public Proxy must start with REJECT until private nodes are configured');

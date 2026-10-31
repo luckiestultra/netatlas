@@ -6,7 +6,7 @@
 
 导入主配置，在 proxy-providers 添加自己的 Stash 原生订阅，将 provider 名称填入节点选择、自动选择和地区组的 use；也可直接添加 proxies。选择实际节点；当前公开文件没有活动假订阅。
 
-首次使用需由客户端下载远程规则。主配置引用本客户端的 114 份规则资源，覆盖 29,103 条规则，更新由客户端处理；主配置升级与规则刷新是两件事。没有私人节点，配置不会凭空提供代理服务。除 QX/SR 使用 App 内置节点选择外，无节点时节点选择保持 REJECT，导入后核对实际选择。
+首次使用需由客户端下载远程规则。主配置引用本客户端的 127 份规则资源（115 份公共规则、12 份原生条件补充），更新由客户端处理；主配置升级与规则刷新是两件事。没有私人节点，配置不会凭空提供代理服务。除 QX/SR 使用 App 内置节点选择外，无节点时节点选择保持 REJECT，导入后核对实际选择。
 
 AI、苹果、谷歌、微软、开发、通讯、游戏、媒体与最终兜底可独立选策略；支持手选、自动选择及六地区测速组。地区名来自节点标签，不是 IP 定位结论；没有匹配节点时不要选择该组，不承诺空组自动回退。苹果服务初始直连，其余业务默认走节点选择。
 
@@ -19,7 +19,8 @@ rules/ 按具体应用或服务 ID 平铺，可单独订阅；QX 资源的 force
 | 规则资源 | 条目 | 许可 |
 | --- | ---: | --- |
 | [lan](rules/lan.yaml) | 17 | MIT |
-| [unbreak](rules/unbreak.yaml) | 3 | MIT |
+| [connectivity-probes](rules/connectivity-probes.yaml) | 3 | MIT |
+| [unbreak](rules/unbreak.yaml) | 50 | GPL-2.0-only |
 | [adblock](rules/adblock.yaml) | 904 | MIT |
 | [abc](rules/abc.yaml) | 4 | MIT |
 | [abema](rules/abema.yaml) | 21 | MIT |
@@ -135,6 +136,27 @@ rules/ 按具体应用或服务 ID 平铺，可单独订阅；QX 资源的 force
 | [china](rules/china.yaml) | 8,387 | MIT |
 | [china-ipv4](rules/china-ipv4.yaml) | 6,174 | MIT |
 | [china-ipv6](rules/china-ipv6.yaml) | 3,475 | MIT |
+| [openai-regex](rules/openai-regex.yaml) | 1 | MIT |
+| [google-regex](rules/google-regex.yaml) | 2 | MIT |
+| [netflix-regex](rules/netflix-regex.yaml) | 4 | MIT |
+| [speedtest-regex](rules/speedtest-regex.yaml) | 1 | MIT |
+| [adblock-regex](rules/adblock-regex.yaml) | 1 | MIT |
+| [china-regex](rules/china-regex.yaml) | 3 | MIT |
+| [amazon-portable-regex](rules/amazon-portable-regex.yaml) | 3 | MIT |
+| [viu-portable-regex](rules/viu-portable-regex.yaml) | 1 | MIT |
+| [global-media-regex](rules/global-media-regex.yaml) | 5 | MIT |
+| [hmt-media-regex](rules/hmt-media-regex.yaml) | 1 | MIT |
+| [google-cn-regex（可选）](rules/google-cn-regex.yaml) | 2 | MIT |
+| [china-asn](rules/china-asn.yaml) | 5,231 | MIT |
+| [geoip-cn](rules/geoip-cn.yaml) | 1 | MIT |
+
+## ASN、GeoIP、正则与白名单
+
+主配置和 standalone 已启用完整 5,231 个 ASN 编号匹配及 CN GeoIP 数据库条件，位于业务规则之后、静态 CN CIDR 之前。二者查询宿主真实数据库，不展开为国家 IP 集合。 数据库更新方式见 [原生条件片段](fragments/native-routing.yaml)。数据库归属信息不保证物理位置，ASN 归属也不等于 IP 国家。
+
+固定源的 24 个正则引用中，本客户端可无损表达 24 个，无法原生表达 0 个；正则资源与原服务同策略同优先级，google-cn 仍为可选。只有零未支持项才称本客户端源正则完整，详见[逐项覆盖](../../docs/coverage.md)。
+
+Unbreak 是完整 50 条条件，保留精确域名/后缀/关键词语义；默认在广告规则之前按“规则修正”直连（standalone 策略名 unbreak），包含若干 Google 下载及推送域。可将该策略切到节点选择；三个原有连接探测域仍独立固定直连。此白名单会明确豁免其中的统计/广告样式域，并非隐私拦截集合。
 
 ## 可选功能
 

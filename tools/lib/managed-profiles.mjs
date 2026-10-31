@@ -6,6 +6,7 @@ import { profileRulesetsFor, orderedRulesets } from './policies.mjs';
 import { renderProfile } from './profiles.mjs';
 import { surge, loon, shadowrocket, egern } from './managed-apple.mjs';
 import { stash, mihomo, singBox } from './managed-native.mjs';
+import { profileRoutingResources, withNativeRoutingSettings } from './routing-extensions.mjs';
 
 export const managedBaseUrl = 'https://raw.githubusercontent.com/luckiestultra/netatlas/main';
 
@@ -27,12 +28,18 @@ export function managedModel(clientId, { rulesets = [], baseUrl = managedBaseUrl
     if (byId.has(id)) throw new Error(`Duplicate business mapping: ${id}`);
     byId.set(id, business.name);
   }
-  const rules = profileRulesetsFor(orderedRulesets(rulesets)).map(rule => {
+  const selected = profileRulesetsFor(orderedRulesets(rulesets));
+  const extensions = profileRoutingResources(clientId, selected);
+  const rules = selected.flatMap(rule => {
     if (!/^[a-z0-9]+(?:-[a-z0-9]+)*$/.test(rule.id)) throw new Error('Invalid managed rule ID');
     const entryTypes = [...new Set(rule.entries.map(entry => entry.type))];
-    return { id: rule.id, policy: routing.fixed[rule.id] ?? byId.get(rule.id) ?? settings.defaultBusiness,
+    const original = { id: rule.id, policy: routing.fixed[rule.id] ?? byId.get(rule.id) ?? settings.defaultBusiness,
       url: `${baseUrl}/clients/${clientId}/rules/${rule.id}.${client.ruleExtension}`,
       entryTypes, domainOnly: entryTypes.every(type => type === 'domain' || type === 'domain-suffix' || type === 'domain-keyword') };
+    return [...extensions.filter(resource => resource.sourceId === rule.id).map(resource => ({
+      id: resource.id, policy: original.policy, url: `${baseUrl}/clients/${clientId}/${resource.path}`,
+      entryTypes: [...new Set(resource.entries.map(entry => entry.type))], domainOnly: resource.domainOnly,
+    })), original];
   });
   return { groups, rules, baseUrl, ruleBase: `${baseUrl}/clients/${clientId}/rules`, root: settings.root, fallback: settings.fallback, checkUrl: 'https://www.gstatic.com/generate_204', updateInterval: 86400 };
 }
@@ -62,7 +69,7 @@ const renderers = { quantumultX, surge, loon, shadowrocket, egern, stash, mihomo
 export function renderManagedProfile(clientId, { rulesets = [], baseUrl = managedBaseUrl, ...options } = {}) {
   const client = getClient(clientId);
   const model = managedModel(clientId, { rulesets, baseUrl });
-  const value = renderers[clientId](model, options);
+  const value = withNativeRoutingSettings(clientId, renderers[clientId](model, options), rulesets);
   const notes = '# NetAtlas — native App configuration with independently updated rule resources.\n'
     + '# Add native nodes or a native subscription in this App/configuration, then select the actual node.\n'
     + '# The client README lists the exact fields; no Node.js or build command is required.\n'

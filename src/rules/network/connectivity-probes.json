@@ -1,0 +1,19 @@
+{
+  "version": 1,
+  "id": "connectivity-probes",
+  "category": "network",
+  "entries": [
+    {
+      "type": "domain",
+      "value": "captive.apple.com"
+    },
+    {
+      "type": "domain",
+      "value": "dns.msftncsi.com"
+    },
+    {
+      "type": "domain",
+      "value": "www.msftconnecttest.com"
+    }
+  ]
+}

@@ -1,0 +1,294 @@
+{
+  "version": 1,
+  "sourceRevision": "1daade8c4bb957d21d1f5c09c2b050d699e8e96c",
+  "license": "MIT",
+  "semantics": "Source-regex language equivalence is scoped to already-normalized lower-case ASCII hostnames without a trailing root dot. The expressions retain source anchors; no optional-dot widening or URL matching is added. Host normalization belongs to each client: sing-box 1.14.4 mixed HTTP preserves a trailing root dot, while Mihomo may normalize it. The adapters do not claim to normalize native input themselves. ASCII shorthand and CSV comma quantifiers are translated exactly.",
+  "clients": {
+    "quantumultX": {
+      "format": "qx",
+      "nativeRegex": false,
+      "wildcard": "basic",
+      "documentation": [
+        "https://raw.githubusercontent.com/crossutility/Quantumult-X/master/sample.conf"
+      ],
+      "limitation": "Only proven equivalent * / ? expansions are emitted. No host-regex type is documented."
+    },
+    "surge": {
+      "format": "classical",
+      "nativeRegex": false,
+      "wildcard": "classes",
+      "documentation": [
+        "https://manual.nssurge.com/rules/domain.html"
+      ],
+      "limitation": "Only proven equivalent wildcard expansions are emitted. URL-REGEX is not equivalent to a domain condition for all protocols."
+    },
+    "loon": {
+      "format": "classical",
+      "nativeRegex": false,
+      "wildcard": "classes",
+      "minimumBuild": 1008,
+      "documentation": [
+        "https://nsloon.app/en/docs/Rule/domain_rule/"
+      ],
+      "limitation": "DOMAIN-WILDCARD character classes require build 1008+. No domain-regex type is documented."
+    },
+    "shadowrocket": {
+      "format": "classical",
+      "nativeRegex": false,
+      "wildcard": "basic",
+      "documentation": [
+        "https://apps.apple.com/us/app/shadowrocket/id932747118",
+        "https://shadowlaunch.com/",
+        "https://t.me/ShadowrocketApp",
+        "https://t.me/s/ShadowrocketNews?before=964"
+      ],
+      "limitation": "Only proven equivalent * / ? expansions are emitted, requiring 2.2.65+. No domain-regex type or wildcard character classes are documented. URL-REGEX is not substituted for all-protocol domain conditions.",
+      "minimumVersion": "2.2.65",
+      "evidence": "The App Store links the developer site shadowlaunch.com, which links the official ShadowrocketApp group; its profile identifies ShadowrocketNews as the announcement channel. The channel documents build 2613 DOMAIN-WILDCARD with * and ? and the 2.2.65 stable release. No domain-regex or character-class capability is inferred."
+    },
+    "egern": {
+      "format": "egern",
+      "nativeRegex": true,
+      "wildcard": null,
+      "documentation": [
+        "https://egernapp.com/docs/configuration/rules/"
+      ],
+      "limitation": null
+    },
+    "stash": {
+      "format": "classical-yaml",
+      "nativeRegex": true,
+      "wildcard": null,
+      "documentation": [
+        "https://stash.wiki/en/rules/rule-types"
+      ],
+      "limitation": null
+    },
+    "mihomo": {
+      "format": "classical-yaml",
+      "nativeRegex": true,
+      "wildcard": null,
+      "documentation": [
+        "https://wiki.metacubex.one/en/config/rules/",
+        "https://raw.githubusercontent.com/MetaCubeX/mihomo/v1.19.33/rules/common/domain_regex.go"
+      ],
+      "limitation": null,
+      "engine": "regexp2 with IgnoreCase; equivalence is explicitly scoped to normalized lowercase ASCII DNS hostnames"
+    },
+    "singBox": {
+      "format": "singBox",
+      "nativeRegex": true,
+      "wildcard": null,
+      "documentation": [
+        "https://sing-box.sagernet.org/configuration/rule-set/headless-rule/"
+      ],
+      "limitation": null,
+      "engine": "Go regexp (RE2 syntax)",
+      "hostNormalization": "Real mixed-HTTP verification: a trailing root dot is retained and can prevent an anchored source regex from matching. No stripping is implemented or claimed."
+    }
+  },
+  "expressions": [
+    {
+      "file": "openai",
+      "rule": "regexp:^chatgpt-async-webps-prod-\\S+-\\d+\\.webpubsub\\.azure\\.com$",
+      "positive": [
+        "chatgpt-async-webps-prod-a-1.webpubsub.azure.com",
+        "chatgpt-async-webps-prod-x.y-123.webpubsub.azure.com"
+      ],
+      "negative": [
+        "chatgpt-async-webps-prod--1.webpubsub.azure.com",
+        "chatgpt-async-webps-prod-a-x.webpubsub.azure.com",
+        "evil.chatgpt-async-webps-prod-a-1.webpubsub.azure.com",
+        "chatgpt-async-webps-prod-a-1.webpubsub.azure.com.evil"
+      ]
+    },
+    {
+      "file": "google-play",
+      "rule": "regexp:^r+[0-9]+(---|\\.)sn-(2x3|ni5|j5o)\\w{5}\\.xn--ngstr-lra8j\\.com$",
+      "positive": [
+        "r1---sn-2x3abcde.xn--ngstr-lra8j.com",
+        "rr123.sn-ni5a9_bz.xn--ngstr-lra8j.com"
+      ],
+      "negative": [
+        "r---sn-2x3abcde.xn--ngstr-lra8j.com",
+        "r1---sn-xxxabcde.xn--ngstr-lra8j.com",
+        "r1---sn-ni5abcd.xn--ngstr-lra8j.com",
+        "xr1---sn-2x3abcde.xn--ngstr-lra8j.com",
+        "r1---sn-ni5abcdef.xn--ngstr-lra8j.com",
+        "r1---sn-j5oabcde.xn--ngstr-lra8j.com.evil",
+        "r1---sn-ni5a-bcd.xn--ngstr-lra8j.com"
+      ]
+    },
+    {
+      "file": "google-play",
+      "rule": "regexp:^r+[0-9]+(---|\\.)sn-(2x3|ni5|j5o)\\w{5}\\.googlevideo\\.com$",
+      "positive": [
+        "r1---sn-2x3abcde.googlevideo.com",
+        "rr123.sn-ni5a9_bz.googlevideo.com"
+      ],
+      "negative": [
+        "r---sn-2x3abcde.googlevideo.com",
+        "r1---sn-xxxabcde.googlevideo.com",
+        "r1---sn-ni5abcd.googlevideo.com",
+        "xr1---sn-2x3abcde.googlevideo.com",
+        "r1---sn-ni5abcdef.googlevideo.com",
+        "r1---sn-j5oabcde.googlevideo.com.evil",
+        "r1---sn-ni5a-bcd.googlevideo.com"
+      ]
+    },
+    {
+      "file": "netflix",
+      "rule": "regexp:(^|\\.)apiproxy-device-prod-nlb-.+\\.amazonaws\\.com$",
+      "positive": [
+        "apiproxy-device-prod-nlb-a.amazonaws.com",
+        "x.apiproxy-device-prod-nlb-a.amazonaws.com",
+        "x.y.apiproxy-device-prod-nlb-a.b.amazonaws.com"
+      ],
+      "negative": [
+        "apiproxy-device-prod-nlb-.amazonaws.com",
+        "xapiproxy-device-prod-nlb-a.amazonaws.com",
+        "apiproxy-device-prod-nlb-a.amazonaws.com.evil",
+        "apiproxy-device-prod-nlb-aXamazonaws.com"
+      ]
+    },
+    {
+      "file": "netflix",
+      "rule": "regexp:(^|\\.)apiproxy-website-nlb-prod-.+\\.amazonaws\\.com$",
+      "positive": [
+        "apiproxy-website-nlb-prod-a.amazonaws.com",
+        "x.apiproxy-website-nlb-prod-a.amazonaws.com",
+        "x.y.apiproxy-website-nlb-prod-a.b.amazonaws.com"
+      ],
+      "negative": [
+        "apiproxy-website-nlb-prod-.amazonaws.com",
+        "xapiproxy-website-nlb-prod-a.amazonaws.com",
+        "apiproxy-website-nlb-prod-a.amazonaws.com.evil",
+        "apiproxy-website-nlb-prod-aXamazonaws.com"
+      ]
+    },
+    {
+      "file": "netflix",
+      "rule": "regexp:(^|\\.)dualstack\\.apiproxy-.+\\.amazonaws\\.com$",
+      "positive": [
+        "dualstack.apiproxy-a.amazonaws.com",
+        "x.dualstack.apiproxy-a.amazonaws.com",
+        "x.y.dualstack.apiproxy-a.b.amazonaws.com"
+      ],
+      "negative": [
+        "dualstack.apiproxy-.amazonaws.com",
+        "xdualstack.apiproxy-a.amazonaws.com",
+        "dualstack.apiproxy-a.amazonaws.com.evil",
+        "dualstack.apiproxy-aXamazonaws.com"
+      ]
+    },
+    {
+      "file": "netflix",
+      "rule": "regexp:(^|\\.)dualstack\\.ichnaea-web-.+\\.amazonaws\\.com$",
+      "positive": [
+        "dualstack.ichnaea-web-a.amazonaws.com",
+        "x.dualstack.ichnaea-web-a.amazonaws.com",
+        "x.y.dualstack.ichnaea-web-a.b.amazonaws.com"
+      ],
+      "negative": [
+        "dualstack.ichnaea-web-.amazonaws.com",
+        "xdualstack.ichnaea-web-a.amazonaws.com",
+        "dualstack.ichnaea-web-a.amazonaws.com.evil",
+        "dualstack.ichnaea-web-aXamazonaws.com"
+      ]
+    },
+    {
+      "file": "ookla-speedtest",
+      "rule": "regexp:^speed\\.(coe|open)\\.ad\\.[a-z]{2,6}\\.prod\\.hosts\\.ooklaserver\\.net$",
+      "positive": [
+        "speed.coe.ad.cn.prod.hosts.ooklaserver.net",
+        "speed.open.ad.abcdef.prod.hosts.ooklaserver.net"
+      ],
+      "negative": [
+        "speed.coe.ad.a.prod.hosts.ooklaserver.net",
+        "speed.coe.ad.abcdefg.prod.hosts.ooklaserver.net",
+        "speed.coe.ad.c2.prod.hosts.ooklaserver.net",
+        "x.speed.coe.ad.cn.prod.hosts.ooklaserver.net",
+        "speed.coe.ad.cn.prod.hosts.ooklaserver.net.evil"
+      ]
+    },
+    {
+      "file": "aws-cn",
+      "rule": "regexp:.+\\.awsdns-cn-[0-9][0-9]\\.(biz|com|net|top)$",
+      "positive": [
+        "x.awsdns-cn-00.biz",
+        "x.y.awsdns-cn-99.com"
+      ],
+      "negative": [
+        "awsdns-cn-00.biz",
+        "x.awsdns-cn-100.biz",
+        "x.awsdns-cn-aa.biz",
+        "x.awsdns-cn-00.cn",
+        "x.awsdns-cn-00.com.evil",
+        "xXawsdns-cn-00.com"
+      ]
+    },
+    {
+      "file": "aws-cn",
+      "rule": "regexp:.+\\.awsdns-cn-[0-9][a-e0-9]\\.cn$",
+      "positive": [
+        "x.awsdns-cn-0a.cn",
+        "x.y.awsdns-cn-99.cn"
+      ],
+      "negative": [
+        "awsdns-cn-0a.cn",
+        "x.awsdns-cn-aa.cn",
+        "x.awsdns-cn-0f.cn",
+        "x.awsdns-cn-0a.cn.evil",
+        "xXawsdns-cn-0a.cn"
+      ]
+    },
+    {
+      "file": "mihoyo-cn",
+      "rule": "regexp:^.+-mihayo\\.akamaized\\.net$",
+      "positive": [
+        "x-mihayo.akamaized.net",
+        "x.y-mihayo.akamaized.net"
+      ],
+      "negative": [
+        "-mihayo.akamaized.net",
+        "x-mihayo.akamaized.net.evil",
+        "x-mihayoXakamaized.net",
+        "x-mihoyo.akamaized.net"
+      ]
+    },
+    {
+      "file": "aws",
+      "rule": "regexp:.+\\.awsdns-[0-9][0-9]\\.(co\\.uk|com|net|org)$",
+      "positive": [
+        "x.awsdns-00.com",
+        "x.y.awsdns-99.co.uk"
+      ],
+      "negative": [
+        "awsdns-00.com",
+        "x.awsdns-100.com",
+        "x.awsdns-aa.com",
+        "x.awsdns-00.com.evil",
+        "xXawsdns-00.com"
+      ]
+    },
+    {
+      "file": "viu",
+      "rule": "regexp:^ewcdn[0-9]+\\.nowe\\.com$",
+      "positive": [
+        "ewcdn0.nowe.com",
+        "ewcdn12345.nowe.com"
+      ],
+      "negative": [
+        "ewcdn.nowe.com",
+        "ewcdnx.nowe.com",
+        "ewcdn1x.nowe.com",
+        "x.ewcdn1.nowe.com",
+        "ewcdn1.nowe.com.evil"
+      ]
+    }
+  ],
+  "sourceDocumentation": [
+    "https://raw.githubusercontent.com/v2fly/domain-list-community/1daade8c4bb957d21d1f5c09c2b050d699e8e96c/main.go",
+    "https://github.com/v2fly/v2ray-core/blob/master/common/strmatcher/matchers.go"
+  ]
+}

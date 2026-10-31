@@ -2,7 +2,7 @@
 
 本表按规则语义、实际安装资源和宿主能力核对；不以文件数量、主配置长短或“有同名文件”判定完整。对照来源为[固定功能清单](https://github.com/Centralmatrix3/Matrix-io/tree/a2f8c41c1bc81518d6ea39087e2b2f756503ca3b)。仅用作功能/类型参考，没有复制其未声明许可的代码和规则负载，也未沿用其品牌。
 
-当前117套、136,894条规范数据，为八种格式生成；anti-AD、global和google-cn为可选集合。完整许可与原始数据见[来源清单](../metadata/upstreams.json)、[GPL原始数据与许可](../src/vendor/rule-sources/blackmatrix7/)。源码许可分开，不把GPL/AGPL标为MIT。
+当前118套、136,944条规范数据，为八种格式生成；anti-AD、global和google-cn为可选集合。完整许可与原始数据见[来源清单](../metadata/upstreams.json)、[GPL原始数据与许可](../src/vendor/rule-sources/blackmatrix7/)。源码许可分开，不把GPL/AGPL标为MIT。
 
 ## 八客户端功能
 
@@ -21,7 +21,7 @@
 
 ## 对照的110类规则
 
-独立来源资源表示有可单独导入的原生规则，仍受已登记的来源范围/正则遗漏影响；不声称与对照集合逐条相等。对照的Global/DIRECT/PROXY/REJECT混有集合与策略概念，分别标注。
+独立来源资源表示有可单独导入的规则，仍受已登记来源范围影响；除明确标注的ASN编号/Unbreak条件，不声称与对照集合逐条相等。正则由独立原生补充资源恢复，按下面八端支持表判断。对照的Global/DIRECT/PROXY/REJECT混有集合与策略概念，分别标注。
 
 | 对照类别 | NetAtlas资源 | 核对结果 | 具体边界 |
 | --- | --- | --- | --- |
@@ -36,7 +36,7 @@
 | AliPay | `alipay` | 独立来源资源 | 具有独立服务资源；源内容、许可和确切遗漏见来源清单。 |
 | Alibaba | `alibaba` | 独立来源资源 | 具有独立服务资源；源内容、许可和确切遗漏见来源清单。 |
 | All4 | `all4` | 独立来源资源 | 具有独立服务资源；源内容、许可和确切遗漏见来源清单。 |
-| Amazon | `amazon-portable` | 部分/范围不同 | amazon-portable 明确保留三个不能无损转换的源正则遗漏。 |
+| Amazon | `amazon-portable` | 部分/范围不同 | 公共投影与原生正则补充分开；四正则端全部补齐，QX/SR/Surge/Loon按原生通配能力精确补齐，具体未支持项登记。 |
 | Android | `android` | 独立来源资源 | 具有独立服务资源；源内容、许可和确切遗漏见来源清单。 |
 | AppStore | `appstore` | 独立来源资源 | 具有独立服务资源；源内容、许可和确切遗漏见来源清单。 |
 | Apple | `apple` | 独立来源资源 | 具有独立服务资源；源内容、许可和确切遗漏见来源清单。 |
@@ -45,7 +45,7 @@
 | BiliBili | `bilibili` | 独立来源资源 | 具有独立服务资源；源内容、许可和确切遗漏见来源清单。 |
 | Blizzard | `blizzard` | 独立来源资源 | 具有独立服务资源；源内容、许可和确切遗漏见来源清单。 |
 | ByteDance | `bytedance` | 独立来源资源 | 具有独立服务资源；源内容、许可和确切遗漏见来源清单。 |
-| ChinaASN | `china-ipv4` / `china-ipv6` | 原生语义差异 | 没有提供 ASN 编号匹配数据；使用 CN IPv4/IPv6 兜底。ASN 归属与静态国家 CIDR 不等价。 |
+| ChinaASN | `china-asn` | 七端完整原生条件 | 完整5,231编号；与参考编号双向比较一致，依宿主ASN数据库查询。sing-box1.14无原生ASN条件。 |
 | ChinaBGP | `china-ipv4` / `china-ipv6` | 替代集合/策略 | 独立许可来源/集合或默认策略替代，未声称逐条相等。 |
 | ChinaIP | `china-ipv4` / `china-ipv6` | 替代集合/策略 | 独立许可来源/集合或默认策略替代，未声称逐条相等。 |
 | ChinaIPv4 | `china-ipv4` | 替代集合/策略 | 独立许可来源/集合或默认策略替代，未声称逐条相等。 |
@@ -65,14 +65,14 @@
 | Dropbox | `dropbox` | 独立来源资源 | 具有独立服务资源；源内容、许可和确切遗漏见来源清单。 |
 | EncoreTVB | `tvb` | 替代集合/策略 | 使用 TVB 许可来源；不把 TVB 全体域名叫作 EncoreTVB 专属集合。 |
 | Facebook | `facebook` | 独立来源资源 | 具有独立服务资源；源内容、许可和确切遗漏见来源清单。 |
-| GEOIPCN | `china-ipv4` / `china-ipv6` | 原生语义差异 | 使用固定许可来源 CN CIDR，未伪装为动态 GeoIP 数据库匹配。 |
+| GEOIPCN | `geoip-cn` | 七端原生条件 | 使用CN国家数据库查询及宿主刷新能力；数据库结果可能不同。sing-box1.14已移除该条件。 |
 | Gemini | `gemini` | 独立来源资源 | 具有独立服务资源；源内容、许可和确切遗漏见来源清单。 |
 | GitHub | `github` | 独立来源资源 | 具有独立服务资源；源内容、许可和确切遗漏见来源清单。 |
 | GitLab | `gitlab` | 独立来源资源 | 具有独立服务资源；源内容、许可和确切遗漏见来源清单。 |
 | Global | `global` | 替代集合/策略 | 可选完整 Proxy_Classical 五类型替代集；不是参考 Global 的逐条复制，不默认加载。 |
 | GlobalMedia | `global-media` | 替代集合/策略 | 独立许可来源/集合或默认策略替代，未声称逐条相等。 |
 | Google | `google` | 独立来源资源 | 具有独立服务资源；源内容、许可和确切遗漏见来源清单。 |
-| GoogleCN | `google-cn` | 部分/范围不同 | 独立 @cn 可选选择，不改变Google默认代理；两个正则遗漏原文与原因已登记。 |
+| GoogleCN | `google-cn` | 部分/范围不同 | 独立@cn仍可选，保持Google默认代理；两正则在四原生正则端补齐，其他四端明确未支持。 |
 | HBO | `hbo` | 独立来源资源 | 具有独立服务资源；源内容、许可和确切遗漏见来源清单。 |
 | HBOAsia | `hbo-asia` | 独立来源资源 | 具有独立服务资源；源内容、许可和确切遗漏见来源清单。 |
 | HMTMedia | `hmt-media` | 替代集合/策略 | 独立许可来源/集合或默认策略替代，未声称逐条相等。 |
@@ -122,7 +122,7 @@
 | TikTok | `tiktok` | 独立来源资源 | 具有独立服务资源；源内容、许可和确切遗漏见来源清单。 |
 | Twitch | `twitch` | 独立来源资源 | 具有独立服务资源；源内容、许可和确切遗漏见来源清单。 |
 | Twitter | `twitter` | 独立来源资源 | 具有独立服务资源；源内容、许可和确切遗漏见来源清单。 |
-| Unbreak | `unbreak` | 替代集合/策略 | 自有三个精确连接探测白名单，非参考集合逐条等价，不能声称完整修正所有误拦截。 |
+| Unbreak | `unbreak` | 全部50匹配条件一致 | 35精确域、14后缀、1关键词；八端完整保留。原有3探针独立保留。独立可选策略默认DIRECT，先于广告。 |
 | Vercel | `vercel` | 独立来源资源 | 具有独立服务资源；源内容、许可和确切遗漏见来源清单。 |
 | ViuTV | `viu-portable` | 部分/范围不同 | 使用 viu-portable 来源，不宣称 Viu、NowE 与 ViuTV 三项服务完全等价。 |
 | WeChat | `wechat` | 独立来源资源 | 具有独立服务资源；源内容、许可和确切遗漏见来源清单。 |
@@ -136,12 +136,34 @@
 | Z-Library | `z-library` | 独立来源资源 | 具有独立服务资源；源内容、许可和确切遗漏见来源清单。 |
 | iCloud | `icloud` | 独立来源资源 | 具有独立服务资源；源内容、许可和确切遗漏见来源清单。 |
 
+## 原生条件的八端支持
+
+| 客户端 | ASN编号 | CN GeoIP条件 | 源正则引用 | 未支持正则 | Unbreak |
+| --- | --- | --- | ---: | ---: | --- |
+| Quantumult X | 完整5,231 | 原生数据库 | 14/24精确通配 | 10 | 全部50 |
+| Surge | 完整5,231 | 原生数据库 | 16/24精确通配 | 8 | 全部50 |
+| Loon | 完整5,231 | 原生数据库 | 16/24精确通配 | 8 | 全部50 |
+| Shadowrocket | 完整5,231 | 原生数据库 | 14/24精确通配 | 10 | 全部50 |
+| Egern | 完整5,231 | 原生数据库 | 24/24原生正则 | 0 | 全部50 |
+| Stash | 完整5,231 | 原生数据库 | 24/24原生正则 | 0 | 全部50 |
+| Mihomo 1.19.33 | 完整5,231 | 原生数据库 | 24/24原生正则 | 0 | 全部50 |
+| sing-box 1.14.4 | 原生不支持 | 1.12起已移除 | 24/24原生正则 | 0 | 全部50 |
+
+完整ASN来自[MIT固定原始来源](https://github.com/missuo/ASN-China/blob/5f374b8a70bbff10272de8ed0366abb7b45d160f/ASN.China.list)，没有转成国家CIDR。GeoIP保留CN查询条件，不把ASN国家归属、IP登记位置或服务器物理位置混同。两个配置版本都实际启用支持的原生资源，业务条件先行、ASN/GeoIP后置、静态CN网段最后兜底。
+
+数据库更新按宿主分别处理：QX/SR/Stash在App数据库界面；Surge国家库自动更新、ASN库随App更新（不伪造ASN URL字段）；Loon/Egern提供数据库URL；Mihomo每24小时原生刷新MMDB。sing-box不生成假GeoIP/ASN字段，已有远程CIDR刷新仍只是其独立规则集能力。[七端设置与来源](../metadata/native-routing.json)、[sing-box移除说明](https://sing-box.sagernet.org/migration/#migrate-geoip-to-rule-sets)。
+
+正则登记含13个不同表达式、24处实际引用，源文件逐行SHA固定。Egern/Stash/Mihomo/sing-box保留原生域名正则；QX/Surge/Loon/SR只转换可证明精确等价的whole-host通配，不能用URL-REGEX替代所有协议的域名条件。Loon字符类要求build1008+，Shadowrocket通配要求2.2.65+，依据已在[逐条能力与转换证明](../metadata/regex-routing.json)链接到原作者公告。语言等价范围是已规范化的小写ASCII主机名（不带尾根点）。各宿主自行处理大小写和根点，本仓库适配器不代宿主规范化。实测sing-box mixed HTTP保留尾根点，可能不命中源中带结尾锚的表达式；Mihomo可能先规范化，不能把二者宣称相同。不为抹平这一差异擅自给源正则添加可选点。
+
+不支持项仍然明确存在：QX/SR不能表达变长数字OpenAI/Google、Viu及Speedtest域名正则；Surge/Loon额外可精确表达Speedtest，仍不能表达其余8个引用。不会以更宽后缀或替代集合补数。`google-cn`仍为可选，未默认改变Google服务策略。
+
+Unbreak与参考全部50条件双向核对相同；来源是48个GPL原始条件与2个独立编写的MIT精确端点事实，合并数据按GPL-2.0-only分发。它优先于广告，默认“规则修正”直连，包含若干Google下载/推送与统计域；可切换到节点选择。`connectivity-probes`独立保留三个固定直连探针，不额外混入50条件的等价计数。
+
 ## 仍有的实质差异
 
-- ASN与GeoIP原生条件尚未逐条等价；当前使用固定CN域名/CIDR，不能把它叫作ASN或动态GeoIP实现。
-- Viu与TVB来源不是ViuTV/EncoreTVB专属清单；Amazon、GoogleCN及部分流媒体源有逐条登记的正则遗漏。
-- unbreak为三个明确网络探测域名，不冒充原参考的完整修正白名单。
-- 定位脚本仍只提供QX/Surge；其他四个GUI未追加专用适配。参考也不是六端都有相同定位脚本。
+- sing-box的ASN/GeoIP原生能力不存在，四个无域名正则宿主也只覆盖表中能无损表达的子集。这是明确的宿主边界，不把八端都称作四项全部完整。
+- Viu与TVB来源仍不是ViuTV/EncoreTVB专属清单；新正则层补回已有许可源的遗漏，不改变这些服务来源的范围。
+- 定位显示脚本仍只提供QX/Surge；其余GUI未新增同名JS宿主适配。原生GeoIP路由与定位显示是两个功能。
 - QX的ScriptHub安装入口只有该宿主支持的解析入口；不承诺其他五端的所有edit/reload/convert接口。
 - 18工具安装包可选启用；固定入口脚本不等于前端/CDN/生成资源的全部依赖闭包固定。外部解析器未实际转换、六GUI/MITM未实机测试。
 

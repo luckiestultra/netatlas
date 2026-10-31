@@ -4,13 +4,14 @@ import { domainToASCII } from 'node:url';
 export const ruleTypes = ['domain', 'domain-suffix', 'domain-keyword', 'ip-cidr', 'ip-cidr6'];
 export const stableId = /^[a-z][a-z0-9]*(?:-[a-z0-9]+)*$/;
 
-function domain(value) {
+function domain(value, allowUnderscore = false) {
   // domainToASCII also accepts URL-host input and can discard path/query data.
   // Reject URL syntax before applying IDNA, so invalid upstream rules fail closed.
   if (/[\\/?:#%@\s\u0000-\u001f\u007f]/u.test(value)) throw new Error(`Invalid domain: ${value}`);
   const ascii = domainToASCII(value.replace(/\.$/, '')).toLowerCase();
   const labels = ascii.split('.');
-  if (!ascii || ascii.length > 253 || labels.some(label => !/^[a-z0-9](?:[a-z0-9-]{0,61}[a-z0-9])?$/.test(label))) {
+  const labelPattern = allowUnderscore ? /^[a-z0-9_](?:[a-z0-9_-]{0,61}[a-z0-9_])?$/ : /^[a-z0-9](?:[a-z0-9-]{0,61}[a-z0-9])?$/;
+  if (!ascii || ascii.length > 253 || labels.some(label => !labelPattern.test(label))) {
     throw new Error(`Invalid domain: ${value}`);
   }
   return ascii;
@@ -81,7 +82,9 @@ export function normalizeRuleset(ruleset) {
 export function matchesEntry(entry, { host, ip } = {}) {
   if (entry.type.startsWith('domain')) {
     if (!host) return false;
-    const candidate = domain(host);
+    // Native substring matchers also see DNS labels containing underscores.
+    // Keep canonical exact/suffix rule input strict; only candidate names vary.
+    const candidate = domain(host, true);
     if (entry.type === 'domain-keyword') return candidate.includes(entry.value);
     return candidate === entry.value || (entry.type === 'domain-suffix' && candidate.endsWith(`.${entry.value}`));
   }

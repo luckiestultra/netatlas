@@ -41,10 +41,23 @@
       },
       {
         "rule_set": [
+          "connectivity-probes"
+        ],
+        "action": "route",
+        "server": "domestic"
+      },
+      {
+        "rule_set": [
           "unbreak"
         ],
         "action": "route",
         "server": "domestic"
+      },
+      {
+        "rule_set": [
+          "adblock-regex"
+        ],
+        "action": "reject"
       },
       {
         "rule_set": [
@@ -369,6 +382,13 @@
       },
       {
         "rule_set": [
+          "netflix-regex"
+        ],
+        "action": "route",
+        "server": "remote"
+      },
+      {
+        "rule_set": [
           "netflix"
         ],
         "action": "route",
@@ -405,6 +425,13 @@
       {
         "rule_set": [
           "onedrive"
+        ],
+        "action": "route",
+        "server": "remote"
+      },
+      {
+        "rule_set": [
+          "openai-regex"
         ],
         "action": "route",
         "server": "remote"
@@ -509,6 +536,13 @@
       },
       {
         "rule_set": [
+          "speedtest-regex"
+        ],
+        "action": "route",
+        "server": "remote"
+      },
+      {
+        "rule_set": [
           "speedtest"
         ],
         "action": "route",
@@ -580,6 +614,13 @@
       {
         "rule_set": [
           "vercel"
+        ],
+        "action": "route",
+        "server": "remote"
+      },
+      {
+        "rule_set": [
+          "viu-portable-regex"
         ],
         "action": "route",
         "server": "remote"
@@ -726,6 +767,13 @@
       },
       {
         "rule_set": [
+          "hmt-media-regex"
+        ],
+        "action": "route",
+        "server": "remote"
+      },
+      {
+        "rule_set": [
           "hmt-media"
         ],
         "action": "route",
@@ -733,7 +781,21 @@
       },
       {
         "rule_set": [
+          "global-media-regex"
+        ],
+        "action": "route",
+        "server": "remote"
+      },
+      {
+        "rule_set": [
           "global-media"
+        ],
+        "action": "route",
+        "server": "remote"
+      },
+      {
+        "rule_set": [
+          "amazon-portable-regex"
         ],
         "action": "route",
         "server": "remote"
@@ -796,6 +858,13 @@
       },
       {
         "rule_set": [
+          "google-regex"
+        ],
+        "action": "route",
+        "server": "remote"
+      },
+      {
+        "rule_set": [
           "google"
         ],
         "action": "route",
@@ -807,6 +876,13 @@
         ],
         "action": "route",
         "server": "remote"
+      },
+      {
+        "rule_set": [
+          "china-regex"
+        ],
+        "action": "route",
+        "server": "domestic"
       },
       {
         "rule_set": [
@@ -876,6 +952,22 @@
       "url": "https://www.gstatic.com/generate_204",
       "interval": "5m",
       "tolerance": 50
+    },
+    {
+      "type": "selector",
+      "tag": "规则修正",
+      "outbounds": [
+        "DIRECT",
+        "节点选择",
+        "自动选择",
+        "香港节点",
+        "台湾节点",
+        "日本节点",
+        "韩国节点",
+        "新加坡节点",
+        "美国节点"
+      ],
+      "default": "DIRECT"
     },
     {
       "type": "selector",
@@ -1144,9 +1236,25 @@
       },
       {
         "type": "remote",
+        "tag": "connectivity-probes",
+        "format": "source",
+        "url": "https://raw.githubusercontent.com/luckiestultra/netatlas/main/clients/singBox/rules/connectivity-probes.json",
+        "http_client": "netatlas-resources",
+        "update_interval": "1d"
+      },
+      {
+        "type": "remote",
         "tag": "unbreak",
         "format": "source",
         "url": "https://raw.githubusercontent.com/luckiestultra/netatlas/main/clients/singBox/rules/unbreak.json",
+        "http_client": "netatlas-resources",
+        "update_interval": "1d"
+      },
+      {
+        "type": "remote",
+        "tag": "adblock-regex",
+        "format": "source",
+        "url": "https://raw.githubusercontent.com/luckiestultra/netatlas/main/clients/singBox/rules/adblock-regex.json",
         "http_client": "netatlas-resources",
         "update_interval": "1d"
       },
@@ -1520,6 +1628,14 @@
       },
       {
         "type": "remote",
+        "tag": "netflix-regex",
+        "format": "source",
+        "url": "https://raw.githubusercontent.com/luckiestultra/netatlas/main/clients/singBox/rules/netflix-regex.json",
+        "http_client": "netatlas-resources",
+        "update_interval": "1d"
+      },
+      {
+        "type": "remote",
         "tag": "netflix",
         "format": "source",
         "url": "https://raw.githubusercontent.com/luckiestultra/netatlas/main/clients/singBox/rules/netflix.json",
@@ -1563,6 +1679,14 @@
         "tag": "onedrive",
         "format": "source",
         "url": "https://raw.githubusercontent.com/luckiestultra/netatlas/main/clients/singBox/rules/onedrive.json",
+        "http_client": "netatlas-resources",
+        "update_interval": "1d"
+      },
+      {
+        "type": "remote",
+        "tag": "openai-regex",
+        "format": "source",
+        "url": "https://raw.githubusercontent.com/luckiestultra/netatlas/main/clients/singBox/rules/openai-regex.json",
         "http_client": "netatlas-resources",
         "update_interval": "1d"
       },
@@ -1680,6 +1804,14 @@
       },
       {
         "type": "remote",
+        "tag": "speedtest-regex",
+        "format": "source",
+        "url": "https://raw.githubusercontent.com/luckiestultra/netatlas/main/clients/singBox/rules/speedtest-regex.json",
+        "http_client": "netatlas-resources",
+        "update_interval": "1d"
+      },
+      {
+        "type": "remote",
         "tag": "speedtest",
         "format": "source",
         "url": "https://raw.githubusercontent.com/luckiestultra/netatlas/main/clients/singBox/rules/speedtest.json",
@@ -1763,6 +1895,14 @@
         "tag": "vercel",
         "format": "source",
         "url": "https://raw.githubusercontent.com/luckiestultra/netatlas/main/clients/singBox/rules/vercel.json",
+        "http_client": "netatlas-resources",
+        "update_interval": "1d"
+      },
+      {
+        "type": "remote",
+        "tag": "viu-portable-regex",
+        "format": "source",
+        "url": "https://raw.githubusercontent.com/luckiestultra/netatlas/main/clients/singBox/rules/viu-portable-regex.json",
         "http_client": "netatlas-resources",
         "update_interval": "1d"
       },
@@ -1928,6 +2068,14 @@
       },
       {
         "type": "remote",
+        "tag": "hmt-media-regex",
+        "format": "source",
+        "url": "https://raw.githubusercontent.com/luckiestultra/netatlas/main/clients/singBox/rules/hmt-media-regex.json",
+        "http_client": "netatlas-resources",
+        "update_interval": "1d"
+      },
+      {
+        "type": "remote",
         "tag": "hmt-media",
         "format": "source",
         "url": "https://raw.githubusercontent.com/luckiestultra/netatlas/main/clients/singBox/rules/hmt-media.json",
@@ -1936,9 +2084,25 @@
       },
       {
         "type": "remote",
+        "tag": "global-media-regex",
+        "format": "source",
+        "url": "https://raw.githubusercontent.com/luckiestultra/netatlas/main/clients/singBox/rules/global-media-regex.json",
+        "http_client": "netatlas-resources",
+        "update_interval": "1d"
+      },
+      {
+        "type": "remote",
         "tag": "global-media",
         "format": "source",
         "url": "https://raw.githubusercontent.com/luckiestultra/netatlas/main/clients/singBox/rules/global-media.json",
+        "http_client": "netatlas-resources",
+        "update_interval": "1d"
+      },
+      {
+        "type": "remote",
+        "tag": "amazon-portable-regex",
+        "format": "source",
+        "url": "https://raw.githubusercontent.com/luckiestultra/netatlas/main/clients/singBox/rules/amazon-portable-regex.json",
         "http_client": "netatlas-resources",
         "update_interval": "1d"
       },
@@ -2008,6 +2172,14 @@
       },
       {
         "type": "remote",
+        "tag": "google-regex",
+        "format": "source",
+        "url": "https://raw.githubusercontent.com/luckiestultra/netatlas/main/clients/singBox/rules/google-regex.json",
+        "http_client": "netatlas-resources",
+        "update_interval": "1d"
+      },
+      {
+        "type": "remote",
         "tag": "google",
         "format": "source",
         "url": "https://raw.githubusercontent.com/luckiestultra/netatlas/main/clients/singBox/rules/google.json",
@@ -2019,6 +2191,14 @@
         "tag": "microsoft",
         "format": "source",
         "url": "https://raw.githubusercontent.com/luckiestultra/netatlas/main/clients/singBox/rules/microsoft.json",
+        "http_client": "netatlas-resources",
+        "update_interval": "1d"
+      },
+      {
+        "type": "remote",
+        "tag": "china-regex",
+        "format": "source",
+        "url": "https://raw.githubusercontent.com/luckiestultra/netatlas/main/clients/singBox/rules/china-regex.json",
         "http_client": "netatlas-resources",
         "update_interval": "1d"
       },
@@ -2082,10 +2262,23 @@
       },
       {
         "rule_set": [
-          "unbreak"
+          "connectivity-probes"
         ],
         "action": "route",
         "outbound": "DIRECT"
+      },
+      {
+        "rule_set": [
+          "unbreak"
+        ],
+        "action": "route",
+        "outbound": "规则修正"
+      },
+      {
+        "rule_set": [
+          "adblock-regex"
+        ],
+        "action": "reject"
       },
       {
         "rule_set": [
@@ -2410,6 +2603,13 @@
       },
       {
         "rule_set": [
+          "netflix-regex"
+        ],
+        "action": "route",
+        "outbound": "国外媒体"
+      },
+      {
+        "rule_set": [
           "netflix"
         ],
         "action": "route",
@@ -2449,6 +2649,13 @@
         ],
         "action": "route",
         "outbound": "微软服务"
+      },
+      {
+        "rule_set": [
+          "openai-regex"
+        ],
+        "action": "route",
+        "outbound": "AI服务"
       },
       {
         "rule_set": [
@@ -2550,6 +2757,13 @@
       },
       {
         "rule_set": [
+          "speedtest-regex"
+        ],
+        "action": "route",
+        "outbound": "国外网站"
+      },
+      {
+        "rule_set": [
           "speedtest"
         ],
         "action": "route",
@@ -2624,6 +2838,13 @@
         ],
         "action": "route",
         "outbound": "开发服务"
+      },
+      {
+        "rule_set": [
+          "viu-portable-regex"
+        ],
+        "action": "route",
+        "outbound": "国外媒体"
       },
       {
         "rule_set": [
@@ -2767,7 +2988,21 @@
       },
       {
         "rule_set": [
+          "hmt-media-regex"
+        ],
+        "action": "route",
+        "outbound": "国外媒体"
+      },
+      {
+        "rule_set": [
           "hmt-media"
+        ],
+        "action": "route",
+        "outbound": "国外媒体"
+      },
+      {
+        "rule_set": [
+          "global-media-regex"
         ],
         "action": "route",
         "outbound": "国外媒体"
@@ -2778,6 +3013,13 @@
         ],
         "action": "route",
         "outbound": "国外媒体"
+      },
+      {
+        "rule_set": [
+          "amazon-portable-regex"
+        ],
+        "action": "route",
+        "outbound": "国外网站"
       },
       {
         "rule_set": [
@@ -2837,6 +3079,13 @@
       },
       {
         "rule_set": [
+          "google-regex"
+        ],
+        "action": "route",
+        "outbound": "谷歌服务"
+      },
+      {
+        "rule_set": [
           "google"
         ],
         "action": "route",
@@ -2848,6 +3097,13 @@
         ],
         "action": "route",
         "outbound": "微软服务"
+      },
+      {
+        "rule_set": [
+          "china-regex"
+        ],
+        "action": "route",
+        "outbound": "DIRECT"
       },
       {
         "rule_set": [

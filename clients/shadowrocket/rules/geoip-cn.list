@@ -1,0 +1,4 @@
+# NetAtlas native destination-IP matching; database lookup, not CIDR expansion.
+# ASN source: https://github.com/missuo/ASN-China/blob/5f374b8a70bbff10272de8ed0366abb7b45d160f/ASN.China.list
+# ASN source license: MIT, Copyright (c) 2022 Vincent Young; see THIRD_PARTY_NOTICES.md.
+GEOIP,CN

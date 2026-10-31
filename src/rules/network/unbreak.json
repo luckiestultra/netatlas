@@ -4,16 +4,204 @@
   "category": "network",
   "entries": [
     {
-      "type": "domain",
-      "value": "captive.apple.com"
+      "type": "domain-keyword",
+      "value": "wb_ad"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "baomitu.com"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "blog.google"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "bootcss.com"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "dizhensubao.getui.com"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "f.video.weibocdn.com"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "fus.cdn.krcom.cn"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "googletraveladservices.com"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "jiasule.com"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "koodomobile.ca"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "koodomobile.com"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "ol.epicgames.com"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "staticfile.org"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "tracking-protection.cdn.mozilla.net"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "upaiyun.com"
     },
     {
       "type": "domain",
-      "value": "dns.msftncsi.com"
+      "value": "ad.10010.com"
     },
     {
       "type": "domain",
-      "value": "www.msftconnecttest.com"
+      "value": "alt1-mtalk.google.com"
+    },
+    {
+      "type": "domain",
+      "value": "alt2-mtalk.google.com"
+    },
+    {
+      "type": "domain",
+      "value": "alt3-mtalk.google.com"
+    },
+    {
+      "type": "domain",
+      "value": "alt4-mtalk.google.com"
+    },
+    {
+      "type": "domain",
+      "value": "alt5-mtalk.google.com"
+    },
+    {
+      "type": "domain",
+      "value": "alt6-mtalk.google.com"
+    },
+    {
+      "type": "domain",
+      "value": "alt7-mtalk.google.com"
+    },
+    {
+      "type": "domain",
+      "value": "alt8-mtalk.google.com"
+    },
+    {
+      "type": "domain",
+      "value": "analytics.95516.com"
+    },
+    {
+      "type": "domain",
+      "value": "analytics.strava.com"
+    },
+    {
+      "type": "domain",
+      "value": "app.adjust.com"
+    },
+    {
+      "type": "domain",
+      "value": "app.appsflyer.com"
+    },
+    {
+      "type": "domain",
+      "value": "bdtj.tagtic.cn"
+    },
+    {
+      "type": "domain",
+      "value": "ci.android.com"
+    },
+    {
+      "type": "domain",
+      "value": "clientservices.googleapis.com"
+    },
+    {
+      "type": "domain",
+      "value": "dl.google.com"
+    },
+    {
+      "type": "domain",
+      "value": "dl.l.google.com"
+    },
+    {
+      "type": "domain",
+      "value": "eco-push-api-client.meiqia.com"
+    },
+    {
+      "type": "domain",
+      "value": "errlog.umeng.com"
+    },
+    {
+      "type": "domain",
+      "value": "fairplay.l.qq.com"
+    },
+    {
+      "type": "domain",
+      "value": "livew.l.qq.com"
+    },
+    {
+      "type": "domain",
+      "value": "log.mmstat.com"
+    },
+    {
+      "type": "domain",
+      "value": "msg.umeng.com"
+    },
+    {
+      "type": "domain",
+      "value": "msg.umengcloud.com"
+    },
+    {
+      "type": "domain",
+      "value": "mtalk.google.com"
+    },
+    {
+      "type": "domain",
+      "value": "new-api.meiqia.com"
+    },
+    {
+      "type": "domain",
+      "value": "origin-a.akamaihd.net"
+    },
+    {
+      "type": "domain",
+      "value": "redirector.gvt1.com"
+    },
+    {
+      "type": "domain",
+      "value": "rewards.hypixel.net"
+    },
+    {
+      "type": "domain",
+      "value": "sycm.mmstat.com"
+    },
+    {
+      "type": "domain",
+      "value": "tracking.miui.com"
+    },
+    {
+      "type": "domain",
+      "value": "update.googleapis.com"
+    },
+    {
+      "type": "domain",
+      "value": "vd.l.qq.com"
+    },
+    {
+      "type": "domain",
+      "value": "vi.l.qq.com"
     }
   ]
 }

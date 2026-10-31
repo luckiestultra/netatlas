@@ -5,6 +5,13 @@
   "defaultBusiness": "国外网站",
   "businesses": [
     {
+      "name": "规则修正",
+      "initial": "DIRECT",
+      "rules": [
+        "unbreak"
+      ]
+    },
+    {
       "name": "AI服务",
       "rules": [
         "claude",

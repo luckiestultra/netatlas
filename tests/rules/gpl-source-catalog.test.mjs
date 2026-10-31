@@ -18,7 +18,7 @@ test('the GPL data archive preserves original bytes, full license and non-execut
   assert.equal(manifest.revision, revision);
   assert.equal(manifest.license, 'GPL-2.0-only');
   assert.equal(manifest.sourceArchiveExecutable, false);
-  assert.equal(manifest.files.length, 7);
+  assert.equal(manifest.files.length, 8);
   for (const file of manifest.files) {
     const filename = path.join(vendor, file.path);
     const content = await readFile(filename);

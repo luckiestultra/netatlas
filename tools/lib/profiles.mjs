@@ -2,7 +2,8 @@ import { stringify as stringifyYaml } from 'yaml';
 import { isIP } from 'node:net';
 import { surge, loon, shadowrocket, egern } from './profiles-apple.mjs';
 import { stash, mihomo, singBox } from './profiles-native.mjs';
-import { policyGroupsFor, policyForRuleset, profileRulesetsFor } from './policies.mjs';
+import { policyGroupsFor, profileRulesetsFor } from './policies.mjs';
+import { expandedProfileEntries, qxRoutingTypes, withNativeRoutingSettings } from './routing-extensions.mjs';
 
 export const profileFormats = Object.freeze({
   quantumultX: { extension: 'conf', format: 'ini' },
@@ -15,14 +16,8 @@ export const profileFormats = Object.freeze({
   singBox: { extension: 'json', format: 'json' },
 });
 
-const nativeRuleTypes = {
-  domain: 'DOMAIN',
-  'domain-suffix': 'DOMAIN-SUFFIX',
-  'domain-keyword': 'DOMAIN-KEYWORD',
-  'ip-cidr': 'IP-CIDR',
-  'ip-cidr6': 'IP-CIDR6',
-};
 const qxRuleTypes = {
+  ...qxRoutingTypes,
   domain: 'host',
   'domain-suffix': 'host-suffix',
   'domain-keyword': 'host-keyword',
@@ -47,18 +42,6 @@ const singBoxRuleTypes = {
 const preamble = '# NetAtlas — complete client configuration\n'
   + '# Proxy defaults to REJECT. Add your own nodes and select them before use.\n'
   + '# DIRECT is an explicit alternative. Rules are inline; no remote rule files are needed.\n';
-
-function flattenRules(rulesets) {
-  return rulesets.flatMap(ruleset => ruleset.entries.map(entry => {
-    if (!Object.hasOwn(nativeRuleTypes, entry.type)) {
-      throw new Error(`Unsupported profile rule type: ${entry.type}`);
-    }
-    if (typeof entry.value !== 'string' || !entry.value || /[\r\n,]/.test(entry.value)) {
-      throw new Error(`Invalid profile rule value in ${ruleset.id}`);
-    }
-    return { ...entry, policy: policyForRuleset(ruleset), rulesetId: ruleset.id };
-  }));
-}
 
 function qxBuiltin(policy) {
   return policy === 'DIRECT' || policy === 'REJECT' ? policy.toLowerCase() : policy;
@@ -144,7 +127,7 @@ export function renderProfile(client, { rulesets = [], ...options } = {}) {
   rulesets = profileRulesetsFor(rulesets);
   if (!Object.hasOwn(profileFormats, client)) throw new Error(`Unknown profile client: ${client}`);
   const { extension, format } = profileFormats[client];
-  const rendered = renderers[client](flattenRules(rulesets), policyGroupsFor(rulesets), options);
+  const rendered = withNativeRoutingSettings(client, renderers[client](expandedProfileEntries(client, rulesets), policyGroupsFor(rulesets), options), rulesets);
   let content;
   if (format === 'json') content = `${JSON.stringify(rendered, null, 2)}\n`;
   else if (format === 'yaml') content = `${preamble}\n${stringifyYaml(rendered, { lineWidth: 0 })}`;

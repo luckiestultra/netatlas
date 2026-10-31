@@ -9,7 +9,7 @@ import { parse as parseYaml, stringify as stringifyYaml } from 'yaml';
 import { createPrivateProfile } from './private-profile.mjs';
 import { loadCatalog } from './build.mjs';
 import { assertManagedPaths } from './managed-paths.mjs';
-import { waitForMihomoRunning } from './native.mjs';
+import { seedNativeDatabaseFixtures, waitForMihomoRunning } from './native.mjs';
 
 const sha256 = bytes => createHash('sha256').update(bytes).digest('hex');
 const pause = ms => new Promise(resolve => setTimeout(resolve, ms));
@@ -249,6 +249,7 @@ export async function testPrivateProfileWorkflow({ root, binaries, onProgress = 
       await writeFile(initialSnapshot, profileBytes, { flag: 'wx', mode: 0o600 });
       generatedProfiles.push({ client, input: path.relative(root, inputFile), output: path.relative(root, outputFile), checkedSnapshot: path.relative(root, initialSnapshot), profileSha256: sha256(profileBytes), routingRulesSha256: sha256(JSON.stringify(rules)), publishedRulesMatch: true, rules: rules.length });
       const processDirectory = path.join(directory, client + '-runtime'); await mkdir(processDirectory, { mode: 0o700 });
+      if (client === 'mihomo') generatedProfiles.at(-1).databaseFixtures = await seedNativeDatabaseFixtures(processDirectory);
       const controlPort = client === 'mihomo' ? await freePort() : null, secret = randomUUID();
       const marker = 'netatlas-mihomo-running-' + randomUUID(), markerPath = path.join(processDirectory, marker);
       const args = client === 'mihomo' ? ['-f', outputFile, '-d', processDirectory, '-ext-ctl', `127.0.0.1:${controlPort}`, '-secret', secret, '-post-up', `printf %s ${marker} > ${marker}.pending && mv ${marker}.pending ${marker}`] : ['run', '-c', outputFile];

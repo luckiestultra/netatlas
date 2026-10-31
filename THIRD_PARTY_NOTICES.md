@@ -60,7 +60,7 @@ SOFTWARE.
 - 不执行全仓库的 `&目标列表` 反向聚合；只使用登记文件及显式包含的内容。
 - 八种客户端不能无损共享任意 Go 正则。已审查的个别表达式只能通过清单中“文件 + 确切表达式 + 原因”的显式排除处理，原文、行号、原因和数量都保留在 `appliedExclusions`。不把正则近似放大成后缀。
 - **任何新增、没有登记的正则或关键词表达式会阻止该批同步。** 不静默跳过，也不会发布半批新数据。
-- 排除的动态主机名可能需要其他规则或最终策略处理；本项目不声称覆盖被排除表达式原本匹配的全部范围。
+- 排除的动态主机名可能需要其他规则或最终策略处理；本项目公共五类型文件不声称覆盖被排除表达式原本匹配的全部范围；各端原生补充见 metadata/regex-routing.json。
 
 ## 本项目自有事实列表
 
@@ -88,10 +88,20 @@ CN 域名来自已有 MIT 固定 DLC 的 cn 完整 include 闭包，保留3条�
 
 ## 扩展 Redirect 与规则数据
 
-扩展Redirect及BiliIntl从同一固定GPL-2.0原文适配，保留[完整源码、许可与修改](src/features/redirects/NOTICE.md)。另外六套规则数据从blackmatrix7固定许可来源导入，完整原始YAML、GPL与字节/Git哈希位于[src/vendor/rule-sources/blackmatrix7](src/vendor/rule-sources/blackmatrix7)。每套规则许可由metadata/upstreams.json及生成manifest的sources.rules[].license登记；含这些规则数据的成品不能整体标为MIT。global选用Proxy_Classical的完整五类型数据，未声称等于其他Global集合。
+扩展Redirect及BiliIntl从同一固定GPL-2.0原文适配，保留[完整源码、许可与修改](src/features/redirects/NOTICE.md)。另外七套规则数据从blackmatrix7固定许可来源导入，完整原始YAML、GPL与字节/Git哈希位于[src/vendor/rule-sources/blackmatrix7](src/vendor/rule-sources/blackmatrix7)。每套规则许可由metadata/upstreams.json及生成manifest的sources.rules[].license登记；含这些规则数据的成品不能整体标为MIT。global选用Proxy_Classical的完整五类型数据，未声称等于其他Global集合。
 
 ## 外部脚本工具
 
 BoxJS和ScriptHub的安装包采用GPL-3.0-only，Sub-Store采用AGPL-3.0-only；完整许可证、作者、官方原包、改版包与对应源码入口见[src/vendor/integrations](src/vendor/integrations)。本仓库发布小安装资源，入口脚本仍从上游获取，没有将大型bundle重新分发或改标MIT。Sub-Store的发布bundle提交与对应源码tag分开登记，不把当前README提交当成其构建来源。前端/CDN及生成资源的全部依赖闭包未宣称锁定。
 
 QX资源解析器只提供原作者外部安装设置；未取得源码再分发许可，不复制其脚本。Loon解析器链接官方AGPL发布入口及对应完整源码。原创quick-search和正文替换采用MIT；功能清单参考不等于复制未声明许可的配置/脚本。边界与哈希见[解析器登记](metadata/resource-parsers.json)、[工具登记](metadata/integrations.json)。
+
+## 原生 ASN、GeoIP、正则和 Unbreak
+
+`china-asn`保留missuo/ASN-China的完整5,231个编号，MIT Copyright (c) 2022 Vincent Young；固定提交、原文、Git blob、许可及SHA见[原始归档](src/vendor/rule-sources/missuo/)和[原生条件登记](metadata/native-routing.json)。没有根据ASN归属推断物理国家，也不把CN CIDR转换结果称作ASN匹配。
+
+GeoIP与ASN数据库由各客户端自身下载和更新，本仓库没有重新分发数据库。Loon/Egern/Mihomo字段指向P3TERX发布的GeoLite2 MMDB；更新URL有意可变，不是固定规则来源，也不在可复现数据统计中。遵守数据库提供者的原始许可；国家数据库内容会随刷新而变。
+
+24个正则引用的8份原始DLC文件和MIT许可位于[src/vendor/rule-sources/domain-list-community/regex](src/vendor/rule-sources/domain-list-community/regex)，逐行SHA与转换证明见[正则登记](metadata/regex-routing.json)。原生正则/有限通配保留原始语言，不沿用未许可参考仓库负载。
+
+完整Unbreak的48个条件来自已固定GPL Direct.yaml；另外2个精确端点由本项目依据Android/Chromium官方端点事实独立编写（MIT），见[src/supplements/unbreak.json](src/supplements/unbreak.json)。合并集合按GPL-2.0-only分发，完整源文和修改声明已保留。三个原有连接探测域仍是独立MIT列表，不冒充50条原始集合。

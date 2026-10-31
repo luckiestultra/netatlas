@@ -1,0 +1,10 @@
+{
+  "version": 3,
+  "rules": [
+    {
+      "domain_regex": [
+        "^ewcdn[0-9]+\\.nowe\\.com$"
+      ]
+    }
+  ]
+}

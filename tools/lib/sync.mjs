@@ -5,6 +5,7 @@ import { isIP } from 'node:net';
 import { normalizeEntry, normalizeRuleset, stableId } from './rules.mjs';
 import { assertManagedPaths } from './managed-paths.mjs';
 import { parseClassicalYaml } from './classical-source.mjs';
+import { loadRuleSupplement } from './rule-supplements.mjs';
 
 const limits = { maxDepth: 20, maxFiles: 512, maxVisits: 4096, maxEntries: 250_000, maxFileBytes: 1_000_000, maxTotalBytes: 24_000_000 };
 // CN includes share source files with service lists but need more than 512
@@ -437,7 +438,7 @@ export async function syncCatalog({ root, revision, repository, latest = false, 
     const unselectedMetadata = repository && item.source?.repository !== repository ? json(item) : null;
     let ruleset;
     if (item.source?.type === 'local') {
-      if (['lists', 'select', 'expansions'].some(key => item.source[key] !== undefined)) throw new Error('DLC selection fields are not valid for a local source');
+      if (['lists', 'select', 'expansions', 'localSupplement'].some(key => item.source[key] !== undefined)) throw new Error('Upstream selection fields are not valid for a local source');
       if (item.source.license !== 'MIT' || typeof item.source.author !== 'string' || !item.source.author.trim() || !validDate(item.source.updatedAt) || !Array.isArray(item.source.references) || !item.source.references.length) throw new Error(`Missing first-party provenance: ${item.id}`);
       if (current === null) throw new Error(`Missing first-party source: ${relative}`);
       ruleset = normalizeRuleset(JSON.parse(current));
@@ -452,19 +453,25 @@ export async function syncCatalog({ root, revision, repository, latest = false, 
       if (current !== null && item.outputSha256 && sha256(current) !== item.outputSha256) throw new Error(`Local changes in managed ruleset: ${relative}`);
       const format = item.source.format ?? 'domain-list-community';
       if(format!=='classical-yaml'&&item.source.selectPayload!==undefined)throw new Error('Classical payload selection requires classical-yaml format');
+      if(format!=='classical-yaml'&&item.source.localSupplement!==undefined)throw new Error('Local rule supplements require classical-yaml format');
       if (format !== 'domain-list-community' && ['lists', 'select', 'expansions'].some(key => item.source[key] !== undefined)) throw new Error('DLC union, selection and expansion fields require domain-list-community format');
       if (format === 'classical-yaml') {
         if(item.exclusions?.length||item.source.linePrefix!==undefined||item.source.matchType!==undefined)throw new Error('Classical sources require exact supported payload conditions');
         const file=sourcePath(item.source.path),url=`https://raw.githubusercontent.com/${repo.repository}/${repo.revision}/${file}`;
         const text=await download(url,{maxBytes:fileBudget(item.source.maxFileBytes)});
         const collected=parseClassicalYaml(text,file,item.source.selectPayload);
-        ruleset=normalizeRuleset({version:1,id:item.id,category:item.category,entries:collected.entries});
+        const supplement=item.source.localSupplement===undefined?null:await loadRuleSupplement(root,item.source.localSupplement,item.id);
+        ruleset=normalizeRuleset({version:1,id:item.id,category:item.category,entries:[...collected.entries,...(supplement?.entries??[])]});
         item.files=[{path:file,url,sha256:sha256(text)}];
         item.appliedExclusions=[];item.attributeFiltered=0;item.affiliationDeclarations=0;
         item.rawEntryCount=collected.rawEntryCount;
         if(item.source.selectPayload!==undefined)item.selectedTokens=collected.selectedTokens;
         else delete item.selectedTokens;
         item.selection=item.source.selectPayload!==undefined?'exact registered payload tokens; unrelated conditions are not included':'complete five-type classical YAML payload; unsupported conditions fail closed';
+        if(supplement){
+          item.localSupplement={path:supplement.path,sha256:supplement.sha256,license:supplement.license,entryCount:supplement.entries.length,updatedAt:supplement.updatedAt};
+          item.selection+='; separately attributed original exact-host supplement';
+        }else delete item.localSupplement;
       } else if (format === 'domain-lines' || format === 'cidr-lines') {
         const file = sourcePath(item.source.path);
         const maxBytes = fileBudget(item.source.maxFileBytes);

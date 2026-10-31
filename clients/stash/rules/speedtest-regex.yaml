@@ -1,0 +1,2 @@
+payload:
+  - DOMAIN-REGEX,^speed\.(coe|open)\.ad\.[a-z][a-z][a-z]?[a-z]?[a-z]?[a-z]?\.prod\.hosts\.ooklaserver\.net$

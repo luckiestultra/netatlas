@@ -186,7 +186,9 @@ export function egern(model, options = {}) {
     || model.groups.find(group => group.name === policy)?.choices?.[0] === 'DIRECT';
   config.dns.forward = [
     ...['localhost', 'local', 'home.arpa', 'lan'].map(match => ({ domain_suffix: { match, value: 'local' } })),
-    ...model.rules.filter(rule => !['china-ipv4', 'china-ipv6'].includes(rule.id)).map(rule => ({ proxy_rule_set: {
+    ...model.rules.filter(rule => rule.entryTypes
+      ? rule.entryTypes.some(type => type.startsWith('domain'))
+      : !['china-ipv4', 'china-ipv6', 'china-asn', 'geoip-cn'].includes(rule.id)).map(rule => ({ proxy_rule_set: {
       match: rule.url, value: rule.id === 'lan' ? 'local' : rule.policy === 'REJECT' ? 'reject' : direct(rule.policy) ? 'domestic' : 'remote',
       update_interval: updateInterval(model),
     } })),

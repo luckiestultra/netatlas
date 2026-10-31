@@ -2,14 +2,511 @@
   "version": 1,
   "client": "singBox",
   "builder": "netatlas@0.1.0",
-  "inputSha256": "cd467a13326c5eebed7f4ad5b84bda0ff3fada8bfc270938edd1c697d9788265",
+  "inputSha256": "8e6fb11a3cb682e8def873065fb045eaaaaeb084d91a02cc472e12647f221779",
   "baseUrl": "https://raw.githubusercontent.com/luckiestultra/netatlas/main",
   "targetVersion": "1.14.4",
   "counts": {
-    "defaultRuleSets": 114,
-    "defaultEntries": 29103,
+    "defaultRuleSets": 115,
+    "defaultEntries": 29153,
     "optionalRuleSets": 3,
-    "totalEntries": 136894
+    "totalEntries": 136944
+  },
+  "routingExtensions": {
+    "native": {
+      "supported": false,
+      "iniFields": {},
+      "configFields": {},
+      "guidance": [
+        "sing-box 1.14.4 has no native ASN matcher and removed the GeoIP database matcher in 1.12.0.",
+        "Remote CIDR rule-set refresh remains available but is not ASN or dynamic GeoIP, so no fake compatible resource is generated."
+      ],
+      "references": [
+        "https://github.com/SagerNet/sing-box/blob/v1.14.4/docs/configuration/route/geoip.md",
+        "https://github.com/SagerNet/sing-box/blob/v1.14.4/option/rule.go",
+        "https://sing-box.sagernet.org/migration/#migrate-geoip-to-rule-sets"
+      ],
+      "databaseUpdate": "unsupported"
+    },
+    "regex": {
+      "supportedExpressions": 24,
+      "unsupportedExpressions": 0,
+      "expressions": [
+        {
+          "sourceId": "openai",
+          "file": "openai",
+          "line": 21,
+          "rule": "regexp:^chatgpt-async-webps-prod-\\S+-\\d+\\.webpubsub\\.azure\\.com$",
+          "sourceLine": "regexp:^chatgpt-async-webps-prod-\\S+-\\d+\\.webpubsub\\.azure\\.com$",
+          "reason": "Excluded from the five-type portable catalog: no equivalent cross-client regex matcher. Keep this exact expression recorded; newly introduced expressions block sync.",
+          "status": "native-regex",
+          "proof": "Same RE2 search language with explicit ASCII shorthand and CSV-safe bounded repetition.",
+          "entries": [
+            {
+              "type": "domain-regex",
+              "value": "^chatgpt-async-webps-prod-[^\\x09\\x0a\\x0c\\x0d\\x20]+-[0-9]+\\.webpubsub\\.azure\\.com$"
+            }
+          ]
+        },
+        {
+          "sourceId": "google",
+          "file": "google-play",
+          "line": 12,
+          "rule": "regexp:^r+[0-9]+(---|\\.)sn-(2x3|ni5|j5o)\\w{5}\\.xn--ngstr-lra8j\\.com$",
+          "sourceLine": "regexp:^r+[0-9]+(---|\\.)sn-(2x3|ni5|j5o)\\w{5}\\.xn--ngstr-lra8j\\.com$ @cn",
+          "reason": "Excluded from the five-type portable catalog: no equivalent cross-client regex matcher. Keep this exact expression recorded; newly introduced expressions block sync.",
+          "status": "native-regex",
+          "proof": "Same RE2 search language with explicit ASCII shorthand and CSV-safe bounded repetition.",
+          "entries": [
+            {
+              "type": "domain-regex",
+              "value": "^r+[0-9]+(---|\\.)sn-(2x3|ni5|j5o)[A-Za-z0-9_]{5}\\.xn--ngstr-lra8j\\.com$"
+            }
+          ]
+        },
+        {
+          "sourceId": "google",
+          "file": "google-play",
+          "line": 14,
+          "rule": "regexp:^r+[0-9]+(---|\\.)sn-(2x3|ni5|j5o)\\w{5}\\.googlevideo\\.com$",
+          "sourceLine": "regexp:^r+[0-9]+(---|\\.)sn-(2x3|ni5|j5o)\\w{5}\\.googlevideo\\.com$ @cn",
+          "reason": "Excluded from the five-type portable catalog: no equivalent cross-client regex matcher. Keep this exact expression recorded; newly introduced expressions block sync.",
+          "status": "native-regex",
+          "proof": "Same RE2 search language with explicit ASCII shorthand and CSV-safe bounded repetition.",
+          "entries": [
+            {
+              "type": "domain-regex",
+              "value": "^r+[0-9]+(---|\\.)sn-(2x3|ni5|j5o)[A-Za-z0-9_]{5}\\.googlevideo\\.com$"
+            }
+          ]
+        },
+        {
+          "sourceId": "netflix",
+          "file": "netflix",
+          "line": 28,
+          "rule": "regexp:(^|\\.)apiproxy-device-prod-nlb-.+\\.amazonaws\\.com$",
+          "sourceLine": "regexp:(^|\\.)apiproxy-device-prod-nlb-.+\\.amazonaws\\.com$",
+          "reason": "Excluded from the five-type portable catalog: no equivalent cross-client regex matcher. Keep this exact expression recorded; newly introduced expressions block sync.",
+          "status": "native-regex",
+          "proof": "Same RE2 search language with explicit ASCII shorthand and CSV-safe bounded repetition.",
+          "entries": [
+            {
+              "type": "domain-regex",
+              "value": "(^|\\.)apiproxy-device-prod-nlb-.+\\.amazonaws\\.com$"
+            }
+          ]
+        },
+        {
+          "sourceId": "netflix",
+          "file": "netflix",
+          "line": 29,
+          "rule": "regexp:(^|\\.)apiproxy-website-nlb-prod-.+\\.amazonaws\\.com$",
+          "sourceLine": "regexp:(^|\\.)apiproxy-website-nlb-prod-.+\\.amazonaws\\.com$",
+          "reason": "Excluded from the five-type portable catalog: no equivalent cross-client regex matcher. Keep this exact expression recorded; newly introduced expressions block sync.",
+          "status": "native-regex",
+          "proof": "Same RE2 search language with explicit ASCII shorthand and CSV-safe bounded repetition.",
+          "entries": [
+            {
+              "type": "domain-regex",
+              "value": "(^|\\.)apiproxy-website-nlb-prod-.+\\.amazonaws\\.com$"
+            }
+          ]
+        },
+        {
+          "sourceId": "netflix",
+          "file": "netflix",
+          "line": 30,
+          "rule": "regexp:(^|\\.)dualstack\\.apiproxy-.+\\.amazonaws\\.com$",
+          "sourceLine": "regexp:(^|\\.)dualstack\\.apiproxy-.+\\.amazonaws\\.com$",
+          "reason": "Excluded from the five-type portable catalog: no equivalent cross-client regex matcher. Keep this exact expression recorded; newly introduced expressions block sync.",
+          "status": "native-regex",
+          "proof": "Same RE2 search language with explicit ASCII shorthand and CSV-safe bounded repetition.",
+          "entries": [
+            {
+              "type": "domain-regex",
+              "value": "(^|\\.)dualstack\\.apiproxy-.+\\.amazonaws\\.com$"
+            }
+          ]
+        },
+        {
+          "sourceId": "netflix",
+          "file": "netflix",
+          "line": 31,
+          "rule": "regexp:(^|\\.)dualstack\\.ichnaea-web-.+\\.amazonaws\\.com$",
+          "sourceLine": "regexp:(^|\\.)dualstack\\.ichnaea-web-.+\\.amazonaws\\.com$",
+          "reason": "Excluded from the five-type portable catalog: no equivalent cross-client regex matcher. Keep this exact expression recorded; newly introduced expressions block sync.",
+          "status": "native-regex",
+          "proof": "Same RE2 search language with explicit ASCII shorthand and CSV-safe bounded repetition.",
+          "entries": [
+            {
+              "type": "domain-regex",
+              "value": "(^|\\.)dualstack\\.ichnaea-web-.+\\.amazonaws\\.com$"
+            }
+          ]
+        },
+        {
+          "sourceId": "speedtest",
+          "file": "ookla-speedtest",
+          "line": 26,
+          "rule": "regexp:^speed\\.(coe|open)\\.ad\\.[a-z]{2,6}\\.prod\\.hosts\\.ooklaserver\\.net$",
+          "sourceLine": "regexp:^speed\\.(coe|open)\\.ad\\.[a-z]{2,6}\\.prod\\.hosts\\.ooklaserver\\.net$ @ads",
+          "reason": "Excluded from the five-type portable catalog: no equivalent cross-client regex matcher. Keep this exact expression recorded; newly introduced expressions block sync.",
+          "status": "native-regex",
+          "proof": "Same RE2 search language with explicit ASCII shorthand and CSV-safe bounded repetition.",
+          "entries": [
+            {
+              "type": "domain-regex",
+              "value": "^speed\\.(coe|open)\\.ad\\.[a-z][a-z][a-z]?[a-z]?[a-z]?[a-z]?\\.prod\\.hosts\\.ooklaserver\\.net$"
+            }
+          ]
+        },
+        {
+          "sourceId": "adblock",
+          "file": "ookla-speedtest",
+          "line": 26,
+          "rule": "regexp:^speed\\.(coe|open)\\.ad\\.[a-z]{2,6}\\.prod\\.hosts\\.ooklaserver\\.net$",
+          "sourceLine": "regexp:^speed\\.(coe|open)\\.ad\\.[a-z]{2,6}\\.prod\\.hosts\\.ooklaserver\\.net$ @ads",
+          "reason": "Excluded from the five-type portable catalog: no equivalent cross-client regex matcher. Keep this exact expression recorded; newly introduced expressions block sync.",
+          "status": "native-regex",
+          "proof": "Same RE2 search language with explicit ASCII shorthand and CSV-safe bounded repetition.",
+          "entries": [
+            {
+              "type": "domain-regex",
+              "value": "^speed\\.(coe|open)\\.ad\\.[a-z][a-z][a-z]?[a-z]?[a-z]?[a-z]?\\.prod\\.hosts\\.ooklaserver\\.net$"
+            }
+          ]
+        },
+        {
+          "sourceId": "china",
+          "file": "aws-cn",
+          "line": 31,
+          "rule": "regexp:.+\\.awsdns-cn-[0-9][0-9]\\.(biz|com|net|top)$",
+          "sourceLine": "regexp:.+\\.awsdns-cn-[0-9][0-9]\\.(biz|com|net|top)$ @cn",
+          "reason": "Reviewed exact CN regex: no equivalent rule exists in the four-type cross-client domain catalog. Preserve this expression rather than broadening it to a suffix or silently dropping new expressions; native GeoSite equivalence is not claimed.",
+          "status": "native-regex",
+          "proof": "Same RE2 search language with explicit ASCII shorthand and CSV-safe bounded repetition.",
+          "entries": [
+            {
+              "type": "domain-regex",
+              "value": ".+\\.awsdns-cn-[0-9][0-9]\\.(biz|com|net|top)$"
+            }
+          ]
+        },
+        {
+          "sourceId": "china",
+          "file": "aws-cn",
+          "line": 32,
+          "rule": "regexp:.+\\.awsdns-cn-[0-9][a-e0-9]\\.cn$",
+          "sourceLine": "regexp:.+\\.awsdns-cn-[0-9][a-e0-9]\\.cn$ @cn",
+          "reason": "Reviewed exact CN regex: no equivalent rule exists in the four-type cross-client domain catalog. Preserve this expression rather than broadening it to a suffix or silently dropping new expressions; native GeoSite equivalence is not claimed.",
+          "status": "native-regex",
+          "proof": "Same RE2 search language with explicit ASCII shorthand and CSV-safe bounded repetition.",
+          "entries": [
+            {
+              "type": "domain-regex",
+              "value": ".+\\.awsdns-cn-[0-9][a-e0-9]\\.cn$"
+            }
+          ]
+        },
+        {
+          "sourceId": "china",
+          "file": "mihoyo-cn",
+          "line": 31,
+          "rule": "regexp:^.+-mihayo\\.akamaized\\.net$",
+          "sourceLine": "regexp:^.+-mihayo\\.akamaized\\.net$ @cn",
+          "reason": "Reviewed exact CN regex: no equivalent rule exists in the four-type cross-client domain catalog. Preserve this expression rather than broadening it to a suffix or silently dropping new expressions; native GeoSite equivalence is not claimed.",
+          "status": "native-regex",
+          "proof": "Same RE2 search language with explicit ASCII shorthand and CSV-safe bounded repetition.",
+          "entries": [
+            {
+              "type": "domain-regex",
+              "value": "^.+-mihayo\\.akamaized\\.net$"
+            }
+          ]
+        },
+        {
+          "sourceId": "amazon-portable",
+          "file": "aws-cn",
+          "line": 31,
+          "rule": "regexp:.+\\.awsdns-cn-[0-9][0-9]\\.(biz|com|net|top)$",
+          "sourceLine": "regexp:.+\\.awsdns-cn-[0-9][0-9]\\.(biz|com|net|top)$ @cn",
+          "reason": "Explicit omission from amazon-portable: this unbounded nameserver regex has no exact domain/domain-suffix equivalent. This named projection does not claim complete upstream semantics; newly changed expressions must fail sync.",
+          "status": "native-regex",
+          "proof": "Same RE2 search language with explicit ASCII shorthand and CSV-safe bounded repetition.",
+          "entries": [
+            {
+              "type": "domain-regex",
+              "value": ".+\\.awsdns-cn-[0-9][0-9]\\.(biz|com|net|top)$"
+            }
+          ]
+        },
+        {
+          "sourceId": "amazon-portable",
+          "file": "aws-cn",
+          "line": 32,
+          "rule": "regexp:.+\\.awsdns-cn-[0-9][a-e0-9]\\.cn$",
+          "sourceLine": "regexp:.+\\.awsdns-cn-[0-9][a-e0-9]\\.cn$ @cn",
+          "reason": "Explicit omission from amazon-portable: this unbounded nameserver regex has no exact domain/domain-suffix equivalent. This named projection does not claim complete upstream semantics; newly changed expressions must fail sync.",
+          "status": "native-regex",
+          "proof": "Same RE2 search language with explicit ASCII shorthand and CSV-safe bounded repetition.",
+          "entries": [
+            {
+              "type": "domain-regex",
+              "value": ".+\\.awsdns-cn-[0-9][a-e0-9]\\.cn$"
+            }
+          ]
+        },
+        {
+          "sourceId": "amazon-portable",
+          "file": "aws",
+          "line": 61,
+          "rule": "regexp:.+\\.awsdns-[0-9][0-9]\\.(co\\.uk|com|net|org)$",
+          "sourceLine": "regexp:.+\\.awsdns-[0-9][0-9]\\.(co\\.uk|com|net|org)$",
+          "reason": "Explicit omission from amazon-portable: this unbounded nameserver regex has no exact domain/domain-suffix equivalent. This named projection does not claim complete upstream semantics; newly changed expressions must fail sync.",
+          "status": "native-regex",
+          "proof": "Same RE2 search language with explicit ASCII shorthand and CSV-safe bounded repetition.",
+          "entries": [
+            {
+              "type": "domain-regex",
+              "value": ".+\\.awsdns-[0-9][0-9]\\.(co\\.uk|com|net|org)$"
+            }
+          ]
+        },
+        {
+          "sourceId": "viu-portable",
+          "file": "viu",
+          "line": 4,
+          "rule": "regexp:^ewcdn[0-9]+\\.nowe\\.com$",
+          "sourceLine": "regexp:^ewcdn[0-9]+\\.nowe\\.com$",
+          "reason": "Explicit omission from viu-portable and streaming unions: the unbounded numeric CDN regex cannot be finitely represented by exact portable domains. This projection does not claim complete upstream or ViuTV coverage.",
+          "status": "native-regex",
+          "proof": "Same RE2 search language with explicit ASCII shorthand and CSV-safe bounded repetition.",
+          "entries": [
+            {
+              "type": "domain-regex",
+              "value": "^ewcdn[0-9]+\\.nowe\\.com$"
+            }
+          ]
+        },
+        {
+          "sourceId": "global-media",
+          "file": "netflix",
+          "line": 28,
+          "rule": "regexp:(^|\\.)apiproxy-device-prod-nlb-.+\\.amazonaws\\.com$",
+          "sourceLine": "regexp:(^|\\.)apiproxy-device-prod-nlb-.+\\.amazonaws\\.com$",
+          "reason": "Excluded from the five-type portable catalog: no equivalent cross-client regex matcher. Keep this exact expression recorded; newly introduced expressions block sync.",
+          "status": "native-regex",
+          "proof": "Same RE2 search language with explicit ASCII shorthand and CSV-safe bounded repetition.",
+          "entries": [
+            {
+              "type": "domain-regex",
+              "value": "(^|\\.)apiproxy-device-prod-nlb-.+\\.amazonaws\\.com$"
+            }
+          ]
+        },
+        {
+          "sourceId": "global-media",
+          "file": "netflix",
+          "line": 29,
+          "rule": "regexp:(^|\\.)apiproxy-website-nlb-prod-.+\\.amazonaws\\.com$",
+          "sourceLine": "regexp:(^|\\.)apiproxy-website-nlb-prod-.+\\.amazonaws\\.com$",
+          "reason": "Excluded from the five-type portable catalog: no equivalent cross-client regex matcher. Keep this exact expression recorded; newly introduced expressions block sync.",
+          "status": "native-regex",
+          "proof": "Same RE2 search language with explicit ASCII shorthand and CSV-safe bounded repetition.",
+          "entries": [
+            {
+              "type": "domain-regex",
+              "value": "(^|\\.)apiproxy-website-nlb-prod-.+\\.amazonaws\\.com$"
+            }
+          ]
+        },
+        {
+          "sourceId": "global-media",
+          "file": "netflix",
+          "line": 30,
+          "rule": "regexp:(^|\\.)dualstack\\.apiproxy-.+\\.amazonaws\\.com$",
+          "sourceLine": "regexp:(^|\\.)dualstack\\.apiproxy-.+\\.amazonaws\\.com$",
+          "reason": "Excluded from the five-type portable catalog: no equivalent cross-client regex matcher. Keep this exact expression recorded; newly introduced expressions block sync.",
+          "status": "native-regex",
+          "proof": "Same RE2 search language with explicit ASCII shorthand and CSV-safe bounded repetition.",
+          "entries": [
+            {
+              "type": "domain-regex",
+              "value": "(^|\\.)dualstack\\.apiproxy-.+\\.amazonaws\\.com$"
+            }
+          ]
+        },
+        {
+          "sourceId": "global-media",
+          "file": "netflix",
+          "line": 31,
+          "rule": "regexp:(^|\\.)dualstack\\.ichnaea-web-.+\\.amazonaws\\.com$",
+          "sourceLine": "regexp:(^|\\.)dualstack\\.ichnaea-web-.+\\.amazonaws\\.com$",
+          "reason": "Excluded from the five-type portable catalog: no equivalent cross-client regex matcher. Keep this exact expression recorded; newly introduced expressions block sync.",
+          "status": "native-regex",
+          "proof": "Same RE2 search language with explicit ASCII shorthand and CSV-safe bounded repetition.",
+          "entries": [
+            {
+              "type": "domain-regex",
+              "value": "(^|\\.)dualstack\\.ichnaea-web-.+\\.amazonaws\\.com$"
+            }
+          ]
+        },
+        {
+          "sourceId": "global-media",
+          "file": "viu",
+          "line": 4,
+          "rule": "regexp:^ewcdn[0-9]+\\.nowe\\.com$",
+          "sourceLine": "regexp:^ewcdn[0-9]+\\.nowe\\.com$",
+          "reason": "Explicit omission from viu-portable and streaming unions: the unbounded numeric CDN regex cannot be finitely represented by exact portable domains. This projection does not claim complete upstream or ViuTV coverage.",
+          "status": "native-regex",
+          "proof": "Same RE2 search language with explicit ASCII shorthand and CSV-safe bounded repetition.",
+          "entries": [
+            {
+              "type": "domain-regex",
+              "value": "^ewcdn[0-9]+\\.nowe\\.com$"
+            }
+          ]
+        },
+        {
+          "sourceId": "hmt-media",
+          "file": "viu",
+          "line": 4,
+          "rule": "regexp:^ewcdn[0-9]+\\.nowe\\.com$",
+          "sourceLine": "regexp:^ewcdn[0-9]+\\.nowe\\.com$",
+          "reason": "Explicit omission from viu-portable and streaming unions: the unbounded numeric CDN regex cannot be finitely represented by exact portable domains. This projection does not claim complete upstream or ViuTV coverage.",
+          "status": "native-regex",
+          "proof": "Same RE2 search language with explicit ASCII shorthand and CSV-safe bounded repetition.",
+          "entries": [
+            {
+              "type": "domain-regex",
+              "value": "^ewcdn[0-9]+\\.nowe\\.com$"
+            }
+          ]
+        },
+        {
+          "sourceId": "google-cn",
+          "file": "google-play",
+          "line": 12,
+          "rule": "regexp:^r+[0-9]+(---|\\.)sn-(2x3|ni5|j5o)\\w{5}\\.xn--ngstr-lra8j\\.com$",
+          "sourceLine": "regexp:^r+[0-9]+(---|\\.)sn-(2x3|ni5|j5o)\\w{5}\\.xn--ngstr-lra8j\\.com$ @cn",
+          "reason": "Explicit omission from the Google CN portable projection: this @cn-tagged unbounded Google Play CDN regex cannot be represented exactly by finite domain/domain-suffix rules. It remains selected and recorded; new expressions or attribute changes block sync.",
+          "status": "native-regex",
+          "proof": "Same RE2 search language with explicit ASCII shorthand and CSV-safe bounded repetition.",
+          "entries": [
+            {
+              "type": "domain-regex",
+              "value": "^r+[0-9]+(---|\\.)sn-(2x3|ni5|j5o)[A-Za-z0-9_]{5}\\.xn--ngstr-lra8j\\.com$"
+            }
+          ]
+        },
+        {
+          "sourceId": "google-cn",
+          "file": "google-play",
+          "line": 14,
+          "rule": "regexp:^r+[0-9]+(---|\\.)sn-(2x3|ni5|j5o)\\w{5}\\.googlevideo\\.com$",
+          "sourceLine": "regexp:^r+[0-9]+(---|\\.)sn-(2x3|ni5|j5o)\\w{5}\\.googlevideo\\.com$ @cn",
+          "reason": "Explicit omission from the Google CN portable projection: this @cn-tagged unbounded Google Play CDN regex cannot be represented exactly by finite domain/domain-suffix rules. It remains selected and recorded; new expressions or attribute changes block sync.",
+          "status": "native-regex",
+          "proof": "Same RE2 search language with explicit ASCII shorthand and CSV-safe bounded repetition.",
+          "entries": [
+            {
+              "type": "domain-regex",
+              "value": "^r+[0-9]+(---|\\.)sn-(2x3|ni5|j5o)[A-Za-z0-9_]{5}\\.googlevideo\\.com$"
+            }
+          ]
+        }
+      ]
+    },
+    "resources": [
+      {
+        "id": "openai-regex",
+        "sourceId": "openai",
+        "path": "rules/openai-regex.json",
+        "entries": 1,
+        "license": "MIT",
+        "defaultProfile": true
+      },
+      {
+        "id": "google-regex",
+        "sourceId": "google",
+        "path": "rules/google-regex.json",
+        "entries": 2,
+        "license": "MIT",
+        "defaultProfile": true
+      },
+      {
+        "id": "netflix-regex",
+        "sourceId": "netflix",
+        "path": "rules/netflix-regex.json",
+        "entries": 4,
+        "license": "MIT",
+        "defaultProfile": true
+      },
+      {
+        "id": "speedtest-regex",
+        "sourceId": "speedtest",
+        "path": "rules/speedtest-regex.json",
+        "entries": 1,
+        "license": "MIT",
+        "defaultProfile": true
+      },
+      {
+        "id": "adblock-regex",
+        "sourceId": "adblock",
+        "path": "rules/adblock-regex.json",
+        "entries": 1,
+        "license": "MIT",
+        "defaultProfile": true
+      },
+      {
+        "id": "china-regex",
+        "sourceId": "china",
+        "path": "rules/china-regex.json",
+        "entries": 3,
+        "license": "MIT",
+        "defaultProfile": true
+      },
+      {
+        "id": "amazon-portable-regex",
+        "sourceId": "amazon-portable",
+        "path": "rules/amazon-portable-regex.json",
+        "entries": 3,
+        "license": "MIT",
+        "defaultProfile": true
+      },
+      {
+        "id": "viu-portable-regex",
+        "sourceId": "viu-portable",
+        "path": "rules/viu-portable-regex.json",
+        "entries": 1,
+        "license": "MIT",
+        "defaultProfile": true
+      },
+      {
+        "id": "global-media-regex",
+        "sourceId": "global-media",
+        "path": "rules/global-media-regex.json",
+        "entries": 5,
+        "license": "MIT",
+        "defaultProfile": true
+      },
+      {
+        "id": "hmt-media-regex",
+        "sourceId": "hmt-media",
+        "path": "rules/hmt-media-regex.json",
+        "entries": 1,
+        "license": "MIT",
+        "defaultProfile": true
+      },
+      {
+        "id": "google-cn-regex",
+        "sourceId": "google-cn",
+        "path": "rules/google-cn-regex.json",
+        "entries": 2,
+        "license": "MIT",
+        "defaultProfile": false
+      }
+    ]
   },
   "validation": {
     "profile": "managed-resources-and-references",
@@ -3433,18 +3930,90 @@
         "tag": "network",
         "defaultProfile": true,
         "source": {
+          "repository": "ios-rule-script",
+          "format": "classical-yaml",
+          "path": "rule/Clash/Direct/Direct.yaml",
+          "selectPayload": [
+            "DOMAIN,ad.10010.com",
+            "DOMAIN,alt1-mtalk.google.com",
+            "DOMAIN,alt2-mtalk.google.com",
+            "DOMAIN,alt3-mtalk.google.com",
+            "DOMAIN,alt4-mtalk.google.com",
+            "DOMAIN,alt5-mtalk.google.com",
+            "DOMAIN,alt6-mtalk.google.com",
+            "DOMAIN,alt7-mtalk.google.com",
+            "DOMAIN,alt8-mtalk.google.com",
+            "DOMAIN,analytics.95516.com",
+            "DOMAIN,analytics.strava.com",
+            "DOMAIN,app.adjust.com",
+            "DOMAIN,app.appsflyer.com",
+            "DOMAIN,bdtj.tagtic.cn",
+            "DOMAIN,clientservices.googleapis.com",
+            "DOMAIN,dl.google.com",
+            "DOMAIN,dl.l.google.com",
+            "DOMAIN,eco-push-api-client.meiqia.com",
+            "DOMAIN,errlog.umeng.com",
+            "DOMAIN,fairplay.l.qq.com",
+            "DOMAIN,livew.l.qq.com",
+            "DOMAIN,log.mmstat.com",
+            "DOMAIN,msg.umeng.com",
+            "DOMAIN,msg.umengcloud.com",
+            "DOMAIN,mtalk.google.com",
+            "DOMAIN,new-api.meiqia.com",
+            "DOMAIN,origin-a.akamaihd.net",
+            "DOMAIN,rewards.hypixel.net",
+            "DOMAIN,sycm.mmstat.com",
+            "DOMAIN,tracking.miui.com",
+            "DOMAIN,update.googleapis.com",
+            "DOMAIN,vd.l.qq.com",
+            "DOMAIN,vi.l.qq.com",
+            "DOMAIN-KEYWORD,wb_ad",
+            "DOMAIN-SUFFIX,baomitu.com",
+            "DOMAIN-SUFFIX,blog.google",
+            "DOMAIN-SUFFIX,bootcss.com",
+            "DOMAIN-SUFFIX,dizhensubao.getui.com",
+            "DOMAIN-SUFFIX,f.video.weibocdn.com",
+            "DOMAIN-SUFFIX,fus.cdn.krcom.cn",
+            "DOMAIN-SUFFIX,googletraveladservices.com",
+            "DOMAIN-SUFFIX,jiasule.com",
+            "DOMAIN-SUFFIX,koodomobile.ca",
+            "DOMAIN-SUFFIX,koodomobile.com",
+            "DOMAIN-SUFFIX,ol.epicgames.com",
+            "DOMAIN-SUFFIX,staticfile.org",
+            "DOMAIN-SUFFIX,tracking-protection.cdn.mozilla.net",
+            "DOMAIN-SUFFIX,upaiyun.com"
+          ],
+          "localSupplement": {
+            "path": "src/supplements/unbreak.json",
+            "license": "MIT",
+            "sha256": "25e6eb74533dd8aa1d78fdc400878f66d2db6cbeec65f09468f25c8ccb1ff816"
+          },
+          "description": "Full 50-condition exception policy: 48 exact licensed original payload tokens plus two independently authored exact-host endpoint facts with primary references. No corporate parent, China/LAN set, additional process rules or widened suffix is substituted."
+        },
+        "license": "GPL-2.0-only",
+        "sha256": "3019ffda054102679c1a8bb7451a7a855cc2655032227bc135a26bc3eda92a8f",
+        "entries": 50,
+        "updatedAt": "2026-10-27T21:45:18Z",
+        "projection": "exact registered payload tokens; unrelated conditions are not included; separately attributed original exact-host supplement",
+        "excludedExpressions": []
+      },
+      {
+        "id": "connectivity-probes",
+        "tag": "network",
+        "defaultProfile": true,
+        "source": {
           "type": "local",
           "license": "MIT",
           "references": [
             "https://support.apple.com/en-ie/101555",
             "https://learn.microsoft.com/en-us/troubleshoot/windows-server/networking/troubleshoot-ncsi-guidance"
           ],
-          "description": "Small explicit connectivity-probe allowlist, not a copy or completeness claim for third-party repair sets.",
+          "description": "Original three exact first-party connectivity-probe hosts, kept separate from the complete licensed Unbreak policy.",
           "author": "NetAtlas contributors",
           "updatedAt": "2026-10-31T00:00:00Z"
         },
         "license": "MIT",
-        "sha256": "ef5fcf5a4f68fef49ff6f8a43949fe63c7ed0f12df3c78cfad878dffbd0e83bc",
+        "sha256": "d0f902ac099e1ecd4daa1c047c365ad1e24a1403fade7be447f80d75fc8a3a7e",
         "entries": 3,
         "updatedAt": "2026-10-31T00:00:00Z",
         "projection": "three exact first-party connectivity-probe hosts; no suffix matching",
@@ -3729,6 +4298,10 @@
         "sha256": "c3eda4cfb286512bb1cb6adda7f5618ad801fe402f713cf265e9a4b6a4f347a0"
       },
       {
+        "path": "src/rules/network/connectivity-probes.json",
+        "sha256": "d0f902ac099e1ecd4daa1c047c365ad1e24a1403fade7be447f80d75fc8a3a7e"
+      },
+      {
         "path": "src/rules/network/global.json",
         "sha256": "8146a29792be17bb023c40e753c808c06b25ad886c766c3c570e6b888f1b57ea"
       },
@@ -3742,7 +4315,7 @@
       },
       {
         "path": "src/rules/network/unbreak.json",
-        "sha256": "ef5fcf5a4f68fef49ff6f8a43949fe63c7ed0f12df3c78cfad878dffbd0e83bc"
+        "sha256": "3019ffda054102679c1a8bb7451a7a855cc2655032227bc135a26bc3eda92a8f"
       },
       {
         "path": "src/rules/privacy/adblock.json",
@@ -3929,9 +4502,14 @@
       "bytes": 489
     },
     {
+      "path": "fragments/native-routing.md",
+      "sha256": "d003467d02cc5d7ea778ede020dfc8453c7e203bf5b9c6d2ca81427a1943d585",
+      "bytes": 481
+    },
+    {
       "path": "profiles/default.json",
-      "sha256": "79cd38f6ef103f44a9fd73c71d7bade22b76206576be74d8b670fc0ee5bd0702",
-      "bytes": 69729
+      "sha256": "c1d2e2ab71a9499ada5ed1646ac766eb54e4bdcaa331d48e01180f36559398b3",
+      "bytes": 76352
     },
     {
       "path": "profiles/input.example.json",
@@ -3940,13 +4518,13 @@
     },
     {
       "path": "profiles/standalone.json",
-      "sha256": "797476eff4ed66e24fcb1a26159a5bdfd16d6363007a2d456439a3eb9fb89494",
-      "bytes": 4525637
+      "sha256": "cb3479d20bb9a082d880e3a114f086ef5e0a6abf52769a625b423403d021f06a",
+      "bytes": 4541285
     },
     {
       "path": "README.md",
-      "sha256": "7e44119a46cbd8d7433ab108b542710a2453e8171b42c4d8e0783009ce41676d",
-      "bytes": 9627
+      "sha256": "f5d03e43bdb37d21a5236c910dff52a0dd7f48176b5152926eb6fd54df0867cf",
+      "bytes": 11367
     },
     {
       "path": "rules/abc.json",
@@ -3962,6 +4540,11 @@
       "path": "rules/acfun.json",
       "sha256": "44dbbe1eaf9abdd62beab95220a47c9985d786fd53c7506f0c56c87c93d1af40",
       "bytes": 297
+    },
+    {
+      "path": "rules/adblock-regex.json",
+      "sha256": "174cfaed63e0081ddd849c3fb508db5a4918d65292a4bd9e45a14cf54417dc2f",
+      "bytes": 189
     },
     {
       "path": "rules/adblock.json",
@@ -3992,6 +4575,11 @@
       "path": "rules/amap.json",
       "sha256": "fac9e40378716c57f93382eafd7b0c0c4bf3264bdafb54374fdfad1c162ae6bc",
       "bytes": 476
+    },
+    {
+      "path": "rules/amazon-portable-regex.json",
+      "sha256": "335a4c0aeebf7e40f9eb651ac4b018a71d525e26fb65dc4ac980bc580701f031",
+      "bytes": 243
     },
     {
       "path": "rules/amazon-portable.json",
@@ -4059,6 +4647,11 @@
       "bytes": 7665
     },
     {
+      "path": "rules/china-regex.json",
+      "sha256": "a7dd892ec117b5b206f52ee42296c34f46c8f22aae9dbd63c8c3ae8e7eb2a90b",
+      "bytes": 225
+    },
+    {
       "path": "rules/china.json",
       "sha256": "dc07aefd5017df24000b21ce4a05d0537a6cec20c26e443db6caf4eb37038378",
       "bytes": 202197
@@ -4067,6 +4660,11 @@
       "path": "rules/claude.json",
       "sha256": "7ae6c2ae1d183c8dc4f9068c89d03d89938dbc24ce51950bb625592cf5e530e0",
       "bytes": 606
+    },
+    {
+      "path": "rules/connectivity-probes.json",
+      "sha256": "835e64e5b7da8e75b955f79afb8e257e4728273f57024c8a6956584b8034319f",
+      "bytes": 166
     },
     {
       "path": "rules/coolapk.json",
@@ -4154,6 +4752,11 @@
       "bytes": 255
     },
     {
+      "path": "rules/global-media-regex.json",
+      "sha256": "6e91575cb2a6387985464f49dfdf0927ea531ec2a656ac54357202e27fa54cd2",
+      "bytes": 374
+    },
+    {
       "path": "rules/global-media.json",
       "sha256": "7fff486524873d080c42aa4ac609e96da4be1fe94c682a3b9fa73cdbff4fc37e",
       "bytes": 19366
@@ -4164,9 +4767,19 @@
       "bytes": 169254
     },
     {
+      "path": "rules/google-cn-regex.json",
+      "sha256": "3a0d16d4b268eedf083af83dcd4216024b9beb507e5a9d552f96c59aa23c253e",
+      "bytes": 248
+    },
+    {
       "path": "rules/google-cn.json",
       "sha256": "a9ddca2e2a50928f497de23c5941914192b853b7a85b48a471f51018b67f59f2",
       "bytes": 4090
+    },
+    {
+      "path": "rules/google-regex.json",
+      "sha256": "3a0d16d4b268eedf083af83dcd4216024b9beb507e5a9d552f96c59aa23c253e",
+      "bytes": 248
     },
     {
       "path": "rules/google.json",
@@ -4192,6 +4805,11 @@
       "path": "rules/heroku.json",
       "sha256": "f00ccca45bbdd4c7a3d988a39d48d9f95c252992a684fedec6b502d665376baa",
       "bytes": 367
+    },
+    {
+      "path": "rules/hmt-media-regex.json",
+      "sha256": "2d49f0a25419f2da0f21d72963aa358727bf7c4179a543fe5c985ef85419e0b6",
+      "bytes": 118
     },
     {
       "path": "rules/hmt-media.json",
@@ -4289,6 +4907,11 @@
       "bytes": 1386
     },
     {
+      "path": "rules/netflix-regex.json",
+      "sha256": "11586a1bf76fd840621ba21a1469f91c377a1565296125d67d7f3e75f07f6b86",
+      "bytes": 336
+    },
+    {
       "path": "rules/netflix.json",
       "sha256": "15dc80aafe9d05779beef39fd27236d81fb5e546e52400e20f614907db31200f",
       "bytes": 752
@@ -4317,6 +4940,11 @@
       "path": "rules/onedrive.json",
       "sha256": "82c41cdeebb52f7986cea05aaba428e0c9192e3f146e9a96204134b419689db0",
       "bytes": 350
+    },
+    {
+      "path": "rules/openai-regex.json",
+      "sha256": "af1355ed0b3f88908b8df61d1e034f973b06c7f6e69c005dfd2ca237cc1fc453",
+      "bytes": 181
     },
     {
       "path": "rules/openai.json",
@@ -4394,6 +5022,11 @@
       "bytes": 157
     },
     {
+      "path": "rules/speedtest-regex.json",
+      "sha256": "174cfaed63e0081ddd849c3fb508db5a4918d65292a4bd9e45a14cf54417dc2f",
+      "bytes": 189
+    },
+    {
       "path": "rules/speedtest.json",
       "sha256": "3dc5796a577bd71d56be6ef1904e194e313811c8341dd5a507dfe3a8d1a79e83",
       "bytes": 645
@@ -4460,13 +5093,18 @@
     },
     {
       "path": "rules/unbreak.json",
-      "sha256": "835e64e5b7da8e75b955f79afb8e257e4728273f57024c8a6956584b8034319f",
-      "bytes": 166
+      "sha256": "214f8b4e9b4699bb81aef2599929bfaa1fd8a8251176b51d95e18d117ad8ce8e",
+      "bytes": 1603
     },
     {
       "path": "rules/vercel.json",
       "sha256": "e311000eb631ea35693b079bd03894df906ebf8af4620ef4778036a9682c40d2",
       "bytes": 697
+    },
+    {
+      "path": "rules/viu-portable-regex.json",
+      "sha256": "2d49f0a25419f2da0f21d72963aa358727bf7c4179a543fe5c985ef85419e0b6",
+      "bytes": 118
     },
     {
       "path": "rules/viu-portable.json",

@@ -1,0 +1,5 @@
+no_resolve: true
+domain_set:
+  - captive.apple.com
+  - dns.msftncsi.com
+  - www.msftconnecttest.com

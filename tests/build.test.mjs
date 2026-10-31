@@ -13,7 +13,8 @@ test('all eight client trees are deterministic, App-first and service-first',asy
   for(const client of a.clients){
     const prefix=client.id+'/';
     const paths=[...a.files.keys()].filter(path=>path.startsWith(prefix)).map(path=>path.slice(prefix.length));
-    assert.equal(paths.filter(path=>path.startsWith('rules/')).length,a.rulesets.length);
+    const extraRuleResources={quantumultX:6,surge:8,loon:8,shadowrocket:6,egern:13,stash:13,mihomo:13,singBox:11};
+    assert.equal(paths.filter(path=>path.startsWith('rules/')).length,a.rulesets.length+extraRuleResources[client.id]);
     assert.ok(paths.every(path=>!/^rules\/[^/]+\//.test(path)));
     const manifest=JSON.parse(a.files.get(prefix+'manifest.json'));
     assert.equal(manifest.validation.profile,'managed-resources-and-references');
@@ -37,6 +38,7 @@ test('publishing preserves prior output, check detects edits, overwrite refuses 
 test('source checksum mismatch blocks generation',async()=>{
   const temp=await mkdtemp(resolve(tmpdir(),'atlas-source-'));
   await cp(resolve(root,'src/rules'),resolve(temp,'src/rules'),{recursive:true});
+  await cp(resolve(root,'src/supplements'),resolve(temp,'src/supplements'),{recursive:true});
   await mkdir(resolve(temp,'metadata'),{recursive:true});
   await cp(resolve(root,'metadata/upstreams.json'),resolve(temp,'metadata/upstreams.json'));
   const catalog=await loadCatalog(temp);

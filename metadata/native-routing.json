@@ -1,0 +1,156 @@
+{
+  "version": 1,
+  "observedAt": "2026-10-31",
+  "asn": {
+    "repository": "missuo/ASN-China",
+    "revision": "5f374b8a70bbff10272de8ed0366abb7b45d160f",
+    "license": "MIT",
+    "upstream": "ASN.China.list",
+    "path": "src/vendor/rule-sources/missuo/ASN.China.list",
+    "bytes": 253012,
+    "sha256": "5b677ef5897dba253e82b5f1cd7960ee26a1c6381994c473d673217d9c2fde52",
+    "gitBlob": "0e244171abef070a692dd527f57dac0f91559cf0",
+    "licensePath": "src/vendor/rule-sources/missuo/LICENSE",
+    "licenseSha256": "04587ff2ac17096c1e7e191942ee85bb67a594f05df3f6e208ed81eb5b001451",
+    "canonicalPath": "src/native-rules/china-asn.json",
+    "count": 5231,
+    "updatedAt": "2026-10-30T20:28:02Z",
+    "scope": "All active IP-ASN entries in the pinned author's complete China ASN resource; ASN membership is not country geolocation.",
+    "referenceComparison": {
+      "revision": "a2f8c41c1bc81518d6ea39087e2b2f756503ca3b",
+      "path": "Ruleset/Surge/ChinaASN.list",
+      "count": 5231,
+      "missing": 0,
+      "extra": 0
+    }
+  },
+  "geoip": {
+    "country": "CN",
+    "mode": "native-database-lookup",
+    "staticCidrEquivalent": false
+  },
+  "databaseUrls": {
+    "country": "https://raw.githubusercontent.com/P3TERX/GeoLite.mmdb/download/GeoLite2-Country.mmdb",
+    "asn": "https://raw.githubusercontent.com/P3TERX/GeoLite.mmdb/download/GeoLite2-ASN.mmdb"
+  },
+  "clients": {
+    "quantumultX": {
+      "asn": true,
+      "geoip": true,
+      "syntax": "quantumultX",
+      "databaseUpdate": "app-ui",
+      "references": [
+        "https://github.com/crossutility/Quantumult-X/blob/af6fb594233ec4a3ec6d4ccb3601e9c36b75ea2d/sample.conf",
+        "https://github.com/crossutility/Quantumult-X/blob/af6fb594233ec4a3ec6d4ccb3601e9c36b75ea2d/filter.snippet"
+      ],
+      "guidance": [
+        "GeoIP and ASN are native destination-IP database lookups, not the geo_location_checker display script.",
+        "Manage database updates in Quantumult X's GeoLite2 settings; no undocumented profile update keys are emitted."
+      ]
+    },
+    "surge": {
+      "asn": true,
+      "geoip": true,
+      "syntax": "classical",
+      "databaseUpdate": "country-auto-asn-app-update",
+      "references": [
+        "https://manual.nssurge.com/rules/ip.html",
+        "https://manual.nssurge.com/profile/general.html"
+      ],
+      "guidance": [
+        "Country database: bundled MaxMind database with automatic updates enabled.",
+        "ASN database: bundled GeoLite2 ASN and updated with the app; Surge has no separate ASN URL key."
+      ]
+    },
+    "loon": {
+      "asn": true,
+      "geoip": true,
+      "syntax": "classical",
+      "databaseUpdate": "native-url",
+      "minimumVersion": "3.2.3 (754) for ipasn-url",
+      "references": [
+        "https://nsloon.app/en/docs/General/",
+        "https://nsloon.app/en/docs/Rule/ip_rule/"
+      ],
+      "guidance": [
+        "Native GeoIP and ASN database URL fields are emitted; keep Loon's database updates enabled.",
+        "ipasn-url requires Loon 3.2.3 (754) or later."
+      ]
+    },
+    "shadowrocket": {
+      "asn": true,
+      "geoip": true,
+      "syntax": "classical",
+      "databaseUpdate": "app-ui",
+      "references": [
+        "https://apps.apple.com/us/app/shadowrocket/id932747118",
+        "https://github.com/missuo/ASN-China/blob/5f374b8a70bbff10272de8ed0366abb7b45d160f/README.md",
+        "https://doc.repcz.link/shadowrocket/rule/",
+        "https://doc.repcz.link/shadowrocket/faq/"
+      ],
+      "guidance": [
+        "Manage country and ASN sources and automatic refresh in Settings > GeoLite2 Database / automatic updates.",
+        "No undocumented profile database URL or update keys are emitted; exact GUI behavior has not been tested."
+      ]
+    },
+    "egern": {
+      "asn": true,
+      "geoip": true,
+      "syntax": "egern",
+      "databaseUpdate": "native-url",
+      "references": [
+        "https://egernapp.com/docs/configuration/rules/",
+        "https://egernapp.com/docs/configuration/example/"
+      ],
+      "guidance": [
+        "Native geoip_db_url and asn_db_url select real MaxMind database files.",
+        "Database downloads/refresh are managed by Egern; no invented update interval field is emitted."
+      ]
+    },
+    "stash": {
+      "asn": true,
+      "geoip": true,
+      "syntax": "classical-yaml",
+      "databaseUpdate": "app-ui",
+      "references": [
+        "https://stash.wiki/en/rules/rule-types",
+        "https://stash.wiki/en/release-notes/ios"
+      ],
+      "guidance": [
+        "Use Stash's GeoIP database settings for country and ASN databases and refresh.",
+        "No Mihomo-only geox-url or geo-auto-update fields are emitted to Stash."
+      ]
+    },
+    "mihomo": {
+      "asn": true,
+      "geoip": true,
+      "syntax": "classical-yaml",
+      "databaseUpdate": "native-24h",
+      "references": [
+        "https://wiki.metacubex.one/en/config/rules/",
+        "https://wiki.metacubex.one/en/config/general/",
+        "https://github.com/MetaCubeX/mihomo/blob/v1.19.33/rules/common/ipasn.go"
+      ],
+      "guidance": [
+        "MMDB country/ASN lookups are enabled with native GEO automatic update every 24 hours.",
+        "Mutable upstream database URLs are intentional for refresh; their future contents are not pinned or represented as reproducible source rule data."
+      ]
+    },
+    "singBox": {
+      "asn": false,
+      "geoip": false,
+      "syntax": null,
+      "databaseUpdate": "unsupported",
+      "targetVersion": "1.14.4",
+      "references": [
+        "https://github.com/SagerNet/sing-box/blob/v1.14.4/docs/configuration/route/geoip.md",
+        "https://github.com/SagerNet/sing-box/blob/v1.14.4/option/rule.go",
+        "https://sing-box.sagernet.org/migration/#migrate-geoip-to-rule-sets"
+      ],
+      "guidance": [
+        "sing-box 1.14.4 has no native ASN matcher and removed the GeoIP database matcher in 1.12.0.",
+        "Remote CIDR rule-set refresh remains available but is not ASN or dynamic GeoIP, so no fake compatible resource is generated."
+      ]
+    }
+  }
+}

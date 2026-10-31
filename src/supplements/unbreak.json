@@ -1,0 +1,22 @@
+{
+  "version": 1,
+  "id": "unbreak",
+  "license": "MIT",
+  "author": "NetAtlas contributors",
+  "updatedAt": "2026-10-31T00:00:00Z",
+  "description": "Original exact-host exceptions for the documented Android CI endpoint and Chromium dictionary download server. These are independently expressed endpoint facts; no third-party rule payload or documentation text is copied. They do not whitelist any subdomain or the parent android.com/gvt1.com zones, and do not assert direct reachability from every network.",
+  "references": [
+    "https://source.android.com/docs/setup/create/create-sbom#obtain-a-pregenerated-sbom",
+    "https://github.com/chromium/chromium/blob/e98d1f9aea8027770330db51ff87fa2fb15eba93/chrome/browser/spellchecker/spellcheck_hunspell_dictionary.cc#L281"
+  ],
+  "entries": [
+    {
+      "type": "domain",
+      "value": "ci.android.com"
+    },
+    {
+      "type": "domain",
+      "value": "redirector.gvt1.com"
+    }
+  ]
+}

@@ -58,7 +58,7 @@ QX 仅将内建 `DIRECT`、`REJECT` 转为小写，保留 `Proxy` 和各服务 I
 
 ### Mihomo
 
-固定验证版本为 **v1.19.33**。[通用配置](https://wiki.metacubex.one/en/config/general/)、[选择组](https://wiki.metacubex.one/en/config/proxy-groups/select/)、[路由规则](https://wiki.metacubex.one/en/config/rules/)。该模板只用混合代理入口与内联经典规则，不需要下载 GeoIP、GeoSite 或远程规则提供器才能检查和启动。
+固定验证版本为 **v1.19.33**。[通用配置](https://wiki.metacubex.one/en/config/general/)、[选择组](https://wiki.metacubex.one/en/config/proxy-groups/select/)、[路由规则](https://wiki.metacubex.one/en/config/rules/)。默认主配置含TUN与远程规则provider，standalone内联规则。两者启用真正的ASN/GeoIP查询，需要有效MMDB并由原生24小时更新维护；不启用GeoSite。CLI验证只检查公共TUN配置，运行流量fixture明确关闭TUN且预置受控数据库缓存。
 
 ### sing-box
 
@@ -68,11 +68,11 @@ QX 仅将内建 `DIRECT`、`REJECT` 转为小写，保留 `Proxy` 和各服务 I
 
 ## 验证范围
 
-`tests/profiles/render.test.mjs` 检查八种格式、四类规则、输入顺序、原生策略引用、默认拒绝、回环地址与不存在的远程发布依赖。测试也区分 Egern 与 Clash YAML、QX 的内建策略大小写和 sing-box 的原生动作。
+`tests/profiles/render.test.mjs` 检查八种格式、五类公共规则及支持的原生补充条件、输入顺序、原生策略引用、默认拒绝、回环地址与不存在的远程发布依赖。测试也区分 Egern 与 Clash YAML、QX 的内建策略大小写和 sing-box 的原生动作。
 
 `npm run test:native` 依据 `metadata/native-tools.json` 下载固定的官方发行包并验证 SHA-256，在缓存中提取内核。支持 `darwin-arm64`、`linux-x64`；每次运行只验证当前宿主平台。工具检查生成的完整 Mihomo / sing-box 主配置，并将每个 sing-box 独立规则集编译为 SRS。实际结果单独记录在 `.cache/native-check/latest.json`，包含被检查主配置与规则集输入的 SHA-256；构建清单本身不代表已经执行原生验证。
 
-同一命令还会启动两个真实内核，在回环 HTTP、SOCKS5 上游及 DNS 测试服务上验证 80 个基础路由行为，并另行以完整 anti-AD 验证 16 个可选 provider 用例。覆盖显式直连/拒绝、默认拒绝/直连/代理，以及后缀规则的根域、子域和相似域边界；不访问公网测试目标，不修改系统代理。日志和临时配置均保留在 `.cache/native-check/`。这些测试证明内核的代表性路由行为，不等于逐条规则都做过网络测试。
+同一命令还会启动两个真实内核，在回环 HTTP、SOCKS5 上游及 DNS 测试服务上验证212个基础路由案例，并另行以完整 anti-AD 验证 16 个可选 provider 用例。覆盖显式直连/拒绝、默认拒绝/直连/代理，以及后缀规则的根域、子域和相似域边界；不访问公网测试目标，不修改系统代理。日志和临时配置均保留在 `.cache/native-check/`。这些测试证明内核的代表性路由行为，不等于逐条规则都做过网络测试。
 
 闭源应用的原生导入和路由结果必须单独记录。仅通过 JSON/YAML/INI 结构检查时，只能标记结构级验证。
 

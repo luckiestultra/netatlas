@@ -81,3 +81,9 @@ scripts/ 保存已适配的 JS，rewrites/ 保存纯重写，modules/ 保存原�
 接口和验收分别见[规则](specs/rules.md)、[配置](specs/profiles.md)、[功能](specs/features.md)及[构建](specs/build.md)规格；实际证据见[验证记录](validation.md)。
 
 内容覆盖和数据来源现在同时登记在metadata/coverage.json、features.json、integrations.json及resource-parsers.json。分流仍在客户端rules/按服务平铺，纯重写在rewrites/，脚本功能安装资源在modules/，手工合并设置在fragments/。工具安装包可以共享上游实现，但不在不支持的核心里伪造脚本宿主。
+
+## 宿主专属匹配条件
+
+公共 `src/rules/` 保留五类可移植事实。`src/native-rules/` 保存原始ASN编号，`metadata/native-routing.json` 记录宿主ASN/GeoIP能力与数据库更新字段；`metadata/regex-routing.json` 保存源表达式和逐端精确转换证明。`tools/lib/routing-extensions.mjs` 仅在所选源存在时合并原生条件；正则还核对规范投影SHA，避免私有调用复用同一ID时意外恢复不需要的源表达式。未知/改变的来源不静默生成。
+
+输出仍是 `clients/<client>/rules/<id>.*`，原生资源独立命名 `china-asn`、`geoip-cn`、`<sourceId>-regex`；没有支持的客户端不生成假资源。默认远程引用与standalone内联使用同一能力计划，ASN/GeoIP只用于路由，不作为DNS域名选择器。`src/supplements/` 保留有独立许可、主来源和SHA的精确端点事实，不能绕过规则目录来源审计。

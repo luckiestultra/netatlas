@@ -6,7 +6,7 @@
 
 主配置面向 sing-box 1.14.4 核心。填入原生 outbounds，并将节点 tag 加入节点选择、自动选择和对应地区组的 outbounds，更新 selector.default。核心没有通用机场订阅 provider；支持订阅合并的前端需按其说明接入。需要本地转换时再使用下方高级工具，不向在线转换站上传秘密。
 
-首次使用需由客户端下载远程规则。主配置引用本客户端的 114 份规则资源，覆盖 29,103 条规则，更新由客户端处理；主配置升级与规则刷新是两件事。没有私人节点，配置不会凭空提供代理服务。除 QX/SR 使用 App 内置节点选择外，无节点时节点选择保持 REJECT，导入后核对实际选择。
+首次使用需由客户端下载远程规则。主配置引用本客户端的 125 份规则资源（115 份公共规则、10 份原生条件补充），更新由客户端处理；主配置升级与规则刷新是两件事。没有私人节点，配置不会凭空提供代理服务。除 QX/SR 使用 App 内置节点选择外，无节点时节点选择保持 REJECT，导入后核对实际选择。
 
 AI、苹果、谷歌、微软、开发、通讯、游戏、媒体与最终兜底可独立选策略；支持手选、自动选择及六地区测速组。地区名来自节点标签，不是 IP 定位结论；没有匹配节点时不要选择该组，不承诺空组自动回退。苹果服务初始直连，其余业务默认走节点选择。
 
@@ -19,7 +19,8 @@ rules/ 按具体应用或服务 ID 平铺，可单独订阅；QX 资源的 force
 | 规则资源 | 条目 | 许可 |
 | --- | ---: | --- |
 | [lan](rules/lan.json) | 17 | MIT |
-| [unbreak](rules/unbreak.json) | 3 | MIT |
+| [connectivity-probes](rules/connectivity-probes.json) | 3 | MIT |
+| [unbreak](rules/unbreak.json) | 50 | GPL-2.0-only |
 | [adblock](rules/adblock.json) | 904 | MIT |
 | [abc](rules/abc.json) | 4 | MIT |
 | [abema](rules/abema.json) | 21 | MIT |
@@ -135,6 +136,25 @@ rules/ 按具体应用或服务 ID 平铺，可单独订阅；QX 资源的 force
 | [china](rules/china.json) | 8,387 | MIT |
 | [china-ipv4](rules/china-ipv4.json) | 6,174 | MIT |
 | [china-ipv6](rules/china-ipv6.json) | 3,475 | MIT |
+| [openai-regex](rules/openai-regex.json) | 1 | MIT |
+| [google-regex](rules/google-regex.json) | 2 | MIT |
+| [netflix-regex](rules/netflix-regex.json) | 4 | MIT |
+| [speedtest-regex](rules/speedtest-regex.json) | 1 | MIT |
+| [adblock-regex](rules/adblock-regex.json) | 1 | MIT |
+| [china-regex](rules/china-regex.json) | 3 | MIT |
+| [amazon-portable-regex](rules/amazon-portable-regex.json) | 3 | MIT |
+| [viu-portable-regex](rules/viu-portable-regex.json) | 1 | MIT |
+| [global-media-regex](rules/global-media-regex.json) | 5 | MIT |
+| [hmt-media-regex](rules/hmt-media-regex.json) | 1 | MIT |
+| [google-cn-regex（可选）](rules/google-cn-regex.json) | 2 | MIT |
+
+## ASN、GeoIP、正则与白名单
+
+此版本核心不支持原生 ASN 和 GeoIP 数据库条件；没有生成冒充二者的 CIDR 集合。 数据库更新方式见 [原生条件片段](fragments/native-routing.md)。数据库归属信息不保证物理位置，ASN 归属也不等于 IP 国家。
+
+固定源的 24 个正则引用中，本客户端可无损表达 24 个，无法原生表达 0 个；正则资源与原服务同策略同优先级，google-cn 仍为可选。只有零未支持项才称本客户端源正则完整，详见[逐项覆盖](../../docs/coverage.md)。
+
+Unbreak 是完整 50 条条件，保留精确域名/后缀/关键词语义；默认在广告规则之前按“规则修正”直连（standalone 策略名 unbreak），包含若干 Google 下载及推送域。可将该策略切到节点选择；三个原有连接探测域仍独立固定直连。此白名单会明确豁免其中的统计/广告样式域，并非隐私拦截集合。
 
 ## 可选功能
 

@@ -4,7 +4,7 @@
 
 ## 契约
 
-规范规则只描述匹配事实，格式为 version、id、category、entries。每项 entry 只有 type 与 value，类型限定为 domain、domain-suffix、ip-cidr、ip-cidr6。
+规范规则只描述匹配事实，格式为 version、id、category、entries。每项 entry 只有 type 与 value，类型限定为 domain、domain-suffix、domain-keyword、ip-cidr、ip-cidr6。
 
 ~~~json
 {"version":1,"id":"openai","category":"ai","entries":[{"type":"domain-suffix","value":"openai.com"}]}
@@ -16,11 +16,9 @@ src/rules/<category>/<id>.json 是唯一规范输入；metadata/upstreams.json �
 
 ## 已接入数据
 
-当前固定规范目录为 41 个规则集、124,158 条规则；默认配置使用 40 组、23,476 条，另有可选 AntiAD 100,682 条。默认目录原有 15 组保留，新增 apple-tvplus, cursor, discord, docker, github-copilot, gitlab, groq, hbo, huggingface, jetbrains, line, npmjs, perplexity, poe, signal, slack, steam, tiktok, twitch, vercel, whatsapp, xai, zoom，覆盖通信、开发、AI、媒体与游戏服务。以后更新以清单统计为准。
+当前公共规范目录为118个规则集、136,944条；默认115组、29,153条，另有可选anti-AD、global、google-cn。确切来源和逐条件排除见metadata/upstreams.json；不把未纳入公共模型的条件静默丢弃，原生补充层另见本文后节。
 
-其中三十六组从 MIT 许可的 v2fly/domain-list-community 固定提交选取指定文件及显式 include；lan、china 是本项目自有的有限事实列表；可选 AntiAD 从独立 MIT 来源的原生 DOMAIN-SET 固定快照导入。此目录是可移植投影，不是完整 DLC/geosite 数据库；不做全仓库 affiliation 反向聚合。当前九次不可移植正则排除逐条登记，不近似改写成更宽的后缀，任何新增且未登记的正则或关键词表达式都会阻止同步。
-
-新增 23 组均可用精确域名或域名后缀无损表达，没有新增正则排除。Apple TV+、GitHub Copilot 和 npm 等具体服务必须在 Apple、GitHub 父集合之前匹配；该顺序独立于分类标签，Apple 默认 DIRECT 保持不变。
+数据来自固定 MIT DLC、MIT反广告与国家网段，以及固定 GPL-2.0-only 服务数据；自有LAN、连接探测和经审计的精确端点补充采用MIT。具体服务在企业/媒体父集合之前，业务策略不从category猜测。Unbreak保留全部50条件及混合来源原始许可，原有三个连接探测另成集合。
 
 可选 AntiAD 使用显式 domain-lines 格式、点前缀和 domain-suffix 匹配，不能把无前缀文本自动猜成精确域名或后缀。输入与同版本 Clash 后缀根域集合已双向核对一致；该大集只输出独立规则，不进入默认主配置。格式、传输预算和匹配依据均登记，详见[来源审计](../upstream-audit.md)。
 
@@ -58,3 +56,11 @@ npm run test:rules
 规则模型包含domain-keyword，语义是ASCII大小写归一后的域名子串匹配，不能改写成domain-suffix。分别导出QX host-keyword、classical DOMAIN-KEYWORD、Egern domain_keyword_set和sing-box domain_keyword；格式与实际内核案例独立验证。不把不支持的regex、进程、USER-AGENT、ASN静默塞入该模型。
 
 classical-yaml为明确登记的原始五类型来源，未知条件/额外动作字段/非canonical CIDR/重复YAML键均拒绝。selectPayload只选精确原始token，缺失就阻止同步，不扩展为企业全站。完整原始GPL数据、LICENSE和SHA/Git blob归档于src/vendor/rule-sources/blackmatrix7；MIT/GPL逐规则登记。默认不加载可选global代理替代集，它不是Geolocation或原Global逐条复刻。
+
+## 原生条件补齐契约
+
+本轮补齐 ASN、GeoIP、源正则和完整 Unbreak；公共五类型模型不承载宿主无法表达的条件。ASN 保留编号与宿主数据库查询，GeoIP 保留国家代码与宿主数据库查询；不能用国家 CIDR 资源冒充二者。原生条件按客户端另生成 `rules/china-asn.*`、`rules/geoip-cn.*` 和 `rules/<来源ID>-regex.*`，主配置与 standalone 均实际接入支持的条件。ASN/GeoIP 位于业务域名之后、静态 CN CIDR 兜底之前；正则与所属服务使用相同策略和优先级。
+
+正则以固定上游表达式为准，支持原生域名正则的宿主保留等价表达式；只有具有精确语言等价证明时才转换成有限通配模式。不能把域名匹配改成 URL 匹配，不能将不支持的表达式扩大成后缀。逐客户端记录完整、部分与不支持，不把未提供条件的客户端标成完整。
+
+Unbreak 以参考的全部精确条件核对，来源必须可追溯且许可兼容；保留原有网络探测规则为独立资源。白名单在广告拦截之前生效，这一影响须在文档及真实路由测试中说明。检查包括来源集合双向比较、逐客户端序列化正反例、缺项/篡改拒绝、可运行内核的真实流量和数据库条件测试。六 GUI 未实机验证的边界照实保留；不更改本机 QX 或系统代理。

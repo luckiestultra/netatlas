@@ -1,0 +1,11 @@
+{
+  "version": 3,
+  "rules": [
+    {
+      "domain_regex": [
+        "^r+[0-9]+(---|\\.)sn-(2x3|ni5|j5o)[A-Za-z0-9_]{5}\\.googlevideo\\.com$",
+        "^r+[0-9]+(---|\\.)sn-(2x3|ni5|j5o)[A-Za-z0-9_]{5}\\.xn--ngstr-lra8j\\.com$"
+      ]
+    }
+  ]
+}

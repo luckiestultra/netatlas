@@ -58,6 +58,80 @@
         "server": "domestic"
       },
       {
+        "domain_keyword": [
+          "wb_ad"
+        ],
+        "action": "route",
+        "server": "domestic"
+      },
+      {
+        "domain_suffix": [
+          "baomitu.com",
+          "blog.google",
+          "bootcss.com",
+          "dizhensubao.getui.com",
+          "f.video.weibocdn.com",
+          "fus.cdn.krcom.cn",
+          "googletraveladservices.com",
+          "jiasule.com",
+          "koodomobile.ca",
+          "koodomobile.com",
+          "ol.epicgames.com",
+          "staticfile.org",
+          "tracking-protection.cdn.mozilla.net",
+          "upaiyun.com"
+        ],
+        "action": "route",
+        "server": "domestic"
+      },
+      {
+        "domain": [
+          "ad.10010.com",
+          "alt1-mtalk.google.com",
+          "alt2-mtalk.google.com",
+          "alt3-mtalk.google.com",
+          "alt4-mtalk.google.com",
+          "alt5-mtalk.google.com",
+          "alt6-mtalk.google.com",
+          "alt7-mtalk.google.com",
+          "alt8-mtalk.google.com",
+          "analytics.95516.com",
+          "analytics.strava.com",
+          "app.adjust.com",
+          "app.appsflyer.com",
+          "bdtj.tagtic.cn",
+          "ci.android.com",
+          "clientservices.googleapis.com",
+          "dl.google.com",
+          "dl.l.google.com",
+          "eco-push-api-client.meiqia.com",
+          "errlog.umeng.com",
+          "fairplay.l.qq.com",
+          "livew.l.qq.com",
+          "log.mmstat.com",
+          "msg.umeng.com",
+          "msg.umengcloud.com",
+          "mtalk.google.com",
+          "new-api.meiqia.com",
+          "origin-a.akamaihd.net",
+          "redirector.gvt1.com",
+          "rewards.hypixel.net",
+          "sycm.mmstat.com",
+          "tracking.miui.com",
+          "update.googleapis.com",
+          "vd.l.qq.com",
+          "vi.l.qq.com"
+        ],
+        "action": "route",
+        "server": "domestic"
+      },
+      {
+        "domain_regex": [
+          "^speed\\.(coe|open)\\.ad\\.[a-z][a-z][a-z]?[a-z]?[a-z]?[a-z]?\\.prod\\.hosts\\.ooklaserver\\.net$"
+        ],
+        "action": "reject"
+      },
+      {
         "domain_suffix": [
           "1rx.io",
           "2mdn-cn.net",
@@ -2470,6 +2544,16 @@
         "server": "domestic"
       },
       {
+        "domain_regex": [
+          "(^|\\.)apiproxy-device-prod-nlb-.+\\.amazonaws\\.com$",
+          "(^|\\.)apiproxy-website-nlb-prod-.+\\.amazonaws\\.com$",
+          "(^|\\.)dualstack\\.apiproxy-.+\\.amazonaws\\.com$",
+          "(^|\\.)dualstack\\.ichnaea-web-.+\\.amazonaws\\.com$"
+        ],
+        "action": "route",
+        "server": "remote"
+      },
+      {
         "domain_suffix": [
           "fast.com",
           "netflix.ca",
@@ -2534,7 +2618,20 @@
           "onedrive.live.com",
           "onedrive.net",
           "onedrive.org",
-          "storage.live.com",
+          "storage.live.com"
+        ],
+        "action": "route",
+        "server": "remote"
+      },
+      {
+        "domain_regex": [
+          "^chatgpt-async-webps-prod-[^\\x09\\x0a\\x0c\\x0d\\x20]+-[0-9]+\\.webpubsub\\.azure\\.com$"
+        ],
+        "action": "route",
+        "server": "remote"
+      },
+      {
+        "domain_suffix": [
           "chat.com",
           "chatgpt.com",
           "chatgpt.livekit.cloud",
@@ -2982,7 +3079,20 @@
           "slackhq.com",
           "sndcdn.com",
           "soundcloud.cloud",
-          "soundcloud.com",
+          "soundcloud.com"
+        ],
+        "action": "route",
+        "server": "remote"
+      },
+      {
+        "domain_regex": [
+          "^speed\\.(coe|open)\\.ad\\.[a-z][a-z][a-z]?[a-z]?[a-z]?[a-z]?\\.prod\\.hosts\\.ooklaserver\\.net$"
+        ],
+        "action": "route",
+        "server": "remote"
+      },
+      {
+        "domain_suffix": [
           "cdnst.net",
           "cellmaps.com",
           "ekahau.cloud",
@@ -3271,7 +3381,20 @@
           "zeit-world.org",
           "zeit.co",
           "zeit.sh",
-          "zeitworld.com",
+          "zeitworld.com"
+        ],
+        "action": "route",
+        "server": "remote"
+      },
+      {
+        "domain_regex": [
+          "^ewcdn[0-9]+\\.nowe\\.com$"
+        ],
+        "action": "route",
+        "server": "remote"
+      },
+      {
+        "domain_suffix": [
           "viu.com",
           "viu.tv"
         ],
@@ -4608,6 +4731,13 @@
         "server": "domestic"
       },
       {
+        "domain_regex": [
+          "^ewcdn[0-9]+\\.nowe\\.com$"
+        ],
+        "action": "route",
+        "server": "remote"
+      },
+      {
         "domain_suffix": [
           "bigbigchannel.com.hk",
           "bigbigshop.com",
@@ -4675,6 +4805,17 @@
           "weblive-hamivideo.cdn.hinet.net",
           "weblivea-hamivideo.cdn.hinet.net",
           "webvodad-hamivideo.cdn.hinet.net"
+        ],
+        "action": "route",
+        "server": "remote"
+      },
+      {
+        "domain_regex": [
+          "(^|\\.)apiproxy-device-prod-nlb-.+\\.amazonaws\\.com$",
+          "(^|\\.)apiproxy-website-nlb-prod-.+\\.amazonaws\\.com$",
+          "(^|\\.)dualstack\\.apiproxy-.+\\.amazonaws\\.com$",
+          "(^|\\.)dualstack\\.ichnaea-web-.+\\.amazonaws\\.com$",
+          "^ewcdn[0-9]+\\.nowe\\.com$"
         ],
         "action": "route",
         "server": "remote"
@@ -5391,6 +5532,15 @@
           "uts-api.itunes.apple.com",
           "vod-abematv.akamaized.net",
           "yt3.googleusercontent.com"
+        ],
+        "action": "route",
+        "server": "remote"
+      },
+      {
+        "domain_regex": [
+          ".+\\.awsdns-[0-9][0-9]\\.(co\\.uk|com|net|org)$",
+          ".+\\.awsdns-cn-[0-9][0-9]\\.(biz|com|net|top)$",
+          ".+\\.awsdns-cn-[0-9][a-e0-9]\\.cn$"
         ],
         "action": "route",
         "server": "remote"
@@ -9874,6 +10024,14 @@
         "server": "remote"
       },
       {
+        "domain_regex": [
+          "^r+[0-9]+(---|\\.)sn-(2x3|ni5|j5o)[A-Za-z0-9_]{5}\\.googlevideo\\.com$",
+          "^r+[0-9]+(---|\\.)sn-(2x3|ni5|j5o)[A-Za-z0-9_]{5}\\.xn--ngstr-lra8j\\.com$"
+        ],
+        "action": "route",
+        "server": "remote"
+      },
+      {
         "domain_suffix": [
           "0emm.com",
           "1e100.net",
@@ -11779,6 +11937,15 @@
         ],
         "action": "route",
         "server": "remote"
+      },
+      {
+        "domain_regex": [
+          ".+\\.awsdns-cn-[0-9][0-9]\\.(biz|com|net|top)$",
+          ".+\\.awsdns-cn-[0-9][a-e0-9]\\.cn$",
+          "^.+-mihayo\\.akamaized\\.net$"
+        ],
+        "action": "route",
+        "server": "domestic"
       },
       {
         "domain_suffix": [
@@ -20212,6 +20379,15 @@
     },
     {
       "type": "selector",
+      "tag": "unbreak",
+      "outbounds": [
+        "DIRECT",
+        "Proxy"
+      ],
+      "default": "DIRECT"
+    },
+    {
+      "type": "selector",
       "tag": "abc",
       "outbounds": [
         "Proxy",
@@ -21328,6 +21504,362 @@
         ],
         "action": "route",
         "outbound": "DIRECT"
+      },
+      {
+        "domain_keyword": [
+          "wb_ad"
+        ],
+        "action": "route",
+        "outbound": "unbreak"
+      },
+      {
+        "domain_suffix": [
+          "baomitu.com"
+        ],
+        "action": "route",
+        "outbound": "unbreak"
+      },
+      {
+        "domain_suffix": [
+          "blog.google"
+        ],
+        "action": "route",
+        "outbound": "unbreak"
+      },
+      {
+        "domain_suffix": [
+          "bootcss.com"
+        ],
+        "action": "route",
+        "outbound": "unbreak"
+      },
+      {
+        "domain_suffix": [
+          "dizhensubao.getui.com"
+        ],
+        "action": "route",
+        "outbound": "unbreak"
+      },
+      {
+        "domain_suffix": [
+          "f.video.weibocdn.com"
+        ],
+        "action": "route",
+        "outbound": "unbreak"
+      },
+      {
+        "domain_suffix": [
+          "fus.cdn.krcom.cn"
+        ],
+        "action": "route",
+        "outbound": "unbreak"
+      },
+      {
+        "domain_suffix": [
+          "googletraveladservices.com"
+        ],
+        "action": "route",
+        "outbound": "unbreak"
+      },
+      {
+        "domain_suffix": [
+          "jiasule.com"
+        ],
+        "action": "route",
+        "outbound": "unbreak"
+      },
+      {
+        "domain_suffix": [
+          "koodomobile.ca"
+        ],
+        "action": "route",
+        "outbound": "unbreak"
+      },
+      {
+        "domain_suffix": [
+          "koodomobile.com"
+        ],
+        "action": "route",
+        "outbound": "unbreak"
+      },
+      {
+        "domain_suffix": [
+          "ol.epicgames.com"
+        ],
+        "action": "route",
+        "outbound": "unbreak"
+      },
+      {
+        "domain_suffix": [
+          "staticfile.org"
+        ],
+        "action": "route",
+        "outbound": "unbreak"
+      },
+      {
+        "domain_suffix": [
+          "tracking-protection.cdn.mozilla.net"
+        ],
+        "action": "route",
+        "outbound": "unbreak"
+      },
+      {
+        "domain_suffix": [
+          "upaiyun.com"
+        ],
+        "action": "route",
+        "outbound": "unbreak"
+      },
+      {
+        "domain": [
+          "ad.10010.com"
+        ],
+        "action": "route",
+        "outbound": "unbreak"
+      },
+      {
+        "domain": [
+          "alt1-mtalk.google.com"
+        ],
+        "action": "route",
+        "outbound": "unbreak"
+      },
+      {
+        "domain": [
+          "alt2-mtalk.google.com"
+        ],
+        "action": "route",
+        "outbound": "unbreak"
+      },
+      {
+        "domain": [
+          "alt3-mtalk.google.com"
+        ],
+        "action": "route",
+        "outbound": "unbreak"
+      },
+      {
+        "domain": [
+          "alt4-mtalk.google.com"
+        ],
+        "action": "route",
+        "outbound": "unbreak"
+      },
+      {
+        "domain": [
+          "alt5-mtalk.google.com"
+        ],
+        "action": "route",
+        "outbound": "unbreak"
+      },
+      {
+        "domain": [
+          "alt6-mtalk.google.com"
+        ],
+        "action": "route",
+        "outbound": "unbreak"
+      },
+      {
+        "domain": [
+          "alt7-mtalk.google.com"
+        ],
+        "action": "route",
+        "outbound": "unbreak"
+      },
+      {
+        "domain": [
+          "alt8-mtalk.google.com"
+        ],
+        "action": "route",
+        "outbound": "unbreak"
+      },
+      {
+        "domain": [
+          "analytics.95516.com"
+        ],
+        "action": "route",
+        "outbound": "unbreak"
+      },
+      {
+        "domain": [
+          "analytics.strava.com"
+        ],
+        "action": "route",
+        "outbound": "unbreak"
+      },
+      {
+        "domain": [
+          "app.adjust.com"
+        ],
+        "action": "route",
+        "outbound": "unbreak"
+      },
+      {
+        "domain": [
+          "app.appsflyer.com"
+        ],
+        "action": "route",
+        "outbound": "unbreak"
+      },
+      {
+        "domain": [
+          "bdtj.tagtic.cn"
+        ],
+        "action": "route",
+        "outbound": "unbreak"
+      },
+      {
+        "domain": [
+          "ci.android.com"
+        ],
+        "action": "route",
+        "outbound": "unbreak"
+      },
+      {
+        "domain": [
+          "clientservices.googleapis.com"
+        ],
+        "action": "route",
+        "outbound": "unbreak"
+      },
+      {
+        "domain": [
+          "dl.google.com"
+        ],
+        "action": "route",
+        "outbound": "unbreak"
+      },
+      {
+        "domain": [
+          "dl.l.google.com"
+        ],
+        "action": "route",
+        "outbound": "unbreak"
+      },
+      {
+        "domain": [
+          "eco-push-api-client.meiqia.com"
+        ],
+        "action": "route",
+        "outbound": "unbreak"
+      },
+      {
+        "domain": [
+          "errlog.umeng.com"
+        ],
+        "action": "route",
+        "outbound": "unbreak"
+      },
+      {
+        "domain": [
+          "fairplay.l.qq.com"
+        ],
+        "action": "route",
+        "outbound": "unbreak"
+      },
+      {
+        "domain": [
+          "livew.l.qq.com"
+        ],
+        "action": "route",
+        "outbound": "unbreak"
+      },
+      {
+        "domain": [
+          "log.mmstat.com"
+        ],
+        "action": "route",
+        "outbound": "unbreak"
+      },
+      {
+        "domain": [
+          "msg.umeng.com"
+        ],
+        "action": "route",
+        "outbound": "unbreak"
+      },
+      {
+        "domain": [
+          "msg.umengcloud.com"
+        ],
+        "action": "route",
+        "outbound": "unbreak"
+      },
+      {
+        "domain": [
+          "mtalk.google.com"
+        ],
+        "action": "route",
+        "outbound": "unbreak"
+      },
+      {
+        "domain": [
+          "new-api.meiqia.com"
+        ],
+        "action": "route",
+        "outbound": "unbreak"
+      },
+      {
+        "domain": [
+          "origin-a.akamaihd.net"
+        ],
+        "action": "route",
+        "outbound": "unbreak"
+      },
+      {
+        "domain": [
+          "redirector.gvt1.com"
+        ],
+        "action": "route",
+        "outbound": "unbreak"
+      },
+      {
+        "domain": [
+          "rewards.hypixel.net"
+        ],
+        "action": "route",
+        "outbound": "unbreak"
+      },
+      {
+        "domain": [
+          "sycm.mmstat.com"
+        ],
+        "action": "route",
+        "outbound": "unbreak"
+      },
+      {
+        "domain": [
+          "tracking.miui.com"
+        ],
+        "action": "route",
+        "outbound": "unbreak"
+      },
+      {
+        "domain": [
+          "update.googleapis.com"
+        ],
+        "action": "route",
+        "outbound": "unbreak"
+      },
+      {
+        "domain": [
+          "vd.l.qq.com"
+        ],
+        "action": "route",
+        "outbound": "unbreak"
+      },
+      {
+        "domain": [
+          "vi.l.qq.com"
+        ],
+        "action": "route",
+        "outbound": "unbreak"
+      },
+      {
+        "domain_regex": [
+          "^speed\\.(coe|open)\\.ad\\.[a-z][a-z][a-z]?[a-z]?[a-z]?[a-z]?\\.prod\\.hosts\\.ooklaserver\\.net$"
+        ],
+        "action": "reject"
       },
       {
         "domain_suffix": [
@@ -35350,6 +35882,34 @@
         "outbound": "netease-music"
       },
       {
+        "domain_regex": [
+          "(^|\\.)apiproxy-device-prod-nlb-.+\\.amazonaws\\.com$"
+        ],
+        "action": "route",
+        "outbound": "netflix"
+      },
+      {
+        "domain_regex": [
+          "(^|\\.)apiproxy-website-nlb-prod-.+\\.amazonaws\\.com$"
+        ],
+        "action": "route",
+        "outbound": "netflix"
+      },
+      {
+        "domain_regex": [
+          "(^|\\.)dualstack\\.apiproxy-.+\\.amazonaws\\.com$"
+        ],
+        "action": "route",
+        "outbound": "netflix"
+      },
+      {
+        "domain_regex": [
+          "(^|\\.)dualstack\\.ichnaea-web-.+\\.amazonaws\\.com$"
+        ],
+        "action": "route",
+        "outbound": "netflix"
+      },
+      {
         "domain_suffix": [
           "fast.com"
         ],
@@ -35796,6 +36356,13 @@
         ],
         "action": "route",
         "outbound": "onedrive"
+      },
+      {
+        "domain_regex": [
+          "^chatgpt-async-webps-prod-[^\\x09\\x0a\\x0c\\x0d\\x20]+-[0-9]+\\.webpubsub\\.azure\\.com$"
+        ],
+        "action": "route",
+        "outbound": "openai"
       },
       {
         "domain_suffix": [
@@ -38346,6 +38913,13 @@
         "outbound": "soundcloud"
       },
       {
+        "domain_regex": [
+          "^speed\\.(coe|open)\\.ad\\.[a-z][a-z][a-z]?[a-z]?[a-z]?[a-z]?\\.prod\\.hosts\\.ooklaserver\\.net$"
+        ],
+        "action": "route",
+        "outbound": "speedtest"
+      },
+      {
         "domain_suffix": [
           "cdnst.net"
         ],
@@ -39947,6 +40521,13 @@
         ],
         "action": "route",
         "outbound": "vercel"
+      },
+      {
+        "domain_regex": [
+          "^ewcdn[0-9]+\\.nowe\\.com$"
+        ],
+        "action": "route",
+        "outbound": "viu-portable"
       },
       {
         "domain_suffix": [
@@ -48426,6 +49007,13 @@
         "outbound": "china-media"
       },
       {
+        "domain_regex": [
+          "^ewcdn[0-9]+\\.nowe\\.com$"
+        ],
+        "action": "route",
+        "outbound": "hmt-media"
+      },
+      {
         "domain_suffix": [
           "bigbigchannel.com.hk"
         ],
@@ -48844,6 +49432,41 @@
         ],
         "action": "route",
         "outbound": "hmt-media"
+      },
+      {
+        "domain_regex": [
+          "(^|\\.)apiproxy-device-prod-nlb-.+\\.amazonaws\\.com$"
+        ],
+        "action": "route",
+        "outbound": "global-media"
+      },
+      {
+        "domain_regex": [
+          "(^|\\.)apiproxy-website-nlb-prod-.+\\.amazonaws\\.com$"
+        ],
+        "action": "route",
+        "outbound": "global-media"
+      },
+      {
+        "domain_regex": [
+          "(^|\\.)dualstack\\.apiproxy-.+\\.amazonaws\\.com$"
+        ],
+        "action": "route",
+        "outbound": "global-media"
+      },
+      {
+        "domain_regex": [
+          "(^|\\.)dualstack\\.ichnaea-web-.+\\.amazonaws\\.com$"
+        ],
+        "action": "route",
+        "outbound": "global-media"
+      },
+      {
+        "domain_regex": [
+          "^ewcdn[0-9]+\\.nowe\\.com$"
+        ],
+        "action": "route",
+        "outbound": "global-media"
       },
       {
         "domain_suffix": [
@@ -53772,6 +54395,27 @@
         ],
         "action": "route",
         "outbound": "global-media"
+      },
+      {
+        "domain_regex": [
+          ".+\\.awsdns-[0-9][0-9]\\.(co\\.uk|com|net|org)$"
+        ],
+        "action": "route",
+        "outbound": "amazon-portable"
+      },
+      {
+        "domain_regex": [
+          ".+\\.awsdns-cn-[0-9][0-9]\\.(biz|com|net|top)$"
+        ],
+        "action": "route",
+        "outbound": "amazon-portable"
+      },
+      {
+        "domain_regex": [
+          ".+\\.awsdns-cn-[0-9][a-e0-9]\\.cn$"
+        ],
+        "action": "route",
+        "outbound": "amazon-portable"
       },
       {
         "domain_suffix": [
@@ -84574,6 +85218,20 @@
         "outbound": "github"
       },
       {
+        "domain_regex": [
+          "^r+[0-9]+(---|\\.)sn-(2x3|ni5|j5o)[A-Za-z0-9_]{5}\\.googlevideo\\.com$"
+        ],
+        "action": "route",
+        "outbound": "google"
+      },
+      {
+        "domain_regex": [
+          "^r+[0-9]+(---|\\.)sn-(2x3|ni5|j5o)[A-Za-z0-9_]{5}\\.xn--ngstr-lra8j\\.com$"
+        ],
+        "action": "route",
+        "outbound": "google"
+      },
+      {
         "domain_suffix": [
           "0emm.com"
         ],
@@ -97753,6 +98411,27 @@
         ],
         "action": "route",
         "outbound": "microsoft"
+      },
+      {
+        "domain_regex": [
+          ".+\\.awsdns-cn-[0-9][0-9]\\.(biz|com|net|top)$"
+        ],
+        "action": "route",
+        "outbound": "DIRECT"
+      },
+      {
+        "domain_regex": [
+          ".+\\.awsdns-cn-[0-9][a-e0-9]\\.cn$"
+        ],
+        "action": "route",
+        "outbound": "DIRECT"
+      },
+      {
+        "domain_regex": [
+          "^.+-mihayo\\.akamaized\\.net$"
+        ],
+        "action": "route",
+        "outbound": "DIRECT"
       },
       {
         "domain_suffix": [

@@ -1,0 +1,10 @@
+DOMAIN-WILDCARD,speed.coe.ad.[a-z][a-z].prod.hosts.ooklaserver.net
+DOMAIN-WILDCARD,speed.coe.ad.[a-z][a-z][a-z].prod.hosts.ooklaserver.net
+DOMAIN-WILDCARD,speed.coe.ad.[a-z][a-z][a-z][a-z].prod.hosts.ooklaserver.net
+DOMAIN-WILDCARD,speed.coe.ad.[a-z][a-z][a-z][a-z][a-z].prod.hosts.ooklaserver.net
+DOMAIN-WILDCARD,speed.coe.ad.[a-z][a-z][a-z][a-z][a-z][a-z].prod.hosts.ooklaserver.net
+DOMAIN-WILDCARD,speed.open.ad.[a-z][a-z].prod.hosts.ooklaserver.net
+DOMAIN-WILDCARD,speed.open.ad.[a-z][a-z][a-z].prod.hosts.ooklaserver.net
+DOMAIN-WILDCARD,speed.open.ad.[a-z][a-z][a-z][a-z].prod.hosts.ooklaserver.net
+DOMAIN-WILDCARD,speed.open.ad.[a-z][a-z][a-z][a-z][a-z].prod.hosts.ooklaserver.net
+DOMAIN-WILDCARD,speed.open.ad.[a-z][a-z][a-z][a-z][a-z][a-z].prod.hosts.ooklaserver.net

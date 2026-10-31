@@ -7,7 +7,7 @@
     "anti-ad": "REJECT",
     "china-ipv4": "DIRECT",
     "china-ipv6": "DIRECT",
-    "unbreak": "DIRECT"
+    "connectivity-probes": "DIRECT"
   },
   "initialSelection": {
     "apple": "DIRECT",
@@ -38,10 +38,12 @@
     "google-cn": "DIRECT",
     "steam-cn": "DIRECT",
     "icloud": "DIRECT",
-    "appstore": "DIRECT"
+    "appstore": "DIRECT",
+    "unbreak": "DIRECT"
   },
   "first": [
     "lan",
+    "connectivity-probes",
     "unbreak",
     "adblock"
   ],

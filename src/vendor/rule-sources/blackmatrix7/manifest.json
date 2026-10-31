@@ -35,6 +35,16 @@
       "originalBytes": true
     },
     {
+      "path": "rule/Clash/Direct/Direct.yaml",
+      "upstreamUrl": "https://raw.githubusercontent.com/blackmatrix7/ios_rule_script/0b6897dc17e0c513d25449c935a9694818e32f0c/rule/Clash/Direct/Direct.yaml",
+      "gitBlobSha": "3b517c3b13b004e9191cc4421f7bfc5b94835718",
+      "sha256": "059ab2909b5c55fde7d7cb7b0c171dea2566c6e8d0d9e0bed5947db5452dfbdc",
+      "bytes": 8416,
+      "license": "GPL-2.0-only",
+      "executable": false,
+      "originalBytes": true
+    },
+    {
       "path": "rule/Clash/GlobalMedia/GlobalMedia_Classical.yaml",
       "upstreamUrl": "https://raw.githubusercontent.com/blackmatrix7/ios_rule_script/0b6897dc17e0c513d25449c935a9694818e32f0c/rule/Clash/GlobalMedia/GlobalMedia_Classical.yaml",
       "gitBlobSha": "1d0c5144e1b16a6494b8bcce9cbca225c52d1ff4",

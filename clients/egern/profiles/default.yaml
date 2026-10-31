@@ -36,8 +36,16 @@ dns:
         value: local
         update_interval: 86400
     - proxy_rule_set:
+        match: https://raw.githubusercontent.com/luckiestultra/netatlas/main/clients/egern/rules/connectivity-probes.yaml
+        value: domestic
+        update_interval: 86400
+    - proxy_rule_set:
         match: https://raw.githubusercontent.com/luckiestultra/netatlas/main/clients/egern/rules/unbreak.yaml
         value: domestic
+        update_interval: 86400
+    - proxy_rule_set:
+        match: https://raw.githubusercontent.com/luckiestultra/netatlas/main/clients/egern/rules/adblock-regex.yaml
+        value: reject
         update_interval: 86400
     - proxy_rule_set:
         match: https://raw.githubusercontent.com/luckiestultra/netatlas/main/clients/egern/rules/adblock.yaml
@@ -224,6 +232,10 @@ dns:
         value: domestic
         update_interval: 86400
     - proxy_rule_set:
+        match: https://raw.githubusercontent.com/luckiestultra/netatlas/main/clients/egern/rules/netflix-regex.yaml
+        value: remote
+        update_interval: 86400
+    - proxy_rule_set:
         match: https://raw.githubusercontent.com/luckiestultra/netatlas/main/clients/egern/rules/netflix.yaml
         value: remote
         update_interval: 86400
@@ -245,6 +257,10 @@ dns:
         update_interval: 86400
     - proxy_rule_set:
         match: https://raw.githubusercontent.com/luckiestultra/netatlas/main/clients/egern/rules/onedrive.yaml
+        value: remote
+        update_interval: 86400
+    - proxy_rule_set:
+        match: https://raw.githubusercontent.com/luckiestultra/netatlas/main/clients/egern/rules/openai-regex.yaml
         value: remote
         update_interval: 86400
     - proxy_rule_set:
@@ -304,6 +320,10 @@ dns:
         value: remote
         update_interval: 86400
     - proxy_rule_set:
+        match: https://raw.githubusercontent.com/luckiestultra/netatlas/main/clients/egern/rules/speedtest-regex.yaml
+        value: remote
+        update_interval: 86400
+    - proxy_rule_set:
         match: https://raw.githubusercontent.com/luckiestultra/netatlas/main/clients/egern/rules/speedtest.yaml
         value: remote
         update_interval: 86400
@@ -345,6 +365,10 @@ dns:
         update_interval: 86400
     - proxy_rule_set:
         match: https://raw.githubusercontent.com/luckiestultra/netatlas/main/clients/egern/rules/vercel.yaml
+        value: remote
+        update_interval: 86400
+    - proxy_rule_set:
+        match: https://raw.githubusercontent.com/luckiestultra/netatlas/main/clients/egern/rules/viu-portable-regex.yaml
         value: remote
         update_interval: 86400
     - proxy_rule_set:
@@ -428,11 +452,23 @@ dns:
         value: domestic
         update_interval: 86400
     - proxy_rule_set:
+        match: https://raw.githubusercontent.com/luckiestultra/netatlas/main/clients/egern/rules/hmt-media-regex.yaml
+        value: remote
+        update_interval: 86400
+    - proxy_rule_set:
         match: https://raw.githubusercontent.com/luckiestultra/netatlas/main/clients/egern/rules/hmt-media.yaml
         value: remote
         update_interval: 86400
     - proxy_rule_set:
+        match: https://raw.githubusercontent.com/luckiestultra/netatlas/main/clients/egern/rules/global-media-regex.yaml
+        value: remote
+        update_interval: 86400
+    - proxy_rule_set:
         match: https://raw.githubusercontent.com/luckiestultra/netatlas/main/clients/egern/rules/global-media.yaml
+        value: remote
+        update_interval: 86400
+    - proxy_rule_set:
+        match: https://raw.githubusercontent.com/luckiestultra/netatlas/main/clients/egern/rules/amazon-portable-regex.yaml
         value: remote
         update_interval: 86400
     - proxy_rule_set:
@@ -468,12 +504,20 @@ dns:
         value: remote
         update_interval: 86400
     - proxy_rule_set:
+        match: https://raw.githubusercontent.com/luckiestultra/netatlas/main/clients/egern/rules/google-regex.yaml
+        value: remote
+        update_interval: 86400
+    - proxy_rule_set:
         match: https://raw.githubusercontent.com/luckiestultra/netatlas/main/clients/egern/rules/google.yaml
         value: remote
         update_interval: 86400
     - proxy_rule_set:
         match: https://raw.githubusercontent.com/luckiestultra/netatlas/main/clients/egern/rules/microsoft.yaml
         value: remote
+        update_interval: 86400
+    - proxy_rule_set:
+        match: https://raw.githubusercontent.com/luckiestultra/netatlas/main/clients/egern/rules/china-regex.yaml
+        value: domestic
         update_interval: 86400
     - proxy_rule_set:
         match: https://raw.githubusercontent.com/luckiestultra/netatlas/main/clients/egern/rules/china.yaml
@@ -508,6 +552,18 @@ policy_groups:
       interval: 600
       tolerance: 50
       latency_test_url: https://www.gstatic.com/generate_204
+  - select:
+      name: 规则修正
+      policies:
+        - DIRECT
+        - 节点选择
+        - 自动选择
+        - 香港节点
+        - 台湾节点
+        - 日本节点
+        - 韩国节点
+        - 新加坡节点
+        - 美国节点
   - select:
       name: AI服务
       policies:
@@ -718,8 +774,16 @@ rules:
       policy: DIRECT
       update_interval: 86400
   - rule_set:
-      match: https://raw.githubusercontent.com/luckiestultra/netatlas/main/clients/egern/rules/unbreak.yaml
+      match: https://raw.githubusercontent.com/luckiestultra/netatlas/main/clients/egern/rules/connectivity-probes.yaml
       policy: DIRECT
+      update_interval: 86400
+  - rule_set:
+      match: https://raw.githubusercontent.com/luckiestultra/netatlas/main/clients/egern/rules/unbreak.yaml
+      policy: 规则修正
+      update_interval: 86400
+  - rule_set:
+      match: https://raw.githubusercontent.com/luckiestultra/netatlas/main/clients/egern/rules/adblock-regex.yaml
+      policy: REJECT
       update_interval: 86400
   - rule_set:
       match: https://raw.githubusercontent.com/luckiestultra/netatlas/main/clients/egern/rules/adblock.yaml
@@ -906,6 +970,10 @@ rules:
       policy: 国内媒体
       update_interval: 86400
   - rule_set:
+      match: https://raw.githubusercontent.com/luckiestultra/netatlas/main/clients/egern/rules/netflix-regex.yaml
+      policy: 国外媒体
+      update_interval: 86400
+  - rule_set:
       match: https://raw.githubusercontent.com/luckiestultra/netatlas/main/clients/egern/rules/netflix.yaml
       policy: 国外媒体
       update_interval: 86400
@@ -928,6 +996,10 @@ rules:
   - rule_set:
       match: https://raw.githubusercontent.com/luckiestultra/netatlas/main/clients/egern/rules/onedrive.yaml
       policy: 微软服务
+      update_interval: 86400
+  - rule_set:
+      match: https://raw.githubusercontent.com/luckiestultra/netatlas/main/clients/egern/rules/openai-regex.yaml
+      policy: AI服务
       update_interval: 86400
   - rule_set:
       match: https://raw.githubusercontent.com/luckiestultra/netatlas/main/clients/egern/rules/openai.yaml
@@ -986,6 +1058,10 @@ rules:
       policy: 国外媒体
       update_interval: 86400
   - rule_set:
+      match: https://raw.githubusercontent.com/luckiestultra/netatlas/main/clients/egern/rules/speedtest-regex.yaml
+      policy: 国外网站
+      update_interval: 86400
+  - rule_set:
       match: https://raw.githubusercontent.com/luckiestultra/netatlas/main/clients/egern/rules/speedtest.yaml
       policy: 国外网站
       update_interval: 86400
@@ -1028,6 +1104,10 @@ rules:
   - rule_set:
       match: https://raw.githubusercontent.com/luckiestultra/netatlas/main/clients/egern/rules/vercel.yaml
       policy: 开发服务
+      update_interval: 86400
+  - rule_set:
+      match: https://raw.githubusercontent.com/luckiestultra/netatlas/main/clients/egern/rules/viu-portable-regex.yaml
+      policy: 国外媒体
       update_interval: 86400
   - rule_set:
       match: https://raw.githubusercontent.com/luckiestultra/netatlas/main/clients/egern/rules/viu-portable.yaml
@@ -1110,12 +1190,24 @@ rules:
       policy: 国内媒体
       update_interval: 86400
   - rule_set:
+      match: https://raw.githubusercontent.com/luckiestultra/netatlas/main/clients/egern/rules/hmt-media-regex.yaml
+      policy: 国外媒体
+      update_interval: 86400
+  - rule_set:
       match: https://raw.githubusercontent.com/luckiestultra/netatlas/main/clients/egern/rules/hmt-media.yaml
+      policy: 国外媒体
+      update_interval: 86400
+  - rule_set:
+      match: https://raw.githubusercontent.com/luckiestultra/netatlas/main/clients/egern/rules/global-media-regex.yaml
       policy: 国外媒体
       update_interval: 86400
   - rule_set:
       match: https://raw.githubusercontent.com/luckiestultra/netatlas/main/clients/egern/rules/global-media.yaml
       policy: 国外媒体
+      update_interval: 86400
+  - rule_set:
+      match: https://raw.githubusercontent.com/luckiestultra/netatlas/main/clients/egern/rules/amazon-portable-regex.yaml
+      policy: 国外网站
       update_interval: 86400
   - rule_set:
       match: https://raw.githubusercontent.com/luckiestultra/netatlas/main/clients/egern/rules/amazon-portable.yaml
@@ -1150,6 +1242,10 @@ rules:
       policy: 开发服务
       update_interval: 86400
   - rule_set:
+      match: https://raw.githubusercontent.com/luckiestultra/netatlas/main/clients/egern/rules/google-regex.yaml
+      policy: 谷歌服务
+      update_interval: 86400
+  - rule_set:
       match: https://raw.githubusercontent.com/luckiestultra/netatlas/main/clients/egern/rules/google.yaml
       policy: 谷歌服务
       update_interval: 86400
@@ -1158,7 +1254,19 @@ rules:
       policy: 微软服务
       update_interval: 86400
   - rule_set:
+      match: https://raw.githubusercontent.com/luckiestultra/netatlas/main/clients/egern/rules/china-regex.yaml
+      policy: DIRECT
+      update_interval: 86400
+  - rule_set:
       match: https://raw.githubusercontent.com/luckiestultra/netatlas/main/clients/egern/rules/china.yaml
+      policy: DIRECT
+      update_interval: 86400
+  - rule_set:
+      match: https://raw.githubusercontent.com/luckiestultra/netatlas/main/clients/egern/rules/china-asn.yaml
+      policy: DIRECT
+      update_interval: 86400
+  - rule_set:
+      match: https://raw.githubusercontent.com/luckiestultra/netatlas/main/clients/egern/rules/geoip-cn.yaml
       policy: DIRECT
       update_interval: 86400
   - rule_set:
@@ -1171,3 +1279,5 @@ rules:
       update_interval: 86400
   - default:
       policy: 漏网之鱼
+geoip_db_url: https://raw.githubusercontent.com/P3TERX/GeoLite.mmdb/download/GeoLite2-Country.mmdb
+asn_db_url: https://raw.githubusercontent.com/P3TERX/GeoLite.mmdb/download/GeoLite2-ASN.mmdb

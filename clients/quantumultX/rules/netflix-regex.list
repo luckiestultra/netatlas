@@ -1,0 +1,8 @@
+host-wildcard,*.apiproxy-device-prod-nlb-?*.amazonaws.com,netflix
+host-wildcard,*.apiproxy-website-nlb-prod-?*.amazonaws.com,netflix
+host-wildcard,*.dualstack.apiproxy-?*.amazonaws.com,netflix
+host-wildcard,*.dualstack.ichnaea-web-?*.amazonaws.com,netflix
+host-wildcard,apiproxy-device-prod-nlb-?*.amazonaws.com,netflix
+host-wildcard,apiproxy-website-nlb-prod-?*.amazonaws.com,netflix
+host-wildcard,dualstack.apiproxy-?*.amazonaws.com,netflix
+host-wildcard,dualstack.ichnaea-web-?*.amazonaws.com,netflix

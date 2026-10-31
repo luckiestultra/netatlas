@@ -9,8 +9,9 @@ import { promisify } from 'node:util';
 import { parse as parseYaml, stringify as stringifyYaml } from 'yaml';
 import { loadCatalog } from './build.mjs';
 import { renderRuleset } from './exporters.mjs';
+import { profileRoutingResources } from './routing-extensions.mjs';
 import { renderManagedProfile, managedModel } from './managed-profiles.mjs';
-import { waitForMihomoRunning } from './native.mjs';
+import { seedNativeDatabaseFixtures, waitForMihomoRunning } from './native.mjs';
 import { assertManagedPaths } from './managed-paths.mjs';
 
 const execute = promisify(execFile);
@@ -233,6 +234,9 @@ export async function runManagedProfileVerification({ root, binaries, onProgress
       const output = renderRuleset(client, set);
       resources.set(`/clients/${client}/${output.path}`, { client, id: set.id, content: output.content });
     }
+    for (const client of ['mihomo', 'singBox']) for (const output of profileRoutingResources(client, catalog.rulesets)) {
+      resources.set(`/clients/${client}/${output.path}`, { client, id: output.id, content: output.content });
+    }
     resourceServer = track(http.createServer((request, response) => {
       if (request.url === '/subscription.yaml') {
         downloads.push({ kind: 'subscription', name: sourceState.subscription });
@@ -259,6 +263,7 @@ export async function runManagedProfileVerification({ root, binaries, onProgress
       const publicObject = client === 'mihomo' ? parseYaml(publicProfile.content) : JSON.parse(publicProfile.content);
       assert.ok(client === 'mihomo' ? publicObject.tun?.enable : publicObject.inbounds.some(inbound => inbound.type === 'tun'));
       const publicCheckDirectory = path.join(directory, `${client}-public-syntax`); await mkdir(publicCheckDirectory);
+      if (client === 'mihomo') await seedNativeDatabaseFixtures(publicCheckDirectory);
       const publicFile = path.join(publicCheckDirectory, client === 'mihomo' ? 'default.yaml' : 'default.json');
       await writeFile(publicFile, publicProfile.content);
       await execute(binaries[client], client === 'mihomo' ? ['-t', '-f', publicFile, '-d', publicCheckDirectory] : ['check', '-c', publicFile], { cwd: publicCheckDirectory });
@@ -287,10 +292,11 @@ export async function runManagedProfileVerification({ root, binaries, onProgress
         if (['url-test', 'urltest'].includes(group.type)) group.url = `http://127.0.0.1:${targetPort}/health`;
       }
       const runtimeDirectory = path.join(directory, client); await mkdir(runtimeDirectory);
+      const databaseFixtures = client === 'mihomo' ? await seedNativeDatabaseFixtures(runtimeDirectory) : null;
       const output = path.join(runtimeDirectory, client === 'mihomo' ? 'default.yaml' : 'default.json');
       const content = client === 'mihomo' ? stringifyYaml(config) : JSON.stringify(config, null, 2) + '\n';
       await writeFile(output, content);
-      profiles.push({ client, sourceProfileSha256: sha256(rendered.content), checkedSnapshot: path.relative(root, output), runtimeProfileSha256: sha256(content), remoteProviders: model.rules.length, defaultUpdateSeconds: 86400, captureTraffic: false, fixtureOverrides: ['captureTraffic: false (no TUN)', 'health check URL', ...(client === 'singBox' ? ['adblock native update interval: 1s'] : [])] });
+      profiles.push({ client, sourceProfileSha256: sha256(rendered.content), checkedSnapshot: path.relative(root, output), runtimeProfileSha256: sha256(content), remoteProviders: model.rules.length, defaultUpdateSeconds: 86400, captureTraffic: false, databaseFixtures, fixtureOverrides: ['captureTraffic: false (no TUN)', 'health check URL', ...(client === 'mihomo' ? ['fresh artificial MMDB cache (no external database download)'] : ['adblock native update interval: 1s'])] });
       await execute(binaries[client], client === 'mihomo' ? ['-t', '-f', output, '-d', runtimeDirectory] : ['check', '-c', output], { cwd: runtimeDirectory });
       onProgress(`Managed App profile: ${client} actual HTTP rule providers, native nodes, DNS and HTTP/SOCKS routing`);
       const marker = `netatlas-mihomo-running-${randomUUID()}`, markerPath = path.join(runtimeDirectory, marker);

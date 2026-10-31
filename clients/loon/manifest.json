@@ -2,14 +2,589 @@
   "version": 1,
   "client": "loon",
   "builder": "netatlas@0.1.0",
-  "inputSha256": "cd467a13326c5eebed7f4ad5b84bda0ff3fada8bfc270938edd1c697d9788265",
+  "inputSha256": "8e6fb11a3cb682e8def873065fb045eaaaaeb084d91a02cc472e12647f221779",
   "baseUrl": "https://raw.githubusercontent.com/luckiestultra/netatlas/main",
   "targetVersion": null,
   "counts": {
-    "defaultRuleSets": 114,
-    "defaultEntries": 29103,
+    "defaultRuleSets": 115,
+    "defaultEntries": 29153,
     "optionalRuleSets": 3,
-    "totalEntries": 136894
+    "totalEntries": 136944
+  },
+  "routingExtensions": {
+    "native": {
+      "supported": true,
+      "iniFields": {
+        "geoip-url": "https://raw.githubusercontent.com/P3TERX/GeoLite.mmdb/download/GeoLite2-Country.mmdb",
+        "ipasn-url": "https://raw.githubusercontent.com/P3TERX/GeoLite.mmdb/download/GeoLite2-ASN.mmdb"
+      },
+      "configFields": {},
+      "guidance": [
+        "Native GeoIP and ASN database URL fields are emitted; keep Loon's database updates enabled.",
+        "ipasn-url requires Loon 3.2.3 (754) or later."
+      ],
+      "references": [
+        "https://nsloon.app/en/docs/General/",
+        "https://nsloon.app/en/docs/Rule/ip_rule/"
+      ],
+      "databaseUpdate": "native-url"
+    },
+    "regex": {
+      "supportedExpressions": 16,
+      "unsupportedExpressions": 8,
+      "expressions": [
+        {
+          "sourceId": "openai",
+          "file": "openai",
+          "line": 21,
+          "rule": "regexp:^chatgpt-async-webps-prod-\\S+-\\d+\\.webpubsub\\.azure\\.com$",
+          "sourceLine": "regexp:^chatgpt-async-webps-prod-\\S+-\\d+\\.webpubsub\\.azure\\.com$",
+          "reason": "Excluded from the five-type portable catalog: no equivalent cross-client regex matcher. Keep this exact expression recorded; newly introduced expressions block sync.",
+          "status": "unsupported",
+          "proof": "DOMAIN-WILDCARD character classes require build 1008+. No domain-regex type is documented.",
+          "entries": []
+        },
+        {
+          "sourceId": "google",
+          "file": "google-play",
+          "line": 12,
+          "rule": "regexp:^r+[0-9]+(---|\\.)sn-(2x3|ni5|j5o)\\w{5}\\.xn--ngstr-lra8j\\.com$",
+          "sourceLine": "regexp:^r+[0-9]+(---|\\.)sn-(2x3|ni5|j5o)\\w{5}\\.xn--ngstr-lra8j\\.com$ @cn",
+          "reason": "Excluded from the five-type portable catalog: no equivalent cross-client regex matcher. Keep this exact expression recorded; newly introduced expressions block sync.",
+          "status": "unsupported",
+          "proof": "DOMAIN-WILDCARD character classes require build 1008+. No domain-regex type is documented.",
+          "entries": []
+        },
+        {
+          "sourceId": "google",
+          "file": "google-play",
+          "line": 14,
+          "rule": "regexp:^r+[0-9]+(---|\\.)sn-(2x3|ni5|j5o)\\w{5}\\.googlevideo\\.com$",
+          "sourceLine": "regexp:^r+[0-9]+(---|\\.)sn-(2x3|ni5|j5o)\\w{5}\\.googlevideo\\.com$ @cn",
+          "reason": "Excluded from the five-type portable catalog: no equivalent cross-client regex matcher. Keep this exact expression recorded; newly introduced expressions block sync.",
+          "status": "unsupported",
+          "proof": "DOMAIN-WILDCARD character classes require build 1008+. No domain-regex type is documented.",
+          "entries": []
+        },
+        {
+          "sourceId": "netflix",
+          "file": "netflix",
+          "line": 28,
+          "rule": "regexp:(^|\\.)apiproxy-device-prod-nlb-.+\\.amazonaws\\.com$",
+          "sourceLine": "regexp:(^|\\.)apiproxy-device-prod-nlb-.+\\.amazonaws\\.com$",
+          "reason": "Excluded from the five-type portable catalog: no equivalent cross-client regex matcher. Keep this exact expression recorded; newly introduced expressions block sync.",
+          "status": "exact-wildcard",
+          "proof": "Root-or-dot-boundary plus one-or-more arbitrary characters is exactly two whole-host glob patterns.",
+          "entries": [
+            {
+              "type": "domain-wildcard",
+              "value": "apiproxy-device-prod-nlb-?*.amazonaws.com"
+            },
+            {
+              "type": "domain-wildcard",
+              "value": "*.apiproxy-device-prod-nlb-?*.amazonaws.com"
+            }
+          ]
+        },
+        {
+          "sourceId": "netflix",
+          "file": "netflix",
+          "line": 29,
+          "rule": "regexp:(^|\\.)apiproxy-website-nlb-prod-.+\\.amazonaws\\.com$",
+          "sourceLine": "regexp:(^|\\.)apiproxy-website-nlb-prod-.+\\.amazonaws\\.com$",
+          "reason": "Excluded from the five-type portable catalog: no equivalent cross-client regex matcher. Keep this exact expression recorded; newly introduced expressions block sync.",
+          "status": "exact-wildcard",
+          "proof": "Root-or-dot-boundary plus one-or-more arbitrary characters is exactly two whole-host glob patterns.",
+          "entries": [
+            {
+              "type": "domain-wildcard",
+              "value": "apiproxy-website-nlb-prod-?*.amazonaws.com"
+            },
+            {
+              "type": "domain-wildcard",
+              "value": "*.apiproxy-website-nlb-prod-?*.amazonaws.com"
+            }
+          ]
+        },
+        {
+          "sourceId": "netflix",
+          "file": "netflix",
+          "line": 30,
+          "rule": "regexp:(^|\\.)dualstack\\.apiproxy-.+\\.amazonaws\\.com$",
+          "sourceLine": "regexp:(^|\\.)dualstack\\.apiproxy-.+\\.amazonaws\\.com$",
+          "reason": "Excluded from the five-type portable catalog: no equivalent cross-client regex matcher. Keep this exact expression recorded; newly introduced expressions block sync.",
+          "status": "exact-wildcard",
+          "proof": "Root-or-dot-boundary plus one-or-more arbitrary characters is exactly two whole-host glob patterns.",
+          "entries": [
+            {
+              "type": "domain-wildcard",
+              "value": "dualstack.apiproxy-?*.amazonaws.com"
+            },
+            {
+              "type": "domain-wildcard",
+              "value": "*.dualstack.apiproxy-?*.amazonaws.com"
+            }
+          ]
+        },
+        {
+          "sourceId": "netflix",
+          "file": "netflix",
+          "line": 31,
+          "rule": "regexp:(^|\\.)dualstack\\.ichnaea-web-.+\\.amazonaws\\.com$",
+          "sourceLine": "regexp:(^|\\.)dualstack\\.ichnaea-web-.+\\.amazonaws\\.com$",
+          "reason": "Excluded from the five-type portable catalog: no equivalent cross-client regex matcher. Keep this exact expression recorded; newly introduced expressions block sync.",
+          "status": "exact-wildcard",
+          "proof": "Root-or-dot-boundary plus one-or-more arbitrary characters is exactly two whole-host glob patterns.",
+          "entries": [
+            {
+              "type": "domain-wildcard",
+              "value": "dualstack.ichnaea-web-?*.amazonaws.com"
+            },
+            {
+              "type": "domain-wildcard",
+              "value": "*.dualstack.ichnaea-web-?*.amazonaws.com"
+            }
+          ]
+        },
+        {
+          "sourceId": "speedtest",
+          "file": "ookla-speedtest",
+          "line": 26,
+          "rule": "regexp:^speed\\.(coe|open)\\.ad\\.[a-z]{2,6}\\.prod\\.hosts\\.ooklaserver\\.net$",
+          "sourceLine": "regexp:^speed\\.(coe|open)\\.ad\\.[a-z]{2,6}\\.prod\\.hosts\\.ooklaserver\\.net$ @ads",
+          "reason": "Excluded from the five-type portable catalog: no equivalent cross-client regex matcher. Keep this exact expression recorded; newly introduced expressions block sync.",
+          "status": "exact-wildcard",
+          "proof": "Two literal alternatives times each of the five allowed lengths, retaining every ASCII letter class.",
+          "entries": [
+            {
+              "type": "domain-wildcard",
+              "value": "speed.coe.ad.[a-z][a-z].prod.hosts.ooklaserver.net"
+            },
+            {
+              "type": "domain-wildcard",
+              "value": "speed.coe.ad.[a-z][a-z][a-z].prod.hosts.ooklaserver.net"
+            },
+            {
+              "type": "domain-wildcard",
+              "value": "speed.coe.ad.[a-z][a-z][a-z][a-z].prod.hosts.ooklaserver.net"
+            },
+            {
+              "type": "domain-wildcard",
+              "value": "speed.coe.ad.[a-z][a-z][a-z][a-z][a-z].prod.hosts.ooklaserver.net"
+            },
+            {
+              "type": "domain-wildcard",
+              "value": "speed.coe.ad.[a-z][a-z][a-z][a-z][a-z][a-z].prod.hosts.ooklaserver.net"
+            },
+            {
+              "type": "domain-wildcard",
+              "value": "speed.open.ad.[a-z][a-z].prod.hosts.ooklaserver.net"
+            },
+            {
+              "type": "domain-wildcard",
+              "value": "speed.open.ad.[a-z][a-z][a-z].prod.hosts.ooklaserver.net"
+            },
+            {
+              "type": "domain-wildcard",
+              "value": "speed.open.ad.[a-z][a-z][a-z][a-z].prod.hosts.ooklaserver.net"
+            },
+            {
+              "type": "domain-wildcard",
+              "value": "speed.open.ad.[a-z][a-z][a-z][a-z][a-z].prod.hosts.ooklaserver.net"
+            },
+            {
+              "type": "domain-wildcard",
+              "value": "speed.open.ad.[a-z][a-z][a-z][a-z][a-z][a-z].prod.hosts.ooklaserver.net"
+            }
+          ]
+        },
+        {
+          "sourceId": "adblock",
+          "file": "ookla-speedtest",
+          "line": 26,
+          "rule": "regexp:^speed\\.(coe|open)\\.ad\\.[a-z]{2,6}\\.prod\\.hosts\\.ooklaserver\\.net$",
+          "sourceLine": "regexp:^speed\\.(coe|open)\\.ad\\.[a-z]{2,6}\\.prod\\.hosts\\.ooklaserver\\.net$ @ads",
+          "reason": "Excluded from the five-type portable catalog: no equivalent cross-client regex matcher. Keep this exact expression recorded; newly introduced expressions block sync.",
+          "status": "exact-wildcard",
+          "proof": "Two literal alternatives times each of the five allowed lengths, retaining every ASCII letter class.",
+          "entries": [
+            {
+              "type": "domain-wildcard",
+              "value": "speed.coe.ad.[a-z][a-z].prod.hosts.ooklaserver.net"
+            },
+            {
+              "type": "domain-wildcard",
+              "value": "speed.coe.ad.[a-z][a-z][a-z].prod.hosts.ooklaserver.net"
+            },
+            {
+              "type": "domain-wildcard",
+              "value": "speed.coe.ad.[a-z][a-z][a-z][a-z].prod.hosts.ooklaserver.net"
+            },
+            {
+              "type": "domain-wildcard",
+              "value": "speed.coe.ad.[a-z][a-z][a-z][a-z][a-z].prod.hosts.ooklaserver.net"
+            },
+            {
+              "type": "domain-wildcard",
+              "value": "speed.coe.ad.[a-z][a-z][a-z][a-z][a-z][a-z].prod.hosts.ooklaserver.net"
+            },
+            {
+              "type": "domain-wildcard",
+              "value": "speed.open.ad.[a-z][a-z].prod.hosts.ooklaserver.net"
+            },
+            {
+              "type": "domain-wildcard",
+              "value": "speed.open.ad.[a-z][a-z][a-z].prod.hosts.ooklaserver.net"
+            },
+            {
+              "type": "domain-wildcard",
+              "value": "speed.open.ad.[a-z][a-z][a-z][a-z].prod.hosts.ooklaserver.net"
+            },
+            {
+              "type": "domain-wildcard",
+              "value": "speed.open.ad.[a-z][a-z][a-z][a-z][a-z].prod.hosts.ooklaserver.net"
+            },
+            {
+              "type": "domain-wildcard",
+              "value": "speed.open.ad.[a-z][a-z][a-z][a-z][a-z][a-z].prod.hosts.ooklaserver.net"
+            }
+          ]
+        },
+        {
+          "sourceId": "china",
+          "file": "aws-cn",
+          "line": 31,
+          "rule": "regexp:.+\\.awsdns-cn-[0-9][0-9]\\.(biz|com|net|top)$",
+          "sourceLine": "regexp:.+\\.awsdns-cn-[0-9][0-9]\\.(biz|com|net|top)$ @cn",
+          "reason": "Reviewed exact CN regex: no equivalent rule exists in the four-type cross-client domain catalog. Preserve this expression rather than broadening it to a suffix or silently dropping new expressions; native GeoSite equivalence is not claimed.",
+          "status": "exact-wildcard",
+          "proof": "The fixed two-character classes and finite suffix alternatives are preserved by native classes or complete literal enumeration; the nonempty host prefix is ?*.",
+          "entries": [
+            {
+              "type": "domain-wildcard",
+              "value": "?*.awsdns-cn-[0-9][0-9].biz"
+            },
+            {
+              "type": "domain-wildcard",
+              "value": "?*.awsdns-cn-[0-9][0-9].com"
+            },
+            {
+              "type": "domain-wildcard",
+              "value": "?*.awsdns-cn-[0-9][0-9].net"
+            },
+            {
+              "type": "domain-wildcard",
+              "value": "?*.awsdns-cn-[0-9][0-9].top"
+            }
+          ]
+        },
+        {
+          "sourceId": "china",
+          "file": "aws-cn",
+          "line": 32,
+          "rule": "regexp:.+\\.awsdns-cn-[0-9][a-e0-9]\\.cn$",
+          "sourceLine": "regexp:.+\\.awsdns-cn-[0-9][a-e0-9]\\.cn$ @cn",
+          "reason": "Reviewed exact CN regex: no equivalent rule exists in the four-type cross-client domain catalog. Preserve this expression rather than broadening it to a suffix or silently dropping new expressions; native GeoSite equivalence is not claimed.",
+          "status": "exact-wildcard",
+          "proof": "The fixed two-character classes and finite suffix alternatives are preserved by native classes or complete literal enumeration; the nonempty host prefix is ?*.",
+          "entries": [
+            {
+              "type": "domain-wildcard",
+              "value": "?*.awsdns-cn-[0-9][a-e0-9].cn"
+            }
+          ]
+        },
+        {
+          "sourceId": "china",
+          "file": "mihoyo-cn",
+          "line": 31,
+          "rule": "regexp:^.+-mihayo\\.akamaized\\.net$",
+          "sourceLine": "regexp:^.+-mihayo\\.akamaized\\.net$ @cn",
+          "reason": "Reviewed exact CN regex: no equivalent rule exists in the four-type cross-client domain catalog. Preserve this expression rather than broadening it to a suffix or silently dropping new expressions; native GeoSite equivalence is not claimed.",
+          "status": "exact-wildcard",
+          "proof": "The anchored one-or-more arbitrary prefix is exactly ?*; all remaining characters are literal.",
+          "entries": [
+            {
+              "type": "domain-wildcard",
+              "value": "?*-mihayo.akamaized.net"
+            }
+          ]
+        },
+        {
+          "sourceId": "amazon-portable",
+          "file": "aws-cn",
+          "line": 31,
+          "rule": "regexp:.+\\.awsdns-cn-[0-9][0-9]\\.(biz|com|net|top)$",
+          "sourceLine": "regexp:.+\\.awsdns-cn-[0-9][0-9]\\.(biz|com|net|top)$ @cn",
+          "reason": "Explicit omission from amazon-portable: this unbounded nameserver regex has no exact domain/domain-suffix equivalent. This named projection does not claim complete upstream semantics; newly changed expressions must fail sync.",
+          "status": "exact-wildcard",
+          "proof": "The fixed two-character classes and finite suffix alternatives are preserved by native classes or complete literal enumeration; the nonempty host prefix is ?*.",
+          "entries": [
+            {
+              "type": "domain-wildcard",
+              "value": "?*.awsdns-cn-[0-9][0-9].biz"
+            },
+            {
+              "type": "domain-wildcard",
+              "value": "?*.awsdns-cn-[0-9][0-9].com"
+            },
+            {
+              "type": "domain-wildcard",
+              "value": "?*.awsdns-cn-[0-9][0-9].net"
+            },
+            {
+              "type": "domain-wildcard",
+              "value": "?*.awsdns-cn-[0-9][0-9].top"
+            }
+          ]
+        },
+        {
+          "sourceId": "amazon-portable",
+          "file": "aws-cn",
+          "line": 32,
+          "rule": "regexp:.+\\.awsdns-cn-[0-9][a-e0-9]\\.cn$",
+          "sourceLine": "regexp:.+\\.awsdns-cn-[0-9][a-e0-9]\\.cn$ @cn",
+          "reason": "Explicit omission from amazon-portable: this unbounded nameserver regex has no exact domain/domain-suffix equivalent. This named projection does not claim complete upstream semantics; newly changed expressions must fail sync.",
+          "status": "exact-wildcard",
+          "proof": "The fixed two-character classes and finite suffix alternatives are preserved by native classes or complete literal enumeration; the nonempty host prefix is ?*.",
+          "entries": [
+            {
+              "type": "domain-wildcard",
+              "value": "?*.awsdns-cn-[0-9][a-e0-9].cn"
+            }
+          ]
+        },
+        {
+          "sourceId": "amazon-portable",
+          "file": "aws",
+          "line": 61,
+          "rule": "regexp:.+\\.awsdns-[0-9][0-9]\\.(co\\.uk|com|net|org)$",
+          "sourceLine": "regexp:.+\\.awsdns-[0-9][0-9]\\.(co\\.uk|com|net|org)$",
+          "reason": "Explicit omission from amazon-portable: this unbounded nameserver regex has no exact domain/domain-suffix equivalent. This named projection does not claim complete upstream semantics; newly changed expressions must fail sync.",
+          "status": "exact-wildcard",
+          "proof": "The fixed two-character classes and finite suffix alternatives are preserved by native classes or complete literal enumeration; the nonempty host prefix is ?*.",
+          "entries": [
+            {
+              "type": "domain-wildcard",
+              "value": "?*.awsdns-[0-9][0-9].co.uk"
+            },
+            {
+              "type": "domain-wildcard",
+              "value": "?*.awsdns-[0-9][0-9].com"
+            },
+            {
+              "type": "domain-wildcard",
+              "value": "?*.awsdns-[0-9][0-9].net"
+            },
+            {
+              "type": "domain-wildcard",
+              "value": "?*.awsdns-[0-9][0-9].org"
+            }
+          ]
+        },
+        {
+          "sourceId": "viu-portable",
+          "file": "viu",
+          "line": 4,
+          "rule": "regexp:^ewcdn[0-9]+\\.nowe\\.com$",
+          "sourceLine": "regexp:^ewcdn[0-9]+\\.nowe\\.com$",
+          "reason": "Explicit omission from viu-portable and streaming unions: the unbounded numeric CDN regex cannot be finitely represented by exact portable domains. This projection does not claim complete upstream or ViuTV coverage.",
+          "status": "unsupported",
+          "proof": "DOMAIN-WILDCARD character classes require build 1008+. No domain-regex type is documented.",
+          "entries": []
+        },
+        {
+          "sourceId": "global-media",
+          "file": "netflix",
+          "line": 28,
+          "rule": "regexp:(^|\\.)apiproxy-device-prod-nlb-.+\\.amazonaws\\.com$",
+          "sourceLine": "regexp:(^|\\.)apiproxy-device-prod-nlb-.+\\.amazonaws\\.com$",
+          "reason": "Excluded from the five-type portable catalog: no equivalent cross-client regex matcher. Keep this exact expression recorded; newly introduced expressions block sync.",
+          "status": "exact-wildcard",
+          "proof": "Root-or-dot-boundary plus one-or-more arbitrary characters is exactly two whole-host glob patterns.",
+          "entries": [
+            {
+              "type": "domain-wildcard",
+              "value": "apiproxy-device-prod-nlb-?*.amazonaws.com"
+            },
+            {
+              "type": "domain-wildcard",
+              "value": "*.apiproxy-device-prod-nlb-?*.amazonaws.com"
+            }
+          ]
+        },
+        {
+          "sourceId": "global-media",
+          "file": "netflix",
+          "line": 29,
+          "rule": "regexp:(^|\\.)apiproxy-website-nlb-prod-.+\\.amazonaws\\.com$",
+          "sourceLine": "regexp:(^|\\.)apiproxy-website-nlb-prod-.+\\.amazonaws\\.com$",
+          "reason": "Excluded from the five-type portable catalog: no equivalent cross-client regex matcher. Keep this exact expression recorded; newly introduced expressions block sync.",
+          "status": "exact-wildcard",
+          "proof": "Root-or-dot-boundary plus one-or-more arbitrary characters is exactly two whole-host glob patterns.",
+          "entries": [
+            {
+              "type": "domain-wildcard",
+              "value": "apiproxy-website-nlb-prod-?*.amazonaws.com"
+            },
+            {
+              "type": "domain-wildcard",
+              "value": "*.apiproxy-website-nlb-prod-?*.amazonaws.com"
+            }
+          ]
+        },
+        {
+          "sourceId": "global-media",
+          "file": "netflix",
+          "line": 30,
+          "rule": "regexp:(^|\\.)dualstack\\.apiproxy-.+\\.amazonaws\\.com$",
+          "sourceLine": "regexp:(^|\\.)dualstack\\.apiproxy-.+\\.amazonaws\\.com$",
+          "reason": "Excluded from the five-type portable catalog: no equivalent cross-client regex matcher. Keep this exact expression recorded; newly introduced expressions block sync.",
+          "status": "exact-wildcard",
+          "proof": "Root-or-dot-boundary plus one-or-more arbitrary characters is exactly two whole-host glob patterns.",
+          "entries": [
+            {
+              "type": "domain-wildcard",
+              "value": "dualstack.apiproxy-?*.amazonaws.com"
+            },
+            {
+              "type": "domain-wildcard",
+              "value": "*.dualstack.apiproxy-?*.amazonaws.com"
+            }
+          ]
+        },
+        {
+          "sourceId": "global-media",
+          "file": "netflix",
+          "line": 31,
+          "rule": "regexp:(^|\\.)dualstack\\.ichnaea-web-.+\\.amazonaws\\.com$",
+          "sourceLine": "regexp:(^|\\.)dualstack\\.ichnaea-web-.+\\.amazonaws\\.com$",
+          "reason": "Excluded from the five-type portable catalog: no equivalent cross-client regex matcher. Keep this exact expression recorded; newly introduced expressions block sync.",
+          "status": "exact-wildcard",
+          "proof": "Root-or-dot-boundary plus one-or-more arbitrary characters is exactly two whole-host glob patterns.",
+          "entries": [
+            {
+              "type": "domain-wildcard",
+              "value": "dualstack.ichnaea-web-?*.amazonaws.com"
+            },
+            {
+              "type": "domain-wildcard",
+              "value": "*.dualstack.ichnaea-web-?*.amazonaws.com"
+            }
+          ]
+        },
+        {
+          "sourceId": "global-media",
+          "file": "viu",
+          "line": 4,
+          "rule": "regexp:^ewcdn[0-9]+\\.nowe\\.com$",
+          "sourceLine": "regexp:^ewcdn[0-9]+\\.nowe\\.com$",
+          "reason": "Explicit omission from viu-portable and streaming unions: the unbounded numeric CDN regex cannot be finitely represented by exact portable domains. This projection does not claim complete upstream or ViuTV coverage.",
+          "status": "unsupported",
+          "proof": "DOMAIN-WILDCARD character classes require build 1008+. No domain-regex type is documented.",
+          "entries": []
+        },
+        {
+          "sourceId": "hmt-media",
+          "file": "viu",
+          "line": 4,
+          "rule": "regexp:^ewcdn[0-9]+\\.nowe\\.com$",
+          "sourceLine": "regexp:^ewcdn[0-9]+\\.nowe\\.com$",
+          "reason": "Explicit omission from viu-portable and streaming unions: the unbounded numeric CDN regex cannot be finitely represented by exact portable domains. This projection does not claim complete upstream or ViuTV coverage.",
+          "status": "unsupported",
+          "proof": "DOMAIN-WILDCARD character classes require build 1008+. No domain-regex type is documented.",
+          "entries": []
+        },
+        {
+          "sourceId": "google-cn",
+          "file": "google-play",
+          "line": 12,
+          "rule": "regexp:^r+[0-9]+(---|\\.)sn-(2x3|ni5|j5o)\\w{5}\\.xn--ngstr-lra8j\\.com$",
+          "sourceLine": "regexp:^r+[0-9]+(---|\\.)sn-(2x3|ni5|j5o)\\w{5}\\.xn--ngstr-lra8j\\.com$ @cn",
+          "reason": "Explicit omission from the Google CN portable projection: this @cn-tagged unbounded Google Play CDN regex cannot be represented exactly by finite domain/domain-suffix rules. It remains selected and recorded; new expressions or attribute changes block sync.",
+          "status": "unsupported",
+          "proof": "DOMAIN-WILDCARD character classes require build 1008+. No domain-regex type is documented.",
+          "entries": []
+        },
+        {
+          "sourceId": "google-cn",
+          "file": "google-play",
+          "line": 14,
+          "rule": "regexp:^r+[0-9]+(---|\\.)sn-(2x3|ni5|j5o)\\w{5}\\.googlevideo\\.com$",
+          "sourceLine": "regexp:^r+[0-9]+(---|\\.)sn-(2x3|ni5|j5o)\\w{5}\\.googlevideo\\.com$ @cn",
+          "reason": "Explicit omission from the Google CN portable projection: this @cn-tagged unbounded Google Play CDN regex cannot be represented exactly by finite domain/domain-suffix rules. It remains selected and recorded; new expressions or attribute changes block sync.",
+          "status": "unsupported",
+          "proof": "DOMAIN-WILDCARD character classes require build 1008+. No domain-regex type is documented.",
+          "entries": []
+        }
+      ]
+    },
+    "resources": [
+      {
+        "id": "netflix-regex",
+        "sourceId": "netflix",
+        "path": "rules/netflix-regex.list",
+        "entries": 8,
+        "license": "MIT",
+        "defaultProfile": true
+      },
+      {
+        "id": "speedtest-regex",
+        "sourceId": "speedtest",
+        "path": "rules/speedtest-regex.list",
+        "entries": 10,
+        "license": "MIT",
+        "defaultProfile": true
+      },
+      {
+        "id": "adblock-regex",
+        "sourceId": "adblock",
+        "path": "rules/adblock-regex.list",
+        "entries": 10,
+        "license": "MIT",
+        "defaultProfile": true
+      },
+      {
+        "id": "china-regex",
+        "sourceId": "china",
+        "path": "rules/china-regex.list",
+        "entries": 6,
+        "license": "MIT",
+        "defaultProfile": true
+      },
+      {
+        "id": "amazon-portable-regex",
+        "sourceId": "amazon-portable",
+        "path": "rules/amazon-portable-regex.list",
+        "entries": 9,
+        "license": "MIT",
+        "defaultProfile": true
+      },
+      {
+        "id": "global-media-regex",
+        "sourceId": "global-media",
+        "path": "rules/global-media-regex.list",
+        "entries": 8,
+        "license": "MIT",
+        "defaultProfile": true
+      },
+      {
+        "id": "china-asn",
+        "sourceId": "china-ipv4",
+        "path": "rules/china-asn.list",
+        "entries": 5231,
+        "license": "MIT",
+        "defaultProfile": true
+      },
+      {
+        "id": "geoip-cn",
+        "sourceId": "china-ipv4",
+        "path": "rules/geoip-cn.list",
+        "entries": 1,
+        "license": "MIT",
+        "defaultProfile": true
+      }
+    ]
   },
   "validation": {
     "profile": "managed-resources-and-references",
@@ -3572,18 +4147,90 @@
         "tag": "network",
         "defaultProfile": true,
         "source": {
+          "repository": "ios-rule-script",
+          "format": "classical-yaml",
+          "path": "rule/Clash/Direct/Direct.yaml",
+          "selectPayload": [
+            "DOMAIN,ad.10010.com",
+            "DOMAIN,alt1-mtalk.google.com",
+            "DOMAIN,alt2-mtalk.google.com",
+            "DOMAIN,alt3-mtalk.google.com",
+            "DOMAIN,alt4-mtalk.google.com",
+            "DOMAIN,alt5-mtalk.google.com",
+            "DOMAIN,alt6-mtalk.google.com",
+            "DOMAIN,alt7-mtalk.google.com",
+            "DOMAIN,alt8-mtalk.google.com",
+            "DOMAIN,analytics.95516.com",
+            "DOMAIN,analytics.strava.com",
+            "DOMAIN,app.adjust.com",
+            "DOMAIN,app.appsflyer.com",
+            "DOMAIN,bdtj.tagtic.cn",
+            "DOMAIN,clientservices.googleapis.com",
+            "DOMAIN,dl.google.com",
+            "DOMAIN,dl.l.google.com",
+            "DOMAIN,eco-push-api-client.meiqia.com",
+            "DOMAIN,errlog.umeng.com",
+            "DOMAIN,fairplay.l.qq.com",
+            "DOMAIN,livew.l.qq.com",
+            "DOMAIN,log.mmstat.com",
+            "DOMAIN,msg.umeng.com",
+            "DOMAIN,msg.umengcloud.com",
+            "DOMAIN,mtalk.google.com",
+            "DOMAIN,new-api.meiqia.com",
+            "DOMAIN,origin-a.akamaihd.net",
+            "DOMAIN,rewards.hypixel.net",
+            "DOMAIN,sycm.mmstat.com",
+            "DOMAIN,tracking.miui.com",
+            "DOMAIN,update.googleapis.com",
+            "DOMAIN,vd.l.qq.com",
+            "DOMAIN,vi.l.qq.com",
+            "DOMAIN-KEYWORD,wb_ad",
+            "DOMAIN-SUFFIX,baomitu.com",
+            "DOMAIN-SUFFIX,blog.google",
+            "DOMAIN-SUFFIX,bootcss.com",
+            "DOMAIN-SUFFIX,dizhensubao.getui.com",
+            "DOMAIN-SUFFIX,f.video.weibocdn.com",
+            "DOMAIN-SUFFIX,fus.cdn.krcom.cn",
+            "DOMAIN-SUFFIX,googletraveladservices.com",
+            "DOMAIN-SUFFIX,jiasule.com",
+            "DOMAIN-SUFFIX,koodomobile.ca",
+            "DOMAIN-SUFFIX,koodomobile.com",
+            "DOMAIN-SUFFIX,ol.epicgames.com",
+            "DOMAIN-SUFFIX,staticfile.org",
+            "DOMAIN-SUFFIX,tracking-protection.cdn.mozilla.net",
+            "DOMAIN-SUFFIX,upaiyun.com"
+          ],
+          "localSupplement": {
+            "path": "src/supplements/unbreak.json",
+            "license": "MIT",
+            "sha256": "25e6eb74533dd8aa1d78fdc400878f66d2db6cbeec65f09468f25c8ccb1ff816"
+          },
+          "description": "Full 50-condition exception policy: 48 exact licensed original payload tokens plus two independently authored exact-host endpoint facts with primary references. No corporate parent, China/LAN set, additional process rules or widened suffix is substituted."
+        },
+        "license": "GPL-2.0-only",
+        "sha256": "3019ffda054102679c1a8bb7451a7a855cc2655032227bc135a26bc3eda92a8f",
+        "entries": 50,
+        "updatedAt": "2026-10-27T21:45:18Z",
+        "projection": "exact registered payload tokens; unrelated conditions are not included; separately attributed original exact-host supplement",
+        "excludedExpressions": []
+      },
+      {
+        "id": "connectivity-probes",
+        "tag": "network",
+        "defaultProfile": true,
+        "source": {
           "type": "local",
           "license": "MIT",
           "references": [
             "https://support.apple.com/en-ie/101555",
             "https://learn.microsoft.com/en-us/troubleshoot/windows-server/networking/troubleshoot-ncsi-guidance"
           ],
-          "description": "Small explicit connectivity-probe allowlist, not a copy or completeness claim for third-party repair sets.",
+          "description": "Original three exact first-party connectivity-probe hosts, kept separate from the complete licensed Unbreak policy.",
           "author": "NetAtlas contributors",
           "updatedAt": "2026-10-31T00:00:00Z"
         },
         "license": "MIT",
-        "sha256": "ef5fcf5a4f68fef49ff6f8a43949fe63c7ed0f12df3c78cfad878dffbd0e83bc",
+        "sha256": "d0f902ac099e1ecd4daa1c047c365ad1e24a1403fade7be447f80d75fc8a3a7e",
         "entries": 3,
         "updatedAt": "2026-10-31T00:00:00Z",
         "projection": "three exact first-party connectivity-probe hosts; no suffix matching",
@@ -3868,6 +4515,10 @@
         "sha256": "c3eda4cfb286512bb1cb6adda7f5618ad801fe402f713cf265e9a4b6a4f347a0"
       },
       {
+        "path": "src/rules/network/connectivity-probes.json",
+        "sha256": "d0f902ac099e1ecd4daa1c047c365ad1e24a1403fade7be447f80d75fc8a3a7e"
+      },
+      {
         "path": "src/rules/network/global.json",
         "sha256": "8146a29792be17bb023c40e753c808c06b25ad886c766c3c570e6b888f1b57ea"
       },
@@ -3881,7 +4532,7 @@
       },
       {
         "path": "src/rules/network/unbreak.json",
-        "sha256": "ef5fcf5a4f68fef49ff6f8a43949fe63c7ed0f12df3c78cfad878dffbd0e83bc"
+        "sha256": "3019ffda054102679c1a8bb7451a7a855cc2655032227bc135a26bc3eda92a8f"
       },
       {
         "path": "src/rules/privacy/adblock.json",
@@ -4068,6 +4719,11 @@
       "bytes": 262
     },
     {
+      "path": "fragments/native-routing.conf",
+      "sha256": "f16ae870b9da528e77b94e3d352ce1cab8b2a29f2bb564171ff294a61cde7c7c",
+      "bytes": 936
+    },
+    {
       "path": "fragments/resource-parser.conf",
       "sha256": "45b599886621cb139e7ea71738187cf348116d8326fb7fa1cc83d24218e9112d",
       "bytes": 1522
@@ -4089,8 +4745,8 @@
     },
     {
       "path": "profiles/default.conf",
-      "sha256": "9ca80834fad91aaccfabc891d02cf3af72610c93910e7e90fb6ef8c4eb2d1a1a",
-      "bytes": 20647
+      "sha256": "cb5a971f3750e6a7feb9bffa83bc9be26e5b58013f5f6440d749f4eb6a4e8156",
+      "bytes": 22360
     },
     {
       "path": "profiles/input.example.json",
@@ -4099,13 +4755,13 @@
     },
     {
       "path": "profiles/standalone.conf",
-      "sha256": "4ddb14b41842ff38675160ab2b5ef8354bb5755b6e77691f97f4d1f37e052afe",
-      "bytes": 1014797
+      "sha256": "31dc18e9923253c9ab41ef721ee5d297a07acb6c8b8dac0699f12c9b0eb6a9c4",
+      "bytes": 1129902
     },
     {
       "path": "README.md",
-      "sha256": "f40c5db7448d42d567eaa6372aa6d8f632a8dc0dbd9d444ec3dd91e40fe43390",
-      "bytes": 10185
+      "sha256": "dbdaff51074adbfbadff31131ab5468d336745c66221c6543eedfaae5cef3ab0",
+      "bytes": 11830
     },
     {
       "path": "rewrites/biliintl-region.plugin",
@@ -4143,6 +4799,11 @@
       "bytes": 207
     },
     {
+      "path": "rules/adblock-regex.list",
+      "sha256": "ce9a3dee4c2f765ff8342798d380b055ca61cf12bba01d2075de88df983ea9be",
+      "bytes": 775
+    },
+    {
       "path": "rules/adblock.list",
       "sha256": "987931df33d8991bf3293a15aa1d890912452b1f8b0f7c2e461af608c1b01266",
       "bytes": 27456
@@ -4171,6 +4832,11 @@
       "path": "rules/amap.list",
       "sha256": "dd265817d5f1bba098a1dc548775c93172b985d75dd8c12f0394aaa243abe537",
       "bytes": 443
+    },
+    {
+      "path": "rules/amazon-portable-regex.list",
+      "sha256": "9d41fc04be0ec02f8c3dee7565612a188af40891e5b631e941b8f401fb566023",
+      "bytes": 388
     },
     {
       "path": "rules/amazon-portable.list",
@@ -4223,6 +4889,11 @@
       "bytes": 27782
     },
     {
+      "path": "rules/china-asn.list",
+      "sha256": "d401a212051e8a1e083c42c28f5a2eabc88811ff9d2c5df0a448b321312ac9c2",
+      "bytes": 73130
+    },
+    {
       "path": "rules/china-ipv4.list",
       "sha256": "defbebe01221e375f4e0b525703d538e63bcc7ab3835f6adea841ad911fc4712",
       "bytes": 145383
@@ -4238,6 +4909,11 @@
       "bytes": 8428
     },
     {
+      "path": "rules/china-regex.list",
+      "sha256": "2e63a503021f6a112be06db079fe9b8363e7ba4443836fb0076cf1fa0b31e1a3",
+      "bytes": 262
+    },
+    {
       "path": "rules/china.list",
       "sha256": "7443a88783ac5e5f12f7b651c86ca252d8d2816d99a0e63c77269788d469f2d6",
       "bytes": 226768
@@ -4246,6 +4922,11 @@
       "path": "rules/claude.list",
       "sha256": "843285621740b9a45398735e6bf63b445dda11a9e7bb2c018bdfb42a7ea74063",
       "bytes": 549
+    },
+    {
+      "path": "rules/connectivity-probes.list",
+      "sha256": "48946de7b1b46d04e16cf5988609ee541f8aa7e93c7b8e3d9de199b401a78c31",
+      "bytes": 80
     },
     {
       "path": "rules/coolapk.list",
@@ -4318,6 +4999,11 @@
       "bytes": 1746
     },
     {
+      "path": "rules/geoip-cn.list",
+      "sha256": "4bdb05be5c56b12fb69910465fdf832ec2a79756ed4317d67244a91fe86314fb",
+      "bytes": 289
+    },
+    {
       "path": "rules/github-copilot.list",
       "sha256": "4cb60d4ded00a338b4f59df26b5783fca859d4701b331607bb127eb1aa897e81",
       "bytes": 269
@@ -4331,6 +5017,11 @@
       "path": "rules/gitlab.list",
       "sha256": "979c0a1c9f1e151df8a5364da732939a6a475fa4af3d04baf945381e7e0d008e",
       "bytes": 156
+    },
+    {
+      "path": "rules/global-media-regex.list",
+      "sha256": "459f2226100fbf0df7382da6a062159715049b6c045ee3af90105041fd7b2a59",
+      "bytes": 456
     },
     {
       "path": "rules/global-media.list",
@@ -4468,6 +5159,11 @@
       "bytes": 1467
     },
     {
+      "path": "rules/netflix-regex.list",
+      "sha256": "459f2226100fbf0df7382da6a062159715049b6c045ee3af90105041fd7b2a59",
+      "bytes": 456
+    },
+    {
       "path": "rules/netflix.list",
       "sha256": "3de90a5741f543406544a82c3aa4b3f2b0f59f3dcdd20b997d15f6b408d6d8fd",
       "bytes": 743
@@ -4573,6 +5269,11 @@
       "bytes": 85
     },
     {
+      "path": "rules/speedtest-regex.list",
+      "sha256": "ce9a3dee4c2f765ff8342798d380b055ca61cf12bba01d2075de88df983ea9be",
+      "bytes": 775
+    },
+    {
       "path": "rules/speedtest.list",
       "sha256": "87943d419852803d7bb3007e4a59bdc90874ca3d5654aa599487ead3f201541b",
       "bytes": 591
@@ -4639,8 +5340,8 @@
     },
     {
       "path": "rules/unbreak.list",
-      "sha256": "48946de7b1b46d04e16cf5988609ee541f8aa7e93c7b8e3d9de199b401a78c31",
-      "bytes": 80
+      "sha256": "fe80c3a00a2c8a5a54dcaf6af91cb65ff22f303ceed376783ec320e562c38823",
+      "bytes": 1368
     },
     {
       "path": "rules/vercel.list",

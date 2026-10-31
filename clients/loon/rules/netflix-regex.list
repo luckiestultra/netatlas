@@ -1,0 +1,8 @@
+DOMAIN-WILDCARD,*.apiproxy-device-prod-nlb-?*.amazonaws.com
+DOMAIN-WILDCARD,*.apiproxy-website-nlb-prod-?*.amazonaws.com
+DOMAIN-WILDCARD,*.dualstack.apiproxy-?*.amazonaws.com
+DOMAIN-WILDCARD,*.dualstack.ichnaea-web-?*.amazonaws.com
+DOMAIN-WILDCARD,apiproxy-device-prod-nlb-?*.amazonaws.com
+DOMAIN-WILDCARD,apiproxy-website-nlb-prod-?*.amazonaws.com
+DOMAIN-WILDCARD,dualstack.apiproxy-?*.amazonaws.com
+DOMAIN-WILDCARD,dualstack.ichnaea-web-?*.amazonaws.com

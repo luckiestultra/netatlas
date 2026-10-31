@@ -1,6 +1,7 @@
 import { parse } from 'yaml';
 import { managedModel } from './managed-profiles.mjs';
 import { profileRulesetsFor } from './policies.mjs';
+import { validateNativeRoutingSettings } from './routing-extensions.mjs';
 
 function sections(text) {
   const result = {}; let current;
@@ -32,6 +33,7 @@ function fields(line) {
 }
 
 export function validateManagedProfile(clientId, text, rulesets, { baseUrl } = {}) {
+  validateNativeRoutingSettings(clientId, text, rulesets);
   const model = managedModel(clientId, { rulesets, ...(baseUrl ? { baseUrl } : {}) });
   let resources = [], groups = [], fallback, extras = [], object;
   if (['quantumultX', 'surge', 'loon', 'shadowrocket'].includes(clientId)) {

@@ -1,0 +1,2 @@
+domain_regex_set:
+  - ^speed\.(coe|open)\.ad\.[a-z][a-z][a-z]?[a-z]?[a-z]?[a-z]?\.prod\.hosts\.ooklaserver\.net$
