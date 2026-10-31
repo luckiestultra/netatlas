@@ -21,7 +21,9 @@ test('custom public URLs can be built, checked and validated through the actual 
     ['tools/validate.mjs','--base-url',base],
     ['tools/validate.mjs','--client','quantumultX','--base-url',base],
   ]){
-    const result=await execute(process.execPath,args,{cwd:directory,timeout:15000});
+    // The full CN catalog and per-domain DNS policies make a cold eight-client
+    // build take about 34 seconds under concurrent tests (the old catalog was 15s).
+    const result=await execute(process.execPath,args,{cwd:directory,timeout:90000});
     assert.equal(result.stderr,'');
     assert.match(result.stdout,/Generated|Verified|Validated/);
   }

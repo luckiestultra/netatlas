@@ -44,14 +44,18 @@ test('quantumultX uses native host/IP6 types and lowercase builtins without rena
     'host-suffix,ai.example.test,test-ai',
     'final,Proxy',
   ]);
-  assert.ok(iniSection(text, 'policy').includes('static=Proxy,reject,direct'));
+  assert.ok(iniSection(text, 'policy').includes('static=Proxy,reject,direct,server-tag-regex=.+'));
+  assert.match(text, /^\[server_remote\]$/m);
   assert.doesNotMatch(text, /^no-ipv6$/m);
 });
 
 for (const client of ['surge', 'loon', 'shadowrocket']) {
   test(`${client}: explicit policy membership and ordered native IPv4/IPv6 rules`, () => {
     const text = renderProfile(client, { rulesets }).content;
-    assert.ok(iniSection(text, 'Proxy Group').includes('Proxy = select, REJECT, DIRECT'));
+    const proxyLine=iniSection(text,'Proxy Group').find(line=>line.startsWith('Proxy ='));
+    assert.deepEqual(proxyLine.split(',').slice(1).map(x=>x.trim()).filter(x=>!x.includes('=')),['REJECT','DIRECT']);
+    if(client==='surge')assert.match(proxyLine,/include-all-proxies=true/);
+    if(client==='shadowrocket')assert.match(proxyLine,/policy-regex-filter=\.\+/);
     const lines = iniSection(text, 'Rule');
     assert.equal(lines[0], 'DOMAIN,localhost,DIRECT');
     assert.equal(lines[1], 'IP-CIDR,192.168.0.0/16,DIRECT,no-resolve');
@@ -106,7 +110,8 @@ test('singBox uses native 1.14 actions, explicit builtins and local mixed inboun
   });
   assert.ok(data.outbounds.some(outbound => outbound.type === 'direct' && outbound.tag === 'DIRECT'));
   assert.ok(data.outbounds.some(outbound => outbound.type === 'block' && outbound.tag === 'REJECT'));
-  assert.deepEqual(data.route.rules, [
+  assert.deepEqual(data.route.rules[0],{action:'resolve'});
+  assert.deepEqual(data.route.rules.slice(1), [
     { domain: ['localhost'], action: 'route', outbound: 'DIRECT' },
     { ip_cidr: ['192.168.0.0/16'], action: 'route', outbound: 'DIRECT' },
     { ip_cidr: ['fc00::/7'], action: 'route', outbound: 'DIRECT' },

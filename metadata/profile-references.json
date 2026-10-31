@@ -1,0 +1,111 @@
+{
+  "observedAt": "2026-10-31",
+  "repositories": [
+    {
+      "repository": "Repcz/Tool",
+      "stars": 1194,
+      "pushedAt": "2026-10-31T02:38:59Z",
+      "license": "MIT",
+      "files": [
+        {
+          "path": "Loon/Loon.conf",
+          "commit": "14096d214d0f870ee11f8172b2f8be94e93d0663",
+          "date": "2026-08-29T06:45:59Z",
+          "source": "https://github.com/Repcz/Tool/blob/14096d214d0f870ee11f8172b2f8be94e93d0663/Loon/Loon.conf",
+          "blob": "ce6b6fa8d4c60031474138d8eee3f478d801ed26",
+          "sha256": "a4309948c0d979bc6a68c9c5d0303fdc462090deba85b7ec60ab6e7582bf68d9",
+          "bytes": 9254
+        },
+        {
+          "path": "Surge/Surge.conf",
+          "commit": "14096d214d0f870ee11f8172b2f8be94e93d0663",
+          "date": "2026-08-29T06:45:59Z",
+          "source": "https://github.com/Repcz/Tool/blob/14096d214d0f870ee11f8172b2f8be94e93d0663/Surge/Surge.conf",
+          "blob": "a6e78fb6b48108d2b057389328498398b9b01778",
+          "sha256": "79e7e86dbdb82e831c589626cd613957ff7a72f001ccd105cb0a2cc7f3e0145d",
+          "bytes": 6093
+        },
+        {
+          "path": "Egern/Egern.yaml",
+          "commit": "14096d214d0f870ee11f8172b2f8be94e93d0663",
+          "date": "2026-08-29T06:45:59Z",
+          "source": "https://github.com/Repcz/Tool/blob/14096d214d0f870ee11f8172b2f8be94e93d0663/Egern/Egern.yaml",
+          "blob": "04a365226fb98c14db13fe78ca91128af8ecb5e9",
+          "sha256": "96a61d19e9590923dec9a0f65c22f02244f199ac4bbef3204c0ea103611456ac",
+          "bytes": 11440
+        },
+        {
+          "path": "Shadowrocket/Shadowrocket.conf",
+          "commit": "14096d214d0f870ee11f8172b2f8be94e93d0663",
+          "date": "2026-08-29T06:45:59Z",
+          "source": "https://github.com/Repcz/Tool/blob/14096d214d0f870ee11f8172b2f8be94e93d0663/Shadowrocket/Shadowrocket.conf",
+          "blob": "d28fdcc2da7d28f96433ecd327895ede04ce5a66",
+          "sha256": "453b5076ead76500ac814379a52d4a6df8147b8e24cfcac559455184ad03f9d2",
+          "bytes": 5786
+        }
+      ],
+      "licenseSha256": "44cc26fb4a78aca61163a61694060a92b136f05988d2d687cfd999c08205908d"
+    },
+    {
+      "repository": "LOWERTOP/Shadowrocket",
+      "stars": 5240,
+      "pushedAt": "2026-10-17T05:58:51Z",
+      "license": null,
+      "use": "Native-field corroboration only; no verbatim text or rule/script import",
+      "file": "lazy_group.conf",
+      "headerDate": "2026-10-15",
+      "fileCommit": "e1ee7d7a201fe55cfa3ec8f93d70fd6a76a33a3f",
+      "fileDate": "2026-10-15T01:09:30Z",
+      "blob": "20e5444059f6765978feb15eeae4d0582de01743",
+      "fileSha256": "2b9a7e621301fcf4cf5ff572a6d00fda52186495c138577c6035c3b912279a86",
+      "fileBytes": 28060
+    },
+    {
+      "repository": "Orz-3/QuantumultX",
+      "stars": 4500,
+      "pushedAt": "2026-10-20T07:19:57Z",
+      "license": null,
+      "use": "Native-field corroboration only; original code, rules, scripts and certificate not copied",
+      "file": "Orz-3.conf",
+      "fileCommit": "a014cd9f8321cff8c5bd24b3b890b10c0a867499",
+      "fileDate": "2026-10-20T07:19:56Z",
+      "source": "https://github.com/Orz-3/QuantumultX/blob/a014cd9f8321cff8c5bd24b3b890b10c0a867499/Orz-3.conf"
+    },
+    {
+      "repository": "Aethersailor/Custom_OpenClash_Rules",
+      "stars": 6705,
+      "license": "CC-BY-SA-4.0",
+      "file": "cfg/yaml/Complete_YAML_Configuration_Template.yaml",
+      "fileCommit": "bf771022d2da546a02eb63d2d4e6420eb5bece6b",
+      "fileDate": "2026-10-18",
+      "use": "Behavioral reference only; no source code, listener exposure or TUN settings copied",
+      "source": "https://github.com/Aethersailor/Custom_OpenClash_Rules/blob/bf771022d2da546a02eb63d2d4e6420eb5bece6b/cfg/yaml/Complete_YAML_Configuration_Template.yaml"
+    },
+    {
+      "repository": "MetaCubeX/mihomo",
+      "stars": 35376,
+      "license": "GPL-3.0 (pinned LICENSE)",
+      "revision": "v1.19.33",
+      "use": "Official native implementation and schemas",
+      "licenseUrl": "https://github.com/MetaCubeX/mihomo/blob/v1.19.33/LICENSE"
+    },
+    {
+      "repository": "SagerNet/sing-box",
+      "license": "GPL-3.0-or-later with additional naming restriction",
+      "revision": "v1.14.4",
+      "use": "Official native implementation and schemas; no bundled executable committed",
+      "stars": 39457,
+      "licenseUrl": "https://github.com/SagerNet/sing-box/blob/v1.14.4/LICENSE"
+    }
+  ],
+  "officialReferences": [
+    "https://manual.nssurge.com/policy-groups/policy-including.html",
+    "https://manual.nssurge.com/policy-groups/fallback.html",
+    "https://manual.nssurge.com/dns/encrypted-dns.html",
+    "https://github.com/Loon0x00/LoonManual/blob/master/docs/cn/general.md",
+    "https://github.com/Loon0x00/LoonExampleConfig/blob/master/example.conf",
+    "https://egernapp.com/docs/configuration/dns/",
+    "https://egernapp.com/docs/configuration/policy_groups/"
+  ],
+  "nativeGuiTests": "Not run: no client installation/device available; do not claim contract tests are native runtime tests"
+}

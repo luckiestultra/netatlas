@@ -2,14 +2,14 @@
   "version": 1,
   "client": "quantumultX",
   "builder": "netatlas@0.1.0",
-  "inputSha256": "cb40c00f7adc7453cc39f8cfb1364b428909acf198cf2698364429ccebe1c665",
+  "inputSha256": "8aa2ef475d1269d32b0dd0f55e4694641f3eb9f9e6b133c613f7502af188980b",
   "baseUrl": "https://raw.githubusercontent.com/luckiestultra/netatlas/main",
   "targetVersion": null,
   "counts": {
-    "defaultRuleSets": 38,
-    "defaultEntries": 5459,
+    "defaultRuleSets": 40,
+    "defaultEntries": 23476,
     "optionalRuleSets": 1,
-    "totalEntries": 106141
+    "totalEntries": 124158
   },
   "validation": {
     "profile": "structural-and-references",
@@ -128,6 +128,21 @@
         "documentation": "https://raw.githubusercontent.com/privacy-protection-tools/anti-AD/cafc2bfb031a9e5ee4461721afc65b82430f2c15/README.md",
         "author": "gently and anti-AD contributors",
         "revisionDate": "2026-10-30T12:57:57Z"
+      },
+      {
+        "id": "china-operator-ip",
+        "repository": "gaoyifan/china-operator-ip",
+        "branch": "ip-lists",
+        "revision": "f7533065e164cbe0cf24b488a77ca75b8e897923",
+        "license": "MIT",
+        "licensePath": "LICENSE",
+        "licenseSha256": "8f4d03a581484143945a9fac471c3b669d5aada68361fd1f25886c3ddbdd786a",
+        "licenseUrl": "https://raw.githubusercontent.com/gaoyifan/china-operator-ip/f7533065e164cbe0cf24b488a77ca75b8e897923/LICENSE",
+        "documentation": "https://raw.githubusercontent.com/gaoyifan/china-operator-ip/0ca552913948e444853d3bce99f2f3f2477f17c7/README.md",
+        "documentationSha256": "78fd8bc4272fca728b4ef96553b3a7a879471e21ebc0498e6ab75c6bbbe60408",
+        "sourceCodeRevision": "0ca552913948e444853d3bce99f2f3f2477f17c7",
+        "author": "Yifan Gao and china-operator-ip contributors",
+        "revisionDate": "2026-10-30T09:07:05Z"
       }
     ],
     "rules": [
@@ -412,24 +427,37 @@
         "tag": "system",
         "defaultProfile": true,
         "source": {
-          "type": "local",
-          "license": "MIT",
-          "references": [
-            "https://www.baidu.com/",
-            "https://www.qq.com/",
-            "https://www.taobao.com/",
-            "https://www.bilibili.com/",
-            "https://www.jd.com/"
-          ],
-          "description": "First-party curated convenience list, not a complete China domain or IP database.",
-          "author": "netatlas contributors",
-          "updatedAt": "2026-10-31"
+          "repository": "domain-list-community",
+          "list": "cn",
+          "description": "Complete explicit cn include closure (tld-cn plus geolocation-cn), with upstream include attribute filters and three exact nonportable regex exclusions. A whole pinned data-tree audit found no external affiliations targeting any included list. Does not claim native GeoSite regex equivalence."
         },
-        "sha256": "281bf28fb2c6aa887f82684cc41c2af5fadefe9ee9cbf6d7ea9272ae94ef4c29",
-        "entries": 19,
-        "updatedAt": "2026-10-31",
-        "projection": "first-party-selection",
-        "excludedExpressions": []
+        "sha256": "0022afee1c71b56924f1a4e47334e855f15098399607999cbd6b31d5113cb845",
+        "entries": 8387,
+        "updatedAt": "2026-10-30T13:25:16Z",
+        "projection": "selected files and explicit includes; not global affiliation expansion",
+        "excludedExpressions": [
+          {
+            "file": "aws-cn",
+            "line": 31,
+            "rule": "regexp:.+\\.awsdns-cn-[0-9][0-9]\\.(biz|com|net|top)$",
+            "sourceLine": "regexp:.+\\.awsdns-cn-[0-9][0-9]\\.(biz|com|net|top)$ @cn",
+            "reason": "Reviewed exact CN regex: no equivalent rule exists in the four-type cross-client domain catalog. Preserve this expression rather than broadening it to a suffix or silently dropping new expressions; native GeoSite equivalence is not claimed."
+          },
+          {
+            "file": "aws-cn",
+            "line": 32,
+            "rule": "regexp:.+\\.awsdns-cn-[0-9][a-e0-9]\\.cn$",
+            "sourceLine": "regexp:.+\\.awsdns-cn-[0-9][a-e0-9]\\.cn$ @cn",
+            "reason": "Reviewed exact CN regex: no equivalent rule exists in the four-type cross-client domain catalog. Preserve this expression rather than broadening it to a suffix or silently dropping new expressions; native GeoSite equivalence is not claimed."
+          },
+          {
+            "file": "mihoyo-cn",
+            "line": 31,
+            "rule": "regexp:^.+-mihayo\\.akamaized\\.net$",
+            "sourceLine": "regexp:^.+-mihayo\\.akamaized\\.net$ @cn",
+            "reason": "Reviewed exact CN regex: no equivalent rule exists in the four-type cross-client domain catalog. Preserve this expression rather than broadening it to a suffix or silently dropping new expressions; native GeoSite equivalence is not claimed."
+          }
+        ]
       },
       {
         "id": "apple-tvplus",
@@ -775,6 +803,40 @@
         "updatedAt": "2026-10-30T12:57:57Z",
         "projection": "complete registered domain-line file; explicit domain-suffix semantics",
         "excludedExpressions": []
+      },
+      {
+        "id": "china-ipv4",
+        "tag": "network",
+        "defaultProfile": true,
+        "source": {
+          "repository": "china-operator-ip",
+          "format": "cidr-lines",
+          "path": "china.txt",
+          "matchType": "ip-cidr",
+          "description": "Complete pinned China network list: trusted domestic BGP classification plus unannounced RIR-CN registration fallback. Routing evidence, not a guarantee of physical location or of all China access points."
+        },
+        "sha256": "41fe2d4dff281e41cc358ec6cad400f8f7e7b15038e40b22d68b1c5efa1e5784",
+        "entries": 6174,
+        "updatedAt": "2026-10-30T09:07:05Z",
+        "projection": "complete registered CIDR-line file; explicit ip-cidr semantics",
+        "excludedExpressions": []
+      },
+      {
+        "id": "china-ipv6",
+        "tag": "network",
+        "defaultProfile": true,
+        "source": {
+          "repository": "china-operator-ip",
+          "format": "cidr-lines",
+          "path": "china6.txt",
+          "matchType": "ip-cidr6",
+          "description": "Complete pinned China network list: trusted domestic BGP classification plus unannounced RIR-CN registration fallback. Routing evidence, not a guarantee of physical location or of all China access points."
+        },
+        "sha256": "c3eda4cfb286512bb1cb6adda7f5618ad801fe402f713cf265e9a4b6a4f347a0",
+        "entries": 3475,
+        "updatedAt": "2026-10-30T09:07:05Z",
+        "projection": "complete registered CIDR-line file; explicit ip-cidr6 semantics",
+        "excludedExpressions": []
       }
     ],
     "inputs": [
@@ -875,6 +937,14 @@
         "sha256": "f8b41812508a1352f708a971d1dde23f889654309d5c96c3b9ce4c0ae036a914"
       },
       {
+        "path": "src/rules/network/china-ipv4.json",
+        "sha256": "41fe2d4dff281e41cc358ec6cad400f8f7e7b15038e40b22d68b1c5efa1e5784"
+      },
+      {
+        "path": "src/rules/network/china-ipv6.json",
+        "sha256": "c3eda4cfb286512bb1cb6adda7f5618ad801fe402f713cf265e9a4b6a4f347a0"
+      },
+      {
         "path": "src/rules/network/lan.json",
         "sha256": "47154f24fd63ae78749dc484933d428aa2cc716446790c7b31d5cbcdf8df6ee7"
       },
@@ -924,7 +994,7 @@
       },
       {
         "path": "src/rules/system/china.json",
-        "sha256": "281bf28fb2c6aa887f82684cc41c2af5fadefe9ee9cbf6d7ea9272ae94ef4c29"
+        "sha256": "0022afee1c71b56924f1a4e47334e855f15098399607999cbd6b31d5113cb845"
       },
       {
         "path": "src/rules/system/google.json",
@@ -949,13 +1019,18 @@
     },
     {
       "path": "profiles/default.conf",
-      "sha256": "8d51f4f119bd926666dfb576f5cd436f1bc8007dae2d691b0059caff5bb3b907",
-      "bytes": 196828
+      "sha256": "70cf242ee1b84cad7fbb16fd98a71a0b3bf5f1acfd3519748a2a00aac0301ed0",
+      "bytes": 767926
+    },
+    {
+      "path": "profiles/input.example.json",
+      "sha256": "565bfa69d5e0f4a8539f0a44ecc462bf9b2d4d2293f5b915894de163cd032e96",
+      "bytes": 57
     },
     {
       "path": "README.md",
-      "sha256": "db7298c3c841fcb8c10413abbad5d89b5537636da8517e3c44bde78c14dbaef2",
-      "bytes": 3843
+      "sha256": "4c6732b84e4a88d712d7d2e094e7eea1cc910ddf8065045f4985e001d2675e0f",
+      "bytes": 4996
     },
     {
       "path": "rewrites/https-upgrade.snippet",
@@ -988,9 +1063,19 @@
       "bytes": 65554
     },
     {
+      "path": "rules/china-ipv4.list",
+      "sha256": "0f6886aae93eb635fd07b1a7f389cb7b3399acaa7ac4fade46fd76a96c16c85c",
+      "bytes": 188601
+    },
+    {
+      "path": "rules/china-ipv6.list",
+      "sha256": "d9cf396515d80cd16d008d5931d48c39e6740577855c98e832836b05eb5a9cb0",
+      "bytes": 113488
+    },
+    {
       "path": "rules/china.list",
-      "sha256": "1625b3d8e8516e4705595caa5c6eaec4c22912f92b1165ea457f71cfcf61bd21",
-      "bytes": 568
+      "sha256": "82362093defac1fbacd9e058a82ecdbf7dc3f565e67f657d0b1874ae1b683fd1",
+      "bytes": 268703
     },
     {
       "path": "rules/claude.list",

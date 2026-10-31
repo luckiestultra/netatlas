@@ -2,7 +2,7 @@
   "version": 1,
   "builder": "netatlas@0.1.0",
   "input": {
-    "sha256": "cb40c00f7adc7453cc39f8cfb1364b428909acf198cf2698364429ccebe1c665",
+    "sha256": "8aa2ef475d1269d32b0dd0f55e4694641f3eb9f9e6b133c613f7502af188980b",
     "files": [
       {
         "path": "LICENSE",
@@ -10,7 +10,7 @@
       },
       {
         "path": "THIRD_PARTY_NOTICES.md",
-        "sha256": "703a0fb7ced04a9be495925377461e69d36743db7f8d40a634dff523065457b3"
+        "sha256": "220cc5553cb9c7f0b65d9a236567a411fc454da860d0e57f4aa5ba17aaf55e60"
       },
       {
         "path": "metadata/clients.json",
@@ -29,12 +29,16 @@
         "sha256": "8f330d3d9772e3cfc11fdbbf2bbb53763cee24d1999675319bf10bb51ae05b14"
       },
       {
+        "path": "metadata/profile-references.json",
+        "sha256": "60b32c2e7cdaa2cc3386f41e16721755928cb94e18b68168e5aae6f3e8055b20"
+      },
+      {
         "path": "metadata/routing.json",
-        "sha256": "fe1dce8d4d6a8a619b6253d64e4bd0625fcb35cd1bdcc26b448188d3c8a3d3e6"
+        "sha256": "7a36fe4516d2cf33aec3a49d60dfafdb710f376fa4711fbcd5d470af9c5782f2"
       },
       {
         "path": "metadata/upstreams.json",
-        "sha256": "40a7f12faab8cb248f21a5b8b6cbe449ef62d8967f041088f17e0e5963aae6b3"
+        "sha256": "e59cdc8d0eec97497839905ee423cc571f8e8b7dcf2bc804e98c6b5a6ad649d1"
       },
       {
         "path": "package-lock.json",
@@ -42,7 +46,7 @@
       },
       {
         "path": "package.json",
-        "sha256": "17812832951522671a5df2fe496c6ace797ef6eb1f033b539bd466f160eae5dd"
+        "sha256": "02969a379fd2bc96c8b0fd778def6e2a8ea89858c78113e67fa3912d0a4bc3d6"
       },
       {
         "path": "src/features/geoip/core.mjs",
@@ -177,6 +181,14 @@
         "sha256": "f8b41812508a1352f708a971d1dde23f889654309d5c96c3b9ce4c0ae036a914"
       },
       {
+        "path": "src/rules/network/china-ipv4.json",
+        "sha256": "41fe2d4dff281e41cc358ec6cad400f8f7e7b15038e40b22d68b1c5efa1e5784"
+      },
+      {
+        "path": "src/rules/network/china-ipv6.json",
+        "sha256": "c3eda4cfb286512bb1cb6adda7f5618ad801fe402f713cf265e9a4b6a4f347a0"
+      },
+      {
         "path": "src/rules/network/lan.json",
         "sha256": "47154f24fd63ae78749dc484933d428aa2cc716446790c7b31d5cbcdf8df6ee7"
       },
@@ -226,7 +238,7 @@
       },
       {
         "path": "src/rules/system/china.json",
-        "sha256": "281bf28fb2c6aa887f82684cc41c2af5fadefe9ee9cbf6d7ea9272ae94ef4c29"
+        "sha256": "0022afee1c71b56924f1a4e47334e855f15098399607999cbd6b31d5113cb845"
       },
       {
         "path": "src/rules/system/google.json",
@@ -261,6 +273,26 @@
         "sha256": "2cdde294a65230b930032816e7ce3343651f97024693f556b812110fb068b4ff"
       },
       {
+        "path": "src/vendor/china-operator-ip/LICENSE",
+        "sha256": "8f4d03a581484143945a9fac471c3b669d5aada68361fd1f25886c3ddbdd786a"
+      },
+      {
+        "path": "src/vendor/china-operator-ip/README.md",
+        "sha256": "78fd8bc4272fca728b4ef96553b3a7a879471e21ebc0498e6ab75c6bbbe60408"
+      },
+      {
+        "path": "src/vendor/china-operator-ip/docs/algorithm.md",
+        "sha256": "4e2614d1fd9a45251c52af41716dd69e7f88816bb578a261209544a5e314f749"
+      },
+      {
+        "path": "src/vendor/china-operator-ip/docs/issue-45-fallback-prefixes.md",
+        "sha256": "d6dc325f3730b164d3c4d6363eb0b5b81a6a3c2abcb05e3a27c28c4fe0763029"
+      },
+      {
+        "path": "src/vendor/profile-references/Repcz-LICENSE",
+        "sha256": "44cc26fb4a78aca61163a61694060a92b136f05988d2d687cfd999c08205908d"
+      },
+      {
         "path": "tools/build.mjs",
         "sha256": "2e15940246e12e7e7925733027d7eecb2616b3f29a68fdc5323510f0945bf695"
       },
@@ -270,7 +302,7 @@
       },
       {
         "path": "tools/lib/build.mjs",
-        "sha256": "55e427a0622fb342a6d062f4fa504d9efe70b133b10065a2d518b5c0c8602c89"
+        "sha256": "4bdab2fee7a970685b10b5b380d2570cab87c990db52a568e954cef107ba96c0"
       },
       {
         "path": "tools/lib/clients.mjs",
@@ -298,15 +330,31 @@
       },
       {
         "path": "tools/lib/native.mjs",
-        "sha256": "2612105a8d01142c94f190be3e116365b82f4627dcea43d6ae51ce46fff03bba"
+        "sha256": "45d29ad2d7b254634e8d0d08c23b286611a979d76b3495ae66e81c20bdea05ed"
       },
       {
         "path": "tools/lib/policies.mjs",
         "sha256": "75768fe11e7d67857aaf273ebb9bb8591addddf48b0d9211a556bf74773b827d"
       },
       {
+        "path": "tools/lib/private-profile.mjs",
+        "sha256": "77a5518418f9dd691b570aeab9feed055ca9e5683810634f06917a5eddb1e2d2"
+      },
+      {
+        "path": "tools/lib/profile-workflow.mjs",
+        "sha256": "ec00ffa14ba4ec31113317e91c4da3efccb2fac9b7648c89ffb2551a245e1d3e"
+      },
+      {
+        "path": "tools/lib/profiles-apple.mjs",
+        "sha256": "e2a447128bd5512c7620074935d7b2a5eff96208d2907cb544e24a01deeeb4a3"
+      },
+      {
+        "path": "tools/lib/profiles-native.mjs",
+        "sha256": "97640b60c46608af6883b41ea7defb049efd07ab1e006c82d8028f4a1c305e2b"
+      },
+      {
         "path": "tools/lib/profiles.mjs",
-        "sha256": "210f93edb381cdfe25e8f7de8728bec6e27ebd727482e70eeab2ce9ed2cb9497"
+        "sha256": "ab40604a91e93382c54229b6a8e37ca39c6186b9d027370226083cffc0e9c6b0"
       },
       {
         "path": "tools/lib/public-url.mjs",
@@ -318,11 +366,11 @@
       },
       {
         "path": "tools/lib/sync.mjs",
-        "sha256": "1c9c9e86f84567b15433785e4b96cbb96fcd9414be24d62838e465f67f7fd2d8"
+        "sha256": "f0489bab29cc1359e1c608d5303cbec74c6b6168c57e4d506d7a4858c21884b2"
       },
       {
         "path": "tools/lib/validation.mjs",
-        "sha256": "8153bb20949b03bbdf43581cf77928b34e8c8f8534c3f6a266cbbb1ef74a5fbf"
+        "sha256": "b0e1043ce7488214487cfc5cdf1acb44df1f55bc38c551d1b3de3ffb8c98aa5f"
       },
       {
         "path": "tools/live.mjs",
@@ -331,6 +379,10 @@
       {
         "path": "tools/native.mjs",
         "sha256": "3134763a21f46cb45507005b4ae957a2fe6ec70ce8803d33b4b9a206e31f0b64"
+      },
+      {
+        "path": "tools/profile.mjs",
+        "sha256": "b34fffd5d4751a86061cd15739b3085f73caa31b164a1fe6c3346fc7f8c4cc29"
       },
       {
         "path": "tools/sync.mjs",
@@ -347,82 +399,82 @@
       "id": "quantumultX",
       "name": "Quantumult X",
       "manifest": "quantumultX/manifest.json",
-      "sha256": "b9689fa28e2183ae6121b7967738ea3475b11a864ad4969f82cafefc00ae6997",
-      "rulesets": 39,
-      "entries": 106141,
-      "defaultRuleSets": 38,
-      "defaultEntries": 5459
+      "sha256": "7168ee77eed3c13f38d5571cfefefdbe50ec7e1636b9ea1e14f69ef85b48bce2",
+      "rulesets": 41,
+      "entries": 124158,
+      "defaultRuleSets": 40,
+      "defaultEntries": 23476
     },
     {
       "id": "surge",
       "name": "Surge",
       "manifest": "surge/manifest.json",
-      "sha256": "b53c1dc850937999b70c16eca10a3715c2237bc71f9ba9c3835127a5acbdf7f4",
-      "rulesets": 39,
-      "entries": 106141,
-      "defaultRuleSets": 38,
-      "defaultEntries": 5459
+      "sha256": "41dd668d8fef8e29d80cdf19187044d8ca98f4331000a0590573963207c2ab27",
+      "rulesets": 41,
+      "entries": 124158,
+      "defaultRuleSets": 40,
+      "defaultEntries": 23476
     },
     {
       "id": "loon",
       "name": "Loon",
       "manifest": "loon/manifest.json",
-      "sha256": "95242f02e3e374a1e63073072feb99ab41927d09412c17d0daea7dd4ea4ac3c3",
-      "rulesets": 39,
-      "entries": 106141,
-      "defaultRuleSets": 38,
-      "defaultEntries": 5459
+      "sha256": "989e06e68a3634a2ebac2559451d2efe258c68874f52b1934259c4ee58a3b237",
+      "rulesets": 41,
+      "entries": 124158,
+      "defaultRuleSets": 40,
+      "defaultEntries": 23476
     },
     {
       "id": "shadowrocket",
       "name": "Shadowrocket",
       "manifest": "shadowrocket/manifest.json",
-      "sha256": "108d252f77996744b0dd12366b475e06f6a236fa04cc59627ec4cc9c5e27bdd5",
-      "rulesets": 39,
-      "entries": 106141,
-      "defaultRuleSets": 38,
-      "defaultEntries": 5459
+      "sha256": "5bd830873c2b3d56be162dddd1b674725a5c850184b1633da1a2124a7737e9fc",
+      "rulesets": 41,
+      "entries": 124158,
+      "defaultRuleSets": 40,
+      "defaultEntries": 23476
     },
     {
       "id": "egern",
       "name": "Egern",
       "manifest": "egern/manifest.json",
-      "sha256": "b4d15e67d5d2d2ac681dc46f9dad0ab222c401afc66c59a62f1ba7331171633f",
-      "rulesets": 39,
-      "entries": 106141,
-      "defaultRuleSets": 38,
-      "defaultEntries": 5459
+      "sha256": "993f1b64be297bc9a5e44ce98adb125c020fe39dfc2176106d55f726895a65f2",
+      "rulesets": 41,
+      "entries": 124158,
+      "defaultRuleSets": 40,
+      "defaultEntries": 23476
     },
     {
       "id": "stash",
       "name": "Stash",
       "manifest": "stash/manifest.json",
-      "sha256": "7bb01def8fcfea77044257c71e30c2455d78990483a853fb1f119baecc40df9c",
-      "rulesets": 39,
-      "entries": 106141,
-      "defaultRuleSets": 38,
-      "defaultEntries": 5459
+      "sha256": "17356079f9f92a28c505715906adfa7e5845c8c4d28d7840fd53f21bdcd64711",
+      "rulesets": 41,
+      "entries": 124158,
+      "defaultRuleSets": 40,
+      "defaultEntries": 23476
     },
     {
       "id": "mihomo",
       "name": "Mihomo",
       "manifest": "mihomo/manifest.json",
-      "sha256": "1fca06e39eb676a2aa12cdc274e9726b81fb10178ec171b0e7d0561209d2afc1",
-      "rulesets": 39,
-      "entries": 106141,
-      "defaultRuleSets": 38,
-      "defaultEntries": 5459
+      "sha256": "dfd1fa47abae05f02b81a54739d8e774de3dd163394e3ea4c8ec2a685faf4c9f",
+      "rulesets": 41,
+      "entries": 124158,
+      "defaultRuleSets": 40,
+      "defaultEntries": 23476
     },
     {
       "id": "singBox",
       "name": "sing-box",
       "manifest": "singBox/manifest.json",
-      "sha256": "638cd6e2bf7785cce8a86baa90b2bf04d5307ea62cacec71669cf8ed907c49b2",
-      "rulesets": 39,
-      "entries": 106141,
-      "defaultRuleSets": 38,
-      "defaultEntries": 5459
+      "sha256": "fd55fd682ec36a4e5482482b282a08447acefe493f398910cb73d267992c1b6c",
+      "rulesets": 41,
+      "entries": 124158,
+      "defaultRuleSets": 40,
+      "defaultEntries": 23476
     }
   ],
-  "contentSha256": "d3ab9368378e7ee23f3f37a7dd6aed0962bcd55b755ab184c1d9f3c496891709"
+  "contentSha256": "e1f4f7064f084d59f652a2310f6d0fe70076b2adf38a1b15eb3c4ce0b2ec0b20"
 }

@@ -16,7 +16,7 @@ src/rules/<category>/<id>.json 是唯一规范输入；metadata/upstreams.json �
 
 ## 已接入数据
 
-当前固定规范目录为 39 个规则集、106,141 条规则；默认配置使用 38 组、5,459 条，另有可选 AntiAD 100,682 条。默认目录原有 15 组保留，新增 apple-tvplus, cursor, discord, docker, github-copilot, gitlab, groq, hbo, huggingface, jetbrains, line, npmjs, perplexity, poe, signal, slack, steam, tiktok, twitch, vercel, whatsapp, xai, zoom，覆盖通信、开发、AI、媒体与游戏服务。以后更新以清单统计为准。
+当前固定规范目录为 41 个规则集、124,158 条规则；默认配置使用 40 组、23,476 条，另有可选 AntiAD 100,682 条。默认目录原有 15 组保留，新增 apple-tvplus, cursor, discord, docker, github-copilot, gitlab, groq, hbo, huggingface, jetbrains, line, npmjs, perplexity, poe, signal, slack, steam, tiktok, twitch, vercel, whatsapp, xai, zoom，覆盖通信、开发、AI、媒体与游戏服务。以后更新以清单统计为准。
 
 其中三十六组从 MIT 许可的 v2fly/domain-list-community 固定提交选取指定文件及显式 include；lan、china 是本项目自有的有限事实列表；可选 AntiAD 从独立 MIT 来源的原生 DOMAIN-SET 固定快照导入。此目录是可移植投影，不是完整 DLC/geosite 数据库；不做全仓库 affiliation 反向聚合。当前九次不可移植正则排除逐条登记，不近似改写成更宽的后缀，任何新增且未登记的正则或关键词表达式都会阻止同步。
 

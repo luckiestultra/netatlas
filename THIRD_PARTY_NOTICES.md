@@ -65,7 +65,6 @@ SOFTWARE.
 ## 本项目自有事实列表
 
 - `lan`：根据 RFC 1918、4193、4291、6598、6762、8375 和 IANA 地址登记选择常见本地、私有及特殊目的地址。不是完整 IANA 特殊用途表。
-- `china`：本项目手工维护的常见服务域名便利集，不是完整中国域名或 IP 数据库，也不是地理定位断言。
 - 这些列表采用本项目 MIT 许可，其参考链接在来源清单中逐项登记。
 
 ## 同步与恢复
@@ -77,6 +76,12 @@ npm run sync -- --latest --dry-run    # 检查上游分支最新提交，但不�
 npm run sync -- --repository <来源ID> --revision <完整SHA>  # 经审查后只切换所选来源
 ```
 
-下载限制包括 15 秒请求超时、普通单文件 1 MB；anti-AD 登记上限为 3 MB，硬上限为 4 MB。总计 24 MB、最多 512 个文件和 20 层包含；禁止包含循环。同步先验证所有输入，再发布规则目录和来源清单；网络失败、许可变化或新不可移植表达式会保留旧数据。已有托管规则若被手工修改，校验值不符会阻止覆盖；下载期间发生的本地改动也会在发布前再次核对。
+下载限制包括 15 秒请求超时、普通单文件 1 MB；anti-AD 登记上限为 3 MB，硬上限为 4 MB。总计 24 MB、最多1024个全局下载文件、每个DLC闭包512文件和20层包含；禁止包含循环。同步先验证所有输入，再发布规则目录和来源清单；网络失败、许可变化或新不可移植表达式会保留旧数据。已有托管规则若被手工修改，校验值不符会阻止覆盖；下载期间发生的本地改动也会在发布前再次核对。
 
 本地上一个目录和中断记录保存在被 Git 忽略的 `.cache/sync/` 中，不自动删除。若目录交换期间进程被强制终止，下一次普通同步会先恢复上一批；`--dry-run` 只报告待恢复状态，不修改它。
+
+## 完整配置对照与新增 CN 网络数据
+
+完整节点、订阅、DNS 与策略适配参考原生官方文档，并与 Repcz/Tool、Orz-3/QuantumultX、LOWERTOP/Shadowrocket 和 Aethersailor/Custom_OpenClash_Rules 的固定完整配置交叉核对。仓库星标、配置文件更新时间、固定版本和使用方式见 metadata/profile-references.json。没有复制无许可证仓库的规则、脚本、证书或源代码；API 字段做独立适配。Repcz 的 MIT 原许可保存在 src/vendor/profile-references/Repcz-LICENSE。
+
+CN 域名来自已有 MIT 固定 DLC 的 cn 完整 include 闭包，保留3条逐字登记的不可移植正则例外；不冒称与原生 GeoSite 完全等价。CN IPv4/IPv6 来自 gaoyifan/china-operator-ip 的 ip-lists 分支固定 f7533065e164cbe0cf24b488a77ca75b8e897923，MIT Copyright 2017 Yifan Gao。完整许可、固定说明及关联文档在 src/vendor/china-operator-ip/；来源、SHA 与网络分类边界在 metadata/upstreams.json。数据用于路由分类，不作为服务器物理地点结论。

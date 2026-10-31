@@ -29,6 +29,16 @@ Publication verification: compare the remote main commit and public artifact byt
 - [x] Enforce actual provider readiness so an unopened rule table cannot create false-positive rejection tests.
 - [x] Publish the extension batch and verify remote tree and public resource bytes.
 - [x] Close the Linux provider-ready/tunnel-running race using the official post-up lifecycle signal and a controlled event regression.
-- [ ] Verify the follow-up fix commit in remote Linux CI.
+- [x] Verify the follow-up fix commit b1a587b in remote Linux CI.
 
 Latest evidence and limitations: docs/validation.md; admission contract: tasks/upstream-integration.md.
+
+
+## Complete client configurations
+
+- [x] Implement private native nodes/subscriptions, per-client DNS and automatic Proxy membership.
+- [x] Expand CN domains/IPv4/IPv6 with fixed provenance and service-before-CN ordering.
+- [x] Add real private-command/subscription/DNS/full-route native workflows and independent red/blue regressions.
+- [x] Complete local/macOS/Linux checks and prepare the reviewed user-authorized main publication; matching remote CI/byte verification is recorded in the publication result.
+
+User explicitly authorized commit and push after this scope is fixed. Existing QX or any current client configuration must not be changed.

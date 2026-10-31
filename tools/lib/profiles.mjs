@@ -1,4 +1,7 @@
 import { stringify as stringifyYaml } from 'yaml';
+import { isIP } from 'node:net';
+import { surge, loon, shadowrocket, egern } from './profiles-apple.mjs';
+import { stash, mihomo, singBox } from './profiles-native.mjs';
 import { policyGroupsFor, policyForRuleset, profileRulesetsFor } from './policies.mjs';
 
 export const profileFormats = Object.freeze({
@@ -37,7 +40,7 @@ const singBoxRuleTypes = {
   'ip-cidr6': 'ip_cidr',
 };
 
-const preamble = '# NetAtlas — standalone profile\n'
+const preamble = '# NetAtlas — complete client configuration\n'
   + '# Proxy defaults to REJECT. Add your own nodes and select them before use.\n'
   + '# DIRECT is an explicit alternative. Rules are inline; no remote rule files are needed.\n';
 
@@ -49,19 +52,8 @@ function flattenRules(rulesets) {
     if (typeof entry.value !== 'string' || !entry.value || /[\r\n,]/.test(entry.value)) {
       throw new Error(`Invalid profile rule value in ${ruleset.id}`);
     }
-    return { ...entry, policy: policyForRuleset(ruleset) };
+    return { ...entry, policy: policyForRuleset(ruleset), rulesetId: ruleset.id };
   }));
-}
-
-function classicRules(entries, final = 'FINAL') {
-  return [...entries.map(({ type, value, policy }) => {
-    const noResolve = type === 'ip-cidr' || type === 'ip-cidr6' ? ',no-resolve' : '';
-    return `${nativeRuleTypes[type]},${value},${policy}${noResolve}`;
-  }), `${final},Proxy`].join('\n');
-}
-
-function iniGroups(groups) {
-  return groups.map(({ name, choices }) => `${name} = select, ${choices.join(', ')}`).join('\n');
 }
 
 function qxBuiltin(policy) {
@@ -69,164 +61,86 @@ function qxBuiltin(policy) {
 }
 
 // Official sample: https://github.com/crossutility/Quantumult-X/blob/master/sample.conf
-function quantumultX(entries, groups) {
-  const nativeGroups = groups.map(({ name, choices }) => `static=${name},${choices.map(qxBuiltin).join(',')}`).join('\n');
-  const rules = entries.map(({ type, value, policy }) => `${qxRuleTypes[type]},${value},${qxBuiltin(policy)}`);
+function quantumultX(entries, groups, options = {}) {
+  const used = new Set(['direct','reject','proxy',...groups.map(group=>group.name.toLowerCase())]);
+  const safeName = value => typeof value==='string' && value.trim()===value && value && !/[\x00-\x1f\x7f,=\[\]]/.test(value);
+  if(options.nodes!==undefined&&!Array.isArray(options.nodes)||options.subscriptions!==undefined&&!Array.isArray(options.subscriptions))throw new Error('Invalid QX inputs');
+  const nodeHosts=[];
+  const nodes=(options.nodes??[]).map(line=>{
+    if(typeof line!=='string'||/[\r\n\u2028\u2029]/.test(line)||/(?:^|,)\s*(?:script(?:[-_](?:path|file))?|program|exec|command|file)\s*=/i.test(line))throw new Error('Invalid QX node line');
+    const match=/^(shadowsocks|vmess|vless|trojan|http|socks5|anytls)=([^,]+),/i.exec(line);
+    const tag=/(?:^|,)\s*tag\s*=\s*([^,]+)/.exec(line)?.[1]?.trim();
+    if(!match||!safeName(tag)||used.has(tag.toLowerCase()))throw new Error('Invalid or duplicate QX node');
+    let endpoint;try{endpoint=new URL('socks://'+match[2].trim());}catch{throw new Error('Invalid QX node endpoint');}
+    if(!endpoint.hostname||!endpoint.port||Number(endpoint.port)<1||Number(endpoint.port)>65535||endpoint.username||endpoint.password)throw new Error('Invalid QX node endpoint');
+    nodeHosts.push(endpoint.hostname.replace(/^\[|\]$/g,''));used.add(tag.toLowerCase());return {tag,line};
+  });
+  const subscriptions=(options.subscriptions??[]).map(item=>{
+    let url;try{url=new URL(item.url);}catch{throw new Error('Invalid QX subscription');}
+    if(!safeName(item.name)||used.has(item.name.toLowerCase())||/[\s,#]/.test(item.url)||url.username||url.password||!['https:','http:'].includes(url.protocol)||url.protocol==='http:'&&!['127.0.0.1','localhost','[::1]'].includes(url.hostname))throw new Error('Invalid QX subscription');
+    const interval=item.interval??86400;if(!Number.isInteger(interval)||interval<1||interval>2592000)throw new Error('Invalid QX interval');
+    used.add(item.name.toLowerCase());return `${item.url}, tag=${item.name}, update-interval=${interval}, enabled=true`;
+  });
+  const selected=options.selectedProxy??nodes[0]?.tag??'reject';
+  if(!['reject','direct',...nodes.map(node=>node.tag)].includes(qxBuiltin(selected)))throw new Error('Unknown QX selected node');
+  const nativeGroups=groups.map(({name,choices})=>{
+    const members=name==='Proxy'?[...new Set([qxBuiltin(selected),...choices.map(qxBuiltin),...nodes.map(node=>node.tag)])]:choices.map(qxBuiltin);
+    return `static=${name},${members.join(',')}${name==='Proxy'?',server-tag-regex=.+':''}`;
+  }).join('\n');
+  const upstreams={bootstrap:'223.5.5.5',domestic:'https://223.5.5.5/dns-query',local:'system',...(options.dnsUpstreams??{})};
+  const dnsLine=(host,value)=>{
+    if(typeof value!=='string'||/[\s,#]/.test(value))throw new Error('Invalid QX DNS upstream');
+    if(value==='system')return `server=/${host}/system`;
+    if(value.startsWith('https://')){
+      const url=new URL(value);if(!isIP(url.hostname.replace(/^\[|\]$/g,''))||url.username||url.password||url.search||url.hash)throw new Error('QX DNS bootstrap must use IP endpoints');
+      return `doh-server=${host?'/'+host+'/':''}${value}`;
+    }
+    const url=new URL(value.includes('://')?value:'udp://'+value);
+    if(url.protocol!=='udp:'||!isIP(url.hostname.replace(/^\[|\]$/g,''))||url.username||url.password||url.search||url.hash)throw new Error('Invalid QX DNS server');
+    return `server=${host?'/'+host+'/':''}${url.host}`;
+  };
+  const dns=[dnsLine('',upstreams.bootstrap),dnsLine('',upstreams.domestic)];
+  for(const host of ['localhost','local','*.local','home.arpa','*.home.arpa'])dns.push(dnsLine(host,upstreams.local));
+  for(const host of [...new Set(nodeHosts)])if(!isIP(host))dns.push(dnsLine(host,upstreams.bootstrap));
+  const rules=entries.map(({type,value,policy})=>`${qxRuleTypes[type]},${value},${qxBuiltin(policy)}`);
   return `${preamble}
 [general]
+network_check_url=https://www.apple.com/library/test/success.html
+server_check_url=https://www.gstatic.com/generate_204
 server_check_timeout=3000
+fallback_udp_policy=reject
+# Optional GeoIP display: merge fragments/geoip.conf into this general section.
+
+[dns]
+# Bootstrap and direct destinations use explicit DNS. LAN names retain system resolution.
+# QX forwards proxy destination hostnames to the selected node for remote resolution.
+${dns.join('\n')}
 
 [policy]
 ${nativeGroups}
 
+[server_remote]
+${subscriptions.join('\n')||'# Fill subscriptions in a private input file, then run npm run profile.'}
+# Native QX node resources only; URI or other formats must be imported through the app.
+
 [server_local]
-# Add private nodes here locally; this repository contains no node credentials.
+${nodes.map(node=>node.line).join('\n')||'# Add private native nodes here, or use the local profile command.'}
 
 [filter_local]
-${[...rules, 'final,Proxy'].join('\n')}
+${[...rules,'final,Proxy'].join('\n')}
+
+[rewrite_remote]
+# Optional rewrites are separate resources; import only those you select.
 `;
-}
-
-// https://manual.nssurge.com/profile/general.html
-// https://manual.nssurge.com/policy-groups/overview.html
-function surge(entries, groups) {
-  return `${preamble}
-[General]
-loglevel = notify
-ipv6 = true
-allow-wifi-access = false
-allow-hotspot-access = false
-http-listen = 127.0.0.1:6152
-socks5-listen = 127.0.0.1:6153
-
-[Proxy]
-# Add private nodes here locally.
-
-[Proxy Group]
-${iniGroups(groups)}
-
-[Rule]
-${classicRules(entries)}
-`;
-}
-
-// https://nsloon.app/docs/Rule/ip_rule/
-// https://github.com/Loon0x00/LoonManual/blob/master/docs/cn/policygroup.md
-function loon(entries, groups) {
-  return `${preamble}
-[General]
-allow-wifi-access = false
-dns-server = system
-
-[Proxy]
-# Add private nodes here locally.
-
-[Proxy Group]
-${iniGroups(groups)}
-
-[Rule]
-${classicRules(entries)}
-`;
-}
-
-// The vendor publishes capabilities, but no complete public configuration grammar:
-// https://apps.apple.com/us/app/shadowrocket/id932747118
-// Native app import must therefore be verified separately from text validation.
-function shadowrocket(entries, groups) {
-  return `${preamble}
-[General]
-dns-server = system
-ipv6 = true
-
-[Proxy Group]
-${iniGroups(groups)}
-
-[Rule]
-${classicRules(entries)}
-`;
-}
-
-// https://egernapp.com/docs/configuration/rules/
-// https://egernapp.com/docs/configuration/policy_groups/
-function egern(entries, groups) {
-  return {
-    ipv6: true,
-    allow_external_connections: false,
-    http_port: 3080,
-    socks_port: 3090,
-    policy_groups: groups.map(({ name, choices }) => ({ select: { name, policies: [...choices] } })),
-    rules: [...entries.map(({ type, value, policy }) => ({
-      [egernRuleTypes[type]]: {
-        match: value,
-        policy,
-        ...(type.startsWith('ip-cidr') ? { no_resolve: true } : {}),
-      },
-    })), { default: { policy: 'Proxy' } }],
-  };
-}
-
-// https://stash.wiki/configuration/example-config
-// https://stash.wiki/proxy-protocols/proxy-groups
-function stash(entries, groups) {
-  return {
-    mode: 'rule',
-    'log-level': 'info',
-    'allow-lan': false,
-    'bind-address': '127.0.0.1',
-    ipv6: true,
-    proxies: [],
-    'proxy-groups': groups.map(({ name, choices }) => ({ name, type: 'select', proxies: [...choices] })),
-    rules: classicRules(entries, 'MATCH').split('\n'),
-  };
-}
-
-// https://wiki.metacubex.one/en/config/general/
-// https://wiki.metacubex.one/en/config/rules/
-function mihomo(entries, groups) {
-  return {
-    'mixed-port': 7890,
-    'allow-lan': false,
-    'bind-address': '127.0.0.1',
-    mode: 'rule',
-    'log-level': 'info',
-    ipv6: true,
-    proxies: [],
-    'proxy-groups': groups.map(({ name, choices }) => ({ name, type: 'select', proxies: [...choices] })),
-    rules: classicRules(entries, 'MATCH').split('\n'),
-  };
-}
-
-// Pinned 1.14.4 source registers the real block outbound, selectable by tag:
-// https://github.com/SagerNet/sing-box/blob/v1.14.4/include/registry.go
-// https://sing-box.sagernet.org/configuration/route/rule_action/
-function singBox(entries, groups) {
-  return {
-    log: { level: 'info' },
-    dns: { servers: [{ type: 'local', tag: 'local' }], final: 'local' },
-    inbounds: [{ type: 'mixed', tag: 'mixed-in', listen: '127.0.0.1', listen_port: 7890, set_system_proxy: false }],
-    outbounds: [
-      { type: 'direct', tag: 'DIRECT' },
-      { type: 'block', tag: 'REJECT' },
-      ...groups.map(({ name, choices }) => ({ type: 'selector', tag: name, outbounds: [...choices], default: choices[0] })),
-    ],
-    route: {
-      default_domain_resolver: 'local',
-      rules: entries.map(({ type, value, policy }) => ({
-        [singBoxRuleTypes[type]]: [value],
-        ...(policy === 'REJECT' ? { action: 'reject' } : { action: 'route', outbound: policy }),
-      })),
-      final: 'Proxy',
-    },
-  };
 }
 
 const renderers = { quantumultX, surge, loon, shadowrocket, egern, stash, mihomo, singBox };
 
-export function renderProfile(client, { rulesets = [] } = {}) {
+export function renderProfile(client, { rulesets = [], ...options } = {}) {
   rulesets = profileRulesetsFor(rulesets);
   if (!Object.hasOwn(profileFormats, client)) throw new Error(`Unknown profile client: ${client}`);
   const { extension, format } = profileFormats[client];
-  const rendered = renderers[client](flattenRules(rulesets), policyGroupsFor(rulesets));
+  const rendered = renderers[client](flattenRules(rulesets), policyGroupsFor(rulesets), options);
   let content;
   if (format === 'json') content = `${JSON.stringify(rendered, null, 2)}\n`;
   else if (format === 'yaml') content = `${preamble}\n${stringifyYaml(rendered, { lineWidth: 0 })}`;

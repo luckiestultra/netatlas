@@ -33,7 +33,13 @@ metadata/routing.json 是策略默认值与顺序的独立来源，当前约定�
 - lan、adblock 排在前面；google、microsoft 排在后面；其他服务按稳定 ID 排序，保留具体服务优先于宽泛集合的安排。
 - 最终策略为 Proxy。Proxy 以 REJECT 为首项，DIRECT 是明确可选项，不包含虚构节点或订阅。
 
-使用者需要添加自有节点、把它加入 Proxy 并主动选择。图形应用可能保留旧选择，导入后必须核对实际选项；模板的首项不是应用运行状态证明。category 不参与策略或顺序计算。
+使用者在私有 JSON 输入提供本客户端原生 nodes 和/或 subscriptions，工具生成完整原生配置并自动连接 Proxy。显式 selectedProxy 决定私有节点选择，未指定且有本地节点时使用第一个；只有原生 URL 来源时由应用加载后手选。公开无凭据配置仍以 REJECT 初始化。图形应用可能保留既有选择，不以首项推断当前状态。
+
+private-profile.mjs 与 tools/profile.mjs 负责本地订阅的受限拉取和原生节点 materialize、权限、输入/旧输出保护。六种客户端保留原生订阅；sing-box/Shadowrocket 不伪造 provider，支持格式在本地展开。复杂未实现的握手字段明确失败而非静默删除。输入/输出仅限忽略目录 private/，不触碰用户现用客户端配置。
+
+DNS 与 CN 分流是完整配置的一部分。当前 CN 含8,387域名、6,174 IPv4、3,475 IPv6；在具体服务后作为兜底。基础设施 resolve 动作单独验证，不当作规范规则；CN CIDR 允许主动解析而 LAN CIDR 保留 no-resolve。DNS 独立处理 bootstrap、国内、远端与 LAN，代理自己的地址不通过自身代理递归解析。细节见[完整接入](../profile-setup.md)。
+
+校验器区分公开新建组 REJECT 默认与私有实际节点选择，识别本地节点、原生来源/匹配器及必要基础设施规则。闭源 GUI 无环境时使用官方与固定高星配置交叉验证，并明确没有原生运行证据。
 
 ## 原生边界
 

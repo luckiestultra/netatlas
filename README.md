@@ -2,7 +2,9 @@
 
 面向 Quantumult X、Surge、Loon、Shadowrocket、Egern、Stash、Mihomo 和 sing-box 的原生配置与规则仓库。先选客户端，再取用主配置、具体服务分流或可选功能。
 
-默认主配置包含 **38 组、5,459 条规则**，另提供可选 anti-AD **100,682 条**；完整目录合计 **39 组、106,141 条**。大规则集不塞进默认配置，按需单独启用。八种格式做结构与语义检查；Mihomo、sing-box 用固定内核实际验证，其余六个应用仍需实际导入。执行证据见[验证记录](docs/validation.md)。
+八客户端完整配置已接入原生节点、订阅、DNS 与服务/国内分流。默认内联 **40 组、23,476 条规则**；另有可选 anti-AD **100,682 条**，合计 **41 组、124,158 条**。私有输入中的节点与来源会自动接到 Proxy，不需要手工补每个策略组。
+
+公开配置不含私人节点，未填写时拒绝代理流量。按[三步接入说明](docs/profile-setup.md)生成自己的配置，再在客户端导入并确认实际选择。生成仅写仓库的 private/，不修改现用 QX 或其他应用。Mihomo、sing-box 做固定内核、真实订阅更新、四 DNS 角色和路由测试；其余六客户端以官方与高星完整配置交叉核对和独立接入测试验证，未冒称 GUI 实测。[验证记录](docs/validation.md)。
 
 ## 使用入口
 
@@ -33,7 +35,18 @@ clients/<client>/
 
 未实现的可选能力不生成占位文件。独立规则例如 clients/surge/rules/openai.list，不增加 ai、media 等公开类别层；category 只用于内部整理，路由默认值与先后顺序由 [routing.json](metadata/routing.json) 单独管理。
 
-主配置不包含私人节点。Proxy 组以 REJECT 为首项，DIRECT 是明确可选项；添加自有节点、将其加入 Proxy 并主动选择后，再核对实际出站。图形应用可能保留旧选择，导入后应检查当前选项。LAN、China 等规则的明确 DIRECT 行为以路由清单为准。
+## 接入自己的节点或订阅
+
+~~~sh
+mkdir -p private
+cp clients/quantumultX/profiles/input.example.json private/quantumultX.json
+# 填入自己的 nodes 或 subscriptions；其他客户端替换 ID 和扩展名。
+npm run profile -- --client quantumultX --input private/quantumultX.json --output private/quantumultX.conf
+~~~
+
+随后导入生成文件并确认 Proxy 的实际节点。原生 URL 来源加载后需在应用中选中节点；sing-box/Shadowrocket 的支持格式在本地展开，重跑命令刷新，不上传第三方转换站。私有文件权限 0600，失败保留旧成品，输入/输出和秘密保护见[完整接入说明](docs/profile-setup.md)。节点本身由使用者提供。
+
+分流按 LAN/拦截 → 具体服务 → 宽泛父服务 → CN 域名及 IPv4/IPv6 → final Proxy；CN 数据使用固定许可来源并明确表达式边界。DNS 分别维护节点引导、国内直连、代理远端和 LAN 解析，保留客户端差异。
 
 QX 的 fragments/geoip.conf 是合并到 [general] 的配置片段，不能作为重写订阅导入。GeoIP、Surge 面板和搜索重定向的路径、路由语义与验证限制见[可选功能说明](docs/features.md)。
 

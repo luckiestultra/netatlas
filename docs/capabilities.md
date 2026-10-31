@@ -15,7 +15,7 @@
 | mihomo | YAML | classical YAML | anti-AD 规则与合并片段；不伪造 HTTP 重写能力 | 固定版本内核可检查 |
 | singBox | JSON | 原生 headless JSON | anti-AD 规则与合并片段；不伪造 HTTP 重写能力 | 固定版本内核可检查 |
 
-所有可选功能默认不启用。默认主配置为 38 组、5,459 条；anti-AD 的 100,682 条只单独发布。Loon HTTPS-upgrade 要求 3.5.1(978)+；六个图形客户端尚未实际导入，结构和文本验证不等于设备实测。GeoIP 脚本仍仅适配 QX、Surge，不能把新原生规则资源理解成已实现其他宿主的 JS API。客户端来源及目标版本见 [metadata/clients.json](../metadata/clients.json)，当前验证证据见 [验证记录](validation.md)。
+所有可选功能默认不启用。默认主配置为 40 组、23,476 条；anti-AD 的 100,682 条只单独发布。Loon HTTPS-upgrade 要求 3.5.1(978)+；六个图形客户端尚未实际导入，结构和文本验证不等于设备实测。GeoIP 脚本仍仅适配 QX、Surge，不能把新原生规则资源理解成已实现其他宿主的 JS API。客户端来源及目标版本见 [metadata/clients.json](../metadata/clients.json)，当前验证证据见 [验证记录](validation.md)。
 
 Mihomo 固定检查版本为 1.19.33，sing-box 为 1.14.4；二进制资产及 SHA-256 登记在 [native-tools.json](../metadata/native-tools.json)。其余六个应用必须在实际应用中导入后另行记录，结构检查和 JS VM 测试不能替代这一步。
 

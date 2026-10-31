@@ -4,7 +4,9 @@
     "lan": "DIRECT",
     "china": "DIRECT",
     "adblock": "REJECT",
-    "anti-ad": "REJECT"
+    "anti-ad": "REJECT",
+    "china-ipv4": "DIRECT",
+    "china-ipv6": "DIRECT"
   },
   "initialSelection": {
     "apple": "DIRECT"
@@ -17,7 +19,10 @@
     "apple",
     "github",
     "google",
-    "microsoft"
+    "microsoft",
+    "china",
+    "china-ipv4",
+    "china-ipv6"
   ],
   "excludedFromDefault": [
     "anti-ad"

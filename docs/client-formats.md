@@ -1,6 +1,6 @@
 # 客户端主配置格式与验证依据
 
-主配置由 `tools/lib/profiles.mjs` 生成。公开入口按软件排列：`clients/<client>/profiles/default.<原生扩展名>`；独立规则直接位于 `clients/<client>/rules/<服务或应用ID>.<原生扩展名>`，不再增加类别目录。
+完整配置由 `tools/lib/profiles.mjs` 生成。公开入口按软件排列：`clients/<client>/profiles/default.<原生扩展名>`；独立规则直接位于 `clients/<client>/rules/<服务或应用ID>.<原生扩展名>`，不再增加类别目录。
 
 这八个模板是独立适配器，不因文件扩展名相同就共用全部配置语法。规范规则只有 `domain`、`domain-suffix`、`ip-cidr`、`ip-cidr6`；主配置将其按输入顺序内联，不需要先发布远程规则或修改下载地址。
 
@@ -21,12 +21,12 @@ QX 仅将内建 `DIRECT`、`REJECT` 转为小写，保留 `Proxy` 和各服务 I
 
 ## 默认行为
 
-- 没有节点、虚构订阅或令牌。`Proxy` 的第一个选项是 `REJECT`，另有明确的 `DIRECT` 选项。添加自己的节点后，需要把它加入相应策略组并主动选择。这描述新建组的初始配置；图形应用可能保留先前保存的选择，导入后应核对 `Proxy` 的当前选项。
+- 没有节点、虚构订阅或令牌。`Proxy` 的第一个选项是 `REJECT`，另有明确的 `DIRECT` 选项。私有输入中的节点会自动接入相应策略组并设置选择；原生URL来源加载后需在应用选择实际节点。这描述新建组的初始配置；图形应用可能保留先前保存的选择，导入后应核对 `Proxy` 的当前选项。
 - 策略组按服务 ID 自动生成，例如 `openai`、`netflix`、`github`，不使用固定的大类组名。新增规范规则集后不需要修改各客户端渲染代码。初始选择和匹配顺序由 `metadata/routing.json` 单独登记，`tools/lib/policies.mjs` 将其转换为各客户端策略；分类标签不决定路由。目前仅 `apple` 初始选择 `DIRECT`，其他服务组初始指向 `Proxy`；`lan`、`china` 固定使用 `DIRECT`，`adblock` 固定使用 `REJECT`。
 - Mihomo 和 sing-box 的代理入口绑定 `127.0.0.1:7890`，不额外开启管理接口。Surge Mac 的 HTTP/SOCKS 入口绑定回环地址。其他图形客户端不生成额外的公共监听入口，局域网共享还受客户端自身设置控制。
 - 不开启 MITM、不安装根证书、不设置系统代理、不修改系统路由。图形客户端自身的 VPN 或系统代理开关由用户操作。
-- DNS 使用客户端或系统默认行为；sing-box 使用现代 `type: local` DNS 服务，不生成已删除的旧式 DNS outbound。主配置没有额外的公共 DNS 查询服务依赖。
-- INI/YAML 的 IP 规则使用 `no-resolve`（Egern 为 `no_resolve: true`），避免为这些纯网段规则主动解析未匹配的域名。sing-box 保留其原生路由/DNS处理流程，不把别的客户端参数强行映射进去。
+- DNS 保留各客户端原生 bootstrap、直连和代理远端规则；sing-box 使用现代 `type: local` DNS 服务，不生成已删除的旧式 DNS outbound。默认加密 DNS 服务及其路由见接入说明，可用私有输入覆写。
+- LAN 等 INI/YAML IP 规则使用 `no-resolve`（Egern 为 `no_resolve: true`）；末尾 CN IPv4/IPv6 兜底允许主动解析未枚举域名，避免直接落入最终代理。sing-box 保留其原生路由/DNS处理流程，不把别的客户端参数强行映射进去。
 
 ## 官方依据与基线
 
@@ -72,6 +72,12 @@ QX 仅将内建 `DIRECT`、`REJECT` 转为小写，保留 `Proxy` 和各服务 I
 
 `npm run test:native` 依据 `metadata/native-tools.json` 下载固定的官方发行包并验证 SHA-256，在缓存中提取内核。支持 `darwin-arm64`、`linux-x64`；每次运行只验证当前宿主平台。工具检查生成的完整 Mihomo / sing-box 主配置，并将每个 sing-box 独立规则集编译为 SRS。实际结果单独记录在 `.cache/native-check/latest.json`，包含被检查主配置与规则集输入的 SHA-256；构建清单本身不代表已经执行原生验证。
 
-同一命令还会启动两个真实内核，在回环 HTTP、SOCKS5 上游及 DNS 测试服务上验证 44 个路由行为。覆盖显式直连/拒绝、默认拒绝/直连/代理，以及后缀规则的根域、子域和相似域边界；不访问公网测试目标，不修改系统代理。日志和临时配置均保留在 `.cache/native-check/`。这些测试证明内核的代表性路由行为，不等于逐条规则都做过网络测试。
+同一命令还会启动两个真实内核，在回环 HTTP、SOCKS5 上游及 DNS 测试服务上验证 80 个基础路由行为，并另行以完整 anti-AD 验证 16 个可选 provider 用例。覆盖显式直连/拒绝、默认拒绝/直连/代理，以及后缀规则的根域、子域和相似域边界；不访问公网测试目标，不修改系统代理。日志和临时配置均保留在 `.cache/native-check/`。这些测试证明内核的代表性路由行为，不等于逐条规则都做过网络测试。
 
 闭源应用的原生导入和路由结果必须单独记录。仅通过 JSON/YAML/INI 结构检查时，只能标记结构级验证。
+
+## 节点、订阅、DNS 与国内外分流
+
+八客户端完整接入流程、每种原生节点形态、原生 URL 与本地 materialize 区别、DNS 角色和失败保护统一见[完整接入说明](profile-setup.md)。不要把节点数据跨客户端直接复制，或把不支持的原生 provider 字段假装成订阅方案。
+
+参考配置版本、星标和实际文件更新时间登记在[来源清单](../metadata/profile-references.json)。对没有公开完整 vendor grammar 的字段，明确注明由高星维护配置交叉核对；不把它称为官方语法证明。六 GUI 未运行，验证层次见[验证记录](validation.md)。

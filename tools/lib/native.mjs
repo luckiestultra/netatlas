@@ -495,29 +495,30 @@ export async function testLocalRouting({ root, binaries, onProgress = () => {} }
     for (const id of ['mihomo', 'singBox']) {
       for (const selection of ['REJECT', 'DIRECT', 'FixtureProxy']) {
         const proxyPort = await freePort();
-        const source = renderProfile(id, { rulesets });
+        const nodes=selection==='FixtureProxy'?[id==='mihomo'
+          ?{name:'FixtureProxy',type:'socks5',server:'127.0.0.1',port:upstream.port,udp:false}
+          :{type:'socks',tag:'FixtureProxy',server:'127.0.0.1',server_port:upstream.port,version:'5'}]:[];
+        const source = renderProfile(id, { rulesets, nodes, selectedProxy: selection });
         const config = id === 'mihomo' ? parseYaml(source.content) : JSON.parse(source.content);
         if (id === 'mihomo') {
           config['mixed-port'] = proxyPort;
           config.dns = { enable: true, ipv6: false, 'enhanced-mode': 'redir-host', nameserver: [`udp://127.0.0.1:${dns.port}`], 'default-nameserver': [`127.0.0.1:${dns.port}`] };
-          if (selection === 'FixtureProxy') config.proxies = [{ name: 'FixtureProxy', type: 'socks5', server: '127.0.0.1', port: upstream.port, udp: false }];
-          config['proxy-groups'].find(group => group.name === 'Proxy').proxies = [selection, ...['REJECT', 'DIRECT'].filter(item => item !== selection)];
           for (const name of ['apple', 'github']) config['proxy-groups'].find(group => group.name === name).proxies = ['DIRECT', 'Proxy'];
         } else {
           config.inbounds[0].listen_port = proxyPort;
           config.dns = { servers: [{ type: 'udp', tag: 'fixture-dns', server: '127.0.0.1', server_port: dns.port }], final: 'fixture-dns' };
           config.route.default_domain_resolver = 'fixture-dns';
-          const proxy = config.outbounds.find(outbound => outbound.tag === 'Proxy');
-          if (selection === 'FixtureProxy') {
-            config.outbounds.push({ type: 'socks', tag: 'FixtureProxy', server: '127.0.0.1', server_port: upstream.port, version: '5' });
-            proxy.outbounds.push('FixtureProxy');
-          }
-          proxy.default = selection;
           for (const tag of ['apple', 'github']) config.outbounds.find(outbound => outbound.tag === tag).default = 'DIRECT';
         }
         const configPath = path.join(directory, `${id}-${selection}.${id === 'mihomo' ? 'yaml' : 'json'}`);
         await writeFile(configPath, id === 'mihomo' ? stringifyYaml(config) : `${JSON.stringify(config, null, 2)}\n`);
         const args = id === 'mihomo' ? ['-f', configPath, '-d', directory] : ['run', '-c', configPath];
+        let runningMarker;
+        if(id==='mihomo'){
+          const marker='netatlas-mihomo-running-'+randomUUID();runningMarker=path.join(directory,marker);
+          await assertManagedPaths(root,[runningMarker,runningMarker+'.pending']);
+          args.push('-post-up',`printf %s ${marker} > ${marker}.pending && mv ${marker}.pending ${marker}`);
+        }
         onProgress(`Local routing: ${id}, Proxy=${selection}, HTTP + SOCKS5`);
         const child = spawn(binaries[id], args, { cwd: directory, stdio: ['ignore', 'pipe', 'pipe'] });
         let log = '';
@@ -526,6 +527,7 @@ export async function testLocalRouting({ root, binaries, onProgress = () => {} }
         child.stderr.on('data', bytes => { log = (log + bytes).slice(-200_000); });
         try {
           await waitForPort(child, proxyPort);
+          if(runningMarker)await waitForMihomoRunning({child,markerPath:runningMarker});
           const targets = selection === 'REJECT'
             ? [['allowed.netatlas.test', true, 'explicit-direct', false], ['blocked.netatlas.test', false, 'explicit-reject', false], ['fallback.netatlas.test', false, 'fallback-reject', false]]
             : selection === 'DIRECT' ? [['fallback.netatlas.test', true, 'fallback-direct', false]]
@@ -619,7 +621,7 @@ export async function prepareAntiAdNativeInputs({ root }) {
   for (const item of pending) {
     const providerPath = path.join(directory, `${item.client}-anti-ad.${item.client === 'mihomo' ? 'yaml' : 'json'}`);
     await writeFile(providerPath, item.bytes, { flag: 'wx' });
-    const profile = renderProfile(item.client, { rulesets: [] });
+    const profile = renderProfile(item.client, { rulesets: [], selectedProxy: 'DIRECT' });
     const config = item.client === 'mihomo' ? parseYaml(profile.content) : JSON.parse(profile.content);
     const fragment = item.client === 'mihomo' ? parseYaml(item.fragmentBytes.toString('utf8')) : JSON.parse(item.fragmentBytes);
     if (item.client === 'mihomo') {
@@ -769,7 +771,9 @@ export async function runNativeVerification({ root, onProgress = () => {} }) {
   const checks = await checkNativeProfiles({ root, binaries: installed.binaries, onProgress });
   const routing = await testLocalRouting({ root, binaries: installed.binaries, onProgress });
   const optionalRulesets = await testOptionalRulesets({ root, binaries: installed.binaries, onProgress });
-  const report = { status: 'passed', startedAt, completedAt: new Date().toISOString(), artifacts: installed.artifacts, checks, routing, optionalRulesets };
+  const { testPrivateProfileWorkflow } = await import('./profile-workflow.mjs');
+  const privateWorkflow = await testPrivateProfileWorkflow({ root, binaries: installed.binaries, onProgress });
+  const report = { status: 'passed', startedAt, completedAt: new Date().toISOString(), artifacts: installed.artifacts, checks, routing, optionalRulesets, privateWorkflow };
   await writeNativeReport({ root, report });
   return report;
 }

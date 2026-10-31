@@ -3,7 +3,9 @@
   "version": "0.1.0",
   "private": true,
   "type": "module",
-  "engines": { "node": ">=24 <25" },
+  "engines": {
+    "node": ">=24 <25"
+  },
   "scripts": {
     "test": "node --test",
     "test:rules": "node --test tests/rules/*.test.mjs",
@@ -14,7 +16,10 @@
     "sync": "node tools/sync.mjs",
     "check": "node tools/build.mjs --check && node tools/validate.mjs",
     "test:live": "node tools/live.mjs",
-    "test:native": "node tools/native.mjs"
+    "test:native": "node tools/native.mjs",
+    "profile": "node tools/profile.mjs"
   },
-  "dependencies": { "yaml": "2.9.1" }
+  "dependencies": {
+    "yaml": "2.9.1"
+  }
 }

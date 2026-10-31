@@ -2,10 +2,13 @@ import { createHash } from 'node:crypto';
 import { cp, lstat, mkdir, mkdtemp, readFile, readdir, rename, writeFile } from 'node:fs/promises';
 import path from 'node:path';
 import { isIP } from 'node:net';
-import { normalizeRuleset, stableId } from './rules.mjs';
+import { normalizeEntry, normalizeRuleset, stableId } from './rules.mjs';
 import { assertManagedPaths } from './managed-paths.mjs';
 
 const limits = { maxDepth: 20, maxFiles: 512, maxVisits: 4096, maxEntries: 250_000, maxFileBytes: 1_000_000, maxTotalBytes: 24_000_000 };
+// CN includes share source files with service lists but need more than 512
+// downloads across the whole catalog. Each include closure remains capped at 512.
+const maxDownloadFiles = 1024;
 const licenses = new Set(['MIT', 'BSD-2-Clause', 'BSD-3-Clause', 'Apache-2.0', 'ISC', 'CC0-1.0']);
 const hardMaxFileBytes = 4_000_000;
 const listName = /^[a-z0-9][a-z0-9.!_-]*$/;
@@ -28,6 +31,22 @@ function fileBudget(value = limits.maxFileBytes) {
 function sourcePath(value) {
   if (typeof value !== 'string' || !value || value.length > 240 || value.split('/').some(part => !/^[A-Za-z0-9][A-Za-z0-9._-]*$/.test(part) || part.includes('..'))) throw new Error('Invalid registered source path');
   return value;
+}
+
+export function parseCidrLines(text, file, matchType) {
+  if (!['ip-cidr', 'ip-cidr6'].includes(matchType)) throw new Error('CIDR lines require an explicit address-family type');
+  const entries=[];
+  for (const [index, raw] of text.split(/\r?\n/).entries()) {
+    const value=raw.trim();
+    if (!value || value.startsWith('#')) continue;
+    if (!value.includes('/') || /\s/.test(value) || isIP(value.split('/')[0]) !== (matchType==='ip-cidr'?4:6)) throw new Error(`${file}:${index+1}: Invalid CIDR address family`);
+    const entry=normalizeEntry({type:matchType,value});
+    if(entry.value!==value) throw new Error(`${file}:${index+1}: CIDR must be canonical`);
+    entries.push(entry);
+    if(entries.length>limits.maxEntries)throw new Error('CIDR entry limit exceeded');
+  }
+  if(!entries.length)throw new Error(`${file}: Empty CIDR source`);
+  return {entries:normalizeRuleset({version:1,id:'cidr-lines',category:'network',entries}).entries,rawEntryCount:entries.length};
 }
 
 function parseDomainLines(text, file, matchType, linePrefix = '') {
@@ -305,7 +324,7 @@ export async function syncCatalog({ root, revision, repository, latest = false, 
   async function download(url, { maxBytes = limits.maxFileBytes } = {}) {
     fileBudget(maxBytes);
     if (!cache.has(url)) {
-      if (cache.size >= limits.maxFiles) throw new Error('Total source file count exceeded');
+      if (cache.size >= maxDownloadFiles) throw new Error('Total source file count exceeded');
       cache.set(url, (async () => {
         const text = await fetchText(url, { maxBytes });
         if (typeof text !== 'string' || Buffer.byteLength(text) > maxBytes) throw new Error('Source response size exceeded');
@@ -362,20 +381,21 @@ export async function syncCatalog({ root, revision, repository, latest = false, 
       if (current !== null && !item.outputSha256) throw new Error(`No recorded checksum for existing managed ruleset: ${relative}`);
       if (current !== null && item.outputSha256 && sha256(current) !== item.outputSha256) throw new Error(`Local changes in managed ruleset: ${relative}`);
       const format = item.source.format ?? 'domain-list-community';
-      if (format === 'domain-lines') {
+      if (format === 'domain-lines' || format === 'cidr-lines') {
         const file = sourcePath(item.source.path);
         const maxBytes = fileBudget(item.source.maxFileBytes);
         if (item.exclusions?.length) throw new Error('Domain-line sources do not allow silent expression exclusions');
         const url = `https://raw.githubusercontent.com/${repo.repository}/${repo.revision}/${file}`;
         const text = await download(url, { maxBytes });
-        const collected = parseDomainLines(text, file, item.source.matchType, item.source.linePrefix);
+        if(format==='cidr-lines'&&item.source.linePrefix!==undefined)throw new Error('CIDR-line sources do not support prefixes');
+        const collected = format==='cidr-lines'?parseCidrLines(text,file,item.source.matchType):parseDomainLines(text, file, item.source.matchType, item.source.linePrefix);
         ruleset = normalizeRuleset({ version: 1, id: item.id, category: item.category, entries: collected.entries });
         item.files = [{ path: file, url, sha256: sha256(text) }];
         item.appliedExclusions = [];
         item.attributeFiltered = 0;
         item.affiliationDeclarations = 0;
         item.rawEntryCount = collected.rawEntryCount;
-        item.selection = `complete registered domain-line file; explicit ${item.source.matchType} semantics`;
+        item.selection = `complete registered ${format==='cidr-lines'?'CIDR':'domain'}-line file; explicit ${item.source.matchType} semantics`;
       } else if (format === 'domain-list-community') {
         if (item.source.maxFileBytes !== undefined) throw new Error('File budget overrides require registered domain-lines format');
         if (item.source.linePrefix !== undefined) throw new Error('Line prefixes require registered domain-lines format');
