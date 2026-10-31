@@ -168,3 +168,7 @@ Unbreak与参考全部50条件双向核对相同；来源是48个GPL原始条件
 - 18工具安装包可选启用；固定入口脚本不等于前端/CDN/生成资源的全部依赖闭包固定。外部解析器未实际转换、六GUI/MITM未实机测试。
 
 安装与使用见[功能说明](features.md)、[接入](profile-setup.md)及每个客户端README。机器可读清单是[coverage.json](../metadata/coverage.json)，实际验证见[validation.md](validation.md)。
+
+## QX 可选兼容资源
+
+[服务兼容接入](qx-compatibility.md)提供两个扩大范围的独立分流资源，以及Speedtest HTTP和单独HTTPS广告重写。它们均不被默认/standalone引用，不给14/24增加无损覆盖信用；前置资源和关闭App分流匹配优化是手工前提，HTTPS另需人工MITM与信任CA，MITM通配范围宽于真正的广告正则。Google仍保留现有兜底与CN精确例外的差异，不增加近似直连。

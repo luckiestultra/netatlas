@@ -1,0 +1,7 @@
+# NetAtlas QX compatibility — optional; NOT LOSSLESS source-regex restoration.
+# MIT; original adapter for the pinned MIT domain-list-community source expressions.
+# Not included in default or standalone profiles; strict coverage remains 14/24.
+# Widening: non-digits and nested labels can match the glob.
+# Put this resource before broad service suffixes; keep App matching optimization OFF.
+# Set force-policy=国外媒体 for the managed profile; viu-portable for standalone.
+host-wildcard,ewcdn?*.nowe.com,viu-portable

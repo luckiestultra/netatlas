@@ -1,0 +1,64 @@
+{
+  "version": 1,
+  "license": "MIT",
+  "defaultEnabled": false,
+  "strictCoverageCredit": 0,
+  "requiresMatchingOptimizationOff": true,
+  "requiresManualPlacement": true,
+  "routes": [
+    {
+      "id": "openai-compat",
+      "sourceId": "openai",
+      "sourceFile": "openai",
+      "sourceRule": "regexp:^chatgpt-async-webps-prod-\\S+-\\d+\\.webpubsub\\.azure\\.com$",
+      "pattern": "chatgpt-async-webps-prod-?*-?*.webpubsub.azure.com",
+      "managedPolicy": "AI服务",
+      "positive": [
+        "chatgpt-async-webps-prod-a-1.webpubsub.azure.com",
+        "chatgpt-async-webps-prod-x.y-123.webpubsub.azure.com"
+      ],
+      "extraMatches": [
+        "chatgpt-async-webps-prod-a-x.webpubsub.azure.com",
+        "chatgpt-async-webps-prod-a-1.extra.webpubsub.azure.com"
+      ],
+      "nonMatches": [
+        "evil.chatgpt-async-webps-prod-a-1.webpubsub.azure.com",
+        "chatgpt-async-webps-prod-a-1.webpubsub.azure.com.evil",
+        "chatgpt-async-webps-prod--1.webpubsub.azure.com"
+      ]
+    },
+    {
+      "id": "viu-cdn-compat",
+      "sourceId": "viu-portable",
+      "sourceFile": "viu",
+      "sourceRule": "regexp:^ewcdn[0-9]+\\.nowe\\.com$",
+      "pattern": "ewcdn?*.nowe.com",
+      "managedPolicy": "国外媒体",
+      "positive": [
+        "ewcdn0.nowe.com",
+        "ewcdn12345.nowe.com"
+      ],
+      "extraMatches": [
+        "ewcdnx.nowe.com",
+        "ewcdn1.extra.nowe.com"
+      ],
+      "nonMatches": [
+        "ewcdn.nowe.com",
+        "x.ewcdn1.nowe.com",
+        "ewcdn1.nowe.com.evil"
+      ]
+    }
+  ],
+  "httpAds": {
+    "sourceFile": "ookla-speedtest",
+    "sourceRule": "regexp:^speed\\.(coe|open)\\.ad\\.[a-z]{2,6}\\.prod\\.hosts\\.ooklaserver\\.net$",
+    "scope": "Visible HTTP URLs only; HTTPS requires separate explicit MITM enablement and a trusted user CA. No DNS/UDP/general TCP/HTTP3 or certificate-pinning coverage is claimed.",
+    "mitmScope": "Ten fixed-length glob host masks. These masks are broader than the alphabet-restricted reject expression; non-ad hosts may also be decrypted."
+  },
+  "sources": [
+    "https://github.com/crossutility/Quantumult-X/blob/af6fb594233ec4a3ec6d4ccb3601e9c36b75ea2d/sample.conf",
+    "https://github.com/crossutility/Quantumult-X/blob/af6fb594233ec4a3ec6d4ccb3601e9c36b75ea2d/rewrite.md",
+    "https://apps.apple.com/us/app/quantumult-x/id1443988620"
+  ],
+  "nativeAppVerification": "not-run; matching optimization and resource priority prerequisites require manual app verification"
+}

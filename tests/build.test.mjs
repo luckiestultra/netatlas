@@ -13,7 +13,7 @@ test('all eight client trees are deterministic, App-first and service-first',asy
   for(const client of a.clients){
     const prefix=client.id+'/';
     const paths=[...a.files.keys()].filter(path=>path.startsWith(prefix)).map(path=>path.slice(prefix.length));
-    const extraRuleResources={quantumultX:6,surge:8,loon:8,shadowrocket:6,egern:13,stash:13,mihomo:13,singBox:11};
+    const extraRuleResources={quantumultX:8,surge:8,loon:8,shadowrocket:6,egern:13,stash:13,mihomo:13,singBox:11};
     assert.equal(paths.filter(path=>path.startsWith('rules/')).length,a.rulesets.length+extraRuleResources[client.id]);
     assert.ok(paths.every(path=>!/^rules\/[^/]+\//.test(path)));
     const manifest=JSON.parse(a.files.get(prefix+'manifest.json'));

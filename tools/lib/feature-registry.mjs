@@ -18,7 +18,7 @@ export async function loadFeatureRegistry(root) {
     ids.add(feature.id);
     for(const [client,adapter] of Object.entries(feature.clients??{})){
       getClient(client);
-      if(!Array.isArray(adapter.artifacts)||adapter.artifacts.some(path=>! /^(?:modules|scripts|rewrites|fragments)\/[a-z0-9.-]+$/.test(path)))throw new Error(`Invalid feature artifact: ${feature.id}/${client}`);
+      if(!Array.isArray(adapter.artifacts)||adapter.artifacts.some(path=>! /^(?:modules|scripts|rewrites|fragments|rules)\/[a-z0-9.-]+$/.test(path)))throw new Error(`Invalid feature artifact: ${feature.id}/${client}`);
     }
   }
   const feature=registry.features.find(item=>item.id==='https-upgrade');

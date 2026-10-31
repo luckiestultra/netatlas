@@ -773,6 +773,45 @@
         "https://raw.githubusercontent.com/KOP-XIAO/QuantumultX/f0177f5ea2f62681ab2592a4ed54677dfbbc4b78/Scripts/resource-parser.js",
         "https://raw.githubusercontent.com/sub-store-org/Sub-Store/d26e713e38901e02565a6505c1ae5cb8bb8a1a22/sub-store-parser.loon.min.js"
       ]
+    },
+    {
+      "id": "qx-regex-compat",
+      "description": "Optional widened service routing plus protocol-limited Speedtest ads rewrites; strict source-regex coverage unchanged.",
+      "defaultEnabled": false,
+      "license": "MIT",
+      "sourceRegistry": "metadata/qx-compat.json",
+      "clients": {
+        "quantumultX": {
+          "artifacts": [
+            "rules/openai-compat.list",
+            "rules/viu-cdn-compat.list",
+            "rewrites/speedtest-ads-http.snippet",
+            "rewrites/speedtest-ads-https.snippet",
+            "fragments/regex-compat.conf"
+          ],
+          "kind": "optional-filter-resources-and-rewrites",
+          "nativeApp": "not-run",
+          "strictCoverageCredit": 0,
+          "matchingOptimization": "must be OFF; manual priority verification required"
+        }
+      },
+      "permissions": {
+        "script": false,
+        "storage": false,
+        "backgroundRequests": false,
+        "automaticTasks": false,
+        "certificatePayload": false,
+        "httpsMitm": "Separate opt-in resource; requires user-enabled MITM and trusted CA, with broader fixed-length host masks than the reject expression."
+      },
+      "validation": {
+        "unit": "Source registration, deliberately wider matches, native URL boundaries, opt-in isolation and custom base URL.",
+        "nativeApp": "not-run"
+      },
+      "sources": [
+        "https://github.com/crossutility/Quantumult-X/blob/af6fb594233ec4a3ec6d4ccb3601e9c36b75ea2d/sample.conf",
+        "https://github.com/crossutility/Quantumult-X/blob/af6fb594233ec4a3ec6d4ccb3601e9c36b75ea2d/rewrite.md",
+        "https://github.com/v2fly/domain-list-community/tree/1daade8c4bb957d21d1f5c09c2b050d699e8e96c/data"
+      ]
     }
   ],
   "unimplementedScriptAdapters": {

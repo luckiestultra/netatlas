@@ -105,3 +105,7 @@ GeoIP与ASN数据库由各客户端自身下载和更新，本仓库没有重新
 24个正则引用的8份原始DLC文件和MIT许可位于[src/vendor/rule-sources/domain-list-community/regex](src/vendor/rule-sources/domain-list-community/regex)，逐行SHA与转换证明见[正则登记](metadata/regex-routing.json)。原生正则/有限通配保留原始语言，不沿用未许可参考仓库负载。
 
 完整Unbreak的48个条件来自已固定GPL Direct.yaml；另外2个精确端点由本项目依据Android/Chromium官方端点事实独立编写（MIT），见[src/supplements/unbreak.json](src/supplements/unbreak.json)。合并集合按GPL-2.0-only分发，完整源文和修改声明已保留。三个原有连接探测域仍是独立MIT列表，不冒充50条原始集合。
+
+## QX 可选兼容补充
+
+QX兼容分流与HTTP/HTTPS重写是本项目MIT适配，依据已归档的同一MIT DLC正则表达式和QX公开语法独立实现。扩大范围的通配与仅HTTP(S)的重写不计为源域名正则完整恢复；源表达式及额外匹配例子在metadata/qx-compat.json登记。没有复制第三方未许可配置、脚本或证书，也未重新分发CA或私有数据。

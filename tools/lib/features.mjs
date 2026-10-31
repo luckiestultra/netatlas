@@ -8,6 +8,7 @@ import { renderRedirects, renderBiliIntlRegion } from './redirects.mjs';
 import { renderIntegrations } from './integrations.mjs';
 import { renderBodyReplacement } from './body-replacement.mjs';
 import { renderResourceParsers } from './resource-parsers.mjs';
+import { renderQxCompatibility } from './qx-compat.mjs';
 
 const clientIds = new Set(['quantumultX', 'surge', 'loon', 'shadowrocket', 'egern', 'stash', 'mihomo', 'singBox']);
 const source = (path) => readFileSync(new URL('../../src/features/' + path, import.meta.url), 'utf8');
@@ -47,5 +48,5 @@ function renderBuiltinFeatures(client, { baseUrl } = {}) {
 }
 
 export function renderFeatures(client,options={}) {
-  return [...renderBuiltinFeatures(client,options),...renderAntiAd(client,options),...renderHttpsUpgrade(client,options),...renderQuickSearch(client,options),...renderRedirects(client,options),...renderBiliIntlRegion(client,options),...renderIntegrations(client,options),...renderBodyReplacement(client,options),...renderResourceParsers(client,options)];
+  return [...renderBuiltinFeatures(client,options),...renderAntiAd(client,options),...renderHttpsUpgrade(client,options),...renderQuickSearch(client,options),...renderRedirects(client,options),...renderBiliIntlRegion(client,options),...renderIntegrations(client,options),...renderBodyReplacement(client,options),...renderResourceParsers(client,options),...renderQxCompatibility(client,options)];
 }

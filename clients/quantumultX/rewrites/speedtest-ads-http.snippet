@@ -1,0 +1,7 @@
+# NetAtlas QX compatibility — optional; NOT LOSSLESS source-regex restoration.
+# MIT; original adapter for the pinned MIT domain-list-community source expressions.
+# Not included in default or standalone profiles; strict coverage remains 14/24.
+# Exact source hostname expression, limited to visible HTTP URLs.
+# No DNS, UDP, arbitrary TCP, HTTP/3 or certificate-pinning coverage is claimed.
+# HTTP only; no MITM, certificate, script, storage or background request.
+^http:\/\/speed\.(coe|open)\.ad\.[a-z]{2,6}\.prod\.hosts\.ooklaserver\.net(?::0*(?:[0-9]{1,4}|[1-5][0-9]{4}|6[0-4][0-9]{3}|65[0-4][0-9]{2}|655[0-2][0-9]|6553[0-5]))?(?:[/?][^\s#]*)?(?![\s\S]) url reject

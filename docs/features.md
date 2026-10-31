@@ -119,3 +119,7 @@ Mihomo、sing-box核心不执行这些GUI的HTTP重写/JS模块；需要转换�
 QX和Loon各有fragments/resource-parser.conf，需要合并General设置，而非当模块或重写订阅导入。QX链接作者发布的固定KOP解析器；未声明许可的源码不由本仓库复制分发。Loon链接固定AGPL Sub-Store解析器。它们是外部工具入口，接收订阅原文并在宿主权限下执行；本仓库未实施其格式转换或宣称隔离执行。详细来源/哈希/支持范围见[解析器登记](../metadata/resource-parsers.json)。
 
 Surge的scripts/replace-body.js为原创文本请求/响应正文替换工具；片段中的例子全部注释，需使用者指定自己的窄URL与规则。支持旧式pattern->replacement、/pattern/flags及百分号编码JSON规则；先编译完整配方，任何错误或不支持输入都一次性原样放行，不输出正文、联网或修改headers。需要requires-body=true与明确max-size；HTTPS仅在使用者已有可信CA及对应主机启用MITM时可用。[Surge请求契约](https://manual.nssurge.com/scripting/http-request.html)、[响应契约](https://manual.nssurge.com/scripting/http-response.html)。
+
+## QX 正则缺口的可选兼容处理
+
+见[可直接复制的接入步骤](qx-compatibility.md)：ChatGPT/ViuTV关联CDN的两个原生分流补充，以及Speedtest HTTP和单独HTTPS重写。它们与严格源正则资源分开，默认关闭；扩大范围、排序/优化和MITM前提均逐项说明，不计为14/24之外的无损恢复。

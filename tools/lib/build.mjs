@@ -17,6 +17,7 @@ import { loadNativeRouting, nativeRoutingSettings, renderNativeRoutingFragment }
 import { loadRegexRouting, regexRoutingFor } from './regex-routing.mjs';
 import { profileRoutingResources } from './routing-extensions.mjs';
 import { loadRuleSupplement } from './rule-supplements.mjs';
+import { loadQxCompatibility } from './qx-compat.mjs';
 
 export const defaultBaseUrl='https://raw.githubusercontent.com/luckiestultra/netatlas/main';
 export const sha256=value=>createHash('sha256').update(value).digest('hex');
@@ -97,7 +98,7 @@ function clientReadme(client,rulesets,features,baseUrl,featureRegistry,sourceReg
   const extensions=profileRoutingResources(client.id,rulesets),activeExtensions=profileRoutingResources(client.id,embedded);
   const regex=regexRoutingFor(client.id),native=nativeRoutingSettings(client.id);
   const extensionRows=extensions.map(rule=>`| [${rule.id}${ids.has(rule.sourceId)?'':'（可选）'}](${rule.path}) | ${rule.entries.length.toLocaleString('en-US')} | ${rule.license} |`).join('\n');
-  const names={geoip:'出口定位','search-redirect':'Bing 搜索跳转','quick-search':'47 项快速搜索',redirects:'59 项网站重定向','biliintl-region':'BiliIntl 菲律宾参数','anti-ad':'可选反广告','https-upgrade':'六站 HTTPS 升级',boxjs:'BoxJS','script-hub':'ScriptHub','sub-store':'Sub-Store','body-replacement':'正文替换工具','resource-parser':'外部资源解析器'};
+  const names={geoip:'出口定位','search-redirect':'Bing 搜索跳转','quick-search':'47 项快速搜索',redirects:'59 项网站重定向','biliintl-region':'BiliIntl 菲律宾参数','anti-ad':'可选反广告','https-upgrade':'六站 HTTPS 升级',boxjs:'BoxJS','script-hub':'ScriptHub','sub-store':'Sub-Store','body-replacement':'正文替换工具','resource-parser':'外部资源解析器','qx-regex-compat':'QX服务兼容补充（非无损）'};
   const available=featureRegistry.features.filter(feature=>feature.clients?.[client.id]);
   const featureList=available.length?'| 功能 | 实际入口/导入方式 |\n| --- | --- |\n'+available.map(feature=>`| ${names[feature.id]??feature.id} | ${feature.clients[client.id].artifacts.map(path=>`[${path}](${path})`).join(' · ')}；${feature.clients[client.id].kind} |`).join('\n'):'该核心不支持原生 HTTP 重写/JS 模块。';
   return `# ${client.name}
@@ -139,7 +140,7 @@ modules 保存脚本功能安装资源，rewrites 保存纯重写，fragments �
 
 BoxJS、ScriptHub、Sub-Store 为明确可选的上游工具，脚本入口固定版本，GUI 导入未实测；BoxJS 会读写宿主脚本存储，转换工具会读取订阅/用户指定 URL。没有自动同步任务，也不会自动启用 MITM 或安装 CA。第三方脚本与前端的完整依赖树不全部固定，见[工具许可与边界](../../src/vendor/integrations/)。外部解析器片段只链接作者发布脚本，不是本仓库实现的解析器。
 
-Mihomo/sing-box 提供原生规则、DNS、节点与可选反广告；BoxJS 等 GUI 模块和 HTTP 重写不是这两个核心的能力。需要订阅转换时可另用 [Sub-Store 官方服务](https://github.com/sub-store-org/Sub-Store)，不要把 GUI 脚本格式塞进核心配置。QX 主配置已经接入 GeoIP；其片段供其他既有配置使用。完整边界见[逐项覆盖](../../docs/coverage.md)与[功能说明](../../docs/features.md)。
+Mihomo/sing-box 提供原生规则、DNS、节点与可选反广告；BoxJS 等 GUI 模块和 HTTP 重写不是这两个核心的能力。需要订阅转换时可另用 [Sub-Store 官方服务](https://github.com/sub-store-org/Sub-Store)，不要把 GUI 脚本格式塞进核心配置。QX 主配置已经接入 GeoIP；其片段供其他既有配置使用。完整边界见[逐项覆盖](../../docs/coverage.md)与[功能说明](../../docs/features.md)。${client.id==='quantumultX'?' 两份服务兼容分流与HTTP/HTTPS广告资源均为独立可选，扩大范围、顺序和MITM前提见[QX接入说明](../../docs/qx-compatibility.md)，不计入14/24严格覆盖。':''}
 
 ## 高级：离线配置或本地私有转换
 
@@ -164,7 +165,7 @@ export async function createBuild(root,{baseUrl=defaultBaseUrl}={}){
   const input=await inputIdentity(root);
   const {rulesets,sources,registry}=await loadCatalog(root);
   const featureRegistry=await loadFeatureRegistry(root);
-  await Promise.all([loadNativeRouting(root),loadRegexRouting(root)]);
+  await Promise.all([loadNativeRouting(root),loadRegexRouting(root),loadQxCompatibility(root)]);
   for(const source of sources)if(input.files.find(file=>file.path===source.path)?.sha256!==source.sha256)throw new Error('Build inputs changed while reading the catalog');
   const files=new Map(),catalog=[];
   const put=(path,content)=>{if(files.has(path))throw new Error('Duplicate artifact: '+path);files.set(path,content);};

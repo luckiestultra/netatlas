@@ -9,6 +9,8 @@ QX 默认使用 App 内置 proxy，Shadowrocket 使用首页 PROXY；其余客�
 规则资源按具体应用或服务平铺；AI、苹果、谷歌、微软、开发、通讯、游戏、媒体及最终兜底可独立选择出口。另有可选 anti-AD **100,682 条**和 global **6,985 条**；合计 **118 套、136,944 条**规范数据。完整内联版本与私有 CLI 保留为高级选项。六 GUI 可选功能现含 47 项快速搜索、59 项网站重定向、独立 BiliIntl 参数资源，以及 BoxJS、ScriptHub、Sub-Store 安装包。QX/Loon 另有外部资源解析器片段；Surge 有原创正文替换工具。入口与实质差异见[逐项覆盖清单](docs/coverage.md)。
 七端已接入完整 **5,231 个 ASN 编号**与原生 **CN GeoIP 数据库**条件；sing-box 1.14 不支持这两类原生条件。完整 **50 条 Unbreak** 在八端保留原始条件，原有 3 条连接探测另行保留。源正则按客户端原生能力补齐：Egern/Stash/Mihomo/sing-box 为 24/24，QX/Shadowrocket 为 14/24，Surge/Loon 为 16/24；其余逐条标为未支持，不拿 URL 正则或近似后缀补数。两种主配置均实际接入支持项，详见[原生条件支持表](docs/coverage.md#原生条件的八端支持)。
 
+QX另提供[服务兼容补充](docs/qx-compatibility.md)：ChatGPT/ViuTV关联CDN分流与Speedtest按协议区分的广告重写，均为独立可选。扩大范围和HTTP(S)限制明确披露，不计为剩余正则的无损恢复。
+
 ## 使用入口
 
 | 客户端 | 主配置 | 目录 |

@@ -2,7 +2,7 @@
   "version": 1,
   "client": "quantumultX",
   "builder": "netatlas@0.1.0",
-  "inputSha256": "8e6fb11a3cb682e8def873065fb045eaaaaeb084d91a02cc472e12647f221779",
+  "inputSha256": "bcf1925523fa158d4ac5bb0e552f43e852a343f622efe31e3c45e5d143da0c0d",
   "baseUrl": "https://raw.githubusercontent.com/luckiestultra/netatlas/main",
   "targetVersion": null,
   "counts": {
@@ -6616,6 +6616,26 @@
       },
       "upstream": null,
       "sourceRegistry": "metadata/resource-parsers.json"
+    },
+    {
+      "id": "qx-regex-compat",
+      "defaultEnabled": false,
+      "license": "MIT",
+      "adapter": {
+        "artifacts": [
+          "rules/openai-compat.list",
+          "rules/viu-cdn-compat.list",
+          "rewrites/speedtest-ads-http.snippet",
+          "rewrites/speedtest-ads-https.snippet",
+          "fragments/regex-compat.conf"
+        ],
+        "kind": "optional-filter-resources-and-rewrites",
+        "nativeApp": "not-run",
+        "strictCoverageCredit": 0,
+        "matchingOptimization": "must be OFF; manual priority verification required"
+      },
+      "upstream": null,
+      "sourceRegistry": "metadata/qx-compat.json"
     }
   ],
   "sources": {
@@ -10598,6 +10618,11 @@
       "bytes": 884
     },
     {
+      "path": "fragments/regex-compat.conf",
+      "sha256": "bce80b5d63c0b860923204b191cddd4642373c864f755809ef59029fce74be06",
+      "bytes": 1498
+    },
+    {
       "path": "fragments/resource-parser.conf",
       "sha256": "7289e856accde6d735617da52fb9249b817e247fc1e8c4ef5e9ee5f599b5e672",
       "bytes": 1301
@@ -10634,8 +10659,8 @@
     },
     {
       "path": "README.md",
-      "sha256": "f4f6bdd4f07193c22a34210e4dac17ee66b2f01c6ef037df382e8c01026e5fa4",
-      "bytes": 12136
+      "sha256": "b3bb845a6b339a13bcbe4ae8f0f7d2ca47fc28c09148021639f3037be9616b62",
+      "bytes": 12738
     },
     {
       "path": "rewrites/biliintl-region.snippet",
@@ -10661,6 +10686,16 @@
       "path": "rewrites/search-redirect.snippet",
       "sha256": "1e57ffc35d7d5c66350431e76ab4ca1d3e85986ad7f00b65c602cb56ba0f0653",
       "bytes": 285
+    },
+    {
+      "path": "rewrites/speedtest-ads-http.snippet",
+      "sha256": "feb420930c4c9710a0ebc66da131267646d7360d8539a00a57485c2900af3887",
+      "bytes": 671
+    },
+    {
+      "path": "rewrites/speedtest-ads-https.snippet",
+      "sha256": "9d3200ba5306e6fc0009f6657e955d81cc4e84f6c96460419ce66b95e3fb4051",
+      "bytes": 1265
     },
     {
       "path": "rules/abc.list",
@@ -11068,6 +11103,11 @@
       "bytes": 379
     },
     {
+      "path": "rules/openai-compat.list",
+      "sha256": "86e57b7a6ea7bacf9ece0201283e6ea28af77ddb8a21d602dc36889d5cd72949",
+      "bytes": 543
+    },
+    {
       "path": "rules/openai.list",
       "sha256": "d2130f505cdb0391d251fcd762826ca4e4e24f6646a9c6f8203b9b889ec5a87b",
       "bytes": 921
@@ -11216,6 +11256,11 @@
       "path": "rules/vercel.list",
       "sha256": "137710bd1b8e0cb70983ff51c40f380e9d74f6b18f82f0f0df44a6e45dcd51ed",
       "bytes": 832
+    },
+    {
+      "path": "rules/viu-cdn-compat.list",
+      "sha256": "c072b1f2f898cbe170149cc11c8e0838ae8eccafeda1e0b81dbbaec801699ef1",
+      "bytes": 525
     },
     {
       "path": "rules/viu-portable.list",

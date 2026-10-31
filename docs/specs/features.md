@@ -50,3 +50,9 @@ npm run test:live
 ## 完整可选资源
 
 本轮增加原创47动作快速搜索、固定GPL完整59动作跳转与独立BiliIntl参数资源（六GUI）；三类官方工具18个可选安装包；QX/Loon两个外部解析器片段；原创Surge正文替换。安装格式、许可、入口权限、直接依赖固定范围和nativeApp:not-run分别登记，不以核心不支持的格式伪造Mihomo/sing-box模块。完整机器清单为metadata/features.json、metadata/integrations.json、metadata/resource-parsers.json和metadata/coverage.json。
+
+## QX 正则缺口的可选兼容处理
+
+严格源正则覆盖保持14/24，不给兼容资源计无损覆盖。两个独立原生分流资源只解决ChatGPT Azure端点与ViuTV/Now E CDN的实际策略归类，明确额外匹配非数字及可能跨标签主机名，默认/standalone均不启用。接入片段要求手工前置资源、选择正确业务策略并关闭App分流匹配优化；不编造配置字段或改本机设置。Google已有普通后缀覆盖，不新增近似的CN直连集合。
+
+Speedtest广告只提供独立HTTP及HTTPS重写，保留源主机名正则、完整authority边界和有效端口；HTTP版无MITM，HTTPS版单独列出所需hostname与人工CA信任前提，不能算作DNS、UDP、HTTP/3或任意TCP域名规则恢复。无脚本、证书、私人节点、定时任务或自动启用。源表达式、扩大范围反例、默认关闭、策略/顺序和逐URL正反例必须测试，六GUI实测边界继续保留。
