@@ -2,7 +2,7 @@
   "version": 1,
   "client": "quantumultX",
   "builder": "netatlas@0.1.0",
-  "inputSha256": "c1fce437f577b7702c4cc2ebde2281996813fd85ad10a990bf64852a85b554a1",
+  "inputSha256": "98051195fd09aa1300706c351d74329781edb9b58648a7e5b722116edd4de7a7",
   "baseUrl": "https://raw.githubusercontent.com/luckiestultra/netatlas/main",
   "targetVersion": null,
   "counts": {
@@ -10611,8 +10611,8 @@
     },
     {
       "path": "fragments/geoip.conf",
-      "sha256": "3d1c1db6a4cdd7aa570f0a6ce242fb563642c814d72da77fc248f523f73f21c4",
-      "bytes": 256
+      "sha256": "1e3f813d67414e373e19fd4ab678cdfc3e7a001bf2b45974f300191ee9f0218f",
+      "bytes": 323
     },
     {
       "path": "fragments/native-routing.conf",
@@ -10646,8 +10646,8 @@
     },
     {
       "path": "profiles/default.conf",
-      "sha256": "6cb3bb51b326fc61fded8dcb28c489f207669189f02a049ef86d49d167ec391c",
-      "bytes": 28593
+      "sha256": "af88d73e81e98cca1efc6b232129f89c52c4ab59eac0b470df5545227091fd6b",
+      "bytes": 28660
     },
     {
       "path": "profiles/input.example.json",

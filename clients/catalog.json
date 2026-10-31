@@ -2,7 +2,7 @@
   "version": 1,
   "builder": "netatlas@0.1.0",
   "input": {
-    "sha256": "c1fce437f577b7702c4cc2ebde2281996813fd85ad10a990bf64852a85b554a1",
+    "sha256": "98051195fd09aa1300706c351d74329781edb9b58648a7e5b722116edd4de7a7",
     "files": [
       {
         "path": "LICENSE",
@@ -1026,7 +1026,11 @@
       },
       {
         "path": "tools/lib/features.mjs",
-        "sha256": "647f7b51c486cb17125420ac43cda0404ebf049cc1b9a7f174ee8c6e2d0e7f69"
+        "sha256": "137f4d0b1177aaa958c9144a4c96334385fec2a3edb6b290ea188f549652e109"
+      },
+      {
+        "path": "tools/lib/geoip.mjs",
+        "sha256": "9849cb999357fe8eb9eaba1d68d9778763b2ac1538206d52f0614afa6e62b0c3"
       },
       {
         "path": "tools/lib/https-upgrade.mjs",
@@ -1050,7 +1054,7 @@
       },
       {
         "path": "tools/lib/managed-profiles.mjs",
-        "sha256": "0553a4611425158921be9910e8c2fcc0447f49db6afbd26e9b576ef113d04e66"
+        "sha256": "f899d69d6412555b8a31547fbe76f0aef53d691fd3cbafa6489fadbd4b203b4a"
       },
       {
         "path": "tools/lib/managed-validation.mjs",
@@ -1183,7 +1187,7 @@
       "id": "quantumultX",
       "name": "Quantumult X",
       "manifest": "quantumultX/manifest.json",
-      "sha256": "0c748d63338472883f72b30964ed890a9c58997c428ebaabb03f0d74e9673727",
+      "sha256": "3c5ae8d36d23af54f1e7f635b8414ab06739fd6a137e615fef103fd8b60e3ab1",
       "rulesets": 118,
       "entries": 136944,
       "defaultRuleSets": 115,
@@ -1193,7 +1197,7 @@
       "id": "surge",
       "name": "Surge",
       "manifest": "surge/manifest.json",
-      "sha256": "0aab234349fd83c7fbbc0bc8e69d369a87b8ce64bfd9cd7364121c543f79ae4d",
+      "sha256": "9cd753cfb22f83628c24b927ae8d8b5ec9c9360bc9a8668ab393c925fd513a2a",
       "rulesets": 118,
       "entries": 136944,
       "defaultRuleSets": 115,
@@ -1203,7 +1207,7 @@
       "id": "loon",
       "name": "Loon",
       "manifest": "loon/manifest.json",
-      "sha256": "f8253f47edfa05a838bedb1645f4d9d21f8a94c3d9f93872f41c00af7c945844",
+      "sha256": "49024a4e9891477750a13c045685a801ff8382ceb345ed0fe033d3efcfb1de7b",
       "rulesets": 118,
       "entries": 136944,
       "defaultRuleSets": 115,
@@ -1213,7 +1217,7 @@
       "id": "shadowrocket",
       "name": "Shadowrocket",
       "manifest": "shadowrocket/manifest.json",
-      "sha256": "b84c6962c77e45240379e364f79bcb87f1f979439613f6eaa0f080e3d6f3a08e",
+      "sha256": "794d1956afecec727afb4f7b0ae019d995b5970a8bf03da20b3d884b229b9ee0",
       "rulesets": 118,
       "entries": 136944,
       "defaultRuleSets": 115,
@@ -1223,7 +1227,7 @@
       "id": "egern",
       "name": "Egern",
       "manifest": "egern/manifest.json",
-      "sha256": "461dd2fa2723b9fe51e1bc7b9459c443c1de59a0c5dd23aba233cad1db249965",
+      "sha256": "3a36077594e3bf39f89aebe9a9f1c314eccde9e672656513e15f28cc1ab08925",
       "rulesets": 118,
       "entries": 136944,
       "defaultRuleSets": 115,
@@ -1233,7 +1237,7 @@
       "id": "stash",
       "name": "Stash",
       "manifest": "stash/manifest.json",
-      "sha256": "dca00ed83218c03a081f04b23cab3301e627185bc72aa564a277b641b6332761",
+      "sha256": "59897dc84c87b0f59092d30653c65e9e69b83cbed6cc78c098177d16bb26a37d",
       "rulesets": 118,
       "entries": 136944,
       "defaultRuleSets": 115,
@@ -1243,7 +1247,7 @@
       "id": "mihomo",
       "name": "Mihomo",
       "manifest": "mihomo/manifest.json",
-      "sha256": "777725a608f3d92caa01f0a6e9d3fffc4d8eaa1d3b44a8feb389a43f18708c2c",
+      "sha256": "4e768e9cc310122ab0b23abbf5c423bb82a6b738585e49fb413f3771b18f0322",
       "rulesets": 118,
       "entries": 136944,
       "defaultRuleSets": 115,
@@ -1253,12 +1257,12 @@
       "id": "singBox",
       "name": "sing-box",
       "manifest": "singBox/manifest.json",
-      "sha256": "29f0c6d4cdd4f338fd011727abaaf19a745a46a14c0b7d784d418a9cff1bceb1",
+      "sha256": "88f4a9fff5deb01ae13ebf29bbb6cc83d610f734518ceac65b7d507a553b5030",
       "rulesets": 118,
       "entries": 136944,
       "defaultRuleSets": 115,
       "defaultEntries": 29153
     }
   ],
-  "contentSha256": "293c2ed8aa1bbffc34cedb2ef98049935d75aa52b13b8f981bf2f081ebb832b2"
+  "contentSha256": "a952a46b5b5909192c46202199e2bca3768d67c83e41bfeff90f942e1c633b30"
 }
