@@ -10,8 +10,8 @@
 | 可选 anti-AD | 100,682 个后缀，不进入默认主配置 |
 | 完整规则目录 | 39 组 / 106,141 条；八种原生导出 |
 | 生成文件 | 357 个，确定性构建及清单哈希通过 |
-| 离线测试 | 175 项：173 通过、0 失败、2 项显式原生测试跳过 |
-| 实际固定内核 | macOS ARM64 Mihomo 1.19.33、sing-box 1.14.4 |
+| 离线测试 | 180 项：178 通过、0 失败、2 项显式原生测试跳过 |
+| 实际固定内核 | macOS ARM64 / Linux x64 Mihomo 1.19.33、sing-box 1.14.4 |
 | 完整默认配置检查 | 两套通过，报告明确 embeddedRulesets=38 |
 | sing-box 独立规则编译 | 39/39 通过，包括完整 anti-AD |
 | 真实基础路由 | 80/80，通过 HTTP 与 SOCKS5 实际请求 |
@@ -41,6 +41,12 @@
 首次实际大集测试失败：Mihomo listener 已开放，但 `/providers/rules` 显示 `ruleCount=0`，所有请求都是 502，前两个预期拒绝因此曾表现为假阳性。相同进程加载到 100,682 后，根域/子域明确命中 `RuleSet` 使用 REJECT，两个边界对照命中 `Match` 使用 DIRECT。
 
 测试现在先读取真实 provider 状态，要求数量完整加载，之后才发断言请求；不盲加 sleep 或把 502 当作拦截成功。临时控制接口只绑定随机回环地址并使用随机 nonce，主配置没有因此增加管理端口。状态门禁另测零规则、错误数量/类型、401、缺 provider、坏 JSON、进程退出，均不能误判就绪。
+
+首次发布提交 `0858b5f` 的 Linux CI 又暴露第二个启动窗口：provider 数量完整后仍可能立即关闭外部连接。固定 Mihomo 源码顺序为 `loadProvider → runtime.GC → tunnel.OnRunning`；因此 provider 完整不代表 tunnel 已进入 Running。[官方配置生命周期](https://github.com/MetaCubeX/mihomo/blob/v1.19.33/hub/executor/executor.go) 与 [TCP 入口](https://github.com/MetaCubeX/mihomo/blob/v1.19.33/tunnel/tunnel.go) 直接说明这个窗口。
+
+修复同时要求 [CLI `-post-up`](https://github.com/MetaCubeX/mihomo/blob/v1.19.33/main.go) 完成信号与真实 provider 数量。`post-up` 仅在完整 `hub.Parse` 返回后执行；其输出会被捕获，所以使用临时受管目录内的随机原子 marker 文件。官方 hook 的真实 FIFO 受控实验确认：provider 已完整时新门禁仍未返回，收到释放事件并生成 marker 后才继续；没有给路由请求加重试或固定 sleep。另加 5 组单测覆盖先到、后到、缺失、错误标记、进程退出和参数边界。失败诊断保留 DNS/目标次数和内核日志尾部，并隐去临时控制密钥。
+
+本地隔离 Linux x64 旧批也曾单次通过，说明 CI 失败是时序敏感问题；不能把一次成功当成启动条件充分的证明。后续发布结果须核对修复提交自身的 CI。
 
 真实可选测试使用发布规则文件及安装片段，只将远程 URL 换为等价本地文件；根域/子域拒绝，近似域与 `.invalid` 对照放行，目标 HTTP 服务恰好收到 8 次请求。默认路由另外验证 80 个用例和实际 SOCKS 上游连接，不依赖自家 decoder 推导命中。
 

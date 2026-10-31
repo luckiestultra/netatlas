@@ -25,8 +25,10 @@ Publication verification: compare the remote main commit and public artifact byt
 - [x] Add optional anti-AD as a second pinned MIT rule source, preserving source semantics and credits.
 - [x] Add six-host GPL-2.0 HTTPS upgrade resources with complete source, notices and six client formats.
 - [x] Fix independent red/blue domain, filesystem, provenance and stale-native verification findings.
-- [x] Verify 173 offline tests, 39 native rule compilations, 80 routing cases and 16 optional-provider cases locally.
+- [x] Verify 178 offline tests, 39 native rule compilations, 80 routing cases and 16 optional-provider cases locally.
 - [x] Enforce actual provider readiness so an unopened rule table cannot create false-positive rejection tests.
-- [ ] Publish this separate extension batch and verify the matching remote CI and public URLs.
+- [x] Publish the extension batch and verify remote tree and public resource bytes.
+- [x] Close the Linux provider-ready/tunnel-running race using the official post-up lifecycle signal and a controlled event regression.
+- [ ] Verify the follow-up fix commit in remote Linux CI.
 
 Latest evidence and limitations: docs/validation.md; admission contract: tasks/upstream-integration.md.

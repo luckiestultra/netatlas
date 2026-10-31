@@ -2,7 +2,8 @@ import assert from 'node:assert/strict';
 import { execFile, spawn } from 'node:child_process';
 import { createHash, randomUUID } from 'node:crypto';
 import dgram from 'node:dgram';
-import { access, chmod, mkdir, mkdtemp, readFile, readdir, rename, writeFile } from 'node:fs/promises';
+import { watch } from 'node:fs';
+import { access, chmod, lstat, mkdir, mkdtemp, readFile, readdir, rename, writeFile } from 'node:fs/promises';
 import http from 'node:http';
 import net from 'node:net';
 import path from 'node:path';
@@ -404,6 +405,56 @@ export async function waitForMihomoRuleProvider({ controllerPort, secret, expect
   throw new Error(`Local rule provider was not ready with ${expectedCount} rules before its deadline; observed ${JSON.stringify(observations)}`);
 }
 
+// The pinned CLI executes -post-up only after hub.Parse has completed:
+// loadProvider -> runtime.GC -> tunnel.OnRunning -> return -> post-up.
+// Provider ruleCount alone is observable before that transition. Its shell
+// output is captured/discarded by ExecShell, so use a private atomic file marker.
+// https://github.com/MetaCubeX/mihomo/blob/v1.19.33/main.go
+// https://github.com/MetaCubeX/mihomo/blob/v1.19.33/hub/executor/executor.go
+// https://github.com/MetaCubeX/mihomo/blob/v1.19.33/common/cmd/cmd.go
+export function waitForMihomoRunning({ child, markerPath, timeoutMs = 8_000 }) {
+  return new Promise((resolve, reject) => {
+    const marker = typeof markerPath === 'string' ? path.basename(markerPath) : '';
+    if (!/^netatlas-mihomo-running-[a-f0-9]{8}(?:-[a-f0-9]{4}){3}-[a-f0-9]{12}$/.test(marker)
+      || !Number.isFinite(timeoutMs) || timeoutMs <= 0) return reject(new Error('Invalid local post-up marker'));
+    const started = Date.now();
+    let settled = false;
+    let watcher;
+    let timer;
+    const finish = (error) => {
+      if (settled) return;
+      settled = true;
+      clearTimeout(timer);
+      watcher?.close();
+      child.removeListener('exit', exited);
+      child.removeListener('error', failed);
+      if (error) reject(error);
+      else resolve({ status: 'passed', signal: 'mihomo-cli-post-up', phase: 'after-hub-parse-and-tunnel-running', elapsedMs: Date.now() - started });
+    };
+    const exited = () => finish(new Error('Native process exited before its post-up running signal'));
+    const failed = (error) => finish(new Error('Native process startup failed before its post-up running signal', { cause: error }));
+    const inspect = async () => {
+      try {
+        const stat = await lstat(markerPath);
+        if (stat.isSymbolicLink() || !stat.isFile()) throw new Error('Local post-up marker is invalid');
+        if (await readFile(markerPath, 'utf8') !== marker) throw new Error('Local post-up marker content is invalid');
+        finish();
+      } catch (error) {
+        if (error.code !== 'ENOENT') finish(error);
+      }
+    };
+    child.once('exit', exited);
+    child.once('error', failed);
+    if (child.exitCode !== null || child.signalCode !== null || child.startupError) return exited();
+    timer = setTimeout(() => finish(new Error('Local post-up running signal timed out')), timeoutMs);
+    try { watcher = watch(path.dirname(markerPath), (_event, file) => { if (file === null || file?.toString() === marker) void inspect(); }); }
+    catch (error) { return finish(error); }
+    watcher.once('error', finish);
+    // Cover a post-up that completed between spawn and watcher registration.
+    void inspect();
+  });
+}
+
 async function stop(child) {
   if (child.exitCode !== null || child.signalCode !== null) return;
   child.kill('SIGTERM');
@@ -643,13 +694,25 @@ export async function testOptionalRulesets({ root, binaries, onProgress = () => 
       const nativeCheck = { client: id, status: 'passed', config: path.relative(root, configPath), configSha256: sha256(configBytes) };
       nativeChecks.push(nativeCheck);
       const args = id === 'mihomo' ? ['-f', configPath, '-d', plan.directory] : ['run', '-c', configPath];
+      let markerPath;
+      if (id === 'mihomo') {
+        const marker = 'netatlas-mihomo-running-' + randomUUID();
+        markerPath = path.join(plan.directory, marker);
+        await assertManagedPaths(root, [markerPath, markerPath + '.pending']);
+        // All shell tokens below contain only this generated safe alphabet.
+        // Atomic rename prevents the observer from reading a partially written marker.
+        args.push('-post-up', `printf %s ${marker} > ${marker}.pending && mv ${marker}.pending ${marker}`);
+      }
       const child = spawn(binaries[id], args, { cwd: plan.directory, stdio: ['ignore', 'pipe', 'pipe'] });
       let log = '';
       child.on('error', error => { child.startupError = error.message; });
       child.stdout.on('data', bytes => { log = (log + bytes).slice(-200_000); });
       child.stderr.on('data', bytes => { log = (log + bytes).slice(-200_000); });
       try {
-        await waitForPort(child, proxyPort);
+        if (id === 'mihomo') {
+          const [, startup] = await Promise.all([waitForPort(child, proxyPort), waitForMihomoRunning({ child, markerPath })]);
+          nativeCheck.startupReadiness = startup;
+        } else await waitForPort(child, proxyPort);
         if (id === 'mihomo') nativeCheck.providerReadiness = await waitForMihomoRuleProvider({ controllerPort: controller.port, secret: controller.secret, expectedCount: plan.source.entries, child });
         onProgress(`Local optional anti-ad routing: ${id}, HTTP + SOCKS5`);
         for (const [protocol, request] of [['http', httpThroughProxy], ['socks5', socksThroughProxy]]) {
@@ -663,6 +726,13 @@ export async function testOptionalRulesets({ root, binaries, onProgress = () => 
             cases.push({ client: id, protocol, ...item, status: 'passed', targetRequests: requests, result });
           }
         }
+      } catch (error) {
+        // Keep actionable loopback evidence in failed CI output too; no config,
+        // controller secret or response token is included in diagnostics.
+        const evidence = { client: id, selectedDomain: plan.selectedDomain, startupReadiness: nativeCheck.startupReadiness, providerReadiness: nativeCheck.providerReadiness, dnsQuestions: dns.questions, targetEvidence };
+        const safeLog = controller?.secret ? log.replaceAll(controller.secret, '[redacted]') : log;
+        error.message += `\nLocal fixture evidence: ${JSON.stringify(evidence)}\nKernel log tail:\n${safeLog.slice(-8000)}`;
+        throw error;
       } finally {
         await stop(child);
         await writeFile(path.join(plan.directory, `${id}-routing.log`), log);
