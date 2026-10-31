@@ -1,0 +1,23 @@
+{
+  "version": 1,
+  "id": "xai",
+  "category": "ai",
+  "entries": [
+    {
+      "type": "domain-suffix",
+      "value": "grok.com"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "grok.x.com"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "grokipedia.com"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "x.ai"
+    }
+  ]
+}

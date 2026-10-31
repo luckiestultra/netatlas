@@ -1,0 +1,39 @@
+{
+  "version": 1,
+  "id": "apple-tvplus",
+  "category": "media",
+  "entries": [
+    {
+      "type": "domain-suffix",
+      "value": "tv.apple.com"
+    },
+    {
+      "type": "domain",
+      "value": "apple-tv-plus-press.apple.com"
+    },
+    {
+      "type": "domain",
+      "value": "hls-amt.itunes.apple.com"
+    },
+    {
+      "type": "domain",
+      "value": "hls.itunes.apple.com"
+    },
+    {
+      "type": "domain",
+      "value": "np-edge.itunes.apple.com"
+    },
+    {
+      "type": "domain",
+      "value": "play-edge.itunes.apple.com"
+    },
+    {
+      "type": "domain",
+      "value": "tv.applemusic.com"
+    },
+    {
+      "type": "domain",
+      "value": "uts-api.itunes.apple.com"
+    }
+  ]
+}

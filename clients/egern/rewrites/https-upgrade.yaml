@@ -1,0 +1,33 @@
+# SPDX-License-Identifier: GPL-2.0-only
+# Adapted from Redirect by blackmatrix7 (GPL-2.0), not covered by the repository MIT license.
+# Changed by NetAtlas on 2026-10-31: keep six same-host HTTP upgrades; preserve path and query.
+# Complete upstream source, modifications and license: https://raw.githubusercontent.com/luckiestultra/netatlas/main/src/features/https-upgrade/
+# License: https://raw.githubusercontent.com/luckiestultra/netatlas/main/src/features/https-upgrade/LICENSE
+# Provided WITHOUT ANY WARRANTY; see the GNU General Public License for details.
+# Optional; not included in default profiles. Importing this resource enables its redirects.
+# Only HTTP URLs are matched. No MITM certificate, script, storage or background request is used.
+# A 302 may change a non-GET method when the caller follows it. This is not HSTS.
+
+name: NetAtlas HTTPS Upgrade
+description: Optional six-host HTTP to HTTPS redirects; no MITM required.
+author: blackmatrix7; adapted by NetAtlas contributors
+homepage: https://github.com/luckiestultra/netatlas
+url_rewrites:
+  - match: ^http:\/\/(www\.jd\.com)(\/[^\s#]*)(?![\s\S])
+    location: https://$1$2
+    status_code: 302
+  - match: ^http:\/\/(www\.mi\.com)(\/[^\s#]*)(?![\s\S])
+    location: https://$1$2
+    status_code: 302
+  - match: ^http:\/\/(suning\.com)(\/[^\s#]*)(?![\s\S])
+    location: https://$1$2
+    status_code: 302
+  - match: ^http:\/\/(taobao\.com)(\/[^\s#]*)(?![\s\S])
+    location: https://$1$2
+    status_code: 302
+  - match: ^http:\/\/(yhd\.com)(\/[^\s#]*)(?![\s\S])
+    location: https://$1$2
+    status_code: 302
+  - match: ^http:\/\/(you\.163\.com)(\/[^\s#]*)(?![\s\S])
+    location: https://$1$2
+    status_code: 302

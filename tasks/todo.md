@@ -18,3 +18,15 @@ Evidence: docs/validation.md. Offline: 110 passed, 0 failed, 1 explicit native o
 - [x] Prepare the complete local implementation and obtain authorization to commit and push it to main.
 
 Publication verification: compare the remote main commit and public artifact bytes, then inspect the matching CI run at https://github.com/luckiestultra/netatlas/actions/workflows/ci.yml.
+
+## Upstream integration batch
+
+- [x] Expand 23 services with true native parent/child routing regression.
+- [x] Add optional anti-AD as a second pinned MIT rule source, preserving source semantics and credits.
+- [x] Add six-host GPL-2.0 HTTPS upgrade resources with complete source, notices and six client formats.
+- [x] Fix independent red/blue domain, filesystem, provenance and stale-native verification findings.
+- [x] Verify 173 offline tests, 39 native rule compilations, 80 routing cases and 16 optional-provider cases locally.
+- [x] Enforce actual provider readiness so an unopened rule table cannot create false-positive rejection tests.
+- [ ] Publish this separate extension batch and verify the matching remote CI and public URLs.
+
+Latest evidence and limitations: docs/validation.md; admission contract: tasks/upstream-integration.md.

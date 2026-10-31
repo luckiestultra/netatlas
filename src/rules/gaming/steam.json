@@ -1,0 +1,251 @@
+{
+  "version": 1,
+  "id": "steam",
+  "category": "gaming",
+  "entries": [
+    {
+      "type": "domain-suffix",
+      "value": "client-update.queniuqe.com"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "csgo.com.cn"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "csgo.wmsj.cn"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "dl.steam.clngaa.com"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "dota2.com"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "dota2.com.cn"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "dota2.wmsj.cn"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "edge.steam-dns.top.comcast.net"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "gstore.val.manlaxy.com"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "playartifact.com"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "s.team"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "st.dl.bscstorage.net"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "st.dl.eccdnx.com"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "st.dl.pinyuncloud.com"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "steam-api.com"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "steam-chat.com"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "steam.apac.qtlglb.com"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "steam.cdn.on.net"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "steam.cdn.orcon.net.nz"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "steam.cdn.slingshot.co.nz"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "steam.cdn.webra.ru"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "steam.eca.qtlglb.com"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "steam.naeu.qtlglb.com"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "steam.ru.qtlglb.com"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "steam.tv"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "steamchina.com"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "steamcommunity.com"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "steamconnecttest.com"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "steamcontent.com"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "steamdeck.com"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "steamgames.com"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "steamos.cloud"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "steampowered.com"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "steampowered.com.8686c.com"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "steamserver.net"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "steamstatic.com"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "steamstatic.com.8686c.com"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "steamusercontent.com"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "underlords.com"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "valve.net"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "valvesoftware.com"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "wmsjsteam.com"
+    },
+    {
+      "type": "domain",
+      "value": "a4e8s8k3.map2.ssl.hwcdn.net"
+    },
+    {
+      "type": "domain",
+      "value": "alibaba.cdn.steampipe.steamcontent.com"
+    },
+    {
+      "type": "domain",
+      "value": "f3b7q2p3.ssl.hwcdn.net"
+    },
+    {
+      "type": "domain",
+      "value": "lv.queniujq.cn"
+    },
+    {
+      "type": "domain",
+      "value": "steambroadcast.akamaized.net"
+    },
+    {
+      "type": "domain",
+      "value": "steamcdn-a.akamaihd.net"
+    },
+    {
+      "type": "domain",
+      "value": "steamcloudsweden.blob.core.windows.net"
+    },
+    {
+      "type": "domain",
+      "value": "steamcommunity-a.akamaihd.net"
+    },
+    {
+      "type": "domain",
+      "value": "steamcommunity-a.akamaihd.net.edgesuite.net"
+    },
+    {
+      "type": "domain",
+      "value": "steammobile.akamaized.net"
+    },
+    {
+      "type": "domain",
+      "value": "steampipe-kr.akamaized.net"
+    },
+    {
+      "type": "domain",
+      "value": "steampipe-partner.akamaized.net"
+    },
+    {
+      "type": "domain",
+      "value": "steampipe.akamaized.net"
+    },
+    {
+      "type": "domain",
+      "value": "steamstore-a.akamaihd.net"
+    },
+    {
+      "type": "domain",
+      "value": "steamugcquincy.blob.core.windows.net"
+    },
+    {
+      "type": "domain",
+      "value": "steamusercontent-a.akamaihd.net"
+    },
+    {
+      "type": "domain",
+      "value": "steamuserimages-a.akamaihd.net"
+    },
+    {
+      "type": "domain",
+      "value": "steamvideo-a.akamaihd.net"
+    },
+    {
+      "type": "domain",
+      "value": "xz.pphimalayanrt.com"
+    }
+  ]
+}

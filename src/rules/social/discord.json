@@ -1,0 +1,119 @@
+{
+  "version": 1,
+  "id": "discord",
+  "category": "social",
+  "entries": [
+    {
+      "type": "domain-suffix",
+      "value": "airhorn.solutions"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "airhornbot.com"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "bigbeans.solutions"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "dis.gd"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "discord-activities.com"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "discord.co"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "discord.com"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "discord.design"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "discord.dev"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "discord.gg"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "discord.gift"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "discord.gifts"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "discord.media"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "discord.new"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "discord.store"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "discord.tools"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "discordactivities.com"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "discordapp.com"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "discordapp.io"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "discordapp.net"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "discordcdn.com"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "discordmerch.com"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "discordpartygames.com"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "discordsays.com"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "discordstatus.com"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "watchanimeattheoffice.com"
+    },
+    {
+      "type": "domain",
+      "value": "discord-attachments-uploads-prd.storage.googleapis.com"
+    },
+    {
+      "type": "domain",
+      "value": "hammerandchisel.ssl.zendesk.com"
+    }
+  ]
+}

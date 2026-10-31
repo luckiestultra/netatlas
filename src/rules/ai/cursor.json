@@ -1,0 +1,27 @@
+{
+  "version": 1,
+  "id": "cursor",
+  "category": "ai",
+  "entries": [
+    {
+      "type": "domain-suffix",
+      "value": "cursor-cdn.com"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "cursor.com"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "cursor.sh"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "cursorapi.com"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "cursorvm.com"
+    }
+  ]
+}

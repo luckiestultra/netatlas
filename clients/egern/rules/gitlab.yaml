@@ -1,0 +1,8 @@
+no_resolve: true
+domain_suffix_set:
+  - gitlab-static.net
+  - gitlab.com
+  - gitlab.io
+  - gitlab.net
+domain_set:
+  - gitlab-assets.oss-cn-hongkong.aliyuncs.com

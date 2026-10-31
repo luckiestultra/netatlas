@@ -2,7 +2,7 @@
 
 面向 Quantumult X、Surge、Loon、Shadowrocket、Egern、Stash、Mihomo 和 sing-box 的原生配置与规则仓库。先选客户端，再取用主配置、具体服务分流或可选功能。
 
-当前规范目录包含 **15 个规则集、5,077 条规则**。主配置将规则内联，可以从本地文件使用；可选脚本直链需要对应文件已经推送到公开提交。八种格式都做结构与语义检查；Mihomo、sing-box 有固定版本原生检查入口，其余六个应用仍需实际导入。执行证据见[验证记录](docs/validation.md)。
+默认主配置包含 **38 组、5,459 条规则**，另提供可选 anti-AD **100,682 条**；完整目录合计 **39 组、106,141 条**。大规则集不塞进默认配置，按需单独启用。八种格式做结构与语义检查；Mihomo、sing-box 用固定内核实际验证，其余六个应用仍需实际导入。执行证据见[验证记录](docs/validation.md)。
 
 ## 使用入口
 
@@ -37,6 +37,8 @@ clients/<client>/
 
 QX 的 fragments/geoip.conf 是合并到 [general] 的配置片段，不能作为重写订阅导入。GeoIP、Surge 面板和搜索重定向的路径、路由语义与验证限制见[可选功能说明](docs/features.md)。
 
+可选 anti-AD 为八客户端提供独立规则及原生安装包或手工合并片段，无脚本、MITM 和跨模块存储 API。HTTPS-upgrade 为六个图形客户端提供 6 个同主机 HTTP→HTTPS 跳转，保留路径和查询；Loon 需要 3.5.1(978) 以上，Shadowrocket 使用手工合并片段。它不是 HSTS，也不承诺 302 保留非 GET 方法。
+
 ## 本地维护
 
 要求 Node.js 24.x。
@@ -53,6 +55,7 @@ npm run test:native
 npm run build -- --check             # 比较生成结果，不写入
 npm run validate -- --client singBox # 筛选一个客户端的校验
 npm run sync -- --latest --dry-run   # 检查候选上游，不更新源文件
+npm run sync -- --repository anti-ad --latest --dry-run # 只移动指定来源的候选版本，仍验证全目录
 npm run test:live                    # 单独联网检查 GeoIP；不打印真实出口 IP
 ~~~
 
@@ -67,4 +70,4 @@ npm run test:live                    # 单独联网检查 GeoIP；不打印真�
 - [来源审计](docs/upstream-audit.md)与[第三方声明](THIRD_PARTY_NOTICES.md)
 - 规格：[规则](docs/specs/rules.md)、[配置](docs/specs/profiles.md)、[功能](docs/specs/features.md)、[构建](docs/specs/build.md)
 
-原创部分采用 [MIT License](LICENSE)。规则数据的来源、固定提交、许可和可移植范围单独登记；不读取或发布用户节点、订阅、令牌及证书。
+本仓库包含多种许可：原创通用代码采用 [MIT License](LICENSE)；HTTPS-upgrade 功能代码和生成资源采用 [GPL-2.0-only](src/features/https-upgrade/LICENSE)。第三方数据按其来源声明保留许可及 credits，不能把整个仓库内容一概视为 MIT。详见[第三方声明](THIRD_PARTY_NOTICES.md)。不读取或发布用户节点、订阅、令牌及证书。

@@ -1,0 +1,27 @@
+{
+  "version": 1,
+  "id": "perplexity",
+  "category": "ai",
+  "entries": [
+    {
+      "type": "domain-suffix",
+      "value": "perplexity.ai"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "perplexity.com"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "pplx.ai"
+    },
+    {
+      "type": "domain",
+      "value": "ppl-ai-file-upload.s3.amazonaws.com"
+    },
+    {
+      "type": "domain",
+      "value": "pplx-res.cloudinary.com"
+    }
+  ]
+}

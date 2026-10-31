@@ -1,0 +1,10 @@
+no_resolve: true
+domain_suffix_set:
+  - signal.art
+  - signal.group
+  - signal.link
+  - signal.me
+  - signal.org
+  - signal.tube
+  - signalusers.org
+  - whispersystems.org

@@ -8,6 +8,15 @@ const rulesets=[{version:1,id:'lan',category:'network',entries:[{type:'ip-cidr',
 for(const client of clientIds) test(`${client}: validates actual standalone rules and all policy references`,()=>{
   assert.equal(validateProfile(client,renderProfile(client,{rulesets}).content,rulesets).rules,2);
 });
+
+test('large optional rule catalogs do not silently enter any default profile',()=>{
+  const expanded=[...rulesets,{version:1,id:'anti-ad',category:'privacy',entries:[{type:'domain-suffix',value:'optional-only.example'}]}];
+  for(const client of clientIds){
+    const profile=renderProfile(client,{rulesets:expanded}).content;
+    assert.doesNotMatch(profile,/optional-only\.example/);
+    assert.equal(validateProfile(client,profile,expanded).rules,2);
+  }
+});
 test('broken policy references are rejected across YAML, JSON and INI profiles',()=>{
   const mihomo=parse(renderProfile('mihomo',{rulesets}).content);
   mihomo['proxy-groups']=mihomo['proxy-groups'].filter(group=>group.name!=='openai');

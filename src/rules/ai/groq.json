@@ -1,0 +1,11 @@
+{
+  "version": 1,
+  "id": "groq",
+  "category": "ai",
+  "entries": [
+    {
+      "type": "domain-suffix",
+      "value": "groq.com"
+    }
+  ]
+}

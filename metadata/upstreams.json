@@ -13,6 +13,19 @@
       "licenseUrl": "https://raw.githubusercontent.com/v2fly/domain-list-community/1daade8c4bb957d21d1f5c09c2b050d699e8e96c/LICENSE",
       "author": "v2fly/domain-list-community contributors",
       "revisionDate": "2026-10-30T13:25:16Z"
+    },
+    {
+      "id": "anti-ad",
+      "repository": "privacy-protection-tools/anti-AD",
+      "branch": "master",
+      "revision": "cafc2bfb031a9e5ee4461721afc65b82430f2c15",
+      "license": "MIT",
+      "licensePath": "LICENSE",
+      "licenseSha256": "e38459549a64f11ecf1477053768ef89eb2939a9aa5573f51a31461086357a34",
+      "licenseUrl": "https://raw.githubusercontent.com/privacy-protection-tools/anti-AD/cafc2bfb031a9e5ee4461721afc65b82430f2c15/LICENSE",
+      "documentation": "https://raw.githubusercontent.com/privacy-protection-tools/anti-AD/cafc2bfb031a9e5ee4461721afc65b82430f2c15/README.md",
+      "author": "gently and anti-AD contributors",
+      "revisionDate": "2026-10-30T12:57:57Z"
     }
   ],
   "rulesets": [
@@ -1787,6 +1800,573 @@
       "outputSha256": "281bf28fb2c6aa887f82684cc41c2af5fadefe9ee9cbf6d7ea9272ae94ef4c29",
       "entryCount": 19,
       "updatedAt": "2026-10-31"
+    },
+    {
+      "id": "apple-tvplus",
+      "category": "media",
+      "source": {
+        "repository": "domain-list-community",
+        "list": "apple-tvplus"
+      },
+      "exclusions": [],
+      "files": [
+        {
+          "path": "data/apple-tvplus",
+          "url": "https://raw.githubusercontent.com/v2fly/domain-list-community/1daade8c4bb957d21d1f5c09c2b050d699e8e96c/data/apple-tvplus",
+          "sha256": "2d622a3150818bf0d2931130c05fec1cac0d3856ca6f7dcc78a27f59dc25ebd1"
+        }
+      ],
+      "appliedExclusions": [],
+      "attributeFiltered": 0,
+      "affiliationDeclarations": 0,
+      "selection": "selected files and explicit includes; not global affiliation expansion",
+      "updatedAt": "2026-10-30T13:25:16Z",
+      "outputSha256": "9ad1a73f395157d0d59c8fccf2ca3ff79c5c71fc1361382bff4267116a056dbe",
+      "entryCount": 8
+    },
+    {
+      "id": "cursor",
+      "category": "ai",
+      "source": {
+        "repository": "domain-list-community",
+        "list": "cursor"
+      },
+      "exclusions": [],
+      "files": [
+        {
+          "path": "data/cursor",
+          "url": "https://raw.githubusercontent.com/v2fly/domain-list-community/1daade8c4bb957d21d1f5c09c2b050d699e8e96c/data/cursor",
+          "sha256": "eb7315056ebfb599a7dccedddcb5aa7f7723665aa800e2783fff798c1fa3724e"
+        }
+      ],
+      "appliedExclusions": [],
+      "attributeFiltered": 0,
+      "affiliationDeclarations": 0,
+      "selection": "selected files and explicit includes; not global affiliation expansion",
+      "updatedAt": "2026-10-30T13:25:16Z",
+      "outputSha256": "7296533d1381e9d81b2f5c4192bb1a3fd64b061dd9194c748a224de9487be178",
+      "entryCount": 5
+    },
+    {
+      "id": "discord",
+      "category": "social",
+      "source": {
+        "repository": "domain-list-community",
+        "list": "discord"
+      },
+      "exclusions": [],
+      "files": [
+        {
+          "path": "data/discord",
+          "url": "https://raw.githubusercontent.com/v2fly/domain-list-community/1daade8c4bb957d21d1f5c09c2b050d699e8e96c/data/discord",
+          "sha256": "6e57668fe3c87895036e1b35ce7110ea1872c41850e1e92258dc20517e3d6dc5"
+        }
+      ],
+      "appliedExclusions": [],
+      "attributeFiltered": 0,
+      "affiliationDeclarations": 0,
+      "selection": "selected files and explicit includes; not global affiliation expansion",
+      "updatedAt": "2026-10-30T13:25:16Z",
+      "outputSha256": "06d69318cf9f1fd017c1e0726dabfdf5f62c03403baba4017b35cc8c621b6664",
+      "entryCount": 28
+    },
+    {
+      "id": "docker",
+      "category": "development",
+      "source": {
+        "repository": "domain-list-community",
+        "list": "docker"
+      },
+      "exclusions": [],
+      "files": [
+        {
+          "path": "data/docker",
+          "url": "https://raw.githubusercontent.com/v2fly/domain-list-community/1daade8c4bb957d21d1f5c09c2b050d699e8e96c/data/docker",
+          "sha256": "f1b27237e9b861d88aaf80399af5088781e177780ecc7b30dd7795fea404546e"
+        }
+      ],
+      "appliedExclusions": [],
+      "attributeFiltered": 0,
+      "affiliationDeclarations": 0,
+      "selection": "selected files and explicit includes; not global affiliation expansion",
+      "updatedAt": "2026-10-30T13:25:16Z",
+      "outputSha256": "eeb976dfcb20e0a579cdcb18c6af2918c2ad8b8a37b98f8622f0a838dc43a419",
+      "entryCount": 6
+    },
+    {
+      "id": "github-copilot",
+      "category": "ai",
+      "source": {
+        "repository": "domain-list-community",
+        "list": "github-copilot"
+      },
+      "exclusions": [],
+      "files": [
+        {
+          "path": "data/github-copilot",
+          "url": "https://raw.githubusercontent.com/v2fly/domain-list-community/1daade8c4bb957d21d1f5c09c2b050d699e8e96c/data/github-copilot",
+          "sha256": "e41465e9e15430bf31d1054d21c0551e8fa3ef24431e317317f409511c64483c"
+        }
+      ],
+      "appliedExclusions": [],
+      "attributeFiltered": 0,
+      "affiliationDeclarations": 0,
+      "selection": "selected files and explicit includes; not global affiliation expansion",
+      "updatedAt": "2026-10-30T13:25:16Z",
+      "outputSha256": "67ce214112eb5ec933c08457fb1bf5ce2940a2ee4912fb723cd060f131be2b3b",
+      "entryCount": 6
+    },
+    {
+      "id": "gitlab",
+      "category": "development",
+      "source": {
+        "repository": "domain-list-community",
+        "list": "gitlab"
+      },
+      "exclusions": [],
+      "files": [
+        {
+          "path": "data/gitlab",
+          "url": "https://raw.githubusercontent.com/v2fly/domain-list-community/1daade8c4bb957d21d1f5c09c2b050d699e8e96c/data/gitlab",
+          "sha256": "43fe6cc0fa50703d37447938384445df08c8790cb4d834d16e99226b2f9be787"
+        }
+      ],
+      "appliedExclusions": [],
+      "attributeFiltered": 0,
+      "affiliationDeclarations": 0,
+      "selection": "selected files and explicit includes; not global affiliation expansion",
+      "updatedAt": "2026-10-30T13:25:16Z",
+      "outputSha256": "3c38de2b7372cb6f24f1c5157619fa717fcc450adc73ef106028a933d8310803",
+      "entryCount": 5
+    },
+    {
+      "id": "groq",
+      "category": "ai",
+      "source": {
+        "repository": "domain-list-community",
+        "list": "groq"
+      },
+      "exclusions": [],
+      "files": [
+        {
+          "path": "data/groq",
+          "url": "https://raw.githubusercontent.com/v2fly/domain-list-community/1daade8c4bb957d21d1f5c09c2b050d699e8e96c/data/groq",
+          "sha256": "d779541783d4c835ad341a13ae3c3a008bfa3e535b46f79518b92bdef17588bb"
+        }
+      ],
+      "appliedExclusions": [],
+      "attributeFiltered": 0,
+      "affiliationDeclarations": 0,
+      "selection": "selected files and explicit includes; not global affiliation expansion",
+      "updatedAt": "2026-10-30T13:25:16Z",
+      "outputSha256": "94864c4909f79f883c627efc5b8b5b84ec614433f70980f11eb585b4e35acebf",
+      "entryCount": 1
+    },
+    {
+      "id": "hbo",
+      "category": "media",
+      "source": {
+        "repository": "domain-list-community",
+        "list": "hbo"
+      },
+      "exclusions": [],
+      "files": [
+        {
+          "path": "data/hbo",
+          "url": "https://raw.githubusercontent.com/v2fly/domain-list-community/1daade8c4bb957d21d1f5c09c2b050d699e8e96c/data/hbo",
+          "sha256": "d2b518e13cb51bda4edeab12d2a49a7d2b1ab856b62b49bf4eb13e1cc58d3117"
+        }
+      ],
+      "appliedExclusions": [],
+      "attributeFiltered": 0,
+      "affiliationDeclarations": 0,
+      "selection": "selected files and explicit includes; not global affiliation expansion",
+      "updatedAt": "2026-10-30T13:25:16Z",
+      "outputSha256": "a7893566b499e8fd031f8e7df3d0c1f9d13b6690191bdd327cb0ab732a2a5e28",
+      "entryCount": 65
+    },
+    {
+      "id": "huggingface",
+      "category": "ai",
+      "source": {
+        "repository": "domain-list-community",
+        "list": "huggingface"
+      },
+      "exclusions": [],
+      "files": [
+        {
+          "path": "data/huggingface",
+          "url": "https://raw.githubusercontent.com/v2fly/domain-list-community/1daade8c4bb957d21d1f5c09c2b050d699e8e96c/data/huggingface",
+          "sha256": "67f5861b31232701f884efd38d9436dd89183fccbd01d6f10d791b9ef6fbf4b8"
+        }
+      ],
+      "appliedExclusions": [],
+      "attributeFiltered": 0,
+      "affiliationDeclarations": 0,
+      "selection": "selected files and explicit includes; not global affiliation expansion",
+      "updatedAt": "2026-10-30T13:25:16Z",
+      "outputSha256": "a9e41f7a130bf6c761e97a86e3f14ab8eccb968731cf4a95b1922cbafbeffb96",
+      "entryCount": 3
+    },
+    {
+      "id": "jetbrains",
+      "category": "development",
+      "source": {
+        "repository": "domain-list-community",
+        "list": "jetbrains"
+      },
+      "exclusions": [],
+      "files": [
+        {
+          "path": "data/jetbrains",
+          "url": "https://raw.githubusercontent.com/v2fly/domain-list-community/1daade8c4bb957d21d1f5c09c2b050d699e8e96c/data/jetbrains",
+          "sha256": "e582f14220308511a9e584612d21fa01d76c552fcfba2838b4aeedd53adb17f7"
+        },
+        {
+          "path": "data/jetbrains-ai",
+          "url": "https://raw.githubusercontent.com/v2fly/domain-list-community/1daade8c4bb957d21d1f5c09c2b050d699e8e96c/data/jetbrains-ai",
+          "sha256": "b1bb655fc82a45311745ef0513dc6889f76cb4bfc0cd9cd563788b5e502b6a53"
+        }
+      ],
+      "appliedExclusions": [],
+      "attributeFiltered": 0,
+      "affiliationDeclarations": 0,
+      "selection": "selected files and explicit includes; not global affiliation expansion",
+      "updatedAt": "2026-10-30T13:25:16Z",
+      "outputSha256": "7b218af98a343342606a994de743f04b212837a975f2613bac3671c69d7ed7a0",
+      "entryCount": 25
+    },
+    {
+      "id": "line",
+      "category": "social",
+      "source": {
+        "repository": "domain-list-community",
+        "list": "line"
+      },
+      "exclusions": [],
+      "files": [
+        {
+          "path": "data/line",
+          "url": "https://raw.githubusercontent.com/v2fly/domain-list-community/1daade8c4bb957d21d1f5c09c2b050d699e8e96c/data/line",
+          "sha256": "32bcf614b506ec3f4751fc0dce128624bdc6aee28f36aeff31709b671f868a69"
+        }
+      ],
+      "appliedExclusions": [],
+      "attributeFiltered": 0,
+      "affiliationDeclarations": 0,
+      "selection": "selected files and explicit includes; not global affiliation expansion",
+      "updatedAt": "2026-10-30T13:25:16Z",
+      "outputSha256": "7267e66d1461fd2c04ddf9bbac64ed6123d6fc0fe327bd0b71a8d356eba262b2",
+      "entryCount": 20
+    },
+    {
+      "id": "npmjs",
+      "category": "development",
+      "source": {
+        "repository": "domain-list-community",
+        "list": "npmjs"
+      },
+      "exclusions": [],
+      "files": [
+        {
+          "path": "data/npmjs",
+          "url": "https://raw.githubusercontent.com/v2fly/domain-list-community/1daade8c4bb957d21d1f5c09c2b050d699e8e96c/data/npmjs",
+          "sha256": "674294756c3e5d7f20e274f7190f28b55eb373122513d0ab5e439e29dd03be53"
+        }
+      ],
+      "appliedExclusions": [],
+      "attributeFiltered": 0,
+      "affiliationDeclarations": 0,
+      "selection": "selected files and explicit includes; not global affiliation expansion",
+      "updatedAt": "2026-10-30T13:25:16Z",
+      "outputSha256": "bf2b101a08cc99983539cbe57c0949012db9d5e090b4518e4664ade87012c1f5",
+      "entryCount": 3
+    },
+    {
+      "id": "perplexity",
+      "category": "ai",
+      "source": {
+        "repository": "domain-list-community",
+        "list": "perplexity"
+      },
+      "exclusions": [],
+      "files": [
+        {
+          "path": "data/perplexity",
+          "url": "https://raw.githubusercontent.com/v2fly/domain-list-community/1daade8c4bb957d21d1f5c09c2b050d699e8e96c/data/perplexity",
+          "sha256": "570581bad658566cb493207c14ebb55110750071071e089b4c40054b00af3db0"
+        }
+      ],
+      "appliedExclusions": [],
+      "attributeFiltered": 0,
+      "affiliationDeclarations": 0,
+      "selection": "selected files and explicit includes; not global affiliation expansion",
+      "updatedAt": "2026-10-30T13:25:16Z",
+      "outputSha256": "dffba0daea5a70cc02e5feeb04449ab9dde582b607fa6872da2d40382e1aec9b",
+      "entryCount": 5
+    },
+    {
+      "id": "poe",
+      "category": "ai",
+      "source": {
+        "repository": "domain-list-community",
+        "list": "poe"
+      },
+      "exclusions": [],
+      "files": [
+        {
+          "path": "data/poe",
+          "url": "https://raw.githubusercontent.com/v2fly/domain-list-community/1daade8c4bb957d21d1f5c09c2b050d699e8e96c/data/poe",
+          "sha256": "e689a8d337b64bcf760e5d8dfe03e3d29d8558063db93acba2d1d6eb9c11003a"
+        }
+      ],
+      "appliedExclusions": [],
+      "attributeFiltered": 0,
+      "affiliationDeclarations": 0,
+      "selection": "selected files and explicit includes; not global affiliation expansion",
+      "updatedAt": "2026-10-30T13:25:16Z",
+      "outputSha256": "e2a19435d4c12647ef5360c6d86d8087130cf703d336bb7fe74632383735babb",
+      "entryCount": 2
+    },
+    {
+      "id": "signal",
+      "category": "social",
+      "source": {
+        "repository": "domain-list-community",
+        "list": "signal"
+      },
+      "exclusions": [],
+      "files": [
+        {
+          "path": "data/signal",
+          "url": "https://raw.githubusercontent.com/v2fly/domain-list-community/1daade8c4bb957d21d1f5c09c2b050d699e8e96c/data/signal",
+          "sha256": "2f36d2f4841bbb2c255b365dbbe1690fab8b6a721341d4b1660afb90f432cd01"
+        }
+      ],
+      "appliedExclusions": [],
+      "attributeFiltered": 0,
+      "affiliationDeclarations": 0,
+      "selection": "selected files and explicit includes; not global affiliation expansion",
+      "updatedAt": "2026-10-30T13:25:16Z",
+      "outputSha256": "9d29a4f2125343492ccc5d4c36a96deb32f7359ff864206c9cfc144cc5c4cdbb",
+      "entryCount": 8
+    },
+    {
+      "id": "slack",
+      "category": "social",
+      "source": {
+        "repository": "domain-list-community",
+        "list": "slack"
+      },
+      "exclusions": [],
+      "files": [
+        {
+          "path": "data/slack",
+          "url": "https://raw.githubusercontent.com/v2fly/domain-list-community/1daade8c4bb957d21d1f5c09c2b050d699e8e96c/data/slack",
+          "sha256": "0c1db5d6d7343fd4b423109be5396dea7a0b2769b9e150f1a3a49b1dde04ddec"
+        }
+      ],
+      "appliedExclusions": [],
+      "attributeFiltered": 0,
+      "affiliationDeclarations": 0,
+      "selection": "selected files and explicit includes; not global affiliation expansion",
+      "updatedAt": "2026-10-30T13:25:16Z",
+      "outputSha256": "3561f0c3370f329bd4eba09046e8579b77642afcc50826cffebefb63609c95f3",
+      "entryCount": 11
+    },
+    {
+      "id": "steam",
+      "category": "gaming",
+      "source": {
+        "repository": "domain-list-community",
+        "list": "steam"
+      },
+      "exclusions": [],
+      "files": [
+        {
+          "path": "data/steam",
+          "url": "https://raw.githubusercontent.com/v2fly/domain-list-community/1daade8c4bb957d21d1f5c09c2b050d699e8e96c/data/steam",
+          "sha256": "47b8154be0745a2411d8e0fe981677e874995cc30d195ba36cc7d84237f5d743"
+        }
+      ],
+      "appliedExclusions": [],
+      "attributeFiltered": 0,
+      "affiliationDeclarations": 0,
+      "selection": "selected files and explicit includes; not global affiliation expansion",
+      "updatedAt": "2026-10-30T13:25:16Z",
+      "outputSha256": "8b6659bb238b6f0f181dd0b3038eb7e7500a9d8687583da16fa5e7f4c9eaf05c",
+      "entryCount": 61
+    },
+    {
+      "id": "tiktok",
+      "category": "media",
+      "source": {
+        "repository": "domain-list-community",
+        "list": "tiktok"
+      },
+      "exclusions": [],
+      "files": [
+        {
+          "path": "data/tiktok",
+          "url": "https://raw.githubusercontent.com/v2fly/domain-list-community/1daade8c4bb957d21d1f5c09c2b050d699e8e96c/data/tiktok",
+          "sha256": "1547d5be3241deb425bc195d04c4e1c00c0c46e1bf570d0e1b5eebd553ec030e"
+        }
+      ],
+      "appliedExclusions": [],
+      "attributeFiltered": 0,
+      "affiliationDeclarations": 0,
+      "selection": "selected files and explicit includes; not global affiliation expansion",
+      "updatedAt": "2026-10-30T13:25:16Z",
+      "outputSha256": "fbc2742592166d96049a7109947859472b37c0892aeb7557c4b068ecbd155be7",
+      "entryCount": 40
+    },
+    {
+      "id": "twitch",
+      "category": "media",
+      "source": {
+        "repository": "domain-list-community",
+        "list": "twitch"
+      },
+      "exclusions": [],
+      "files": [
+        {
+          "path": "data/twitch",
+          "url": "https://raw.githubusercontent.com/v2fly/domain-list-community/1daade8c4bb957d21d1f5c09c2b050d699e8e96c/data/twitch",
+          "sha256": "cf62540f2205459c26f4b39478dff141ee15b4c3d9f9bc6fc34a15a7545306f4"
+        }
+      ],
+      "appliedExclusions": [],
+      "attributeFiltered": 0,
+      "affiliationDeclarations": 0,
+      "selection": "selected files and explicit includes; not global affiliation expansion",
+      "updatedAt": "2026-10-30T13:25:16Z",
+      "outputSha256": "0bd18bbfc29efcee7e122c4c44bbca41c0017050c99882a427c5deea77f83855",
+      "entryCount": 35
+    },
+    {
+      "id": "vercel",
+      "category": "development",
+      "source": {
+        "repository": "domain-list-community",
+        "list": "vercel"
+      },
+      "exclusions": [],
+      "files": [
+        {
+          "path": "data/vercel",
+          "url": "https://raw.githubusercontent.com/v2fly/domain-list-community/1daade8c4bb957d21d1f5c09c2b050d699e8e96c/data/vercel",
+          "sha256": "5a8d3e7e95f50ca224e1821aa31ac2f43748a64825b8424d9d21c70a1a8e70a8"
+        }
+      ],
+      "appliedExclusions": [],
+      "attributeFiltered": 0,
+      "affiliationDeclarations": 0,
+      "selection": "selected files and explicit includes; not global affiliation expansion",
+      "updatedAt": "2026-10-30T13:25:16Z",
+      "outputSha256": "8018ebcf88cbfca3914abe8399d74b2142f7332a58d2d9bdd340ee8cefc4462d",
+      "entryCount": 27
+    },
+    {
+      "id": "whatsapp",
+      "category": "social",
+      "source": {
+        "repository": "domain-list-community",
+        "list": "whatsapp"
+      },
+      "exclusions": [],
+      "files": [
+        {
+          "path": "data/whatsapp",
+          "url": "https://raw.githubusercontent.com/v2fly/domain-list-community/1daade8c4bb957d21d1f5c09c2b050d699e8e96c/data/whatsapp",
+          "sha256": "62def09a533350c9e5259d1d498ed1da1689ff174f436f51c065260f21f037d2"
+        }
+      ],
+      "appliedExclusions": [],
+      "attributeFiltered": 0,
+      "affiliationDeclarations": 0,
+      "selection": "selected files and explicit includes; not global affiliation expansion",
+      "updatedAt": "2026-10-30T13:25:16Z",
+      "outputSha256": "bbbf5be7e02f62954a4e01269212673975639f2ef4ff9abace58c9856dd996a9",
+      "entryCount": 11
+    },
+    {
+      "id": "xai",
+      "category": "ai",
+      "source": {
+        "repository": "domain-list-community",
+        "list": "xai"
+      },
+      "exclusions": [],
+      "files": [
+        {
+          "path": "data/xai",
+          "url": "https://raw.githubusercontent.com/v2fly/domain-list-community/1daade8c4bb957d21d1f5c09c2b050d699e8e96c/data/xai",
+          "sha256": "1e15c6018174f58f6a2f3710c84566909eee45a8092247280d244cf8ea7cd928"
+        }
+      ],
+      "appliedExclusions": [],
+      "attributeFiltered": 0,
+      "affiliationDeclarations": 0,
+      "selection": "selected files and explicit includes; not global affiliation expansion",
+      "updatedAt": "2026-10-30T13:25:16Z",
+      "outputSha256": "eaac63b557f701926e7556bf9537c21b5dae1599266c5b4866940a285e3a2e62",
+      "entryCount": 4
+    },
+    {
+      "id": "zoom",
+      "category": "social",
+      "source": {
+        "repository": "domain-list-community",
+        "list": "zoom"
+      },
+      "exclusions": [],
+      "files": [
+        {
+          "path": "data/zoom",
+          "url": "https://raw.githubusercontent.com/v2fly/domain-list-community/1daade8c4bb957d21d1f5c09c2b050d699e8e96c/data/zoom",
+          "sha256": "bf9535bd84985865b4f8a8768ff9b6ec916b28e364fa157cfe30ee1ee6bb06e1"
+        }
+      ],
+      "appliedExclusions": [],
+      "attributeFiltered": 0,
+      "affiliationDeclarations": 0,
+      "selection": "selected files and explicit includes; not global affiliation expansion",
+      "updatedAt": "2026-10-30T13:25:16Z",
+      "outputSha256": "0459d4de26e3985cf79b0658d3bdb5894b3923c1b65f5cb7f3995af175fd4b40",
+      "entryCount": 3
+    },
+    {
+      "id": "anti-ad",
+      "category": "privacy",
+      "source": {
+        "repository": "anti-ad",
+        "format": "domain-lines",
+        "path": "anti-ad-surge2.txt",
+        "linePrefix": ".",
+        "matchType": "domain-suffix",
+        "maxFileBytes": 3000000,
+        "matchingEvidence": {
+          "url": "https://raw.githubusercontent.com/privacy-protection-tools/anti-AD/cafc2bfb031a9e5ee4461721afc65b82430f2c15/anti-ad-clash.yaml",
+          "sha256": "0fa1a351f1830e745a5b2b5aace329f5fc6f993e868447f278c32aa6d91e8406",
+          "semantics": "All 100682 companion payload items use +. suffix roots; sets are bidirectionally identical to the registered dot-prefixed DOMAIN-SET."
+        }
+      },
+      "exclusions": [],
+      "files": [
+        {
+          "path": "anti-ad-surge2.txt",
+          "url": "https://raw.githubusercontent.com/privacy-protection-tools/anti-AD/cafc2bfb031a9e5ee4461721afc65b82430f2c15/anti-ad-surge2.txt",
+          "sha256": "c8fee421d931f8160f2c2414e1148bb39c4ca1c964ecffe51d91cc2dd4318290"
+        }
+      ],
+      "appliedExclusions": [],
+      "attributeFiltered": 0,
+      "affiliationDeclarations": 0,
+      "rawEntryCount": 100682,
+      "selection": "complete registered domain-line file; explicit domain-suffix semantics",
+      "updatedAt": "2026-10-30T12:57:57Z",
+      "outputSha256": "b2681e3f2ae69707b0dbb348d32ef14229147979486e4e6f64c792258a5e41bd",
+      "entryCount": 100682
     }
   ]
 }

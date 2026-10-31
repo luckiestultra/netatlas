@@ -1,6 +1,6 @@
 import test from 'node:test';
 import assert from 'node:assert/strict';
-import { mkdtemp, readFile, writeFile, mkdir, cp, readdir } from 'node:fs/promises';
+import { mkdtemp, readFile, writeFile, mkdir, cp, readdir, symlink } from 'node:fs/promises';
 import { tmpdir } from 'node:os';
 import { resolve, dirname } from 'node:path';
 import { createBuild, compareBuild, publishBuild, loadCatalog } from '../tools/lib/build.mjs';
@@ -64,4 +64,16 @@ test('a build cannot be published after any of its inputs change',async()=>{
   await writeFile(resolve(temp,'LICENSE'),'changed after rendering\n');
   await assert.rejects(()=>publishBuild(temp,build),/inputs changed/i);
   assert.deepEqual((await readdir(temp)).sort(),['LICENSE','THIRD_PARTY_NOTICES.md','metadata','package-lock.json','package.json','src','tools']);
+});
+
+test('a symlinked build cache cannot write batches outside the repository',async()=>{
+  const temp=await mkdtemp(resolve(tmpdir(),'netatlas-linked-cache-'));
+  const outside=await mkdtemp(resolve(tmpdir(),'netatlas-outside-cache-'));
+  await writeFile(resolve(outside,'sentinel.txt'),'must remain untouched\n');
+  await symlink(outside,resolve(temp,'.cache'),'dir');
+  const build=await createBuild(root);
+  await assert.rejects(()=>publishBuild(temp,build),/symlink/i);
+  assert.deepEqual(await readdir(outside),['sentinel.txt']);
+  assert.equal(await readFile(resolve(outside,'sentinel.txt'),'utf8'),'must remain untouched\n');
+  await assert.rejects(()=>readdir(resolve(temp,'clients')),/ENOENT/);
 });

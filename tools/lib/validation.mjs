@@ -1,7 +1,7 @@
 import { parse } from 'yaml';
 import { getClient } from './clients.mjs';
 import { normalizeEntry } from './rules.mjs';
-import { policyForRuleset } from './policies.mjs';
+import { policyForRuleset, profileRulesetsFor } from './policies.mjs';
 
 const classicTypes = { DOMAIN:'domain', 'DOMAIN-SUFFIX':'domain-suffix', 'IP-CIDR':'ip-cidr', 'IP-CIDR6':'ip-cidr6' };
 const qxTypes = { host:'domain', 'host-suffix':'domain-suffix', 'ip-cidr':'ip-cidr', 'ip6-cidr':'ip-cidr6' };
@@ -67,7 +67,7 @@ export function inspectProfile(clientId,text) {
 
 export function validateProfile(clientId,text,rulesets) {
   const inspected=inspectProfile(clientId,text);
-  const expected=rulesets.flatMap(ruleset=>ruleset.entries.map(entry=>({...normalizeEntry(entry),policy:policyForRuleset(ruleset)})));
+  const expected=profileRulesetsFor(rulesets).flatMap(ruleset=>ruleset.entries.map(entry=>({...normalizeEntry(entry),policy:policyForRuleset(ruleset)})));
   if(JSON.stringify(inspected.rules)!==JSON.stringify(expected))throw new Error(`${clientId}: profile rules differ from the ordered canonical rules or policies`);
   if(inspected.fallback!=='Proxy')throw new Error('Final policy must explicitly use Proxy');
   return {rules:inspected.rules.length,groups:inspected.groups.length,level:'structural-and-references',native:'not-run'};

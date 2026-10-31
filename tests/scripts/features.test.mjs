@@ -105,9 +105,13 @@ test('public script URLs cannot inject native module options or configuration li
   }
 });
 
-test('unsupported feature targets do not emit placeholder scripts or modules', () => {
+test('unsupported GeoIP targets do not emit placeholder scripts or GeoIP modules', () => {
   for (const client of ['loon', 'shadowrocket', 'egern', 'stash', 'mihomo', 'singBox']) {
-    assert.deepEqual(renderFeatures(client, { baseUrl }), []);
+    const paths=renderFeatures(client,{baseUrl}).map(file=>file.path);
+    assert.ok(!paths.includes('scripts/geoip.js'));
+    assert.ok(!paths.includes('modules/geoip.sgmodule'));
+    assert.ok(!paths.includes('fragments/geoip.conf'));
+    assert.ok(paths.some(path=>path.includes('anti-ad')));
   }
   assert.throws(() => renderFeatures('not-a-client', { baseUrl }), /client/i);
 });

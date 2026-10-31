@@ -1,0 +1,12 @@
+name: NetAtlas Anti-AD
+desc: Optional domain blocking; no MITM or scripts.
+rule-providers:
+  netatlas-anti-ad:
+    type: http
+    behavior: classical
+    format: yaml
+    url: https://raw.githubusercontent.com/luckiestultra/netatlas/main/clients/stash/rules/anti-ad.yaml
+    path: ./ruleset/netatlas-anti-ad.yaml
+    interval: 86400
+rules:
+  - RULE-SET,netatlas-anti-ad,REJECT

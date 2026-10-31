@@ -8,6 +8,9 @@ import { renderRuleset, decodeRuleset } from './exporters.mjs';
 import { renderProfile } from './profiles.mjs';
 import { renderFeatures } from './features.mjs';
 import { validateProfile } from './validation.mjs';
+import { assertManagedPaths } from './managed-paths.mjs';
+import { loadFeatureRegistry } from './feature-registry.mjs';
+import { profileRulesetsFor } from './policies.mjs';
 
 export const defaultBaseUrl='https://raw.githubusercontent.com/luckiestultra/netatlas/main';
 export const sha256=value=>createHash('sha256').update(value).digest('hex');
@@ -31,6 +34,7 @@ export async function filesUnder(root){
 }
 
 export async function loadCatalog(root){
+  await assertManagedPaths(root,['metadata/upstreams.json','src/rules']);
   const registry=JSON.parse(await readFile(resolve(root,'metadata/upstreams.json'),'utf8'));
   if(registry.version!==1||!Array.isArray(registry.rulesets))throw new Error('Unsupported upstream registry');
   const records=new Map(registry.rulesets.map(record=>[record.id,record]));
@@ -59,6 +63,7 @@ export async function loadCatalog(root){
 
 async function inputIdentity(root){
   const paths=['package.json','package-lock.json','LICENSE','THIRD_PARTY_NOTICES.md'];
+  await assertManagedPaths(root,[...paths,'src','metadata','tools']);
   for(const scope of ['src','metadata','tools'])for(const path of await filesUnder(resolve(root,scope)))paths.push(scope+'/'+path);
   const inputs=[];
   for(const path of paths.sort())inputs.push({path,sha256:sha256(await readFile(resolve(root,path)))});
@@ -66,14 +71,40 @@ async function inputIdentity(root){
 }
 
 function clientReadme(client,rulesets,features){
-  const ruleRows=rulesets.map(rule=>`| [${rule.id}](rules/${rule.id}.${client.ruleExtension}) | ${rule.category} | ${rule.entries.length} |`).join('\n');
-  const featureList=features.length?features.map(file=>`- [${file.path}](${file.path})`).join('\n'):'该客户端本次没有脚本或重写成品；不创建空目录。';
-  return `# ${client.name}\n\n[完整配置](profiles/default.${client.profileExtension}) · [构建清单](manifest.json)\n\n先导入完整配置，再在本地添加自己的节点并加入 Proxy 策略组。新建 Proxy 默认 REJECT；应用可能保留旧选择，导入后核对实际选项。DIRECT 可手动选择。配置不含订阅、账号或节点凭据。主配置已内联规则，不需要远程规则地址。\n\n规则按应用或服务平铺；分类只是索引标签。单独导入规则时自行指定策略，Quantumult X 文件含原生策略名，可在导入时设置 force-policy。不要把其他客户端的同名规则文件互换。\n\n| 应用/服务 | 标签 | 条目 |\n| --- | --- | ---: |\n${ruleRows}\n\n## 可选重写、脚本与模块\n\n${featureList}\n\n可选功能单独导入，默认不启用。Quantumult X 的 fragments/geoip.conf 是 [general] 合并片段，不是重写订阅。GeoIP 只显示查询源返回的出口归属；它不证明服务器物理位置。公共脚本 URL 需要对应文件已发布；本地构建不会自动发布。见 [功能说明](../../docs/features.md)。\n\n规则、配置结构和策略引用在构建时校验。原生状态：${client.nativeVerification==='available'?'可运行 npm run test:native，结果保存在忽略的 .cache/native-check/latest.json':'仍需在真实应用中导入验证'}。参见 [验证范围](../../docs/validation.md) 与 [官方参考](${client.reference})。\n`;
+  const embedded=profileRulesetsFor(rulesets);
+  const embeddedIds=new Set(embedded.map(rule=>rule.id));
+  const ruleRows=rulesets.map(rule=>`| [${rule.id}${embeddedIds.has(rule.id)?'':'（可选）'}](rules/${rule.id}.${client.ruleExtension}) | ${rule.category} | ${rule.entries.length} |`).join('\n');
+  const featureList=features.length?features.map(file=>`- [${file.path}](${file.path})`).join('\n'):'该客户端没有对应可选成品，不创建占位文件。';
+  return `# ${client.name}
+
+[完整配置](profiles/default.${client.profileExtension}) · [构建清单](manifest.json)
+
+先导入完整配置，在本地添加节点并加入 Proxy 策略组，再主动选择出站。新建 Proxy 默认 REJECT；应用可能保留旧选择，导入后核对实际选项。DIRECT 可手动选择。配置不含订阅、账号或节点凭据。
+
+主配置内联默认 ${embedded.length} 组、${embedded.reduce((sum,rule)=>sum+rule.entries.length,0)} 条规则，不依赖远程规则。大型 anti-ad 只生成独立规则，默认不启用、不内联；按需使用下方安装包或手工合并片段，并把拦截规则放在宽泛允许规则之前。
+
+规则按应用或服务平铺，分类只是索引标签。单独导入时指定策略；QX 文件包含原生策略名，可用 force-policy 覆盖。同名文件在不同客户端间不能互换。
+
+| 应用/服务 | 标签 | 条目 |
+| --- | --- | ---: |
+${ruleRows}
+
+## 可选功能
+
+${featureList}
+
+modules 是原生安装包，rewrites 是纯重写资源，fragments 必须按说明手工合并。QX fragments/geoip.conf 只合并到 [general]，不能当作重写或模块导入。远程资源 URL 需要对应文件已发布。GeoIP 结果不是服务器物理位置证明。
+
+HTTPS-upgrade 功能代码和生成资源按 GPL-2.0-only 提供，保留完整来源与许可；anti-AD 按直接来源声明的 MIT 许可及 credits 保留。不要把所有产物一概视为 MIT。Loon 的 HTTPS-upgrade 需要 3.5.1(978) 以上。详见 [功能与安装说明](../../docs/features.md) 和 [第三方声明](../../THIRD_PARTY_NOTICES.md)。
+
+原生验证：${client.nativeVerification==='available'?'可运行 npm run test:native；报告在忽略的 .cache/native-check/latest.json':'仍需真实应用导入；结构与文本测试不等于设备实测'}。参见 [验证范围](../../docs/validation.md) 与 [官方参考](${client.reference})。
+`;
 }
 
 export async function createBuild(root,{baseUrl=defaultBaseUrl}={}){
   const input=await inputIdentity(root);
   const {rulesets,sources,registry}=await loadCatalog(root);
+  const featureRegistry=await loadFeatureRegistry(root);
   for(const source of sources)if(input.files.find(file=>file.path===source.path)?.sha256!==source.sha256)throw new Error('Build inputs changed while reading the catalog');
   const files=new Map(),catalog=[];
   const put=(path,content)=>{if(files.has(path))throw new Error('Duplicate artifact: '+path);files.set(path,content);};
@@ -88,12 +119,24 @@ export async function createBuild(root,{baseUrl=defaultBaseUrl}={}){
       put(prefix+artifact.path,artifact.content);
     }
     const features=renderFeatures(client.id,{baseUrl});
+    const clientFeatures=featureRegistry.features.filter(feature=>feature.clients?.[client.id]);
+    const emitted=new Set(features.map(artifact=>artifact.path));
+    if(baseUrl)for(const feature of clientFeatures)for(const path of feature.clients[client.id].artifacts)if(!emitted.has(path))throw new Error(`Declared feature artifact was not emitted: ${client.id}/${path}`);
     for(const artifact of features)put(prefix+artifact.path,artifact.content);
     put(prefix+'README.md',clientReadme(client,rulesets,features));
     const artifacts=[...files].filter(([path])=>path.startsWith(prefix)).map(([path,content])=>({path:path.slice(prefix.length),sha256:sha256(content),bytes:Buffer.byteLength(content)})).sort((a,b)=>a.path.localeCompare(b.path,'en'));
-    const manifest={version:1,client:client.id,builder:'netatlas@0.1.0',inputSha256:input.sha256,baseUrl,targetVersion:client.targetVersion??null,validation:{profile:validation.level,rules:'canonical-semantic-round-trip',native:'not-run',nativeRequirement:client.nativeVerification,features:'host-contract-tests-run-separately'},sources:{repositories:registry.repositories,rules:registry.rulesets.map(record=>({id:record.id,tag:record.category,source:record.source,sha256:record.outputSha256,entries:record.entryCount,updatedAt:record.updatedAt,projection:record.selection??'first-party-selection',excludedExpressions:record.appliedExclusions??[]})),inputs:sources},artifacts};
+    const embedded=profileRulesetsFor(rulesets);
+    const embeddedIds=new Set(embedded.map(rule=>rule.id));
+    const manifest={
+      version:1,client:client.id,builder:'netatlas@0.1.0',inputSha256:input.sha256,baseUrl,targetVersion:client.targetVersion??null,
+      counts:{defaultRuleSets:embedded.length,defaultEntries:embedded.reduce((sum,rule)=>sum+rule.entries.length,0),optionalRuleSets:rulesets.length-embedded.length,totalEntries:rulesets.reduce((sum,rule)=>sum+rule.entries.length,0)},
+      validation:{profile:validation.level,rules:'canonical-semantic-round-trip',native:'not-run',nativeRequirement:client.nativeVerification,features:'host-contract-tests-run-separately'},
+      features:clientFeatures.map(feature=>({id:feature.id,defaultEnabled:false,license:feature.license??'MIT (original code)',adapter:feature.clients[client.id],upstream:feature.upstream??null,sourceRegistry:feature.sourceRegistry??null})),
+      sources:{repositories:registry.repositories,rules:registry.rulesets.map(record=>({id:record.id,tag:record.category,defaultProfile:embeddedIds.has(record.id),source:record.source,sha256:record.outputSha256,entries:record.entryCount,updatedAt:record.updatedAt,projection:record.selection??'first-party-selection',excludedExpressions:record.appliedExclusions??[]})),inputs:sources},
+      artifacts
+    };
     put(prefix+'manifest.json',json(manifest));
-    catalog.push({id:client.id,name:client.name,manifest:prefix+'manifest.json',sha256:sha256(files.get(prefix+'manifest.json')),rulesets:rulesets.length,entries:rulesets.reduce((sum,set)=>sum+set.entries.length,0)});
+    catalog.push({id:client.id,name:client.name,manifest:prefix+'manifest.json',sha256:sha256(files.get(prefix+'manifest.json')),rulesets:rulesets.length,entries:rulesets.reduce((sum,set)=>sum+set.entries.length,0),defaultRuleSets:embedded.length,defaultEntries:embedded.reduce((sum,set)=>sum+set.entries.length,0)});
   }
   const catalogBody={version:1,builder:'netatlas@0.1.0',input,clients:catalog};
   put('catalog.json',json({...catalogBody,contentSha256:sha256(json(catalogBody))}));
@@ -136,6 +179,7 @@ async function assertGeneratedUnmodified(directory){
 }
 
 export async function publishBuild(root,build){
+  await assertManagedPaths(root,['clients','.cache/build']);
   const directory=resolve(root,'clients');
   if((await inputIdentity(build.sourceRoot)).sha256!==build.inputSha256)throw new Error('Build inputs changed before publication; rebuild from current sources');
   await assertGeneratedUnmodified(directory);
@@ -144,6 +188,7 @@ export async function publishBuild(root,build){
   await mkdir(stage,{recursive:true});
   for(const [path,content] of build.files){const target=resolve(stage,path);await mkdir(dirname(target),{recursive:true});await writeFile(target,content,{flag:'wx'});}
   // Recheck after staging, so edits made while rendering are never overwritten.
+  await assertManagedPaths(root,['clients','.cache/build']);
   await assertGeneratedUnmodified(directory);
   if((await inputIdentity(build.sourceRoot)).sha256!==build.inputSha256)throw new Error('Build inputs changed while staging; no output was published');
   const previous=await exists(directory);

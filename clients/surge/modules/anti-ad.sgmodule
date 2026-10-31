@@ -1,0 +1,5 @@
+#!name=NetAtlas Anti-AD
+#!desc=Optional domain blocking; no MITM or scripts.
+
+[Rule]
+RULE-SET,https://raw.githubusercontent.com/luckiestultra/netatlas/main/clients/surge/rules/anti-ad.list,REJECT

@@ -1,0 +1,12 @@
+# Optional Anti-AD. Merge the provider declaration and PREPEND its rule before general or final rules.
+rule-providers:
+  netatlas-anti-ad:
+    type: http
+    behavior: classical
+    format: yaml
+    url: https://raw.githubusercontent.com/luckiestultra/netatlas/main/clients/mihomo/rules/anti-ad.yaml
+    path: ./ruleset/netatlas-anti-ad.yaml
+    interval: 86400
+    proxy: DIRECT
+rules:
+  - RULE-SET,netatlas-anti-ad,REJECT

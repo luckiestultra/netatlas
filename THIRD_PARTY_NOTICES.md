@@ -1,5 +1,22 @@
 # 第三方声明与规则来源
 
+本仓库包含多种许可。原创通用代码采用根目录 MIT 许可；HTTPS-upgrade 功能代码及其生成资源采用 GPL-2.0-only，不以根 MIT 许可替代。各组件与产物的许可见对应来源、文件头和清单。
+
+## anti-AD
+
+- 项目：[privacy-protection-tools/anti-AD](https://github.com/privacy-protection-tools/anti-AD)
+- 固定版本：`cafc2bfb031a9e5ee4461721afc65b82430f2c15`。
+- 使用 `anti-ad-surge2.txt` 的 100,682 个明确域名后缀，严格解析每行的 `.` 前缀；与同提交 Clash 规则的后缀集合双向一致。
+- 这是可选规则集，不内联默认主配置；完整源 SHA-256、许可 SHA-256、匹配类型、原始来源与核验依据登记在 `metadata/upstreams.json`。
+- 原始 [MIT 许可](src/vendor/anti-ad/LICENSE) 和 [README/credits](src/vendor/anti-ad/README.md) 原样保留，包括其聚合来源说明。本项目按直接来源的许可声明记录，不声称所有被聚合项目均采用 MIT。
+
+## HTTPS-upgrade
+
+- 来源：[blackmatrix7/ios_rule_script](https://github.com/blackmatrix7/ios_rule_script)，固定 `0b6897dc17e0c513d25449c935a9694818e32f0c`。
+- 仅选择 6 个同主机的 HTTP→HTTPS 规则，并增加严格主机、路径和查询保留；其他跳转、地区替换、HTTP 降级和 MITM 配置不进入生成资源。
+- 完整 [GPL-2.0 许可](src/features/https-upgrade/LICENSE)、[原文](src/features/https-upgrade/upstream/Redirect.conf.txt)、[修改说明](src/features/https-upgrade/NOTICE.md) 与 [来源元数据](metadata/https-upgrade.json) 均保留。适配器、数据和相关生成资源均标明 GPL-2.0-only，不应标为 MIT。
+- 仓库维护时间与规则文件头更新时间分别记录；不拿仓库近期提交冒充所有规则刚刚更新。
+
 ## Domain list community
 
 - 项目：[v2fly/domain-list-community](https://github.com/v2fly/domain-list-community)
@@ -57,9 +74,9 @@ SOFTWARE.
 npm run sync -- --dry-run             # 核对当前固定版本，不改源文件
 npm run sync                         # 重建当前固定版本
 npm run sync -- --latest --dry-run    # 检查上游分支最新提交，但不发布
-npm run sync -- --revision <完整SHA>  # 经审查后切换到明确提交
+npm run sync -- --repository <来源ID> --revision <完整SHA>  # 经审查后只切换所选来源
 ```
 
-下载限制包括 15 秒请求超时、单文件 1 MB、总计 24 MB、最多 512 个文件和 20 层包含；禁止包含循环。同步先验证所有输入，再发布规则目录和来源清单；网络失败、许可变化或新不可移植表达式会保留旧数据。已有托管规则若被手工修改，校验值不符会阻止覆盖；下载期间发生的本地改动也会在发布前再次核对。
+下载限制包括 15 秒请求超时、普通单文件 1 MB；anti-AD 登记上限为 3 MB，硬上限为 4 MB。总计 24 MB、最多 512 个文件和 20 层包含；禁止包含循环。同步先验证所有输入，再发布规则目录和来源清单；网络失败、许可变化或新不可移植表达式会保留旧数据。已有托管规则若被手工修改，校验值不符会阻止覆盖；下载期间发生的本地改动也会在发布前再次核对。
 
 本地上一个目录和中断记录保存在被 Git 忽略的 `.cache/sync/` 中，不自动删除。若目录交换期间进程被强制终止，下一次普通同步会先恢复上一批；`--dry-run` 只报告待恢复状态，不修改它。

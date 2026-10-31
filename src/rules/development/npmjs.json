@@ -1,0 +1,19 @@
+{
+  "version": 1,
+  "id": "npmjs",
+  "category": "development",
+  "entries": [
+    {
+      "type": "domain-suffix",
+      "value": "npm.community"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "npmjs.com"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "npmjs.org"
+    }
+  ]
+}

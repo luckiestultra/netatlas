@@ -40,16 +40,43 @@
     },
     {
       "type": "selector",
-      "tag": "apple",
+      "tag": "apple-tvplus",
       "outbounds": [
-        "DIRECT",
-        "Proxy"
+        "Proxy",
+        "DIRECT"
       ],
-      "default": "DIRECT"
+      "default": "Proxy"
     },
     {
       "type": "selector",
       "tag": "claude",
+      "outbounds": [
+        "Proxy",
+        "DIRECT"
+      ],
+      "default": "Proxy"
+    },
+    {
+      "type": "selector",
+      "tag": "cursor",
+      "outbounds": [
+        "Proxy",
+        "DIRECT"
+      ],
+      "default": "Proxy"
+    },
+    {
+      "type": "selector",
+      "tag": "discord",
+      "outbounds": [
+        "Proxy",
+        "DIRECT"
+      ],
+      "default": "Proxy"
+    },
+    {
+      "type": "selector",
+      "tag": "docker",
       "outbounds": [
         "Proxy",
         "DIRECT"
@@ -67,7 +94,61 @@
     },
     {
       "type": "selector",
-      "tag": "github",
+      "tag": "github-copilot",
+      "outbounds": [
+        "Proxy",
+        "DIRECT"
+      ],
+      "default": "Proxy"
+    },
+    {
+      "type": "selector",
+      "tag": "gitlab",
+      "outbounds": [
+        "Proxy",
+        "DIRECT"
+      ],
+      "default": "Proxy"
+    },
+    {
+      "type": "selector",
+      "tag": "groq",
+      "outbounds": [
+        "Proxy",
+        "DIRECT"
+      ],
+      "default": "Proxy"
+    },
+    {
+      "type": "selector",
+      "tag": "hbo",
+      "outbounds": [
+        "Proxy",
+        "DIRECT"
+      ],
+      "default": "Proxy"
+    },
+    {
+      "type": "selector",
+      "tag": "huggingface",
+      "outbounds": [
+        "Proxy",
+        "DIRECT"
+      ],
+      "default": "Proxy"
+    },
+    {
+      "type": "selector",
+      "tag": "jetbrains",
+      "outbounds": [
+        "Proxy",
+        "DIRECT"
+      ],
+      "default": "Proxy"
+    },
+    {
+      "type": "selector",
+      "tag": "line",
       "outbounds": [
         "Proxy",
         "DIRECT"
@@ -85,7 +166,52 @@
     },
     {
       "type": "selector",
+      "tag": "npmjs",
+      "outbounds": [
+        "Proxy",
+        "DIRECT"
+      ],
+      "default": "Proxy"
+    },
+    {
+      "type": "selector",
       "tag": "openai",
+      "outbounds": [
+        "Proxy",
+        "DIRECT"
+      ],
+      "default": "Proxy"
+    },
+    {
+      "type": "selector",
+      "tag": "perplexity",
+      "outbounds": [
+        "Proxy",
+        "DIRECT"
+      ],
+      "default": "Proxy"
+    },
+    {
+      "type": "selector",
+      "tag": "poe",
+      "outbounds": [
+        "Proxy",
+        "DIRECT"
+      ],
+      "default": "Proxy"
+    },
+    {
+      "type": "selector",
+      "tag": "signal",
+      "outbounds": [
+        "Proxy",
+        "DIRECT"
+      ],
+      "default": "Proxy"
+    },
+    {
+      "type": "selector",
+      "tag": "slack",
       "outbounds": [
         "Proxy",
         "DIRECT"
@@ -112,6 +238,15 @@
     },
     {
       "type": "selector",
+      "tag": "steam",
+      "outbounds": [
+        "Proxy",
+        "DIRECT"
+      ],
+      "default": "Proxy"
+    },
+    {
+      "type": "selector",
       "tag": "telegram",
       "outbounds": [
         "Proxy",
@@ -121,7 +256,79 @@
     },
     {
       "type": "selector",
+      "tag": "tiktok",
+      "outbounds": [
+        "Proxy",
+        "DIRECT"
+      ],
+      "default": "Proxy"
+    },
+    {
+      "type": "selector",
+      "tag": "twitch",
+      "outbounds": [
+        "Proxy",
+        "DIRECT"
+      ],
+      "default": "Proxy"
+    },
+    {
+      "type": "selector",
+      "tag": "vercel",
+      "outbounds": [
+        "Proxy",
+        "DIRECT"
+      ],
+      "default": "Proxy"
+    },
+    {
+      "type": "selector",
+      "tag": "whatsapp",
+      "outbounds": [
+        "Proxy",
+        "DIRECT"
+      ],
+      "default": "Proxy"
+    },
+    {
+      "type": "selector",
+      "tag": "xai",
+      "outbounds": [
+        "Proxy",
+        "DIRECT"
+      ],
+      "default": "Proxy"
+    },
+    {
+      "type": "selector",
       "tag": "youtube",
+      "outbounds": [
+        "Proxy",
+        "DIRECT"
+      ],
+      "default": "Proxy"
+    },
+    {
+      "type": "selector",
+      "tag": "zoom",
+      "outbounds": [
+        "Proxy",
+        "DIRECT"
+      ],
+      "default": "Proxy"
+    },
+    {
+      "type": "selector",
+      "tag": "apple",
+      "outbounds": [
+        "DIRECT",
+        "Proxy"
+      ],
+      "default": "DIRECT"
+    },
+    {
+      "type": "selector",
+      "tag": "github",
       "outbounds": [
         "Proxy",
         "DIRECT"
@@ -5692,6 +5899,5354 @@
           "xray.mail.ru"
         ],
         "action": "reject"
+      },
+      {
+        "domain_suffix": [
+          "tv.apple.com"
+        ],
+        "action": "route",
+        "outbound": "apple-tvplus"
+      },
+      {
+        "domain": [
+          "apple-tv-plus-press.apple.com"
+        ],
+        "action": "route",
+        "outbound": "apple-tvplus"
+      },
+      {
+        "domain": [
+          "hls-amt.itunes.apple.com"
+        ],
+        "action": "route",
+        "outbound": "apple-tvplus"
+      },
+      {
+        "domain": [
+          "hls.itunes.apple.com"
+        ],
+        "action": "route",
+        "outbound": "apple-tvplus"
+      },
+      {
+        "domain": [
+          "np-edge.itunes.apple.com"
+        ],
+        "action": "route",
+        "outbound": "apple-tvplus"
+      },
+      {
+        "domain": [
+          "play-edge.itunes.apple.com"
+        ],
+        "action": "route",
+        "outbound": "apple-tvplus"
+      },
+      {
+        "domain": [
+          "tv.applemusic.com"
+        ],
+        "action": "route",
+        "outbound": "apple-tvplus"
+      },
+      {
+        "domain": [
+          "uts-api.itunes.apple.com"
+        ],
+        "action": "route",
+        "outbound": "apple-tvplus"
+      },
+      {
+        "domain_suffix": [
+          "12306.cn"
+        ],
+        "action": "route",
+        "outbound": "DIRECT"
+      },
+      {
+        "domain_suffix": [
+          "163.com"
+        ],
+        "action": "route",
+        "outbound": "DIRECT"
+      },
+      {
+        "domain_suffix": [
+          "alicdn.com"
+        ],
+        "action": "route",
+        "outbound": "DIRECT"
+      },
+      {
+        "domain_suffix": [
+          "alipay.com"
+        ],
+        "action": "route",
+        "outbound": "DIRECT"
+      },
+      {
+        "domain_suffix": [
+          "aliyun.com"
+        ],
+        "action": "route",
+        "outbound": "DIRECT"
+      },
+      {
+        "domain_suffix": [
+          "baidu.com"
+        ],
+        "action": "route",
+        "outbound": "DIRECT"
+      },
+      {
+        "domain_suffix": [
+          "biliapi.net"
+        ],
+        "action": "route",
+        "outbound": "DIRECT"
+      },
+      {
+        "domain_suffix": [
+          "bilibili.com"
+        ],
+        "action": "route",
+        "outbound": "DIRECT"
+      },
+      {
+        "domain_suffix": [
+          "bilivideo.com"
+        ],
+        "action": "route",
+        "outbound": "DIRECT"
+      },
+      {
+        "domain_suffix": [
+          "douyin.com"
+        ],
+        "action": "route",
+        "outbound": "DIRECT"
+      },
+      {
+        "domain_suffix": [
+          "jd.com"
+        ],
+        "action": "route",
+        "outbound": "DIRECT"
+      },
+      {
+        "domain_suffix": [
+          "qq.com"
+        ],
+        "action": "route",
+        "outbound": "DIRECT"
+      },
+      {
+        "domain_suffix": [
+          "taobao.com"
+        ],
+        "action": "route",
+        "outbound": "DIRECT"
+      },
+      {
+        "domain_suffix": [
+          "tencent.com"
+        ],
+        "action": "route",
+        "outbound": "DIRECT"
+      },
+      {
+        "domain_suffix": [
+          "tmall.com"
+        ],
+        "action": "route",
+        "outbound": "DIRECT"
+      },
+      {
+        "domain_suffix": [
+          "weibo.com"
+        ],
+        "action": "route",
+        "outbound": "DIRECT"
+      },
+      {
+        "domain_suffix": [
+          "weixin.qq.com"
+        ],
+        "action": "route",
+        "outbound": "DIRECT"
+      },
+      {
+        "domain_suffix": [
+          "xiaohongshu.com"
+        ],
+        "action": "route",
+        "outbound": "DIRECT"
+      },
+      {
+        "domain_suffix": [
+          "zhihu.com"
+        ],
+        "action": "route",
+        "outbound": "DIRECT"
+      },
+      {
+        "domain_suffix": [
+          "ant.dev"
+        ],
+        "action": "route",
+        "outbound": "claude"
+      },
+      {
+        "domain_suffix": [
+          "anthropic.com"
+        ],
+        "action": "route",
+        "outbound": "claude"
+      },
+      {
+        "domain_suffix": [
+          "anthropic.team"
+        ],
+        "action": "route",
+        "outbound": "claude"
+      },
+      {
+        "domain_suffix": [
+          "antspace.dev"
+        ],
+        "action": "route",
+        "outbound": "claude"
+      },
+      {
+        "domain_suffix": [
+          "chatbotclaude.com"
+        ],
+        "action": "route",
+        "outbound": "claude"
+      },
+      {
+        "domain_suffix": [
+          "clau.de"
+        ],
+        "action": "route",
+        "outbound": "claude"
+      },
+      {
+        "domain_suffix": [
+          "claude.ai"
+        ],
+        "action": "route",
+        "outbound": "claude"
+      },
+      {
+        "domain_suffix": [
+          "claude.app"
+        ],
+        "action": "route",
+        "outbound": "claude"
+      },
+      {
+        "domain_suffix": [
+          "claude.com"
+        ],
+        "action": "route",
+        "outbound": "claude"
+      },
+      {
+        "domain_suffix": [
+          "claude.dev"
+        ],
+        "action": "route",
+        "outbound": "claude"
+      },
+      {
+        "domain_suffix": [
+          "claude.new"
+        ],
+        "action": "route",
+        "outbound": "claude"
+      },
+      {
+        "domain_suffix": [
+          "claude.site"
+        ],
+        "action": "route",
+        "outbound": "claude"
+      },
+      {
+        "domain_suffix": [
+          "claudeacademy.com"
+        ],
+        "action": "route",
+        "outbound": "claude"
+      },
+      {
+        "domain_suffix": [
+          "claudemcpclient.com"
+        ],
+        "action": "route",
+        "outbound": "claude"
+      },
+      {
+        "domain_suffix": [
+          "claudemcpcontent.com"
+        ],
+        "action": "route",
+        "outbound": "claude"
+      },
+      {
+        "domain_suffix": [
+          "claudepages.dev"
+        ],
+        "action": "route",
+        "outbound": "claude"
+      },
+      {
+        "domain_suffix": [
+          "claudestudio.com"
+        ],
+        "action": "route",
+        "outbound": "claude"
+      },
+      {
+        "domain_suffix": [
+          "claudeusercontent.com"
+        ],
+        "action": "route",
+        "outbound": "claude"
+      },
+      {
+        "domain": [
+          "servd-anthropic-website.b-cdn.net"
+        ],
+        "action": "route",
+        "outbound": "claude"
+      },
+      {
+        "domain_suffix": [
+          "cursor-cdn.com"
+        ],
+        "action": "route",
+        "outbound": "cursor"
+      },
+      {
+        "domain_suffix": [
+          "cursor.com"
+        ],
+        "action": "route",
+        "outbound": "cursor"
+      },
+      {
+        "domain_suffix": [
+          "cursor.sh"
+        ],
+        "action": "route",
+        "outbound": "cursor"
+      },
+      {
+        "domain_suffix": [
+          "cursorapi.com"
+        ],
+        "action": "route",
+        "outbound": "cursor"
+      },
+      {
+        "domain_suffix": [
+          "cursorvm.com"
+        ],
+        "action": "route",
+        "outbound": "cursor"
+      },
+      {
+        "domain_suffix": [
+          "airhorn.solutions"
+        ],
+        "action": "route",
+        "outbound": "discord"
+      },
+      {
+        "domain_suffix": [
+          "airhornbot.com"
+        ],
+        "action": "route",
+        "outbound": "discord"
+      },
+      {
+        "domain_suffix": [
+          "bigbeans.solutions"
+        ],
+        "action": "route",
+        "outbound": "discord"
+      },
+      {
+        "domain_suffix": [
+          "dis.gd"
+        ],
+        "action": "route",
+        "outbound": "discord"
+      },
+      {
+        "domain_suffix": [
+          "discord-activities.com"
+        ],
+        "action": "route",
+        "outbound": "discord"
+      },
+      {
+        "domain_suffix": [
+          "discord.co"
+        ],
+        "action": "route",
+        "outbound": "discord"
+      },
+      {
+        "domain_suffix": [
+          "discord.com"
+        ],
+        "action": "route",
+        "outbound": "discord"
+      },
+      {
+        "domain_suffix": [
+          "discord.design"
+        ],
+        "action": "route",
+        "outbound": "discord"
+      },
+      {
+        "domain_suffix": [
+          "discord.dev"
+        ],
+        "action": "route",
+        "outbound": "discord"
+      },
+      {
+        "domain_suffix": [
+          "discord.gg"
+        ],
+        "action": "route",
+        "outbound": "discord"
+      },
+      {
+        "domain_suffix": [
+          "discord.gift"
+        ],
+        "action": "route",
+        "outbound": "discord"
+      },
+      {
+        "domain_suffix": [
+          "discord.gifts"
+        ],
+        "action": "route",
+        "outbound": "discord"
+      },
+      {
+        "domain_suffix": [
+          "discord.media"
+        ],
+        "action": "route",
+        "outbound": "discord"
+      },
+      {
+        "domain_suffix": [
+          "discord.new"
+        ],
+        "action": "route",
+        "outbound": "discord"
+      },
+      {
+        "domain_suffix": [
+          "discord.store"
+        ],
+        "action": "route",
+        "outbound": "discord"
+      },
+      {
+        "domain_suffix": [
+          "discord.tools"
+        ],
+        "action": "route",
+        "outbound": "discord"
+      },
+      {
+        "domain_suffix": [
+          "discordactivities.com"
+        ],
+        "action": "route",
+        "outbound": "discord"
+      },
+      {
+        "domain_suffix": [
+          "discordapp.com"
+        ],
+        "action": "route",
+        "outbound": "discord"
+      },
+      {
+        "domain_suffix": [
+          "discordapp.io"
+        ],
+        "action": "route",
+        "outbound": "discord"
+      },
+      {
+        "domain_suffix": [
+          "discordapp.net"
+        ],
+        "action": "route",
+        "outbound": "discord"
+      },
+      {
+        "domain_suffix": [
+          "discordcdn.com"
+        ],
+        "action": "route",
+        "outbound": "discord"
+      },
+      {
+        "domain_suffix": [
+          "discordmerch.com"
+        ],
+        "action": "route",
+        "outbound": "discord"
+      },
+      {
+        "domain_suffix": [
+          "discordpartygames.com"
+        ],
+        "action": "route",
+        "outbound": "discord"
+      },
+      {
+        "domain_suffix": [
+          "discordsays.com"
+        ],
+        "action": "route",
+        "outbound": "discord"
+      },
+      {
+        "domain_suffix": [
+          "discordstatus.com"
+        ],
+        "action": "route",
+        "outbound": "discord"
+      },
+      {
+        "domain_suffix": [
+          "watchanimeattheoffice.com"
+        ],
+        "action": "route",
+        "outbound": "discord"
+      },
+      {
+        "domain": [
+          "discord-attachments-uploads-prd.storage.googleapis.com"
+        ],
+        "action": "route",
+        "outbound": "discord"
+      },
+      {
+        "domain": [
+          "hammerandchisel.ssl.zendesk.com"
+        ],
+        "action": "route",
+        "outbound": "discord"
+      },
+      {
+        "domain_suffix": [
+          "compose-spec.io"
+        ],
+        "action": "route",
+        "outbound": "docker"
+      },
+      {
+        "domain_suffix": [
+          "docker.com"
+        ],
+        "action": "route",
+        "outbound": "docker"
+      },
+      {
+        "domain_suffix": [
+          "docker.io"
+        ],
+        "action": "route",
+        "outbound": "docker"
+      },
+      {
+        "domain_suffix": [
+          "dockerstatic.com"
+        ],
+        "action": "route",
+        "outbound": "docker"
+      },
+      {
+        "domain": [
+          "docker-images-prod.6aa30f8b08e16409b46e0173d6de2f56.r2.cloudflarestorage.com"
+        ],
+        "action": "route",
+        "outbound": "docker"
+      },
+      {
+        "domain": [
+          "docker-pinata-support.s3.amazonaws.com"
+        ],
+        "action": "route",
+        "outbound": "docker"
+      },
+      {
+        "domain_suffix": [
+          "ai.studio"
+        ],
+        "action": "route",
+        "outbound": "gemini"
+      },
+      {
+        "domain_suffix": [
+          "aicode.googleapis.com"
+        ],
+        "action": "route",
+        "outbound": "gemini"
+      },
+      {
+        "domain_suffix": [
+          "aida.googleapis.com"
+        ],
+        "action": "route",
+        "outbound": "gemini"
+      },
+      {
+        "domain_suffix": [
+          "aisandbox-pa.googleapis.com"
+        ],
+        "action": "route",
+        "outbound": "gemini"
+      },
+      {
+        "domain_suffix": [
+          "aistudio.google.com"
+        ],
+        "action": "route",
+        "outbound": "gemini"
+      },
+      {
+        "domain_suffix": [
+          "antigravity-unleash.goog"
+        ],
+        "action": "route",
+        "outbound": "gemini"
+      },
+      {
+        "domain_suffix": [
+          "antigravity.google"
+        ],
+        "action": "route",
+        "outbound": "gemini"
+      },
+      {
+        "domain_suffix": [
+          "bard.google.com"
+        ],
+        "action": "route",
+        "outbound": "gemini"
+      },
+      {
+        "domain_suffix": [
+          "deepmind.com"
+        ],
+        "action": "route",
+        "outbound": "gemini"
+      },
+      {
+        "domain_suffix": [
+          "deepmind.google"
+        ],
+        "action": "route",
+        "outbound": "gemini"
+      },
+      {
+        "domain_suffix": [
+          "flow.google"
+        ],
+        "action": "route",
+        "outbound": "gemini"
+      },
+      {
+        "domain_suffix": [
+          "flow.google.com"
+        ],
+        "action": "route",
+        "outbound": "gemini"
+      },
+      {
+        "domain_suffix": [
+          "geller-pa.googleapis.com"
+        ],
+        "action": "route",
+        "outbound": "gemini"
+      },
+      {
+        "domain_suffix": [
+          "gemini.google"
+        ],
+        "action": "route",
+        "outbound": "gemini"
+      },
+      {
+        "domain_suffix": [
+          "gemini.google.com"
+        ],
+        "action": "route",
+        "outbound": "gemini"
+      },
+      {
+        "domain_suffix": [
+          "gemini.gstatic.com"
+        ],
+        "action": "route",
+        "outbound": "gemini"
+      },
+      {
+        "domain_suffix": [
+          "generativeai.google"
+        ],
+        "action": "route",
+        "outbound": "gemini"
+      },
+      {
+        "domain_suffix": [
+          "generativelanguage.googleapis.com"
+        ],
+        "action": "route",
+        "outbound": "gemini"
+      },
+      {
+        "domain_suffix": [
+          "jules.google"
+        ],
+        "action": "route",
+        "outbound": "gemini"
+      },
+      {
+        "domain_suffix": [
+          "jules.google.com"
+        ],
+        "action": "route",
+        "outbound": "gemini"
+      },
+      {
+        "domain_suffix": [
+          "labs.google"
+        ],
+        "action": "route",
+        "outbound": "gemini"
+      },
+      {
+        "domain_suffix": [
+          "labs.google.com"
+        ],
+        "action": "route",
+        "outbound": "gemini"
+      },
+      {
+        "domain_suffix": [
+          "labstailwind.pa.googleapis.com"
+        ],
+        "action": "route",
+        "outbound": "gemini"
+      },
+      {
+        "domain_suffix": [
+          "makersuite.google.com"
+        ],
+        "action": "route",
+        "outbound": "gemini"
+      },
+      {
+        "domain_suffix": [
+          "notebook.google"
+        ],
+        "action": "route",
+        "outbound": "gemini"
+      },
+      {
+        "domain_suffix": [
+          "notebook.google.com"
+        ],
+        "action": "route",
+        "outbound": "gemini"
+      },
+      {
+        "domain_suffix": [
+          "notebooklm.google"
+        ],
+        "action": "route",
+        "outbound": "gemini"
+      },
+      {
+        "domain_suffix": [
+          "notebooklm.google.com"
+        ],
+        "action": "route",
+        "outbound": "gemini"
+      },
+      {
+        "domain_suffix": [
+          "opal.google"
+        ],
+        "action": "route",
+        "outbound": "gemini"
+      },
+      {
+        "domain_suffix": [
+          "opal.google.com"
+        ],
+        "action": "route",
+        "outbound": "gemini"
+      },
+      {
+        "domain_suffix": [
+          "proactivebackend-pa.googleapis.com"
+        ],
+        "action": "route",
+        "outbound": "gemini"
+      },
+      {
+        "domain_suffix": [
+          "robinfrontend-pa.googleapis.com"
+        ],
+        "action": "route",
+        "outbound": "gemini"
+      },
+      {
+        "domain_suffix": [
+          "stitch.withgoogle.com"
+        ],
+        "action": "route",
+        "outbound": "gemini"
+      },
+      {
+        "domain": [
+          "ai.google.dev"
+        ],
+        "action": "route",
+        "outbound": "gemini"
+      },
+      {
+        "domain": [
+          "alkalicore-pa.clients6.google.com"
+        ],
+        "action": "route",
+        "outbound": "gemini"
+      },
+      {
+        "domain": [
+          "alkalimakersuite-pa.clients6.google.com"
+        ],
+        "action": "route",
+        "outbound": "gemini"
+      },
+      {
+        "domain": [
+          "antigravity-pa.googleapis.com"
+        ],
+        "action": "route",
+        "outbound": "gemini"
+      },
+      {
+        "domain": [
+          "antigravity.googleapis.com"
+        ],
+        "action": "route",
+        "outbound": "gemini"
+      },
+      {
+        "domain": [
+          "appsgenaiserver-pa.clients.google.com"
+        ],
+        "action": "route",
+        "outbound": "gemini"
+      },
+      {
+        "domain": [
+          "appsgenaiserver-pa.clients6.google.com"
+        ],
+        "action": "route",
+        "outbound": "gemini"
+      },
+      {
+        "domain": [
+          "appsgenaiserver-pa.googleapis.com"
+        ],
+        "action": "route",
+        "outbound": "gemini"
+      },
+      {
+        "domain": [
+          "cloudaicompanion.googleapis.com"
+        ],
+        "action": "route",
+        "outbound": "gemini"
+      },
+      {
+        "domain": [
+          "cloudcode-pa.googleapis.com"
+        ],
+        "action": "route",
+        "outbound": "gemini"
+      },
+      {
+        "domain": [
+          "daily-cloudcode-pa.googleapis.com"
+        ],
+        "action": "route",
+        "outbound": "gemini"
+      },
+      {
+        "domain": [
+          "geminiweb-pa.clients.google.com"
+        ],
+        "action": "route",
+        "outbound": "gemini"
+      },
+      {
+        "domain": [
+          "geminiweb-pa.clients6.google.com"
+        ],
+        "action": "route",
+        "outbound": "gemini"
+      },
+      {
+        "domain": [
+          "notebooklm-pa.googleapis.com"
+        ],
+        "action": "route",
+        "outbound": "gemini"
+      },
+      {
+        "domain": [
+          "notebooklm.googleapis.com"
+        ],
+        "action": "route",
+        "outbound": "gemini"
+      },
+      {
+        "domain": [
+          "webchannel-alkalimakersuite-pa.clients6.google.com"
+        ],
+        "action": "route",
+        "outbound": "gemini"
+      },
+      {
+        "domain_suffix": [
+          "githubcopilot.com"
+        ],
+        "action": "route",
+        "outbound": "github-copilot"
+      },
+      {
+        "domain": [
+          "copilot-proxy.githubusercontent.com"
+        ],
+        "action": "route",
+        "outbound": "github-copilot"
+      },
+      {
+        "domain": [
+          "copilot-telemetry-service.githubusercontent.com"
+        ],
+        "action": "route",
+        "outbound": "github-copilot"
+      },
+      {
+        "domain": [
+          "copilot-telemetry.githubusercontent.com"
+        ],
+        "action": "route",
+        "outbound": "github-copilot"
+      },
+      {
+        "domain": [
+          "copilot-workspace.githubnext.com"
+        ],
+        "action": "route",
+        "outbound": "github-copilot"
+      },
+      {
+        "domain": [
+          "copilotprodattachments.blob.core.windows.net"
+        ],
+        "action": "route",
+        "outbound": "github-copilot"
+      },
+      {
+        "domain_suffix": [
+          "gitlab-static.net"
+        ],
+        "action": "route",
+        "outbound": "gitlab"
+      },
+      {
+        "domain_suffix": [
+          "gitlab.com"
+        ],
+        "action": "route",
+        "outbound": "gitlab"
+      },
+      {
+        "domain_suffix": [
+          "gitlab.io"
+        ],
+        "action": "route",
+        "outbound": "gitlab"
+      },
+      {
+        "domain_suffix": [
+          "gitlab.net"
+        ],
+        "action": "route",
+        "outbound": "gitlab"
+      },
+      {
+        "domain": [
+          "gitlab-assets.oss-cn-hongkong.aliyuncs.com"
+        ],
+        "action": "route",
+        "outbound": "gitlab"
+      },
+      {
+        "domain_suffix": [
+          "groq.com"
+        ],
+        "action": "route",
+        "outbound": "groq"
+      },
+      {
+        "domain_suffix": [
+          "beforeigners.com"
+        ],
+        "action": "route",
+        "outbound": "hbo"
+      },
+      {
+        "domain_suffix": [
+          "brightline.tv"
+        ],
+        "action": "route",
+        "outbound": "hbo"
+      },
+      {
+        "domain_suffix": [
+          "cinemax.com"
+        ],
+        "action": "route",
+        "outbound": "hbo"
+      },
+      {
+        "domain_suffix": [
+          "discomax.com"
+        ],
+        "action": "route",
+        "outbound": "hbo"
+      },
+      {
+        "domain_suffix": [
+          "elpionero.es"
+        ],
+        "action": "route",
+        "outbound": "hbo"
+      },
+      {
+        "domain_suffix": [
+          "forthethrone.com"
+        ],
+        "action": "route",
+        "outbound": "hbo"
+      },
+      {
+        "domain_suffix": [
+          "h264.io"
+        ],
+        "action": "route",
+        "outbound": "hbo"
+      },
+      {
+        "domain_suffix": [
+          "hbo"
+        ],
+        "action": "route",
+        "outbound": "hbo"
+      },
+      {
+        "domain_suffix": [
+          "hbo-europe.com"
+        ],
+        "action": "route",
+        "outbound": "hbo"
+      },
+      {
+        "domain_suffix": [
+          "hbo.ba"
+        ],
+        "action": "route",
+        "outbound": "hbo"
+      },
+      {
+        "domain_suffix": [
+          "hbo.bg"
+        ],
+        "action": "route",
+        "outbound": "hbo"
+      },
+      {
+        "domain_suffix": [
+          "hbo.com"
+        ],
+        "action": "route",
+        "outbound": "hbo"
+      },
+      {
+        "domain_suffix": [
+          "hbo.com.c.footprint.net"
+        ],
+        "action": "route",
+        "outbound": "hbo"
+      },
+      {
+        "domain_suffix": [
+          "hbo.com.edgesuite.net"
+        ],
+        "action": "route",
+        "outbound": "hbo"
+      },
+      {
+        "domain_suffix": [
+          "hbo.cz"
+        ],
+        "action": "route",
+        "outbound": "hbo"
+      },
+      {
+        "domain_suffix": [
+          "hbo.eu"
+        ],
+        "action": "route",
+        "outbound": "hbo"
+      },
+      {
+        "domain_suffix": [
+          "hbo.hr"
+        ],
+        "action": "route",
+        "outbound": "hbo"
+      },
+      {
+        "domain_suffix": [
+          "hbo.hu"
+        ],
+        "action": "route",
+        "outbound": "hbo"
+      },
+      {
+        "domain_suffix": [
+          "hbo.map.fastly.net"
+        ],
+        "action": "route",
+        "outbound": "hbo"
+      },
+      {
+        "domain_suffix": [
+          "hbo.me"
+        ],
+        "action": "route",
+        "outbound": "hbo"
+      },
+      {
+        "domain_suffix": [
+          "hbo.mk"
+        ],
+        "action": "route",
+        "outbound": "hbo"
+      },
+      {
+        "domain_suffix": [
+          "hbo.pl"
+        ],
+        "action": "route",
+        "outbound": "hbo"
+      },
+      {
+        "domain_suffix": [
+          "hbo.ro"
+        ],
+        "action": "route",
+        "outbound": "hbo"
+      },
+      {
+        "domain_suffix": [
+          "hbo.rs"
+        ],
+        "action": "route",
+        "outbound": "hbo"
+      },
+      {
+        "domain_suffix": [
+          "hbo.sk"
+        ],
+        "action": "route",
+        "outbound": "hbo"
+      },
+      {
+        "domain_suffix": [
+          "hboaccess.com"
+        ],
+        "action": "route",
+        "outbound": "hbo"
+      },
+      {
+        "domain_suffix": [
+          "hboarchives.com"
+        ],
+        "action": "route",
+        "outbound": "hbo"
+      },
+      {
+        "domain_suffix": [
+          "hboasia.com"
+        ],
+        "action": "route",
+        "outbound": "hbo"
+      },
+      {
+        "domain_suffix": [
+          "hboenterprises.com"
+        ],
+        "action": "route",
+        "outbound": "hbo"
+      },
+      {
+        "domain_suffix": [
+          "hboespana.com"
+        ],
+        "action": "route",
+        "outbound": "hbo"
+      },
+      {
+        "domain_suffix": [
+          "hbogo.co.th"
+        ],
+        "action": "route",
+        "outbound": "hbo"
+      },
+      {
+        "domain_suffix": [
+          "hbogo.com"
+        ],
+        "action": "route",
+        "outbound": "hbo"
+      },
+      {
+        "domain_suffix": [
+          "hbogo.cz"
+        ],
+        "action": "route",
+        "outbound": "hbo"
+      },
+      {
+        "domain_suffix": [
+          "hbogo.eu"
+        ],
+        "action": "route",
+        "outbound": "hbo"
+      },
+      {
+        "domain_suffix": [
+          "hbogo.hu"
+        ],
+        "action": "route",
+        "outbound": "hbo"
+      },
+      {
+        "domain_suffix": [
+          "hbogo.sk"
+        ],
+        "action": "route",
+        "outbound": "hbo"
+      },
+      {
+        "domain_suffix": [
+          "hbogoasia.com"
+        ],
+        "action": "route",
+        "outbound": "hbo"
+      },
+      {
+        "domain_suffix": [
+          "hbogoasia.hk"
+        ],
+        "action": "route",
+        "outbound": "hbo"
+      },
+      {
+        "domain_suffix": [
+          "hbogoasia.id"
+        ],
+        "action": "route",
+        "outbound": "hbo"
+      },
+      {
+        "domain_suffix": [
+          "hbogoasia.my"
+        ],
+        "action": "route",
+        "outbound": "hbo"
+      },
+      {
+        "domain_suffix": [
+          "hbogoasia.ph"
+        ],
+        "action": "route",
+        "outbound": "hbo"
+      },
+      {
+        "domain_suffix": [
+          "hbogoasia.sg"
+        ],
+        "action": "route",
+        "outbound": "hbo"
+      },
+      {
+        "domain_suffix": [
+          "hbogoasia.tw"
+        ],
+        "action": "route",
+        "outbound": "hbo"
+      },
+      {
+        "domain_suffix": [
+          "hboinflight.com"
+        ],
+        "action": "route",
+        "outbound": "hbo"
+      },
+      {
+        "domain_suffix": [
+          "hbolacontent.net"
+        ],
+        "action": "route",
+        "outbound": "hbo"
+      },
+      {
+        "domain_suffix": [
+          "hbolaunchpad.com"
+        ],
+        "action": "route",
+        "outbound": "hbo"
+      },
+      {
+        "domain_suffix": [
+          "hbomailman.com"
+        ],
+        "action": "route",
+        "outbound": "hbo"
+      },
+      {
+        "domain_suffix": [
+          "hbomax-images.warnermediacdn.com"
+        ],
+        "action": "route",
+        "outbound": "hbo"
+      },
+      {
+        "domain_suffix": [
+          "hbomax.com"
+        ],
+        "action": "route",
+        "outbound": "hbo"
+      },
+      {
+        "domain_suffix": [
+          "hbomax.eu"
+        ],
+        "action": "route",
+        "outbound": "hbo"
+      },
+      {
+        "domain_suffix": [
+          "hbomaxcdn.com"
+        ],
+        "action": "route",
+        "outbound": "hbo"
+      },
+      {
+        "domain_suffix": [
+          "hbomaxdash.s.llnwi.net"
+        ],
+        "action": "route",
+        "outbound": "hbo"
+      },
+      {
+        "domain_suffix": [
+          "hbomediarelations.com"
+        ],
+        "action": "route",
+        "outbound": "hbo"
+      },
+      {
+        "domain_suffix": [
+          "hbonordic.com"
+        ],
+        "action": "route",
+        "outbound": "hbo"
+      },
+      {
+        "domain_suffix": [
+          "hbonordic.tv"
+        ],
+        "action": "route",
+        "outbound": "hbo"
+      },
+      {
+        "domain_suffix": [
+          "hbonow.com"
+        ],
+        "action": "route",
+        "outbound": "hbo"
+      },
+      {
+        "domain_suffix": [
+          "hboportugal.com"
+        ],
+        "action": "route",
+        "outbound": "hbo"
+      },
+      {
+        "domain_suffix": [
+          "hboprod.com"
+        ],
+        "action": "route",
+        "outbound": "hbo"
+      },
+      {
+        "domain_suffix": [
+          "hbospain.com"
+        ],
+        "action": "route",
+        "outbound": "hbo"
+      },
+      {
+        "domain_suffix": [
+          "hbotvsales.com"
+        ],
+        "action": "route",
+        "outbound": "hbo"
+      },
+      {
+        "domain_suffix": [
+          "homebox.com"
+        ],
+        "action": "route",
+        "outbound": "hbo"
+      },
+      {
+        "domain_suffix": [
+          "homeboxoffice.com"
+        ],
+        "action": "route",
+        "outbound": "hbo"
+      },
+      {
+        "domain_suffix": [
+          "max.com"
+        ],
+        "action": "route",
+        "outbound": "hbo"
+      },
+      {
+        "domain_suffix": [
+          "maxgo.com"
+        ],
+        "action": "route",
+        "outbound": "hbo"
+      },
+      {
+        "domain_suffix": [
+          "redbyhbo.com"
+        ],
+        "action": "route",
+        "outbound": "hbo"
+      },
+      {
+        "domain_suffix": [
+          "hf.co"
+        ],
+        "action": "route",
+        "outbound": "huggingface"
+      },
+      {
+        "domain_suffix": [
+          "hf.space"
+        ],
+        "action": "route",
+        "outbound": "huggingface"
+      },
+      {
+        "domain_suffix": [
+          "huggingface.co"
+        ],
+        "action": "route",
+        "outbound": "huggingface"
+      },
+      {
+        "domain_suffix": [
+          "cdn.jetbrains.com"
+        ],
+        "action": "route",
+        "outbound": "jetbrains"
+      },
+      {
+        "domain_suffix": [
+          "datalore.io"
+        ],
+        "action": "route",
+        "outbound": "jetbrains"
+      },
+      {
+        "domain_suffix": [
+          "grazie.ai"
+        ],
+        "action": "route",
+        "outbound": "jetbrains"
+      },
+      {
+        "domain_suffix": [
+          "grazie.aws.intellij.net"
+        ],
+        "action": "route",
+        "outbound": "jetbrains"
+      },
+      {
+        "domain_suffix": [
+          "intellij.com"
+        ],
+        "action": "route",
+        "outbound": "jetbrains"
+      },
+      {
+        "domain_suffix": [
+          "intellij.net"
+        ],
+        "action": "route",
+        "outbound": "jetbrains"
+      },
+      {
+        "domain_suffix": [
+          "intellij.org"
+        ],
+        "action": "route",
+        "outbound": "jetbrains"
+      },
+      {
+        "domain_suffix": [
+          "jb.gg"
+        ],
+        "action": "route",
+        "outbound": "jetbrains"
+      },
+      {
+        "domain_suffix": [
+          "jetbrains.ai"
+        ],
+        "action": "route",
+        "outbound": "jetbrains"
+      },
+      {
+        "domain_suffix": [
+          "jetbrains.cloud"
+        ],
+        "action": "route",
+        "outbound": "jetbrains"
+      },
+      {
+        "domain_suffix": [
+          "jetbrains.com"
+        ],
+        "action": "route",
+        "outbound": "jetbrains"
+      },
+      {
+        "domain_suffix": [
+          "jetbrains.com.cn"
+        ],
+        "action": "route",
+        "outbound": "jetbrains"
+      },
+      {
+        "domain_suffix": [
+          "jetbrains.dev"
+        ],
+        "action": "route",
+        "outbound": "jetbrains"
+      },
+      {
+        "domain_suffix": [
+          "jetbrains.net"
+        ],
+        "action": "route",
+        "outbound": "jetbrains"
+      },
+      {
+        "domain_suffix": [
+          "jetbrains.org"
+        ],
+        "action": "route",
+        "outbound": "jetbrains"
+      },
+      {
+        "domain_suffix": [
+          "jetbrains.ru"
+        ],
+        "action": "route",
+        "outbound": "jetbrains"
+      },
+      {
+        "domain_suffix": [
+          "jetbrains.space"
+        ],
+        "action": "route",
+        "outbound": "jetbrains"
+      },
+      {
+        "domain_suffix": [
+          "jetbrains.team"
+        ],
+        "action": "route",
+        "outbound": "jetbrains"
+      },
+      {
+        "domain_suffix": [
+          "kotl.in"
+        ],
+        "action": "route",
+        "outbound": "jetbrains"
+      },
+      {
+        "domain_suffix": [
+          "kotlinconf.com"
+        ],
+        "action": "route",
+        "outbound": "jetbrains"
+      },
+      {
+        "domain_suffix": [
+          "kotlinlang.org"
+        ],
+        "action": "route",
+        "outbound": "jetbrains"
+      },
+      {
+        "domain_suffix": [
+          "ktor.io"
+        ],
+        "action": "route",
+        "outbound": "jetbrains"
+      },
+      {
+        "domain_suffix": [
+          "myjetbrains.com"
+        ],
+        "action": "route",
+        "outbound": "jetbrains"
+      },
+      {
+        "domain_suffix": [
+          "talkingkotlin.com"
+        ],
+        "action": "route",
+        "outbound": "jetbrains"
+      },
+      {
+        "domain_suffix": [
+          "youtrack.cloud"
+        ],
+        "action": "route",
+        "outbound": "jetbrains"
+      },
+      {
+        "domain_suffix": [
+          "gcld-line.com"
+        ],
+        "action": "route",
+        "outbound": "line"
+      },
+      {
+        "domain_suffix": [
+          "lin.ee"
+        ],
+        "action": "route",
+        "outbound": "line"
+      },
+      {
+        "domain_suffix": [
+          "line-apps-beta.com"
+        ],
+        "action": "route",
+        "outbound": "line"
+      },
+      {
+        "domain_suffix": [
+          "line-apps-rc.com"
+        ],
+        "action": "route",
+        "outbound": "line"
+      },
+      {
+        "domain_suffix": [
+          "line-apps.com"
+        ],
+        "action": "route",
+        "outbound": "line"
+      },
+      {
+        "domain_suffix": [
+          "line-beta.me"
+        ],
+        "action": "route",
+        "outbound": "line"
+      },
+      {
+        "domain_suffix": [
+          "line-cdn.net"
+        ],
+        "action": "route",
+        "outbound": "line"
+      },
+      {
+        "domain_suffix": [
+          "line-scdn.net"
+        ],
+        "action": "route",
+        "outbound": "line"
+      },
+      {
+        "domain_suffix": [
+          "line.biz"
+        ],
+        "action": "route",
+        "outbound": "line"
+      },
+      {
+        "domain_suffix": [
+          "line.me"
+        ],
+        "action": "route",
+        "outbound": "line"
+      },
+      {
+        "domain_suffix": [
+          "line.naver.jp"
+        ],
+        "action": "route",
+        "outbound": "line"
+      },
+      {
+        "domain_suffix": [
+          "linecorp.com"
+        ],
+        "action": "route",
+        "outbound": "line"
+      },
+      {
+        "domain_suffix": [
+          "linefriends.com"
+        ],
+        "action": "route",
+        "outbound": "line"
+      },
+      {
+        "domain_suffix": [
+          "linefriends.com.tw"
+        ],
+        "action": "route",
+        "outbound": "line"
+      },
+      {
+        "domain_suffix": [
+          "linegame.jp"
+        ],
+        "action": "route",
+        "outbound": "line"
+      },
+      {
+        "domain_suffix": [
+          "linemobile.com"
+        ],
+        "action": "route",
+        "outbound": "line"
+      },
+      {
+        "domain_suffix": [
+          "linemyshop.com"
+        ],
+        "action": "route",
+        "outbound": "line"
+      },
+      {
+        "domain_suffix": [
+          "lineshoppingseller.com"
+        ],
+        "action": "route",
+        "outbound": "line"
+      },
+      {
+        "domain_suffix": [
+          "linetv.tw"
+        ],
+        "action": "route",
+        "outbound": "line"
+      },
+      {
+        "domain_suffix": [
+          "nhncorp.jp"
+        ],
+        "action": "route",
+        "outbound": "line"
+      },
+      {
+        "domain_suffix": [
+          "fast.com"
+        ],
+        "action": "route",
+        "outbound": "netflix"
+      },
+      {
+        "domain_suffix": [
+          "netflix.ca"
+        ],
+        "action": "route",
+        "outbound": "netflix"
+      },
+      {
+        "domain_suffix": [
+          "netflix.com"
+        ],
+        "action": "route",
+        "outbound": "netflix"
+      },
+      {
+        "domain_suffix": [
+          "netflix.com.edgesuite.net"
+        ],
+        "action": "route",
+        "outbound": "netflix"
+      },
+      {
+        "domain_suffix": [
+          "netflix.net"
+        ],
+        "action": "route",
+        "outbound": "netflix"
+      },
+      {
+        "domain_suffix": [
+          "netflixdnstest0.com"
+        ],
+        "action": "route",
+        "outbound": "netflix"
+      },
+      {
+        "domain_suffix": [
+          "netflixdnstest1.com"
+        ],
+        "action": "route",
+        "outbound": "netflix"
+      },
+      {
+        "domain_suffix": [
+          "netflixdnstest10.com"
+        ],
+        "action": "route",
+        "outbound": "netflix"
+      },
+      {
+        "domain_suffix": [
+          "netflixdnstest2.com"
+        ],
+        "action": "route",
+        "outbound": "netflix"
+      },
+      {
+        "domain_suffix": [
+          "netflixdnstest3.com"
+        ],
+        "action": "route",
+        "outbound": "netflix"
+      },
+      {
+        "domain_suffix": [
+          "netflixdnstest4.com"
+        ],
+        "action": "route",
+        "outbound": "netflix"
+      },
+      {
+        "domain_suffix": [
+          "netflixdnstest5.com"
+        ],
+        "action": "route",
+        "outbound": "netflix"
+      },
+      {
+        "domain_suffix": [
+          "netflixdnstest6.com"
+        ],
+        "action": "route",
+        "outbound": "netflix"
+      },
+      {
+        "domain_suffix": [
+          "netflixdnstest7.com"
+        ],
+        "action": "route",
+        "outbound": "netflix"
+      },
+      {
+        "domain_suffix": [
+          "netflixdnstest8.com"
+        ],
+        "action": "route",
+        "outbound": "netflix"
+      },
+      {
+        "domain_suffix": [
+          "netflixdnstest9.com"
+        ],
+        "action": "route",
+        "outbound": "netflix"
+      },
+      {
+        "domain_suffix": [
+          "netflixinvestor.com"
+        ],
+        "action": "route",
+        "outbound": "netflix"
+      },
+      {
+        "domain_suffix": [
+          "netflixtechblog.com"
+        ],
+        "action": "route",
+        "outbound": "netflix"
+      },
+      {
+        "domain_suffix": [
+          "nflxext.com"
+        ],
+        "action": "route",
+        "outbound": "netflix"
+      },
+      {
+        "domain_suffix": [
+          "nflximg.com"
+        ],
+        "action": "route",
+        "outbound": "netflix"
+      },
+      {
+        "domain_suffix": [
+          "nflximg.net"
+        ],
+        "action": "route",
+        "outbound": "netflix"
+      },
+      {
+        "domain_suffix": [
+          "nflxsearch.net"
+        ],
+        "action": "route",
+        "outbound": "netflix"
+      },
+      {
+        "domain_suffix": [
+          "nflxso.net"
+        ],
+        "action": "route",
+        "outbound": "netflix"
+      },
+      {
+        "domain_suffix": [
+          "nflxvideo.net"
+        ],
+        "action": "route",
+        "outbound": "netflix"
+      },
+      {
+        "domain_suffix": [
+          "npm.community"
+        ],
+        "action": "route",
+        "outbound": "npmjs"
+      },
+      {
+        "domain_suffix": [
+          "npmjs.com"
+        ],
+        "action": "route",
+        "outbound": "npmjs"
+      },
+      {
+        "domain_suffix": [
+          "npmjs.org"
+        ],
+        "action": "route",
+        "outbound": "npmjs"
+      },
+      {
+        "domain_suffix": [
+          "chat.com"
+        ],
+        "action": "route",
+        "outbound": "openai"
+      },
+      {
+        "domain_suffix": [
+          "chatgpt.com"
+        ],
+        "action": "route",
+        "outbound": "openai"
+      },
+      {
+        "domain_suffix": [
+          "chatgpt.livekit.cloud"
+        ],
+        "action": "route",
+        "outbound": "openai"
+      },
+      {
+        "domain_suffix": [
+          "chatgpt.site"
+        ],
+        "action": "route",
+        "outbound": "openai"
+      },
+      {
+        "domain_suffix": [
+          "crixet.com"
+        ],
+        "action": "route",
+        "outbound": "openai"
+      },
+      {
+        "domain_suffix": [
+          "host.livekit.cloud"
+        ],
+        "action": "route",
+        "outbound": "openai"
+      },
+      {
+        "domain_suffix": [
+          "oaistatic.com"
+        ],
+        "action": "route",
+        "outbound": "openai"
+      },
+      {
+        "domain_suffix": [
+          "oaistatsig.com"
+        ],
+        "action": "route",
+        "outbound": "openai"
+      },
+      {
+        "domain_suffix": [
+          "oaiusercontent.com"
+        ],
+        "action": "route",
+        "outbound": "openai"
+      },
+      {
+        "domain_suffix": [
+          "openai.com"
+        ],
+        "action": "route",
+        "outbound": "openai"
+      },
+      {
+        "domain_suffix": [
+          "openai.com.cdn.cloudflare.net"
+        ],
+        "action": "route",
+        "outbound": "openai"
+      },
+      {
+        "domain_suffix": [
+          "openai.org"
+        ],
+        "action": "route",
+        "outbound": "openai"
+      },
+      {
+        "domain_suffix": [
+          "sora.com"
+        ],
+        "action": "route",
+        "outbound": "openai"
+      },
+      {
+        "domain_suffix": [
+          "turn.livekit.cloud"
+        ],
+        "action": "route",
+        "outbound": "openai"
+      },
+      {
+        "domain": [
+          "browser-intake-datadoghq.com"
+        ],
+        "action": "route",
+        "outbound": "openai"
+      },
+      {
+        "domain": [
+          "o33249.ingest.sentry.io"
+        ],
+        "action": "route",
+        "outbound": "openai"
+      },
+      {
+        "domain": [
+          "o33249.ingest.us.sentry.io"
+        ],
+        "action": "route",
+        "outbound": "openai"
+      },
+      {
+        "domain": [
+          "openai.qualtrics.com"
+        ],
+        "action": "route",
+        "outbound": "openai"
+      },
+      {
+        "domain": [
+          "openaiapi-site.azureedge.net"
+        ],
+        "action": "route",
+        "outbound": "openai"
+      },
+      {
+        "domain": [
+          "openaiassets.blob.core.windows.net"
+        ],
+        "action": "route",
+        "outbound": "openai"
+      },
+      {
+        "domain": [
+          "openaicom-api-bdcpf8c6d2e9atf6.z01.azurefd.net"
+        ],
+        "action": "route",
+        "outbound": "openai"
+      },
+      {
+        "domain": [
+          "openaicom.imgix.net"
+        ],
+        "action": "route",
+        "outbound": "openai"
+      },
+      {
+        "domain": [
+          "openaicomproductionae4b.blob.core.windows.net"
+        ],
+        "action": "route",
+        "outbound": "openai"
+      },
+      {
+        "domain": [
+          "production-openaicom-storage.azureedge.net"
+        ],
+        "action": "route",
+        "outbound": "openai"
+      },
+      {
+        "domain_suffix": [
+          "perplexity.ai"
+        ],
+        "action": "route",
+        "outbound": "perplexity"
+      },
+      {
+        "domain_suffix": [
+          "perplexity.com"
+        ],
+        "action": "route",
+        "outbound": "perplexity"
+      },
+      {
+        "domain_suffix": [
+          "pplx.ai"
+        ],
+        "action": "route",
+        "outbound": "perplexity"
+      },
+      {
+        "domain": [
+          "ppl-ai-file-upload.s3.amazonaws.com"
+        ],
+        "action": "route",
+        "outbound": "perplexity"
+      },
+      {
+        "domain": [
+          "pplx-res.cloudinary.com"
+        ],
+        "action": "route",
+        "outbound": "perplexity"
+      },
+      {
+        "domain_suffix": [
+          "poe.com"
+        ],
+        "action": "route",
+        "outbound": "poe"
+      },
+      {
+        "domain_suffix": [
+          "poecdn.net"
+        ],
+        "action": "route",
+        "outbound": "poe"
+      },
+      {
+        "domain_suffix": [
+          "signal.art"
+        ],
+        "action": "route",
+        "outbound": "signal"
+      },
+      {
+        "domain_suffix": [
+          "signal.group"
+        ],
+        "action": "route",
+        "outbound": "signal"
+      },
+      {
+        "domain_suffix": [
+          "signal.link"
+        ],
+        "action": "route",
+        "outbound": "signal"
+      },
+      {
+        "domain_suffix": [
+          "signal.me"
+        ],
+        "action": "route",
+        "outbound": "signal"
+      },
+      {
+        "domain_suffix": [
+          "signal.org"
+        ],
+        "action": "route",
+        "outbound": "signal"
+      },
+      {
+        "domain_suffix": [
+          "signal.tube"
+        ],
+        "action": "route",
+        "outbound": "signal"
+      },
+      {
+        "domain_suffix": [
+          "signalusers.org"
+        ],
+        "action": "route",
+        "outbound": "signal"
+      },
+      {
+        "domain_suffix": [
+          "whispersystems.org"
+        ],
+        "action": "route",
+        "outbound": "signal"
+      },
+      {
+        "domain_suffix": [
+          "slack-core.com"
+        ],
+        "action": "route",
+        "outbound": "slack"
+      },
+      {
+        "domain_suffix": [
+          "slack-edge.com"
+        ],
+        "action": "route",
+        "outbound": "slack"
+      },
+      {
+        "domain_suffix": [
+          "slack-files.com"
+        ],
+        "action": "route",
+        "outbound": "slack"
+      },
+      {
+        "domain_suffix": [
+          "slack-imgs.com"
+        ],
+        "action": "route",
+        "outbound": "slack"
+      },
+      {
+        "domain_suffix": [
+          "slack-msgs.com"
+        ],
+        "action": "route",
+        "outbound": "slack"
+      },
+      {
+        "domain_suffix": [
+          "slack-redir.net"
+        ],
+        "action": "route",
+        "outbound": "slack"
+      },
+      {
+        "domain_suffix": [
+          "slack.com"
+        ],
+        "action": "route",
+        "outbound": "slack"
+      },
+      {
+        "domain_suffix": [
+          "slackb.com"
+        ],
+        "action": "route",
+        "outbound": "slack"
+      },
+      {
+        "domain_suffix": [
+          "slackcertified.com"
+        ],
+        "action": "route",
+        "outbound": "slack"
+      },
+      {
+        "domain_suffix": [
+          "slackdemo.com"
+        ],
+        "action": "route",
+        "outbound": "slack"
+      },
+      {
+        "domain_suffix": [
+          "slackhq.com"
+        ],
+        "action": "route",
+        "outbound": "slack"
+      },
+      {
+        "domain_suffix": [
+          "cdnst.net"
+        ],
+        "action": "route",
+        "outbound": "speedtest"
+      },
+      {
+        "domain_suffix": [
+          "cellmaps.com"
+        ],
+        "action": "route",
+        "outbound": "speedtest"
+      },
+      {
+        "domain_suffix": [
+          "ekahau.cloud"
+        ],
+        "action": "route",
+        "outbound": "speedtest"
+      },
+      {
+        "domain_suffix": [
+          "ekahau.com"
+        ],
+        "action": "route",
+        "outbound": "speedtest"
+      },
+      {
+        "domain_suffix": [
+          "ookla-speedtest-central.hgconair.hgc.com.hk"
+        ],
+        "action": "route",
+        "outbound": "speedtest"
+      },
+      {
+        "domain_suffix": [
+          "ookla.com"
+        ],
+        "action": "route",
+        "outbound": "speedtest"
+      },
+      {
+        "domain_suffix": [
+          "ooklaserver.net"
+        ],
+        "action": "route",
+        "outbound": "speedtest"
+      },
+      {
+        "domain_suffix": [
+          "pingtest.net"
+        ],
+        "action": "route",
+        "outbound": "speedtest"
+      },
+      {
+        "domain_suffix": [
+          "speedtest.app"
+        ],
+        "action": "route",
+        "outbound": "speedtest"
+      },
+      {
+        "domain_suffix": [
+          "speedtest.cc"
+        ],
+        "action": "route",
+        "outbound": "speedtest"
+      },
+      {
+        "domain_suffix": [
+          "speedtest.co"
+        ],
+        "action": "route",
+        "outbound": "speedtest"
+      },
+      {
+        "domain_suffix": [
+          "speedtest.ee"
+        ],
+        "action": "route",
+        "outbound": "speedtest"
+      },
+      {
+        "domain_suffix": [
+          "speedtest.in"
+        ],
+        "action": "route",
+        "outbound": "speedtest"
+      },
+      {
+        "domain_suffix": [
+          "speedtest.me"
+        ],
+        "action": "route",
+        "outbound": "speedtest"
+      },
+      {
+        "domain_suffix": [
+          "speedtest.net"
+        ],
+        "action": "route",
+        "outbound": "speedtest"
+      },
+      {
+        "domain_suffix": [
+          "speedtest.ng"
+        ],
+        "action": "route",
+        "outbound": "speedtest"
+      },
+      {
+        "domain_suffix": [
+          "speedtest.tv"
+        ],
+        "action": "route",
+        "outbound": "speedtest"
+      },
+      {
+        "domain_suffix": [
+          "speedtestcustom.com"
+        ],
+        "action": "route",
+        "outbound": "speedtest"
+      },
+      {
+        "domain_suffix": [
+          "webtest.net"
+        ],
+        "action": "route",
+        "outbound": "speedtest"
+      },
+      {
+        "domain": [
+          "www.speedtest.net.cdn.cloudflare.net"
+        ],
+        "action": "route",
+        "outbound": "speedtest"
+      },
+      {
+        "domain_suffix": [
+          "byspotify.com"
+        ],
+        "action": "route",
+        "outbound": "spotify"
+      },
+      {
+        "domain_suffix": [
+          "lifeatspotify.com"
+        ],
+        "action": "route",
+        "outbound": "spotify"
+      },
+      {
+        "domain_suffix": [
+          "pscdn.co"
+        ],
+        "action": "route",
+        "outbound": "spotify"
+      },
+      {
+        "domain_suffix": [
+          "scdn.co"
+        ],
+        "action": "route",
+        "outbound": "spotify"
+      },
+      {
+        "domain_suffix": [
+          "spoti.fi"
+        ],
+        "action": "route",
+        "outbound": "spotify"
+      },
+      {
+        "domain_suffix": [
+          "spotify-everywhere.com"
+        ],
+        "action": "route",
+        "outbound": "spotify"
+      },
+      {
+        "domain_suffix": [
+          "spotify.com"
+        ],
+        "action": "route",
+        "outbound": "spotify"
+      },
+      {
+        "domain_suffix": [
+          "spotify.com.edgesuite.net"
+        ],
+        "action": "route",
+        "outbound": "spotify"
+      },
+      {
+        "domain_suffix": [
+          "spotify.design"
+        ],
+        "action": "route",
+        "outbound": "spotify"
+      },
+      {
+        "domain_suffix": [
+          "spotify.link"
+        ],
+        "action": "route",
+        "outbound": "spotify"
+      },
+      {
+        "domain_suffix": [
+          "spotifycdn.com"
+        ],
+        "action": "route",
+        "outbound": "spotify"
+      },
+      {
+        "domain_suffix": [
+          "spotifycdn.net"
+        ],
+        "action": "route",
+        "outbound": "spotify"
+      },
+      {
+        "domain_suffix": [
+          "spotifycharts.com"
+        ],
+        "action": "route",
+        "outbound": "spotify"
+      },
+      {
+        "domain_suffix": [
+          "spotifycodes.com"
+        ],
+        "action": "route",
+        "outbound": "spotify"
+      },
+      {
+        "domain_suffix": [
+          "spotifyforbrands.com"
+        ],
+        "action": "route",
+        "outbound": "spotify"
+      },
+      {
+        "domain_suffix": [
+          "spotifyforvendors.com"
+        ],
+        "action": "route",
+        "outbound": "spotify"
+      },
+      {
+        "domain_suffix": [
+          "spotifyjobs.com"
+        ],
+        "action": "route",
+        "outbound": "spotify"
+      },
+      {
+        "domain_suffix": [
+          "tospotify.com"
+        ],
+        "action": "route",
+        "outbound": "spotify"
+      },
+      {
+        "domain": [
+          "adeventtracker.spotify.com"
+        ],
+        "action": "route",
+        "outbound": "spotify"
+      },
+      {
+        "domain": [
+          "adstudio-assets.scdn.co"
+        ],
+        "action": "route",
+        "outbound": "spotify"
+      },
+      {
+        "domain": [
+          "audio-ak-spotify-com.akamaized.net"
+        ],
+        "action": "route",
+        "outbound": "spotify"
+      },
+      {
+        "domain": [
+          "audio4-ak-spotify-com.akamaized.net"
+        ],
+        "action": "route",
+        "outbound": "spotify"
+      },
+      {
+        "domain": [
+          "bloodhound.spotify.com"
+        ],
+        "action": "route",
+        "outbound": "spotify"
+      },
+      {
+        "domain": [
+          "cdn-spotify-experiments.conductrics.com"
+        ],
+        "action": "route",
+        "outbound": "spotify"
+      },
+      {
+        "domain": [
+          "heads-ak-spotify-com.akamaized.net"
+        ],
+        "action": "route",
+        "outbound": "spotify"
+      },
+      {
+        "domain": [
+          "heads4-ak-spotify-com.akamaized.net"
+        ],
+        "action": "route",
+        "outbound": "spotify"
+      },
+      {
+        "domain": [
+          "spotify.map.fastly.net"
+        ],
+        "action": "route",
+        "outbound": "spotify"
+      },
+      {
+        "domain": [
+          "spotify.map.fastlylb.net"
+        ],
+        "action": "route",
+        "outbound": "spotify"
+      },
+      {
+        "domain_suffix": [
+          "client-update.queniuqe.com"
+        ],
+        "action": "route",
+        "outbound": "steam"
+      },
+      {
+        "domain_suffix": [
+          "csgo.com.cn"
+        ],
+        "action": "route",
+        "outbound": "steam"
+      },
+      {
+        "domain_suffix": [
+          "csgo.wmsj.cn"
+        ],
+        "action": "route",
+        "outbound": "steam"
+      },
+      {
+        "domain_suffix": [
+          "dl.steam.clngaa.com"
+        ],
+        "action": "route",
+        "outbound": "steam"
+      },
+      {
+        "domain_suffix": [
+          "dota2.com"
+        ],
+        "action": "route",
+        "outbound": "steam"
+      },
+      {
+        "domain_suffix": [
+          "dota2.com.cn"
+        ],
+        "action": "route",
+        "outbound": "steam"
+      },
+      {
+        "domain_suffix": [
+          "dota2.wmsj.cn"
+        ],
+        "action": "route",
+        "outbound": "steam"
+      },
+      {
+        "domain_suffix": [
+          "edge.steam-dns.top.comcast.net"
+        ],
+        "action": "route",
+        "outbound": "steam"
+      },
+      {
+        "domain_suffix": [
+          "gstore.val.manlaxy.com"
+        ],
+        "action": "route",
+        "outbound": "steam"
+      },
+      {
+        "domain_suffix": [
+          "playartifact.com"
+        ],
+        "action": "route",
+        "outbound": "steam"
+      },
+      {
+        "domain_suffix": [
+          "s.team"
+        ],
+        "action": "route",
+        "outbound": "steam"
+      },
+      {
+        "domain_suffix": [
+          "st.dl.bscstorage.net"
+        ],
+        "action": "route",
+        "outbound": "steam"
+      },
+      {
+        "domain_suffix": [
+          "st.dl.eccdnx.com"
+        ],
+        "action": "route",
+        "outbound": "steam"
+      },
+      {
+        "domain_suffix": [
+          "st.dl.pinyuncloud.com"
+        ],
+        "action": "route",
+        "outbound": "steam"
+      },
+      {
+        "domain_suffix": [
+          "steam-api.com"
+        ],
+        "action": "route",
+        "outbound": "steam"
+      },
+      {
+        "domain_suffix": [
+          "steam-chat.com"
+        ],
+        "action": "route",
+        "outbound": "steam"
+      },
+      {
+        "domain_suffix": [
+          "steam.apac.qtlglb.com"
+        ],
+        "action": "route",
+        "outbound": "steam"
+      },
+      {
+        "domain_suffix": [
+          "steam.cdn.on.net"
+        ],
+        "action": "route",
+        "outbound": "steam"
+      },
+      {
+        "domain_suffix": [
+          "steam.cdn.orcon.net.nz"
+        ],
+        "action": "route",
+        "outbound": "steam"
+      },
+      {
+        "domain_suffix": [
+          "steam.cdn.slingshot.co.nz"
+        ],
+        "action": "route",
+        "outbound": "steam"
+      },
+      {
+        "domain_suffix": [
+          "steam.cdn.webra.ru"
+        ],
+        "action": "route",
+        "outbound": "steam"
+      },
+      {
+        "domain_suffix": [
+          "steam.eca.qtlglb.com"
+        ],
+        "action": "route",
+        "outbound": "steam"
+      },
+      {
+        "domain_suffix": [
+          "steam.naeu.qtlglb.com"
+        ],
+        "action": "route",
+        "outbound": "steam"
+      },
+      {
+        "domain_suffix": [
+          "steam.ru.qtlglb.com"
+        ],
+        "action": "route",
+        "outbound": "steam"
+      },
+      {
+        "domain_suffix": [
+          "steam.tv"
+        ],
+        "action": "route",
+        "outbound": "steam"
+      },
+      {
+        "domain_suffix": [
+          "steamchina.com"
+        ],
+        "action": "route",
+        "outbound": "steam"
+      },
+      {
+        "domain_suffix": [
+          "steamcommunity.com"
+        ],
+        "action": "route",
+        "outbound": "steam"
+      },
+      {
+        "domain_suffix": [
+          "steamconnecttest.com"
+        ],
+        "action": "route",
+        "outbound": "steam"
+      },
+      {
+        "domain_suffix": [
+          "steamcontent.com"
+        ],
+        "action": "route",
+        "outbound": "steam"
+      },
+      {
+        "domain_suffix": [
+          "steamdeck.com"
+        ],
+        "action": "route",
+        "outbound": "steam"
+      },
+      {
+        "domain_suffix": [
+          "steamgames.com"
+        ],
+        "action": "route",
+        "outbound": "steam"
+      },
+      {
+        "domain_suffix": [
+          "steamos.cloud"
+        ],
+        "action": "route",
+        "outbound": "steam"
+      },
+      {
+        "domain_suffix": [
+          "steampowered.com"
+        ],
+        "action": "route",
+        "outbound": "steam"
+      },
+      {
+        "domain_suffix": [
+          "steampowered.com.8686c.com"
+        ],
+        "action": "route",
+        "outbound": "steam"
+      },
+      {
+        "domain_suffix": [
+          "steamserver.net"
+        ],
+        "action": "route",
+        "outbound": "steam"
+      },
+      {
+        "domain_suffix": [
+          "steamstatic.com"
+        ],
+        "action": "route",
+        "outbound": "steam"
+      },
+      {
+        "domain_suffix": [
+          "steamstatic.com.8686c.com"
+        ],
+        "action": "route",
+        "outbound": "steam"
+      },
+      {
+        "domain_suffix": [
+          "steamusercontent.com"
+        ],
+        "action": "route",
+        "outbound": "steam"
+      },
+      {
+        "domain_suffix": [
+          "underlords.com"
+        ],
+        "action": "route",
+        "outbound": "steam"
+      },
+      {
+        "domain_suffix": [
+          "valve.net"
+        ],
+        "action": "route",
+        "outbound": "steam"
+      },
+      {
+        "domain_suffix": [
+          "valvesoftware.com"
+        ],
+        "action": "route",
+        "outbound": "steam"
+      },
+      {
+        "domain_suffix": [
+          "wmsjsteam.com"
+        ],
+        "action": "route",
+        "outbound": "steam"
+      },
+      {
+        "domain": [
+          "a4e8s8k3.map2.ssl.hwcdn.net"
+        ],
+        "action": "route",
+        "outbound": "steam"
+      },
+      {
+        "domain": [
+          "alibaba.cdn.steampipe.steamcontent.com"
+        ],
+        "action": "route",
+        "outbound": "steam"
+      },
+      {
+        "domain": [
+          "f3b7q2p3.ssl.hwcdn.net"
+        ],
+        "action": "route",
+        "outbound": "steam"
+      },
+      {
+        "domain": [
+          "lv.queniujq.cn"
+        ],
+        "action": "route",
+        "outbound": "steam"
+      },
+      {
+        "domain": [
+          "steambroadcast.akamaized.net"
+        ],
+        "action": "route",
+        "outbound": "steam"
+      },
+      {
+        "domain": [
+          "steamcdn-a.akamaihd.net"
+        ],
+        "action": "route",
+        "outbound": "steam"
+      },
+      {
+        "domain": [
+          "steamcloudsweden.blob.core.windows.net"
+        ],
+        "action": "route",
+        "outbound": "steam"
+      },
+      {
+        "domain": [
+          "steamcommunity-a.akamaihd.net"
+        ],
+        "action": "route",
+        "outbound": "steam"
+      },
+      {
+        "domain": [
+          "steamcommunity-a.akamaihd.net.edgesuite.net"
+        ],
+        "action": "route",
+        "outbound": "steam"
+      },
+      {
+        "domain": [
+          "steammobile.akamaized.net"
+        ],
+        "action": "route",
+        "outbound": "steam"
+      },
+      {
+        "domain": [
+          "steampipe-kr.akamaized.net"
+        ],
+        "action": "route",
+        "outbound": "steam"
+      },
+      {
+        "domain": [
+          "steampipe-partner.akamaized.net"
+        ],
+        "action": "route",
+        "outbound": "steam"
+      },
+      {
+        "domain": [
+          "steampipe.akamaized.net"
+        ],
+        "action": "route",
+        "outbound": "steam"
+      },
+      {
+        "domain": [
+          "steamstore-a.akamaihd.net"
+        ],
+        "action": "route",
+        "outbound": "steam"
+      },
+      {
+        "domain": [
+          "steamugcquincy.blob.core.windows.net"
+        ],
+        "action": "route",
+        "outbound": "steam"
+      },
+      {
+        "domain": [
+          "steamusercontent-a.akamaihd.net"
+        ],
+        "action": "route",
+        "outbound": "steam"
+      },
+      {
+        "domain": [
+          "steamuserimages-a.akamaihd.net"
+        ],
+        "action": "route",
+        "outbound": "steam"
+      },
+      {
+        "domain": [
+          "steamvideo-a.akamaihd.net"
+        ],
+        "action": "route",
+        "outbound": "steam"
+      },
+      {
+        "domain": [
+          "xz.pphimalayanrt.com"
+        ],
+        "action": "route",
+        "outbound": "steam"
+      },
+      {
+        "domain_suffix": [
+          "cdn-telegram.org"
+        ],
+        "action": "route",
+        "outbound": "telegram"
+      },
+      {
+        "domain_suffix": [
+          "comments.app"
+        ],
+        "action": "route",
+        "outbound": "telegram"
+      },
+      {
+        "domain_suffix": [
+          "contest.com"
+        ],
+        "action": "route",
+        "outbound": "telegram"
+      },
+      {
+        "domain_suffix": [
+          "fragment.com"
+        ],
+        "action": "route",
+        "outbound": "telegram"
+      },
+      {
+        "domain_suffix": [
+          "graph.org"
+        ],
+        "action": "route",
+        "outbound": "telegram"
+      },
+      {
+        "domain_suffix": [
+          "quiz.directory"
+        ],
+        "action": "route",
+        "outbound": "telegram"
+      },
+      {
+        "domain_suffix": [
+          "t.me"
+        ],
+        "action": "route",
+        "outbound": "telegram"
+      },
+      {
+        "domain_suffix": [
+          "tdesktop.com"
+        ],
+        "action": "route",
+        "outbound": "telegram"
+      },
+      {
+        "domain_suffix": [
+          "telega.one"
+        ],
+        "action": "route",
+        "outbound": "telegram"
+      },
+      {
+        "domain_suffix": [
+          "telegra.ph"
+        ],
+        "action": "route",
+        "outbound": "telegram"
+      },
+      {
+        "domain_suffix": [
+          "telegram-cdn.org"
+        ],
+        "action": "route",
+        "outbound": "telegram"
+      },
+      {
+        "domain_suffix": [
+          "telegram.dog"
+        ],
+        "action": "route",
+        "outbound": "telegram"
+      },
+      {
+        "domain_suffix": [
+          "telegram.me"
+        ],
+        "action": "route",
+        "outbound": "telegram"
+      },
+      {
+        "domain_suffix": [
+          "telegram.org"
+        ],
+        "action": "route",
+        "outbound": "telegram"
+      },
+      {
+        "domain_suffix": [
+          "telegram.space"
+        ],
+        "action": "route",
+        "outbound": "telegram"
+      },
+      {
+        "domain_suffix": [
+          "telesco.pe"
+        ],
+        "action": "route",
+        "outbound": "telegram"
+      },
+      {
+        "domain_suffix": [
+          "tg.dev"
+        ],
+        "action": "route",
+        "outbound": "telegram"
+      },
+      {
+        "domain_suffix": [
+          "ton.org"
+        ],
+        "action": "route",
+        "outbound": "telegram"
+      },
+      {
+        "domain_suffix": [
+          "toncenter.com"
+        ],
+        "action": "route",
+        "outbound": "telegram"
+      },
+      {
+        "domain_suffix": [
+          "tx.me"
+        ],
+        "action": "route",
+        "outbound": "telegram"
+      },
+      {
+        "domain_suffix": [
+          "usercontent.dev"
+        ],
+        "action": "route",
+        "outbound": "telegram"
+      },
+      {
+        "domain_suffix": [
+          "analytics.tiktok.com"
+        ],
+        "action": "route",
+        "outbound": "tiktok"
+      },
+      {
+        "domain_suffix": [
+          "bytedapm.com"
+        ],
+        "action": "route",
+        "outbound": "tiktok"
+      },
+      {
+        "domain_suffix": [
+          "muscdn.com"
+        ],
+        "action": "route",
+        "outbound": "tiktok"
+      },
+      {
+        "domain_suffix": [
+          "musical.ly"
+        ],
+        "action": "route",
+        "outbound": "tiktok"
+      },
+      {
+        "domain_suffix": [
+          "tik-tokapi.com"
+        ],
+        "action": "route",
+        "outbound": "tiktok"
+      },
+      {
+        "domain_suffix": [
+          "tiktok-minis.com"
+        ],
+        "action": "route",
+        "outbound": "tiktok"
+      },
+      {
+        "domain_suffix": [
+          "tiktok-row.net"
+        ],
+        "action": "route",
+        "outbound": "tiktok"
+      },
+      {
+        "domain_suffix": [
+          "tiktok.com"
+        ],
+        "action": "route",
+        "outbound": "tiktok"
+      },
+      {
+        "domain_suffix": [
+          "tiktokcdn-eu.com"
+        ],
+        "action": "route",
+        "outbound": "tiktok"
+      },
+      {
+        "domain_suffix": [
+          "tiktokcdn-us.com"
+        ],
+        "action": "route",
+        "outbound": "tiktok"
+      },
+      {
+        "domain_suffix": [
+          "tiktokcdn-us.com.edgesuite.net"
+        ],
+        "action": "route",
+        "outbound": "tiktok"
+      },
+      {
+        "domain_suffix": [
+          "tiktokcdn.com"
+        ],
+        "action": "route",
+        "outbound": "tiktok"
+      },
+      {
+        "domain_suffix": [
+          "tiktokcdn.com.akamaized.net"
+        ],
+        "action": "route",
+        "outbound": "tiktok"
+      },
+      {
+        "domain_suffix": [
+          "tiktokcdn.com.edgesuite.net"
+        ],
+        "action": "route",
+        "outbound": "tiktok"
+      },
+      {
+        "domain_suffix": [
+          "tiktokd.net"
+        ],
+        "action": "route",
+        "outbound": "tiktok"
+      },
+      {
+        "domain_suffix": [
+          "tiktokd.org"
+        ],
+        "action": "route",
+        "outbound": "tiktok"
+      },
+      {
+        "domain_suffix": [
+          "tiktokeu-cdn.com"
+        ],
+        "action": "route",
+        "outbound": "tiktok"
+      },
+      {
+        "domain_suffix": [
+          "tiktokglobalshopv.com"
+        ],
+        "action": "route",
+        "outbound": "tiktok"
+      },
+      {
+        "domain_suffix": [
+          "tiktokminis.us"
+        ],
+        "action": "route",
+        "outbound": "tiktok"
+      },
+      {
+        "domain_suffix": [
+          "tiktokrow-cdn.com"
+        ],
+        "action": "route",
+        "outbound": "tiktok"
+      },
+      {
+        "domain_suffix": [
+          "tiktokshop.com"
+        ],
+        "action": "route",
+        "outbound": "tiktok"
+      },
+      {
+        "domain_suffix": [
+          "tiktokstaticb.com"
+        ],
+        "action": "route",
+        "outbound": "tiktok"
+      },
+      {
+        "domain_suffix": [
+          "tiktokv.com"
+        ],
+        "action": "route",
+        "outbound": "tiktok"
+      },
+      {
+        "domain_suffix": [
+          "tiktokv.com.edgekey.net"
+        ],
+        "action": "route",
+        "outbound": "tiktok"
+      },
+      {
+        "domain_suffix": [
+          "tiktokv.com.edgesuite.net"
+        ],
+        "action": "route",
+        "outbound": "tiktok"
+      },
+      {
+        "domain_suffix": [
+          "tiktokv.eu"
+        ],
+        "action": "route",
+        "outbound": "tiktok"
+      },
+      {
+        "domain_suffix": [
+          "tiktokv.us"
+        ],
+        "action": "route",
+        "outbound": "tiktok"
+      },
+      {
+        "domain_suffix": [
+          "tiktokvapp.com"
+        ],
+        "action": "route",
+        "outbound": "tiktok"
+      },
+      {
+        "domain_suffix": [
+          "tiktokw.eu"
+        ],
+        "action": "route",
+        "outbound": "tiktok"
+      },
+      {
+        "domain_suffix": [
+          "tiktokw.us"
+        ],
+        "action": "route",
+        "outbound": "tiktok"
+      },
+      {
+        "domain_suffix": [
+          "ttcdn-us.com"
+        ],
+        "action": "route",
+        "outbound": "tiktok"
+      },
+      {
+        "domain_suffix": [
+          "ttlivecdn.com"
+        ],
+        "action": "route",
+        "outbound": "tiktok"
+      },
+      {
+        "domain_suffix": [
+          "ttoverseaus.net"
+        ],
+        "action": "route",
+        "outbound": "tiktok"
+      },
+      {
+        "domain_suffix": [
+          "ttwstatic.com"
+        ],
+        "action": "route",
+        "outbound": "tiktok"
+      },
+      {
+        "domain": [
+          "p16-tiktok-dm-sticker-sign-sg.ibyteimg.com"
+        ],
+        "action": "route",
+        "outbound": "tiktok"
+      },
+      {
+        "domain": [
+          "p16-tiktokcdn-com.akamaized.net"
+        ],
+        "action": "route",
+        "outbound": "tiktok"
+      },
+      {
+        "domain": [
+          "roovza-launches.appsflyersdk.com"
+        ],
+        "action": "route",
+        "outbound": "tiktok"
+      },
+      {
+        "domain": [
+          "roovza.inapps.appsflyersdk.com"
+        ],
+        "action": "route",
+        "outbound": "tiktok"
+      },
+      {
+        "domain": [
+          "roovza.launches.appsflyersdk.com"
+        ],
+        "action": "route",
+        "outbound": "tiktok"
+      },
+      {
+        "domain": [
+          "roovza.skadsdk.appsflyersdk.com"
+        ],
+        "action": "route",
+        "outbound": "tiktok"
+      },
+      {
+        "domain_suffix": [
+          "ext-twitch.tv"
+        ],
+        "action": "route",
+        "outbound": "twitch"
+      },
+      {
+        "domain_suffix": [
+          "jtvnw.net"
+        ],
+        "action": "route",
+        "outbound": "twitch"
+      },
+      {
+        "domain_suffix": [
+          "live-video.net"
+        ],
+        "action": "route",
+        "outbound": "twitch"
+      },
+      {
+        "domain_suffix": [
+          "ttvnw.net"
+        ],
+        "action": "route",
+        "outbound": "twitch"
+      },
+      {
+        "domain_suffix": [
+          "twitch.tv"
+        ],
+        "action": "route",
+        "outbound": "twitch"
+      },
+      {
+        "domain_suffix": [
+          "twitchcdn.net"
+        ],
+        "action": "route",
+        "outbound": "twitch"
+      },
+      {
+        "domain_suffix": [
+          "twitchcon.com"
+        ],
+        "action": "route",
+        "outbound": "twitch"
+      },
+      {
+        "domain_suffix": [
+          "twitchsvc.net"
+        ],
+        "action": "route",
+        "outbound": "twitch"
+      },
+      {
+        "domain": [
+          "d1g1f25tn8m2e6.cloudfront.net"
+        ],
+        "action": "route",
+        "outbound": "twitch"
+      },
+      {
+        "domain": [
+          "d1m7jfoe9zdc1j.cloudfront.net"
+        ],
+        "action": "route",
+        "outbound": "twitch"
+      },
+      {
+        "domain": [
+          "d1mhjrowxxagfy.cloudfront.net"
+        ],
+        "action": "route",
+        "outbound": "twitch"
+      },
+      {
+        "domain": [
+          "d1ndex63qxojbr.cloudfront.net"
+        ],
+        "action": "route",
+        "outbound": "twitch"
+      },
+      {
+        "domain": [
+          "d1oca24q5dwo6d.cloudfront.net"
+        ],
+        "action": "route",
+        "outbound": "twitch"
+      },
+      {
+        "domain": [
+          "d1w2poirtb3as9.cloudfront.net"
+        ],
+        "action": "route",
+        "outbound": "twitch"
+      },
+      {
+        "domain": [
+          "d1xhnb4ptk05mw.cloudfront.net"
+        ],
+        "action": "route",
+        "outbound": "twitch"
+      },
+      {
+        "domain": [
+          "d1ymi26ma8va5x.cloudfront.net"
+        ],
+        "action": "route",
+        "outbound": "twitch"
+      },
+      {
+        "domain": [
+          "d2aba1wr3818hz.cloudfront.net"
+        ],
+        "action": "route",
+        "outbound": "twitch"
+      },
+      {
+        "domain": [
+          "d2dylwb3shzel1.cloudfront.net"
+        ],
+        "action": "route",
+        "outbound": "twitch"
+      },
+      {
+        "domain": [
+          "d2e2de1etea730.cloudfront.net"
+        ],
+        "action": "route",
+        "outbound": "twitch"
+      },
+      {
+        "domain": [
+          "d2nvs31859zcd8.cloudfront.net"
+        ],
+        "action": "route",
+        "outbound": "twitch"
+      },
+      {
+        "domain": [
+          "d2um2qdswy1tb0.cloudfront.net"
+        ],
+        "action": "route",
+        "outbound": "twitch"
+      },
+      {
+        "domain": [
+          "d2vjef5jvl6bfs.cloudfront.net"
+        ],
+        "action": "route",
+        "outbound": "twitch"
+      },
+      {
+        "domain": [
+          "d2xmjdvx03ij56.cloudfront.net"
+        ],
+        "action": "route",
+        "outbound": "twitch"
+      },
+      {
+        "domain": [
+          "d36nr0u3xmc4mm.cloudfront.net"
+        ],
+        "action": "route",
+        "outbound": "twitch"
+      },
+      {
+        "domain": [
+          "d3aqoihi2n8ty8.cloudfront.net"
+        ],
+        "action": "route",
+        "outbound": "twitch"
+      },
+      {
+        "domain": [
+          "d3c27h4odz752x.cloudfront.net"
+        ],
+        "action": "route",
+        "outbound": "twitch"
+      },
+      {
+        "domain": [
+          "d3stzm2eumvgb4.cloudfront.net"
+        ],
+        "action": "route",
+        "outbound": "twitch"
+      },
+      {
+        "domain": [
+          "d3vd9lfkzbru3h.cloudfront.net"
+        ],
+        "action": "route",
+        "outbound": "twitch"
+      },
+      {
+        "domain": [
+          "d6d4ismr40iw.cloudfront.net"
+        ],
+        "action": "route",
+        "outbound": "twitch"
+      },
+      {
+        "domain": [
+          "d6tizftlrpuof.cloudfront.net"
+        ],
+        "action": "route",
+        "outbound": "twitch"
+      },
+      {
+        "domain": [
+          "ddacn6pr5v0tl.cloudfront.net"
+        ],
+        "action": "route",
+        "outbound": "twitch"
+      },
+      {
+        "domain": [
+          "dgeft87wbj63p.cloudfront.net"
+        ],
+        "action": "route",
+        "outbound": "twitch"
+      },
+      {
+        "domain": [
+          "dqrpb9wgowsf5.cloudfront.net"
+        ],
+        "action": "route",
+        "outbound": "twitch"
+      },
+      {
+        "domain": [
+          "ds0h3roq6wcgc.cloudfront.net"
+        ],
+        "action": "route",
+        "outbound": "twitch"
+      },
+      {
+        "domain": [
+          "dykkng5hnh52u.cloudfront.net"
+        ],
+        "action": "route",
+        "outbound": "twitch"
+      },
+      {
+        "domain_suffix": [
+          "ai-sdk.dev"
+        ],
+        "action": "route",
+        "outbound": "vercel"
+      },
+      {
+        "domain_suffix": [
+          "err.sh"
+        ],
+        "action": "route",
+        "outbound": "vercel"
+      },
+      {
+        "domain_suffix": [
+          "hyper.is"
+        ],
+        "action": "route",
+        "outbound": "vercel"
+      },
+      {
+        "domain_suffix": [
+          "nextjs.org"
+        ],
+        "action": "route",
+        "outbound": "vercel"
+      },
+      {
+        "domain_suffix": [
+          "now.sh"
+        ],
+        "action": "route",
+        "outbound": "vercel"
+      },
+      {
+        "domain_suffix": [
+          "skills.sh"
+        ],
+        "action": "route",
+        "outbound": "vercel"
+      },
+      {
+        "domain_suffix": [
+          "static.fun"
+        ],
+        "action": "route",
+        "outbound": "vercel"
+      },
+      {
+        "domain_suffix": [
+          "title.sh"
+        ],
+        "action": "route",
+        "outbound": "vercel"
+      },
+      {
+        "domain_suffix": [
+          "turborepo.org"
+        ],
+        "action": "route",
+        "outbound": "vercel"
+      },
+      {
+        "domain_suffix": [
+          "vercel-dns.com"
+        ],
+        "action": "route",
+        "outbound": "vercel"
+      },
+      {
+        "domain_suffix": [
+          "vercel-status.com"
+        ],
+        "action": "route",
+        "outbound": "vercel"
+      },
+      {
+        "domain_suffix": [
+          "vercel.app"
+        ],
+        "action": "route",
+        "outbound": "vercel"
+      },
+      {
+        "domain_suffix": [
+          "vercel.blog"
+        ],
+        "action": "route",
+        "outbound": "vercel"
+      },
+      {
+        "domain_suffix": [
+          "vercel.com"
+        ],
+        "action": "route",
+        "outbound": "vercel"
+      },
+      {
+        "domain_suffix": [
+          "vercel.dev"
+        ],
+        "action": "route",
+        "outbound": "vercel"
+      },
+      {
+        "domain_suffix": [
+          "vercel.events"
+        ],
+        "action": "route",
+        "outbound": "vercel"
+      },
+      {
+        "domain_suffix": [
+          "vercel.live"
+        ],
+        "action": "route",
+        "outbound": "vercel"
+      },
+      {
+        "domain_suffix": [
+          "vercel.pub"
+        ],
+        "action": "route",
+        "outbound": "vercel"
+      },
+      {
+        "domain_suffix": [
+          "vercel.sh"
+        ],
+        "action": "route",
+        "outbound": "vercel"
+      },
+      {
+        "domain_suffix": [
+          "vercel.store"
+        ],
+        "action": "route",
+        "outbound": "vercel"
+      },
+      {
+        "domain_suffix": [
+          "zeit-world.co.uk"
+        ],
+        "action": "route",
+        "outbound": "vercel"
+      },
+      {
+        "domain_suffix": [
+          "zeit-world.com"
+        ],
+        "action": "route",
+        "outbound": "vercel"
+      },
+      {
+        "domain_suffix": [
+          "zeit-world.net"
+        ],
+        "action": "route",
+        "outbound": "vercel"
+      },
+      {
+        "domain_suffix": [
+          "zeit-world.org"
+        ],
+        "action": "route",
+        "outbound": "vercel"
+      },
+      {
+        "domain_suffix": [
+          "zeit.co"
+        ],
+        "action": "route",
+        "outbound": "vercel"
+      },
+      {
+        "domain_suffix": [
+          "zeit.sh"
+        ],
+        "action": "route",
+        "outbound": "vercel"
+      },
+      {
+        "domain_suffix": [
+          "zeitworld.com"
+        ],
+        "action": "route",
+        "outbound": "vercel"
+      },
+      {
+        "domain_suffix": [
+          "wa.me"
+        ],
+        "action": "route",
+        "outbound": "whatsapp"
+      },
+      {
+        "domain_suffix": [
+          "whatsapp-plus.info"
+        ],
+        "action": "route",
+        "outbound": "whatsapp"
+      },
+      {
+        "domain_suffix": [
+          "whatsapp-plus.me"
+        ],
+        "action": "route",
+        "outbound": "whatsapp"
+      },
+      {
+        "domain_suffix": [
+          "whatsapp-plus.net"
+        ],
+        "action": "route",
+        "outbound": "whatsapp"
+      },
+      {
+        "domain_suffix": [
+          "whatsapp.cc"
+        ],
+        "action": "route",
+        "outbound": "whatsapp"
+      },
+      {
+        "domain_suffix": [
+          "whatsapp.com"
+        ],
+        "action": "route",
+        "outbound": "whatsapp"
+      },
+      {
+        "domain_suffix": [
+          "whatsapp.info"
+        ],
+        "action": "route",
+        "outbound": "whatsapp"
+      },
+      {
+        "domain_suffix": [
+          "whatsapp.net"
+        ],
+        "action": "route",
+        "outbound": "whatsapp"
+      },
+      {
+        "domain_suffix": [
+          "whatsapp.org"
+        ],
+        "action": "route",
+        "outbound": "whatsapp"
+      },
+      {
+        "domain_suffix": [
+          "whatsapp.tv"
+        ],
+        "action": "route",
+        "outbound": "whatsapp"
+      },
+      {
+        "domain_suffix": [
+          "whatsappbrand.com"
+        ],
+        "action": "route",
+        "outbound": "whatsapp"
+      },
+      {
+        "domain_suffix": [
+          "grok.com"
+        ],
+        "action": "route",
+        "outbound": "xai"
+      },
+      {
+        "domain_suffix": [
+          "grok.x.com"
+        ],
+        "action": "route",
+        "outbound": "xai"
+      },
+      {
+        "domain_suffix": [
+          "grokipedia.com"
+        ],
+        "action": "route",
+        "outbound": "xai"
+      },
+      {
+        "domain_suffix": [
+          "x.ai"
+        ],
+        "action": "route",
+        "outbound": "xai"
+      },
+      {
+        "domain_suffix": [
+          "ads.youtube.com"
+        ],
+        "action": "route",
+        "outbound": "youtube"
+      },
+      {
+        "domain_suffix": [
+          "ggpht.cn"
+        ],
+        "action": "route",
+        "outbound": "youtube"
+      },
+      {
+        "domain_suffix": [
+          "ggpht.com"
+        ],
+        "action": "route",
+        "outbound": "youtube"
+      },
+      {
+        "domain_suffix": [
+          "googlevideo.com"
+        ],
+        "action": "route",
+        "outbound": "youtube"
+      },
+      {
+        "domain_suffix": [
+          "wide-youtube.l.google.com"
+        ],
+        "action": "route",
+        "outbound": "youtube"
+      },
+      {
+        "domain_suffix": [
+          "withyoutube.com"
+        ],
+        "action": "route",
+        "outbound": "youtube"
+      },
+      {
+        "domain_suffix": [
+          "youtu.be"
+        ],
+        "action": "route",
+        "outbound": "youtube"
+      },
+      {
+        "domain_suffix": [
+          "youtube"
+        ],
+        "action": "route",
+        "outbound": "youtube"
+      },
+      {
+        "domain_suffix": [
+          "youtube-nocookie.com"
+        ],
+        "action": "route",
+        "outbound": "youtube"
+      },
+      {
+        "domain_suffix": [
+          "youtube-ui.l.google.com"
+        ],
+        "action": "route",
+        "outbound": "youtube"
+      },
+      {
+        "domain_suffix": [
+          "youtube.ae"
+        ],
+        "action": "route",
+        "outbound": "youtube"
+      },
+      {
+        "domain_suffix": [
+          "youtube.al"
+        ],
+        "action": "route",
+        "outbound": "youtube"
+      },
+      {
+        "domain_suffix": [
+          "youtube.am"
+        ],
+        "action": "route",
+        "outbound": "youtube"
+      },
+      {
+        "domain_suffix": [
+          "youtube.at"
+        ],
+        "action": "route",
+        "outbound": "youtube"
+      },
+      {
+        "domain_suffix": [
+          "youtube.az"
+        ],
+        "action": "route",
+        "outbound": "youtube"
+      },
+      {
+        "domain_suffix": [
+          "youtube.ba"
+        ],
+        "action": "route",
+        "outbound": "youtube"
+      },
+      {
+        "domain_suffix": [
+          "youtube.be"
+        ],
+        "action": "route",
+        "outbound": "youtube"
+      },
+      {
+        "domain_suffix": [
+          "youtube.bg"
+        ],
+        "action": "route",
+        "outbound": "youtube"
+      },
+      {
+        "domain_suffix": [
+          "youtube.bh"
+        ],
+        "action": "route",
+        "outbound": "youtube"
+      },
+      {
+        "domain_suffix": [
+          "youtube.bo"
+        ],
+        "action": "route",
+        "outbound": "youtube"
+      },
+      {
+        "domain_suffix": [
+          "youtube.by"
+        ],
+        "action": "route",
+        "outbound": "youtube"
+      },
+      {
+        "domain_suffix": [
+          "youtube.ca"
+        ],
+        "action": "route",
+        "outbound": "youtube"
+      },
+      {
+        "domain_suffix": [
+          "youtube.cat"
+        ],
+        "action": "route",
+        "outbound": "youtube"
+      },
+      {
+        "domain_suffix": [
+          "youtube.ch"
+        ],
+        "action": "route",
+        "outbound": "youtube"
+      },
+      {
+        "domain_suffix": [
+          "youtube.cl"
+        ],
+        "action": "route",
+        "outbound": "youtube"
+      },
+      {
+        "domain_suffix": [
+          "youtube.co"
+        ],
+        "action": "route",
+        "outbound": "youtube"
+      },
+      {
+        "domain_suffix": [
+          "youtube.co.ae"
+        ],
+        "action": "route",
+        "outbound": "youtube"
+      },
+      {
+        "domain_suffix": [
+          "youtube.co.at"
+        ],
+        "action": "route",
+        "outbound": "youtube"
+      },
+      {
+        "domain_suffix": [
+          "youtube.co.cr"
+        ],
+        "action": "route",
+        "outbound": "youtube"
+      },
+      {
+        "domain_suffix": [
+          "youtube.co.hu"
+        ],
+        "action": "route",
+        "outbound": "youtube"
+      },
+      {
+        "domain_suffix": [
+          "youtube.co.id"
+        ],
+        "action": "route",
+        "outbound": "youtube"
+      },
+      {
+        "domain_suffix": [
+          "youtube.co.il"
+        ],
+        "action": "route",
+        "outbound": "youtube"
+      },
+      {
+        "domain_suffix": [
+          "youtube.co.in"
+        ],
+        "action": "route",
+        "outbound": "youtube"
+      },
+      {
+        "domain_suffix": [
+          "youtube.co.jp"
+        ],
+        "action": "route",
+        "outbound": "youtube"
+      },
+      {
+        "domain_suffix": [
+          "youtube.co.ke"
+        ],
+        "action": "route",
+        "outbound": "youtube"
+      },
+      {
+        "domain_suffix": [
+          "youtube.co.kr"
+        ],
+        "action": "route",
+        "outbound": "youtube"
+      },
+      {
+        "domain_suffix": [
+          "youtube.co.ma"
+        ],
+        "action": "route",
+        "outbound": "youtube"
+      },
+      {
+        "domain_suffix": [
+          "youtube.co.nz"
+        ],
+        "action": "route",
+        "outbound": "youtube"
+      },
+      {
+        "domain_suffix": [
+          "youtube.co.th"
+        ],
+        "action": "route",
+        "outbound": "youtube"
+      },
+      {
+        "domain_suffix": [
+          "youtube.co.tz"
+        ],
+        "action": "route",
+        "outbound": "youtube"
+      },
+      {
+        "domain_suffix": [
+          "youtube.co.ug"
+        ],
+        "action": "route",
+        "outbound": "youtube"
+      },
+      {
+        "domain_suffix": [
+          "youtube.co.uk"
+        ],
+        "action": "route",
+        "outbound": "youtube"
+      },
+      {
+        "domain_suffix": [
+          "youtube.co.ve"
+        ],
+        "action": "route",
+        "outbound": "youtube"
+      },
+      {
+        "domain_suffix": [
+          "youtube.co.za"
+        ],
+        "action": "route",
+        "outbound": "youtube"
+      },
+      {
+        "domain_suffix": [
+          "youtube.co.zw"
+        ],
+        "action": "route",
+        "outbound": "youtube"
+      },
+      {
+        "domain_suffix": [
+          "youtube.com"
+        ],
+        "action": "route",
+        "outbound": "youtube"
+      },
+      {
+        "domain_suffix": [
+          "youtube.com.ar"
+        ],
+        "action": "route",
+        "outbound": "youtube"
+      },
+      {
+        "domain_suffix": [
+          "youtube.com.au"
+        ],
+        "action": "route",
+        "outbound": "youtube"
+      },
+      {
+        "domain_suffix": [
+          "youtube.com.az"
+        ],
+        "action": "route",
+        "outbound": "youtube"
+      },
+      {
+        "domain_suffix": [
+          "youtube.com.bd"
+        ],
+        "action": "route",
+        "outbound": "youtube"
+      },
+      {
+        "domain_suffix": [
+          "youtube.com.bh"
+        ],
+        "action": "route",
+        "outbound": "youtube"
+      },
+      {
+        "domain_suffix": [
+          "youtube.com.bo"
+        ],
+        "action": "route",
+        "outbound": "youtube"
+      },
+      {
+        "domain_suffix": [
+          "youtube.com.br"
+        ],
+        "action": "route",
+        "outbound": "youtube"
+      },
+      {
+        "domain_suffix": [
+          "youtube.com.by"
+        ],
+        "action": "route",
+        "outbound": "youtube"
+      },
+      {
+        "domain_suffix": [
+          "youtube.com.co"
+        ],
+        "action": "route",
+        "outbound": "youtube"
+      },
+      {
+        "domain_suffix": [
+          "youtube.com.do"
+        ],
+        "action": "route",
+        "outbound": "youtube"
+      },
+      {
+        "domain_suffix": [
+          "youtube.com.ec"
+        ],
+        "action": "route",
+        "outbound": "youtube"
+      },
+      {
+        "domain_suffix": [
+          "youtube.com.ee"
+        ],
+        "action": "route",
+        "outbound": "youtube"
+      },
+      {
+        "domain_suffix": [
+          "youtube.com.eg"
+        ],
+        "action": "route",
+        "outbound": "youtube"
+      },
+      {
+        "domain_suffix": [
+          "youtube.com.es"
+        ],
+        "action": "route",
+        "outbound": "youtube"
+      },
+      {
+        "domain_suffix": [
+          "youtube.com.gh"
+        ],
+        "action": "route",
+        "outbound": "youtube"
+      },
+      {
+        "domain_suffix": [
+          "youtube.com.gr"
+        ],
+        "action": "route",
+        "outbound": "youtube"
+      },
+      {
+        "domain_suffix": [
+          "youtube.com.gt"
+        ],
+        "action": "route",
+        "outbound": "youtube"
+      },
+      {
+        "domain_suffix": [
+          "youtube.com.hk"
+        ],
+        "action": "route",
+        "outbound": "youtube"
+      },
+      {
+        "domain_suffix": [
+          "youtube.com.hn"
+        ],
+        "action": "route",
+        "outbound": "youtube"
+      },
+      {
+        "domain_suffix": [
+          "youtube.com.hr"
+        ],
+        "action": "route",
+        "outbound": "youtube"
+      },
+      {
+        "domain_suffix": [
+          "youtube.com.jm"
+        ],
+        "action": "route",
+        "outbound": "youtube"
+      },
+      {
+        "domain_suffix": [
+          "youtube.com.jo"
+        ],
+        "action": "route",
+        "outbound": "youtube"
+      },
+      {
+        "domain_suffix": [
+          "youtube.com.kw"
+        ],
+        "action": "route",
+        "outbound": "youtube"
+      },
+      {
+        "domain_suffix": [
+          "youtube.com.lb"
+        ],
+        "action": "route",
+        "outbound": "youtube"
+      },
+      {
+        "domain_suffix": [
+          "youtube.com.lv"
+        ],
+        "action": "route",
+        "outbound": "youtube"
+      },
+      {
+        "domain_suffix": [
+          "youtube.com.ly"
+        ],
+        "action": "route",
+        "outbound": "youtube"
+      },
+      {
+        "domain_suffix": [
+          "youtube.com.mk"
+        ],
+        "action": "route",
+        "outbound": "youtube"
+      },
+      {
+        "domain_suffix": [
+          "youtube.com.mt"
+        ],
+        "action": "route",
+        "outbound": "youtube"
+      },
+      {
+        "domain_suffix": [
+          "youtube.com.mx"
+        ],
+        "action": "route",
+        "outbound": "youtube"
+      },
+      {
+        "domain_suffix": [
+          "youtube.com.my"
+        ],
+        "action": "route",
+        "outbound": "youtube"
+      },
+      {
+        "domain_suffix": [
+          "youtube.com.ng"
+        ],
+        "action": "route",
+        "outbound": "youtube"
+      },
+      {
+        "domain_suffix": [
+          "youtube.com.ni"
+        ],
+        "action": "route",
+        "outbound": "youtube"
+      },
+      {
+        "domain_suffix": [
+          "youtube.com.om"
+        ],
+        "action": "route",
+        "outbound": "youtube"
+      },
+      {
+        "domain_suffix": [
+          "youtube.com.pa"
+        ],
+        "action": "route",
+        "outbound": "youtube"
+      },
+      {
+        "domain_suffix": [
+          "youtube.com.pe"
+        ],
+        "action": "route",
+        "outbound": "youtube"
+      },
+      {
+        "domain_suffix": [
+          "youtube.com.ph"
+        ],
+        "action": "route",
+        "outbound": "youtube"
+      },
+      {
+        "domain_suffix": [
+          "youtube.com.pk"
+        ],
+        "action": "route",
+        "outbound": "youtube"
+      },
+      {
+        "domain_suffix": [
+          "youtube.com.pt"
+        ],
+        "action": "route",
+        "outbound": "youtube"
+      },
+      {
+        "domain_suffix": [
+          "youtube.com.py"
+        ],
+        "action": "route",
+        "outbound": "youtube"
+      },
+      {
+        "domain_suffix": [
+          "youtube.com.qa"
+        ],
+        "action": "route",
+        "outbound": "youtube"
+      },
+      {
+        "domain_suffix": [
+          "youtube.com.ro"
+        ],
+        "action": "route",
+        "outbound": "youtube"
+      },
+      {
+        "domain_suffix": [
+          "youtube.com.sa"
+        ],
+        "action": "route",
+        "outbound": "youtube"
+      },
+      {
+        "domain_suffix": [
+          "youtube.com.sg"
+        ],
+        "action": "route",
+        "outbound": "youtube"
+      },
+      {
+        "domain_suffix": [
+          "youtube.com.sv"
+        ],
+        "action": "route",
+        "outbound": "youtube"
+      },
+      {
+        "domain_suffix": [
+          "youtube.com.tn"
+        ],
+        "action": "route",
+        "outbound": "youtube"
+      },
+      {
+        "domain_suffix": [
+          "youtube.com.tr"
+        ],
+        "action": "route",
+        "outbound": "youtube"
+      },
+      {
+        "domain_suffix": [
+          "youtube.com.tw"
+        ],
+        "action": "route",
+        "outbound": "youtube"
+      },
+      {
+        "domain_suffix": [
+          "youtube.com.ua"
+        ],
+        "action": "route",
+        "outbound": "youtube"
+      },
+      {
+        "domain_suffix": [
+          "youtube.com.uy"
+        ],
+        "action": "route",
+        "outbound": "youtube"
+      },
+      {
+        "domain_suffix": [
+          "youtube.com.ve"
+        ],
+        "action": "route",
+        "outbound": "youtube"
+      },
+      {
+        "domain_suffix": [
+          "youtube.cr"
+        ],
+        "action": "route",
+        "outbound": "youtube"
+      },
+      {
+        "domain_suffix": [
+          "youtube.cz"
+        ],
+        "action": "route",
+        "outbound": "youtube"
+      },
+      {
+        "domain_suffix": [
+          "youtube.de"
+        ],
+        "action": "route",
+        "outbound": "youtube"
+      },
+      {
+        "domain_suffix": [
+          "youtube.dk"
+        ],
+        "action": "route",
+        "outbound": "youtube"
+      },
+      {
+        "domain_suffix": [
+          "youtube.ee"
+        ],
+        "action": "route",
+        "outbound": "youtube"
+      },
+      {
+        "domain_suffix": [
+          "youtube.es"
+        ],
+        "action": "route",
+        "outbound": "youtube"
+      },
+      {
+        "domain_suffix": [
+          "youtube.fi"
+        ],
+        "action": "route",
+        "outbound": "youtube"
+      },
+      {
+        "domain_suffix": [
+          "youtube.fr"
+        ],
+        "action": "route",
+        "outbound": "youtube"
+      },
+      {
+        "domain_suffix": [
+          "youtube.ge"
+        ],
+        "action": "route",
+        "outbound": "youtube"
+      },
+      {
+        "domain_suffix": [
+          "youtube.googleapis.com"
+        ],
+        "action": "route",
+        "outbound": "youtube"
+      },
+      {
+        "domain_suffix": [
+          "youtube.gr"
+        ],
+        "action": "route",
+        "outbound": "youtube"
+      },
+      {
+        "domain_suffix": [
+          "youtube.gt"
+        ],
+        "action": "route",
+        "outbound": "youtube"
+      },
+      {
+        "domain_suffix": [
+          "youtube.hk"
+        ],
+        "action": "route",
+        "outbound": "youtube"
+      },
+      {
+        "domain_suffix": [
+          "youtube.hr"
+        ],
+        "action": "route",
+        "outbound": "youtube"
+      },
+      {
+        "domain_suffix": [
+          "youtube.hu"
+        ],
+        "action": "route",
+        "outbound": "youtube"
+      },
+      {
+        "domain_suffix": [
+          "youtube.ie"
+        ],
+        "action": "route",
+        "outbound": "youtube"
+      },
+      {
+        "domain_suffix": [
+          "youtube.in"
+        ],
+        "action": "route",
+        "outbound": "youtube"
+      },
+      {
+        "domain_suffix": [
+          "youtube.iq"
+        ],
+        "action": "route",
+        "outbound": "youtube"
+      },
+      {
+        "domain_suffix": [
+          "youtube.is"
+        ],
+        "action": "route",
+        "outbound": "youtube"
+      },
+      {
+        "domain_suffix": [
+          "youtube.it"
+        ],
+        "action": "route",
+        "outbound": "youtube"
+      },
+      {
+        "domain_suffix": [
+          "youtube.jo"
+        ],
+        "action": "route",
+        "outbound": "youtube"
+      },
+      {
+        "domain_suffix": [
+          "youtube.jp"
+        ],
+        "action": "route",
+        "outbound": "youtube"
+      },
+      {
+        "domain_suffix": [
+          "youtube.kr"
+        ],
+        "action": "route",
+        "outbound": "youtube"
+      },
+      {
+        "domain_suffix": [
+          "youtube.kz"
+        ],
+        "action": "route",
+        "outbound": "youtube"
+      },
+      {
+        "domain_suffix": [
+          "youtube.la"
+        ],
+        "action": "route",
+        "outbound": "youtube"
+      },
+      {
+        "domain_suffix": [
+          "youtube.lk"
+        ],
+        "action": "route",
+        "outbound": "youtube"
+      },
+      {
+        "domain_suffix": [
+          "youtube.lt"
+        ],
+        "action": "route",
+        "outbound": "youtube"
+      },
+      {
+        "domain_suffix": [
+          "youtube.lu"
+        ],
+        "action": "route",
+        "outbound": "youtube"
+      },
+      {
+        "domain_suffix": [
+          "youtube.lv"
+        ],
+        "action": "route",
+        "outbound": "youtube"
+      },
+      {
+        "domain_suffix": [
+          "youtube.ly"
+        ],
+        "action": "route",
+        "outbound": "youtube"
+      },
+      {
+        "domain_suffix": [
+          "youtube.ma"
+        ],
+        "action": "route",
+        "outbound": "youtube"
+      },
+      {
+        "domain_suffix": [
+          "youtube.md"
+        ],
+        "action": "route",
+        "outbound": "youtube"
+      },
+      {
+        "domain_suffix": [
+          "youtube.me"
+        ],
+        "action": "route",
+        "outbound": "youtube"
+      },
+      {
+        "domain_suffix": [
+          "youtube.mk"
+        ],
+        "action": "route",
+        "outbound": "youtube"
+      },
+      {
+        "domain_suffix": [
+          "youtube.mn"
+        ],
+        "action": "route",
+        "outbound": "youtube"
+      },
+      {
+        "domain_suffix": [
+          "youtube.mx"
+        ],
+        "action": "route",
+        "outbound": "youtube"
+      },
+      {
+        "domain_suffix": [
+          "youtube.my"
+        ],
+        "action": "route",
+        "outbound": "youtube"
+      },
+      {
+        "domain_suffix": [
+          "youtube.ng"
+        ],
+        "action": "route",
+        "outbound": "youtube"
+      },
+      {
+        "domain_suffix": [
+          "youtube.ni"
+        ],
+        "action": "route",
+        "outbound": "youtube"
+      },
+      {
+        "domain_suffix": [
+          "youtube.nl"
+        ],
+        "action": "route",
+        "outbound": "youtube"
+      },
+      {
+        "domain_suffix": [
+          "youtube.no"
+        ],
+        "action": "route",
+        "outbound": "youtube"
+      },
+      {
+        "domain_suffix": [
+          "youtube.pa"
+        ],
+        "action": "route",
+        "outbound": "youtube"
+      },
+      {
+        "domain_suffix": [
+          "youtube.pe"
+        ],
+        "action": "route",
+        "outbound": "youtube"
+      },
+      {
+        "domain_suffix": [
+          "youtube.ph"
+        ],
+        "action": "route",
+        "outbound": "youtube"
+      },
+      {
+        "domain_suffix": [
+          "youtube.pk"
+        ],
+        "action": "route",
+        "outbound": "youtube"
+      },
+      {
+        "domain_suffix": [
+          "youtube.pl"
+        ],
+        "action": "route",
+        "outbound": "youtube"
+      },
+      {
+        "domain_suffix": [
+          "youtube.pr"
+        ],
+        "action": "route",
+        "outbound": "youtube"
+      },
+      {
+        "domain_suffix": [
+          "youtube.pt"
+        ],
+        "action": "route",
+        "outbound": "youtube"
+      },
+      {
+        "domain_suffix": [
+          "youtube.qa"
+        ],
+        "action": "route",
+        "outbound": "youtube"
+      },
+      {
+        "domain_suffix": [
+          "youtube.ro"
+        ],
+        "action": "route",
+        "outbound": "youtube"
+      },
+      {
+        "domain_suffix": [
+          "youtube.rs"
+        ],
+        "action": "route",
+        "outbound": "youtube"
+      },
+      {
+        "domain_suffix": [
+          "youtube.ru"
+        ],
+        "action": "route",
+        "outbound": "youtube"
+      },
+      {
+        "domain_suffix": [
+          "youtube.sa"
+        ],
+        "action": "route",
+        "outbound": "youtube"
+      },
+      {
+        "domain_suffix": [
+          "youtube.se"
+        ],
+        "action": "route",
+        "outbound": "youtube"
+      },
+      {
+        "domain_suffix": [
+          "youtube.sg"
+        ],
+        "action": "route",
+        "outbound": "youtube"
+      },
+      {
+        "domain_suffix": [
+          "youtube.si"
+        ],
+        "action": "route",
+        "outbound": "youtube"
+      },
+      {
+        "domain_suffix": [
+          "youtube.sk"
+        ],
+        "action": "route",
+        "outbound": "youtube"
+      },
+      {
+        "domain_suffix": [
+          "youtube.sn"
+        ],
+        "action": "route",
+        "outbound": "youtube"
+      },
+      {
+        "domain_suffix": [
+          "youtube.soy"
+        ],
+        "action": "route",
+        "outbound": "youtube"
+      },
+      {
+        "domain_suffix": [
+          "youtube.sv"
+        ],
+        "action": "route",
+        "outbound": "youtube"
+      },
+      {
+        "domain_suffix": [
+          "youtube.tn"
+        ],
+        "action": "route",
+        "outbound": "youtube"
+      },
+      {
+        "domain_suffix": [
+          "youtube.tv"
+        ],
+        "action": "route",
+        "outbound": "youtube"
+      },
+      {
+        "domain_suffix": [
+          "youtube.ua"
+        ],
+        "action": "route",
+        "outbound": "youtube"
+      },
+      {
+        "domain_suffix": [
+          "youtube.ug"
+        ],
+        "action": "route",
+        "outbound": "youtube"
+      },
+      {
+        "domain_suffix": [
+          "youtube.uy"
+        ],
+        "action": "route",
+        "outbound": "youtube"
+      },
+      {
+        "domain_suffix": [
+          "youtube.vn"
+        ],
+        "action": "route",
+        "outbound": "youtube"
+      },
+      {
+        "domain_suffix": [
+          "youtubeeducation.com"
+        ],
+        "action": "route",
+        "outbound": "youtube"
+      },
+      {
+        "domain_suffix": [
+          "youtubeembeddedplayer.googleapis.com"
+        ],
+        "action": "route",
+        "outbound": "youtube"
+      },
+      {
+        "domain_suffix": [
+          "youtubefanfest.com"
+        ],
+        "action": "route",
+        "outbound": "youtube"
+      },
+      {
+        "domain_suffix": [
+          "youtubegaming.com"
+        ],
+        "action": "route",
+        "outbound": "youtube"
+      },
+      {
+        "domain_suffix": [
+          "youtubego.co.id"
+        ],
+        "action": "route",
+        "outbound": "youtube"
+      },
+      {
+        "domain_suffix": [
+          "youtubego.co.in"
+        ],
+        "action": "route",
+        "outbound": "youtube"
+      },
+      {
+        "domain_suffix": [
+          "youtubego.com"
+        ],
+        "action": "route",
+        "outbound": "youtube"
+      },
+      {
+        "domain_suffix": [
+          "youtubego.com.br"
+        ],
+        "action": "route",
+        "outbound": "youtube"
+      },
+      {
+        "domain_suffix": [
+          "youtubego.id"
+        ],
+        "action": "route",
+        "outbound": "youtube"
+      },
+      {
+        "domain_suffix": [
+          "youtubego.in"
+        ],
+        "action": "route",
+        "outbound": "youtube"
+      },
+      {
+        "domain_suffix": [
+          "youtubei.googleapis.com"
+        ],
+        "action": "route",
+        "outbound": "youtube"
+      },
+      {
+        "domain_suffix": [
+          "youtubekids.com"
+        ],
+        "action": "route",
+        "outbound": "youtube"
+      },
+      {
+        "domain_suffix": [
+          "youtubemobilesupport.com"
+        ],
+        "action": "route",
+        "outbound": "youtube"
+      },
+      {
+        "domain_suffix": [
+          "yt.be"
+        ],
+        "action": "route",
+        "outbound": "youtube"
+      },
+      {
+        "domain_suffix": [
+          "ytimg.com"
+        ],
+        "action": "route",
+        "outbound": "youtube"
+      },
+      {
+        "domain": [
+          "yt3.googleusercontent.com"
+        ],
+        "action": "route",
+        "outbound": "youtube"
+      },
+      {
+        "domain_suffix": [
+          "zoom.com"
+        ],
+        "action": "route",
+        "outbound": "zoom"
+      },
+      {
+        "domain_suffix": [
+          "zoom.com.cn"
+        ],
+        "action": "route",
+        "outbound": "zoom"
+      },
+      {
+        "domain_suffix": [
+          "zoom.us"
+        ],
+        "action": "route",
+        "outbound": "zoom"
       },
       {
         "domain_suffix": [
@@ -18477,615 +24032,6 @@
       },
       {
         "domain_suffix": [
-          "12306.cn"
-        ],
-        "action": "route",
-        "outbound": "DIRECT"
-      },
-      {
-        "domain_suffix": [
-          "163.com"
-        ],
-        "action": "route",
-        "outbound": "DIRECT"
-      },
-      {
-        "domain_suffix": [
-          "alicdn.com"
-        ],
-        "action": "route",
-        "outbound": "DIRECT"
-      },
-      {
-        "domain_suffix": [
-          "alipay.com"
-        ],
-        "action": "route",
-        "outbound": "DIRECT"
-      },
-      {
-        "domain_suffix": [
-          "aliyun.com"
-        ],
-        "action": "route",
-        "outbound": "DIRECT"
-      },
-      {
-        "domain_suffix": [
-          "baidu.com"
-        ],
-        "action": "route",
-        "outbound": "DIRECT"
-      },
-      {
-        "domain_suffix": [
-          "biliapi.net"
-        ],
-        "action": "route",
-        "outbound": "DIRECT"
-      },
-      {
-        "domain_suffix": [
-          "bilibili.com"
-        ],
-        "action": "route",
-        "outbound": "DIRECT"
-      },
-      {
-        "domain_suffix": [
-          "bilivideo.com"
-        ],
-        "action": "route",
-        "outbound": "DIRECT"
-      },
-      {
-        "domain_suffix": [
-          "douyin.com"
-        ],
-        "action": "route",
-        "outbound": "DIRECT"
-      },
-      {
-        "domain_suffix": [
-          "jd.com"
-        ],
-        "action": "route",
-        "outbound": "DIRECT"
-      },
-      {
-        "domain_suffix": [
-          "qq.com"
-        ],
-        "action": "route",
-        "outbound": "DIRECT"
-      },
-      {
-        "domain_suffix": [
-          "taobao.com"
-        ],
-        "action": "route",
-        "outbound": "DIRECT"
-      },
-      {
-        "domain_suffix": [
-          "tencent.com"
-        ],
-        "action": "route",
-        "outbound": "DIRECT"
-      },
-      {
-        "domain_suffix": [
-          "tmall.com"
-        ],
-        "action": "route",
-        "outbound": "DIRECT"
-      },
-      {
-        "domain_suffix": [
-          "weibo.com"
-        ],
-        "action": "route",
-        "outbound": "DIRECT"
-      },
-      {
-        "domain_suffix": [
-          "weixin.qq.com"
-        ],
-        "action": "route",
-        "outbound": "DIRECT"
-      },
-      {
-        "domain_suffix": [
-          "xiaohongshu.com"
-        ],
-        "action": "route",
-        "outbound": "DIRECT"
-      },
-      {
-        "domain_suffix": [
-          "zhihu.com"
-        ],
-        "action": "route",
-        "outbound": "DIRECT"
-      },
-      {
-        "domain_suffix": [
-          "ant.dev"
-        ],
-        "action": "route",
-        "outbound": "claude"
-      },
-      {
-        "domain_suffix": [
-          "anthropic.com"
-        ],
-        "action": "route",
-        "outbound": "claude"
-      },
-      {
-        "domain_suffix": [
-          "anthropic.team"
-        ],
-        "action": "route",
-        "outbound": "claude"
-      },
-      {
-        "domain_suffix": [
-          "antspace.dev"
-        ],
-        "action": "route",
-        "outbound": "claude"
-      },
-      {
-        "domain_suffix": [
-          "chatbotclaude.com"
-        ],
-        "action": "route",
-        "outbound": "claude"
-      },
-      {
-        "domain_suffix": [
-          "clau.de"
-        ],
-        "action": "route",
-        "outbound": "claude"
-      },
-      {
-        "domain_suffix": [
-          "claude.ai"
-        ],
-        "action": "route",
-        "outbound": "claude"
-      },
-      {
-        "domain_suffix": [
-          "claude.app"
-        ],
-        "action": "route",
-        "outbound": "claude"
-      },
-      {
-        "domain_suffix": [
-          "claude.com"
-        ],
-        "action": "route",
-        "outbound": "claude"
-      },
-      {
-        "domain_suffix": [
-          "claude.dev"
-        ],
-        "action": "route",
-        "outbound": "claude"
-      },
-      {
-        "domain_suffix": [
-          "claude.new"
-        ],
-        "action": "route",
-        "outbound": "claude"
-      },
-      {
-        "domain_suffix": [
-          "claude.site"
-        ],
-        "action": "route",
-        "outbound": "claude"
-      },
-      {
-        "domain_suffix": [
-          "claudeacademy.com"
-        ],
-        "action": "route",
-        "outbound": "claude"
-      },
-      {
-        "domain_suffix": [
-          "claudemcpclient.com"
-        ],
-        "action": "route",
-        "outbound": "claude"
-      },
-      {
-        "domain_suffix": [
-          "claudemcpcontent.com"
-        ],
-        "action": "route",
-        "outbound": "claude"
-      },
-      {
-        "domain_suffix": [
-          "claudepages.dev"
-        ],
-        "action": "route",
-        "outbound": "claude"
-      },
-      {
-        "domain_suffix": [
-          "claudestudio.com"
-        ],
-        "action": "route",
-        "outbound": "claude"
-      },
-      {
-        "domain_suffix": [
-          "claudeusercontent.com"
-        ],
-        "action": "route",
-        "outbound": "claude"
-      },
-      {
-        "domain": [
-          "servd-anthropic-website.b-cdn.net"
-        ],
-        "action": "route",
-        "outbound": "claude"
-      },
-      {
-        "domain_suffix": [
-          "ai.studio"
-        ],
-        "action": "route",
-        "outbound": "gemini"
-      },
-      {
-        "domain_suffix": [
-          "aicode.googleapis.com"
-        ],
-        "action": "route",
-        "outbound": "gemini"
-      },
-      {
-        "domain_suffix": [
-          "aida.googleapis.com"
-        ],
-        "action": "route",
-        "outbound": "gemini"
-      },
-      {
-        "domain_suffix": [
-          "aisandbox-pa.googleapis.com"
-        ],
-        "action": "route",
-        "outbound": "gemini"
-      },
-      {
-        "domain_suffix": [
-          "aistudio.google.com"
-        ],
-        "action": "route",
-        "outbound": "gemini"
-      },
-      {
-        "domain_suffix": [
-          "antigravity-unleash.goog"
-        ],
-        "action": "route",
-        "outbound": "gemini"
-      },
-      {
-        "domain_suffix": [
-          "antigravity.google"
-        ],
-        "action": "route",
-        "outbound": "gemini"
-      },
-      {
-        "domain_suffix": [
-          "bard.google.com"
-        ],
-        "action": "route",
-        "outbound": "gemini"
-      },
-      {
-        "domain_suffix": [
-          "deepmind.com"
-        ],
-        "action": "route",
-        "outbound": "gemini"
-      },
-      {
-        "domain_suffix": [
-          "deepmind.google"
-        ],
-        "action": "route",
-        "outbound": "gemini"
-      },
-      {
-        "domain_suffix": [
-          "flow.google"
-        ],
-        "action": "route",
-        "outbound": "gemini"
-      },
-      {
-        "domain_suffix": [
-          "flow.google.com"
-        ],
-        "action": "route",
-        "outbound": "gemini"
-      },
-      {
-        "domain_suffix": [
-          "geller-pa.googleapis.com"
-        ],
-        "action": "route",
-        "outbound": "gemini"
-      },
-      {
-        "domain_suffix": [
-          "gemini.google"
-        ],
-        "action": "route",
-        "outbound": "gemini"
-      },
-      {
-        "domain_suffix": [
-          "gemini.google.com"
-        ],
-        "action": "route",
-        "outbound": "gemini"
-      },
-      {
-        "domain_suffix": [
-          "gemini.gstatic.com"
-        ],
-        "action": "route",
-        "outbound": "gemini"
-      },
-      {
-        "domain_suffix": [
-          "generativeai.google"
-        ],
-        "action": "route",
-        "outbound": "gemini"
-      },
-      {
-        "domain_suffix": [
-          "generativelanguage.googleapis.com"
-        ],
-        "action": "route",
-        "outbound": "gemini"
-      },
-      {
-        "domain_suffix": [
-          "jules.google"
-        ],
-        "action": "route",
-        "outbound": "gemini"
-      },
-      {
-        "domain_suffix": [
-          "jules.google.com"
-        ],
-        "action": "route",
-        "outbound": "gemini"
-      },
-      {
-        "domain_suffix": [
-          "labs.google"
-        ],
-        "action": "route",
-        "outbound": "gemini"
-      },
-      {
-        "domain_suffix": [
-          "labs.google.com"
-        ],
-        "action": "route",
-        "outbound": "gemini"
-      },
-      {
-        "domain_suffix": [
-          "labstailwind.pa.googleapis.com"
-        ],
-        "action": "route",
-        "outbound": "gemini"
-      },
-      {
-        "domain_suffix": [
-          "makersuite.google.com"
-        ],
-        "action": "route",
-        "outbound": "gemini"
-      },
-      {
-        "domain_suffix": [
-          "notebook.google"
-        ],
-        "action": "route",
-        "outbound": "gemini"
-      },
-      {
-        "domain_suffix": [
-          "notebook.google.com"
-        ],
-        "action": "route",
-        "outbound": "gemini"
-      },
-      {
-        "domain_suffix": [
-          "notebooklm.google"
-        ],
-        "action": "route",
-        "outbound": "gemini"
-      },
-      {
-        "domain_suffix": [
-          "notebooklm.google.com"
-        ],
-        "action": "route",
-        "outbound": "gemini"
-      },
-      {
-        "domain_suffix": [
-          "opal.google"
-        ],
-        "action": "route",
-        "outbound": "gemini"
-      },
-      {
-        "domain_suffix": [
-          "opal.google.com"
-        ],
-        "action": "route",
-        "outbound": "gemini"
-      },
-      {
-        "domain_suffix": [
-          "proactivebackend-pa.googleapis.com"
-        ],
-        "action": "route",
-        "outbound": "gemini"
-      },
-      {
-        "domain_suffix": [
-          "robinfrontend-pa.googleapis.com"
-        ],
-        "action": "route",
-        "outbound": "gemini"
-      },
-      {
-        "domain_suffix": [
-          "stitch.withgoogle.com"
-        ],
-        "action": "route",
-        "outbound": "gemini"
-      },
-      {
-        "domain": [
-          "ai.google.dev"
-        ],
-        "action": "route",
-        "outbound": "gemini"
-      },
-      {
-        "domain": [
-          "alkalicore-pa.clients6.google.com"
-        ],
-        "action": "route",
-        "outbound": "gemini"
-      },
-      {
-        "domain": [
-          "alkalimakersuite-pa.clients6.google.com"
-        ],
-        "action": "route",
-        "outbound": "gemini"
-      },
-      {
-        "domain": [
-          "antigravity-pa.googleapis.com"
-        ],
-        "action": "route",
-        "outbound": "gemini"
-      },
-      {
-        "domain": [
-          "antigravity.googleapis.com"
-        ],
-        "action": "route",
-        "outbound": "gemini"
-      },
-      {
-        "domain": [
-          "appsgenaiserver-pa.clients.google.com"
-        ],
-        "action": "route",
-        "outbound": "gemini"
-      },
-      {
-        "domain": [
-          "appsgenaiserver-pa.clients6.google.com"
-        ],
-        "action": "route",
-        "outbound": "gemini"
-      },
-      {
-        "domain": [
-          "appsgenaiserver-pa.googleapis.com"
-        ],
-        "action": "route",
-        "outbound": "gemini"
-      },
-      {
-        "domain": [
-          "cloudaicompanion.googleapis.com"
-        ],
-        "action": "route",
-        "outbound": "gemini"
-      },
-      {
-        "domain": [
-          "cloudcode-pa.googleapis.com"
-        ],
-        "action": "route",
-        "outbound": "gemini"
-      },
-      {
-        "domain": [
-          "daily-cloudcode-pa.googleapis.com"
-        ],
-        "action": "route",
-        "outbound": "gemini"
-      },
-      {
-        "domain": [
-          "geminiweb-pa.clients.google.com"
-        ],
-        "action": "route",
-        "outbound": "gemini"
-      },
-      {
-        "domain": [
-          "geminiweb-pa.clients6.google.com"
-        ],
-        "action": "route",
-        "outbound": "gemini"
-      },
-      {
-        "domain": [
-          "notebooklm-pa.googleapis.com"
-        ],
-        "action": "route",
-        "outbound": "gemini"
-      },
-      {
-        "domain": [
-          "notebooklm.googleapis.com"
-        ],
-        "action": "route",
-        "outbound": "gemini"
-      },
-      {
-        "domain": [
-          "webchannel-alkalimakersuite-pa.clients6.google.com"
-        ],
-        "action": "route",
-        "outbound": "gemini"
-      },
-      {
-        "domain_suffix": [
           "atom.io"
         ],
         "action": "route",
@@ -19538,2071 +24484,6 @@
         ],
         "action": "route",
         "outbound": "github"
-      },
-      {
-        "domain_suffix": [
-          "fast.com"
-        ],
-        "action": "route",
-        "outbound": "netflix"
-      },
-      {
-        "domain_suffix": [
-          "netflix.ca"
-        ],
-        "action": "route",
-        "outbound": "netflix"
-      },
-      {
-        "domain_suffix": [
-          "netflix.com"
-        ],
-        "action": "route",
-        "outbound": "netflix"
-      },
-      {
-        "domain_suffix": [
-          "netflix.com.edgesuite.net"
-        ],
-        "action": "route",
-        "outbound": "netflix"
-      },
-      {
-        "domain_suffix": [
-          "netflix.net"
-        ],
-        "action": "route",
-        "outbound": "netflix"
-      },
-      {
-        "domain_suffix": [
-          "netflixdnstest0.com"
-        ],
-        "action": "route",
-        "outbound": "netflix"
-      },
-      {
-        "domain_suffix": [
-          "netflixdnstest1.com"
-        ],
-        "action": "route",
-        "outbound": "netflix"
-      },
-      {
-        "domain_suffix": [
-          "netflixdnstest10.com"
-        ],
-        "action": "route",
-        "outbound": "netflix"
-      },
-      {
-        "domain_suffix": [
-          "netflixdnstest2.com"
-        ],
-        "action": "route",
-        "outbound": "netflix"
-      },
-      {
-        "domain_suffix": [
-          "netflixdnstest3.com"
-        ],
-        "action": "route",
-        "outbound": "netflix"
-      },
-      {
-        "domain_suffix": [
-          "netflixdnstest4.com"
-        ],
-        "action": "route",
-        "outbound": "netflix"
-      },
-      {
-        "domain_suffix": [
-          "netflixdnstest5.com"
-        ],
-        "action": "route",
-        "outbound": "netflix"
-      },
-      {
-        "domain_suffix": [
-          "netflixdnstest6.com"
-        ],
-        "action": "route",
-        "outbound": "netflix"
-      },
-      {
-        "domain_suffix": [
-          "netflixdnstest7.com"
-        ],
-        "action": "route",
-        "outbound": "netflix"
-      },
-      {
-        "domain_suffix": [
-          "netflixdnstest8.com"
-        ],
-        "action": "route",
-        "outbound": "netflix"
-      },
-      {
-        "domain_suffix": [
-          "netflixdnstest9.com"
-        ],
-        "action": "route",
-        "outbound": "netflix"
-      },
-      {
-        "domain_suffix": [
-          "netflixinvestor.com"
-        ],
-        "action": "route",
-        "outbound": "netflix"
-      },
-      {
-        "domain_suffix": [
-          "netflixtechblog.com"
-        ],
-        "action": "route",
-        "outbound": "netflix"
-      },
-      {
-        "domain_suffix": [
-          "nflxext.com"
-        ],
-        "action": "route",
-        "outbound": "netflix"
-      },
-      {
-        "domain_suffix": [
-          "nflximg.com"
-        ],
-        "action": "route",
-        "outbound": "netflix"
-      },
-      {
-        "domain_suffix": [
-          "nflximg.net"
-        ],
-        "action": "route",
-        "outbound": "netflix"
-      },
-      {
-        "domain_suffix": [
-          "nflxsearch.net"
-        ],
-        "action": "route",
-        "outbound": "netflix"
-      },
-      {
-        "domain_suffix": [
-          "nflxso.net"
-        ],
-        "action": "route",
-        "outbound": "netflix"
-      },
-      {
-        "domain_suffix": [
-          "nflxvideo.net"
-        ],
-        "action": "route",
-        "outbound": "netflix"
-      },
-      {
-        "domain_suffix": [
-          "chat.com"
-        ],
-        "action": "route",
-        "outbound": "openai"
-      },
-      {
-        "domain_suffix": [
-          "chatgpt.com"
-        ],
-        "action": "route",
-        "outbound": "openai"
-      },
-      {
-        "domain_suffix": [
-          "chatgpt.livekit.cloud"
-        ],
-        "action": "route",
-        "outbound": "openai"
-      },
-      {
-        "domain_suffix": [
-          "chatgpt.site"
-        ],
-        "action": "route",
-        "outbound": "openai"
-      },
-      {
-        "domain_suffix": [
-          "crixet.com"
-        ],
-        "action": "route",
-        "outbound": "openai"
-      },
-      {
-        "domain_suffix": [
-          "host.livekit.cloud"
-        ],
-        "action": "route",
-        "outbound": "openai"
-      },
-      {
-        "domain_suffix": [
-          "oaistatic.com"
-        ],
-        "action": "route",
-        "outbound": "openai"
-      },
-      {
-        "domain_suffix": [
-          "oaistatsig.com"
-        ],
-        "action": "route",
-        "outbound": "openai"
-      },
-      {
-        "domain_suffix": [
-          "oaiusercontent.com"
-        ],
-        "action": "route",
-        "outbound": "openai"
-      },
-      {
-        "domain_suffix": [
-          "openai.com"
-        ],
-        "action": "route",
-        "outbound": "openai"
-      },
-      {
-        "domain_suffix": [
-          "openai.com.cdn.cloudflare.net"
-        ],
-        "action": "route",
-        "outbound": "openai"
-      },
-      {
-        "domain_suffix": [
-          "openai.org"
-        ],
-        "action": "route",
-        "outbound": "openai"
-      },
-      {
-        "domain_suffix": [
-          "sora.com"
-        ],
-        "action": "route",
-        "outbound": "openai"
-      },
-      {
-        "domain_suffix": [
-          "turn.livekit.cloud"
-        ],
-        "action": "route",
-        "outbound": "openai"
-      },
-      {
-        "domain": [
-          "browser-intake-datadoghq.com"
-        ],
-        "action": "route",
-        "outbound": "openai"
-      },
-      {
-        "domain": [
-          "o33249.ingest.sentry.io"
-        ],
-        "action": "route",
-        "outbound": "openai"
-      },
-      {
-        "domain": [
-          "o33249.ingest.us.sentry.io"
-        ],
-        "action": "route",
-        "outbound": "openai"
-      },
-      {
-        "domain": [
-          "openai.qualtrics.com"
-        ],
-        "action": "route",
-        "outbound": "openai"
-      },
-      {
-        "domain": [
-          "openaiapi-site.azureedge.net"
-        ],
-        "action": "route",
-        "outbound": "openai"
-      },
-      {
-        "domain": [
-          "openaiassets.blob.core.windows.net"
-        ],
-        "action": "route",
-        "outbound": "openai"
-      },
-      {
-        "domain": [
-          "openaicom-api-bdcpf8c6d2e9atf6.z01.azurefd.net"
-        ],
-        "action": "route",
-        "outbound": "openai"
-      },
-      {
-        "domain": [
-          "openaicom.imgix.net"
-        ],
-        "action": "route",
-        "outbound": "openai"
-      },
-      {
-        "domain": [
-          "openaicomproductionae4b.blob.core.windows.net"
-        ],
-        "action": "route",
-        "outbound": "openai"
-      },
-      {
-        "domain": [
-          "production-openaicom-storage.azureedge.net"
-        ],
-        "action": "route",
-        "outbound": "openai"
-      },
-      {
-        "domain_suffix": [
-          "cdnst.net"
-        ],
-        "action": "route",
-        "outbound": "speedtest"
-      },
-      {
-        "domain_suffix": [
-          "cellmaps.com"
-        ],
-        "action": "route",
-        "outbound": "speedtest"
-      },
-      {
-        "domain_suffix": [
-          "ekahau.cloud"
-        ],
-        "action": "route",
-        "outbound": "speedtest"
-      },
-      {
-        "domain_suffix": [
-          "ekahau.com"
-        ],
-        "action": "route",
-        "outbound": "speedtest"
-      },
-      {
-        "domain_suffix": [
-          "ookla-speedtest-central.hgconair.hgc.com.hk"
-        ],
-        "action": "route",
-        "outbound": "speedtest"
-      },
-      {
-        "domain_suffix": [
-          "ookla.com"
-        ],
-        "action": "route",
-        "outbound": "speedtest"
-      },
-      {
-        "domain_suffix": [
-          "ooklaserver.net"
-        ],
-        "action": "route",
-        "outbound": "speedtest"
-      },
-      {
-        "domain_suffix": [
-          "pingtest.net"
-        ],
-        "action": "route",
-        "outbound": "speedtest"
-      },
-      {
-        "domain_suffix": [
-          "speedtest.app"
-        ],
-        "action": "route",
-        "outbound": "speedtest"
-      },
-      {
-        "domain_suffix": [
-          "speedtest.cc"
-        ],
-        "action": "route",
-        "outbound": "speedtest"
-      },
-      {
-        "domain_suffix": [
-          "speedtest.co"
-        ],
-        "action": "route",
-        "outbound": "speedtest"
-      },
-      {
-        "domain_suffix": [
-          "speedtest.ee"
-        ],
-        "action": "route",
-        "outbound": "speedtest"
-      },
-      {
-        "domain_suffix": [
-          "speedtest.in"
-        ],
-        "action": "route",
-        "outbound": "speedtest"
-      },
-      {
-        "domain_suffix": [
-          "speedtest.me"
-        ],
-        "action": "route",
-        "outbound": "speedtest"
-      },
-      {
-        "domain_suffix": [
-          "speedtest.net"
-        ],
-        "action": "route",
-        "outbound": "speedtest"
-      },
-      {
-        "domain_suffix": [
-          "speedtest.ng"
-        ],
-        "action": "route",
-        "outbound": "speedtest"
-      },
-      {
-        "domain_suffix": [
-          "speedtest.tv"
-        ],
-        "action": "route",
-        "outbound": "speedtest"
-      },
-      {
-        "domain_suffix": [
-          "speedtestcustom.com"
-        ],
-        "action": "route",
-        "outbound": "speedtest"
-      },
-      {
-        "domain_suffix": [
-          "webtest.net"
-        ],
-        "action": "route",
-        "outbound": "speedtest"
-      },
-      {
-        "domain": [
-          "www.speedtest.net.cdn.cloudflare.net"
-        ],
-        "action": "route",
-        "outbound": "speedtest"
-      },
-      {
-        "domain_suffix": [
-          "byspotify.com"
-        ],
-        "action": "route",
-        "outbound": "spotify"
-      },
-      {
-        "domain_suffix": [
-          "lifeatspotify.com"
-        ],
-        "action": "route",
-        "outbound": "spotify"
-      },
-      {
-        "domain_suffix": [
-          "pscdn.co"
-        ],
-        "action": "route",
-        "outbound": "spotify"
-      },
-      {
-        "domain_suffix": [
-          "scdn.co"
-        ],
-        "action": "route",
-        "outbound": "spotify"
-      },
-      {
-        "domain_suffix": [
-          "spoti.fi"
-        ],
-        "action": "route",
-        "outbound": "spotify"
-      },
-      {
-        "domain_suffix": [
-          "spotify-everywhere.com"
-        ],
-        "action": "route",
-        "outbound": "spotify"
-      },
-      {
-        "domain_suffix": [
-          "spotify.com"
-        ],
-        "action": "route",
-        "outbound": "spotify"
-      },
-      {
-        "domain_suffix": [
-          "spotify.com.edgesuite.net"
-        ],
-        "action": "route",
-        "outbound": "spotify"
-      },
-      {
-        "domain_suffix": [
-          "spotify.design"
-        ],
-        "action": "route",
-        "outbound": "spotify"
-      },
-      {
-        "domain_suffix": [
-          "spotify.link"
-        ],
-        "action": "route",
-        "outbound": "spotify"
-      },
-      {
-        "domain_suffix": [
-          "spotifycdn.com"
-        ],
-        "action": "route",
-        "outbound": "spotify"
-      },
-      {
-        "domain_suffix": [
-          "spotifycdn.net"
-        ],
-        "action": "route",
-        "outbound": "spotify"
-      },
-      {
-        "domain_suffix": [
-          "spotifycharts.com"
-        ],
-        "action": "route",
-        "outbound": "spotify"
-      },
-      {
-        "domain_suffix": [
-          "spotifycodes.com"
-        ],
-        "action": "route",
-        "outbound": "spotify"
-      },
-      {
-        "domain_suffix": [
-          "spotifyforbrands.com"
-        ],
-        "action": "route",
-        "outbound": "spotify"
-      },
-      {
-        "domain_suffix": [
-          "spotifyforvendors.com"
-        ],
-        "action": "route",
-        "outbound": "spotify"
-      },
-      {
-        "domain_suffix": [
-          "spotifyjobs.com"
-        ],
-        "action": "route",
-        "outbound": "spotify"
-      },
-      {
-        "domain_suffix": [
-          "tospotify.com"
-        ],
-        "action": "route",
-        "outbound": "spotify"
-      },
-      {
-        "domain": [
-          "adeventtracker.spotify.com"
-        ],
-        "action": "route",
-        "outbound": "spotify"
-      },
-      {
-        "domain": [
-          "adstudio-assets.scdn.co"
-        ],
-        "action": "route",
-        "outbound": "spotify"
-      },
-      {
-        "domain": [
-          "audio-ak-spotify-com.akamaized.net"
-        ],
-        "action": "route",
-        "outbound": "spotify"
-      },
-      {
-        "domain": [
-          "audio4-ak-spotify-com.akamaized.net"
-        ],
-        "action": "route",
-        "outbound": "spotify"
-      },
-      {
-        "domain": [
-          "bloodhound.spotify.com"
-        ],
-        "action": "route",
-        "outbound": "spotify"
-      },
-      {
-        "domain": [
-          "cdn-spotify-experiments.conductrics.com"
-        ],
-        "action": "route",
-        "outbound": "spotify"
-      },
-      {
-        "domain": [
-          "heads-ak-spotify-com.akamaized.net"
-        ],
-        "action": "route",
-        "outbound": "spotify"
-      },
-      {
-        "domain": [
-          "heads4-ak-spotify-com.akamaized.net"
-        ],
-        "action": "route",
-        "outbound": "spotify"
-      },
-      {
-        "domain": [
-          "spotify.map.fastly.net"
-        ],
-        "action": "route",
-        "outbound": "spotify"
-      },
-      {
-        "domain": [
-          "spotify.map.fastlylb.net"
-        ],
-        "action": "route",
-        "outbound": "spotify"
-      },
-      {
-        "domain_suffix": [
-          "cdn-telegram.org"
-        ],
-        "action": "route",
-        "outbound": "telegram"
-      },
-      {
-        "domain_suffix": [
-          "comments.app"
-        ],
-        "action": "route",
-        "outbound": "telegram"
-      },
-      {
-        "domain_suffix": [
-          "contest.com"
-        ],
-        "action": "route",
-        "outbound": "telegram"
-      },
-      {
-        "domain_suffix": [
-          "fragment.com"
-        ],
-        "action": "route",
-        "outbound": "telegram"
-      },
-      {
-        "domain_suffix": [
-          "graph.org"
-        ],
-        "action": "route",
-        "outbound": "telegram"
-      },
-      {
-        "domain_suffix": [
-          "quiz.directory"
-        ],
-        "action": "route",
-        "outbound": "telegram"
-      },
-      {
-        "domain_suffix": [
-          "t.me"
-        ],
-        "action": "route",
-        "outbound": "telegram"
-      },
-      {
-        "domain_suffix": [
-          "tdesktop.com"
-        ],
-        "action": "route",
-        "outbound": "telegram"
-      },
-      {
-        "domain_suffix": [
-          "telega.one"
-        ],
-        "action": "route",
-        "outbound": "telegram"
-      },
-      {
-        "domain_suffix": [
-          "telegra.ph"
-        ],
-        "action": "route",
-        "outbound": "telegram"
-      },
-      {
-        "domain_suffix": [
-          "telegram-cdn.org"
-        ],
-        "action": "route",
-        "outbound": "telegram"
-      },
-      {
-        "domain_suffix": [
-          "telegram.dog"
-        ],
-        "action": "route",
-        "outbound": "telegram"
-      },
-      {
-        "domain_suffix": [
-          "telegram.me"
-        ],
-        "action": "route",
-        "outbound": "telegram"
-      },
-      {
-        "domain_suffix": [
-          "telegram.org"
-        ],
-        "action": "route",
-        "outbound": "telegram"
-      },
-      {
-        "domain_suffix": [
-          "telegram.space"
-        ],
-        "action": "route",
-        "outbound": "telegram"
-      },
-      {
-        "domain_suffix": [
-          "telesco.pe"
-        ],
-        "action": "route",
-        "outbound": "telegram"
-      },
-      {
-        "domain_suffix": [
-          "tg.dev"
-        ],
-        "action": "route",
-        "outbound": "telegram"
-      },
-      {
-        "domain_suffix": [
-          "ton.org"
-        ],
-        "action": "route",
-        "outbound": "telegram"
-      },
-      {
-        "domain_suffix": [
-          "toncenter.com"
-        ],
-        "action": "route",
-        "outbound": "telegram"
-      },
-      {
-        "domain_suffix": [
-          "tx.me"
-        ],
-        "action": "route",
-        "outbound": "telegram"
-      },
-      {
-        "domain_suffix": [
-          "usercontent.dev"
-        ],
-        "action": "route",
-        "outbound": "telegram"
-      },
-      {
-        "domain_suffix": [
-          "ads.youtube.com"
-        ],
-        "action": "route",
-        "outbound": "youtube"
-      },
-      {
-        "domain_suffix": [
-          "ggpht.cn"
-        ],
-        "action": "route",
-        "outbound": "youtube"
-      },
-      {
-        "domain_suffix": [
-          "ggpht.com"
-        ],
-        "action": "route",
-        "outbound": "youtube"
-      },
-      {
-        "domain_suffix": [
-          "googlevideo.com"
-        ],
-        "action": "route",
-        "outbound": "youtube"
-      },
-      {
-        "domain_suffix": [
-          "wide-youtube.l.google.com"
-        ],
-        "action": "route",
-        "outbound": "youtube"
-      },
-      {
-        "domain_suffix": [
-          "withyoutube.com"
-        ],
-        "action": "route",
-        "outbound": "youtube"
-      },
-      {
-        "domain_suffix": [
-          "youtu.be"
-        ],
-        "action": "route",
-        "outbound": "youtube"
-      },
-      {
-        "domain_suffix": [
-          "youtube"
-        ],
-        "action": "route",
-        "outbound": "youtube"
-      },
-      {
-        "domain_suffix": [
-          "youtube-nocookie.com"
-        ],
-        "action": "route",
-        "outbound": "youtube"
-      },
-      {
-        "domain_suffix": [
-          "youtube-ui.l.google.com"
-        ],
-        "action": "route",
-        "outbound": "youtube"
-      },
-      {
-        "domain_suffix": [
-          "youtube.ae"
-        ],
-        "action": "route",
-        "outbound": "youtube"
-      },
-      {
-        "domain_suffix": [
-          "youtube.al"
-        ],
-        "action": "route",
-        "outbound": "youtube"
-      },
-      {
-        "domain_suffix": [
-          "youtube.am"
-        ],
-        "action": "route",
-        "outbound": "youtube"
-      },
-      {
-        "domain_suffix": [
-          "youtube.at"
-        ],
-        "action": "route",
-        "outbound": "youtube"
-      },
-      {
-        "domain_suffix": [
-          "youtube.az"
-        ],
-        "action": "route",
-        "outbound": "youtube"
-      },
-      {
-        "domain_suffix": [
-          "youtube.ba"
-        ],
-        "action": "route",
-        "outbound": "youtube"
-      },
-      {
-        "domain_suffix": [
-          "youtube.be"
-        ],
-        "action": "route",
-        "outbound": "youtube"
-      },
-      {
-        "domain_suffix": [
-          "youtube.bg"
-        ],
-        "action": "route",
-        "outbound": "youtube"
-      },
-      {
-        "domain_suffix": [
-          "youtube.bh"
-        ],
-        "action": "route",
-        "outbound": "youtube"
-      },
-      {
-        "domain_suffix": [
-          "youtube.bo"
-        ],
-        "action": "route",
-        "outbound": "youtube"
-      },
-      {
-        "domain_suffix": [
-          "youtube.by"
-        ],
-        "action": "route",
-        "outbound": "youtube"
-      },
-      {
-        "domain_suffix": [
-          "youtube.ca"
-        ],
-        "action": "route",
-        "outbound": "youtube"
-      },
-      {
-        "domain_suffix": [
-          "youtube.cat"
-        ],
-        "action": "route",
-        "outbound": "youtube"
-      },
-      {
-        "domain_suffix": [
-          "youtube.ch"
-        ],
-        "action": "route",
-        "outbound": "youtube"
-      },
-      {
-        "domain_suffix": [
-          "youtube.cl"
-        ],
-        "action": "route",
-        "outbound": "youtube"
-      },
-      {
-        "domain_suffix": [
-          "youtube.co"
-        ],
-        "action": "route",
-        "outbound": "youtube"
-      },
-      {
-        "domain_suffix": [
-          "youtube.co.ae"
-        ],
-        "action": "route",
-        "outbound": "youtube"
-      },
-      {
-        "domain_suffix": [
-          "youtube.co.at"
-        ],
-        "action": "route",
-        "outbound": "youtube"
-      },
-      {
-        "domain_suffix": [
-          "youtube.co.cr"
-        ],
-        "action": "route",
-        "outbound": "youtube"
-      },
-      {
-        "domain_suffix": [
-          "youtube.co.hu"
-        ],
-        "action": "route",
-        "outbound": "youtube"
-      },
-      {
-        "domain_suffix": [
-          "youtube.co.id"
-        ],
-        "action": "route",
-        "outbound": "youtube"
-      },
-      {
-        "domain_suffix": [
-          "youtube.co.il"
-        ],
-        "action": "route",
-        "outbound": "youtube"
-      },
-      {
-        "domain_suffix": [
-          "youtube.co.in"
-        ],
-        "action": "route",
-        "outbound": "youtube"
-      },
-      {
-        "domain_suffix": [
-          "youtube.co.jp"
-        ],
-        "action": "route",
-        "outbound": "youtube"
-      },
-      {
-        "domain_suffix": [
-          "youtube.co.ke"
-        ],
-        "action": "route",
-        "outbound": "youtube"
-      },
-      {
-        "domain_suffix": [
-          "youtube.co.kr"
-        ],
-        "action": "route",
-        "outbound": "youtube"
-      },
-      {
-        "domain_suffix": [
-          "youtube.co.ma"
-        ],
-        "action": "route",
-        "outbound": "youtube"
-      },
-      {
-        "domain_suffix": [
-          "youtube.co.nz"
-        ],
-        "action": "route",
-        "outbound": "youtube"
-      },
-      {
-        "domain_suffix": [
-          "youtube.co.th"
-        ],
-        "action": "route",
-        "outbound": "youtube"
-      },
-      {
-        "domain_suffix": [
-          "youtube.co.tz"
-        ],
-        "action": "route",
-        "outbound": "youtube"
-      },
-      {
-        "domain_suffix": [
-          "youtube.co.ug"
-        ],
-        "action": "route",
-        "outbound": "youtube"
-      },
-      {
-        "domain_suffix": [
-          "youtube.co.uk"
-        ],
-        "action": "route",
-        "outbound": "youtube"
-      },
-      {
-        "domain_suffix": [
-          "youtube.co.ve"
-        ],
-        "action": "route",
-        "outbound": "youtube"
-      },
-      {
-        "domain_suffix": [
-          "youtube.co.za"
-        ],
-        "action": "route",
-        "outbound": "youtube"
-      },
-      {
-        "domain_suffix": [
-          "youtube.co.zw"
-        ],
-        "action": "route",
-        "outbound": "youtube"
-      },
-      {
-        "domain_suffix": [
-          "youtube.com"
-        ],
-        "action": "route",
-        "outbound": "youtube"
-      },
-      {
-        "domain_suffix": [
-          "youtube.com.ar"
-        ],
-        "action": "route",
-        "outbound": "youtube"
-      },
-      {
-        "domain_suffix": [
-          "youtube.com.au"
-        ],
-        "action": "route",
-        "outbound": "youtube"
-      },
-      {
-        "domain_suffix": [
-          "youtube.com.az"
-        ],
-        "action": "route",
-        "outbound": "youtube"
-      },
-      {
-        "domain_suffix": [
-          "youtube.com.bd"
-        ],
-        "action": "route",
-        "outbound": "youtube"
-      },
-      {
-        "domain_suffix": [
-          "youtube.com.bh"
-        ],
-        "action": "route",
-        "outbound": "youtube"
-      },
-      {
-        "domain_suffix": [
-          "youtube.com.bo"
-        ],
-        "action": "route",
-        "outbound": "youtube"
-      },
-      {
-        "domain_suffix": [
-          "youtube.com.br"
-        ],
-        "action": "route",
-        "outbound": "youtube"
-      },
-      {
-        "domain_suffix": [
-          "youtube.com.by"
-        ],
-        "action": "route",
-        "outbound": "youtube"
-      },
-      {
-        "domain_suffix": [
-          "youtube.com.co"
-        ],
-        "action": "route",
-        "outbound": "youtube"
-      },
-      {
-        "domain_suffix": [
-          "youtube.com.do"
-        ],
-        "action": "route",
-        "outbound": "youtube"
-      },
-      {
-        "domain_suffix": [
-          "youtube.com.ec"
-        ],
-        "action": "route",
-        "outbound": "youtube"
-      },
-      {
-        "domain_suffix": [
-          "youtube.com.ee"
-        ],
-        "action": "route",
-        "outbound": "youtube"
-      },
-      {
-        "domain_suffix": [
-          "youtube.com.eg"
-        ],
-        "action": "route",
-        "outbound": "youtube"
-      },
-      {
-        "domain_suffix": [
-          "youtube.com.es"
-        ],
-        "action": "route",
-        "outbound": "youtube"
-      },
-      {
-        "domain_suffix": [
-          "youtube.com.gh"
-        ],
-        "action": "route",
-        "outbound": "youtube"
-      },
-      {
-        "domain_suffix": [
-          "youtube.com.gr"
-        ],
-        "action": "route",
-        "outbound": "youtube"
-      },
-      {
-        "domain_suffix": [
-          "youtube.com.gt"
-        ],
-        "action": "route",
-        "outbound": "youtube"
-      },
-      {
-        "domain_suffix": [
-          "youtube.com.hk"
-        ],
-        "action": "route",
-        "outbound": "youtube"
-      },
-      {
-        "domain_suffix": [
-          "youtube.com.hn"
-        ],
-        "action": "route",
-        "outbound": "youtube"
-      },
-      {
-        "domain_suffix": [
-          "youtube.com.hr"
-        ],
-        "action": "route",
-        "outbound": "youtube"
-      },
-      {
-        "domain_suffix": [
-          "youtube.com.jm"
-        ],
-        "action": "route",
-        "outbound": "youtube"
-      },
-      {
-        "domain_suffix": [
-          "youtube.com.jo"
-        ],
-        "action": "route",
-        "outbound": "youtube"
-      },
-      {
-        "domain_suffix": [
-          "youtube.com.kw"
-        ],
-        "action": "route",
-        "outbound": "youtube"
-      },
-      {
-        "domain_suffix": [
-          "youtube.com.lb"
-        ],
-        "action": "route",
-        "outbound": "youtube"
-      },
-      {
-        "domain_suffix": [
-          "youtube.com.lv"
-        ],
-        "action": "route",
-        "outbound": "youtube"
-      },
-      {
-        "domain_suffix": [
-          "youtube.com.ly"
-        ],
-        "action": "route",
-        "outbound": "youtube"
-      },
-      {
-        "domain_suffix": [
-          "youtube.com.mk"
-        ],
-        "action": "route",
-        "outbound": "youtube"
-      },
-      {
-        "domain_suffix": [
-          "youtube.com.mt"
-        ],
-        "action": "route",
-        "outbound": "youtube"
-      },
-      {
-        "domain_suffix": [
-          "youtube.com.mx"
-        ],
-        "action": "route",
-        "outbound": "youtube"
-      },
-      {
-        "domain_suffix": [
-          "youtube.com.my"
-        ],
-        "action": "route",
-        "outbound": "youtube"
-      },
-      {
-        "domain_suffix": [
-          "youtube.com.ng"
-        ],
-        "action": "route",
-        "outbound": "youtube"
-      },
-      {
-        "domain_suffix": [
-          "youtube.com.ni"
-        ],
-        "action": "route",
-        "outbound": "youtube"
-      },
-      {
-        "domain_suffix": [
-          "youtube.com.om"
-        ],
-        "action": "route",
-        "outbound": "youtube"
-      },
-      {
-        "domain_suffix": [
-          "youtube.com.pa"
-        ],
-        "action": "route",
-        "outbound": "youtube"
-      },
-      {
-        "domain_suffix": [
-          "youtube.com.pe"
-        ],
-        "action": "route",
-        "outbound": "youtube"
-      },
-      {
-        "domain_suffix": [
-          "youtube.com.ph"
-        ],
-        "action": "route",
-        "outbound": "youtube"
-      },
-      {
-        "domain_suffix": [
-          "youtube.com.pk"
-        ],
-        "action": "route",
-        "outbound": "youtube"
-      },
-      {
-        "domain_suffix": [
-          "youtube.com.pt"
-        ],
-        "action": "route",
-        "outbound": "youtube"
-      },
-      {
-        "domain_suffix": [
-          "youtube.com.py"
-        ],
-        "action": "route",
-        "outbound": "youtube"
-      },
-      {
-        "domain_suffix": [
-          "youtube.com.qa"
-        ],
-        "action": "route",
-        "outbound": "youtube"
-      },
-      {
-        "domain_suffix": [
-          "youtube.com.ro"
-        ],
-        "action": "route",
-        "outbound": "youtube"
-      },
-      {
-        "domain_suffix": [
-          "youtube.com.sa"
-        ],
-        "action": "route",
-        "outbound": "youtube"
-      },
-      {
-        "domain_suffix": [
-          "youtube.com.sg"
-        ],
-        "action": "route",
-        "outbound": "youtube"
-      },
-      {
-        "domain_suffix": [
-          "youtube.com.sv"
-        ],
-        "action": "route",
-        "outbound": "youtube"
-      },
-      {
-        "domain_suffix": [
-          "youtube.com.tn"
-        ],
-        "action": "route",
-        "outbound": "youtube"
-      },
-      {
-        "domain_suffix": [
-          "youtube.com.tr"
-        ],
-        "action": "route",
-        "outbound": "youtube"
-      },
-      {
-        "domain_suffix": [
-          "youtube.com.tw"
-        ],
-        "action": "route",
-        "outbound": "youtube"
-      },
-      {
-        "domain_suffix": [
-          "youtube.com.ua"
-        ],
-        "action": "route",
-        "outbound": "youtube"
-      },
-      {
-        "domain_suffix": [
-          "youtube.com.uy"
-        ],
-        "action": "route",
-        "outbound": "youtube"
-      },
-      {
-        "domain_suffix": [
-          "youtube.com.ve"
-        ],
-        "action": "route",
-        "outbound": "youtube"
-      },
-      {
-        "domain_suffix": [
-          "youtube.cr"
-        ],
-        "action": "route",
-        "outbound": "youtube"
-      },
-      {
-        "domain_suffix": [
-          "youtube.cz"
-        ],
-        "action": "route",
-        "outbound": "youtube"
-      },
-      {
-        "domain_suffix": [
-          "youtube.de"
-        ],
-        "action": "route",
-        "outbound": "youtube"
-      },
-      {
-        "domain_suffix": [
-          "youtube.dk"
-        ],
-        "action": "route",
-        "outbound": "youtube"
-      },
-      {
-        "domain_suffix": [
-          "youtube.ee"
-        ],
-        "action": "route",
-        "outbound": "youtube"
-      },
-      {
-        "domain_suffix": [
-          "youtube.es"
-        ],
-        "action": "route",
-        "outbound": "youtube"
-      },
-      {
-        "domain_suffix": [
-          "youtube.fi"
-        ],
-        "action": "route",
-        "outbound": "youtube"
-      },
-      {
-        "domain_suffix": [
-          "youtube.fr"
-        ],
-        "action": "route",
-        "outbound": "youtube"
-      },
-      {
-        "domain_suffix": [
-          "youtube.ge"
-        ],
-        "action": "route",
-        "outbound": "youtube"
-      },
-      {
-        "domain_suffix": [
-          "youtube.googleapis.com"
-        ],
-        "action": "route",
-        "outbound": "youtube"
-      },
-      {
-        "domain_suffix": [
-          "youtube.gr"
-        ],
-        "action": "route",
-        "outbound": "youtube"
-      },
-      {
-        "domain_suffix": [
-          "youtube.gt"
-        ],
-        "action": "route",
-        "outbound": "youtube"
-      },
-      {
-        "domain_suffix": [
-          "youtube.hk"
-        ],
-        "action": "route",
-        "outbound": "youtube"
-      },
-      {
-        "domain_suffix": [
-          "youtube.hr"
-        ],
-        "action": "route",
-        "outbound": "youtube"
-      },
-      {
-        "domain_suffix": [
-          "youtube.hu"
-        ],
-        "action": "route",
-        "outbound": "youtube"
-      },
-      {
-        "domain_suffix": [
-          "youtube.ie"
-        ],
-        "action": "route",
-        "outbound": "youtube"
-      },
-      {
-        "domain_suffix": [
-          "youtube.in"
-        ],
-        "action": "route",
-        "outbound": "youtube"
-      },
-      {
-        "domain_suffix": [
-          "youtube.iq"
-        ],
-        "action": "route",
-        "outbound": "youtube"
-      },
-      {
-        "domain_suffix": [
-          "youtube.is"
-        ],
-        "action": "route",
-        "outbound": "youtube"
-      },
-      {
-        "domain_suffix": [
-          "youtube.it"
-        ],
-        "action": "route",
-        "outbound": "youtube"
-      },
-      {
-        "domain_suffix": [
-          "youtube.jo"
-        ],
-        "action": "route",
-        "outbound": "youtube"
-      },
-      {
-        "domain_suffix": [
-          "youtube.jp"
-        ],
-        "action": "route",
-        "outbound": "youtube"
-      },
-      {
-        "domain_suffix": [
-          "youtube.kr"
-        ],
-        "action": "route",
-        "outbound": "youtube"
-      },
-      {
-        "domain_suffix": [
-          "youtube.kz"
-        ],
-        "action": "route",
-        "outbound": "youtube"
-      },
-      {
-        "domain_suffix": [
-          "youtube.la"
-        ],
-        "action": "route",
-        "outbound": "youtube"
-      },
-      {
-        "domain_suffix": [
-          "youtube.lk"
-        ],
-        "action": "route",
-        "outbound": "youtube"
-      },
-      {
-        "domain_suffix": [
-          "youtube.lt"
-        ],
-        "action": "route",
-        "outbound": "youtube"
-      },
-      {
-        "domain_suffix": [
-          "youtube.lu"
-        ],
-        "action": "route",
-        "outbound": "youtube"
-      },
-      {
-        "domain_suffix": [
-          "youtube.lv"
-        ],
-        "action": "route",
-        "outbound": "youtube"
-      },
-      {
-        "domain_suffix": [
-          "youtube.ly"
-        ],
-        "action": "route",
-        "outbound": "youtube"
-      },
-      {
-        "domain_suffix": [
-          "youtube.ma"
-        ],
-        "action": "route",
-        "outbound": "youtube"
-      },
-      {
-        "domain_suffix": [
-          "youtube.md"
-        ],
-        "action": "route",
-        "outbound": "youtube"
-      },
-      {
-        "domain_suffix": [
-          "youtube.me"
-        ],
-        "action": "route",
-        "outbound": "youtube"
-      },
-      {
-        "domain_suffix": [
-          "youtube.mk"
-        ],
-        "action": "route",
-        "outbound": "youtube"
-      },
-      {
-        "domain_suffix": [
-          "youtube.mn"
-        ],
-        "action": "route",
-        "outbound": "youtube"
-      },
-      {
-        "domain_suffix": [
-          "youtube.mx"
-        ],
-        "action": "route",
-        "outbound": "youtube"
-      },
-      {
-        "domain_suffix": [
-          "youtube.my"
-        ],
-        "action": "route",
-        "outbound": "youtube"
-      },
-      {
-        "domain_suffix": [
-          "youtube.ng"
-        ],
-        "action": "route",
-        "outbound": "youtube"
-      },
-      {
-        "domain_suffix": [
-          "youtube.ni"
-        ],
-        "action": "route",
-        "outbound": "youtube"
-      },
-      {
-        "domain_suffix": [
-          "youtube.nl"
-        ],
-        "action": "route",
-        "outbound": "youtube"
-      },
-      {
-        "domain_suffix": [
-          "youtube.no"
-        ],
-        "action": "route",
-        "outbound": "youtube"
-      },
-      {
-        "domain_suffix": [
-          "youtube.pa"
-        ],
-        "action": "route",
-        "outbound": "youtube"
-      },
-      {
-        "domain_suffix": [
-          "youtube.pe"
-        ],
-        "action": "route",
-        "outbound": "youtube"
-      },
-      {
-        "domain_suffix": [
-          "youtube.ph"
-        ],
-        "action": "route",
-        "outbound": "youtube"
-      },
-      {
-        "domain_suffix": [
-          "youtube.pk"
-        ],
-        "action": "route",
-        "outbound": "youtube"
-      },
-      {
-        "domain_suffix": [
-          "youtube.pl"
-        ],
-        "action": "route",
-        "outbound": "youtube"
-      },
-      {
-        "domain_suffix": [
-          "youtube.pr"
-        ],
-        "action": "route",
-        "outbound": "youtube"
-      },
-      {
-        "domain_suffix": [
-          "youtube.pt"
-        ],
-        "action": "route",
-        "outbound": "youtube"
-      },
-      {
-        "domain_suffix": [
-          "youtube.qa"
-        ],
-        "action": "route",
-        "outbound": "youtube"
-      },
-      {
-        "domain_suffix": [
-          "youtube.ro"
-        ],
-        "action": "route",
-        "outbound": "youtube"
-      },
-      {
-        "domain_suffix": [
-          "youtube.rs"
-        ],
-        "action": "route",
-        "outbound": "youtube"
-      },
-      {
-        "domain_suffix": [
-          "youtube.ru"
-        ],
-        "action": "route",
-        "outbound": "youtube"
-      },
-      {
-        "domain_suffix": [
-          "youtube.sa"
-        ],
-        "action": "route",
-        "outbound": "youtube"
-      },
-      {
-        "domain_suffix": [
-          "youtube.se"
-        ],
-        "action": "route",
-        "outbound": "youtube"
-      },
-      {
-        "domain_suffix": [
-          "youtube.sg"
-        ],
-        "action": "route",
-        "outbound": "youtube"
-      },
-      {
-        "domain_suffix": [
-          "youtube.si"
-        ],
-        "action": "route",
-        "outbound": "youtube"
-      },
-      {
-        "domain_suffix": [
-          "youtube.sk"
-        ],
-        "action": "route",
-        "outbound": "youtube"
-      },
-      {
-        "domain_suffix": [
-          "youtube.sn"
-        ],
-        "action": "route",
-        "outbound": "youtube"
-      },
-      {
-        "domain_suffix": [
-          "youtube.soy"
-        ],
-        "action": "route",
-        "outbound": "youtube"
-      },
-      {
-        "domain_suffix": [
-          "youtube.sv"
-        ],
-        "action": "route",
-        "outbound": "youtube"
-      },
-      {
-        "domain_suffix": [
-          "youtube.tn"
-        ],
-        "action": "route",
-        "outbound": "youtube"
-      },
-      {
-        "domain_suffix": [
-          "youtube.tv"
-        ],
-        "action": "route",
-        "outbound": "youtube"
-      },
-      {
-        "domain_suffix": [
-          "youtube.ua"
-        ],
-        "action": "route",
-        "outbound": "youtube"
-      },
-      {
-        "domain_suffix": [
-          "youtube.ug"
-        ],
-        "action": "route",
-        "outbound": "youtube"
-      },
-      {
-        "domain_suffix": [
-          "youtube.uy"
-        ],
-        "action": "route",
-        "outbound": "youtube"
-      },
-      {
-        "domain_suffix": [
-          "youtube.vn"
-        ],
-        "action": "route",
-        "outbound": "youtube"
-      },
-      {
-        "domain_suffix": [
-          "youtubeeducation.com"
-        ],
-        "action": "route",
-        "outbound": "youtube"
-      },
-      {
-        "domain_suffix": [
-          "youtubeembeddedplayer.googleapis.com"
-        ],
-        "action": "route",
-        "outbound": "youtube"
-      },
-      {
-        "domain_suffix": [
-          "youtubefanfest.com"
-        ],
-        "action": "route",
-        "outbound": "youtube"
-      },
-      {
-        "domain_suffix": [
-          "youtubegaming.com"
-        ],
-        "action": "route",
-        "outbound": "youtube"
-      },
-      {
-        "domain_suffix": [
-          "youtubego.co.id"
-        ],
-        "action": "route",
-        "outbound": "youtube"
-      },
-      {
-        "domain_suffix": [
-          "youtubego.co.in"
-        ],
-        "action": "route",
-        "outbound": "youtube"
-      },
-      {
-        "domain_suffix": [
-          "youtubego.com"
-        ],
-        "action": "route",
-        "outbound": "youtube"
-      },
-      {
-        "domain_suffix": [
-          "youtubego.com.br"
-        ],
-        "action": "route",
-        "outbound": "youtube"
-      },
-      {
-        "domain_suffix": [
-          "youtubego.id"
-        ],
-        "action": "route",
-        "outbound": "youtube"
-      },
-      {
-        "domain_suffix": [
-          "youtubego.in"
-        ],
-        "action": "route",
-        "outbound": "youtube"
-      },
-      {
-        "domain_suffix": [
-          "youtubei.googleapis.com"
-        ],
-        "action": "route",
-        "outbound": "youtube"
-      },
-      {
-        "domain_suffix": [
-          "youtubekids.com"
-        ],
-        "action": "route",
-        "outbound": "youtube"
-      },
-      {
-        "domain_suffix": [
-          "youtubemobilesupport.com"
-        ],
-        "action": "route",
-        "outbound": "youtube"
-      },
-      {
-        "domain_suffix": [
-          "yt.be"
-        ],
-        "action": "route",
-        "outbound": "youtube"
-      },
-      {
-        "domain_suffix": [
-          "ytimg.com"
-        ],
-        "action": "route",
-        "outbound": "youtube"
-      },
-      {
-        "domain": [
-          "yt3.googleusercontent.com"
-        ],
-        "action": "route",
-        "outbound": "youtube"
       },
       {
         "domain_suffix": [

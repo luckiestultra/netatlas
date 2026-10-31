@@ -1,0 +1,31 @@
+{
+  "version": 1,
+  "id": "docker",
+  "category": "development",
+  "entries": [
+    {
+      "type": "domain-suffix",
+      "value": "compose-spec.io"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "docker.com"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "docker.io"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "dockerstatic.com"
+    },
+    {
+      "type": "domain",
+      "value": "docker-images-prod.6aa30f8b08e16409b46e0173d6de2f56.r2.cloudflarestorage.com"
+    },
+    {
+      "type": "domain",
+      "value": "docker-pinata-support.s3.amazonaws.com"
+    }
+  ]
+}

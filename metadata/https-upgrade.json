@@ -1,0 +1,150 @@
+{
+  "version": 1,
+  "id": "https-upgrade",
+  "description": "Optional six-host same-host HTTP to HTTPS URL redirects, adapted from a fixed upstream Redirect source.",
+  "defaultEnabled": false,
+  "license": "GPL-2.0-only",
+  "selectedRuleCount": 6,
+  "requiresMitm": false,
+  "permissions": {
+    "scripts": false,
+    "storage": false,
+    "externalRequests": false,
+    "mitm": false
+  },
+  "hosts": [
+    "www.jd.com",
+    "www.mi.com",
+    "suning.com",
+    "taobao.com",
+    "yhd.com",
+    "you.163.com"
+  ],
+  "upstream": {
+    "repository": "blackmatrix7/ios_rule_script",
+    "author": "blackmatrix7",
+    "starsObserved": 28467,
+    "starsObservedAt": "2026-10-31",
+    "repositoryPushedAt": "2026-10-27T21:45:44Z",
+    "sourceUpdatedInHeader": "2025-06-06 09:20:11",
+    "commit": "0b6897dc17e0c513d25449c935a9694818e32f0c",
+    "path": "rewrite/QuantumultX/Redirect/Redirect.conf",
+    "url": "https://raw.githubusercontent.com/blackmatrix7/ios_rule_script/0b6897dc17e0c513d25449c935a9694818e32f0c/rewrite/QuantumultX/Redirect/Redirect.conf",
+    "licenseUrl": "https://raw.githubusercontent.com/blackmatrix7/ios_rule_script/0b6897dc17e0c513d25449c935a9694818e32f0c/LICENSE",
+    "vendoredSource": "src/features/https-upgrade/upstream/Redirect.conf.txt",
+    "vendoredLicense": "src/features/https-upgrade/LICENSE",
+    "sourceSha256": "85311fcf996fbaf7279daba3ec4c3cff31d6035d333ae6b3c939d86039d16357",
+    "licenseSha256": "8177f97513213526df2cf6184d8ff986c675afb514d4e68a404010521b880643",
+    "sourceArchiveExecutable": false
+  },
+  "modifications": {
+    "date": "2026-10-31",
+    "author": "NetAtlas contributors",
+    "notice": "src/features/https-upgrade/NOTICE.md",
+    "selection": "Upstream lines 13\u201318 narrowed to the exact original destination hosts; captures added to preserve the full path and query.",
+    "excluded": "The aicoin rule changes host; other upstream redirects, region modifications, HTTP downgrades and MITM settings are excluded."
+  },
+  "clients": {
+    "quantumultX": {
+      "artifacts": [
+        "rewrites/https-upgrade.snippet"
+      ],
+      "kind": "rewrite-resource",
+      "publicNativeContract": true,
+      "nativeApp": "not-run",
+      "sources": [
+        "https://github.com/crossutility/Quantumult-X/blob/master/sample.conf",
+        "https://github.com/crossutility/Quantumult-X/blob/master/sample-import-rewrite.snippet"
+      ]
+    },
+    "surge": {
+      "artifacts": [
+        "rewrites/https-upgrade.sgmodule"
+      ],
+      "kind": "sgmodule",
+      "publicNativeContract": true,
+      "nativeApp": "not-run",
+      "sources": [
+        "https://manual.nssurge.com/http/url-rewrite.html",
+        "https://manual.nssurge.com/profile/module.html"
+      ]
+    },
+    "loon": {
+      "artifacts": [
+        "rewrites/https-upgrade.plugin"
+      ],
+      "kind": "plugin",
+      "publicNativeContract": true,
+      "nativeApp": "not-run",
+      "sources": [
+        "https://nsloon.app/docs/Plugin/",
+        "https://nsloon.app/docs/Rewrite/rewrite_v2/"
+      ],
+      "minimumVersion": "3.5.1(978)"
+    },
+    "shadowrocket": {
+      "artifacts": [
+        "rewrites/https-upgrade.conf"
+      ],
+      "kind": "manual-merge-fragment",
+      "publicNativeContract": false,
+      "nativeApp": "not-run",
+      "sources": [],
+      "installation": "Manually merge the [URL Rewrite] lines into an existing profile; no standalone module import or public vendor contract is claimed."
+    },
+    "egern": {
+      "artifacts": [
+        "rewrites/https-upgrade.yaml"
+      ],
+      "kind": "module",
+      "publicNativeContract": true,
+      "nativeApp": "not-run",
+      "sources": [
+        "https://egernapp.com/docs/configuration/modules/",
+        "https://egernapp.com/docs/configuration/url_rewrites/"
+      ]
+    },
+    "stash": {
+      "artifacts": [
+        "rewrites/https-upgrade.stoverride"
+      ],
+      "kind": "override",
+      "publicNativeContract": true,
+      "nativeApp": "not-run",
+      "sources": [
+        "https://stash.wiki/configuration/override",
+        "https://stash.wiki/http-engine/rewrite"
+      ],
+      "merge": "Stash override dictionaries merge recursively and URL rewrite arrays prepend by default; this file does not use replace directives."
+    }
+  },
+  "unsupportedClients": {
+    "mihomo": "No HTTP URL rewriting capability is claimed.",
+    "singBox": "No HTTP URL rewriting capability is claimed."
+  },
+  "validation": {
+    "unit": "Parses all six serialized native resource formats; checks positive and negative URL examples, same-host/path/query preservation, no HTTPS loops, no lookalikes/ports/userinfo/raw whitespace.",
+    "hostContract": "Reviewed against the listed official documentation; Shadowrocket remains a manual merge fragment.",
+    "nativeApp": "not-run",
+    "httpsOriginProbe": {
+      "checkedAt": "2026-10-31",
+      "method": "curl HEAD without insecure flag or following redirects; no response body saved",
+      "results": {
+        "www.jd.com": 200,
+        "www.mi.com": 200,
+        "suning.com": 302,
+        "taobao.com": 302,
+        "yhd.com": 301,
+        "you.163.com": 200
+      },
+      "tlsVerifyResult": 0,
+      "scope": "Confirms HTTPS is reachable from this environment, not every path or native interception behavior."
+    }
+  },
+  "limitations": [
+    "Only HTTP URLs reaching the client HTTP engine are eligible; this is not HSTS.",
+    "Only exact listed hosts with a leading slash and without explicit port/userinfo are matched.",
+    "302 may change a non-GET method when followed; method/body preservation is not promised.",
+    "Later site-controlled redirects and app pinning are outside this package."
+  ]
+}

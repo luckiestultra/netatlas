@@ -16,6 +16,14 @@ test('exact IDN domains do not match subdomains', () => {
   assert.equal(matchesEntry(entry, { host: 'api.例子.测试' }), false);
 });
 
+test('domain input cannot be silently truncated or URL-decoded by IDNA conversion', () => {
+  for (const type of ['domain', 'domain-suffix']) {
+    for (const value of ['example.com/path', 'example.com?query', 'example.com#fragment', 'example.com\\path', 'example.com%2fpath', 'example.com:443', 'user@example.com', 'exa\nmple.com']) {
+      assert.throws(() => normalizeEntry({ type, value }), /domain/i, value);
+    }
+  }
+});
+
 test('CIDR normalization and boundary matching preserve IPv4 and IPv6 semantics', () => {
   const v4 = normalizeEntry({ type: 'ip-cidr', value: '192.0.2.17/24' });
   assert.equal(v4.value, '192.0.2.0/24');

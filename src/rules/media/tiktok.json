@@ -1,0 +1,167 @@
+{
+  "version": 1,
+  "id": "tiktok",
+  "category": "media",
+  "entries": [
+    {
+      "type": "domain-suffix",
+      "value": "analytics.tiktok.com"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "bytedapm.com"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "muscdn.com"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "musical.ly"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "tik-tokapi.com"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "tiktok-minis.com"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "tiktok-row.net"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "tiktok.com"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "tiktokcdn-eu.com"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "tiktokcdn-us.com"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "tiktokcdn-us.com.edgesuite.net"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "tiktokcdn.com"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "tiktokcdn.com.akamaized.net"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "tiktokcdn.com.edgesuite.net"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "tiktokd.net"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "tiktokd.org"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "tiktokeu-cdn.com"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "tiktokglobalshopv.com"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "tiktokminis.us"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "tiktokrow-cdn.com"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "tiktokshop.com"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "tiktokstaticb.com"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "tiktokv.com"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "tiktokv.com.edgekey.net"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "tiktokv.com.edgesuite.net"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "tiktokv.eu"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "tiktokv.us"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "tiktokvapp.com"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "tiktokw.eu"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "tiktokw.us"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "ttcdn-us.com"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "ttlivecdn.com"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "ttoverseaus.net"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "ttwstatic.com"
+    },
+    {
+      "type": "domain",
+      "value": "p16-tiktok-dm-sticker-sign-sg.ibyteimg.com"
+    },
+    {
+      "type": "domain",
+      "value": "p16-tiktokcdn-com.akamaized.net"
+    },
+    {
+      "type": "domain",
+      "value": "roovza-launches.appsflyersdk.com"
+    },
+    {
+      "type": "domain",
+      "value": "roovza.inapps.appsflyersdk.com"
+    },
+    {
+      "type": "domain",
+      "value": "roovza.launches.appsflyersdk.com"
+    },
+    {
+      "type": "domain",
+      "value": "roovza.skadsdk.appsflyersdk.com"
+    }
+  ]
+}

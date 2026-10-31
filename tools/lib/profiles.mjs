@@ -1,5 +1,5 @@
 import { stringify as stringifyYaml } from 'yaml';
-import { policyGroupsFor, policyForRuleset } from './policies.mjs';
+import { policyGroupsFor, policyForRuleset, profileRulesetsFor } from './policies.mjs';
 
 export const profileFormats = Object.freeze({
   quantumultX: { extension: 'conf', format: 'ini' },
@@ -223,6 +223,7 @@ function singBox(entries, groups) {
 const renderers = { quantumultX, surge, loon, shadowrocket, egern, stash, mihomo, singBox };
 
 export function renderProfile(client, { rulesets = [] } = {}) {
+  rulesets = profileRulesetsFor(rulesets);
   if (!Object.hasOwn(profileFormats, client)) throw new Error(`Unknown profile client: ${client}`);
   const { extension, format } = profileFormats[client];
   const rendered = renderers[client](flattenRules(rulesets), policyGroupsFor(rulesets));

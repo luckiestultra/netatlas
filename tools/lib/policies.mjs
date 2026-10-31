@@ -1,5 +1,9 @@
 import routing from '../../metadata/routing.json' with { type: 'json' };
 
+export function profileRulesetsFor(rulesets) {
+  return rulesets.filter(ruleset => !(routing.excludedFromDefault ?? []).includes(ruleset.id));
+}
+
 export function policyForRuleset(ruleset) {
   return routing.fixed[ruleset.id] || ruleset.id;
 }

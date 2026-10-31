@@ -1,0 +1,267 @@
+{
+  "version": 1,
+  "id": "hbo",
+  "category": "media",
+  "entries": [
+    {
+      "type": "domain-suffix",
+      "value": "beforeigners.com"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "brightline.tv"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "cinemax.com"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "discomax.com"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "elpionero.es"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "forthethrone.com"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "h264.io"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "hbo"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "hbo-europe.com"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "hbo.ba"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "hbo.bg"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "hbo.com"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "hbo.com.c.footprint.net"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "hbo.com.edgesuite.net"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "hbo.cz"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "hbo.eu"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "hbo.hr"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "hbo.hu"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "hbo.map.fastly.net"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "hbo.me"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "hbo.mk"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "hbo.pl"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "hbo.ro"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "hbo.rs"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "hbo.sk"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "hboaccess.com"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "hboarchives.com"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "hboasia.com"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "hboenterprises.com"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "hboespana.com"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "hbogo.co.th"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "hbogo.com"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "hbogo.cz"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "hbogo.eu"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "hbogo.hu"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "hbogo.sk"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "hbogoasia.com"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "hbogoasia.hk"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "hbogoasia.id"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "hbogoasia.my"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "hbogoasia.ph"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "hbogoasia.sg"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "hbogoasia.tw"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "hboinflight.com"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "hbolacontent.net"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "hbolaunchpad.com"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "hbomailman.com"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "hbomax-images.warnermediacdn.com"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "hbomax.com"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "hbomax.eu"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "hbomaxcdn.com"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "hbomaxdash.s.llnwi.net"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "hbomediarelations.com"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "hbonordic.com"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "hbonordic.tv"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "hbonow.com"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "hboportugal.com"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "hboprod.com"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "hbospain.com"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "hbotvsales.com"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "homebox.com"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "homeboxoffice.com"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "max.com"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "maxgo.com"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "redbyhbo.com"
+    }
+  ]
+}

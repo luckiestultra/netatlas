@@ -1,0 +1,144 @@
+{
+  "license": "GPL-2.0-only",
+  "changed": "2026-10-31",
+  "rules": [
+    {
+      "host": "www.jd.com",
+      "upstreamLineNumber": 13,
+      "upstreamLine": "^http:\\/\\/(www.)?jd\\.com\\/ url 302 https://www.jd.com/",
+      "examples": {
+        "positive": [
+          [
+            "http://www.jd.com/",
+            "https://www.jd.com/"
+          ],
+          [
+            "http://www.jd.com/a%2Fb?x=1&x=2&q=a%20b%26c",
+            "https://www.jd.com/a%2Fb?x=1&x=2&q=a%20b%26c"
+          ]
+        ],
+        "negative": [
+          "https://www.jd.com/",
+          "http://www.jd.com.evil.example/",
+          "http://user@www.jd.com/",
+          "http://www.jd.com:80/"
+        ]
+      }
+    },
+    {
+      "host": "www.mi.com",
+      "upstreamLineNumber": 14,
+      "upstreamLine": "^http:\\/\\/(www.)?mi\\.com\\/ url 302 https://www.mi.com/",
+      "examples": {
+        "positive": [
+          [
+            "http://www.mi.com/",
+            "https://www.mi.com/"
+          ],
+          [
+            "http://www.mi.com/a%2Fb?x=1&x=2&q=a%20b%26c",
+            "https://www.mi.com/a%2Fb?x=1&x=2&q=a%20b%26c"
+          ]
+        ],
+        "negative": [
+          "https://www.mi.com/",
+          "http://www.mi.com.evil.example/",
+          "http://user@www.mi.com/",
+          "http://www.mi.com:80/"
+        ]
+      }
+    },
+    {
+      "host": "suning.com",
+      "upstreamLineNumber": 15,
+      "upstreamLine": "^http:\\/\\/(www.)?suning\\.com\\/ url 302 https://suning.com/",
+      "examples": {
+        "positive": [
+          [
+            "http://suning.com/",
+            "https://suning.com/"
+          ],
+          [
+            "http://suning.com/a%2Fb?x=1&x=2&q=a%20b%26c",
+            "https://suning.com/a%2Fb?x=1&x=2&q=a%20b%26c"
+          ]
+        ],
+        "negative": [
+          "https://suning.com/",
+          "http://suning.com.evil.example/",
+          "http://user@suning.com/",
+          "http://suning.com:80/"
+        ]
+      }
+    },
+    {
+      "host": "taobao.com",
+      "upstreamLineNumber": 16,
+      "upstreamLine": "^http:\\/\\/(www.)?taobao\\.com\\/ url 302 https://taobao.com/",
+      "examples": {
+        "positive": [
+          [
+            "http://taobao.com/",
+            "https://taobao.com/"
+          ],
+          [
+            "http://taobao.com/a%2Fb?x=1&x=2&q=a%20b%26c",
+            "https://taobao.com/a%2Fb?x=1&x=2&q=a%20b%26c"
+          ]
+        ],
+        "negative": [
+          "https://taobao.com/",
+          "http://taobao.com.evil.example/",
+          "http://user@taobao.com/",
+          "http://taobao.com:80/"
+        ]
+      }
+    },
+    {
+      "host": "yhd.com",
+      "upstreamLineNumber": 17,
+      "upstreamLine": "^http:\\/\\/(www.)?yhd\\.com\\/ url 302 https://yhd.com/",
+      "examples": {
+        "positive": [
+          [
+            "http://yhd.com/",
+            "https://yhd.com/"
+          ],
+          [
+            "http://yhd.com/a%2Fb?x=1&x=2&q=a%20b%26c",
+            "https://yhd.com/a%2Fb?x=1&x=2&q=a%20b%26c"
+          ]
+        ],
+        "negative": [
+          "https://yhd.com/",
+          "http://yhd.com.evil.example/",
+          "http://user@yhd.com/",
+          "http://yhd.com:80/"
+        ]
+      }
+    },
+    {
+      "host": "you.163.com",
+      "upstreamLineNumber": 18,
+      "upstreamLine": "^http:\\/\\/you\\.163\\.com\\/ url 302 https://you.163.com/",
+      "examples": {
+        "positive": [
+          [
+            "http://you.163.com/",
+            "https://you.163.com/"
+          ],
+          [
+            "http://you.163.com/a%2Fb?x=1&x=2&q=a%20b%26c",
+            "https://you.163.com/a%2Fb?x=1&x=2&q=a%20b%26c"
+          ]
+        ],
+        "negative": [
+          "https://you.163.com/",
+          "http://you.163.com.evil.example/",
+          "http://user@you.163.com/",
+          "http://you.163.com:80/"
+        ]
+      }
+    }
+  ]
+}

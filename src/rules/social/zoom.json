@@ -1,0 +1,19 @@
+{
+  "version": 1,
+  "id": "zoom",
+  "category": "social",
+  "entries": [
+    {
+      "type": "domain-suffix",
+      "value": "zoom.com"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "zoom.com.cn"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "zoom.us"
+    }
+  ]
+}

@@ -1,0 +1,115 @@
+{
+  "version": 1,
+  "id": "vercel",
+  "category": "development",
+  "entries": [
+    {
+      "type": "domain-suffix",
+      "value": "ai-sdk.dev"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "err.sh"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "hyper.is"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "nextjs.org"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "now.sh"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "skills.sh"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "static.fun"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "title.sh"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "turborepo.org"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "vercel-dns.com"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "vercel-status.com"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "vercel.app"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "vercel.blog"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "vercel.com"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "vercel.dev"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "vercel.events"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "vercel.live"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "vercel.pub"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "vercel.sh"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "vercel.store"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "zeit-world.co.uk"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "zeit-world.com"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "zeit-world.net"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "zeit-world.org"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "zeit.co"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "zeit.sh"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "zeitworld.com"
+    }
+  ]
+}

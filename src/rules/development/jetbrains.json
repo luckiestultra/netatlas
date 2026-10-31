@@ -1,0 +1,107 @@
+{
+  "version": 1,
+  "id": "jetbrains",
+  "category": "development",
+  "entries": [
+    {
+      "type": "domain-suffix",
+      "value": "cdn.jetbrains.com"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "datalore.io"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "grazie.ai"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "grazie.aws.intellij.net"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "intellij.com"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "intellij.net"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "intellij.org"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "jb.gg"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "jetbrains.ai"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "jetbrains.cloud"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "jetbrains.com"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "jetbrains.com.cn"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "jetbrains.dev"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "jetbrains.net"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "jetbrains.org"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "jetbrains.ru"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "jetbrains.space"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "jetbrains.team"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "kotl.in"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "kotlinconf.com"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "kotlinlang.org"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "ktor.io"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "myjetbrains.com"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "talkingkotlin.com"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "youtrack.cloud"
+    }
+  ]
+}

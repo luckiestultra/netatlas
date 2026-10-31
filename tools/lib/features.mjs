@@ -1,21 +1,18 @@
 import { readFileSync } from 'node:fs';
 import { createGeoIP } from '../../src/features/geoip/core.mjs';
+import { renderAntiAd } from './anti-ad.mjs';
+import { publicArtifactUrl } from './public-url.mjs';
+import { renderHttpsUpgrade } from './https-upgrade.mjs';
 
 const clientIds = new Set(['quantumultX', 'surge', 'loon', 'shadowrocket', 'egern', 'stash', 'mihomo', 'singBox']);
 const source = (path) => readFileSync(new URL('../../src/features/' + path, import.meta.url), 'utf8');
 const nativeScript = (adapter) => '// Generated from the portable GeoIP core and an explicit native adapter.\nvar AtlasGeoIP = (' + createGeoIP.toString() + ')();\n' + source('geoip/' + adapter + '.js');
 
 function publicScript(baseUrl, client) {
-  if (!baseUrl) return null;
-  const normalized = String(baseUrl).replace(/\/+$/, '');
-  const url = new URL(normalized);
-  if (!['http:', 'https:'].includes(url.protocol) || url.search || url.hash || url.username || url.password || /[,\s]/.test(normalized)) {
-    throw new Error('Feature baseUrl must be a public HTTP(S) directory URL without credentials, query or fragment');
-  }
-  return normalized + '/clients/' + client + '/scripts/geoip.js';
+  return publicArtifactUrl(baseUrl,client,'scripts/geoip.js');
 }
 
-export function renderFeatures(client, { baseUrl } = {}) {
+function renderBuiltinFeatures(client, { baseUrl } = {}) {
   if (!clientIds.has(client)) throw new Error('Unknown client: ' + client);
   if (client === 'quantumultX') {
     const scriptUrl = publicScript(baseUrl, client);
@@ -42,4 +39,8 @@ export function renderFeatures(client, { baseUrl } = {}) {
     ];
   }
   return [];
+}
+
+export function renderFeatures(client,options={}) {
+  return [...renderBuiltinFeatures(client,options),...renderAntiAd(client,options),...renderHttpsUpgrade(client,options)];
 }

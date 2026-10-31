@@ -1,0 +1,31 @@
+{
+  "version": 1,
+  "id": "github-copilot",
+  "category": "ai",
+  "entries": [
+    {
+      "type": "domain-suffix",
+      "value": "githubcopilot.com"
+    },
+    {
+      "type": "domain",
+      "value": "copilot-proxy.githubusercontent.com"
+    },
+    {
+      "type": "domain",
+      "value": "copilot-telemetry-service.githubusercontent.com"
+    },
+    {
+      "type": "domain",
+      "value": "copilot-telemetry.githubusercontent.com"
+    },
+    {
+      "type": "domain",
+      "value": "copilot-workspace.githubnext.com"
+    },
+    {
+      "type": "domain",
+      "value": "copilotprodattachments.blob.core.windows.net"
+    }
+  ]
+}

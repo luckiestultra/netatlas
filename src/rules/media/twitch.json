@@ -1,0 +1,147 @@
+{
+  "version": 1,
+  "id": "twitch",
+  "category": "media",
+  "entries": [
+    {
+      "type": "domain-suffix",
+      "value": "ext-twitch.tv"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "jtvnw.net"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "live-video.net"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "ttvnw.net"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "twitch.tv"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "twitchcdn.net"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "twitchcon.com"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "twitchsvc.net"
+    },
+    {
+      "type": "domain",
+      "value": "d1g1f25tn8m2e6.cloudfront.net"
+    },
+    {
+      "type": "domain",
+      "value": "d1m7jfoe9zdc1j.cloudfront.net"
+    },
+    {
+      "type": "domain",
+      "value": "d1mhjrowxxagfy.cloudfront.net"
+    },
+    {
+      "type": "domain",
+      "value": "d1ndex63qxojbr.cloudfront.net"
+    },
+    {
+      "type": "domain",
+      "value": "d1oca24q5dwo6d.cloudfront.net"
+    },
+    {
+      "type": "domain",
+      "value": "d1w2poirtb3as9.cloudfront.net"
+    },
+    {
+      "type": "domain",
+      "value": "d1xhnb4ptk05mw.cloudfront.net"
+    },
+    {
+      "type": "domain",
+      "value": "d1ymi26ma8va5x.cloudfront.net"
+    },
+    {
+      "type": "domain",
+      "value": "d2aba1wr3818hz.cloudfront.net"
+    },
+    {
+      "type": "domain",
+      "value": "d2dylwb3shzel1.cloudfront.net"
+    },
+    {
+      "type": "domain",
+      "value": "d2e2de1etea730.cloudfront.net"
+    },
+    {
+      "type": "domain",
+      "value": "d2nvs31859zcd8.cloudfront.net"
+    },
+    {
+      "type": "domain",
+      "value": "d2um2qdswy1tb0.cloudfront.net"
+    },
+    {
+      "type": "domain",
+      "value": "d2vjef5jvl6bfs.cloudfront.net"
+    },
+    {
+      "type": "domain",
+      "value": "d2xmjdvx03ij56.cloudfront.net"
+    },
+    {
+      "type": "domain",
+      "value": "d36nr0u3xmc4mm.cloudfront.net"
+    },
+    {
+      "type": "domain",
+      "value": "d3aqoihi2n8ty8.cloudfront.net"
+    },
+    {
+      "type": "domain",
+      "value": "d3c27h4odz752x.cloudfront.net"
+    },
+    {
+      "type": "domain",
+      "value": "d3stzm2eumvgb4.cloudfront.net"
+    },
+    {
+      "type": "domain",
+      "value": "d3vd9lfkzbru3h.cloudfront.net"
+    },
+    {
+      "type": "domain",
+      "value": "d6d4ismr40iw.cloudfront.net"
+    },
+    {
+      "type": "domain",
+      "value": "d6tizftlrpuof.cloudfront.net"
+    },
+    {
+      "type": "domain",
+      "value": "ddacn6pr5v0tl.cloudfront.net"
+    },
+    {
+      "type": "domain",
+      "value": "dgeft87wbj63p.cloudfront.net"
+    },
+    {
+      "type": "domain",
+      "value": "dqrpb9wgowsf5.cloudfront.net"
+    },
+    {
+      "type": "domain",
+      "value": "ds0h3roq6wcgc.cloudfront.net"
+    },
+    {
+      "type": "domain",
+      "value": "dykkng5hnh52u.cloudfront.net"
+    }
+  ]
+}

@@ -1,0 +1,51 @@
+{
+  "version": 1,
+  "id": "slack",
+  "category": "social",
+  "entries": [
+    {
+      "type": "domain-suffix",
+      "value": "slack-core.com"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "slack-edge.com"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "slack-files.com"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "slack-imgs.com"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "slack-msgs.com"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "slack-redir.net"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "slack.com"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "slackb.com"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "slackcertified.com"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "slackdemo.com"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "slackhq.com"
+    }
+  ]
+}

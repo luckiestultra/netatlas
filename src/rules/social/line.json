@@ -1,0 +1,87 @@
+{
+  "version": 1,
+  "id": "line",
+  "category": "social",
+  "entries": [
+    {
+      "type": "domain-suffix",
+      "value": "gcld-line.com"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "lin.ee"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "line-apps-beta.com"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "line-apps-rc.com"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "line-apps.com"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "line-beta.me"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "line-cdn.net"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "line-scdn.net"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "line.biz"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "line.me"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "line.naver.jp"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "linecorp.com"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "linefriends.com"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "linefriends.com.tw"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "linegame.jp"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "linemobile.com"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "linemyshop.com"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "lineshoppingseller.com"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "linetv.tw"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "nhncorp.jp"
+    }
+  ]
+}

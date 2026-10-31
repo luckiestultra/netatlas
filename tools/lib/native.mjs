@@ -10,15 +10,24 @@ import { promisify } from 'node:util';
 import { gunzipSync } from 'node:zlib';
 import { parse as parseYaml, stringify as stringifyYaml } from 'yaml';
 import { renderProfile } from './profiles.mjs';
-import { orderedRulesets } from './policies.mjs';
-import { normalizeRuleset } from './rules.mjs';
+import { orderedRulesets, profileRulesetsFor } from './policies.mjs';
+import { matchesEntry, normalizeRuleset } from './rules.mjs';
 import { renderRuleset } from './exporters.mjs';
+import { renderAntiAd } from './anti-ad.mjs';
+import { assertManagedPaths } from './managed-paths.mjs';
 
 const execute = promisify(execFile);
 const sha256 = bytes => createHash('sha256').update(bytes).digest('hex');
 const executableNames = { mihomo: 'mihomo', singBox: 'sing-box' };
 const officialRepositories = { mihomo: 'MetaCubeX/mihomo', singBox: 'SagerNet/sing-box' };
 const pause = milliseconds => new Promise(resolve => setTimeout(resolve, milliseconds));
+const fixtureHosts = new Set([
+  '127.0.0.1', 'allowed.netatlas.test', 'blocked.netatlas.test', 'fallback.netatlas.test',
+  'doubleclick.net', 'sub.doubleclick.net', 'baddoubleclick.net', 'doubleclick.net.invalid',
+  'tv.apple.com', 'cdn.tv.apple.com', 'hls.itunes.apple.com', 'sub.hls.itunes.apple.com',
+  'copilot-proxy.githubusercontent.com', 'sub.copilot-proxy.githubusercontent.com',
+  'registry.npmjs.org', 'www.apple.com', 'api.github.com',
+]);
 
 export function artifactFor(registry, id, platform = `${process.platform}-${process.arch}`) {
   if (registry.version !== 1 || !Array.isArray(registry.tools)) throw new Error('Invalid native tool registry');
@@ -84,29 +93,41 @@ async function fetchArtifact(url) {
 }
 
 export async function installNativeTools({ root, platform = `${process.platform}-${process.arch}`, fetchBytes = fetchArtifact, onProgress = () => {} }) {
+  await assertManagedPaths(root, ['metadata/native-tools.json', '.cache/bin', '.cache/native-tools']);
   const registry = JSON.parse(await readFile(path.join(root, 'metadata/native-tools.json'), 'utf8'));
   const binaries = {};
   const artifacts = [];
+  // Preflight both tools before any download or mutation. A second-tool symlink
+  // must not allow a first-tool install to change the cache before rejection.
+  const pending = ['mihomo', 'singBox'].map(id => artifactFor(registry, id, platform));
+  await assertManagedPaths(root, pending.flatMap(artifact => [
+    path.join('.cache/native-tools', platform, artifact.file),
+    path.join('.cache/bin', executableNames[artifact.id]),
+  ]));
   await mkdir(path.join(root, '.cache/bin'), { recursive: true });
-  for (const id of ['mihomo', 'singBox']) {
-    const artifact = artifactFor(registry, id, platform);
+  for (const artifact of pending) {
+    const id = artifact.id;
     const directory = path.join(root, '.cache/native-tools', platform);
     await mkdir(directory, { recursive: true });
     const archivePath = path.join(directory, artifact.file);
     onProgress(`Verify ${id} ${artifact.version} (${platform})`);
     const archive = await fileExists(archivePath) ? await readFile(archivePath) : await fetchBytes(artifact.url);
     verifyArtifact(archive, artifact.sha256);
-    if (!await fileExists(archivePath)) await writeFile(archivePath, archive);
+    await assertManagedPaths(root, [archivePath]);
+    if (!await fileExists(archivePath)) await writeFile(archivePath, archive, { flag: 'wx' });
     const executable = decodeToolArchive(archive, artifact);
     const executableSha256 = sha256(executable);
     const binary = path.join(root, '.cache/bin', executableNames[id]);
+    await assertManagedPaths(root, [binary]);
     const current = await fileExists(binary) ? await readFile(binary) : null;
     if (!current || sha256(current) !== executableSha256) {
       const staged = path.join(directory, `${executableNames[id]}.verified-${randomUUID()}`);
-      await writeFile(staged, executable, { mode: 0o755 });
+      await assertManagedPaths(root, [staged, binary]);
+      await writeFile(staged, executable, { mode: 0o755, flag: 'wx' });
       if (current) await rename(binary, path.join(directory, `${executableNames[id]}.previous-${randomUUID()}`));
       await rename(staged, binary);
     }
+    await assertManagedPaths(root, [binary]);
     await chmod(binary, 0o755);
     binaries[id] = binary;
     artifacts.push({ id, version: artifact.version, platform, archiveSha256: artifact.sha256, executableSha256 });
@@ -131,6 +152,7 @@ async function catalog(root) {
 
 async function cacheDirectory(root, prefix) {
   const base = path.join(root, '.cache/native-check');
+  await assertManagedPaths(root, [base]);
   await mkdir(base, { recursive: true });
   return mkdtemp(path.join(base, prefix));
 }
@@ -146,13 +168,14 @@ export async function checkNativeProfiles({ root, binaries, onProgress = () => {
     const profilePath = await fileExists(published) ? published : fallback;
     if (profilePath === fallback) await writeFile(fallback, profile.content);
     const profileBytes = await readFile(profilePath);
+    if (!profileBytes.equals(Buffer.from(profile.content))) throw new Error(`Generated ${id} profile is stale; run npm run build before native verification`);
     const snapshot = path.join(directory, `${id}-checked.${profile.format === 'json' ? 'json' : 'yaml'}`);
     await writeFile(snapshot, profileBytes);
     onProgress(`Native check: ${id} full catalog profile`);
     const args = id === 'mihomo' ? ['-t', '-f', snapshot, '-d', directory] : ['check', '-c', snapshot];
     const output = await run(binaries[id], args, directory);
     await writeFile(path.join(directory, `${id}-check.log`), `${output}\n`);
-    results.push({ client: id, status: 'passed', profile: path.relative(root, profilePath), checkedSnapshot: path.relative(root, snapshot), profileSha256: sha256(profileBytes), catalogRulesets: rulesets.length });
+    results.push({ client: id, status: 'passed', profile: path.relative(root, profilePath), checkedSnapshot: path.relative(root, snapshot), profileSha256: sha256(profileBytes), catalogRulesets: rulesets.length, embeddedRulesets: profileRulesetsFor(rulesets).length });
   }
   const compiled = [];
   for (const ruleset of rulesets) {
@@ -162,6 +185,7 @@ export async function checkNativeProfiles({ root, binaries, onProgress = () => {
     const input = await fileExists(published) ? published : generated;
     if (input === generated) await writeFile(generated, output.content);
     const inputBytes = await readFile(input);
+    if (!inputBytes.equals(Buffer.from(output.content))) throw new Error(`Generated singBox ruleset ${ruleset.id} is stale; run npm run build before native verification`);
     await writeFile(generated, inputBytes);
     const binary = path.join(directory, `${ruleset.id}.srs`);
     await run(binaries.singBox, ['rule-set', 'compile', generated, '-o', binary], directory);
@@ -184,32 +208,38 @@ async function freePort() {
   return port;
 }
 
-async function localDns() {
+async function localDns(extraHosts = []) {
+  const allowedHosts = new Set([...fixtureHosts, ...extraHosts]);
+  const questions = [];
   const server = dgram.createSocket('udp4');
   server.on('message', (query, sender) => {
     if (query.length < 17 || query.readUInt16BE(4) !== 1) return;
     let offset = 12;
+    const labels = [];
     while (offset < query.length && query[offset]) {
       if (query[offset] > 63 || offset + query[offset] >= query.length) return;
+      labels.push(query.subarray(offset + 1, offset + 1 + query[offset]).toString('ascii').toLowerCase());
       offset += query[offset] + 1;
     }
     if (offset + 5 > query.length) return;
     const qtype = query.readUInt16BE(offset + 1);
+    const host = labels.join('.');
+    const answerKnownHost = qtype === 1 && allowedHosts.has(host);
+    questions.push({ host, type: qtype, answered: answerKnownHost });
     const header = Buffer.alloc(12);
     query.copy(header, 0, 0, 2);
     header.writeUInt16BE(0x8180, 2);
     header.writeUInt16BE(1, 4);
-    header.writeUInt16BE(qtype === 1 ? 1 : 0, 6);
-    const answer = qtype === 1 ? Buffer.from([0xc0, 0x0c, 0, 1, 0, 1, 0, 0, 0, 0, 0, 4, 127, 0, 0, 1]) : Buffer.alloc(0);
+    header.writeUInt16BE(answerKnownHost ? 1 : 0, 6);
+    const answer = answerKnownHost ? Buffer.from([0xc0, 0x0c, 0, 1, 0, 1, 0, 0, 0, 0, 0, 4, 127, 0, 0, 1]) : Buffer.alloc(0);
     server.send(Buffer.concat([header, query.subarray(12, offset + 5), answer]), sender.port, sender.address);
   });
   await new Promise((resolve, reject) => { server.once('error', reject); server.bind(0, '127.0.0.1', resolve); });
-  return { server, port: server.address().port };
+  return { server, port: server.address().port, questions };
 }
 
 async function localSocksUpstream(targetPort) {
   const sockets = new Set();
-  const hosts = new Set(['127.0.0.1', 'allowed.netatlas.test', 'blocked.netatlas.test', 'fallback.netatlas.test', 'doubleclick.net', 'sub.doubleclick.net', 'baddoubleclick.net', 'doubleclick.net.invalid']);
   let requests = 0;
   const server = net.createServer(socket => {
     sockets.add(socket);
@@ -232,7 +262,7 @@ async function localSocksUpstream(targetPort) {
       const length = type === 1 ? 10 : type === 4 ? 22 : type === 3 && buffer.length >= 5 ? 7 + buffer[4] : 0;
       if (!length || buffer.length < length) return;
       const host = type === 1 ? [...buffer.subarray(4, 8)].join('.') : type === 3 ? buffer.subarray(5, 5 + buffer[4]).toString('utf8') : '';
-      if (buffer[0] !== 5 || buffer[1] !== 1 || !hosts.has(host) || buffer.readUInt16BE(length - 2) !== targetPort) {
+      if (buffer[0] !== 5 || buffer[1] !== 1 || !fixtureHosts.has(host) || buffer.readUInt16BE(length - 2) !== targetPort) {
         return socket.end(Buffer.from([5, 2, 0, 1, 127, 0, 0, 1, 0, 0]));
       }
       state = 'connecting';
@@ -329,6 +359,51 @@ async function waitForPort(child, port) {
   throw new Error('Native proxy readiness timed out');
 }
 
+// A listening mixed port does not imply that Mihomo's asynchronous file-rule
+// provider has loaded. Query the documented read-only collection API until the
+// actual pinned entry count is present; requests before this gate can all fail
+// with 502, falsely resembling successful REJECT tests.
+// https://wiki.metacubex.one/en/api/#providersrules
+export async function waitForMihomoRuleProvider({ controllerPort, secret, expectedCount, child, timeoutMs = 8_000 }) {
+  if (!Number.isInteger(controllerPort) || controllerPort < 1 || controllerPort > 65535
+    || typeof secret !== 'string' || !secret || /[\r\n]/.test(secret)
+    || !Number.isInteger(expectedCount) || expectedCount < 1 || !Number.isFinite(timeoutMs) || timeoutMs <= 0) {
+    throw new Error('Invalid local rule provider readiness parameters');
+  }
+  const started = Date.now();
+  const deadline = started + timeoutMs;
+  const observations = [];
+  while (Date.now() < deadline) {
+    if (child && (child.exitCode !== null || child.signalCode !== null || child.startupError)) throw new Error('Native process exited before its rule provider was ready');
+    let response;
+    try {
+      response = await fetch(`http://127.0.0.1:${controllerPort}/providers/rules`, {
+        method: 'GET', headers: { Authorization: `Bearer ${secret}` },
+        signal: AbortSignal.timeout(Math.max(1, Math.min(1000, deadline - Date.now()))),
+      });
+    } catch (error) {
+      // Transport refusal is an observable API-startup state, not a passing
+      // provider result. Other API, JSON and schema failures below fail fast.
+      observations.push({ elapsedMs: Date.now() - started, transport: error.name });
+      await pause(Math.max(0, Math.min(25, deadline - Date.now())));
+      continue;
+    }
+    if (!response.ok) throw new Error(`Local rule provider API returned HTTP ${response.status}`);
+    let body;
+    try { body = await response.json(); } catch { throw new Error('Local rule provider API returned invalid JSON'); }
+    const provider = body?.providers?.['netatlas-anti-ad'];
+    if (!provider || !Number.isInteger(provider.ruleCount) || provider.ruleCount < 0) throw new Error('Local rule provider API schema is missing netatlas-anti-ad');
+    if (provider.vehicleType !== 'File' || provider.behavior !== 'Classical' || provider.format !== 'YamlRule') throw new Error('Local rule provider must remain File/Classical/YamlRule');
+    observations.push({ elapsedMs: Date.now() - started, ruleCount: provider.ruleCount, updatedAt: provider.updatedAt });
+    if (provider.ruleCount === expectedCount) {
+      return { status: 'passed', endpoint: '/providers/rules', expectedCount, provider, observations };
+    }
+    if (provider.ruleCount !== 0) throw new Error(`Local rule provider count mismatch: expected ${expectedCount}, got ${provider.ruleCount}`);
+    await pause(Math.max(0, Math.min(25, deadline - Date.now())));
+  }
+  throw new Error(`Local rule provider was not ready with ${expectedCount} rules before its deadline; observed ${JSON.stringify(observations)}`);
+}
+
 async function stop(child) {
   if (child.exitCode !== null || child.signalCode !== null) return;
   child.kill('SIGTERM');
@@ -341,6 +416,12 @@ async function stop(child) {
 
 export async function testLocalRouting({ root, binaries, onProgress = () => {} }) {
   const directory = await cacheDirectory(root, 'routing-');
+  const currentCatalog = await catalog(root);
+  const serviceRulesets = ['apple', 'apple-tvplus', 'github', 'github-copilot', 'npmjs'].map(id => {
+    const ruleset = currentCatalog.find(item => item.id === id);
+    assert.ok(ruleset, `Missing canonical service ruleset for native parent/child routing: ${id}`);
+    return ruleset;
+  });
   const token = `netatlas-local-${randomUUID()}`;
   let targetRequests = 0;
   const target = http.createServer((request, response) => {
@@ -351,10 +432,11 @@ export async function testLocalRouting({ root, binaries, onProgress = () => {} }
   const targetPort = await listen(target);
   let dns;
   let upstream;
-  const rulesets = [
+  const rulesets = orderedRulesets([
     { version: 1, id: 'lan', category: 'network', entries: [{ type: 'domain', value: 'allowed.netatlas.test' }] },
     { version: 1, id: 'adblock', category: 'privacy', entries: [{ type: 'domain', value: 'blocked.netatlas.test' }, { type: 'domain-suffix', value: 'doubleclick.net' }] },
-  ];
+    ...serviceRulesets,
+  ]);
   const cases = [];
   try {
     dns = await localDns();
@@ -369,6 +451,7 @@ export async function testLocalRouting({ root, binaries, onProgress = () => {} }
           config.dns = { enable: true, ipv6: false, 'enhanced-mode': 'redir-host', nameserver: [`udp://127.0.0.1:${dns.port}`], 'default-nameserver': [`127.0.0.1:${dns.port}`] };
           if (selection === 'FixtureProxy') config.proxies = [{ name: 'FixtureProxy', type: 'socks5', server: '127.0.0.1', port: upstream.port, udp: false }];
           config['proxy-groups'].find(group => group.name === 'Proxy').proxies = [selection, ...['REJECT', 'DIRECT'].filter(item => item !== selection)];
+          for (const name of ['apple', 'github']) config['proxy-groups'].find(group => group.name === name).proxies = ['DIRECT', 'Proxy'];
         } else {
           config.inbounds[0].listen_port = proxyPort;
           config.dns = { servers: [{ type: 'udp', tag: 'fixture-dns', server: '127.0.0.1', server_port: dns.port }], final: 'fixture-dns' };
@@ -379,6 +462,7 @@ export async function testLocalRouting({ root, binaries, onProgress = () => {} }
             proxy.outbounds.push('FixtureProxy');
           }
           proxy.default = selection;
+          for (const tag of ['apple', 'github']) config.outbounds.find(outbound => outbound.tag === tag).default = 'DIRECT';
         }
         const configPath = path.join(directory, `${id}-${selection}.${id === 'mihomo' ? 'yaml' : 'json'}`);
         await writeFile(configPath, id === 'mihomo' ? stringifyYaml(config) : `${JSON.stringify(config, null, 2)}\n`);
@@ -392,23 +476,29 @@ export async function testLocalRouting({ root, binaries, onProgress = () => {} }
         try {
           await waitForPort(child, proxyPort);
           const targets = selection === 'REJECT'
-            ? [['allowed.netatlas.test', true, 'explicit-direct'], ['blocked.netatlas.test', false, 'explicit-reject'], ['fallback.netatlas.test', false, 'fallback-reject']]
-            : selection === 'DIRECT' ? [['fallback.netatlas.test', true, 'fallback-direct']]
-              : [['allowed.netatlas.test', true, 'explicit-direct'], ['blocked.netatlas.test', false, 'explicit-reject'],
-                ['doubleclick.net', false, 'suffix-root-reject'], ['sub.doubleclick.net', false, 'suffix-child-reject'],
-                ['baddoubleclick.net', true, 'suffix-similar-fallback'], ['doubleclick.net.invalid', true, 'suffix-tail-fallback'],
-                ['fallback.netatlas.test', true, 'fallback-proxy']];
+            ? [['allowed.netatlas.test', true, 'explicit-direct', false], ['blocked.netatlas.test', false, 'explicit-reject', false], ['fallback.netatlas.test', false, 'fallback-reject', false]]
+            : selection === 'DIRECT' ? [['fallback.netatlas.test', true, 'fallback-direct', false]]
+              : [['allowed.netatlas.test', true, 'explicit-direct', false], ['blocked.netatlas.test', false, 'explicit-reject', false],
+                ['doubleclick.net', false, 'suffix-root-reject', false], ['sub.doubleclick.net', false, 'suffix-child-reject', false],
+                ['baddoubleclick.net', true, 'suffix-similar-fallback', true], ['doubleclick.net.invalid', true, 'suffix-tail-fallback', true],
+                ['fallback.netatlas.test', true, 'fallback-proxy', true],
+                ['tv.apple.com', true, 'apple-tv-domain-proxy', true], ['cdn.tv.apple.com', true, 'apple-tv-child-proxy', true],
+                ['hls.itunes.apple.com', true, 'apple-tv-exact-proxy', true],
+                ['copilot-proxy.githubusercontent.com', true, 'copilot-exact-proxy', true],
+                ['registry.npmjs.org', true, 'npm-service-proxy', true],
+                ['www.apple.com', true, 'apple-parent-direct', false], ['api.github.com', true, 'github-parent-direct', false],
+                ['sub.hls.itunes.apple.com', true, 'apple-tv-exact-child-parent', false],
+                ['sub.copilot-proxy.githubusercontent.com', true, 'copilot-exact-child-parent', false]];
           for (const [protocol, request] of [['http', httpThroughProxy], ['socks5', socksThroughProxy]]) {
-            for (const [host, permitted, behavior] of targets) {
+            for (const [host, permitted, behavior, usesUpstream] of targets) {
               const before = targetRequests;
               const upstreamBefore = upstream.requests();
               const result = await request(proxyPort, host, targetPort);
               const reached = Boolean(result.body?.includes(token));
               assert.equal(reached, permitted, `${id} ${protocol} ${behavior}: ${JSON.stringify(result)}`);
               assert.equal(targetRequests - before, permitted ? 1 : 0, `${id} ${protocol} ${behavior}: unexpected target request`);
-              const usesUpstream = selection === 'FixtureProxy' && permitted && behavior !== 'explicit-direct';
               assert.equal(upstream.requests() - upstreamBefore, usesUpstream ? 1 : 0, `${id} ${protocol} ${behavior}: unexpected SOCKS upstream connection`);
-              cases.push({ client: id, protocol, behavior, status: 'passed' });
+              cases.push({ client: id, protocol, host, behavior, viaUpstream: usesUpstream, status: 'passed' });
             }
           }
         } finally {
@@ -423,15 +513,193 @@ export async function testLocalRouting({ root, binaries, onProgress = () => {} }
     await new Promise(resolve => target.close(resolve));
     if (dns) await new Promise(resolve => dns.server.close(resolve));
   }
-  return { status: 'passed', cases, targetRequests, upstreamRequests: upstream.requests(), targets: 'loopback HTTP, SOCKS5 and DNS only; system proxy unchanged', directory: path.relative(root, directory) };
+  return { status: 'passed', cases, targetRequests, upstreamRequests: upstream.requests(), serviceRulesets: serviceRulesets.map(set => ({ id: set.id, entries: set.entries.length, sourceSha256: sha256(`${JSON.stringify(set, null, 2)}\n`) })), targets: 'loopback HTTP, SOCKS5 and allowlisted DNS only; system proxy unchanged', directory: path.relative(root, directory) };
+}
+
+export async function prepareAntiAdNativeInputs({ root }) {
+  const sourcePath = 'src/rules/privacy/anti-ad.json';
+  await assertManagedPaths(root, [sourcePath, 'metadata/upstreams.json']);
+  if (!await fileExists(path.join(root, sourcePath)) || !await fileExists(path.join(root, 'metadata/upstreams.json'))) {
+    throw new Error('Missing optional anti-ad source; run npm run sync and npm run build before native verification');
+  }
+  const sourceBytes = await readFile(path.join(root, sourcePath));
+  const registry = JSON.parse(await readFile(path.join(root, 'metadata/upstreams.json'), 'utf8'));
+  const record = registry.rulesets?.find(item => item.id === 'anti-ad');
+  if (!record || record.outputSha256 !== sha256(sourceBytes)) throw new Error('Optional anti-ad source checksum mismatch; run npm run sync and npm run build');
+  const ruleset = normalizeRuleset(JSON.parse(sourceBytes));
+  if (ruleset.id !== 'anti-ad' || ruleset.category !== 'privacy' || record.entryCount !== ruleset.entries.length) {
+    throw new Error('Optional anti-ad source metadata mismatch; run npm run sync and npm run build');
+  }
+  const selected = ruleset.entries.find(entry => {
+    if (entry.type !== 'domain-suffix' || entry.value.length > 180 || entry.value.split('.')[0].length > 40) return false;
+    const nonmatches = [`netatlas-boundary-${entry.value}`, `${entry.value}.invalid`];
+    return nonmatches.every(host => !ruleset.entries.some(candidate => matchesEntry(candidate, { host })));
+  });
+  if (!selected) throw new Error('Optional anti-ad has no domain-suffix fixture with unblocked boundary controls');
+  const targets = [
+    { host: selected.value, permitted: false, behavior: 'optional-suffix-root-reject' },
+    { host: `probe.${selected.value}`, permitted: false, behavior: 'optional-suffix-child-reject' },
+    { host: `netatlas-boundary-${selected.value}`, permitted: true, behavior: 'optional-suffix-similar-direct' },
+    { host: `${selected.value}.invalid`, permitted: true, behavior: 'optional-suffix-tail-direct' },
+  ];
+  const pending = [];
+  for (const client of ['mihomo', 'singBox']) {
+    const generated = renderRuleset(client, ruleset);
+    const artifact = path.join('clients', client, generated.path);
+    const manifestPath = path.join('clients', client, 'manifest.json');
+    await assertManagedPaths(root, [artifact, manifestPath]);
+    if (!await fileExists(path.join(root, artifact)) || !await fileExists(path.join(root, manifestPath))) {
+      throw new Error(`Published anti-ad ${client} artifact is missing; run npm run sync and npm run build`);
+    }
+    const bytes = await readFile(path.join(root, artifact));
+    if (!bytes.equals(Buffer.from(generated.content))) throw new Error(`Published anti-ad ${client} rules are stale; run npm run build`);
+    const manifest = JSON.parse(await readFile(path.join(root, manifestPath), 'utf8'));
+    const fragment = renderAntiAd(client, { baseUrl: manifest.baseUrl })[0];
+    if (!fragment) throw new Error(`Published anti-ad ${client} installer requires a public base URL; run npm run build`);
+    const fragmentPath = path.join('clients', client, fragment.path);
+    await assertManagedPaths(root, [fragmentPath]);
+    if (!await fileExists(path.join(root, fragmentPath))) throw new Error(`Published anti-ad ${client} fragment is missing; run npm run build`);
+    const fragmentBytes = await readFile(path.join(root, fragmentPath));
+    if (!fragmentBytes.equals(Buffer.from(fragment.content))) throw new Error(`Published anti-ad ${client} installer is stale; run npm run build`);
+    pending.push({ client, artifact, bytes, fragmentPath, fragmentBytes });
+  }
+  const directory = await cacheDirectory(root, 'optional-rulesets-');
+  const inputs = [];
+  for (const item of pending) {
+    const providerPath = path.join(directory, `${item.client}-anti-ad.${item.client === 'mihomo' ? 'yaml' : 'json'}`);
+    await writeFile(providerPath, item.bytes, { flag: 'wx' });
+    const profile = renderProfile(item.client, { rulesets: [] });
+    const config = item.client === 'mihomo' ? parseYaml(profile.content) : JSON.parse(profile.content);
+    const fragment = item.client === 'mihomo' ? parseYaml(item.fragmentBytes.toString('utf8')) : JSON.parse(item.fragmentBytes);
+    if (item.client === 'mihomo') {
+      const remote = fragment['rule-providers']['netatlas-anti-ad'];
+      assert.equal(remote.type, 'http');
+      assert.equal(remote.behavior, 'classical');
+      assert.equal(remote.format, 'yaml');
+      assert.deepEqual(fragment.rules, ['RULE-SET,netatlas-anti-ad,REJECT']);
+      const { url, interval, proxy, ...provider } = remote;
+      config['rule-providers'] = { 'netatlas-anti-ad': { ...provider, type: 'file', path: providerPath } };
+      config.rules = [...fragment.rules, ...config.rules];
+      config['proxy-groups'].find(group => group.name === 'Proxy').proxies = ['DIRECT', 'REJECT'];
+    } else {
+      const remote = fragment.route.rule_set[0];
+      assert.equal(remote.type, 'remote');
+      assert.equal(remote.format, 'source');
+      assert.deepEqual(fragment.route.rules, [{ rule_set: ['netatlas-anti-ad'], action: 'reject' }]);
+      const { url, http_client, update_interval, ...provider } = remote;
+      config.route.rule_set = [{ ...provider, type: 'local', path: providerPath }];
+      config.route.rules = [...fragment.route.rules, ...config.route.rules];
+      config.outbounds.find(outbound => outbound.tag === 'Proxy').default = 'DIRECT';
+    }
+    inputs.push({ client: item.client, artifact: item.artifact, artifactSha256: sha256(item.bytes), fragment: item.fragmentPath, fragmentSha256: sha256(item.fragmentBytes), checkedSnapshot: path.relative(root, providerPath), providerPath, config });
+  }
+  const upstream = registry.repositories?.find(item => item.id === record.source?.repository);
+  return {
+    directory, selectedDomain: selected.value, targets, inputs,
+    source: { path: sourcePath, sha256: sha256(sourceBytes), entries: ruleset.entries.length, repository: record.source?.repository ?? null, revision: upstream?.revision ?? null, files: record.files ?? [] },
+  };
+}
+
+export async function testOptionalRulesets({ root, binaries, onProgress = () => {} }) {
+  // All source and published artifacts must be current before any process starts.
+  const plan = await prepareAntiAdNativeInputs({ root });
+  const token = `netatlas-optional-${randomUUID()}`;
+  const targetEvidence = [];
+  const target = http.createServer((request, response) => {
+    targetEvidence.push({ host: request.headers.host, method: request.method, path: request.url });
+    response.writeHead(200, { 'Content-Type': 'text/plain', 'Content-Length': Buffer.byteLength(token), Connection: 'close' });
+    response.end(token);
+  });
+  const targetPort = await listen(target);
+  const cases = [];
+  const nativeChecks = [];
+  let dns;
+  try {
+    dns = await localDns(plan.targets.map(item => item.host));
+    for (const input of plan.inputs) {
+      const { client: id, config } = input;
+      const proxyPort = await freePort();
+      let controller;
+      if (id === 'mihomo') {
+        // Only the temporary verification config gets a loopback controller.
+        // The nonce is not included in the report or any published profile.
+        controller = { port: await freePort(), secret: randomUUID() };
+        config['external-controller'] = `127.0.0.1:${controller.port}`;
+        config.secret = controller.secret;
+        config['mixed-port'] = proxyPort;
+        config.dns = { enable: true, ipv6: false, 'enhanced-mode': 'redir-host', nameserver: [`udp://127.0.0.1:${dns.port}`], 'default-nameserver': [`127.0.0.1:${dns.port}`] };
+      } else {
+        config.inbounds[0].listen_port = proxyPort;
+        config.dns = { servers: [{ type: 'udp', tag: 'fixture-dns', server: '127.0.0.1', server_port: dns.port }], final: 'fixture-dns' };
+        config.route.default_domain_resolver = 'fixture-dns';
+      }
+      const configPath = path.join(plan.directory, `${id}-optional.${id === 'mihomo' ? 'yaml' : 'json'}`);
+      const configBytes = id === 'mihomo' ? stringifyYaml(config) : `${JSON.stringify(config, null, 2)}\n`;
+      await writeFile(configPath, configBytes, { flag: 'wx' });
+      const checkArgs = id === 'mihomo' ? ['-t', '-f', configPath, '-d', plan.directory] : ['check', '-c', configPath];
+      onProgress(`Native check: ${id} optional anti-ad file provider (${plan.source.entries} entries)`);
+      const checkOutput = await run(binaries[id], checkArgs, plan.directory);
+      await writeFile(path.join(plan.directory, `${id}-check.log`), `${checkOutput}\n`);
+      const nativeCheck = { client: id, status: 'passed', config: path.relative(root, configPath), configSha256: sha256(configBytes) };
+      nativeChecks.push(nativeCheck);
+      const args = id === 'mihomo' ? ['-f', configPath, '-d', plan.directory] : ['run', '-c', configPath];
+      const child = spawn(binaries[id], args, { cwd: plan.directory, stdio: ['ignore', 'pipe', 'pipe'] });
+      let log = '';
+      child.on('error', error => { child.startupError = error.message; });
+      child.stdout.on('data', bytes => { log = (log + bytes).slice(-200_000); });
+      child.stderr.on('data', bytes => { log = (log + bytes).slice(-200_000); });
+      try {
+        await waitForPort(child, proxyPort);
+        if (id === 'mihomo') nativeCheck.providerReadiness = await waitForMihomoRuleProvider({ controllerPort: controller.port, secret: controller.secret, expectedCount: plan.source.entries, child });
+        onProgress(`Local optional anti-ad routing: ${id}, HTTP + SOCKS5`);
+        for (const [protocol, request] of [['http', httpThroughProxy], ['socks5', socksThroughProxy]]) {
+          for (const item of plan.targets) {
+            const before = targetEvidence.length;
+            const result = await request(proxyPort, item.host, targetPort);
+            const reached = Boolean(result.body?.includes(token));
+            const requests = targetEvidence.length - before;
+            assert.equal(reached, item.permitted, `${id} ${protocol} ${item.behavior}: ${JSON.stringify(result)}`);
+            assert.equal(requests, item.permitted ? 1 : 0, `${id} ${protocol} ${item.behavior}: unexpected loopback target request`);
+            cases.push({ client: id, protocol, ...item, status: 'passed', targetRequests: requests, result });
+          }
+        }
+      } finally {
+        await stop(child);
+        await writeFile(path.join(plan.directory, `${id}-routing.log`), log);
+      }
+    }
+  } finally {
+    target.closeAllConnections();
+    await new Promise(resolve => target.close(resolve));
+    if (dns) await new Promise(resolve => dns.server.close(resolve));
+  }
+  return {
+    id: 'anti-ad', status: 'passed', selectedDomain: plan.selectedDomain, source: plan.source,
+    inputs: plan.inputs.map(({ config, providerPath, ...item }) => item), nativeChecks, cases,
+    targetRequests: targetEvidence.length, targetEvidence, dnsQuestions: dns.questions,
+    targets: 'loopback-only HTTP fixture and allowlisted UDP DNS; local file providers; no external HTTP/DNS or system proxy changes',
+    directory: path.relative(root, plan.directory),
+  };
+}
+
+export async function writeNativeReport({ root, report }) {
+  const destination = path.join(root, '.cache/native-check/latest.json');
+  await assertManagedPaths(root, [destination]);
+  await mkdir(path.dirname(destination), { recursive: true });
+  const staged = path.join(path.dirname(destination), `.latest-${randomUUID()}.json`);
+  await assertManagedPaths(root, [destination, staged]);
+  await writeFile(staged, `${JSON.stringify(report, null, 2)}\n`, { flag: 'wx' });
+  await rename(staged, destination);
 }
 
 export async function runNativeVerification({ root, onProgress = () => {} }) {
+  await assertManagedPaths(root, ['metadata/native-tools.json', '.cache/bin', '.cache/native-tools', '.cache/native-check/latest.json']);
   const startedAt = new Date().toISOString();
   const installed = await installNativeTools({ root, onProgress });
   const checks = await checkNativeProfiles({ root, binaries: installed.binaries, onProgress });
   const routing = await testLocalRouting({ root, binaries: installed.binaries, onProgress });
-  const report = { status: 'passed', startedAt, completedAt: new Date().toISOString(), artifacts: installed.artifacts, checks, routing };
-  await writeFile(path.join(root, '.cache/native-check/latest.json'), `${JSON.stringify(report, null, 2)}\n`);
+  const optionalRulesets = await testOptionalRulesets({ root, binaries: installed.binaries, onProgress });
+  const report = { status: 'passed', startedAt, completedAt: new Date().toISOString(), artifacts: installed.artifacts, checks, routing, optionalRulesets };
+  await writeNativeReport({ root, report });
   return report;
 }

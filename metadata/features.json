@@ -12,17 +12,26 @@
       },
       "clients": {
         "quantumultX": {
-          "artifacts": ["scripts/geoip.js", "fragments/geoip.conf"],
+          "artifacts": [
+            "scripts/geoip.js",
+            "fragments/geoip.conf"
+          ],
           "kind": "general-fragment",
           "requiresPublicBaseUrl": true,
           "routing": "The native geo_location_checker supplies the response; the script only parses it.",
           "documentationBaseline": "1.5.5 build 914"
         },
         "surge": {
-          "artifacts": ["scripts/geoip.js", "modules/geoip.sgmodule"],
+          "artifacts": [
+            "scripts/geoip.js",
+            "modules/geoip.sgmodule"
+          ],
           "kind": "generic-panel",
           "routing": "One lookup request uses the existing policy named by the script argument, Proxy by default; it does not change a group selection or represent every request.",
-          "minimumVersion": {"ios": "4.9.3", "macos": "5.7.5"}
+          "minimumVersion": {
+            "ios": "4.9.3",
+            "macos": "5.7.5"
+          }
         }
       },
       "validation": {
@@ -46,15 +55,21 @@
       "id": "search-redirect",
       "description": "Optional native Bing-to-Google 302 redirect when q is the first query parameter.",
       "defaultEnabled": false,
-      "requiresMitmForHttps": ["www.bing.com"],
+      "requiresMitmForHttps": [
+        "www.bing.com"
+      ],
       "clients": {
         "quantumultX": {
-          "artifacts": ["rewrites/search-redirect.snippet"],
+          "artifacts": [
+            "rewrites/search-redirect.snippet"
+          ],
           "kind": "rewrite-resource",
           "documentationBaseline": "1.5.5 build 914"
         },
         "surge": {
-          "artifacts": ["rewrites/search-redirect.sgmodule"],
+          "artifacts": [
+            "rewrites/search-redirect.sgmodule"
+          ],
           "kind": "sgmodule"
         }
       },
@@ -69,13 +84,225 @@
         "https://manual.nssurge.com/http/url-rewrite.html",
         "https://manual.nssurge.com/profile/module.html"
       ]
+    },
+    {
+      "id": "anti-ad",
+      "description": "Optional large domain-blocking ruleset; excluded from default profiles.",
+      "defaultEnabled": false,
+      "requiresMitm": false,
+      "requiresScript": false,
+      "license": "MIT",
+      "sourceRegistry": "metadata/upstreams.json:anti-ad",
+      "clients": {
+        "quantumultX": {
+          "artifacts": [
+            "fragments/anti-ad.conf"
+          ],
+          "kind": "merge-fragment",
+          "requiresPublicBaseUrl": true,
+          "install": "Merge fragments manually and prepend the blocking rule; native module merge precedence must be checked in the application."
+        },
+        "surge": {
+          "artifacts": [
+            "modules/anti-ad.sgmodule"
+          ],
+          "kind": "sgmodule",
+          "requiresPublicBaseUrl": true,
+          "install": "Merge fragments manually and prepend the blocking rule; native module merge precedence must be checked in the application."
+        },
+        "loon": {
+          "artifacts": [
+            "fragments/anti-ad.conf"
+          ],
+          "kind": "merge-fragment",
+          "requiresPublicBaseUrl": true,
+          "install": "Merge fragments manually and prepend the blocking rule; native module merge precedence must be checked in the application."
+        },
+        "shadowrocket": {
+          "artifacts": [
+            "fragments/anti-ad.conf"
+          ],
+          "kind": "merge-fragment",
+          "requiresPublicBaseUrl": true,
+          "install": "Merge fragments manually and prepend the blocking rule; native module merge precedence must be checked in the application."
+        },
+        "egern": {
+          "artifacts": [
+            "modules/anti-ad.yaml"
+          ],
+          "kind": "native-module",
+          "requiresPublicBaseUrl": true,
+          "install": "Merge fragments manually and prepend the blocking rule; native module merge precedence must be checked in the application."
+        },
+        "stash": {
+          "artifacts": [
+            "modules/anti-ad.stoverride"
+          ],
+          "kind": "native-override",
+          "requiresPublicBaseUrl": true,
+          "install": "Merge fragments manually and prepend the blocking rule; native module merge precedence must be checked in the application."
+        },
+        "mihomo": {
+          "artifacts": [
+            "fragments/anti-ad.yaml"
+          ],
+          "kind": "merge-fragment",
+          "requiresPublicBaseUrl": true,
+          "install": "Merge fragments manually and prepend the blocking rule; native module merge precedence must be checked in the application."
+        },
+        "singBox": {
+          "artifacts": [
+            "fragments/anti-ad.json"
+          ],
+          "kind": "merge-fragment",
+          "requiresPublicBaseUrl": true,
+          "install": "Merge fragments manually and prepend the blocking rule; native module merge precedence must be checked in the application."
+        }
+      },
+      "validation": {
+        "unit": "node-test",
+        "hostContract": "native-resource-schema and referenced-artifact checks",
+        "nativeApp": "not-run"
+      },
+      "sources": [
+        "https://github.com/privacy-protection-tools/anti-AD",
+        "https://github.com/crossutility/Quantumult-X/blob/master/sample.conf",
+        "https://manual.nssurge.com/rules/ruleset.html",
+        "https://egernapp.com/docs/configuration/modules/",
+        "https://egernapp.com/docs/configuration/rules/",
+        "https://stash.wiki/configuration/override",
+        "https://wiki.metacubex.one/en/config/rule-providers/",
+        "https://sing-box.sagernet.org/configuration/rule-set/",
+        "https://nsloon.app/docs/Rule/sub_rule/",
+        "https://github.com/Loon0x00/LoonExampleConfig/blob/master/example.conf"
+      ],
+      "licenseScope": "Declared license of the direct anti-AD source; original credits are retained, no blanket claim about every aggregated origin."
+    },
+    {
+      "id": "https-upgrade",
+      "description": "Optional six-host same-host HTTP to HTTPS URL redirects, adapted from a fixed upstream Redirect source.",
+      "defaultEnabled": false,
+      "requiresMitm": false,
+      "requiresScript": false,
+      "license": "GPL-2.0-only",
+      "upstream": {
+        "repository": "blackmatrix7/ios_rule_script",
+        "author": "blackmatrix7",
+        "starsObserved": 28467,
+        "starsObservedAt": "2026-10-31",
+        "repositoryPushedAt": "2026-10-27T21:45:44Z",
+        "sourceUpdatedInHeader": "2025-06-06 09:20:11",
+        "commit": "0b6897dc17e0c513d25449c935a9694818e32f0c",
+        "path": "rewrite/QuantumultX/Redirect/Redirect.conf",
+        "url": "https://raw.githubusercontent.com/blackmatrix7/ios_rule_script/0b6897dc17e0c513d25449c935a9694818e32f0c/rewrite/QuantumultX/Redirect/Redirect.conf",
+        "licenseUrl": "https://raw.githubusercontent.com/blackmatrix7/ios_rule_script/0b6897dc17e0c513d25449c935a9694818e32f0c/LICENSE",
+        "vendoredSource": "src/features/https-upgrade/upstream/Redirect.conf.txt",
+        "vendoredLicense": "src/features/https-upgrade/LICENSE",
+        "sourceSha256": "85311fcf996fbaf7279daba3ec4c3cff31d6035d333ae6b3c939d86039d16357",
+        "licenseSha256": "8177f97513213526df2cf6184d8ff986c675afb514d4e68a404010521b880643",
+        "sourceArchiveExecutable": false
+      },
+      "metadataPath": "metadata/https-upgrade.json",
+      "clients": {
+        "quantumultX": {
+          "artifacts": [
+            "rewrites/https-upgrade.snippet"
+          ],
+          "kind": "rewrite-resource",
+          "publicNativeContract": true,
+          "nativeApp": "not-run",
+          "sources": [
+            "https://github.com/crossutility/Quantumult-X/blob/master/sample.conf",
+            "https://github.com/crossutility/Quantumult-X/blob/master/sample-import-rewrite.snippet"
+          ]
+        },
+        "surge": {
+          "artifacts": [
+            "rewrites/https-upgrade.sgmodule"
+          ],
+          "kind": "sgmodule",
+          "publicNativeContract": true,
+          "nativeApp": "not-run",
+          "sources": [
+            "https://manual.nssurge.com/http/url-rewrite.html",
+            "https://manual.nssurge.com/profile/module.html"
+          ]
+        },
+        "loon": {
+          "artifacts": [
+            "rewrites/https-upgrade.plugin"
+          ],
+          "kind": "plugin",
+          "publicNativeContract": true,
+          "nativeApp": "not-run",
+          "sources": [
+            "https://nsloon.app/docs/Plugin/",
+            "https://nsloon.app/docs/Rewrite/rewrite_v2/"
+          ],
+          "minimumVersion": "3.5.1(978)"
+        },
+        "shadowrocket": {
+          "artifacts": [
+            "rewrites/https-upgrade.conf"
+          ],
+          "kind": "manual-merge-fragment",
+          "publicNativeContract": false,
+          "nativeApp": "not-run",
+          "sources": [],
+          "installation": "Manually merge the [URL Rewrite] lines into an existing profile; no standalone module import or public vendor contract is claimed."
+        },
+        "egern": {
+          "artifacts": [
+            "rewrites/https-upgrade.yaml"
+          ],
+          "kind": "module",
+          "publicNativeContract": true,
+          "nativeApp": "not-run",
+          "sources": [
+            "https://egernapp.com/docs/configuration/modules/",
+            "https://egernapp.com/docs/configuration/url_rewrites/"
+          ]
+        },
+        "stash": {
+          "artifacts": [
+            "rewrites/https-upgrade.stoverride"
+          ],
+          "kind": "override",
+          "publicNativeContract": true,
+          "nativeApp": "not-run",
+          "sources": [
+            "https://stash.wiki/configuration/override",
+            "https://stash.wiki/http-engine/rewrite"
+          ],
+          "merge": "Stash override dictionaries merge recursively and URL rewrite arrays prepend by default; this file does not use replace directives."
+        }
+      },
+      "validation": {
+        "unit": "Serialized-format URL positive/negative fixtures",
+        "hostContract": "Reviewed against the listed official documentation; Shadowrocket remains a manual merge fragment.",
+        "nativeApp": "not-run"
+      },
+      "sources": [
+        "https://raw.githubusercontent.com/blackmatrix7/ios_rule_script/0b6897dc17e0c513d25449c935a9694818e32f0c/rewrite/QuantumultX/Redirect/Redirect.conf",
+        "https://raw.githubusercontent.com/blackmatrix7/ios_rule_script/0b6897dc17e0c513d25449c935a9694818e32f0c/LICENSE",
+        "https://github.com/crossutility/Quantumult-X/blob/master/sample.conf",
+        "https://github.com/crossutility/Quantumult-X/blob/master/sample-import-rewrite.snippet",
+        "https://manual.nssurge.com/http/url-rewrite.html",
+        "https://manual.nssurge.com/profile/module.html",
+        "https://nsloon.app/docs/Plugin/",
+        "https://nsloon.app/docs/Rewrite/rewrite_v2/",
+        "https://egernapp.com/docs/configuration/modules/",
+        "https://egernapp.com/docs/configuration/url_rewrites/",
+        "https://stash.wiki/configuration/override",
+        "https://stash.wiki/http-engine/rewrite"
+      ]
     }
   ],
-  "unimplementedNativeAdapters": {
-    "loon": "No feature artifact is emitted until its native host contract is implemented and verified.",
-    "shadowrocket": "No feature artifact is emitted until its native host contract is implemented and verified.",
-    "egern": "No feature artifact is emitted until its native host contract is implemented and verified.",
-    "stash": "No feature artifact is emitted until its native host contract is implemented and verified.",
+  "unimplementedScriptAdapters": {
+    "loon": "GeoIP JavaScript adapter is not implemented; rule resources and supported native rewrite packages are independent capabilities.",
+    "shadowrocket": "GeoIP JavaScript adapter is not implemented; rule resources and supported native rewrite packages are independent capabilities.",
+    "egern": "GeoIP JavaScript adapter is not implemented; rule resources and supported native rewrite packages are independent capabilities.",
+    "stash": "GeoIP JavaScript adapter is not implemented; rule resources and supported native rewrite packages are independent capabilities.",
     "mihomo": "No JavaScript or HTTP-rewrite compatibility is claimed by these feature packages.",
     "singBox": "No JavaScript or HTTP-rewrite compatibility is claimed by these feature packages."
   }

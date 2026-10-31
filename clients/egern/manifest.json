@@ -2,9 +2,15 @@
   "version": 1,
   "client": "egern",
   "builder": "netatlas@0.1.0",
-  "inputSha256": "1842152dc130f6e31469f174549598b89b4497cefb72645f9d2fd73c6460880f",
+  "inputSha256": "b585f8a52c2687dbac0ffffb946cd8df40e6b7be5276a4151b30acd81df4d312",
   "baseUrl": "https://raw.githubusercontent.com/luckiestultra/netatlas/main",
   "targetVersion": null,
+  "counts": {
+    "defaultRuleSets": 38,
+    "defaultEntries": 5459,
+    "optionalRuleSets": 1,
+    "totalEntries": 106141
+  },
   "validation": {
     "profile": "structural-and-references",
     "rules": "canonical-semantic-round-trip",
@@ -12,6 +18,58 @@
     "nativeRequirement": "manual-import-required",
     "features": "host-contract-tests-run-separately"
   },
+  "features": [
+    {
+      "id": "anti-ad",
+      "defaultEnabled": false,
+      "license": "MIT",
+      "adapter": {
+        "artifacts": [
+          "modules/anti-ad.yaml"
+        ],
+        "kind": "native-module",
+        "requiresPublicBaseUrl": true,
+        "install": "Merge fragments manually and prepend the blocking rule; native module merge precedence must be checked in the application."
+      },
+      "upstream": null,
+      "sourceRegistry": "metadata/upstreams.json:anti-ad"
+    },
+    {
+      "id": "https-upgrade",
+      "defaultEnabled": false,
+      "license": "GPL-2.0-only",
+      "adapter": {
+        "artifacts": [
+          "rewrites/https-upgrade.yaml"
+        ],
+        "kind": "module",
+        "publicNativeContract": true,
+        "nativeApp": "not-run",
+        "sources": [
+          "https://egernapp.com/docs/configuration/modules/",
+          "https://egernapp.com/docs/configuration/url_rewrites/"
+        ]
+      },
+      "upstream": {
+        "repository": "blackmatrix7/ios_rule_script",
+        "author": "blackmatrix7",
+        "starsObserved": 28467,
+        "starsObservedAt": "2026-10-31",
+        "repositoryPushedAt": "2026-10-27T21:45:44Z",
+        "sourceUpdatedInHeader": "2025-06-06 09:20:11",
+        "commit": "0b6897dc17e0c513d25449c935a9694818e32f0c",
+        "path": "rewrite/QuantumultX/Redirect/Redirect.conf",
+        "url": "https://raw.githubusercontent.com/blackmatrix7/ios_rule_script/0b6897dc17e0c513d25449c935a9694818e32f0c/rewrite/QuantumultX/Redirect/Redirect.conf",
+        "licenseUrl": "https://raw.githubusercontent.com/blackmatrix7/ios_rule_script/0b6897dc17e0c513d25449c935a9694818e32f0c/LICENSE",
+        "vendoredSource": "src/features/https-upgrade/upstream/Redirect.conf.txt",
+        "vendoredLicense": "src/features/https-upgrade/LICENSE",
+        "sourceSha256": "85311fcf996fbaf7279daba3ec4c3cff31d6035d333ae6b3c939d86039d16357",
+        "licenseSha256": "8177f97513213526df2cf6184d8ff986c675afb514d4e68a404010521b880643",
+        "sourceArchiveExecutable": false
+      },
+      "sourceRegistry": null
+    }
+  ],
   "sources": {
     "repositories": [
       {
@@ -26,12 +84,26 @@
         "licenseUrl": "https://raw.githubusercontent.com/v2fly/domain-list-community/1daade8c4bb957d21d1f5c09c2b050d699e8e96c/LICENSE",
         "author": "v2fly/domain-list-community contributors",
         "revisionDate": "2026-10-30T13:25:16Z"
+      },
+      {
+        "id": "anti-ad",
+        "repository": "privacy-protection-tools/anti-AD",
+        "branch": "master",
+        "revision": "cafc2bfb031a9e5ee4461721afc65b82430f2c15",
+        "license": "MIT",
+        "licensePath": "LICENSE",
+        "licenseSha256": "e38459549a64f11ecf1477053768ef89eb2939a9aa5573f51a31461086357a34",
+        "licenseUrl": "https://raw.githubusercontent.com/privacy-protection-tools/anti-AD/cafc2bfb031a9e5ee4461721afc65b82430f2c15/LICENSE",
+        "documentation": "https://raw.githubusercontent.com/privacy-protection-tools/anti-AD/cafc2bfb031a9e5ee4461721afc65b82430f2c15/README.md",
+        "author": "gently and anti-AD contributors",
+        "revisionDate": "2026-10-30T12:57:57Z"
       }
     ],
     "rules": [
       {
         "id": "openai",
         "tag": "ai",
+        "defaultProfile": true,
         "source": {
           "repository": "domain-list-community",
           "list": "openai"
@@ -53,6 +125,7 @@
       {
         "id": "claude",
         "tag": "ai",
+        "defaultProfile": true,
         "source": {
           "repository": "domain-list-community",
           "list": "anthropic"
@@ -66,6 +139,7 @@
       {
         "id": "gemini",
         "tag": "ai",
+        "defaultProfile": true,
         "source": {
           "repository": "domain-list-community",
           "list": "google-deepmind"
@@ -79,6 +153,7 @@
       {
         "id": "google",
         "tag": "system",
+        "defaultProfile": true,
         "source": {
           "repository": "domain-list-community",
           "list": "google"
@@ -107,6 +182,7 @@
       {
         "id": "microsoft",
         "tag": "system",
+        "defaultProfile": true,
         "source": {
           "repository": "domain-list-community",
           "list": "microsoft"
@@ -120,6 +196,7 @@
       {
         "id": "apple",
         "tag": "system",
+        "defaultProfile": true,
         "source": {
           "repository": "domain-list-community",
           "list": "apple"
@@ -133,6 +210,7 @@
       {
         "id": "github",
         "tag": "development",
+        "defaultProfile": true,
         "source": {
           "repository": "domain-list-community",
           "list": "github"
@@ -146,6 +224,7 @@
       {
         "id": "telegram",
         "tag": "social",
+        "defaultProfile": true,
         "source": {
           "repository": "domain-list-community",
           "list": "telegram"
@@ -159,6 +238,7 @@
       {
         "id": "youtube",
         "tag": "media",
+        "defaultProfile": true,
         "source": {
           "repository": "domain-list-community",
           "list": "youtube"
@@ -172,6 +252,7 @@
       {
         "id": "netflix",
         "tag": "media",
+        "defaultProfile": true,
         "source": {
           "repository": "domain-list-community",
           "list": "netflix"
@@ -214,6 +295,7 @@
       {
         "id": "spotify",
         "tag": "media",
+        "defaultProfile": true,
         "source": {
           "repository": "domain-list-community",
           "list": "spotify"
@@ -227,6 +309,7 @@
       {
         "id": "speedtest",
         "tag": "network",
+        "defaultProfile": true,
         "source": {
           "repository": "domain-list-community",
           "list": "ookla-speedtest"
@@ -248,6 +331,7 @@
       {
         "id": "adblock",
         "tag": "privacy",
+        "defaultProfile": true,
         "source": {
           "repository": "domain-list-community",
           "list": "category-ads-all"
@@ -269,6 +353,7 @@
       {
         "id": "lan",
         "tag": "network",
+        "defaultProfile": true,
         "source": {
           "type": "local",
           "license": "MIT",
@@ -294,6 +379,7 @@
       {
         "id": "china",
         "tag": "system",
+        "defaultProfile": true,
         "source": {
           "type": "local",
           "license": "MIT",
@@ -313,6 +399,351 @@
         "updatedAt": "2026-10-31",
         "projection": "first-party-selection",
         "excludedExpressions": []
+      },
+      {
+        "id": "apple-tvplus",
+        "tag": "media",
+        "defaultProfile": true,
+        "source": {
+          "repository": "domain-list-community",
+          "list": "apple-tvplus"
+        },
+        "sha256": "9ad1a73f395157d0d59c8fccf2ca3ff79c5c71fc1361382bff4267116a056dbe",
+        "entries": 8,
+        "updatedAt": "2026-10-30T13:25:16Z",
+        "projection": "selected files and explicit includes; not global affiliation expansion",
+        "excludedExpressions": []
+      },
+      {
+        "id": "cursor",
+        "tag": "ai",
+        "defaultProfile": true,
+        "source": {
+          "repository": "domain-list-community",
+          "list": "cursor"
+        },
+        "sha256": "7296533d1381e9d81b2f5c4192bb1a3fd64b061dd9194c748a224de9487be178",
+        "entries": 5,
+        "updatedAt": "2026-10-30T13:25:16Z",
+        "projection": "selected files and explicit includes; not global affiliation expansion",
+        "excludedExpressions": []
+      },
+      {
+        "id": "discord",
+        "tag": "social",
+        "defaultProfile": true,
+        "source": {
+          "repository": "domain-list-community",
+          "list": "discord"
+        },
+        "sha256": "06d69318cf9f1fd017c1e0726dabfdf5f62c03403baba4017b35cc8c621b6664",
+        "entries": 28,
+        "updatedAt": "2026-10-30T13:25:16Z",
+        "projection": "selected files and explicit includes; not global affiliation expansion",
+        "excludedExpressions": []
+      },
+      {
+        "id": "docker",
+        "tag": "development",
+        "defaultProfile": true,
+        "source": {
+          "repository": "domain-list-community",
+          "list": "docker"
+        },
+        "sha256": "eeb976dfcb20e0a579cdcb18c6af2918c2ad8b8a37b98f8622f0a838dc43a419",
+        "entries": 6,
+        "updatedAt": "2026-10-30T13:25:16Z",
+        "projection": "selected files and explicit includes; not global affiliation expansion",
+        "excludedExpressions": []
+      },
+      {
+        "id": "github-copilot",
+        "tag": "ai",
+        "defaultProfile": true,
+        "source": {
+          "repository": "domain-list-community",
+          "list": "github-copilot"
+        },
+        "sha256": "67ce214112eb5ec933c08457fb1bf5ce2940a2ee4912fb723cd060f131be2b3b",
+        "entries": 6,
+        "updatedAt": "2026-10-30T13:25:16Z",
+        "projection": "selected files and explicit includes; not global affiliation expansion",
+        "excludedExpressions": []
+      },
+      {
+        "id": "gitlab",
+        "tag": "development",
+        "defaultProfile": true,
+        "source": {
+          "repository": "domain-list-community",
+          "list": "gitlab"
+        },
+        "sha256": "3c38de2b7372cb6f24f1c5157619fa717fcc450adc73ef106028a933d8310803",
+        "entries": 5,
+        "updatedAt": "2026-10-30T13:25:16Z",
+        "projection": "selected files and explicit includes; not global affiliation expansion",
+        "excludedExpressions": []
+      },
+      {
+        "id": "groq",
+        "tag": "ai",
+        "defaultProfile": true,
+        "source": {
+          "repository": "domain-list-community",
+          "list": "groq"
+        },
+        "sha256": "94864c4909f79f883c627efc5b8b5b84ec614433f70980f11eb585b4e35acebf",
+        "entries": 1,
+        "updatedAt": "2026-10-30T13:25:16Z",
+        "projection": "selected files and explicit includes; not global affiliation expansion",
+        "excludedExpressions": []
+      },
+      {
+        "id": "hbo",
+        "tag": "media",
+        "defaultProfile": true,
+        "source": {
+          "repository": "domain-list-community",
+          "list": "hbo"
+        },
+        "sha256": "a7893566b499e8fd031f8e7df3d0c1f9d13b6690191bdd327cb0ab732a2a5e28",
+        "entries": 65,
+        "updatedAt": "2026-10-30T13:25:16Z",
+        "projection": "selected files and explicit includes; not global affiliation expansion",
+        "excludedExpressions": []
+      },
+      {
+        "id": "huggingface",
+        "tag": "ai",
+        "defaultProfile": true,
+        "source": {
+          "repository": "domain-list-community",
+          "list": "huggingface"
+        },
+        "sha256": "a9e41f7a130bf6c761e97a86e3f14ab8eccb968731cf4a95b1922cbafbeffb96",
+        "entries": 3,
+        "updatedAt": "2026-10-30T13:25:16Z",
+        "projection": "selected files and explicit includes; not global affiliation expansion",
+        "excludedExpressions": []
+      },
+      {
+        "id": "jetbrains",
+        "tag": "development",
+        "defaultProfile": true,
+        "source": {
+          "repository": "domain-list-community",
+          "list": "jetbrains"
+        },
+        "sha256": "7b218af98a343342606a994de743f04b212837a975f2613bac3671c69d7ed7a0",
+        "entries": 25,
+        "updatedAt": "2026-10-30T13:25:16Z",
+        "projection": "selected files and explicit includes; not global affiliation expansion",
+        "excludedExpressions": []
+      },
+      {
+        "id": "line",
+        "tag": "social",
+        "defaultProfile": true,
+        "source": {
+          "repository": "domain-list-community",
+          "list": "line"
+        },
+        "sha256": "7267e66d1461fd2c04ddf9bbac64ed6123d6fc0fe327bd0b71a8d356eba262b2",
+        "entries": 20,
+        "updatedAt": "2026-10-30T13:25:16Z",
+        "projection": "selected files and explicit includes; not global affiliation expansion",
+        "excludedExpressions": []
+      },
+      {
+        "id": "npmjs",
+        "tag": "development",
+        "defaultProfile": true,
+        "source": {
+          "repository": "domain-list-community",
+          "list": "npmjs"
+        },
+        "sha256": "bf2b101a08cc99983539cbe57c0949012db9d5e090b4518e4664ade87012c1f5",
+        "entries": 3,
+        "updatedAt": "2026-10-30T13:25:16Z",
+        "projection": "selected files and explicit includes; not global affiliation expansion",
+        "excludedExpressions": []
+      },
+      {
+        "id": "perplexity",
+        "tag": "ai",
+        "defaultProfile": true,
+        "source": {
+          "repository": "domain-list-community",
+          "list": "perplexity"
+        },
+        "sha256": "dffba0daea5a70cc02e5feeb04449ab9dde582b607fa6872da2d40382e1aec9b",
+        "entries": 5,
+        "updatedAt": "2026-10-30T13:25:16Z",
+        "projection": "selected files and explicit includes; not global affiliation expansion",
+        "excludedExpressions": []
+      },
+      {
+        "id": "poe",
+        "tag": "ai",
+        "defaultProfile": true,
+        "source": {
+          "repository": "domain-list-community",
+          "list": "poe"
+        },
+        "sha256": "e2a19435d4c12647ef5360c6d86d8087130cf703d336bb7fe74632383735babb",
+        "entries": 2,
+        "updatedAt": "2026-10-30T13:25:16Z",
+        "projection": "selected files and explicit includes; not global affiliation expansion",
+        "excludedExpressions": []
+      },
+      {
+        "id": "signal",
+        "tag": "social",
+        "defaultProfile": true,
+        "source": {
+          "repository": "domain-list-community",
+          "list": "signal"
+        },
+        "sha256": "9d29a4f2125343492ccc5d4c36a96deb32f7359ff864206c9cfc144cc5c4cdbb",
+        "entries": 8,
+        "updatedAt": "2026-10-30T13:25:16Z",
+        "projection": "selected files and explicit includes; not global affiliation expansion",
+        "excludedExpressions": []
+      },
+      {
+        "id": "slack",
+        "tag": "social",
+        "defaultProfile": true,
+        "source": {
+          "repository": "domain-list-community",
+          "list": "slack"
+        },
+        "sha256": "3561f0c3370f329bd4eba09046e8579b77642afcc50826cffebefb63609c95f3",
+        "entries": 11,
+        "updatedAt": "2026-10-30T13:25:16Z",
+        "projection": "selected files and explicit includes; not global affiliation expansion",
+        "excludedExpressions": []
+      },
+      {
+        "id": "steam",
+        "tag": "gaming",
+        "defaultProfile": true,
+        "source": {
+          "repository": "domain-list-community",
+          "list": "steam"
+        },
+        "sha256": "8b6659bb238b6f0f181dd0b3038eb7e7500a9d8687583da16fa5e7f4c9eaf05c",
+        "entries": 61,
+        "updatedAt": "2026-10-30T13:25:16Z",
+        "projection": "selected files and explicit includes; not global affiliation expansion",
+        "excludedExpressions": []
+      },
+      {
+        "id": "tiktok",
+        "tag": "media",
+        "defaultProfile": true,
+        "source": {
+          "repository": "domain-list-community",
+          "list": "tiktok"
+        },
+        "sha256": "fbc2742592166d96049a7109947859472b37c0892aeb7557c4b068ecbd155be7",
+        "entries": 40,
+        "updatedAt": "2026-10-30T13:25:16Z",
+        "projection": "selected files and explicit includes; not global affiliation expansion",
+        "excludedExpressions": []
+      },
+      {
+        "id": "twitch",
+        "tag": "media",
+        "defaultProfile": true,
+        "source": {
+          "repository": "domain-list-community",
+          "list": "twitch"
+        },
+        "sha256": "0bd18bbfc29efcee7e122c4c44bbca41c0017050c99882a427c5deea77f83855",
+        "entries": 35,
+        "updatedAt": "2026-10-30T13:25:16Z",
+        "projection": "selected files and explicit includes; not global affiliation expansion",
+        "excludedExpressions": []
+      },
+      {
+        "id": "vercel",
+        "tag": "development",
+        "defaultProfile": true,
+        "source": {
+          "repository": "domain-list-community",
+          "list": "vercel"
+        },
+        "sha256": "8018ebcf88cbfca3914abe8399d74b2142f7332a58d2d9bdd340ee8cefc4462d",
+        "entries": 27,
+        "updatedAt": "2026-10-30T13:25:16Z",
+        "projection": "selected files and explicit includes; not global affiliation expansion",
+        "excludedExpressions": []
+      },
+      {
+        "id": "whatsapp",
+        "tag": "social",
+        "defaultProfile": true,
+        "source": {
+          "repository": "domain-list-community",
+          "list": "whatsapp"
+        },
+        "sha256": "bbbf5be7e02f62954a4e01269212673975639f2ef4ff9abace58c9856dd996a9",
+        "entries": 11,
+        "updatedAt": "2026-10-30T13:25:16Z",
+        "projection": "selected files and explicit includes; not global affiliation expansion",
+        "excludedExpressions": []
+      },
+      {
+        "id": "xai",
+        "tag": "ai",
+        "defaultProfile": true,
+        "source": {
+          "repository": "domain-list-community",
+          "list": "xai"
+        },
+        "sha256": "eaac63b557f701926e7556bf9537c21b5dae1599266c5b4866940a285e3a2e62",
+        "entries": 4,
+        "updatedAt": "2026-10-30T13:25:16Z",
+        "projection": "selected files and explicit includes; not global affiliation expansion",
+        "excludedExpressions": []
+      },
+      {
+        "id": "zoom",
+        "tag": "social",
+        "defaultProfile": true,
+        "source": {
+          "repository": "domain-list-community",
+          "list": "zoom"
+        },
+        "sha256": "0459d4de26e3985cf79b0658d3bdb5894b3923c1b65f5cb7f3995af175fd4b40",
+        "entries": 3,
+        "updatedAt": "2026-10-30T13:25:16Z",
+        "projection": "selected files and explicit includes; not global affiliation expansion",
+        "excludedExpressions": []
+      },
+      {
+        "id": "anti-ad",
+        "tag": "privacy",
+        "defaultProfile": false,
+        "source": {
+          "repository": "anti-ad",
+          "format": "domain-lines",
+          "path": "anti-ad-surge2.txt",
+          "linePrefix": ".",
+          "matchType": "domain-suffix",
+          "maxFileBytes": 3000000,
+          "matchingEvidence": {
+            "url": "https://raw.githubusercontent.com/privacy-protection-tools/anti-AD/cafc2bfb031a9e5ee4461721afc65b82430f2c15/anti-ad-clash.yaml",
+            "sha256": "0fa1a351f1830e745a5b2b5aace329f5fc6f993e868447f278c32aa6d91e8406",
+            "semantics": "All 100682 companion payload items use +. suffix roots; sets are bidirectionally identical to the registered dot-prefixed DOMAIN-SET."
+          }
+        },
+        "sha256": "b2681e3f2ae69707b0dbb348d32ef14229147979486e4e6f64c792258a5e41bd",
+        "entries": 100682,
+        "updatedAt": "2026-10-30T12:57:57Z",
+        "projection": "complete registered domain-line file; explicit domain-suffix semantics",
+        "excludedExpressions": []
       }
     ],
     "inputs": [
@@ -321,16 +752,76 @@
         "sha256": "9c87150e6ce6dd28bd6f21646c6fa6588ceccccfed7d7ac9d38479f8ecb4e190"
       },
       {
+        "path": "src/rules/ai/cursor.json",
+        "sha256": "7296533d1381e9d81b2f5c4192bb1a3fd64b061dd9194c748a224de9487be178"
+      },
+      {
         "path": "src/rules/ai/gemini.json",
         "sha256": "9fc0d48ab6e13f31c4df712a98fa96b275e9eacc30e45e27121bf156405b653d"
+      },
+      {
+        "path": "src/rules/ai/github-copilot.json",
+        "sha256": "67ce214112eb5ec933c08457fb1bf5ce2940a2ee4912fb723cd060f131be2b3b"
+      },
+      {
+        "path": "src/rules/ai/groq.json",
+        "sha256": "94864c4909f79f883c627efc5b8b5b84ec614433f70980f11eb585b4e35acebf"
+      },
+      {
+        "path": "src/rules/ai/huggingface.json",
+        "sha256": "a9e41f7a130bf6c761e97a86e3f14ab8eccb968731cf4a95b1922cbafbeffb96"
       },
       {
         "path": "src/rules/ai/openai.json",
         "sha256": "f17af9afded802389e299929e57160d77d9c5714d1cbe0ce8ed6b4a518aea0e1"
       },
       {
+        "path": "src/rules/ai/perplexity.json",
+        "sha256": "dffba0daea5a70cc02e5feeb04449ab9dde582b607fa6872da2d40382e1aec9b"
+      },
+      {
+        "path": "src/rules/ai/poe.json",
+        "sha256": "e2a19435d4c12647ef5360c6d86d8087130cf703d336bb7fe74632383735babb"
+      },
+      {
+        "path": "src/rules/ai/xai.json",
+        "sha256": "eaac63b557f701926e7556bf9537c21b5dae1599266c5b4866940a285e3a2e62"
+      },
+      {
+        "path": "src/rules/development/docker.json",
+        "sha256": "eeb976dfcb20e0a579cdcb18c6af2918c2ad8b8a37b98f8622f0a838dc43a419"
+      },
+      {
         "path": "src/rules/development/github.json",
         "sha256": "f8fdabd4e96d450f370e7fa13f83fcda8c1e358f7b309d0215efb2e6c75c7aea"
+      },
+      {
+        "path": "src/rules/development/gitlab.json",
+        "sha256": "3c38de2b7372cb6f24f1c5157619fa717fcc450adc73ef106028a933d8310803"
+      },
+      {
+        "path": "src/rules/development/jetbrains.json",
+        "sha256": "7b218af98a343342606a994de743f04b212837a975f2613bac3671c69d7ed7a0"
+      },
+      {
+        "path": "src/rules/development/npmjs.json",
+        "sha256": "bf2b101a08cc99983539cbe57c0949012db9d5e090b4518e4664ade87012c1f5"
+      },
+      {
+        "path": "src/rules/development/vercel.json",
+        "sha256": "8018ebcf88cbfca3914abe8399d74b2142f7332a58d2d9bdd340ee8cefc4462d"
+      },
+      {
+        "path": "src/rules/gaming/steam.json",
+        "sha256": "8b6659bb238b6f0f181dd0b3038eb7e7500a9d8687583da16fa5e7f4c9eaf05c"
+      },
+      {
+        "path": "src/rules/media/apple-tvplus.json",
+        "sha256": "9ad1a73f395157d0d59c8fccf2ca3ff79c5c71fc1361382bff4267116a056dbe"
+      },
+      {
+        "path": "src/rules/media/hbo.json",
+        "sha256": "a7893566b499e8fd031f8e7df3d0c1f9d13b6690191bdd327cb0ab732a2a5e28"
       },
       {
         "path": "src/rules/media/netflix.json",
@@ -339,6 +830,14 @@
       {
         "path": "src/rules/media/spotify.json",
         "sha256": "f0ac15b8db784eae05db6be36737697253aff3f909e1df259d3846f0ee07a041"
+      },
+      {
+        "path": "src/rules/media/tiktok.json",
+        "sha256": "fbc2742592166d96049a7109947859472b37c0892aeb7557c4b068ecbd155be7"
+      },
+      {
+        "path": "src/rules/media/twitch.json",
+        "sha256": "0bd18bbfc29efcee7e122c4c44bbca41c0017050c99882a427c5deea77f83855"
       },
       {
         "path": "src/rules/media/youtube.json",
@@ -357,8 +856,36 @@
         "sha256": "b496b379af943dc48ce71591effc2de88e232629c4eb3e00f3da7269cc65628d"
       },
       {
+        "path": "src/rules/privacy/anti-ad.json",
+        "sha256": "b2681e3f2ae69707b0dbb348d32ef14229147979486e4e6f64c792258a5e41bd"
+      },
+      {
+        "path": "src/rules/social/discord.json",
+        "sha256": "06d69318cf9f1fd017c1e0726dabfdf5f62c03403baba4017b35cc8c621b6664"
+      },
+      {
+        "path": "src/rules/social/line.json",
+        "sha256": "7267e66d1461fd2c04ddf9bbac64ed6123d6fc0fe327bd0b71a8d356eba262b2"
+      },
+      {
+        "path": "src/rules/social/signal.json",
+        "sha256": "9d29a4f2125343492ccc5d4c36a96deb32f7359ff864206c9cfc144cc5c4cdbb"
+      },
+      {
+        "path": "src/rules/social/slack.json",
+        "sha256": "3561f0c3370f329bd4eba09046e8579b77642afcc50826cffebefb63609c95f3"
+      },
+      {
         "path": "src/rules/social/telegram.json",
         "sha256": "11e4b489354b2ce7d53742c8c65c7cbe441732b6d9a137488ca50b6872b3bcf9"
+      },
+      {
+        "path": "src/rules/social/whatsapp.json",
+        "sha256": "bbbf5be7e02f62954a4e01269212673975639f2ef4ff9abace58c9856dd996a9"
+      },
+      {
+        "path": "src/rules/social/zoom.json",
+        "sha256": "0459d4de26e3985cf79b0658d3bdb5894b3923c1b65f5cb7f3995af175fd4b40"
       },
       {
         "path": "src/rules/system/apple.json",
@@ -380,19 +907,39 @@
   },
   "artifacts": [
     {
+      "path": "modules/anti-ad.yaml",
+      "sha256": "adee26e7f154c66cf0064b98328b8666f9e470df9302020905152297e6cbb868",
+      "bytes": 261
+    },
+    {
       "path": "profiles/default.yaml",
-      "sha256": "adf2921afd04b09bd0b5e76c529e77c81a2d439248a9c7eca38a124df4984aed",
-      "bytes": 356444
+      "sha256": "22e8259aed1e0fa6ad9d67c4cffe5ae9df66712e069c3824688b210365dbd840",
+      "bytes": 384599
     },
     {
       "path": "README.md",
-      "sha256": "b3f0e7b490354e535cb24b23d41e47a1a5a68450f1bf84ff8fc9e1b2746abd70",
-      "bytes": 2060
+      "sha256": "621e1e947288638787ddc935df395f3059b9aae1b422b2066312996c49deb239",
+      "bytes": 3647
+    },
+    {
+      "path": "rewrites/https-upgrade.yaml",
+      "sha256": "5e8c9aaa6b73e83becf6563a82ebccef00ad0f3ffa9d72d86f79c571bafd1a7e",
+      "bytes": 1687
     },
     {
       "path": "rules/adblock.yaml",
       "sha256": "b949554c9f2bfc3e692f44efeed7dbf430d4415093555f77fb9e3f86ce51f1f0",
       "bytes": 19577
+    },
+    {
+      "path": "rules/anti-ad.yaml",
+      "sha256": "234df881fd5bc74ea619ea083d85c60e46e41f62c9a8a47a8aa784b83b786076",
+      "bytes": 2325948
+    },
+    {
+      "path": "rules/apple-tvplus.yaml",
+      "sha256": "2cfcaa48a9c1ae2c4e8d073e4d4b0e1b74ced16e551d62747fb63340987ac779",
+      "bytes": 264
     },
     {
       "path": "rules/apple.yaml",
@@ -410,9 +957,29 @@
       "bytes": 414
     },
     {
+      "path": "rules/cursor.yaml",
+      "sha256": "9a48273eb7d62a6e420612307f9f52dca0ce814332e956103a8ee52b8ef9d545",
+      "bytes": 119
+    },
+    {
+      "path": "rules/discord.yaml",
+      "sha256": "0adac92067cfbc69b032c985841eb59289963dbed987938c17e8ae4be572eb80",
+      "bytes": 651
+    },
+    {
+      "path": "rules/docker.yaml",
+      "sha256": "bf72809215bd65e5e9baaef5d854cd7ffbbceb9c8736cf765ce3fa4d9dbfd54e",
+      "bytes": 242
+    },
+    {
       "path": "rules/gemini.yaml",
       "sha256": "2450597970c7d3e79f8825ad97ec6cee4671f8b63fd48ffd59247501ca1be30b",
       "bytes": 1416
+    },
+    {
+      "path": "rules/github-copilot.yaml",
+      "sha256": "5ec14d212f910579a7dceb646b6e323df08a70b8a8afe649d8ba41fdc1891da3",
+      "bytes": 292
     },
     {
       "path": "rules/github.yaml",
@@ -420,14 +987,44 @@
       "bytes": 2185
     },
     {
+      "path": "rules/gitlab.yaml",
+      "sha256": "da40b39431946c19c243919cc1cf760feaa2394b51d5b322423e02da3ad87135",
+      "bytes": 161
+    },
+    {
       "path": "rules/google.yaml",
       "sha256": "6a63baec518bb2420068c593031c13f9d96c54135904926d31200b7427cf668f",
       "bytes": 22297
     },
     {
+      "path": "rules/groq.yaml",
+      "sha256": "f91b29ddf823a1ba6ed75ecbb414c5a1188b7a8981d8dba3c6d17026d54e97ca",
+      "bytes": 49
+    },
+    {
+      "path": "rules/hbo.yaml",
+      "sha256": "20312a6cd5c91f3e1b076830e7e4cf842919ef8d518994ef37113caf06931724",
+      "bytes": 1124
+    },
+    {
+      "path": "rules/huggingface.yaml",
+      "sha256": "5f68de4800741b76ba34c0d50f0e6b3792e389db99d9eca56c3c38d9190c7ad1",
+      "bytes": 78
+    },
+    {
+      "path": "rules/jetbrains.yaml",
+      "sha256": "3ee973c9c69ee788d3c893ec57978fd89db77f373363d767f6d2e9460dea5b79",
+      "bytes": 486
+    },
+    {
       "path": "rules/lan.yaml",
       "sha256": "dc0054bf85bca2bdb614345c1394b33299efd73207cfc4122197fbef2652f482",
       "bytes": 322
+    },
+    {
+      "path": "rules/line.yaml",
+      "sha256": "e6fbb675849c66c57e7aa9e6267874b477a15c105bbf23b1825118e3bf003892",
+      "bytes": 392
     },
     {
       "path": "rules/microsoft.yaml",
@@ -440,9 +1037,34 @@
       "bytes": 539
     },
     {
+      "path": "rules/npmjs.yaml",
+      "sha256": "ef28561ca499c73b681fbb7666cba25b20d65d81850b58539cf3386d90edfd13",
+      "bytes": 82
+    },
+    {
       "path": "rules/openai.yaml",
       "sha256": "c92c28cd51cc12f9052647a7f8bb552610811c4ea53dec64f8b23eecf7b5c0ec",
       "bytes": 679
+    },
+    {
+      "path": "rules/perplexity.yaml",
+      "sha256": "5711cbe5682b9fe26ab95d48b75b36f9de255cd75481c565dd336dd07fb08a39",
+      "bytes": 165
+    },
+    {
+      "path": "rules/poe.yaml",
+      "sha256": "24355a82874fe4587aeeefe928b390d77214a06a8d36b7f7b23359b57278add8",
+      "bytes": 63
+    },
+    {
+      "path": "rules/signal.yaml",
+      "sha256": "0093b033ca71a4fe4fd22425a3406c1a5d67f5ed86b26ceb5011a28faea705c2",
+      "bytes": 172
+    },
+    {
+      "path": "rules/slack.yaml",
+      "sha256": "83b246dfef25880dc4c9846b9a3699d153c58586b92091e9583a93e71ca48ede",
+      "bytes": 238
     },
     {
       "path": "rules/speedtest.yaml",
@@ -455,14 +1077,49 @@
       "bytes": 749
     },
     {
+      "path": "rules/steam.yaml",
+      "sha256": "cadb90c3442dbea297ec1509bf6fcf244a0e855284d18a3d16b2c5ef7b9a9f83",
+      "bytes": 1595
+    },
+    {
       "path": "rules/telegram.yaml",
       "sha256": "3eb1c4495b00ad8591a8ddff70d939867ceaab5521f67d22f56a202f01b7dc63",
       "bytes": 372
     },
     {
+      "path": "rules/tiktok.yaml",
+      "sha256": "324efa24a32fc6c294306eecde6b137f5bbe557fb7bb25d54e063b89713dcf50",
+      "bytes": 968
+    },
+    {
+      "path": "rules/twitch.yaml",
+      "sha256": "ddc5aa5426faaf7b7328620b4e8553ac9b4db9d40a23a93623280d0851c9670f",
+      "bytes": 1091
+    },
+    {
+      "path": "rules/vercel.yaml",
+      "sha256": "39d759569bdbe175bfe1cf8256d53f98a8362901e21dc1fc43e0d9503d60aa82",
+      "bytes": 463
+    },
+    {
+      "path": "rules/whatsapp.yaml",
+      "sha256": "f592fdfaf2cfb4739350f25221ebd02e83f4404e1b0c0f4fef758a2c0bf153c0",
+      "bytes": 235
+    },
+    {
+      "path": "rules/xai.yaml",
+      "sha256": "cf8ab073feeb504323dbecbd292737497e41c05a014f22f271724bf106227e30",
+      "bytes": 92
+    },
+    {
       "path": "rules/youtube.yaml",
       "sha256": "89a0acd259a52baad64eadc3aa7ce46b20890b1de3eb2e010e5fd97bb7bb707c",
       "bytes": 3150
+    },
+    {
+      "path": "rules/zoom.yaml",
+      "sha256": "0429944edc8a9dd59d9460b527f683d66c94937d3311d3b035c2d9b2aaf49d15",
+      "bytes": 77
     }
   ]
 }

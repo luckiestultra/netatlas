@@ -1,7 +1,25 @@
 {
   "version": 1,
-  "fixed": { "lan": "DIRECT", "china": "DIRECT", "adblock": "REJECT" },
-  "initialSelection": { "apple": "DIRECT" },
-  "first": ["lan", "adblock"],
-  "last": ["google", "microsoft"]
+  "fixed": {
+    "lan": "DIRECT",
+    "china": "DIRECT",
+    "adblock": "REJECT",
+    "anti-ad": "REJECT"
+  },
+  "initialSelection": {
+    "apple": "DIRECT"
+  },
+  "first": [
+    "lan",
+    "adblock"
+  ],
+  "last": [
+    "apple",
+    "github",
+    "google",
+    "microsoft"
+  ],
+  "excludedFromDefault": [
+    "anti-ad"
+  ]
 }

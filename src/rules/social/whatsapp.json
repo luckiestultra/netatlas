@@ -1,0 +1,51 @@
+{
+  "version": 1,
+  "id": "whatsapp",
+  "category": "social",
+  "entries": [
+    {
+      "type": "domain-suffix",
+      "value": "wa.me"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "whatsapp-plus.info"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "whatsapp-plus.me"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "whatsapp-plus.net"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "whatsapp.cc"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "whatsapp.com"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "whatsapp.info"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "whatsapp.net"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "whatsapp.org"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "whatsapp.tv"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "whatsappbrand.com"
+    }
+  ]
+}

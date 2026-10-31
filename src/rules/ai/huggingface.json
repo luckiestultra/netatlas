@@ -1,0 +1,19 @@
+{
+  "version": 1,
+  "id": "huggingface",
+  "category": "ai",
+  "entries": [
+    {
+      "type": "domain-suffix",
+      "value": "hf.co"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "hf.space"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "huggingface.co"
+    }
+  ]
+}

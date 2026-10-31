@@ -1,0 +1,17 @@
+{
+  "version": 3,
+  "rules": [
+    {
+      "domain_suffix": [
+        "githubcopilot.com"
+      ],
+      "domain": [
+        "copilot-proxy.githubusercontent.com",
+        "copilot-telemetry-service.githubusercontent.com",
+        "copilot-telemetry.githubusercontent.com",
+        "copilot-workspace.githubnext.com",
+        "copilotprodattachments.blob.core.windows.net"
+      ]
+    }
+  ]
+}

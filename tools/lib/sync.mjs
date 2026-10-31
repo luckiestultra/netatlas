@@ -1,10 +1,13 @@
 import { createHash } from 'node:crypto';
 import { cp, lstat, mkdir, mkdtemp, readFile, readdir, rename, writeFile } from 'node:fs/promises';
 import path from 'node:path';
+import { isIP } from 'node:net';
 import { normalizeRuleset, stableId } from './rules.mjs';
+import { assertManagedPaths } from './managed-paths.mjs';
 
 const limits = { maxDepth: 20, maxFiles: 512, maxVisits: 4096, maxEntries: 250_000, maxFileBytes: 1_000_000, maxTotalBytes: 24_000_000 };
 const licenses = new Set(['MIT', 'BSD-2-Clause', 'BSD-3-Clause', 'Apache-2.0', 'ISC', 'CC0-1.0']);
+const hardMaxFileBytes = 4_000_000;
 const listName = /^[a-z0-9][a-z0-9.!_-]*$/;
 const sha256 = content => createHash('sha256').update(content).digest('hex');
 const json = value => JSON.stringify(value, null, 2) + '\n';
@@ -15,6 +18,45 @@ function validList(name) {
 
 function validDate(value) {
   return typeof value === 'string' && /^\d{4}-\d{2}-\d{2}(?:T\d{2}:\d{2}:\d{2}Z)?$/.test(value) && Number.isFinite(Date.parse(value)) && new Date(value).toISOString().slice(0, 10) === value.slice(0, 10);
+}
+
+function fileBudget(value = limits.maxFileBytes) {
+  if (!Number.isSafeInteger(value) || value <= 0 || value > hardMaxFileBytes) throw new Error('Invalid source file budget; absolute limit is 4 MB');
+  return value;
+}
+
+function sourcePath(value) {
+  if (typeof value !== 'string' || !value || value.length > 240 || value.split('/').some(part => !/^[A-Za-z0-9][A-Za-z0-9._-]*$/.test(part) || part.includes('..'))) throw new Error('Invalid registered source path');
+  return value;
+}
+
+function parseDomainLines(text, file, matchType, linePrefix = '') {
+  if (!['domain', 'domain-suffix'].includes(matchType)) throw new Error('Domain-line sources require an explicit supported match type');
+  if (!['', '.'].includes(linePrefix) || (linePrefix === '.' && matchType !== 'domain-suffix')) throw new Error('Invalid domain-line prefix or match type');
+  const entries = [];
+  let declaredCount;
+  for (const [index, original] of text.split(/\r?\n/).entries()) {
+    let value = original.trim();
+    if (!value) continue;
+    if (value.startsWith('#')) {
+      if (value.startsWith('#TOTAL_LINES')) {
+        const count = /^#TOTAL_LINES=(0|[1-9][0-9]*)$/.exec(value);
+        if (!count || declaredCount !== undefined || !Number.isSafeInteger(Number(count[1]))) throw new Error(`${file}:${index + 1}: Invalid domain-line count header`);
+        declaredCount = Number(count[1]);
+      }
+      continue;
+    }
+    if (linePrefix) {
+      if (!value.startsWith(linePrefix)) throw new Error(`${file}:${index + 1}: Missing registered domain-line prefix`);
+      value = value.slice(linePrefix.length);
+    }
+    if (isIP(value) || /[\s*:@/#\\]/.test(value) || value.startsWith('.') || value.endsWith('.')) throw new Error(`${file}:${index + 1}: Invalid domain line`);
+    entries.push({ type: matchType, value });
+    if (entries.length > limits.maxEntries) throw new Error('Domain-line entry count limit exceeded');
+  }
+  if (declaredCount !== undefined && declaredCount !== entries.length) throw new Error(`${file}: Domain-line count header does not match the data`);
+  const normalized = normalizeRuleset({ version: 1, id: 'domain-lines', category: 'portable', entries });
+  return { entries: normalized.entries, rawEntryCount: entries.length };
 }
 
 export function parseDomainList(text, file) {
@@ -103,13 +145,17 @@ export async function collectDomainList(name, options) {
 }
 
 export async function fetchBoundedText(url, { maxBytes = limits.maxFileBytes, timeoutMs = 15_000 } = {}) {
+  fileBudget(maxBytes);
   const parsed = new URL(url);
   if (parsed.protocol !== 'https:' || !['raw.githubusercontent.com', 'api.github.com'].includes(parsed.hostname) || parsed.username || parsed.password) {
     throw new Error('Only registered HTTPS GitHub source endpoints are allowed');
   }
   const response = await fetch(parsed, { redirect: 'error', signal: AbortSignal.timeout(timeoutMs), headers: { 'User-Agent': 'netatlas-rule-sync', Accept: 'application/vnd.github+json' } });
   if (!response.ok) throw new Error(`Source HTTP ${response.status}: ${url}`);
-  if (Number(response.headers.get('content-length')) > maxBytes) throw new Error(`Source response size exceeded: ${url}`);
+  if (Number(response.headers.get('content-length')) > maxBytes) {
+    await response.body?.cancel();
+    throw new Error(`Source response size exceeded: ${url}`);
+  }
   const chunks = [];
   let bytes = 0;
   for await (const chunk of response.body) {
@@ -132,6 +178,7 @@ async function rejectSymlinks(dir) {
 }
 
 async function verifyInputs(root, expectedMetadataSha256, expectedSourceHashes) {
+  await assertManagedPaths(root, ['metadata/upstreams.json', 'src/rules', '.cache/sync']);
   const metadata = path.join(root, 'metadata', 'upstreams.json');
   if (expectedMetadataSha256 && sha256(await readFile(metadata)) !== expectedMetadataSha256) throw new Error('Source metadata changed during sync');
   for (const [relative, expected] of expectedSourceHashes || []) {
@@ -141,6 +188,7 @@ async function verifyInputs(root, expectedMetadataSha256, expectedSourceHashes) 
 }
 
 export async function recoverPublication(root, { dryRun = false } = {}) {
+  await assertManagedPaths(root, ['metadata/upstreams.json', 'src/rules', '.cache/sync']);
   if ((await exists(path.join(root, '.cache')))?.isSymbolicLink()) throw new Error('Refusing a symlink for the cache root');
   const cache = path.join(root, '.cache', 'sync');
   const stat = await exists(cache);
@@ -175,6 +223,7 @@ export async function recoverPublication(root, { dryRun = false } = {}) {
 }
 
 export async function publishCatalog(root, outputs, metadataText, { expectedMetadataSha256, expectedSourceHashes } = {}) {
+  await assertManagedPaths(root, ['metadata/upstreams.json', 'src/rules', '.cache/sync']);
   const rules = path.join(root, 'src', 'rules');
   const metadata = path.join(root, 'metadata', 'upstreams.json');
   await rejectSymlinks(rules);
@@ -224,16 +273,21 @@ export async function publishCatalog(root, outputs, metadataText, { expectedMeta
   // Previous batches stay in the ignored cache as recoverable local backups.
 }
 
-export async function syncCatalog({ root, revision, latest = false, dryRun = false, fetchText = fetchBoundedText } = {}) {
+export async function syncCatalog({ root, revision, repository, latest = false, dryRun = false, fetchText = fetchBoundedText } = {}) {
   if (!root) throw new Error('A repository root is required');
+  await assertManagedPaths(root, ['metadata/upstreams.json', 'src/rules', '.cache/sync']);
   if (revision && latest) throw new Error('Use --revision or --latest, not both');
-  await recoverPublication(root, { dryRun });
-  await rejectSymlinks(path.join(root, 'src', 'rules'));
   const metadataPath = path.join(root, 'metadata', 'upstreams.json');
   if ((await exists(metadataPath))?.isSymbolicLink()) throw new Error('Refusing a symlink for source metadata');
   const originalMetadata = await readFile(metadataPath, 'utf8');
   const registry = JSON.parse(originalMetadata);
   if (registry.version !== 1 || !Array.isArray(registry.repositories) || registry.repositories.length > 8 || !Array.isArray(registry.rulesets) || registry.rulesets.length > 512) throw new Error('Invalid source registry');
+  if (repository !== undefined && (!stableId.test(repository) || !registry.repositories.some(repo => repo.id === repository))) throw new Error(`Unknown repository selector: ${repository}`);
+  if (repository && !revision && !latest) throw new Error('A repository selector requires --latest or --revision');
+  if (revision && registry.repositories.length > 1 && !repository) throw new Error('Multiple repositories require --repository with --revision');
+  // Reject ambiguous version operations before recovery can write any journal or directory.
+  await recoverPublication(root, { dryRun });
+  await rejectSymlinks(path.join(root, 'src', 'rules'));
   const originals = new Map();
   const expectedSourceHashes = new Map();
   const ids = new Set();
@@ -248,30 +302,35 @@ export async function syncCatalog({ root, revision, latest = false, dryRun = fal
   const repositories = new Map();
   const cache = new Map();
   let downloadedBytes = 0;
-  async function download(url) {
+  async function download(url, { maxBytes = limits.maxFileBytes } = {}) {
+    fileBudget(maxBytes);
     if (!cache.has(url)) {
       if (cache.size >= limits.maxFiles) throw new Error('Total source file count exceeded');
       cache.set(url, (async () => {
-        const text = await fetchText(url);
-        if (typeof text !== 'string' || Buffer.byteLength(text) > limits.maxFileBytes) throw new Error('Source response size exceeded');
+        const text = await fetchText(url, { maxBytes });
+        if (typeof text !== 'string' || Buffer.byteLength(text) > maxBytes) throw new Error('Source response size exceeded');
         downloadedBytes += Buffer.byteLength(text);
         if (downloadedBytes > limits.maxTotalBytes) throw new Error('Total source size exceeded');
         return text;
       })());
     }
-    return cache.get(url);
+    const text = await cache.get(url);
+    if (Buffer.byteLength(text) > maxBytes) throw new Error('Cached source response size exceeded');
+    return text;
   }
   for (const repo of registry.repositories) {
     if (!stableId.test(repo.id) || !/^[A-Za-z0-9_.-]+\/[A-Za-z0-9_.-]+$/.test(repo.repository) || !licenses.has(repo.license) || typeof repo.author !== 'string' || !repo.author.trim()) throw new Error('Unapproved repository, author, or license');
     if (repositories.has(repo.id)) throw new Error(`Duplicate repository id: ${repo.id}`);
     const previousRevision = repo.revision;
-    if (latest) {
+    const selectedRepository = repository === undefined || repo.id === repository;
+    if (latest && selectedRepository) {
       if (!/^[A-Za-z0-9_.-]+$/.test(repo.branch || 'master')) throw new Error('Invalid upstream branch');
       const ref = JSON.parse(await download(`https://api.github.com/repos/${repo.repository}/git/ref/heads/${repo.branch || 'master'}`));
       repo.revision = ref.object?.sha;
-    } else if (revision) repo.revision = revision;
+    } else if (revision && selectedRepository) repo.revision = revision;
     if (!/^[0-9a-f]{40}$/.test(repo.revision)) throw new Error('Sources must use a pinned full commit SHA');
     if (repo.revision !== previousRevision || !validDate(repo.revisionDate)) {
+      if (!selectedRepository) throw new Error(`Unselected repository needs a valid pinned date: ${repo.id}`);
       const commit = JSON.parse(await download(`https://api.github.com/repos/${repo.repository}/commits/${repo.revision}`));
       if (commit.sha !== repo.revision || !validDate(commit.commit?.committer?.date)) throw new Error('Missing pinned commit date');
       repo.revisionDate = commit.commit.committer.date;
@@ -287,6 +346,7 @@ export async function syncCatalog({ root, revision, latest = false, dryRun = fal
   for (const item of registry.rulesets) {
     const relative = `${item.category}/${item.id}.json`;
     const current = originals.get(relative);
+    const unselectedMetadata = repository && item.source?.repository !== repository ? json(item) : null;
     let ruleset;
     if (item.source?.type === 'local') {
       if (item.source.license !== 'MIT' || typeof item.source.author !== 'string' || !item.source.author.trim() || !validDate(item.source.updatedAt) || !Array.isArray(item.source.references) || !item.source.references.length) throw new Error(`Missing first-party provenance: ${item.id}`);
@@ -301,14 +361,35 @@ export async function syncCatalog({ root, revision, latest = false, dryRun = fal
       if (!repo) throw new Error(`Unregistered source repository: ${item.id}`);
       if (current !== null && !item.outputSha256) throw new Error(`No recorded checksum for existing managed ruleset: ${relative}`);
       if (current !== null && item.outputSha256 && sha256(current) !== item.outputSha256) throw new Error(`Local changes in managed ruleset: ${relative}`);
-      const base = `https://raw.githubusercontent.com/${repo.repository}/${repo.revision}/data/`;
-      const collected = await collectDomainList(item.source.list, { readFile: name => download(base + name), exclusions: item.exclusions || [] });
-      ruleset = normalizeRuleset({ version: 1, id: item.id, category: item.category, entries: collected.entries });
-      item.files = collected.files.map(file => ({ path: `data/${file.file}`, url: base + file.file, sha256: file.sha256 }));
-      item.appliedExclusions = collected.excluded;
-      item.attributeFiltered = collected.attributeFiltered;
-      item.affiliationDeclarations = collected.affiliationDeclarations;
-      item.selection = 'selected files and explicit includes; not global affiliation expansion';
+      const format = item.source.format ?? 'domain-list-community';
+      if (format === 'domain-lines') {
+        const file = sourcePath(item.source.path);
+        const maxBytes = fileBudget(item.source.maxFileBytes);
+        if (item.exclusions?.length) throw new Error('Domain-line sources do not allow silent expression exclusions');
+        const url = `https://raw.githubusercontent.com/${repo.repository}/${repo.revision}/${file}`;
+        const text = await download(url, { maxBytes });
+        const collected = parseDomainLines(text, file, item.source.matchType, item.source.linePrefix);
+        ruleset = normalizeRuleset({ version: 1, id: item.id, category: item.category, entries: collected.entries });
+        item.files = [{ path: file, url, sha256: sha256(text) }];
+        item.appliedExclusions = [];
+        item.attributeFiltered = 0;
+        item.affiliationDeclarations = 0;
+        item.rawEntryCount = collected.rawEntryCount;
+        item.selection = `complete registered domain-line file; explicit ${item.source.matchType} semantics`;
+      } else if (format === 'domain-list-community') {
+        if (item.source.maxFileBytes !== undefined) throw new Error('File budget overrides require registered domain-lines format');
+        if (item.source.linePrefix !== undefined) throw new Error('Line prefixes require registered domain-lines format');
+        const base = `https://raw.githubusercontent.com/${repo.repository}/${repo.revision}/data/`;
+        const collected = await collectDomainList(item.source.list, { readFile: name => download(base + name), exclusions: item.exclusions || [] });
+        ruleset = normalizeRuleset({ version: 1, id: item.id, category: item.category, entries: collected.entries });
+        item.files = collected.files.map(file => ({ path: `data/${file.file}`, url: base + file.file, sha256: file.sha256 }));
+        item.appliedExclusions = collected.excluded;
+        item.attributeFiltered = collected.attributeFiltered;
+        item.affiliationDeclarations = collected.affiliationDeclarations;
+        item.selection = 'selected files and explicit includes; not global affiliation expansion';
+      } else {
+        throw new Error(`Unregistered rule source format: ${format}`);
+      }
       item.updatedAt = repo.revisionDate;
     }
     if (ruleset.id !== item.id || ruleset.category !== item.category) throw new Error(`First-party source identity mismatch: ${item.id}`);
@@ -316,6 +397,7 @@ export async function syncCatalog({ root, revision, latest = false, dryRun = fal
     outputs.set(relative, content);
     item.outputSha256 = sha256(content);
     item.entryCount = ruleset.entries.length;
+    if (unselectedMetadata !== null && (current !== content || json(item) !== unselectedMetadata)) throw new Error(`Unselected source changed during validation: ${item.id}; initialize or review the full catalog separately`);
     report.push({ id: item.id, entries: item.entryCount, excluded: item.appliedExclusions.length, changed: current !== content });
   }
   const newMetadata = json(registry);

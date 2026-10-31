@@ -1,0 +1,27 @@
+{
+  "version": 1,
+  "id": "gitlab",
+  "category": "development",
+  "entries": [
+    {
+      "type": "domain-suffix",
+      "value": "gitlab-static.net"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "gitlab.com"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "gitlab.io"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "gitlab.net"
+    },
+    {
+      "type": "domain",
+      "value": "gitlab-assets.oss-cn-hongkong.aliyuncs.com"
+    }
+  ]
+}

@@ -1,0 +1,39 @@
+{
+  "version": 1,
+  "id": "signal",
+  "category": "social",
+  "entries": [
+    {
+      "type": "domain-suffix",
+      "value": "signal.art"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "signal.group"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "signal.link"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "signal.me"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "signal.org"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "signal.tube"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "signalusers.org"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "whispersystems.org"
+    }
+  ]
+}

@@ -1,0 +1,4 @@
+no_resolve: true
+domain_suffix_set:
+  - poe.com
+  - poecdn.net

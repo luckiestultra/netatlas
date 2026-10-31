@@ -1,0 +1,7 @@
+name: NetAtlas Anti-AD
+description: Optional domain blocking; no MITM or scripts.
+rules:
+  - rule_set:
+      match: https://raw.githubusercontent.com/luckiestultra/netatlas/main/clients/egern/rules/anti-ad.yaml
+      policy: REJECT
+      update_interval: 86400

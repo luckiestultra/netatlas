@@ -5,6 +5,9 @@ export const ruleTypes = ['domain', 'domain-suffix', 'ip-cidr', 'ip-cidr6'];
 export const stableId = /^[a-z][a-z0-9]*(?:-[a-z0-9]+)*$/;
 
 function domain(value) {
+  // domainToASCII also accepts URL-host input and can discard path/query data.
+  // Reject URL syntax before applying IDNA, so invalid upstream rules fail closed.
+  if (/[\\/?:#%@\s\u0000-\u001f\u007f]/u.test(value)) throw new Error(`Invalid domain: ${value}`);
   const ascii = domainToASCII(value.replace(/\.$/, '')).toLowerCase();
   const labels = ascii.split('.');
   if (!ascii || ascii.length > 253 || labels.some(label => !/^[a-z0-9](?:[a-z0-9-]{0,61}[a-z0-9])?$/.test(label))) {
