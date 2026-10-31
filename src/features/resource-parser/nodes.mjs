@@ -225,6 +225,16 @@ function fromObject(o) {
   }
   putBool(n,'udp-relay',o.udp??o['udp-relay']);putBool(n,'fast-open',o.tfo??o['fast-open']??o['tcp-fast-open']);if(o.udp_over_tcp!==undefined)putBool(n,'udp-over-tcp',o.udp_over_tcp);return n;
 }
+function fromSip008(o) {
+  if(!object(o))error('invalid SIP008 server');
+  if(!own(o,'id'))return fromObject(o);
+  keys(o,['id','remarks','server','server_port','method','password','plugin','plugin_opts']);
+  // SIP008 id identifies updates. Only this envelope can remove it as metadata;
+  // VMess and other formats still validate id as a protocol-specific field.
+  uuid(o.id);
+  const connection={...o};delete connection.id;
+  return fromObject(connection);
+}
 function fromSingbox(o) {
   keys(o,['type','tag','server','server_port','method','password','uuid','security','alter_id','username','tls','transport','tcp_fast_open','udp_over_tcp','multiplex','flow','version']);
   if(o.multiplex)error('multiplexing unsupported');
@@ -326,7 +336,10 @@ export function createNodeParser(utils={}) {
       else{
         let source=Array.isArray(value)?value:object(value)?value.proxies||value.servers||value.nodes||value.outbounds:null;if(!Array.isArray(source))error('missing nodes');
         if(source.length>2000)error('node limit exceeded');result=[];
-        for(const item of source){const singbox=object(value)&&own(value,'outbounds');if(object(item)&&['selector','urltest','direct','block','dns'].includes(item.type)&&singbox)continue;result.push(typeof item==='string'?fromUri(item):singbox?fromSingbox(item):fromObject(item));}
+        const serversEnvelope=object(value)&&source===value.servers;
+        if(serversEnvelope&&own(value,'version')&&value.version!==1)error('unsupported SIP008 version');
+        const sip008=serversEnvelope&&value.version===1;
+        for(const item of source){const singbox=object(value)&&source===value.outbounds;if(object(item)&&['selector','urltest','direct','block','dns'].includes(item.type)&&singbox)continue;result.push(sip008?fromSip008(item):typeof item==='string'?fromUri(item):singbox?fromSingbox(item):fromObject(item));}
       }
       if(!result.length||result.length>2000)error('empty or oversized subscription');const names=new Set();
       return result.map((n,i)=>{validate(n,i);if(names.has(n.fields.tag))error('duplicate node name');names.add(n.fields.tag);return n.original||n.type+'='+(n.host.includes(':')?'['+n.host+']':n.host)+':'+n.port+', '+Object.keys(n.fields).map(k=>k+'='+n.fields[k]).join(', ');}).join('\n')+'\n';

@@ -22,11 +22,11 @@ HTTPS-upgrade 为固定 GPL-2.0 原文的六主机投影，保留 path/query，�
 
 ## GeoIP 行为
 
-共享纯核心 src/features/geoip/core.mjs 支持 IPinfo、ipwho.de、ip-api 响应格式。外部字段必须校验类型；空 ASN、空组织、无城市、无数据、错误 JSON、API 错误状态、限流和传输超时不得导致未完成回调。
+共享纯核心 src/features/geoip/core.mjs 支持 ipwho.is、IPinfo legacy/Lite、ipwho.de、ip-api 响应格式。外部字段必须校验类型；空 ASN、空组织、无城市、无数据、错误 JSON、API 错误状态、限流和传输超时不得导致未完成回调。
 
 结果保留来源给出的地理信息，不推断物理机房，不硬编码某国或某个用户 IP，不填入虚构城市或运营商。QX显示按源国家代码使用固定Unicode CLDR 48中文国家/地区名称，原始provider字段不改；title、subtitle、ip、description均保留完整源IP。CLDR数据采用Unicode-3.0许可，固定版本、原文哈希与完整许可分别保留在localization目录；生成脚本带完整Unicode许可。收到响应、定位成功和网络整体正常是不同事实。VM验证不等于原生QX界面截图或设备实测。
 
-QX 原生适配器只解析 $response，不再联网或更改节点。生成的 fragments/geoip.conf 是 [general] 合并片段，不是重写订阅；它的脚本 URL 只有对应文件推送到公开提交后才能使用。
+QX 原生适配器只解析 $response，不再联网或更改节点。默认 HTTP 查询使用 ipwho.is 的 lang=zh-CN 响应，保留省州、城市、时区、连接 ASN 和组织；只有布尔 success=true 才接受成功数据。输出保留完整 IP，缺失字段不推断，不在脚本里自动轮询或切换来源。生成的 fragments/geoip.conf 是 [general] 合并片段，不是重写订阅；它的脚本 URL 只有对应文件推送到公开提交后才能使用。
 
 Surge generic 面板的一次查询明确指定已有策略名，发布模块默认节点选择。该选项只影响本次查询，不切换策略组、不读取账户偏好，也不代表其他请求采用相同路由。请求、看门狗和晚响应共用一次完成保护。
 

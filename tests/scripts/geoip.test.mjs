@@ -50,6 +50,102 @@ test('the actual QX adapter runs standalone with no Intl, imports or network acc
   }
 });
 
+test('ipwho.is localized nested fields retain region, city, timezone and connection details', () => {
+  const result = parseGeoResponse(response({
+    ip: '203.0.113.86', success: true, country: '美国', country_code: 'US',
+    region: '加利福尼亚州', city: '洛杉矶',
+    connection: { asn: 64500, org: 'Example Org', isp: 'Example ISP' },
+    timezone: { id: 'America/Los_Angeles', utc: '-07:00' },
+  }));
+  assert.equal(result.state, 'ok');
+  assert.equal(result.source, 'ipwho.is');
+  assert.equal(result.countryCode, 'US');
+  assert.equal(result.country, '美国');
+  assert.equal(result.region, '加利福尼亚州');
+  assert.equal(result.city, '洛杉矶');
+  assert.equal(result.asn, 'AS64500');
+  assert.equal(result.organization, 'Example Org');
+  assert.equal(result.timezone, 'America/Los_Angeles');
+  const card = formatQuantumultX(result);
+  assert.match(card.title, /美国.*203\.0\.113\.86/);
+  assert.ok(card.subtitle.startsWith('203.0.113.86'));
+  assert.match(card.subtitle, /加利福尼亚州.*洛杉矶.*America\/Los_Angeles.*AS64500/);
+});
+
+test('ipwho.is errors, missing fields and malformed nested data never imply success', () => {
+  for (const success of [false, 'true', 1, null]) {
+    const result = parseGeoResponse(response({ ip: '203.0.113.86', success, country_code: 'US', country: '美国', message: 'Invalid IP address' }));
+    assert.notEqual(result.state, 'ok');
+  }
+  const absentSuccess = parseGeoResponse(response({ ip: '203.0.113.86', country: 'United States', country_code: 'US', city: 'Los Angeles', connection: { asn: 64500 }, timezone: { id: 'America/Los_Angeles' } }));
+  assert.equal(absentSuccess.source, 'ipwho.is');
+  assert.notEqual(absentSuccess.state, 'ok', 'nested ipwho.is cannot bypass success validation as IPinfo Lite');
+  const sparse = parseGeoResponse(response({ ip: '203.0.113.87', success: true, country_code: 'JP', country: 'Japan', connection: null, timezone: {} }));
+  assert.equal(sparse.state, 'ok');
+  assert.equal(sparse.asn, '');
+  assert.equal(sparse.region, '');
+  assert.equal(sparse.city, '');
+  assert.equal(sparse.timezone, '');
+  assert.match(formatQuantumultX(sparse).title, /日本/);
+  const invalid = parseGeoResponse(response({ ip: '203.0.113.87', success: true, country_code: 'JP', country: 'Japan', connection: { asn: {}, org: ['secret'], isp: 'Example ISP' }, timezone: ['secret'] }));
+  assert.equal(invalid.asn, '');
+  assert.equal(invalid.organization, 'Example ISP');
+  assert.equal(invalid.timezone, '');
+  assert.doesNotMatch(JSON.stringify(formatQuantumultX(invalid)), /secret|undefined|null/);
+});
+
+test('IPinfo Lite country_code and top-level ASN are distinct from legacy country codes', () => {
+  const result = parseGeoResponse(response({ ip: '203.0.113.88', country: 'United States', country_code: 'US', asn: 'AS64500', as_name: 'Example Network' }));
+  assert.equal(result.source, 'ipinfo');
+  assert.equal(result.state, 'ok');
+  assert.equal(result.countryCode, 'US');
+  assert.equal(result.country, 'United States');
+  assert.equal(result.asn, 'AS64500');
+  assert.equal(result.organization, 'Example Network');
+  assert.equal(result.city, '');
+  assert.match(formatQuantumultX(result).title, /美国/);
+});
+
+test('IPinfo Lite optional country fields do not discard the ASN or invent a location', () => {
+  const codeOnly = parseGeoResponse(response({ ip: '203.0.113.89', country_code: 'US', asn: 'AS64500', as_name: 'Example Network' }));
+  assert.equal(codeOnly.source, 'ipinfo');
+  assert.equal(codeOnly.state, 'ok');
+  assert.equal(codeOnly.countryCode, 'US');
+  assert.equal(codeOnly.country, '');
+  assert.equal(codeOnly.asn, 'AS64500');
+  assert.match(formatQuantumultX(codeOnly).title, /美国/);
+  const nameOnly = parseGeoResponse(response({ ip: '203.0.113.89', country: 'United States', asn: 'AS64500', as_name: 'Example Network' }));
+  assert.equal(nameOnly.state, 'ok');
+  assert.equal(nameOnly.country, 'United States');
+  assert.equal(nameOnly.countryCode, '');
+  const pureName = parseGeoResponse(response({ ip: '203.0.113.89', country: 'United States' }));
+  assert.equal(pureName.state, 'ok');
+  assert.equal(pureName.country, 'United States');
+  assert.equal(pureName.countryCode, '');
+  for (let fields = 0; fields < 16; fields += 1) {
+    const body = { ip: '203.0.113.89' };
+    if (fields & 1) body.country_code = 'US';
+    if (fields & 2) body.country = 'United States';
+    if (fields & 4) body.asn = 'AS64500';
+    if (fields & 8) body.as_name = 'Example Network';
+    const sparse = parseGeoResponse(response(body));
+    assert.equal(sparse.state, fields & 3 ? 'ok' : 'no-data', 'optional-field set ' + fields);
+    assert.equal(sparse.country, fields & 2 ? 'United States' : '');
+    assert.equal(sparse.countryCode, fields & 1 ? 'US' : '');
+    assert.equal(sparse.asn, fields & 4 ? 'AS64500' : '');
+    assert.equal(sparse.organization, fields & 8 ? 'Example Network' : '');
+    assert.equal(sparse.city, '');
+  }
+  const asOnly = parseGeoResponse(response({ ip: '203.0.113.89', asn: 'AS64500', as_name: 'Example Network' }));
+  assert.equal(asOnly.source, 'ipinfo');
+  assert.equal(asOnly.state, 'no-data');
+  assert.equal(asOnly.asn, 'AS64500');
+  assert.equal(asOnly.organization, 'Example Network');
+  assert.equal(asOnly.countryCode, '');
+  assert.match(formatQuantumultX(asOnly).description, /ASN: AS64500/);
+  assert.doesNotMatch(formatQuantumultX(asOnly).title, /美国|United States/);
+});
+
 test('IPinfo normalization preserves the returned location and separates ASN from organization', () => {
   const result = parseGeoResponse(response({
     ip: '192.0.2.10', country: 'GB', region: 'England', city: 'Oxford',

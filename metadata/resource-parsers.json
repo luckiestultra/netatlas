@@ -66,9 +66,10 @@
         "https://manual.nssurge.com/scripting/http-request.html",
         "https://nsloon.app/en/docs/Rewrite/",
         "https://nsloon.app/en/docs/Script/",
-        "https://sing-box.sagernet.org/configuration/rule-set/headless-rule/"
+        "https://sing-box.sagernet.org/configuration/rule-set/headless-rule/",
+        "https://shadowsocks.org/doc/sip008.html"
       ],
-      "behavior": "Atomic offline conversion of supported node subscriptions, rule resources and rewrite resources to native QX text. Literal name filtering/renaming and official parser-helper UI are implemented. Referenced external HTTPS scripts are emitted only, never executed or fetched by the parser.",
+      "behavior": "Atomic offline conversion of supported node subscriptions, rule resources and rewrite resources to native QX text. SIP008 v1 server id is validated update metadata only within its servers envelope; unknown connection fields remain errors. Literal name filtering/renaming and official parser-helper UI are implemented. Referenced external HTTPS scripts are emitted only, never executed or fetched by the parser.",
       "limitations": "Unsupported protocols, transports, fields, unregistered domain regex, conjunctive headless conditions, ambiguous domain formats, local scripts and certificate settings fail the complete resource. Explicit allow-resolve changes DNS semantics; script-compat=qx declares user-verified API compatibility and does not translate JavaScript. Native QX import/device execution not run.",
       "artifacts": [
         "scripts/resource-parser.js",

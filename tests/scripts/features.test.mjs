@@ -30,6 +30,11 @@ test('QX native response parser completes once and never performs another networ
 test('QX built-in GeoIP returns the final evaluation object consumed by the native host', () => {
   const script = files('quantumultX').get('scripts/geoip.js');
   const cases = [
+    {
+      name: 'ipwho.is Chinese', statusCode: 200,
+      body: JSON.stringify({ ip: '203.0.113.11', success: true, country_code: 'JP', country: '日本', region: '东京都', city: '东京', timezone: { id: 'Asia/Tokyo' }, connection: { asn: 64500, org: 'Example Network' } }),
+      ip: '203.0.113.11', title: /日本/,
+    },
     { name: 'ipwho', statusCode: 200, body: apiBody, ip: '192.0.2.10', title: /英国/ },
     {
       name: 'ip-api empty ASN', statusCode: 200,
@@ -125,7 +130,7 @@ test('Surge synchronous HTTP-client failure produces an error panel instead of a
 
 test('feature URLs use the requested public base, including a trailing slash', () => {
   const qx = files('quantumultX');
-  assert.match(qx.get('fragments/geoip.conf'), /geo_location_checker=http:\/\/ipwho\.de\/json, https:\/\/raw\.githubusercontent\.com\/luckiestultra\/netatlas\/main\/clients\/quantumultX\/scripts\/geoip\.js/);
+  assert.match(qx.get('fragments/geoip.conf'), /geo_location_checker=http:\/\/ipwho\.is\/\?lang=zh-CN, https:\/\/raw\.githubusercontent\.com\/luckiestultra\/netatlas\/main\/clients\/quantumultX\/scripts\/geoip\.js/);
   const surge = files('surge');
   assert.match(surge.get('modules/geoip.sgmodule'), /script-path=https:\/\/raw\.githubusercontent\.com\/luckiestultra\/netatlas\/main\/clients\/surge\/scripts\/geoip\.js/);
   assert.deepEqual(renderFeatures('surge', { baseUrl: baseUrl + '/' }), renderFeatures('surge', { baseUrl }));

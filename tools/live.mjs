@@ -5,7 +5,7 @@ import { renderFeatures } from './lib/features.mjs';
 
 const geo=createGeoIP();
 const script=renderFeatures('quantumultX').find(file=>file.path==='scripts/geoip.js').content;
-const providers=[['ipinfo','https://ipinfo.io/json'],['ipwho.de','http://ipwho.de/json']];
+const providers=[['ipwho.is','http://ipwho.is/?lang=zh-CN'],['ipinfo','https://ipinfo.io/json'],['ipwho.de','http://ipwho.de/json']];
 const results=await Promise.allSettled(providers.map(async([provider,url])=>{
   const response=await fetch(url,{signal:AbortSignal.timeout(15000),headers:{accept:'application/json'}});
   const chunks=[];let bytes=0;
@@ -16,8 +16,9 @@ const results=await Promise.allSettled(providers.map(async([provider,url])=>{
   assert.equal(normalized.state,'ok',`${provider}: ${normalized.state} (HTTP ${response.status})`);
   assert.ok(normalized.ip,`${provider}: no exit IP returned`);
   let calls=0,output;
-  const context=createContext({$response:nativeResponse,$done:value=>{calls++;output=value;}});
-  new Script(script).runInContext(context,{timeout:1000});
+  const context=createContext({$response:nativeResponse,$done:value=>{calls++;output=value;return value;}});
+  const evaluated=new Script(script).runInContext(context,{timeout:1000});
+  assert.equal(evaluated,output,`${provider}: native checker lost the final evaluation object`);
   assert.equal(calls,1);
   assert.deepEqual(JSON.parse(JSON.stringify(output)),geo.formatQuantumultX(normalized));
   // The actual IP and response body stay in memory; do not persist personal IPs.

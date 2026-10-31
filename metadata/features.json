@@ -8,7 +8,8 @@
       "providers": {
         "ipinfo": "https://ipinfo.io/json",
         "ipwho.de": "http://ipwho.de/json",
-        "ip-api": "http://ip-api.com/json/"
+        "ip-api": "http://ip-api.com/json/",
+        "ipwho.is": "http://ipwho.is/?lang=zh-CN"
       },
       "clients": {
         "quantumultX": {
@@ -35,8 +36,8 @@
         }
       },
       "validation": {
-        "unit": "node-test: pinned CLDR display projection; QX title/subtitle/ip/description retain the complete provider IP; raw provider fields remain unchanged.",
-        "hostContract": "node-vm: generated QX/Surge adapters; native app screenshot and device execution not run.",
+        "unit": "node-test: nested ipwho.is and IPinfo Lite/legacy schemas, strict success states, CLDR labels, complete IP and timezone display.",
+        "hostContract": "node-vm: generated QX final evaluation object with identity $done and once-only completion; Surge callback/watchdog contract. Native GUI execution is separate.",
         "nativeApp": "not-run",
         "liveApi": "Run separately; public IP responses are never committed as fixtures."
       },
@@ -49,7 +50,9 @@
         "https://ipwho.de/",
         "https://ipinfo.io/developers",
         "https://ip-api.com/docs/api:json",
-        "https://github.com/unicode-org/cldr/blob/acd6d88ae493633240e19a87a721076a8a75c310/common/main/zh.xml"
+        "https://github.com/unicode-org/cldr/blob/acd6d88ae493633240e19a87a721076a8a75c310/common/main/zh.xml",
+        "https://ipwhois.io/documentation",
+        "https://ipinfo.io/developers/lite-api"
       ],
       "license": "MIT AND Unicode-3.0",
       "displayLocalization": {

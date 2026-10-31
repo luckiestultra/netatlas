@@ -139,8 +139,9 @@ var AtlasGeoIP = (function createGeoIP() {
   function source(data) {
     if (!object(data)) return 'unknown';
     if ('query' in data && 'status' in data) return 'ip-api';
+    if ('success' in data || 'connection' in data || object(data.timezone)) return 'ipwho.is';
     if ('country_name' in data || 'as_desc' in data || 'city_name' in data) return 'ipwho.de';
-    if ('ip' in data && 'country' in data) return 'ipinfo';
+    if ('ip' in data && ('country' in data || 'country_code' in data || 'asn' in data || 'as_name' in data)) return 'ipinfo';
     return 'unknown';
   }
   function blank(state, code, message) {
@@ -175,7 +176,7 @@ var AtlasGeoIP = (function createGeoIP() {
     var result = blank('no-data', code, message);
     result.source = source(data);
     if (object(data)) result.ip = ip(data.ip || data.query);
-    var failed = object(data) && ((result.source === 'ip-api' && data.status !== 'success') || data.status === 'fail' || data.success === false || Boolean(data.error));
+    var failed = object(data) && ((result.source === 'ip-api' && data.status !== 'success') || (result.source === 'ipwho.is' && data.success !== true) || data.status === 'fail' || data.success === false || Boolean(data.error));
     if (code === 429 || (failed && /rate.?limit|quota|too many|exceed/i.test(message))) {
       result.state = 'rate-limited';
       result.message = message || '定位服务请求次数已达上限';
@@ -205,6 +206,15 @@ var AtlasGeoIP = (function createGeoIP() {
       result.asn = network.asn;
       result.organization = text(data.org) || text(data.isp) || network.organization;
       result.timezone = text(data.timezone);
+    } else if (result.source === 'ipwho.is') {
+      var connection = object(data.connection) ? data.connection : {};
+      result.countryCode = countryCode(data.country_code);
+      result.country = text(data.country);
+      result.region = text(data.region);
+      result.city = text(data.city);
+      result.asn = asn(connection.asn);
+      result.organization = text(connection.org) || text(connection.isp);
+      result.timezone = object(data.timezone) ? text(data.timezone.id) : '';
     } else if (result.source === 'ipwho.de') {
       result.countryCode = countryCode(data.country_code);
       result.country = text(data.country_name);
@@ -213,12 +223,13 @@ var AtlasGeoIP = (function createGeoIP() {
       result.organization = text(data.as_desc);
     } else if (result.source === 'ipinfo') {
       network = splitAS(data.org);
-      result.countryCode = countryCode(data.country);
-      result.country = result.countryCode;
+      var lite = 'country_code' in data || 'asn' in data || 'as_name' in data;
+      result.countryCode = countryCode(lite ? data.country_code : data.country);
+      result.country = text(data.country);
       result.region = text(data.region);
       result.city = text(data.city);
-      result.asn = network.asn;
-      result.organization = network.organization;
+      result.asn = lite ? asn(data.asn) : network.asn;
+      result.organization = lite ? text(data.as_name) || network.organization : network.organization;
       result.timezone = text(data.timezone);
     }
     if (result.ip && (result.countryCode || result.country || result.city || result.region)) {
@@ -278,7 +289,7 @@ var AtlasGeoIP = (function createGeoIP() {
     var heading = result.state === 'ok' ? lines([flag(result.countryCode), place]).replace('\n', ' ') : label(result.state);
     return {
       title: lines([heading, result.ip]).replace('\n', ' · '),
-      subtitle: result.state === 'ok' ? lines([result.ip, locality(result), result.asn, result.organization]).replace(/\n/g, ' · ') : lines([result.ip, result.message]).replace('\n', ' · '),
+      subtitle: result.state === 'ok' ? lines([result.ip, locality(result), result.timezone, result.asn, result.organization]).replace(/\n/g, ' · ') : lines([result.ip, result.message]).replace('\n', ' · '),
       ip: result.ip, description: details(result),
     };
   }

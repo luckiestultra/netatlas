@@ -6,7 +6,7 @@
 
 ## GeoIP
 
-共享核心是 src/features/geoip/core.mjs，只解析数据，不发请求、不读取客户端存储。支持 IPinfo、ipwho.de 和 ip-api 三种响应结构；兼容 ip-api 不代表推荐其定位结果。API实际返回的国家、城市、组织和IP字段保持原值；QX显示层按国家代码使用固定Unicode CLDR 48中文名称，不用节点名称推测位置，也不会填入虚构城市或服务商。CLDR不是IP定位数据库，中文化不会把源返回的美国强改成日本。[固定来源与许可](../src/features/geoip/localization/NOTICE.md)。
+共享核心是 src/features/geoip/core.mjs，只解析数据，不发请求、不读取客户端存储。支持 ipwho.is、IPinfo legacy/Lite、ipwho.de 和 ip-api 响应结构；兼容 ip-api 不代表推荐其定位结果。API实际返回的国家、城市、组织和IP字段保持原值；QX显示层按国家代码使用固定Unicode CLDR 48中文名称，不用节点名称推测位置，也不会填入虚构城市或服务商。CLDR不是IP定位数据库，中文化不会把源返回的美国强改成日本。[固定来源与许可](../src/features/geoip/localization/NOTICE.md)。
 
 空 ASN、缺失字段、无地理数据、无效 JSON、HTTP 错误、限流和传输超时分别处理。HTTP 403 不自动视为限流；收到一个 HTTP 响应也不被包装为“所有网络正常”。数据库定位不是物理机房证明。
 
@@ -17,13 +17,23 @@
 - clients/quantumultX/scripts/geoip.js
 - clients/quantumultX/fragments/geoip.conf：只有设置了公开构建 baseUrl 才生成。
 
-主配置 default.conf 已包含该 checker；其他既有配置可使用 geoip.conf 合并到 [general]。该片段**不是重写订阅，也不是完整配置**。它使用 http://ipwho.de/json，并引用本仓库生成的公开脚本地址。内置 geo_location_checker 仅支持 HTTP 查询源；脚本接收原生 $response，只调用一次 $done，不会再发请求或更改节点。内置定位宿主将 $done 定义为返回参数本身的函数，并消费整段脚本的最终求值结果；适配器的外层函数必须 return $done(...)，否则即使调用了 $done，宿主拿到的仍是 undefined。回归测试同时校验四字段对象和最终求值结果。
+主配置 default.conf 已包含该 checker；其他既有配置可使用 geoip.conf 合并到 [general]。该片段**不是重写订阅，也不是完整配置**。它使用 http://ipwho.is/?lang=zh-CN，并引用本仓库生成的公开脚本地址。内置 geo_location_checker 仅支持 HTTP 查询源；脚本接收原生 $response，只调用一次 $done，不会再发请求或更改节点。内置定位宿主将 $done 定义为返回参数本身的函数，并消费整段脚本的最终求值结果；适配器的外层函数必须 return $done(...)，否则即使调用了 $done，宿主拿到的仍是 undefined。回归测试同时校验四字段对象和最终求值结果。
 
-QX标题输出国旗、中文国家和完整IP，例如`🇺🇸 美国 · 192.0.2.10`；副标题再次保留完整IP，并显示实际返回的城市/地区、ASN和组织。独立`ip`字段和详情也保留IP，避免原生卡片折叠某一行后看不到出口地址。常见城市/地区按已登记名称显示中文，未登记的地名及组织保持原文；不推断缺失地点。生成脚本的VM结果已测，原生QX界面截图与设备运行尚未验证。
+QX标题输出国旗、中文国家和完整IP，例如`🇺🇸 美国 · 192.0.2.10`；副标题再次保留完整IP，并显示实际返回的城市/地区、时区、ASN和组织。独立`ip`字段和详情也保留IP，避免原生卡片折叠某一行后看不到出口地址。常见城市/地区按已登记名称显示中文，未登记的地名及组织保持原文；不推断缺失地点。生成脚本的VM结果已测，原生QX界面截图与设备运行尚未验证。
 
 渲染接口未传 baseUrl 时省略该片段；传入 baseUrl 只负责构造地址，不检查远端是否已发布。使用前需先推送对应脚本并确认直链存在。不声称未经确认的本地脚本文件名引用可用。IPinfo 的 HTTPS 查询可以由其他客户端适配器使用，不能直接当作 QX 内置 checker 的查询地址。
 
-依据：[官方响应脚本示例](https://github.com/crossutility/Quantumult-X/blob/master/sample-location-with-script.js)、[官方 HTTP 限制说明](https://github.com/crossutility/Quantumult-X/blob/master/sample-fetch-opts-policy.js)、[ipwho.de API](https://ipwho.de/)。
+依据：[官方响应脚本示例](https://github.com/crossutility/Quantumult-X/blob/master/sample-location-with-script.js)、[官方 HTTP 限制说明](https://github.com/crossutility/Quantumult-X/blob/master/sample-fetch-opts-policy.js)、[ipwho.is HTTP、中文字段与配额说明](https://ipwhois.io/documentation)、[IPinfo 新旧响应说明](https://ipinfo.io/developers)。
+
+默认源选用 ipwho.is 是因为其 HTTP 接口提供中文省州/城市，以及独立 ASN、组织、时区字段；不代表其地理数据库一定优于其他服务。按当前官方文档，免费端点每个查询方 IP 每日 1000 次、没有 SLA；共享出口会共享配额，限流时脚本报告错误，不会擅自向其他服务重试。省州/城市/ASN 缺失时保持空值，不借用时区、运营商或节点名称猜位置。
+
+已有配置可以只手动替换以下 GeoIP 行；资源解析器行独立保留。本项目不会自动改写本机配置：
+
+```ini
+geo_location_checker=http://ipwho.is/?lang=zh-CN, https://raw.githubusercontent.com/luckiestultra/netatlas/main/clients/quantumultX/scripts/geoip.js
+```
+
+原来的 ip-api 中文接口、ipwho.de 和 IPinfo legacy 响应仍支持。IPinfo Lite 的 country_code/asn/as_name 也可解析，但新版接口需要用户自己的令牌且通常使用 HTTPS；不把它直接配置成 QX 的内置 HTTP checker。
 
 ### Surge
 
@@ -125,6 +135,8 @@ QX现在使用本仓库独立实现的`scripts/resource-parser.js`，不再引�
 | 节点订阅 | 原生QX行、受支持的SS/SSR/VMess/VLESS/Trojan/HTTP/SOCKS5/AnyTLS URI、Base64订阅、Surge/Loon节点、Clash YAML、sing-box JSON | 只转换已实现的TLS/WS/Reality等字段；未知协议、传输、mux、安全字段或冲突参数整份失败 |
 | 分流 | QX/classical域名、IP CIDR v4/v6、GEOIP、ASN、UA、FINAL；Surge DOMAIN-SET；Clash payload；sing-box headless地址OR条件 | 未登记正则、端口、进程、逻辑AND、附加条件和未知选项整份失败；不悄悄丢规则 |
 | 重写 | QX已实现原生动作；Surge/Loon 302/307；可等价Loon reject-200/img/dict/array；MITM主机；用户声明QX兼容的HTTP脚本引用 | 不导入CA、私钥、本地路径、cron或未知执行项；不同reject语义、无法保留的脚本字段与重写动作整份失败 |
+
+SIP008 的 `version: 1 + servers` 中，服务器 UUID `id` 是更新标识，不是密码；解析器在该格式作用域校验并移除元数据后转换连接。VMess/VLESS 的 `id` 仍按协议凭据处理，其他格式不会随意忽略同名字段。既有不带 `id` 的服务器格式继续支持；未知连接字段或不支持版本仍整份失败。[官方 SIP008 规范](https://shadowsocks.org/doc/sip008.html)。
 
 节点转换不把QX未支持的Hysteria2、TUIC、gRPC、XHTTP或HTTP/2映射成其他协议；任意指纹和无法同时保留的WS Host/TLS SNI也会报错。旧VMess alterId大于0不转换。v2ray-plugin必须显式`mux=0`，TLS flag出现但值为false等矛盾输入拒绝；Surge与Loon的VMess握手默认值分别处理。源显式关闭证书验证时保留该选择，不擅自改变；冲突别名和重复JSON键整份拒绝。
 
