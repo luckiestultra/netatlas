@@ -114,7 +114,7 @@ export async function testSubscriptionTlsWorkflow({ root, binaries }) {
     const control = client === 'mihomo' ? await freePort() : null;
     if (control) { config['external-controller'] = `127.0.0.1:${control}`; config.secret = secret; }
     await writeFile(file, client === 'mihomo' ? stringify(config) : JSON.stringify(config), { mode: 0o600 });
-    const args = client === 'mihomo' ? ['-f', file, '-d', runtime, '-post-up', `printf %s ${marker} > ${marker}`] : ['run', '-c', file];
+    const args = client === 'mihomo' ? ['-f', file, '-d', runtime, '-post-up', `printf %s ${marker} > ${marker}.pending && mv ${marker}.pending ${marker}`] : ['run', '-c', file];
     const child = spawn(binaries[client], args, { cwd: runtime, stdio: ['ignore', 'pipe', 'pipe'] });
     let log = ''; child.on('error', error => { child.startupError = error.message; });
     child.stdout.on('data', chunk => { log = (log + chunk).slice(-100000); }); child.stderr.on('data', chunk => { log = (log + chunk).slice(-100000); });

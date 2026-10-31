@@ -2,7 +2,7 @@
   "version": 1,
   "builder": "netatlas@0.1.0",
   "input": {
-    "sha256": "cd59d8b8134ffd99797272362799a42e9a6c23741c84b3792d0f1efc78534ee4",
+    "sha256": "c1fce437f577b7702c4cc2ebde2281996813fd85ad10a990bf64852a85b554a1",
     "files": [
       {
         "path": "LICENSE",
@@ -1058,7 +1058,7 @@
       },
       {
         "path": "tools/lib/managed-workflow.mjs",
-        "sha256": "d1317c1441ecb4a228e3ec2cb444546949a7ec03428218830cb33a5a707aac2e"
+        "sha256": "9ad1688a281d82952acd09eb266e37ac83e4980f22a099790a30724684845c7c"
       },
       {
         "path": "tools/lib/native-routing.mjs",
@@ -1118,7 +1118,7 @@
       },
       {
         "path": "tools/lib/resource-parser-plugin-flow.mjs",
-        "sha256": "49d59aa2dcafa06c9d7cb554d6d6f8d0d4112aca65a99573e5c12aa5b4b9e8fc"
+        "sha256": "981e305e9f20427b9713f1086e45e1c2bedc1c7f304ea3698d123be6fff24c00"
       },
       {
         "path": "tools/lib/resource-parsers.mjs",
@@ -1142,7 +1142,7 @@
       },
       {
         "path": "tools/lib/subscription-tls-flow.mjs",
-        "sha256": "03b1c0e74bb81271238ebb930fe6371b8e00ba625c171a17a27b464e4f58be5b"
+        "sha256": "c7a3a7e890c844010fb8ec897448d3b6bda42e66fc0d1b94c5fc2a2ad270e7ec"
       },
       {
         "path": "tools/lib/sync-lock.mjs",
@@ -1183,7 +1183,7 @@
       "id": "quantumultX",
       "name": "Quantumult X",
       "manifest": "quantumultX/manifest.json",
-      "sha256": "21aaa34a83f52e1a0ced7672f4a46a2f06c61dfb1b10bac1ee5c0890daf90062",
+      "sha256": "0c748d63338472883f72b30964ed890a9c58997c428ebaabb03f0d74e9673727",
       "rulesets": 118,
       "entries": 136944,
       "defaultRuleSets": 115,
@@ -1193,7 +1193,7 @@
       "id": "surge",
       "name": "Surge",
       "manifest": "surge/manifest.json",
-      "sha256": "50903e1ff6a362dc423cec2fffe1dfc7d4167ead202e6ea45a64230839464c92",
+      "sha256": "0aab234349fd83c7fbbc0bc8e69d369a87b8ce64bfd9cd7364121c543f79ae4d",
       "rulesets": 118,
       "entries": 136944,
       "defaultRuleSets": 115,
@@ -1203,7 +1203,7 @@
       "id": "loon",
       "name": "Loon",
       "manifest": "loon/manifest.json",
-      "sha256": "8959df5c8be830fd50f09b001d01e5337889a8f7ea9ee28619161a38c9540028",
+      "sha256": "f8253f47edfa05a838bedb1645f4d9d21f8a94c3d9f93872f41c00af7c945844",
       "rulesets": 118,
       "entries": 136944,
       "defaultRuleSets": 115,
@@ -1213,7 +1213,7 @@
       "id": "shadowrocket",
       "name": "Shadowrocket",
       "manifest": "shadowrocket/manifest.json",
-      "sha256": "21cbf41116212453529cec9eef6146180d8505632c3cab3a4cc93e9e7c89fe48",
+      "sha256": "b84c6962c77e45240379e364f79bcb87f1f979439613f6eaa0f080e3d6f3a08e",
       "rulesets": 118,
       "entries": 136944,
       "defaultRuleSets": 115,
@@ -1223,7 +1223,7 @@
       "id": "egern",
       "name": "Egern",
       "manifest": "egern/manifest.json",
-      "sha256": "48dacf2649578d3b5152a7ed5b8c10f3d6129fab2334bcefe615bee9c2e95534",
+      "sha256": "461dd2fa2723b9fe51e1bc7b9459c443c1de59a0c5dd23aba233cad1db249965",
       "rulesets": 118,
       "entries": 136944,
       "defaultRuleSets": 115,
@@ -1233,7 +1233,7 @@
       "id": "stash",
       "name": "Stash",
       "manifest": "stash/manifest.json",
-      "sha256": "fcea30ed10f0537575d7126e0957551dd2139ab9823f1a9df7b6708f4ca60470",
+      "sha256": "dca00ed83218c03a081f04b23cab3301e627185bc72aa564a277b641b6332761",
       "rulesets": 118,
       "entries": 136944,
       "defaultRuleSets": 115,
@@ -1243,7 +1243,7 @@
       "id": "mihomo",
       "name": "Mihomo",
       "manifest": "mihomo/manifest.json",
-      "sha256": "f9344c2e09814887c5a34cc0f6301b8e4ddb62f7d75f8fcdfae5db743df006ef",
+      "sha256": "777725a608f3d92caa01f0a6e9d3fffc4d8eaa1d3b44a8feb389a43f18708c2c",
       "rulesets": 118,
       "entries": 136944,
       "defaultRuleSets": 115,
@@ -1253,12 +1253,12 @@
       "id": "singBox",
       "name": "sing-box",
       "manifest": "singBox/manifest.json",
-      "sha256": "bc142c48db5283ec61523429c5bfb4f1bbfe68359f873b0cc168ed0498351a48",
+      "sha256": "29f0c6d4cdd4f338fd011727abaaf19a745a46a14c0b7d784d418a9cff1bceb1",
       "rulesets": 118,
       "entries": 136944,
       "defaultRuleSets": 115,
       "defaultEntries": 29153
     }
   ],
-  "contentSha256": "4b4f3898764847ef17c9a7d04f3c1d87582ae2ce7fd003a77c8fb3e4745cb81d"
+  "contentSha256": "293c2ed8aa1bbffc34cedb2ef98049935d75aa52b13b8f981bf2f081ebb832b2"
 }

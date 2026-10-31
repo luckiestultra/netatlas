@@ -124,9 +124,12 @@ async function socksFixture(targetPort, remoteDnsPort, evidence, sockets) {
   return { server, port: await listen(server) };
 }
 
+// Bind before connect: Linux can otherwise reuse a local source port across
+// different peers. Mihomo may mistake that port for one of its own active
+// outbound loopback connections. Keep the core loopback detector enabled.
 function httpRequest(proxyPort, host, targetPort) {
   return new Promise(resolve => {
-    const request = http.request({ hostname: '127.0.0.1', port: proxyPort, path: `http://${host}:${targetPort}/workflow-http`, headers: { Host: `${host}:${targetPort}`, Connection: 'close' }, agent: false }, response => {
+    const request = http.request({ hostname: '127.0.0.1', localAddress: '127.0.0.1', port: proxyPort, path: `http://${host}:${targetPort}/workflow-http`, headers: { Host: `${host}:${targetPort}`, Connection: 'close' }, agent: false }, response => {
       const chunks = []; response.on('data', chunk => chunks.push(chunk));
       response.on('end', () => resolve({ status: response.statusCode, body: Buffer.concat(chunks).toString('utf8') }));
       response.on('error', error => resolve({ error: error.code || error.message }));
@@ -137,7 +140,7 @@ function httpRequest(proxyPort, host, targetPort) {
 }
 function socksRequest(proxyPort, host, targetPort) {
   return new Promise(resolve => {
-    const socket = net.createConnection({ host: '127.0.0.1', port: proxyPort });
+    const socket = net.createConnection({ host: '127.0.0.1', localAddress: '127.0.0.1', port: proxyPort });
     let buffer = Buffer.alloc(0), state = 'greeting', done = false;
     const finish = result => { if (done) return; done = true; socket.destroy(); resolve(result); };
     socket.setTimeout(5000, () => finish({ error: 'Local workflow SOCKS timed out' }));
@@ -164,7 +167,7 @@ function socksRequest(proxyPort, host, targetPort) {
 }
 function queryDns(port, host) {
   return new Promise((resolve, reject) => {
-    const socket = net.createConnection({ host: '127.0.0.1', port });
+    const socket = net.createConnection({ host: '127.0.0.1', localAddress: '127.0.0.1', port });
     let buffer = Buffer.alloc(0); socket.once('error', reject);
     socket.setTimeout(5000, () => socket.destroy(new Error('Local workflow DNS timed out')));
     const query = dnsQuestion(host), length = Buffer.alloc(2); length.writeUInt16BE(query.length);
@@ -180,7 +183,7 @@ async function portReady(child, port) {
   while (Date.now() < deadline) {
     if (child.exitCode !== null || child.startupError) throw new Error('Native workflow process exited before listener readiness');
     const ready = await new Promise(resolve => {
-      const socket = net.createConnection({ host: '127.0.0.1', port }); const done = value => { socket.destroy(); resolve(value); };
+      const socket = net.createConnection({ host: '127.0.0.1', localAddress: '127.0.0.1', port }); const done = value => { socket.destroy(); resolve(value); };
       socket.once('connect', () => done(true)); socket.once('error', () => done(false)); socket.setTimeout(100, () => done(false));
     });
     if (ready) return; await pause(25);
@@ -353,8 +356,7 @@ export async function runManagedProfileVerification({ root, binaries, onProgress
           updates.push({ client, kind: 'subscription', before: 'JP-A', after: 'JP-B', actualHttpFetch: true, realRequest: true });
         }
       } catch (error) {
-        error.message += `\nManaged evidence: ${JSON.stringify({ client, downloads, dnsQuestions: dnsQuestions.slice(dnsStart), upstreamConnections })}\nKernel:\n${log.replaceAll(secret, '[redacted]').slice(-15000)}`;
-        throw error;
+        throw new Error(error.message + `\nManaged evidence: ${JSON.stringify({ client, downloads, dnsQuestions: dnsQuestions.slice(dnsStart), upstreamConnections })}\nKernel:\n${log.replaceAll(secret, '[redacted]').slice(-15000)}`, { cause: error });
       } finally { await stop(child); await writeFile(path.join(runtimeDirectory, 'kernel.log'), log.replaceAll(secret, '[redacted]')); }
     }
     const report = { status: 'passed', directory: path.relative(root, directory), publicTunChecks, profiles, cases: resultCases, updates, downloads, dnsQuestions, upstreamConnections, targetRequests: targetEvidence.length, targets: 'public TUN profiles syntax checked only; captureTraffic:false runtime uses loopback HTTP rule/subscription resources, DNS, target HTTP and SOCKS only; no GUI or system proxy changes', unavailableNativeCli: ['stash'] };

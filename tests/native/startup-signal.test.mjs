@@ -44,9 +44,12 @@ test('wrong or missing markers do not become running evidence', async () => {
   assert.equal(typeof native.waitForMihomoRunning, 'function');
   const missing = await fixture();
   await assert.rejects(() => native.waitForMihomoRunning({ ...missing, timeoutMs: 40 }), /post-up.*timed out/i);
-  const wrong = await fixture();
-  await writeFile(wrong.markerPath, marker + '-wrong');
-  await assert.rejects(() => native.waitForMihomoRunning(wrong), /post-up.*invalid/i);
+  // A non-atomic producer can expose an empty final file before printf finishes.
+  for (const value of ['', marker + '-wrong']) {
+    const wrong = await fixture();
+    await writeFile(wrong.markerPath, value);
+    await assert.rejects(() => native.waitForMihomoRunning(wrong), /post-up.*invalid/i);
+  }
 });
 
 test('an exited kernel fails instead of certifying early rejected traffic', async () => {

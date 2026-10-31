@@ -1,6 +1,19 @@
 # 完整配置验证记录
 
 
+## 2026-11-01：Linux 原生验证的端口与启动信号竞争
+
+七项修复提交 `69db23e` 的首轮 Linux CI 已通过 626 项离线测试及八客户端构建/语义检查，但既有 managed 流程的 lan-name 请求返回 502。在隔离 Linux/x64 的同版本代码中复现了另一条 apple-direct 请求的同类 502，内核明确记录 `reject loopback connection`。固定 Mihomo 的检测键仅含来源 AddrPort；Node 未显式 bind 的 Linux connect 可跨目标复用本地端口。原 CI 没有捕获完整冲突四元组，不将具体 provider/health 连接身份记为已证明。
+
+测试 HTTP、SOCKS、DNS 与 readiness 客户端现在显式绑定 127.0.0.1，先保留唯一来源端口再 connect；规则、许可/拒绝断言与核心自环检测保持不变，无新增重试或等待绕过。错误以保留 cause 的新 Error 携带脱敏诊断，避免修改 message 后原 AssertionError 的缓存 stack 遮住证据。
+
+首次隔离 Linux 全套随后捕获新增 TLS fixture 直接写最终 marker 的竞争，严格 helper 读到空文件即拒绝。TLS 与插件两处生产者已改成 `.pending` 写完后原子 rename，空/错误文件仍拒绝；既有 startup-signal 回归补入空文件案例。没有把此前失败记录算作通过。
+
+最终冻结构建输入 `c1fce437f577b7702c4cc2ebde2281996813fd85ad10a990bf64852a85b554a1`。隔离副本与仓库的最终 managed/TLS/plugin/native 四文件逐字一致。Linux/x64 与 Darwin/arm64 的完整原生套件分别实际通过 326 案例、四份配置与 118 份规则编译；八客户端 1137 产物无漂移及完整语义/引用/来源/哈希检查通过。独立红方网络/错误探针、红蓝 marker 原子发布探针及两平台原始结果复核均 PASS。除构建身份清单外，七项修复的脚本、配置和规则成品字节不变，QX parser SHA 仍为 `30b72d0e01cbeb5e5a330c72dfc1cc9cda088547ffb9d66bf1b631304ec46364`。
+
+Linux 复现只挂载 tracked 公共代码的专用临时副本；合成服务仅监听容器回环，没有挂载私人目录、映射宿主端口、启用特权/TUN或修改宿主 QX/网络/信任设置。后续 GitHub CI 与公开字节按实际后续提交另核验。
+
+
 ## 2026-11-01：七项审计问题修复
 
 先修复两个 P1 并完成针对性验证，再处理五个 P2。独立红方将相同 67 项目标回归放入原始 `c8c7ade` 副本，57 项失败、10 项通过，失败覆盖全部七项；最终实现 67/67 通过。没有用模块加载失败或改动预期代替问题复现。

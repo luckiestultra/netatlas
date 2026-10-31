@@ -127,7 +127,7 @@ export async function testResourceParserPlugins({ root, binaries }) {
       assert.ok(converted.content.includes('obfs-host=' + fixture.host + ',')); assert.ok(converted.content.includes('obfs-uri=' + fixture.options.path + ','));
       const config = { 'mixed-port': port, 'bind-address': '127.0.0.1', 'allow-lan': false, mode: 'rule', dns: { enable: false }, tun: { enable: false }, proxies: [node], rules: ['MATCH,SS'] };
       const file = path.join(runtime, 'config.json'); await writeFile(file, JSON.stringify(config, null, 2), { mode: 0o600 });
-      const child = spawn(binaries.mihomo, ['-d', runtime, '-f', file, '-post-up', `printf %s ${marker} > ${marker}`], { cwd: runtime, stdio: ['ignore', 'pipe', 'pipe'] });
+      const child = spawn(binaries.mihomo, ['-d', runtime, '-f', file, '-post-up', `printf %s ${marker} > ${marker}.pending && mv ${marker}.pending ${marker}`], { cwd: runtime, stdio: ['ignore', 'pipe', 'pipe'] });
       let log = ''; child.on('error', error => { child.startupError = error.message; });
       child.stdout.on('data', chunk => { log = (log + chunk).slice(-100000); }); child.stderr.on('data', chunk => { log = (log + chunk).slice(-100000); });
       current = { id: fixture.id, upgrades: [] };
