@@ -45,7 +45,7 @@ test('QX uses App-selected proxy, native automatic groups and wires GeoIP withou
   assert.match(content, /^static=节点选择,proxy,自动选择,direct,.*日本节点.*server-tag-regex=\.\+$/m);
   assert.match(content, /^url-latency-benchmark=自动选择,/m);
   assert.match(content, /^url-latency-benchmark=日本节点,.*server-tag-regex=/m);
-  assert.match(content, /^geo_location_checker=http:\/\/ipwho\.is\/\?lang=zh-CN, https:\/\/raw\.githubusercontent\.com\/luckiestultra\/netatlas\/main\/clients\/quantumultX\/scripts\/geoip\.js\?v=[a-f0-9]{64}$/m);
+  assert.match(content, /^geo_location_checker=http:\/\/ipwho\.is\/\?lang=zh-CN, https:\/\/raw\.githubusercontent\.com\/luckiestultra\/netatlas\/main\/clients\/quantumultX\/scripts\/geoip\.js$/m);
   assert.match(content, /^resource_parser_url=https:\/\/raw\.githubusercontent\.com\/luckiestultra\/netatlas\/main\/clients\/quantumultX\/scripts\/resource-parser\.js$/m);
   assert.match(content, /^\[filter_remote\]$/m);
   assert.match(content, /rules\/openai\.list, tag=openai, force-policy=AI服务, update-interval=86400/);

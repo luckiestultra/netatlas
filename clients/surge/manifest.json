@@ -2,7 +2,7 @@
   "version": 1,
   "client": "surge",
   "builder": "netatlas@0.1.0",
-  "inputSha256": "98051195fd09aa1300706c351d74329781edb9b58648a7e5b722116edd4de7a7",
+  "inputSha256": "84fda6a61c66d6043c16b4e9a7db3b60f73a128831490fd6cd783fab1886dee6",
   "baseUrl": "https://raw.githubusercontent.com/luckiestultra/netatlas/main",
   "targetVersion": null,
   "counts": {
