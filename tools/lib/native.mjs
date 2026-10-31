@@ -11,6 +11,7 @@ import { promisify } from 'node:util';
 import { gunzipSync } from 'node:zlib';
 import { parse as parseYaml, stringify as stringifyYaml } from 'yaml';
 import { renderProfile } from './profiles.mjs';
+import { renderManagedProfile } from './managed-profiles.mjs';
 import { orderedRulesets, profileRulesetsFor } from './policies.mjs';
 import { matchesEntry, normalizeRuleset } from './rules.mjs';
 import { renderRuleset } from './exporters.mjs';
@@ -163,20 +164,23 @@ export async function checkNativeProfiles({ root, binaries, onProgress = () => {
   const rulesets = await catalog(root);
   const results = [];
   for (const id of ['mihomo', 'singBox']) {
-    const profile = renderProfile(id, { rulesets });
+    const standalone = renderProfile(id, { rulesets });
+    standalone.path = standalone.path.replace('/default.', '/standalone.');
+    for (const [variant, profile] of [['managed', renderManagedProfile(id, { rulesets })], ['standalone', standalone]]) {
     const published = path.join(root, 'clients', id, profile.path);
-    const fallback = path.join(directory, `${id}.${profile.format === 'json' ? 'json' : 'yaml'}`);
+    const fallback = path.join(directory, `${id}-${variant}.${profile.format === 'json' ? 'json' : 'yaml'}`);
     const profilePath = await fileExists(published) ? published : fallback;
     if (profilePath === fallback) await writeFile(fallback, profile.content);
     const profileBytes = await readFile(profilePath);
     if (!profileBytes.equals(Buffer.from(profile.content))) throw new Error(`Generated ${id} profile is stale; run npm run build before native verification`);
-    const snapshot = path.join(directory, `${id}-checked.${profile.format === 'json' ? 'json' : 'yaml'}`);
+    const snapshot = path.join(directory, `${id}-${variant}-checked.${profile.format === 'json' ? 'json' : 'yaml'}`);
     await writeFile(snapshot, profileBytes);
-    onProgress(`Native check: ${id} full catalog profile`);
+    onProgress(`Native check: ${id} ${variant} full catalog profile`);
     const args = id === 'mihomo' ? ['-t', '-f', snapshot, '-d', directory] : ['check', '-c', snapshot];
     const output = await run(binaries[id], args, directory);
-    await writeFile(path.join(directory, `${id}-check.log`), `${output}\n`);
-    results.push({ client: id, status: 'passed', profile: path.relative(root, profilePath), checkedSnapshot: path.relative(root, snapshot), profileSha256: sha256(profileBytes), catalogRulesets: rulesets.length, embeddedRulesets: profileRulesetsFor(rulesets).length });
+    await writeFile(path.join(directory, `${id}-${variant}-check.log`), `${output}\n`);
+    results.push({ client: id, variant, status: 'passed', profile: path.relative(root, profilePath), checkedSnapshot: path.relative(root, snapshot), profileSha256: sha256(profileBytes), catalogRulesets: rulesets.length, defaultRulesets: profileRulesetsFor(rulesets).length });
+    }
   }
   const compiled = [];
   for (const ruleset of rulesets) {
@@ -773,7 +777,9 @@ export async function runNativeVerification({ root, onProgress = () => {} }) {
   const optionalRulesets = await testOptionalRulesets({ root, binaries: installed.binaries, onProgress });
   const { testPrivateProfileWorkflow } = await import('./profile-workflow.mjs');
   const privateWorkflow = await testPrivateProfileWorkflow({ root, binaries: installed.binaries, onProgress });
-  const report = { status: 'passed', startedAt, completedAt: new Date().toISOString(), artifacts: installed.artifacts, checks, routing, optionalRulesets, privateWorkflow };
+  const { runManagedProfileVerification } = await import('./managed-workflow.mjs');
+  const managedWorkflow = await runManagedProfileVerification({ root, binaries: installed.binaries, onProgress });
+  const report = { status: 'passed', startedAt, completedAt: new Date().toISOString(), artifacts: installed.artifacts, checks, routing, optionalRulesets, privateWorkflow, managedWorkflow };
   await writeNativeReport({ root, report });
   return report;
 }

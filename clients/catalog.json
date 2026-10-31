@@ -2,7 +2,7 @@
   "version": 1,
   "builder": "netatlas@0.1.0",
   "input": {
-    "sha256": "8aa2ef475d1269d32b0dd0f55e4694641f3eb9f9e6b133c613f7502af188980b",
+    "sha256": "b5885024e6e8e050ef5aa92e5b3b45d8f524416f95a2a98d08e9fcc4641ee306",
     "files": [
       {
         "path": "LICENSE",
@@ -18,11 +18,15 @@
       },
       {
         "path": "metadata/features.json",
-        "sha256": "ca08d06263060899f2ac7cc4836336fd7b489e43890c301563dc8b1580193cfe"
+        "sha256": "09be7b61b0116945d13738769f28834d7c6ea24e845a252fa49083af2b772bb2"
       },
       {
         "path": "metadata/https-upgrade.json",
         "sha256": "98274334efe2e9912b990eadbdd847519bdbf6bec942b65f52d61cda91f59fba"
+      },
+      {
+        "path": "metadata/managed-policies.json",
+        "sha256": "2f78cd3b22439115a9ee3cc598bf526e8c748493909dc2dd78dd04a184fc2b41"
       },
       {
         "path": "metadata/native-tools.json",
@@ -302,7 +306,7 @@
       },
       {
         "path": "tools/lib/build.mjs",
-        "sha256": "4bdab2fee7a970685b10b5b380d2570cab87c990db52a568e954cef107ba96c0"
+        "sha256": "fb98990d32e05246737874ca6f7ce0834ded0f44d8d3894a3d3533f4d4adad1b"
       },
       {
         "path": "tools/lib/clients.mjs",
@@ -310,7 +314,7 @@
       },
       {
         "path": "tools/lib/exporters.mjs",
-        "sha256": "90a81cb5897ae23da7afa1b29afbae38f1cd8f56a725288550c8ab61943f72f4"
+        "sha256": "99d79ca8dae5b600b3fb3be2abb0d0c853eef52f218d425bc78347b765fbcacf"
       },
       {
         "path": "tools/lib/feature-registry.mjs",
@@ -318,19 +322,39 @@
       },
       {
         "path": "tools/lib/features.mjs",
-        "sha256": "5a0d8877a1f8779a028170e83364c6253ed94c6f3bdc035a7a03a8a7f8be45aa"
+        "sha256": "807dfc8b564f0cfb2a6b1e0681677022c18535d0bff7075e36bd3454f6523719"
       },
       {
         "path": "tools/lib/https-upgrade.mjs",
         "sha256": "70ba444541312d6c76b6c90e1eed44990524fe6aba3e455166eec3ae87ce2880"
       },
       {
+        "path": "tools/lib/managed-apple.mjs",
+        "sha256": "ab279f8c4c708b8e1722aa15468046841357eece8c05de7d6e7e6cfdb1ebb8d2"
+      },
+      {
+        "path": "tools/lib/managed-native.mjs",
+        "sha256": "46e201799d903bf5aac8a5201062b58b5a63d13577be5fc023957d818fb22ff3"
+      },
+      {
         "path": "tools/lib/managed-paths.mjs",
         "sha256": "0fb5aa1ce54cd48ee36d0fc393ed122c8731d42985b46d0d7334c92af3e2be7d"
       },
       {
+        "path": "tools/lib/managed-profiles.mjs",
+        "sha256": "7720b292061cc61a984a15ecd962974f711d47c85643f41acd9922e9c291395d"
+      },
+      {
+        "path": "tools/lib/managed-validation.mjs",
+        "sha256": "6e817a08f4ea92d976193c3dfd7b8a66dbe4a0fe67459b290084e7f5b6686a8f"
+      },
+      {
+        "path": "tools/lib/managed-workflow.mjs",
+        "sha256": "d27e3c4095515142a45fb361b10c9fb843ae205141d5d3f7bdb15a470675e059"
+      },
+      {
         "path": "tools/lib/native.mjs",
-        "sha256": "45d29ad2d7b254634e8d0d08c23b286611a979d76b3495ae66e81c20bdea05ed"
+        "sha256": "108d6698017352d08e3d1a9013adce32bf388dca3aef646f5b7aaba4fa59c207"
       },
       {
         "path": "tools/lib/policies.mjs",
@@ -342,7 +366,7 @@
       },
       {
         "path": "tools/lib/profile-workflow.mjs",
-        "sha256": "ec00ffa14ba4ec31113317e91c4da3efccb2fac9b7648c89ffb2551a245e1d3e"
+        "sha256": "0e4f3fa83be6914e6af326288be6592fb549f96b55d8411d13f309caff629227"
       },
       {
         "path": "tools/lib/profiles-apple.mjs",
@@ -399,7 +423,7 @@
       "id": "quantumultX",
       "name": "Quantumult X",
       "manifest": "quantumultX/manifest.json",
-      "sha256": "7168ee77eed3c13f38d5571cfefefdbe50ec7e1636b9ea1e14f69ef85b48bce2",
+      "sha256": "33b86b8cf8a4f950da84d62a9cf8df1b85606f2f4409b5c516a148005a08729d",
       "rulesets": 41,
       "entries": 124158,
       "defaultRuleSets": 40,
@@ -409,7 +433,7 @@
       "id": "surge",
       "name": "Surge",
       "manifest": "surge/manifest.json",
-      "sha256": "41dd668d8fef8e29d80cdf19187044d8ca98f4331000a0590573963207c2ab27",
+      "sha256": "a103eff3f3579e08fac693075d6fd018f5b962bdc0b9940a769e374519911d08",
       "rulesets": 41,
       "entries": 124158,
       "defaultRuleSets": 40,
@@ -419,7 +443,7 @@
       "id": "loon",
       "name": "Loon",
       "manifest": "loon/manifest.json",
-      "sha256": "989e06e68a3634a2ebac2559451d2efe258c68874f52b1934259c4ee58a3b237",
+      "sha256": "b61721f9739f01509534dc13ac8e0f53faaf60697a6b207474cca0bc420faf2a",
       "rulesets": 41,
       "entries": 124158,
       "defaultRuleSets": 40,
@@ -429,7 +453,7 @@
       "id": "shadowrocket",
       "name": "Shadowrocket",
       "manifest": "shadowrocket/manifest.json",
-      "sha256": "5bd830873c2b3d56be162dddd1b674725a5c850184b1633da1a2124a7737e9fc",
+      "sha256": "5bfdf93991fd7f3379df81188a77140de994610860b91f8c93390858fb6fae55",
       "rulesets": 41,
       "entries": 124158,
       "defaultRuleSets": 40,
@@ -439,7 +463,7 @@
       "id": "egern",
       "name": "Egern",
       "manifest": "egern/manifest.json",
-      "sha256": "993f1b64be297bc9a5e44ce98adb125c020fe39dfc2176106d55f726895a65f2",
+      "sha256": "ef729f96e1a5c52fecfca8a4a379b5558a286ab8702e0ad3e817b0c51a8b04ad",
       "rulesets": 41,
       "entries": 124158,
       "defaultRuleSets": 40,
@@ -449,7 +473,7 @@
       "id": "stash",
       "name": "Stash",
       "manifest": "stash/manifest.json",
-      "sha256": "17356079f9f92a28c505715906adfa7e5845c8c4d28d7840fd53f21bdcd64711",
+      "sha256": "c5b02decc118c1d222ecf04d5ce352eb66aaaeb3ffa9f9df2d284976d9a8b107",
       "rulesets": 41,
       "entries": 124158,
       "defaultRuleSets": 40,
@@ -459,7 +483,7 @@
       "id": "mihomo",
       "name": "Mihomo",
       "manifest": "mihomo/manifest.json",
-      "sha256": "dfd1fa47abae05f02b81a54739d8e774de3dd163394e3ea4c8ec2a685faf4c9f",
+      "sha256": "b2571fcfd38c2446e4428996f7fb703dc731697e6af7de32b42351cd45dbc03c",
       "rulesets": 41,
       "entries": 124158,
       "defaultRuleSets": 40,
@@ -469,12 +493,12 @@
       "id": "singBox",
       "name": "sing-box",
       "manifest": "singBox/manifest.json",
-      "sha256": "fd55fd682ec36a4e5482482b282a08447acefe493f398910cb73d267992c1b6c",
+      "sha256": "2a41ba6e61dc7237ea0079bdd57eaf48dcac63accdda60cd85eef49ab70c6857",
       "rulesets": 41,
       "entries": 124158,
       "defaultRuleSets": 40,
       "defaultEntries": 23476
     }
   ],
-  "contentSha256": "e1f4f7064f084d59f652a2310f6d0fe70076b2adf38a1b15eb3c4ce0b2ec0b20"
+  "contentSha256": "5338661e234c932afd6f778a3a90a1289cf133650c22628004f164b7d7885750"
 }

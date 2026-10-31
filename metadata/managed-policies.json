@@ -1,0 +1,25 @@
+{
+  "version": 1,
+  "root": "节点选择",
+  "fallback": "漏网之鱼",
+  "defaultBusiness": "国外网站",
+  "businesses": [
+    { "name": "AI服务", "rules": ["claude", "cursor", "gemini", "github-copilot", "groq", "huggingface", "openai", "perplexity", "poe", "xai"] },
+    { "name": "苹果服务", "initial": "DIRECT", "rules": ["apple"] },
+    { "name": "谷歌服务", "rules": ["google"] },
+    { "name": "微软服务", "rules": ["microsoft"] },
+    { "name": "开发服务", "rules": ["docker", "github", "gitlab", "jetbrains", "npmjs", "vercel"] },
+    { "name": "即时通讯", "rules": ["discord", "line", "signal", "slack", "telegram", "whatsapp", "zoom"] },
+    { "name": "游戏平台", "rules": ["steam"] },
+    { "name": "国外媒体", "rules": ["apple-tvplus", "hbo", "netflix", "spotify", "tiktok", "twitch", "youtube"] },
+    { "name": "国外网站", "rules": ["speedtest"] }
+  ],
+  "regions": [
+    { "name": "香港节点", "regex": "香港|🇭🇰|[Hh][Oo][Nn][Gg][ _-]?[Kk][Oo][Nn][Gg]|(^|[^A-Za-z])[Hh][Kk]([^A-Za-z]|$)" },
+    { "name": "台湾节点", "regex": "台湾|台灣|🇹🇼|[Tt][Aa][Ii][Ww][Aa][Nn]|(^|[^A-Za-z])[Tt][Ww]([^A-Za-z]|$)" },
+    { "name": "日本节点", "regex": "日本|东京|東京|大阪|🇯🇵|[Jj][Aa][Pp][Aa][Nn]|[Tt][Oo][Kk][Yy][Oo]|(^|[^A-Za-z])[Jj][Pp]([^A-Za-z]|$)" },
+    { "name": "韩国节点", "regex": "韩国|韓國|首尔|首爾|🇰🇷|[Kk][Oo][Rr][Ee][Aa]|[Ss][Ee][Oo][Uu][Ll]|(^|[^A-Za-z])[Kk][Rr]([^A-Za-z]|$)" },
+    { "name": "新加坡节点", "regex": "新加坡|狮城|獅城|🇸🇬|[Ss][Ii][Nn][Gg][Aa][Pp][Oo][Rr][Ee]|(^|[^A-Za-z])[Ss][Gg]([^A-Za-z]|$)" },
+    { "name": "美国节点", "regex": "美国|美國|🇺🇸|[Uu][Nn][Ii][Tt][Ee][Dd][ -]?[Ss][Tt][Aa][Tt][Ee][Ss]|(^|[^A-Za-z])[Uu][Ss]([Aa])?([^A-Za-z]|$)" }
+  ]
+}

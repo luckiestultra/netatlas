@@ -18,13 +18,14 @@ export function renderRuleset(clientId, input) {
     const nativePolicy = ['DIRECT', 'REJECT'].includes(policy) ? policy.toLowerCase() : policy;
     content = `${ruleset.entries.map(entry => `${quantumult[entry.type]},${entry.value},${nativePolicy}`).join('\n')}\n`;
   } else if (client.ruleFormat === 'classical' || client.ruleFormat === 'classical-yaml') {
-    const lines = ruleset.entries.map(entry => `${classical[entry.type]},${entry.value}${entry.type.startsWith('ip-') ? ',no-resolve' : ''}`);
+    const resolveIp = ['china-ipv4', 'china-ipv6'].includes(ruleset.id);
+    const lines = ruleset.entries.map(entry => `${classical[entry.type]},${entry.value}${entry.type.startsWith('ip-') && !resolveIp ? ',no-resolve' : ''}`);
     content = client.ruleFormat === 'classical' ? `${lines.join('\n')}\n` : stringify({ payload: lines }, { lineWidth: 0 });
   } else {
     const fields = {};
     const names = client.ruleFormat === 'egern' ? egern : singBox;
     for (const entry of ruleset.entries) (fields[names[entry.type]] ??= []).push(entry.value);
-    content = client.ruleFormat === 'egern' ? stringify({ no_resolve: true, ...fields }, { lineWidth: 0 }) : json({ version: 3, rules: [fields] });
+    content = client.ruleFormat === 'egern' ? stringify({ no_resolve: !['china-ipv4', 'china-ipv6'].includes(ruleset.id), ...fields }, { lineWidth: 0 }) : json({ version: 3, rules: [fields] });
   }
   return { path: `rules/${ruleset.id}.${client.ruleExtension}`, content };
 }

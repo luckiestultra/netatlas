@@ -33,7 +33,7 @@ function renderBuiltinFeatures(client, { baseUrl } = {}) {
       { path: 'scripts/geoip.js', content: nativeScript('surge') },
       {
         path: 'modules/geoip.sgmodule',
-        content: '#!name=NetAtlas GeoIP\n#!desc=Manual GeoIP lookup via the existing Proxy policy; no policy selection is changed. Requires the named policy and a published script URL or the documented local layout.\n\n[Script]\natlas-geoip = type=generic,script-path=' + scriptPath + ',timeout=8,argument=Proxy\n\n[Panel]\natlas-geoip = title=GeoIP lookup,content=Refresh to query via Proxy,style=info,script-name=atlas-geoip\n',
+        content: '#!name=NetAtlas GeoIP\n#!desc=Manual GeoIP lookup via the existing 节点选择 policy; no policy selection is changed. Requires the named policy and a published script URL or the documented local layout.\n\n[Script]\natlas-geoip = type=generic,script-path=' + scriptPath + ',timeout=8,argument=节点选择\n\n[Panel]\natlas-geoip = title=GeoIP lookup,content=Refresh to query via 节点选择,style=info,script-name=atlas-geoip\n',
       },
       { path: 'rewrites/search-redirect.sgmodule', content: source('search-redirect/surge.sgmodule') },
     ];

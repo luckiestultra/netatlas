@@ -242,9 +242,9 @@ export async function testPrivateProfileWorkflow({ root, binaries, onProgress = 
       await writeFile(inputFile, JSON.stringify(input), { flag: 'wx', mode: 0o600 });
       onProgress(`Private workflow: ${client} subscription -> private profile -> native node/DNS/routing`);
       await createPrivateProfile({ root, client, inputFile, outputFile });
-      const profileBytes = await readFile(outputFile), publicProfile = await readFile(path.join(root, 'clients', client, 'profiles', client === 'mihomo' ? 'default.yaml' : 'default.json'), 'utf8');
+      const profileBytes = await readFile(outputFile), publicProfile = await readFile(path.join(root, 'clients', client, 'profiles', client === 'mihomo' ? 'standalone.yaml' : 'standalone.json'), 'utf8');
       const rules = routingRules(client, profileBytes.toString('utf8'));
-      assert.deepEqual(rules, routingRules(client, publicProfile), `${client}: private workflow must retain every published routing rule`);
+      assert.deepEqual(rules, routingRules(client, publicProfile), `${client}: advanced private workflow must retain every published standalone routing rule`);
       const initialSnapshot = path.join(directory, client + '-checked-initial' + (client === 'mihomo' ? '.yaml' : '.json'));
       await writeFile(initialSnapshot, profileBytes, { flag: 'wx', mode: 0o600 });
       generatedProfiles.push({ client, input: path.relative(root, inputFile), output: path.relative(root, outputFile), checkedSnapshot: path.relative(root, initialSnapshot), profileSha256: sha256(profileBytes), routingRulesSha256: sha256(JSON.stringify(rules)), publishedRulesMatch: true, rules: rules.length });

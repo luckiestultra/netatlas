@@ -1,81 +1,85 @@
 # Egern
 
-[完整配置](profiles/default.yaml) · [私有接入输入示例](profiles/input.example.json) · [构建清单](manifest.json)
+[主配置](profiles/default.yaml) · [Raw 导入地址](https://raw.githubusercontent.com/luckiestultra/netatlas/main/clients/egern/profiles/default.yaml) · [详细接入](../../docs/profile-setup.md)
 
-配置已包含节点/订阅接入、DNS、LAN/拦截/服务分流、CN 域名和 IPv4/IPv6 兜底及最终策略。公开文件不含你的私人节点，因此未配置时 Proxy 拒绝；填入真实节点后会自动接入，不需要再手改每个服务策略组。
+## 直接在客户端使用
 
-## 填入自己的节点或订阅
+导入主配置，在 App 编辑策略组“节点订阅”的 urls，填写自己的 Egern 原生节点订阅。在“节点选择”选节点订阅，再选其实际节点；自动/地区组 flatten 后筛选该来源。
 
-~~~sh
-mkdir -p private
-cp clients/egern/profiles/input.example.json private/egern.json
-# 编辑 private/egern.json，填 nodes 或 subscriptions。
-npm run profile -- --client egern --input private/egern.json --output private/egern.yaml
-~~~
+首次使用需由客户端下载远程规则。主配置引用本客户端的 40 份规则资源，覆盖 23,476 条规则，更新由客户端处理；主配置升级与规则刷新是两件事。没有私人节点，配置不会凭空提供代理服务。除 QX/SR 使用 App 内置节点选择外，无节点时节点选择保持 REJECT，导入后核对实际选择。
 
-随后在 Egern 导入生成的私有配置。文件权限为 0600；private/ 已忽略，不会提交。填本地节点时默认选第一个，selectedProxy 可指定其他节点。原生 URL 订阅在应用加载后还需手选实际节点；图形应用可能保留旧选择，导入后核对实际出站。
+AI、苹果、谷歌、微软、开发、通讯、游戏、媒体与最终兜底可独立选策略；支持手选、自动选择及六地区测速组。地区名来自节点标签，不是 IP 定位结论；没有匹配节点时不要选择该组，不承诺空组自动回退。苹果服务初始直连，其余业务默认走节点选择。
 
-订阅使用该客户端自己的原生资源语法，刷新由客户端处理。公开示例没有活动假 URL。
+DNS 按各客户端原生能力配置引导、直连/国内、代理目的地和 LAN 解析。LAN 规则不主动解析；CN IP 兜底允许解析。服务规则先于 CN 兜底。具体默认字段与客户端差异见详细接入。
 
-支持的原生节点格式、订阅格式、DNS 行为及失败处理见[完整接入说明](../../docs/profile-setup.md)。无需为使用本仓库修改现有客户端配置；可导入为独立配置。
+## 独立分流
 
-## 分流与 DNS
+rules/ 按具体应用或服务 ID 平铺，可单独订阅；QX 资源的 force-policy 覆盖文件策略，其他客户端在主配置引用处指定策略。anti-AD 为可选的 100,682 条，不默认启用。
 
-主配置内联 40 组 / 23,476 条规则，不依赖首次下载远程规则。具体服务先于 CN 兜底；LAN 直连，拦截拒绝，未命中走 Proxy。CN 数据是固定来源的网络分类，不是物理地理位置保证。anti-AD 的 100,682 条为可选资源，不默认内联。
-
-DNS 按各客户端原生能力配置：独立的节点引导解析、LAN 系统解析、国内直连解析和代理目标远端解析；不会用一套外来字段硬套八个客户端。默认使用 AliDNS 国内 DoH；支持明确国外 DNS 角色的客户端使用 Cloudflare DoH 经代理。可在私有输入的 dnsUpstreams 覆盖对应角色，见接入说明。
-
-| 应用/服务 | 标签 | 条目 |
-| --- | --- | ---: |
-| [lan](rules/lan.yaml) | network | 17 |
-| [adblock](rules/adblock.yaml) | privacy | 904 |
-| [anti-ad（可选）](rules/anti-ad.yaml) | privacy | 100682 |
-| [apple-tvplus](rules/apple-tvplus.yaml) | media | 8 |
-| [claude](rules/claude.yaml) | ai | 19 |
-| [cursor](rules/cursor.yaml) | ai | 5 |
-| [discord](rules/discord.yaml) | social | 28 |
-| [docker](rules/docker.yaml) | development | 6 |
-| [gemini](rules/gemini.yaml) | ai | 49 |
-| [github-copilot](rules/github-copilot.yaml) | ai | 6 |
-| [gitlab](rules/gitlab.yaml) | development | 5 |
-| [groq](rules/groq.yaml) | ai | 1 |
-| [hbo](rules/hbo.yaml) | media | 65 |
-| [huggingface](rules/huggingface.yaml) | ai | 3 |
-| [jetbrains](rules/jetbrains.yaml) | development | 25 |
-| [line](rules/line.yaml) | social | 20 |
-| [netflix](rules/netflix.yaml) | media | 24 |
-| [npmjs](rules/npmjs.yaml) | development | 3 |
-| [openai](rules/openai.yaml) | ai | 24 |
-| [perplexity](rules/perplexity.yaml) | ai | 5 |
-| [poe](rules/poe.yaml) | ai | 2 |
-| [signal](rules/signal.yaml) | social | 8 |
-| [slack](rules/slack.yaml) | social | 11 |
-| [speedtest](rules/speedtest.yaml) | network | 20 |
-| [spotify](rules/spotify.yaml) | media | 28 |
-| [steam](rules/steam.yaml) | gaming | 61 |
-| [telegram](rules/telegram.yaml) | social | 21 |
-| [tiktok](rules/tiktok.yaml) | media | 40 |
-| [twitch](rules/twitch.yaml) | media | 35 |
-| [vercel](rules/vercel.yaml) | development | 27 |
-| [whatsapp](rules/whatsapp.yaml) | social | 11 |
-| [xai](rules/xai.yaml) | ai | 4 |
-| [youtube](rules/youtube.yaml) | media | 178 |
-| [zoom](rules/zoom.yaml) | social | 3 |
-| [apple](rules/apple.yaml) | system | 1826 |
-| [github](rules/github.yaml) | development | 65 |
-| [google](rules/google.yaml) | system | 1123 |
-| [microsoft](rules/microsoft.yaml) | system | 760 |
-| [china](rules/china.yaml) | system | 8387 |
-| [china-ipv4](rules/china-ipv4.yaml) | network | 6174 |
-| [china-ipv6](rules/china-ipv6.yaml) | network | 3475 |
+| 规则资源 | 条目 |
+| --- | ---: |
+| [lan](rules/lan.yaml) | 17 |
+| [adblock](rules/adblock.yaml) | 904 |
+| [anti-ad（可选）](rules/anti-ad.yaml) | 100,682 |
+| [apple-tvplus](rules/apple-tvplus.yaml) | 8 |
+| [claude](rules/claude.yaml) | 19 |
+| [cursor](rules/cursor.yaml) | 5 |
+| [discord](rules/discord.yaml) | 28 |
+| [docker](rules/docker.yaml) | 6 |
+| [gemini](rules/gemini.yaml) | 49 |
+| [github-copilot](rules/github-copilot.yaml) | 6 |
+| [gitlab](rules/gitlab.yaml) | 5 |
+| [groq](rules/groq.yaml) | 1 |
+| [hbo](rules/hbo.yaml) | 65 |
+| [huggingface](rules/huggingface.yaml) | 3 |
+| [jetbrains](rules/jetbrains.yaml) | 25 |
+| [line](rules/line.yaml) | 20 |
+| [netflix](rules/netflix.yaml) | 24 |
+| [npmjs](rules/npmjs.yaml) | 3 |
+| [openai](rules/openai.yaml) | 24 |
+| [perplexity](rules/perplexity.yaml) | 5 |
+| [poe](rules/poe.yaml) | 2 |
+| [signal](rules/signal.yaml) | 8 |
+| [slack](rules/slack.yaml) | 11 |
+| [speedtest](rules/speedtest.yaml) | 20 |
+| [spotify](rules/spotify.yaml) | 28 |
+| [steam](rules/steam.yaml) | 61 |
+| [telegram](rules/telegram.yaml) | 21 |
+| [tiktok](rules/tiktok.yaml) | 40 |
+| [twitch](rules/twitch.yaml) | 35 |
+| [vercel](rules/vercel.yaml) | 27 |
+| [whatsapp](rules/whatsapp.yaml) | 11 |
+| [xai](rules/xai.yaml) | 4 |
+| [youtube](rules/youtube.yaml) | 178 |
+| [zoom](rules/zoom.yaml) | 3 |
+| [apple](rules/apple.yaml) | 1,826 |
+| [github](rules/github.yaml) | 65 |
+| [google](rules/google.yaml) | 1,123 |
+| [microsoft](rules/microsoft.yaml) | 760 |
+| [china](rules/china.yaml) | 8,387 |
+| [china-ipv4](rules/china-ipv4.yaml) | 6,174 |
+| [china-ipv6](rules/china-ipv6.yaml) | 3,475 |
 
 ## 可选功能
 
 - [modules/anti-ad.yaml](modules/anti-ad.yaml)
 - [rewrites/https-upgrade.yaml](rewrites/https-upgrade.yaml)
 
-modules 是原生安装包，rewrites 是纯重写资源，fragments 需要合并。QX fragments/geoip.conf 合并到 [general]；不会自动启用 MITM、证书、重写或脚本。
+modules 是原生安装包，rewrites 是纯重写资源，fragments 需要合并。QX 主配置已经接入 GeoIP；geoip.conf 片段供已有其他配置使用。重写、MITM 和证书均不自动启用。功能依各客户端语法导入，见[功能说明](../../docs/features.md)。
 
-HTTPS-upgrade 按 GPL-2.0-only 提供；anti-AD 和 CN 数据保留各自原始许可与 credits。详见[功能](../../docs/features.md)及[第三方声明](../../THIRD_PARTY_NOTICES.md)。
+## 高级：离线配置或本地私有转换
 
-验证：高星完整配置与官方资料交叉核对、私有输入/原生字段/规则与引用检查；没有本机原生 GUI 运行证据。具体结果见[验证记录](../../docs/validation.md)，[来源登记](../../metadata/profile-references.json)。
+[standalone.yaml](profiles/standalone.yaml) 内联全部默认规则，可作为不依赖远程规则资源的独立配置；业务选择沿用其服务 ID。它与主配置使用相同规范数据，规则更新需更新整个文件。
+
+如需自动将私有节点/支持格式订阅展开到这份内联配置，可选用本地工具：
+
+~~~sh
+mkdir -p private
+cp clients/egern/profiles/input.example.json private/egern.json
+# 填入自己的 nodes 或 subscriptions。
+npm run profile -- --client egern --input private/egern.json --output private/egern.yaml
+~~~
+
+这是高级可选流程，不是使用主配置的前提。私有输出权限 0600，private/ 已忽略。项目不改动你现用的 QX 或其他客户端配置。
+
+来源、许可与验证边界见[构建清单](manifest.json)、[来源登记](../../metadata/profile-references.json)、[验证记录](../../docs/validation.md)及[第三方声明](../../THIRD_PARTY_NOTICES.md)。六个闭源 GUI 未实际导入，结构/引用检查不能代替原生运行。

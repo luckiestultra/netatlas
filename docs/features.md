@@ -1,6 +1,6 @@
 # 功能包
 
-分流规则在各客户端的 rules/，纯重写资源在 rewrites/，JavaScript 在 scripts/。modules/ 只放原生功能安装包；fragments/ 保存需要手工合并的配置片段。完整主配置不自动启用这里的可选功能。
+分流规则在各客户端的 rules/，纯重写资源在 rewrites/，JavaScript 在 scripts/。modules/ 只放原生功能安装包；fragments/ 保存需要手工合并的配置片段。QX 主配置已接入 GeoIP 显示；其他可选功能不自动启用。
 
 行为契约见[功能规格](specs/features.md)，整体范围见[能力表](capabilities.md)，当前执行证据见[验证记录](validation.md)。
 
@@ -17,7 +17,7 @@
 - clients/quantumultX/scripts/geoip.js
 - clients/quantumultX/fragments/geoip.conf：只有设置了公开构建 baseUrl 才生成。
 
-geoip.conf 是需要合并到已有 [general] 的配置片段，**不是重写订阅，也不是完整配置**。它使用 http://ipwho.de/json，并引用本仓库生成的公开脚本地址。内置 geo_location_checker 仅支持 HTTP 查询源；脚本接收原生 $response，只调用一次 $done，不会再发请求或更改节点。
+主配置 default.conf 已包含该 checker；其他既有配置可使用 geoip.conf 合并到 [general]。该片段**不是重写订阅，也不是完整配置**。它使用 http://ipwho.de/json，并引用本仓库生成的公开脚本地址。内置 geo_location_checker 仅支持 HTTP 查询源；脚本接收原生 $response，只调用一次 $done，不会再发请求或更改节点。
 
 渲染接口未传 baseUrl 时省略该片段；传入 baseUrl 只负责构造地址，不检查远端是否已发布。使用前需先推送对应脚本并确认直链存在。不声称未经确认的本地脚本文件名引用可用。IPinfo 的 HTTPS 查询可以由其他客户端适配器使用，不能直接当作 QX 内置 checker 的查询地址。
 
@@ -30,7 +30,7 @@ geoip.conf 是需要合并到已有 [general] 的配置片段，**不是重写�
 - clients/surge/scripts/geoip.js
 - clients/surge/modules/geoip.sgmodule
 
-这是手动刷新的 generic 面板，查询 https://ipinfo.io/json。模块明确传入已有策略名 Proxy，脚本通过 $httpClient 的 policy 选项仅为**这一次查询**选择该策略。它不修改策略组当前选择，不读取持久化偏好，也不证明其他域名或其他请求走同一路由。使用其他已有策略时修改模块里的 argument=Proxy；该策略不存在或尚未配置可用代理时，面板会报告查询错误。
+这是手动刷新的 generic 面板，查询 https://ipinfo.io/json。模块明确传入主配置已有策略名 节点选择，脚本通过 $httpClient 的 policy 选项仅为**这一次查询**选择该策略。它不修改策略组当前选择，不读取持久化偏好，也不证明其他域名或其他请求走同一路由。使用其他已有策略时修改模块里的 argument=节点选择；使用 standalone 的 Proxy 时需相应修改 argument。该策略不存在或尚未配置可用代理时，面板会报告查询错误。
 
 公开构建用绝对脚本 URL。未设置 baseUrl 时，模块使用 ../scripts/geoip.js，相对位置按 **Surge 主配置文件目录** 解析。该本地模式要求保持生成树布局，以 clients/surge/profiles/default.conf 为主配置；不能只复制模块后假设脚本路径仍然正确。
 

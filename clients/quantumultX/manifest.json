@@ -2,7 +2,7 @@
   "version": 1,
   "client": "quantumultX",
   "builder": "netatlas@0.1.0",
-  "inputSha256": "8aa2ef475d1269d32b0dd0f55e4694641f3eb9f9e6b133c613f7502af188980b",
+  "inputSha256": "b5885024e6e8e050ef5aa92e5b3b45d8f524416f95a2a98d08e9fcc4641ee306",
   "baseUrl": "https://raw.githubusercontent.com/luckiestultra/netatlas/main",
   "targetVersion": null,
   "counts": {
@@ -12,7 +12,7 @@
     "totalEntries": 124158
   },
   "validation": {
-    "profile": "structural-and-references",
+    "profile": "managed-resources-and-references",
     "rules": "canonical-semantic-round-trip",
     "native": "not-run",
     "nativeRequirement": "manual-import-required",
@@ -21,7 +21,7 @@
   "features": [
     {
       "id": "geoip",
-      "defaultEnabled": false,
+      "defaultEnabled": true,
       "license": "MIT (original code)",
       "adapter": {
         "artifacts": [
@@ -1019,8 +1019,8 @@
     },
     {
       "path": "profiles/default.conf",
-      "sha256": "70cf242ee1b84cad7fbb16fd98a71a0b3bf5f1acfd3519748a2a00aac0301ed0",
-      "bytes": 767926
+      "sha256": "675fe031ddad875a69c278420e811a54df813571acb0e7e1298e69dbdefcb5c7",
+      "bytes": 12095
     },
     {
       "path": "profiles/input.example.json",
@@ -1028,9 +1028,14 @@
       "bytes": 57
     },
     {
+      "path": "profiles/standalone.conf",
+      "sha256": "70cf242ee1b84cad7fbb16fd98a71a0b3bf5f1acfd3519748a2a00aac0301ed0",
+      "bytes": 767926
+    },
+    {
       "path": "README.md",
-      "sha256": "4c6732b84e4a88d712d7d2e094e7eea1cc910ddf8065045f4985e001d2675e0f",
-      "bytes": 4996
+      "sha256": "4d6b141508e1d6f7399c6ea3bfe2151f737188299edf8cc03445f02c4cd81a6d",
+      "bytes": 5020
     },
     {
       "path": "rewrites/https-upgrade.snippet",

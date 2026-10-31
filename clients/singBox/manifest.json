@@ -2,7 +2,7 @@
   "version": 1,
   "client": "singBox",
   "builder": "netatlas@0.1.0",
-  "inputSha256": "8aa2ef475d1269d32b0dd0f55e4694641f3eb9f9e6b133c613f7502af188980b",
+  "inputSha256": "b5885024e6e8e050ef5aa92e5b3b45d8f524416f95a2a98d08e9fcc4641ee306",
   "baseUrl": "https://raw.githubusercontent.com/luckiestultra/netatlas/main",
   "targetVersion": "1.14.4",
   "counts": {
@@ -12,7 +12,7 @@
     "totalEntries": 124158
   },
   "validation": {
-    "profile": "structural-and-references",
+    "profile": "managed-resources-and-references",
     "rules": "canonical-semantic-round-trip",
     "native": "not-run",
     "nativeRequirement": "available",
@@ -948,8 +948,8 @@
     },
     {
       "path": "profiles/default.json",
-      "sha256": "59fe175101497f77f3f02c181c6204034260b2fe54368f513cedef2bdc960f9f",
-      "bytes": 3555936
+      "sha256": "23154ab326ad2a301b3c6d17f36aa88ea3b855b204c19ee131b0eec64f045146",
+      "bytes": 28717
     },
     {
       "path": "profiles/input.example.json",
@@ -957,9 +957,14 @@
       "bytes": 57
     },
     {
+      "path": "profiles/standalone.json",
+      "sha256": "59fe175101497f77f3f02c181c6204034260b2fe54368f513cedef2bdc960f9f",
+      "bytes": 3555936
+    },
+    {
       "path": "README.md",
-      "sha256": "2ec2800143237dd2c1763faab79ae9e23a2ad281f019ea5dee382790f23c2c1a",
-      "bytes": 4856
+      "sha256": "778896a6d82da44803c933a377aeaaf5cb1faeae45ae1bc5b1ddfd2692305849",
+      "bytes": 4873
     },
     {
       "path": "rules/adblock.json",

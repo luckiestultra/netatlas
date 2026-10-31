@@ -2,7 +2,7 @@
   "version": 1,
   "client": "mihomo",
   "builder": "netatlas@0.1.0",
-  "inputSha256": "8aa2ef475d1269d32b0dd0f55e4694641f3eb9f9e6b133c613f7502af188980b",
+  "inputSha256": "b5885024e6e8e050ef5aa92e5b3b45d8f524416f95a2a98d08e9fcc4641ee306",
   "baseUrl": "https://raw.githubusercontent.com/luckiestultra/netatlas/main",
   "targetVersion": "1.19.33",
   "counts": {
@@ -12,7 +12,7 @@
     "totalEntries": 124158
   },
   "validation": {
-    "profile": "structural-and-references",
+    "profile": "managed-resources-and-references",
     "rules": "canonical-semantic-round-trip",
     "native": "not-run",
     "nativeRequirement": "available",
@@ -948,8 +948,8 @@
     },
     {
       "path": "profiles/default.yaml",
-      "sha256": "58d1bfae2eeeacad5d47e5d72e206a83f98d532cf66572ac205e3b9df193f7ea",
-      "bytes": 1697207
+      "sha256": "51cdcdc995876cd2c3e634c84256234c05048f4781b89dcdbaec3ace802bdee7",
+      "bytes": 19606
     },
     {
       "path": "profiles/input.example.json",
@@ -957,9 +957,14 @@
       "bytes": 57
     },
     {
+      "path": "profiles/standalone.yaml",
+      "sha256": "58d1bfae2eeeacad5d47e5d72e206a83f98d532cf66572ac205e3b9df193f7ea",
+      "bytes": 1697207
+    },
+    {
       "path": "README.md",
-      "sha256": "b5350f098d708b01016fc10bdb94dde9e5b08d966c4461baafea99437592a0d6",
-      "bytes": 4715
+      "sha256": "8cd9a78a1c3fae9045b80ed12a055d267a88cc3f1d7f7c92284c98559b9aab2a",
+      "bytes": 4762
     },
     {
       "path": "rules/adblock.yaml",
@@ -983,13 +988,13 @@
     },
     {
       "path": "rules/china-ipv4.yaml",
-      "sha256": "8ef6bba6595b6afff5208f84ae930733e1d45c2c459d7f5a08ec467ed4ed44c8",
-      "bytes": 238002
+      "sha256": "2225c0d955574254ccebdbade2b1f762e00b31f0867d94e2da91a68a1f89d723",
+      "bytes": 170088
     },
     {
       "path": "rules/china-ipv6.yaml",
-      "sha256": "223d4030e1482a7aecb9117e71b294a885780972f846549a8577df4220bbce37",
-      "bytes": 141297
+      "sha256": "0ee450788f3780fd581e14b12550181736401473e11dec9bd84cb126040865e6",
+      "bytes": 103072
     },
     {
       "path": "rules/china.yaml",

@@ -1,6 +1,6 @@
 import test from 'node:test';
 import assert from 'node:assert/strict';
-import { cp, mkdtemp, symlink } from 'node:fs/promises';
+import { cp, mkdtemp, symlink, readFile } from 'node:fs/promises';
 import { tmpdir } from 'node:os';
 import { resolve } from 'node:path';
 import { execFile } from 'node:child_process';
@@ -27,4 +27,6 @@ test('custom public URLs can be built, checked and validated through the actual 
     assert.equal(result.stderr,'');
     assert.match(result.stdout,/Generated|Verified|Validated/);
   }
+  const readme=await readFile(resolve(directory,'clients/quantumultX/README.md'),'utf8');
+  assert.ok(readme.includes(`(${base}/clients/quantumultX/profiles/default.conf)`));
 });

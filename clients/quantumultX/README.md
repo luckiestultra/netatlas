@@ -1,73 +1,64 @@
 # Quantumult X
 
-[完整配置](profiles/default.conf) · [私有接入输入示例](profiles/input.example.json) · [构建清单](manifest.json)
+[主配置](profiles/default.conf) · [Raw 导入地址](https://raw.githubusercontent.com/luckiestultra/netatlas/main/clients/quantumultX/profiles/default.conf) · [详细接入](../../docs/profile-setup.md)
 
-配置已包含节点/订阅接入、DNS、LAN/拦截/服务分流、CN 域名和 IPv4/IPv6 兜底及最终策略。公开文件不含你的私人节点，因此未配置时 Proxy 拒绝；填入真实节点后会自动接入，不需要再手改每个服务策略组。
+## 直接在客户端使用
 
-## 填入自己的节点或订阅
+导入主配置后，在节点页添加自己的节点或原生 QX 订阅资源（也可编辑 [server_remote]）。节点选择默认使用 App 内置 proxy；选择实际节点即可，自动/地区组按节点名称筛选。定位显示已接入。
 
-~~~sh
-mkdir -p private
-cp clients/quantumultX/profiles/input.example.json private/quantumultX.json
-# 编辑 private/quantumultX.json，填 nodes 或 subscriptions。
-npm run profile -- --client quantumultX --input private/quantumultX.json --output private/quantumultX.conf
-~~~
+首次使用需由客户端下载远程规则。主配置引用本客户端的 40 份规则资源，覆盖 23,476 条规则，更新由客户端处理；主配置升级与规则刷新是两件事。没有私人节点，配置不会凭空提供代理服务。除 QX/SR 使用 App 内置节点选择外，无节点时节点选择保持 REJECT，导入后核对实际选择。
 
-随后在 Quantumult X 导入生成的私有配置。文件权限为 0600；private/ 已忽略，不会提交。填本地节点时默认选第一个，selectedProxy 可指定其他节点。原生 URL 订阅在应用加载后还需手选实际节点；图形应用可能保留旧选择，导入后核对实际出站。
+AI、苹果、谷歌、微软、开发、通讯、游戏、媒体与最终兜底可独立选策略；支持手选、自动选择及六地区测速组。地区名来自节点标签，不是 IP 定位结论；没有匹配节点时不要选择该组，不承诺空组自动回退。苹果服务初始直连，其余业务默认走节点选择。
 
-订阅使用该客户端自己的原生资源语法，刷新由客户端处理。公开示例没有活动假 URL。
+DNS 按各客户端原生能力配置引导、直连/国内、代理目的地和 LAN 解析。LAN 规则不主动解析；CN IP 兜底允许解析。服务规则先于 CN 兜底。具体默认字段与客户端差异见详细接入。
 
-支持的原生节点格式、订阅格式、DNS 行为及失败处理见[完整接入说明](../../docs/profile-setup.md)。无需为使用本仓库修改现有客户端配置；可导入为独立配置。
+## 独立分流
 
-## 分流与 DNS
+rules/ 按具体应用或服务 ID 平铺，可单独订阅；QX 资源的 force-policy 覆盖文件策略，其他客户端在主配置引用处指定策略。anti-AD 为可选的 100,682 条，不默认启用。
 
-主配置内联 40 组 / 23,476 条规则，不依赖首次下载远程规则。具体服务先于 CN 兜底；LAN 直连，拦截拒绝，未命中走 Proxy。CN 数据是固定来源的网络分类，不是物理地理位置保证。anti-AD 的 100,682 条为可选资源，不默认内联。
-
-DNS 按各客户端原生能力配置：独立的节点引导解析、LAN 系统解析、国内直连解析和代理目标远端解析；不会用一套外来字段硬套八个客户端。默认使用 AliDNS 国内 DoH；支持明确国外 DNS 角色的客户端使用 Cloudflare DoH 经代理。可在私有输入的 dnsUpstreams 覆盖对应角色，见接入说明。
-
-| 应用/服务 | 标签 | 条目 |
-| --- | --- | ---: |
-| [lan](rules/lan.list) | network | 17 |
-| [adblock](rules/adblock.list) | privacy | 904 |
-| [anti-ad（可选）](rules/anti-ad.list) | privacy | 100682 |
-| [apple-tvplus](rules/apple-tvplus.list) | media | 8 |
-| [claude](rules/claude.list) | ai | 19 |
-| [cursor](rules/cursor.list) | ai | 5 |
-| [discord](rules/discord.list) | social | 28 |
-| [docker](rules/docker.list) | development | 6 |
-| [gemini](rules/gemini.list) | ai | 49 |
-| [github-copilot](rules/github-copilot.list) | ai | 6 |
-| [gitlab](rules/gitlab.list) | development | 5 |
-| [groq](rules/groq.list) | ai | 1 |
-| [hbo](rules/hbo.list) | media | 65 |
-| [huggingface](rules/huggingface.list) | ai | 3 |
-| [jetbrains](rules/jetbrains.list) | development | 25 |
-| [line](rules/line.list) | social | 20 |
-| [netflix](rules/netflix.list) | media | 24 |
-| [npmjs](rules/npmjs.list) | development | 3 |
-| [openai](rules/openai.list) | ai | 24 |
-| [perplexity](rules/perplexity.list) | ai | 5 |
-| [poe](rules/poe.list) | ai | 2 |
-| [signal](rules/signal.list) | social | 8 |
-| [slack](rules/slack.list) | social | 11 |
-| [speedtest](rules/speedtest.list) | network | 20 |
-| [spotify](rules/spotify.list) | media | 28 |
-| [steam](rules/steam.list) | gaming | 61 |
-| [telegram](rules/telegram.list) | social | 21 |
-| [tiktok](rules/tiktok.list) | media | 40 |
-| [twitch](rules/twitch.list) | media | 35 |
-| [vercel](rules/vercel.list) | development | 27 |
-| [whatsapp](rules/whatsapp.list) | social | 11 |
-| [xai](rules/xai.list) | ai | 4 |
-| [youtube](rules/youtube.list) | media | 178 |
-| [zoom](rules/zoom.list) | social | 3 |
-| [apple](rules/apple.list) | system | 1826 |
-| [github](rules/github.list) | development | 65 |
-| [google](rules/google.list) | system | 1123 |
-| [microsoft](rules/microsoft.list) | system | 760 |
-| [china](rules/china.list) | system | 8387 |
-| [china-ipv4](rules/china-ipv4.list) | network | 6174 |
-| [china-ipv6](rules/china-ipv6.list) | network | 3475 |
+| 规则资源 | 条目 |
+| --- | ---: |
+| [lan](rules/lan.list) | 17 |
+| [adblock](rules/adblock.list) | 904 |
+| [anti-ad（可选）](rules/anti-ad.list) | 100,682 |
+| [apple-tvplus](rules/apple-tvplus.list) | 8 |
+| [claude](rules/claude.list) | 19 |
+| [cursor](rules/cursor.list) | 5 |
+| [discord](rules/discord.list) | 28 |
+| [docker](rules/docker.list) | 6 |
+| [gemini](rules/gemini.list) | 49 |
+| [github-copilot](rules/github-copilot.list) | 6 |
+| [gitlab](rules/gitlab.list) | 5 |
+| [groq](rules/groq.list) | 1 |
+| [hbo](rules/hbo.list) | 65 |
+| [huggingface](rules/huggingface.list) | 3 |
+| [jetbrains](rules/jetbrains.list) | 25 |
+| [line](rules/line.list) | 20 |
+| [netflix](rules/netflix.list) | 24 |
+| [npmjs](rules/npmjs.list) | 3 |
+| [openai](rules/openai.list) | 24 |
+| [perplexity](rules/perplexity.list) | 5 |
+| [poe](rules/poe.list) | 2 |
+| [signal](rules/signal.list) | 8 |
+| [slack](rules/slack.list) | 11 |
+| [speedtest](rules/speedtest.list) | 20 |
+| [spotify](rules/spotify.list) | 28 |
+| [steam](rules/steam.list) | 61 |
+| [telegram](rules/telegram.list) | 21 |
+| [tiktok](rules/tiktok.list) | 40 |
+| [twitch](rules/twitch.list) | 35 |
+| [vercel](rules/vercel.list) | 27 |
+| [whatsapp](rules/whatsapp.list) | 11 |
+| [xai](rules/xai.list) | 4 |
+| [youtube](rules/youtube.list) | 178 |
+| [zoom](rules/zoom.list) | 3 |
+| [apple](rules/apple.list) | 1,826 |
+| [github](rules/github.list) | 65 |
+| [google](rules/google.list) | 1,123 |
+| [microsoft](rules/microsoft.list) | 760 |
+| [china](rules/china.list) | 8,387 |
+| [china-ipv4](rules/china-ipv4.list) | 6,174 |
+| [china-ipv6](rules/china-ipv6.list) | 3,475 |
 
 ## 可选功能
 
@@ -77,8 +68,21 @@ DNS 按各客户端原生能力配置：独立的节点引导解析、LAN 系统
 - [fragments/anti-ad.conf](fragments/anti-ad.conf)
 - [rewrites/https-upgrade.snippet](rewrites/https-upgrade.snippet)
 
-modules 是原生安装包，rewrites 是纯重写资源，fragments 需要合并。QX fragments/geoip.conf 合并到 [general]；不会自动启用 MITM、证书、重写或脚本。
+modules 是原生安装包，rewrites 是纯重写资源，fragments 需要合并。QX 主配置已经接入 GeoIP；geoip.conf 片段供已有其他配置使用。重写、MITM 和证书均不自动启用。功能依各客户端语法导入，见[功能说明](../../docs/features.md)。
 
-HTTPS-upgrade 按 GPL-2.0-only 提供；anti-AD 和 CN 数据保留各自原始许可与 credits。详见[功能](../../docs/features.md)及[第三方声明](../../THIRD_PARTY_NOTICES.md)。
+## 高级：离线配置或本地私有转换
 
-验证：高星完整配置与官方资料交叉核对、私有输入/原生字段/规则与引用检查；没有本机原生 GUI 运行证据。具体结果见[验证记录](../../docs/validation.md)，[来源登记](../../metadata/profile-references.json)。
+[standalone.conf](profiles/standalone.conf) 内联全部默认规则，可作为不依赖远程规则资源的独立配置；业务选择沿用其服务 ID。它与主配置使用相同规范数据，规则更新需更新整个文件。
+
+如需自动将私有节点/支持格式订阅展开到这份内联配置，可选用本地工具：
+
+~~~sh
+mkdir -p private
+cp clients/quantumultX/profiles/input.example.json private/quantumultX.json
+# 填入自己的 nodes 或 subscriptions。
+npm run profile -- --client quantumultX --input private/quantumultX.json --output private/quantumultX.conf
+~~~
+
+这是高级可选流程，不是使用主配置的前提。私有输出权限 0600，private/ 已忽略。项目不改动你现用的 QX 或其他客户端配置。
+
+来源、许可与验证边界见[构建清单](manifest.json)、[来源登记](../../metadata/profile-references.json)、[验证记录](../../docs/validation.md)及[第三方声明](../../THIRD_PARTY_NOTICES.md)。六个闭源 GUI 未实际导入，结构/引用检查不能代替原生运行。

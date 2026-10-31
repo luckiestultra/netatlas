@@ -1,6 +1,6 @@
 # 客户端主配置格式与验证依据
 
-完整配置由 `tools/lib/profiles.mjs` 生成。公开入口按软件排列：`clients/<client>/profiles/default.<原生扩展名>`；独立规则直接位于 `clients/<client>/rules/<服务或应用ID>.<原生扩展名>`，不再增加类别目录。
+主配置由 `tools/lib/managed-profiles.mjs` 生成，引用本客户端的远程规则。`tools/lib/profiles.mjs` 保留高级 standalone 内联配置。公开入口按软件排列：`clients/<client>/profiles/default.<原生扩展名>`；独立规则直接位于 `clients/<client>/rules/<服务或应用ID>.<原生扩展名>`，不再增加类别目录。
 
 这八个模板是独立适配器，不因文件扩展名相同就共用全部配置语法。规范规则只有 `domain`、`domain-suffix`、`ip-cidr`、`ip-cidr6`；主配置将其按输入顺序内联，不需要先发布远程规则或修改下载地址。
 

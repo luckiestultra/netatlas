@@ -2,7 +2,7 @@
   "version": 1,
   "client": "shadowrocket",
   "builder": "netatlas@0.1.0",
-  "inputSha256": "8aa2ef475d1269d32b0dd0f55e4694641f3eb9f9e6b133c613f7502af188980b",
+  "inputSha256": "b5885024e6e8e050ef5aa92e5b3b45d8f524416f95a2a98d08e9fcc4641ee306",
   "baseUrl": "https://raw.githubusercontent.com/luckiestultra/netatlas/main",
   "targetVersion": null,
   "counts": {
@@ -12,7 +12,7 @@
     "totalEntries": 124158
   },
   "validation": {
-    "profile": "structural-and-references",
+    "profile": "managed-resources-and-references",
     "rules": "canonical-semantic-round-trip",
     "native": "not-run",
     "nativeRequirement": "manual-import-required",
@@ -981,8 +981,8 @@
     },
     {
       "path": "profiles/default.conf",
-      "sha256": "96fde56385e0cfb9a12728d72d97452718bed8198950f4043edb0fd14aa7efa1",
-      "bytes": 795505
+      "sha256": "a7468a439dd8f52882f5ab9e0d34ecf050c4d73f2f99b053543bf674463235a1",
+      "bytes": 9810
     },
     {
       "path": "profiles/input.example.json",
@@ -990,9 +990,14 @@
       "bytes": 57
     },
     {
+      "path": "profiles/standalone.conf",
+      "sha256": "96fde56385e0cfb9a12728d72d97452718bed8198950f4043edb0fd14aa7efa1",
+      "bytes": 795505
+    },
+    {
       "path": "README.md",
-      "sha256": "865ef3063b632480eb93a90c6bd2c82577f36a2b4345965d25cdc59e08a9e239",
-      "bytes": 4970
+      "sha256": "d23632a9f80fbd0deb3ac01db3b20d4581b51630985efe79c5ed727bfebca5fd",
+      "bytes": 4807
     },
     {
       "path": "rewrites/https-upgrade.conf",
@@ -1021,13 +1026,13 @@
     },
     {
       "path": "rules/china-ipv4.list",
-      "sha256": "56cc326fb96511ac593f87a9e6074094cf71f5dfbd37719f72eb7831904b577a",
-      "bytes": 213297
+      "sha256": "defbebe01221e375f4e0b525703d538e63bcc7ab3835f6adea841ad911fc4712",
+      "bytes": 145383
     },
     {
       "path": "rules/china-ipv6.list",
-      "sha256": "6e96457efa2172f04a29750e4dc8b478bf1e3c1326b3f8f9286d5b8dd50bce33",
-      "bytes": 127388
+      "sha256": "e0f75d0c672fe645ac4245e23af154c98a4b81a0cf5504de0908f7052c2e89df",
+      "bytes": 89163
     },
     {
       "path": "rules/china.list",

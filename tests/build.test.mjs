@@ -6,7 +6,7 @@ import { resolve, dirname } from 'node:path';
 import { createBuild, compareBuild, publishBuild, loadCatalog } from '../tools/lib/build.mjs';
 
 const root=resolve(import.meta.dirname,'..');
-test('all eight client trees are deterministic, self-contained and service-first',async()=>{
+test('all eight client trees are deterministic, App-first and service-first',async()=>{
   const a=await createBuild(root),b=await createBuild(root);
   assert.deepEqual(a.files,b.files);
   assert.equal(a.clients.length,8);
@@ -16,7 +16,8 @@ test('all eight client trees are deterministic, self-contained and service-first
     assert.equal(paths.filter(path=>path.startsWith('rules/')).length,a.rulesets.length);
     assert.ok(paths.every(path=>!/^rules\/[^/]+\//.test(path)));
     const manifest=JSON.parse(a.files.get(prefix+'manifest.json'));
-    assert.equal(manifest.validation.profile,'structural-and-references');
+    assert.equal(manifest.validation.profile,'managed-resources-and-references');
+    assert.ok(paths.includes('profiles/standalone.'+client.profileExtension));
     assert.equal(manifest.validation.native,'not-run');
     assert.equal(manifest.artifacts.length,paths.length-1);
   }

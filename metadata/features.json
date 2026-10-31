@@ -27,7 +27,7 @@
             "modules/geoip.sgmodule"
           ],
           "kind": "generic-panel",
-          "routing": "One lookup request uses the existing policy named by the script argument, Proxy by default; it does not change a group selection or represent every request.",
+          "routing": "One lookup request uses the existing policy named by the script argument, 节点选择 in the published module; it does not change a group selection or represent every request.",
           "minimumVersion": {
             "ios": "4.9.3",
             "macos": "5.7.5"

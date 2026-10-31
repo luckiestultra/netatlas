@@ -1,4 +1,4 @@
-no_resolve: true
+no_resolve: false
 ip_cidr6_set:
   - 2001:250::/30
   - 2001:254::/33

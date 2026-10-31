@@ -1,8 +1,8 @@
 #!name=NetAtlas GeoIP
-#!desc=Manual GeoIP lookup via the existing Proxy policy; no policy selection is changed. Requires the named policy and a published script URL or the documented local layout.
+#!desc=Manual GeoIP lookup via the existing 节点选择 policy; no policy selection is changed. Requires the named policy and a published script URL or the documented local layout.
 
 [Script]
-atlas-geoip = type=generic,script-path=https://raw.githubusercontent.com/luckiestultra/netatlas/main/clients/surge/scripts/geoip.js,timeout=8,argument=Proxy
+atlas-geoip = type=generic,script-path=https://raw.githubusercontent.com/luckiestultra/netatlas/main/clients/surge/scripts/geoip.js,timeout=8,argument=节点选择
 
 [Panel]
-atlas-geoip = title=GeoIP lookup,content=Refresh to query via Proxy,style=info,script-name=atlas-geoip
+atlas-geoip = title=GeoIP lookup,content=Refresh to query via 节点选择,style=info,script-name=atlas-geoip
