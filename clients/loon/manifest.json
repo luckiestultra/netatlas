@@ -2,7 +2,7 @@
   "version": 1,
   "client": "loon",
   "builder": "netatlas@0.1.0",
-  "inputSha256": "bcf1925523fa158d4ac5bb0e552f43e852a343f622efe31e3c45e5d143da0c0d",
+  "inputSha256": "62871f1c206fb7a8200a3bb330b5f80cc292f6b54e05f2d91cc3200685082bed",
   "baseUrl": "https://raw.githubusercontent.com/luckiestultra/netatlas/main",
   "targetVersion": null,
   "counts": {
@@ -736,7 +736,7 @@
     {
       "id": "resource-parser",
       "defaultEnabled": false,
-      "license": "MIT (recipe only); remote parser licensing in metadata/resource-parsers.json",
+      "license": "MIT AND ISC (QX original implementation and bundled yaml); Loon remote parser AGPL-3.0-only",
       "adapter": {
         "artifacts": [
           "fragments/resource-parser.conf"
@@ -4725,8 +4725,8 @@
     },
     {
       "path": "fragments/resource-parser.conf",
-      "sha256": "45b599886621cb139e7ea71738187cf348116d8326fb7fa1cc83d24218e9112d",
-      "bytes": 1522
+      "sha256": "978833daf1190783e416eea4846aad8ea4a52c73bfb171ed60450d7b8b9e3ab3",
+      "bytes": 1480
     },
     {
       "path": "modules/boxjs.plugin",
@@ -4760,8 +4760,8 @@
     },
     {
       "path": "README.md",
-      "sha256": "dbdaff51074adbfbadff31131ab5468d336745c66221c6543eedfaae5cef3ab0",
-      "bytes": 11830
+      "sha256": "386f40ec29bf1ccbe55982daf1d10494891cd2b951c2fe68be71cfb16cf27ae2",
+      "bytes": 12006
     },
     {
       "path": "rewrites/biliintl-region.plugin",

@@ -1,59 +1,88 @@
 {
-  "version": 1,
+  "version": 2,
   "defaultEnabled": false,
   "recipeLicense": "MIT",
   "sourceRegistry": {
-    "vendoredJavaScript": false,
-    "scope": "Only original external installation recipes are distributed. Each external parser retains its registered upstream license; no blanket MIT or NetAtlas implementation claim.",
-    "verification": "Actual TLS-verified GET bytes plus non-executing node --check and static source-contract review; native application imports and conversion execution are not run."
+    "vendoredJavaScript": true,
+    "independentQxImplementation": true,
+    "scope": "Original MIT NetAtlas QX implementation bundles the ISC-licensed yaml 2.9.1 browser dependency. Loon remains an external AGPL release recipe; no KOP-XIAO parser source is copied.",
+    "verification": "QX conversion and helper tests execute the generated browser bundle in a restricted VM. Loon retains verified upstream GET bytes and non-executing syntax review. Native application imports are not run."
   },
   "clients": {
     "quantumultX": {
       "client": "quantumultX",
-      "author": "KOP-XIAO",
-      "repository": "KOP-XIAO/QuantumultX",
-      "commit": "f0177f5ea2f62681ab2592a4ed54677dfbbc4b78",
-      "sourcePath": "Scripts/resource-parser.js",
-      "url": "https://raw.githubusercontent.com/KOP-XIAO/QuantumultX/f0177f5ea2f62681ab2592a4ed54677dfbbc4b78/Scripts/resource-parser.js",
-      "bytes": 271667,
-      "sha256": "1315ad57a31a2431a9fdf3d9fa0c892f7e91b9fa74f1c81bdaac04d521817b67",
-      "upstreamLicense": "unspecified",
+      "author": "NetAtlas contributors",
+      "repository": "luckiestultra/netatlas",
+      "implementation": "netatlas",
+      "entrySource": "src/features/resource-parser/entry.mjs",
+      "sourcePath": "src/features/resource-parser",
+      "url": "https://raw.githubusercontent.com/luckiestultra/netatlas/main/clients/quantumultX/scripts/resource-parser.js",
+      "implementationLicense": "MIT",
+      "license": "MIT AND ISC",
+      "dependencies": [
+        {
+          "name": "yaml",
+          "version": "2.9.1",
+          "license": "ISC",
+          "licensePath": "src/features/resource-parser/vendor/LICENSE-yaml"
+        }
+      ],
       "sourceMarkers": [
         "$resource",
         "$done",
+        "$parser",
         "hashSchema",
-        "2026-10-13"
+        "hashToUI",
+        "uiToHash"
       ],
       "sourceContract": {
-        "input": "QX $resource object: type/link/content/info/tag; $environment.version for host build.",
-        "completion": "$done({content,...}) and optional native retry response; hashSchema helper UI.",
-        "helperUiMinimumBuild": 918
+        "input": "QX $resource object with content and optional link/type; unknown type values are not guessed from numbers.",
+        "completion": "Exactly one $done({content}) or $done({error}); no retry/download request.",
+        "supportedResourceTypes": [
+          "server",
+          "filter",
+          "rewrite"
+        ],
+        "helperUiMinimumBuild": 918,
+        "helperProtocol": "https://github.com/crossutility/Quantumult-X/blob/97fdae00a91f69e69d84898c686aa94a112dd4bd/parser-helper-protocol.md"
       },
       "permissions": {
         "subscriptionContents": true,
-        "userSuppliedScriptEval": true,
-        "network": "Can request a native User-Agent retry to re-fetch a subscription; configured custom filter/rename scripts run in the same host context.",
-        "storage": "The recipe has no storage operations; this is external client code, not an isolated NetAtlas sandbox.",
+        "userSuppliedScriptEval": false,
+        "network": false,
+        "storage": false,
         "automaticTasks": false,
-        "mitm": false
+        "mitm": false,
+        "sourceScriptReferenceExecution": false,
+        "noNetworkNoEval": true
       },
       "officialDocumentation": [
-        "https://github.com/KOP-XIAO/QuantumultX/blob/f0177f5ea2f62681ab2592a4ed54677dfbbc4b78/README.md",
-        "https://github.com/crossutility/Quantumult-X/blob/master/sample.conf"
+        "https://github.com/crossutility/Quantumult-X/blob/master/resource-parser.js",
+        "https://github.com/crossutility/Quantumult-X/blob/97fdae00a91f69e69d84898c686aa94a112dd4bd/parser-helper-protocol.md",
+        "https://github.com/crossutility/Quantumult-X/blob/master/sample.conf",
+        "https://manual.nssurge.com/rules/domain.html",
+        "https://manual.nssurge.com/rules/ip.html",
+        "https://manual.nssurge.com/http/url-rewrite.html",
+        "https://manual.nssurge.com/scripting/http-request.html",
+        "https://nsloon.app/en/docs/Rewrite/",
+        "https://nsloon.app/en/docs/Script/",
+        "https://sing-box.sagernet.org/configuration/rule-set/headless-rule/"
       ],
-      "behavior": "Converts supported subscription nodes, rules and module/rewrite resources and exposes filtering/renaming options; feature and protocol support follow the external parser.",
-      "limitations": "The upstream repository does not declare a root license. NetAtlas only publishes an optional original-author URL recipe; no parser source or modified copy is distributed.",
+      "behavior": "Atomic offline conversion of supported node subscriptions, rule resources and rewrite resources to native QX text. Literal name filtering/renaming and official parser-helper UI are implemented. Referenced external HTTPS scripts are emitted only, never executed or fetched by the parser.",
+      "limitations": "Unsupported protocols, transports, fields, unregistered domain regex, conjunctive headless conditions, ambiguous domain formats, local scripts and certificate settings fail the complete resource. Explicit allow-resolve changes DNS semantics; script-compat=qx declares user-verified API compatibility and does not translate JavaScript. Native QX import/device execution not run.",
       "artifacts": [
+        "scripts/resource-parser.js",
         "fragments/resource-parser.conf"
       ],
-      "kind": "manual-general-fragment",
-      "defaultEnabled": false,
-      "externalOnly": true,
+      "ownArtifacts": [
+        "scripts/resource-parser.js",
+        "fragments/resource-parser.conf"
+      ],
+      "kind": "general-fragment",
+      "defaultEnabled": true,
+      "externalOnly": false,
       "nativeApp": "not-run",
-      "httpStatus": 200,
-      "tlsVerified": true,
-      "syntaxCheck": "node --check (no execution)",
-      "fetchedAt": "2026-10-31"
+      "verification": "Executed conversion/helper/VM tests and static browser bundle checks; not native device execution."
     },
     "loon": {
       "client": "loon",

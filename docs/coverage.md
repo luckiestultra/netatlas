@@ -8,7 +8,7 @@
 
 | 客户端 | 原生分流/DNS/节点 | 快速搜索/重定向 | BoxJS/ScriptHub/Sub-Store | 资源解析 | 自有定位/正文脚本 |
 | --- | --- | --- | --- | --- | --- |
-| Quantumult X | 已生成 |47搜索+59跳转+地区可选资源|三个重写功能安装包|外部作者解析器片段|GeoIP响应解析|
+| Quantumult X | 已生成 |47搜索+59跳转+地区可选资源|三个重写功能安装包|自有节点/分流/重写解析器；默认接入|中文国家+完整IP的GeoIP响应解析|
 | Surge | 已生成 |同上|三个模块|转换工具入口|GeoIP面板+正文替换|
 | Loon | 已生成 |同上|三个插件|外部Sub-Store解析器片段|未另加GeoIP脚本|
 | Shadowrocket | 已生成 |手工合并重写片段|三个官方支持模块格式|转换工具入口|未另加GeoIP脚本|
@@ -165,7 +165,7 @@ Unbreak与参考全部50条件双向核对相同；来源是48个GPL原始条件
 - Viu与TVB来源仍不是ViuTV/EncoreTVB专属清单；新正则层补回已有许可源的遗漏，不改变这些服务来源的范围。
 - 定位显示脚本仍只提供QX/Surge；其余GUI未新增同名JS宿主适配。原生GeoIP路由与定位显示是两个功能。
 - QX的ScriptHub安装入口只有该宿主支持的解析入口；不承诺其他五端的所有edit/reload/convert接口。
-- 18工具安装包可选启用；固定入口脚本不等于前端/CDN/生成资源的全部依赖闭包固定。外部解析器未实际转换、六GUI/MITM未实机测试。
+- 18工具安装包可选启用；固定入口脚本不等于前端/CDN/生成资源的全部依赖闭包固定。QX自有解析器已执行生成bundle的转换、错误回调与helper测试，仍按已实现字段严格拒绝不能表达的条件；Loon外部解析器未在原生应用实际转换，六GUI/MITM未实机测试。
 
 安装与使用见[功能说明](features.md)、[接入](profile-setup.md)及每个客户端README。机器可读清单是[coverage.json](../metadata/coverage.json)，实际验证见[validation.md](validation.md)。
 

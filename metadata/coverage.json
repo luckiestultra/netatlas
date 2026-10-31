@@ -1099,9 +1099,10 @@
         {
           "id": "resource-parser",
           "artifacts": [
+            "scripts/resource-parser.js",
             "fragments/resource-parser.conf"
           ],
-          "kind": "manual-general-fragment",
+          "kind": "general-fragment",
           "nativeApp": "not-run"
         }
       ],

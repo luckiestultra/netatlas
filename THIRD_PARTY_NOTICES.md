@@ -94,7 +94,11 @@ CN 域名来自已有 MIT 固定 DLC 的 cn 完整 include 闭包，保留3条�
 
 BoxJS和ScriptHub的安装包采用GPL-3.0-only，Sub-Store采用AGPL-3.0-only；完整许可证、作者、官方原包、改版包与对应源码入口见[src/vendor/integrations](src/vendor/integrations)。本仓库发布小安装资源，入口脚本仍从上游获取，没有将大型bundle重新分发或改标MIT。Sub-Store的发布bundle提交与对应源码tag分开登记，不把当前README提交当成其构建来源。前端/CDN及生成资源的全部依赖闭包未宣称锁定。
 
-QX资源解析器只提供原作者外部安装设置；未取得源码再分发许可，不复制其脚本。Loon解析器链接官方AGPL发布入口及对应完整源码。原创quick-search和正文替换采用MIT；功能清单参考不等于复制未声明许可的配置/脚本。边界与哈希见[解析器登记](metadata/resource-parsers.json)、[工具登记](metadata/integrations.json)。
+QX资源解析器由NetAtlas依据原生公开接口独立实现，转换器和宿主适配采用本项目MIT许可，没有复制KOP-XIAO解析器源码。浏览器成品内联yaml 2.9.1（ISC，Copyright Eemeli Aro），完整许可保存在[src/features/resource-parser/vendor/LICENSE-yaml](src/features/resource-parser/vendor/LICENSE-yaml)，也写入生成脚本头部；构建依赖和版本在package-lock.json锁定。URL、协议字段和官方helper协议的独立适配不表示第三方项目为本实现背书。
+
+Loon解析器仍链接固定官方AGPL发布入口及对应完整源码，不复制或重新标注其bundle许可。原创quick-search和正文替换采用MIT。边界、原生宿主契约及Loon哈希见[解析器登记](metadata/resource-parsers.json)、[工具登记](metadata/integrations.json)。
+
+GeoIP中文国家/地区名称取自Unicode CLDR 48，固定提交`acd6d88ae493633240e19a87a721076a8a75c310`的`common/main/zh.xml`，Copyright © 1991–2025 Unicode, Inc.，采用Unicode-3.0许可。完整[许可](src/features/geoip/localization/LICENSE-Unicode)、[来源与投影说明](src/features/geoip/localization/NOTICE.md)保留在本仓库。这些名称只翻译查询源返回的国家代码，不包含IP定位数据库，也不据此推测节点物理位置。
 
 ## 原生 ASN、GeoIP、正则和 Unbreak
 

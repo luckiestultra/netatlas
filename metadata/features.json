@@ -3,7 +3,7 @@
   "features": [
     {
       "id": "geoip",
-      "description": "Provider-response normalization with explicit Quantumult X and Surge adapters.",
+      "description": "Provider-response normalization with QX/Surge adapters; QX Chinese country display uses pinned Unicode CLDR 48 while provider-supplied location fields remain unchanged.",
       "defaultEnabled": false,
       "providers": {
         "ipinfo": "https://ipinfo.io/json",
@@ -35,8 +35,8 @@
         }
       },
       "validation": {
-        "unit": "node-test",
-        "hostContract": "node-vm",
+        "unit": "node-test: pinned CLDR display projection; QX title/subtitle/ip/description retain the complete provider IP; raw provider fields remain unchanged.",
+        "hostContract": "node-vm: generated QX/Surge adapters; native app screenshot and device execution not run.",
         "nativeApp": "not-run",
         "liveApi": "Run separately; public IP responses are never committed as fixtures."
       },
@@ -48,8 +48,25 @@
         "https://manual.nssurge.com/tools/panel.html",
         "https://ipwho.de/",
         "https://ipinfo.io/developers",
-        "https://ip-api.com/docs/api:json"
-      ]
+        "https://ip-api.com/docs/api:json",
+        "https://github.com/unicode-org/cldr/blob/acd6d88ae493633240e19a87a721076a8a75c310/common/main/zh.xml"
+      ],
+      "license": "MIT AND Unicode-3.0",
+      "displayLocalization": {
+        "source": "Unicode CLDR 48",
+        "revision": "acd6d88ae493633240e19a87a721076a8a75c310",
+        "sourcePath": "common/main/zh.xml",
+        "license": "Unicode-3.0",
+        "notice": "src/features/geoip/localization/NOTICE.md",
+        "licensePath": "src/features/geoip/localization/LICENSE-Unicode",
+        "rawProviderFieldsUnchanged": true,
+        "quantumultXIpFields": [
+          "title",
+          "subtitle",
+          "ip",
+          "description"
+        ]
+      }
     },
     {
       "id": "search-redirect",
@@ -743,17 +760,19 @@
     },
     {
       "id": "resource-parser",
-      "description": "Optional original-author external parser recipes; code is not redistributed.",
+      "description": "Original NetAtlas offline QX node/rule/rewrite resource parser and optional pinned external Loon parser recipe.",
       "defaultEnabled": false,
-      "license": "MIT (recipe only); remote parser licensing in metadata/resource-parsers.json",
+      "license": "MIT AND ISC (QX original implementation and bundled yaml); Loon remote parser AGPL-3.0-only",
       "sourceRegistry": "metadata/resource-parsers.json",
       "clients": {
         "quantumultX": {
           "artifacts": [
+            "scripts/resource-parser.js",
             "fragments/resource-parser.conf"
           ],
-          "kind": "manual-general-fragment",
-          "externalOnly": true,
+          "kind": "general-fragment",
+          "externalOnly": false,
+          "defaultEnabled": true,
           "nativeApp": "not-run"
         },
         "loon": {
@@ -766,11 +785,12 @@
         }
       },
       "validation": {
-        "unit": "Fixed URL/hash/real GET/syntax/source contract checks; parser conversion not executed.",
+        "unit": "Executed QX node/rule/rewrite conversion, strict option and generated-bundle VM/helper tests; Loon fixed URL/hash/GET/syntax/source-contract verification.",
         "nativeApp": "not-run"
       },
       "sources": [
-        "https://raw.githubusercontent.com/KOP-XIAO/QuantumultX/f0177f5ea2f62681ab2592a4ed54677dfbbc4b78/Scripts/resource-parser.js",
+        "https://github.com/crossutility/Quantumult-X/blob/master/resource-parser.js",
+        "https://github.com/crossutility/Quantumult-X/blob/97fdae00a91f69e69d84898c686aa94a112dd4bd/parser-helper-protocol.md",
         "https://raw.githubusercontent.com/sub-store-org/Sub-Store/d26e713e38901e02565a6505c1ae5cb8bb8a1a22/sub-store-parser.loon.min.js"
       ]
     },

@@ -4,6 +4,7 @@ import { surge, loon, shadowrocket, egern } from './profiles-apple.mjs';
 import { stash, mihomo, singBox } from './profiles-native.mjs';
 import { policyGroupsFor, profileRulesetsFor } from './policies.mjs';
 import { expandedProfileEntries, qxRoutingTypes, withNativeRoutingSettings } from './routing-extensions.mjs';
+import { publicArtifactUrl } from './public-url.mjs';
 
 export const profileFormats = Object.freeze({
   quantumultX: { extension: 'conf', format: 'ini' },
@@ -66,7 +67,7 @@ function quantumultX(entries, groups, options = {}) {
     let url;try{url=new URL(item.url);}catch{throw new Error('Invalid QX subscription');}
     if(!safeName(item.name)||used.has(item.name.toLowerCase())||/[\s,#]/.test(item.url)||url.username||url.password||!['https:','http:'].includes(url.protocol)||url.protocol==='http:'&&!['127.0.0.1','localhost','[::1]'].includes(url.hostname))throw new Error('Invalid QX subscription');
     const interval=item.interval??86400;if(!Number.isInteger(interval)||interval<1||interval>2592000)throw new Error('Invalid QX interval');
-    used.add(item.name.toLowerCase());return `${item.url}, tag=${item.name}, update-interval=${interval}, enabled=true`;
+    used.add(item.name.toLowerCase());return `${item.url}, tag=${item.name}, update-interval=${interval}, opt-parser=true, enabled=true`;
   });
   const selected=options.selectedProxy??nodes[0]?.tag??'reject';
   if(!['reject','direct',...nodes.map(node=>node.tag)].includes(qxBuiltin(selected)))throw new Error('Unknown QX selected node');
@@ -96,6 +97,7 @@ network_check_url=https://www.apple.com/library/test/success.html
 server_check_url=https://www.gstatic.com/generate_204
 server_check_timeout=3000
 fallback_udp_policy=reject
+resource_parser_url=${publicArtifactUrl(options.baseUrl ?? 'https://raw.githubusercontent.com/luckiestultra/netatlas/main','quantumultX','scripts/resource-parser.js')}
 # Optional GeoIP display: merge fragments/geoip.conf into this general section.
 
 [dns]
@@ -108,7 +110,8 @@ ${nativeGroups}
 
 [server_remote]
 ${subscriptions.join('\n')||'# Fill subscriptions in a private input file, then run npm run profile.'}
-# Native QX node resources only; URI or other formats must be imported through the app.
+# NetAtlas parser accepts supported native/URI/Base64/Clash/SIP008/sing-box/Surge/Loon nodes.
+# Keep opt-parser=true for converted subscriptions. Unsupported options fail the whole resource.
 
 [server_local]
 ${nodes.map(node=>node.line).join('\n')||'# Add private native nodes here, or use the local profile command.'}

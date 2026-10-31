@@ -2,7 +2,7 @@
   "version": 1,
   "client": "mihomo",
   "builder": "netatlas@0.1.0",
-  "inputSha256": "bcf1925523fa158d4ac5bb0e552f43e852a343f622efe31e3c45e5d143da0c0d",
+  "inputSha256": "62871f1c206fb7a8200a3bb330b5f80cc292f6b54e05f2d91cc3200685082bed",
   "baseUrl": "https://raw.githubusercontent.com/luckiestultra/netatlas/main",
   "targetVersion": "1.19.33",
   "counts": {
@@ -4547,8 +4547,8 @@
     },
     {
       "path": "README.md",
-      "sha256": "ea2d751322a922d52602b52c16ef96e7384cf1caffc0f59bf76a9d9332081af3",
-      "bytes": 11466
+      "sha256": "8ec7f16fa44f1dc157140e5829f76f53745f14f13ab8c320cf4a789a353a33fd",
+      "bytes": 11648
     },
     {
       "path": "rules/abc.yaml",

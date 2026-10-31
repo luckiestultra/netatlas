@@ -1,12 +1,12 @@
 # 功能包
 
-分流规则在各客户端的 rules/，纯重写资源在 rewrites/，JavaScript 在 scripts/。modules/ 只放原生功能安装包；fragments/ 保存需要手工合并的配置片段。QX 主配置已接入 GeoIP 显示；其他可选功能不自动启用。
+分流规则在各客户端的 rules/，纯重写资源在 rewrites/，JavaScript 在 scripts/。modules/ 只放原生功能安装包；fragments/ 保存需要手工合并的配置片段。QX 主配置已接入 GeoIP 显示与本仓库资源解析器；其他可选功能不自动启用。
 
 行为契约见[功能规格](specs/features.md)，整体范围见[能力表](capabilities.md)，当前执行证据见[验证记录](validation.md)。
 
 ## GeoIP
 
-共享核心是 src/features/geoip/core.mjs，只解析数据，不发请求、不读取客户端存储。支持 IPinfo、ipwho.de 和 ip-api 三种响应结构；兼容 ip-api 不代表推荐其定位结果。核心保留 API 实际返回的国家与城市，不用节点名称推测位置，也不会填入虚构城市或服务商。
+共享核心是 src/features/geoip/core.mjs，只解析数据，不发请求、不读取客户端存储。支持 IPinfo、ipwho.de 和 ip-api 三种响应结构；兼容 ip-api 不代表推荐其定位结果。API实际返回的国家、城市、组织和IP字段保持原值；QX显示层按国家代码使用固定Unicode CLDR 48中文名称，不用节点名称推测位置，也不会填入虚构城市或服务商。CLDR不是IP定位数据库，中文化不会把源返回的美国强改成日本。[固定来源与许可](../src/features/geoip/localization/NOTICE.md)。
 
 空 ASN、缺失字段、无地理数据、无效 JSON、HTTP 错误、限流和传输超时分别处理。HTTP 403 不自动视为限流；收到一个 HTTP 响应也不被包装为“所有网络正常”。数据库定位不是物理机房证明。
 
@@ -18,6 +18,8 @@
 - clients/quantumultX/fragments/geoip.conf：只有设置了公开构建 baseUrl 才生成。
 
 主配置 default.conf 已包含该 checker；其他既有配置可使用 geoip.conf 合并到 [general]。该片段**不是重写订阅，也不是完整配置**。它使用 http://ipwho.de/json，并引用本仓库生成的公开脚本地址。内置 geo_location_checker 仅支持 HTTP 查询源；脚本接收原生 $response，只调用一次 $done，不会再发请求或更改节点。
+
+QX标题输出国旗、中文国家和完整IP，例如`🇺🇸 美国 · 192.0.2.10`；副标题再次保留完整IP，并显示实际返回的城市/地区、ASN和组织。独立`ip`字段和详情也保留IP，避免原生卡片折叠某一行后看不到出口地址。常见城市/地区按已登记名称显示中文，未登记的地名及组织保持原文；不推断缺失地点。生成脚本的VM结果已测，原生QX界面截图与设备运行尚未验证。
 
 渲染接口未传 baseUrl 时省略该片段；传入 baseUrl 只负责构造地址，不检查远端是否已发布。使用前需先推送对应脚本并确认直链存在。不声称未经确认的本地脚本文件名引用可用。IPinfo 的 HTTPS 查询可以由其他客户端适配器使用，不能直接当作 QX 内置 checker 的查询地址。
 
@@ -114,9 +116,36 @@ ScriptHub选择器只读取固定上游实际解析的唯一/_end_/之后的外�
 
 Mihomo、sing-box核心不执行这些GUI的HTTP重写/JS模块；需要转换时可单独使用[官方Sub-Store服务](https://github.com/sub-store-org/Sub-Store)，再将原生provider/outbounds/完整配置接到相应核心。没有生成假兼容模块。
 
-## 外部解析器与正文替换
+## 资源解析器与正文替换
 
-QX和Loon各有fragments/resource-parser.conf，需要合并General设置，而非当模块或重写订阅导入。QX链接作者发布的固定KOP解析器；未声明许可的源码不由本仓库复制分发。Loon链接固定AGPL Sub-Store解析器。它们是外部工具入口，接收订阅原文并在宿主权限下执行；本仓库未实施其格式转换或宣称隔离执行。详细来源/哈希/支持范围见[解析器登记](../metadata/resource-parsers.json)。
+QX现在使用本仓库独立实现的`scripts/resource-parser.js`，不再引用KOP-XIAO。已有配置把`fragments/resource-parser.conf`合并到`[general]`，替换已有`resource_parser_url`；它不是模块或重写订阅。本仓库QX配置已默认接入。解析器只处理QX交给它的资源文本，不下载订阅、不访问存储、不执行来源脚本、不改用户正在运行的QX配置。MIT原创代码与内联yaml 2.9.1的ISC许可均保留在生成脚本中。
+
+| 资源 | 支持范围 | 严格边界 |
+| --- | --- | --- |
+| 节点订阅 | 原生QX行、受支持的SS/SSR/VMess/VLESS/Trojan/HTTP/SOCKS5/AnyTLS URI、Base64订阅、Surge/Loon节点、Clash YAML、sing-box JSON | 只转换已实现的TLS/WS/Reality等字段；未知协议、传输、mux、安全字段或冲突参数整份失败 |
+| 分流 | QX/classical域名、IP CIDR v4/v6、GEOIP、ASN、UA、FINAL；Surge DOMAIN-SET；Clash payload；sing-box headless地址OR条件 | 未登记正则、端口、进程、逻辑AND、附加条件和未知选项整份失败；不悄悄丢规则 |
+| 重写 | QX已实现原生动作；Surge/Loon 302/307；可等价Loon reject-200/img/dict/array；MITM主机；用户声明QX兼容的HTTP脚本引用 | 不导入CA、私钥、本地路径、cron或未知执行项；不同reject语义、无法保留的脚本字段与重写动作整份失败 |
+
+节点转换不把QX未支持的Hysteria2、TUIC、gRPC、XHTTP或HTTP/2映射成其他协议；任意指纹和无法同时保留的WS Host/TLS SNI也会报错。旧VMess alterId大于0不转换。v2ray-plugin必须显式`mux=0`，TLS flag出现但值为false等矛盾输入拒绝；Surge与Loon的VMess握手默认值分别处理。源显式关闭证书验证时保留该选择，不擅自改变；冲突别名和重复JSON键整份拒绝。
+
+链接哈希提供声明式选项；所有名称匹配/替换都是字面操作，不支持eval或任意自定义解析脚本。示例以文档保留域名表示，请换成自己的资源URL：
+
+```text
+https://example.com/subscription#type=server&in=香港+日本&out=到期&prefix=自用-&sort=name
+https://example.com/domains#type=filter&format=domain-set&domain-mode=exact
+https://example.com/clash-domains.yaml#type=filter&format=clash&domain-mode=exact
+https://example.com/rules#type=filter&policy=Proxy
+```
+
+`type`可选`auto/server/filter/rewrite`；只在类型明确时才使用自动识别。`format`仅对分流有效，可选`auto/classical/qx/domain-set/clash/sing-box`。`domain-mode=exact/suffix`选择纯DOMAIN-SET裸域名的匹配方式，默认exact；Surge `.domain`始终包含根域。Clash域名payload必须显式exact：其`.domain`只匹配子域，`+.domain`包含根域；单标签`*`不能无损变成QX跨点通配，直接报错。sing-box裸domain_suffix含根域，带前导点时只匹配子域；地址字段之间为OR，其他条件不得扁平化。
+
+`in/out`用`+`分隔多个名称关键字，匹配任意项；字面加号需编码为`%2B`。`prefix/suffix`添加名称前后缀；`rename`为百分号编码的JSON替换配对，例如`[["香港","HK"]]`；`sort`可选`none/name/name-desc`。`policy`显式覆盖全部源策略，并在输出注释中提示。参数内的保留字符需URL编码，未知、重复参数与无效值报错。QX 1.5.6 build 918+可用原生helper界面编辑这些参数。
+
+有两个选项会改变转换前提，默认均不启用：`allow-resolve=1`明确允许移除源`no-resolve`，可能增加DNS查询，输出会警告行为变化；`script-compat=qx`只是使用者声明所引用的Surge/Loon脚本本体已经支持QX，不翻译JavaScript API，不忽略timeout、argument、binary-body或max-size等无法保留的设置。QX原生HTTPS脚本引用可以保留，解析器不下载或执行脚本；之后QX运行该重写脚本是另一项操作。跨宿主`reject`不能仅因名称相同就等同于QX的HTTP 404。
+
+任何一行失败都只返回一次错误，不发布前半份结果；更新失败后的缓存和提示由QX处理，本实现不承诺宿主保留旧内容。资源限额为输入/输出各2 Mi字符、2000节点或20000规则/重写行；YAML最大32层、100000个值节点与20个alias，并拒绝循环、重复键和自定义tag。VM测试执行实际生成bundle与helper协议，尚未在原生QX导入运行。详细接口、来源和边界见[解析器登记](../metadata/resource-parsers.json)、[功能规格](specs/features.md)。
+
+Loon仍链接固定AGPL Sub-Store解析器，`fragments/resource-parser.conf`合并到`[General]`，并在选定的`[Remote Proxy]`订阅上设置`parser-enabled=true`。它是外部工具入口，可能重新获取资源并按宿主权限访问缓存；本仓库没有把它替换成QX实现或宣称离线隔离。来源、哈希与对应完整AGPL源码均保留。其他六客户端没有虚构的同名解析器字段。
 
 Surge的scripts/replace-body.js为原创文本请求/响应正文替换工具；片段中的例子全部注释，需使用者指定自己的窄URL与规则。支持旧式pattern->replacement、/pattern/flags及百分号编码JSON规则；先编译完整配方，任何错误或不支持输入都一次性原样放行，不输出正文、联网或修改headers。需要requires-body=true与明确max-size；HTTPS仅在使用者已有可信CA及对应主机启用MITM时可用。[Surge请求契约](https://manual.nssurge.com/scripting/http-request.html)、[响应契约](https://manual.nssurge.com/scripting/http-response.html)。
 

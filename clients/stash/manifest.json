@@ -2,7 +2,7 @@
   "version": 1,
   "client": "stash",
   "builder": "netatlas@0.1.0",
-  "inputSha256": "bcf1925523fa158d4ac5bb0e552f43e852a343f622efe31e3c45e5d143da0c0d",
+  "inputSha256": "62871f1c206fb7a8200a3bb330b5f80cc292f6b54e05f2d91cc3200685082bed",
   "baseUrl": "https://raw.githubusercontent.com/luckiestultra/netatlas/main",
   "targetVersion": null,
   "counts": {
@@ -4673,8 +4673,8 @@
     },
     {
       "path": "README.md",
-      "sha256": "cca53282ff9f1cc320762841dcaadac2b993aa903d89553f9f522774b35d0d14",
-      "bytes": 12184
+      "sha256": "cc7d415f8c68bc6efd4292fed1762ca889c8a8f80070051389c2ee8691b4b40d",
+      "bytes": 12366
     },
     {
       "path": "rewrites/biliintl-region.stoverride",

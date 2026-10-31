@@ -1,5 +1,17 @@
 # 完整配置验证记录
 
+## QX 自有资源解析器与中文 GeoIP 显示
+
+最终冻结输入 `62871f1c206fb7a8200a3bb330b5f80cc292f6b54e05f2d91cc3200685082bed`，289 个构建输入。离线测试 543 项：538 通过、0 失败、5 项显式原生 opt-in 跳过；另行执行的两个内核原生 308 个流量案例通过。八客户端 1137 个产物构建、无漂移检查、规则语义/配置引用/来源/哈希校验均通过。14 份非 QX default/standalone 与前提交逐字节相同；规则数据、14/24 严格正则覆盖和 10 个原生缺口没有改变。
+
+QX 不再使用外部 KOP 解析器，默认配置与 standalone 接入本仓库原创脚本；节点、分流、重写与原生 helper 独立验证。YAML 2.9.1 为 ISC 依赖，完整许可内联；Loon 的固定 AGPL 外部入口保持独立。红队发现并修复安全字段被忽略、Surge VMess 默认握手/加密、重复 JSON 键覆盖 TLS、WSS 默认 Host/SNI 改义、别名冲突、TLS 总开关与 Reality/插件矛盾、同名节点误分派等问题。冻结后独立 13 项原问题与 9 项同类 TLS/协议反例闭环，官方 72 条节点字符串逐字节保留，21,024 项已登记正则到通配的语言比较通过；这些检查不等于真实远端 TLS 握手。
+
+蓝队在 macOS 27.0.1 的真实 Apple JavaScriptCore 中执行最终压缩 bundle、独立提取的 helper 和 GeoIP 脚本，52/52 通过；禁用 Node/URL/Intl/网络/存储/eval，全资源失败只完成一次。镜像 baseURL 的 4 份自有脚本引用检查通过。最终 QX parser SHA-256 为 `b75090ddd4fd85638218b1289f8222cc72eabbaa9c8fae140d69dda73db79664`，GeoIP 为 `313c6144278a23aafb537523fad22630ce58a3a207ad41b884af826ae9a22eeb`，与生成产物一致。Apple JSC 不代表所有旧版 iOS 的兼容验证。
+
+GeoIP 针对截图形状响应返回中文国家，并在 title/subtitle/ip/description 中保留完整 IP；常见城市/地区显示中文、未知地名保留原文、不推断缺失地点。CLDR 48 固定源 SHA、264 项投影与 Unicode-3.0 许可逐项独立核验。查询源仍为 ipwho.de；中文化不改变数据库的国家判断。原脚本已经返回 IP 字段，截图中原生 UI 未显示的确切原因未从用户私有配置取证，不把缓存猜测当作结论。
+
+本轮没有读取或修改用户本地 QX 配置、节点、订阅、证书或系统设置。原生 QX GUI 导入、标题实际截断、设备流量及 MITM 未实机执行；52 项 JSC 和生成格式测试不能代替这些验证。证据在忽略目录 `.cache/parser-red-*`、`.cache/parser-blue-*`、`.cache/parser-final-*`、`.cache/geoip-*` 及 `.cache/native-check/latest.json`。
+
 ## QX 可选服务兼容补充
 
 最终冻结输入`bcf1925523fa158d4ac5bb0e552f43e852a343f622efe31e3c45e5d143da0c0d`：466项离线测试（461通过、0失败、5项原生opt-in跳过），1136产物构建/语义/来源/引用校验通过。最后蓝方复验275输入、8份manifest与1127个产物哈希，合计1231项检查全部通过。

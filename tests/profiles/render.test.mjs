@@ -26,8 +26,11 @@ for (const client of clients) {
     assert.match(profile.path, /^profiles\/default\.(conf|yaml|json)$/);
     assert.equal(profile.format, profileFormats[client].format);
     assert.ok(profile.content.length > 100);
-    assert.equal(profile.content, renderProfile(client, { rulesets, baseUrl: 'https://another.invalid' }).content);
-    assert.doesNotMatch(profile.content, /not-published|another\.invalid|your-service-provider|access_token|password\s*[=:]/i);
+    if(client==='quantumultX') {
+      assert.match(profile.content,/resource_parser_url=https:\/\/not-published.invalid\/repository\/clients\/quantumultX\/scripts\/resource-parser.js/);
+      assert.equal(profile.content,renderProfile(client,{rulesets,baseUrl:'https://not-published.invalid/repository'}).content);
+    } else assert.equal(profile.content, renderProfile(client, { rulesets, baseUrl: 'https://another.invalid' }).content);
+    assert.doesNotMatch(profile.content, /your-service-provider|access_token|password\s*[=:]/i);
     if (profile.format === 'json') assert.ok(JSON.parse(profile.content).route.rules.length);
     if (profile.format === 'yaml') assert.ok(parseYaml(profile.content).rules.length);
     if (profile.format === 'ini') assert.match(profile.content, /\[(filter_local|Rule)\]/);

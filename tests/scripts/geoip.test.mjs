@@ -1,6 +1,9 @@
 import assert from 'node:assert/strict';
+import { readFileSync } from 'node:fs';
 import { test } from 'node:test';
+import vm from 'node:vm';
 import {
+  createGeoIP,
   diagnoseHttpResponse,
   formatQuantumultX,
   formatSurgePanel,
@@ -10,6 +13,41 @@ import {
 const response = (body, statusCode = 200) => ({
   statusCode,
   body: typeof body === 'string' ? body : JSON.stringify(body),
+});
+
+test('every standalone country label matches the pinned Unicode CLDR projection without rewriting provider data', () => {
+  const projection = JSON.parse(readFileSync(new URL('../../src/features/geoip/localization/territories-zh.json', import.meta.url), 'utf8'));
+  assert.equal(projection.license, 'Unicode-3.0');
+  assert.equal(projection.revision, 'acd6d88ae493633240e19a87a721076a8a75c310');
+  assert.equal(Object.keys(projection.labels).length, 264);
+  for (const [code, name] of Object.entries(projection.labels)) {
+    const result = parseGeoResponse(response({
+      ip: '203.0.113.85', country_code: code, country_name: 'Provider country name', city_name: null,
+    }));
+    assert.ok(formatQuantumultX(result).title.includes(name), code + ' must display ' + name);
+    assert.equal(result.country, 'Provider country name');
+    assert.equal(result.countryCode, code);
+  }
+});
+
+test('the actual QX adapter runs standalone with no Intl, imports or network access and retains the full IP', () => {
+  const adapter = readFileSync(new URL('../../src/features/geoip/quantumultX.js', import.meta.url), 'utf8');
+  const script = 'var AtlasGeoIP = (' + createGeoIP.toString() + ')();\n' + adapter;
+  for (const address of ['203.0.113.80', '2001:db8:abcd:1234::80']) {
+    const results = [];
+    vm.runInNewContext(script, {
+      Intl: undefined,
+      $response: response({ ip: address, country_code: 'US', country_name: 'United States', city_name: null, asn: null, as_desc: 'HARA PARTNERS SYSTEMS LLC' }),
+      $done: (value) => results.push(value),
+    }, { timeout: 1000 });
+    assert.equal(results.length, 1);
+    assert.match(results[0].title, /🇺🇸 美国/);
+    assert.ok(results[0].title.includes(address));
+    assert.equal(results[0].ip, address);
+    assert.ok(results[0].subtitle.startsWith(address));
+    assert.ok(results[0].description.startsWith('IP: ' + address));
+    assert.deepEqual(Object.keys(results[0]).sort(), ['description', 'ip', 'subtitle', 'title']);
+  }
 });
 
 test('IPinfo normalization preserves the returned location and separates ASN from organization', () => {
@@ -23,7 +61,8 @@ test('IPinfo normalization preserves the returned location and separates ASN fro
   assert.equal(result.city, 'Oxford');
   assert.equal(result.asn, 'AS64500');
   assert.equal(result.organization, 'Example Network');
-  assert.match(formatQuantumultX(result).title, /🇬🇧.*Oxford/);
+  assert.match(formatQuantumultX(result).title, /🇬🇧.*英国.*192\.0\.2\.10/);
+  assert.match(formatQuantumultX(result).subtitle, /Oxford/);
 });
 
 test('ipwho.de response keeps missing city or ASN empty without inventing replacements', () => {
@@ -36,8 +75,83 @@ test('ipwho.de response keeps missing city or ASN empty without inventing replac
   assert.equal(result.asn, '');
   assert.equal(result.city, '');
   assert.equal(result.organization, '');
-  assert.match(formatQuantumultX(result).title, /New Zealand/);
+  assert.match(formatQuantumultX(result).title, /新西兰/);
   assert.doesNotMatch(JSON.stringify(formatQuantumultX(result)), /undefined|null|高谭|Cross-GFW/);
+});
+
+test('the screenshot-shaped ipwho.de payload displays a Chinese country and complete IP on every QX text surface', () => {
+  const result = parseGeoResponse(response({
+    ip: '203.0.113.80', country_code: 'US', country_name: 'United States',
+    city_name: null, asn: null, as_desc: 'HARA PARTNERS SYSTEMS LLC',
+  }));
+  const card = formatQuantumultX(result);
+  assert.match(card.title, /🇺🇸.*美国/);
+  assert.ok(card.title.includes('203.0.113.80'));
+  assert.ok(card.subtitle.startsWith('203.0.113.80'));
+  assert.ok(card.description.startsWith('IP: 203.0.113.80'));
+  assert.equal(card.ip, '203.0.113.80');
+  assert.equal(result.city, '');
+  assert.equal(result.asn, '');
+  assert.ok(card.subtitle.includes('HARA PARTNERS SYSTEMS LLC'));
+  assert.doesNotMatch(card.title, /United States|加州|洛杉矶/);
+});
+
+test('QX location retains country, reported region and reported city with Chinese display labels', () => {
+  const result = parseGeoResponse(response({
+    status: 'success', query: '203.0.113.81', countryCode: 'US',
+    country: 'United States', regionName: 'California', city: 'Los Angeles',
+    as: 'AS64500 Example Carrier',
+  }));
+  const card = formatQuantumultX(result);
+  assert.match(card.title, /美国.*203\.0\.113\.81/);
+  assert.match(card.subtitle, /203\.0\.113\.81.*加利福尼亚州.*洛杉矶/);
+  assert.match(card.description, /国家\/地区: 美国/);
+  assert.match(card.description, /州\/省: 加利福尼亚州/);
+  assert.match(card.description, /城市: 洛杉矶/);
+  assert.equal(result.country, 'United States', 'source data is not rewritten');
+  assert.equal(result.region, 'California');
+  assert.equal(result.city, 'Los Angeles');
+});
+
+test('unknown cities retain source spelling and missing regions are never inferred from a city', () => {
+  const result = parseGeoResponse(response({
+    ip: '203.0.113.82', country_code: 'NZ', country_name: 'New Zealand', city_name: 'Fictionvale',
+  }));
+  const card = formatQuantumultX(result);
+  assert.match(card.title, /新西兰/);
+  assert.match(card.subtitle, /Fictionvale/);
+  assert.equal(result.region, '');
+  const la = parseGeoResponse(response({ ip: '203.0.113.83', country_code: 'US', country_name: 'United States', city_name: 'Los Angeles' }));
+  assert.match(formatQuantumultX(la).subtitle, /洛杉矶/);
+  assert.doesNotMatch(JSON.stringify(formatQuantumultX(la)), /加利福尼亚|加州/);
+});
+
+test('known IP remains visible in QX error/no-location cards without implying geolocation succeeded', () => {
+  const result = parseGeoResponse(response({ ip: '203.0.113.84', country: null }));
+  const card = formatQuantumultX(result);
+  assert.match(card.title, /暂无定位.*203\.0\.113\.84/);
+  assert.ok(card.subtitle.startsWith('203.0.113.84'));
+  assert.ok(card.description.startsWith('IP: 203.0.113.84'));
+  assert.equal(result.state, 'no-data');
+  assert.match(card.description, /状态: GeoIP 暂无定位/);
+  assert.match(card.subtitle, /定位服务未返回可用的位置数据/);
+});
+
+test('internal error displays use Chinese labels and messages while provider diagnostics retain their original text', () => {
+  for (const [supplied, expected] of [
+    [undefined, /网络错误/],
+    [response('{broken'), /响应无效/],
+    [response('', 429), /查询限流/],
+    [response('Forbidden', 403), /HTTP 错误/],
+  ]) {
+    const card = formatQuantumultX(parseGeoResponse(supplied));
+    assert.match(card.title, expected);
+    assert.match(card.description, /状态:/);
+    assert.doesNotMatch(card.description, /No HTTP|GeoIP service|GeoIP response|unknown/);
+  }
+  const provider = parseGeoResponse(response({ status: 'fail', message: 'reserved range', query: '192.0.2.1' }));
+  assert.equal(provider.message, 'reserved range');
+  assert.match(formatQuantumultX(provider).description, /reserved range/);
 });
 
 test('ip-api empty AS data does not throw and ISP remains visible', () => {

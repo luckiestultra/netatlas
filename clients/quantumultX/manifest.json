@@ -2,7 +2,7 @@
   "version": 1,
   "client": "quantumultX",
   "builder": "netatlas@0.1.0",
-  "inputSha256": "bcf1925523fa158d4ac5bb0e552f43e852a343f622efe31e3c45e5d143da0c0d",
+  "inputSha256": "62871f1c206fb7a8200a3bb330b5f80cc292f6b54e05f2d91cc3200685082bed",
   "baseUrl": "https://raw.githubusercontent.com/luckiestultra/netatlas/main",
   "targetVersion": null,
   "counts": {
@@ -6440,7 +6440,7 @@
     {
       "id": "geoip",
       "defaultEnabled": true,
-      "license": "MIT (original code)",
+      "license": "MIT AND Unicode-3.0",
       "adapter": {
         "artifacts": [
           "scripts/geoip.js",
@@ -6604,14 +6604,16 @@
     },
     {
       "id": "resource-parser",
-      "defaultEnabled": false,
-      "license": "MIT (recipe only); remote parser licensing in metadata/resource-parsers.json",
+      "defaultEnabled": true,
+      "license": "MIT AND ISC (QX original implementation and bundled yaml); Loon remote parser AGPL-3.0-only",
       "adapter": {
         "artifacts": [
+          "scripts/resource-parser.js",
           "fragments/resource-parser.conf"
         ],
-        "kind": "manual-general-fragment",
-        "externalOnly": true,
+        "kind": "general-fragment",
+        "externalOnly": false,
+        "defaultEnabled": true,
         "nativeApp": "not-run"
       },
       "upstream": null,
@@ -10624,8 +10626,8 @@
     },
     {
       "path": "fragments/resource-parser.conf",
-      "sha256": "7289e856accde6d735617da52fb9249b817e247fc1e8c4ef5e9ee5f599b5e672",
-      "bytes": 1301
+      "sha256": "04ae9f69691fa8d29a210553559c443513b71e6123bce7410b92b2ee7650a7d7",
+      "bytes": 837
     },
     {
       "path": "modules/boxjs.snippet",
@@ -10644,8 +10646,8 @@
     },
     {
       "path": "profiles/default.conf",
-      "sha256": "364705ee0adf1683952f8abd8f2c5d654881cd0284bdac8a0466ce71ab990aa1",
-      "bytes": 28429
+      "sha256": "f9e1290ca569423bdd8f0eed56cd6b5ed9e3cf699a842615777c0bb71b5fd61e",
+      "bytes": 28586
     },
     {
       "path": "profiles/input.example.json",
@@ -10654,13 +10656,13 @@
     },
     {
       "path": "profiles/standalone.conf",
-      "sha256": "48c8870b11ea0a441a14d64978a4982ec9c3abb1c40648ba015ada88b203472f",
-      "bytes": 1156625
+      "sha256": "864a81f4df4a5036571b13e6638cc455b11533c823b3f0259a5096d8e528832b",
+      "bytes": 1156857
     },
     {
       "path": "README.md",
-      "sha256": "b3bb845a6b339a13bcbe4ae8f0f7d2ca47fc28c09148021639f3037be9616b62",
-      "bytes": 12738
+      "sha256": "021cdc47fafb39c253bdc81107acfb4258ca7ccdca14338d8a310be7844c98d4",
+      "bytes": 12982
     },
     {
       "path": "rewrites/biliintl-region.snippet",
@@ -11329,8 +11331,13 @@
     },
     {
       "path": "scripts/geoip.js",
-      "sha256": "5a833f1e587b56951fc65042f075eaf2a7374168c8407089850f66ac444ed502",
-      "bytes": 9247
+      "sha256": "313c6144278a23aafb537523fad22630ce58a3a207ad41b884af826ae9a22eeb",
+      "bytes": 20563
+    },
+    {
+      "path": "scripts/resource-parser.js",
+      "sha256": "b75090ddd4fd85638218b1289f8222cc72eabbaa9c8fae140d69dda73db79664",
+      "bytes": 152416
     }
   ]
 }

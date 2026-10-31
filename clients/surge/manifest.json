@@ -2,7 +2,7 @@
   "version": 1,
   "client": "surge",
   "builder": "netatlas@0.1.0",
-  "inputSha256": "bcf1925523fa158d4ac5bb0e552f43e852a343f622efe31e3c45e5d143da0c0d",
+  "inputSha256": "62871f1c206fb7a8200a3bb330b5f80cc292f6b54e05f2d91cc3200685082bed",
   "baseUrl": "https://raw.githubusercontent.com/luckiestultra/netatlas/main",
   "targetVersion": null,
   "counts": {
@@ -596,7 +596,7 @@
     {
       "id": "geoip",
       "defaultEnabled": false,
-      "license": "MIT (original code)",
+      "license": "MIT AND Unicode-3.0",
       "adapter": {
         "artifacts": [
           "scripts/geoip.js",
@@ -4791,8 +4791,8 @@
     },
     {
       "path": "README.md",
-      "sha256": "64db3639ed876d18fa697662d1363819e2cd8bcb0036c191346c67a76481a949",
-      "bytes": 12190
+      "sha256": "f8da14b8e89e5e31ac64a07e9cadb3b103c882fe2f44d39a1b9672e0d15a14ad",
+      "bytes": 12372
     },
     {
       "path": "rewrites/biliintl-region.sgmodule",
@@ -5451,8 +5451,8 @@
     },
     {
       "path": "scripts/geoip.js",
-      "sha256": "3da8edff2152493164da6884663d37d1ec8602afcd0dc8006a96d3b6b05a5dd2",
-      "bytes": 9934
+      "sha256": "6321745b468cd6d36ddcba1443faf1a01541d276138914be9e55a115bdd3e467",
+      "bytes": 21250
     },
     {
       "path": "scripts/replace-body.js",

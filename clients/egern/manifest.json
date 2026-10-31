@@ -2,7 +2,7 @@
   "version": 1,
   "client": "egern",
   "builder": "netatlas@0.1.0",
-  "inputSha256": "bcf1925523fa158d4ac5bb0e552f43e852a343f622efe31e3c45e5d143da0c0d",
+  "inputSha256": "62871f1c206fb7a8200a3bb330b5f80cc292f6b54e05f2d91cc3200685082bed",
   "baseUrl": "https://raw.githubusercontent.com/luckiestultra/netatlas/main",
   "targetVersion": null,
   "counts": {
@@ -4675,8 +4675,8 @@
     },
     {
       "path": "README.md",
-      "sha256": "3de79fc2aa347f87b2bc7df0c82d1b5f9aa6369a0c0a991698535945c62c8e2a",
-      "bytes": 12053
+      "sha256": "937b5206ea8a210b02a1c80c65fb46a6b319cf7d56d0ac3ce2a7a649338ddc4e",
+      "bytes": 12235
     },
     {
       "path": "rewrites/biliintl-region.yaml",

@@ -12,7 +12,9 @@ import { renderQxCompatibility } from './qx-compat.mjs';
 
 const clientIds = new Set(['quantumultX', 'surge', 'loon', 'shadowrocket', 'egern', 'stash', 'mihomo', 'singBox']);
 const source = (path) => readFileSync(new URL('../../src/features/' + path, import.meta.url), 'utf8');
-const nativeScript = (adapter) => '// Generated from the portable GeoIP core and an explicit native adapter.\nvar AtlasGeoIP = (' + createGeoIP.toString() + ')();\n' + source('geoip/' + adapter + '.js');
+const nativeScript = (adapter) => '// Generated from the portable GeoIP core and an explicit native adapter.\n'
+  + '/* Chinese territory labels: Unicode CLDR 48 (Unicode-3.0).\n' + source('geoip/localization/LICENSE-Unicode').trimEnd() + '\n*/\n'
+  + 'var AtlasGeoIP = (' + createGeoIP.toString() + ')();\n' + source('geoip/' + adapter + '.js');
 
 function publicScript(baseUrl, client) {
   return publicArtifactUrl(baseUrl,client,'scripts/geoip.js');

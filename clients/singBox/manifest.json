@@ -2,7 +2,7 @@
   "version": 1,
   "client": "singBox",
   "builder": "netatlas@0.1.0",
-  "inputSha256": "bcf1925523fa158d4ac5bb0e552f43e852a343f622efe31e3c45e5d143da0c0d",
+  "inputSha256": "62871f1c206fb7a8200a3bb330b5f80cc292f6b54e05f2d91cc3200685082bed",
   "baseUrl": "https://raw.githubusercontent.com/luckiestultra/netatlas/main",
   "targetVersion": "1.14.4",
   "counts": {
@@ -4523,8 +4523,8 @@
     },
     {
       "path": "README.md",
-      "sha256": "f5d03e43bdb37d21a5236c910dff52a0dd7f48176b5152926eb6fd54df0867cf",
-      "bytes": 11367
+      "sha256": "26a068927bc5d0b17880af3f9a8cd2c6afe39738e0a9eef5ecd73143c4617782",
+      "bytes": 11549
     },
     {
       "path": "rules/abc.json",

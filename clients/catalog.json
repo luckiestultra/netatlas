@@ -2,7 +2,7 @@
   "version": 1,
   "builder": "netatlas@0.1.0",
   "input": {
-    "sha256": "bcf1925523fa158d4ac5bb0e552f43e852a343f622efe31e3c45e5d143da0c0d",
+    "sha256": "62871f1c206fb7a8200a3bb330b5f80cc292f6b54e05f2d91cc3200685082bed",
     "files": [
       {
         "path": "LICENSE",
@@ -10,7 +10,7 @@
       },
       {
         "path": "THIRD_PARTY_NOTICES.md",
-        "sha256": "51164988abec29eab3e59cb915ab411cee64119e080846d9ab0fa6b5fabf113e"
+        "sha256": "8bbff67faf7f51bb418daa7a740ba96ac9b0aa40db8cf07871e863c5c7ebd60d"
       },
       {
         "path": "metadata/clients.json",
@@ -18,11 +18,11 @@
       },
       {
         "path": "metadata/coverage.json",
-        "sha256": "dece7335a46ec97ca7bb8afd4a204e007143b79a1e5588ae7c68e1b62fb08cbb"
+        "sha256": "93a53b88ca933239f7d22686088d80ba76089d8691f275fe437590bfbe996efc"
       },
       {
         "path": "metadata/features.json",
-        "sha256": "37580d7243407398b90c54ead2f356aab90dc0f3957e9a0f3d3301dcf11a7e89"
+        "sha256": "f5b6d97b65b42b6811f0c8fb4376e1508468b6cee9dcec92e716a5d241cdc988"
       },
       {
         "path": "metadata/https-upgrade.json",
@@ -58,7 +58,7 @@
       },
       {
         "path": "metadata/resource-parsers.json",
-        "sha256": "95059e909756195d2ddb8b202b4f99b513b9682757eeb79f3a3b2a6d9cc25ec9"
+        "sha256": "162dbee8e26fb0613ccc175d2230f8e102269d36d9fa1f73870fc6b8e6fa6f1f"
       },
       {
         "path": "metadata/routing.json",
@@ -70,11 +70,11 @@
       },
       {
         "path": "package-lock.json",
-        "sha256": "288b6e157ca17268bcc7d6c4377f4799eb08b8b039be3d0923a23c6928263e11"
+        "sha256": "0448ca5862204fff1c2171889f75cc181456c1bdf5a20d8a6aa17a6007a6696d"
       },
       {
         "path": "package.json",
-        "sha256": "02969a379fd2bc96c8b0fd778def6e2a8ea89858c78113e67fa3912d0a4bc3d6"
+        "sha256": "3171931dce590f2ce334dbfdd97d633fb3c2ed8319f96404bc54913bc9e8757f"
       },
       {
         "path": "src/features/body-replacement/core.mjs",
@@ -82,7 +82,19 @@
       },
       {
         "path": "src/features/geoip/core.mjs",
-        "sha256": "81ac6d399bf8be561ef75f00b2d37eb945d05ba913c7f38b69d350b38095aef3"
+        "sha256": "31e847b1c9928b0897a23b8664e56de17ee5e7727bf232a41d27804f162dde4a"
+      },
+      {
+        "path": "src/features/geoip/localization/LICENSE-Unicode",
+        "sha256": "b4c0ae8ef04f7059f96ce5bbe0467f9fe6f6d81bbe13517701dfeb961fb4d0b6"
+      },
+      {
+        "path": "src/features/geoip/localization/NOTICE.md",
+        "sha256": "3495bfcac15711b74f9e0b69572a205dd93613cc64ef7f7b99ec53f21cfc869d"
+      },
+      {
+        "path": "src/features/geoip/localization/territories-zh.json",
+        "sha256": "497fab93539fe50d667ee590a60b308bb7359289f81dd0405c416294e0d5f8f2"
       },
       {
         "path": "src/features/geoip/quantumultX.js",
@@ -139,6 +151,46 @@
       {
         "path": "src/features/redirects/upstream/Redirect.conf.txt",
         "sha256": "85311fcf996fbaf7279daba3ec4c3cff31d6035d333ae6b3c939d86039d16357"
+      },
+      {
+        "path": "src/features/resource-parser/core.mjs",
+        "sha256": "19edf7e24832af81ef9fb50ca98550ce80a9780d669d5332d939bb87913e01eb"
+      },
+      {
+        "path": "src/features/resource-parser/entry.mjs",
+        "sha256": "25f476e573388fb70a438cc0c0d8bea5568cb871eb90b911dce5d63ece1c4195"
+      },
+      {
+        "path": "src/features/resource-parser/helper.mjs",
+        "sha256": "1f451f3dc714aa340bd9b1d681fa53ac855db6b45fd14df460884c3f1f4ce8a4"
+      },
+      {
+        "path": "src/features/resource-parser/nodes.mjs",
+        "sha256": "5bafd1bac091b539aa934e4864e631f970a701f074a626c5d238229aadcb91c4"
+      },
+      {
+        "path": "src/features/resource-parser/options.mjs",
+        "sha256": "e0427b6e953f550aca0a65551d4f443dd13a036499470c6b2b6c6f8541db1748"
+      },
+      {
+        "path": "src/features/resource-parser/rewrites.mjs",
+        "sha256": "d0d68b51ae57f4a2f0c037e163063ec76cacc0e4cd5a78c595028b099c9fdaa9"
+      },
+      {
+        "path": "src/features/resource-parser/rules.mjs",
+        "sha256": "b262c1613581a3faa232d1bf011e9b359e879239aba03498c34083a00d8d5c2e"
+      },
+      {
+        "path": "src/features/resource-parser/vendor/LICENSE-yaml",
+        "sha256": "5bba27375d93e9119f76c1015f7672cf9ad5f70952296e0842fb2243d6376869"
+      },
+      {
+        "path": "src/features/resource-parser/vendor/NOTICE.md",
+        "sha256": "ae6411f34909ee6ad0d8c606274e0a99060941644eb3dd9ac63c9d87955eaf92"
+      },
+      {
+        "path": "src/features/resource-parser/yaml.mjs",
+        "sha256": "dfe2ee23eb498aa698bf59d1f282e4662162ed5ac396d732899210d427bf9340"
       },
       {
         "path": "src/features/search-redirect/quantumultX.snippet",
@@ -954,7 +1006,7 @@
       },
       {
         "path": "tools/lib/build.mjs",
-        "sha256": "7f04fcf68dea241ed6b0447a4eda58dceded171094f56f7245525a2ff7a70846"
+        "sha256": "8c076edd6ed47a8ddc0c5785646857dba839e9a25a1d063052b23748e11ff998"
       },
       {
         "path": "tools/lib/classical-source.mjs",
@@ -974,7 +1026,7 @@
       },
       {
         "path": "tools/lib/features.mjs",
-        "sha256": "5a33a1e20a2b3e60c9c697a267363eb38ad73365abde50a000c62e88f097f87a"
+        "sha256": "41953100ec512df14974c8cb0e26f75b2d655dc9cb1290dfac761564bfba310c"
       },
       {
         "path": "tools/lib/https-upgrade.mjs",
@@ -998,7 +1050,7 @@
       },
       {
         "path": "tools/lib/managed-profiles.mjs",
-        "sha256": "b4c31c05ad8cf0bc30aaf76a5e607d11fe3ce0bf0fd75a0353b89368ef206fa7"
+        "sha256": "08c13b2d14bca9a56835b4243c14abbe1a61e86e92d9909b5177c8c0bdb1030d"
       },
       {
         "path": "tools/lib/managed-validation.mjs",
@@ -1038,7 +1090,7 @@
       },
       {
         "path": "tools/lib/profiles.mjs",
-        "sha256": "e972a1f644a0e79e5ed78141930de551e0ceea48d850fc7a5af49e9cdeff7571"
+        "sha256": "5d554011cba7a4467d69bce4bfbc5083e5b87af765ba1a8a7d8f1915391028c6"
       },
       {
         "path": "tools/lib/public-url.mjs",
@@ -1061,8 +1113,12 @@
         "sha256": "c61f76721331a1475a76c440fb01b47d01897eb60f46e11a3c7f9e3c406660f7"
       },
       {
+        "path": "tools/lib/resource-parser-bundle.mjs",
+        "sha256": "879017977b33540e18931a95e8c0e33b0691d43cc065632e42df007b26e3cbc0"
+      },
+      {
         "path": "tools/lib/resource-parsers.mjs",
-        "sha256": "d32233f17a2b08b19f04925349810030776977304d173c7ebeb00e7aad8ffc62"
+        "sha256": "74e0a06f1cf7aaa244b46c5b39f38e0ba7ee6b1b06f19fe27b89e4562b12f589"
       },
       {
         "path": "tools/lib/routing-extensions.mjs",
@@ -1111,7 +1167,7 @@
       "id": "quantumultX",
       "name": "Quantumult X",
       "manifest": "quantumultX/manifest.json",
-      "sha256": "129c97cb0773b1d9a141c15ee06a3840df1862893c366bfb3a75c2d746e01f9e",
+      "sha256": "5a77f10d95cd9c0d95afaf15e4bae0c59169ea2f0567db67a91e231947bc0dd9",
       "rulesets": 118,
       "entries": 136944,
       "defaultRuleSets": 115,
@@ -1121,7 +1177,7 @@
       "id": "surge",
       "name": "Surge",
       "manifest": "surge/manifest.json",
-      "sha256": "d2cd8d99ff5405646966f5531ef55855b555018eb6abd7ae46f0c4a20e25d2ff",
+      "sha256": "9eec17e4bc02ba8d1e47034514365cc8d4dba8f28b2e4de669b75b354cf2814e",
       "rulesets": 118,
       "entries": 136944,
       "defaultRuleSets": 115,
@@ -1131,7 +1187,7 @@
       "id": "loon",
       "name": "Loon",
       "manifest": "loon/manifest.json",
-      "sha256": "5dccf129179550f524ca0f2141581649240deccf0b63868fc942b8f79dd485ae",
+      "sha256": "b5f38a0f09a176ad41725e58e992356eb5a3a8b208bab0ce3d051abf32036795",
       "rulesets": 118,
       "entries": 136944,
       "defaultRuleSets": 115,
@@ -1141,7 +1197,7 @@
       "id": "shadowrocket",
       "name": "Shadowrocket",
       "manifest": "shadowrocket/manifest.json",
-      "sha256": "02d406b5085c82f8284f875bd817417ab8f007ce4fb13171491361336d5cbcfb",
+      "sha256": "17d4c30ac5130ec51ad19580ce79221a507b819c5bd191fdb7492ef940250a07",
       "rulesets": 118,
       "entries": 136944,
       "defaultRuleSets": 115,
@@ -1151,7 +1207,7 @@
       "id": "egern",
       "name": "Egern",
       "manifest": "egern/manifest.json",
-      "sha256": "4bcfa55ec29f160bb0b5122ac82fb5ab7cba69172abc8baedbe0417a5a597128",
+      "sha256": "9f9f44f8698079fc36fd74698f41c0bcec90434e3f07d1531798737457cc57bf",
       "rulesets": 118,
       "entries": 136944,
       "defaultRuleSets": 115,
@@ -1161,7 +1217,7 @@
       "id": "stash",
       "name": "Stash",
       "manifest": "stash/manifest.json",
-      "sha256": "01dc232360c093642b664d07415933cac06600e0d7c515c6e93be1153e54d8b0",
+      "sha256": "fdbfb735f8ffd075f3952ad0137e2b279ec02cd07fedeb093b8031980bf8fcd6",
       "rulesets": 118,
       "entries": 136944,
       "defaultRuleSets": 115,
@@ -1171,7 +1227,7 @@
       "id": "mihomo",
       "name": "Mihomo",
       "manifest": "mihomo/manifest.json",
-      "sha256": "c58a1a11068a838a31519cf55d9b16d30872550280aff6baa16e1d538d7566e7",
+      "sha256": "d25bfd28ac46aa1e6daf4af89cac2e5b12a6436d69a66ca99623096300ec7773",
       "rulesets": 118,
       "entries": 136944,
       "defaultRuleSets": 115,
@@ -1181,12 +1237,12 @@
       "id": "singBox",
       "name": "sing-box",
       "manifest": "singBox/manifest.json",
-      "sha256": "05cbb15f7063d748c0c5d363cc8b28f45b2acfc505ae4678b285cdd64bc0e02c",
+      "sha256": "dfb46e11ee08d7a70d749628be04484bbfdee6495fea395475deaf9a269de3a7",
       "rulesets": 118,
       "entries": 136944,
       "defaultRuleSets": 115,
       "defaultEntries": 29153
     }
   ],
-  "contentSha256": "cc12ffc031eb592f2854cdd671db4a2b1e6d63991788311bb3f21b62448aa8b8"
+  "contentSha256": "c6f141c7b3107b80c2612ed7eb2a851c11376ade1b0d51321be45206d842823a"
 }

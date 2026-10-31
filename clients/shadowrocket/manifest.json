@@ -2,7 +2,7 @@
   "version": 1,
   "client": "shadowrocket",
   "builder": "netatlas@0.1.0",
-  "inputSha256": "bcf1925523fa158d4ac5bb0e552f43e852a343f622efe31e3c45e5d143da0c0d",
+  "inputSha256": "62871f1c206fb7a8200a3bb330b5f80cc292f6b54e05f2d91cc3200685082bed",
   "baseUrl": "https://raw.githubusercontent.com/luckiestultra/netatlas/main",
   "targetVersion": null,
   "counts": {
@@ -10578,8 +10578,8 @@
     },
     {
       "path": "README.md",
-      "sha256": "778e20e3aeb318aff25f90737692c8a85779bc66e67ba19ed93a785e89f8fee6",
-      "bytes": 11719
+      "sha256": "f81c87ecf4e6f2eefbff49d8964a1759ed10cc78249190969e515a2701c2719c",
+      "bytes": 11901
     },
     {
       "path": "rewrites/biliintl-region.conf",

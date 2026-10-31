@@ -84,7 +84,7 @@ async function inputIdentity(root){
 function clientReadme(client,rulesets,features,baseUrl,featureRegistry,sourceRegistry){
   const embedded=profileRulesetsFor(rulesets),ids=new Set(embedded.map(rule=>rule.id));
   const steps={
-    quantumultX:'导入主配置后，在节点页添加自己的节点或原生 QX 订阅资源（也可编辑 [server_remote]）。节点选择默认使用 App 内置 proxy；选择实际节点即可，自动/地区组按节点名称筛选。定位显示已接入。',
+    quantumultX:'导入主配置后，在节点页添加自己的节点或支持格式的订阅资源（[server_remote] 使用 opt-parser=true）。节点选择默认使用 App 内置 proxy；选择实际节点即可，自动/地区组按节点名称筛选。定位显示已接入。',
     surge:'导入主配置，按 [Proxy Group] 的注释添加 policy-path 订阅组；将该组加入节点选择，并在自动/地区组的 include-other-group 引用它。也可在 [Proxy] 添加原生节点，由 include-all-proxies 纳入。',
     loon:'导入主配置，在 App 的远程代理（[Remote Proxy]）添加自己的订阅；全部节点和六地区 NameRegex 筛选器会发现节点。在节点选择中选择全部节点或实际节点。',
     shadowrocket:'在配置页导入主配置，在首页添加/更新订阅并选中实际节点，启用规则模式。节点选择中的 PROXY 指向首页选择；自动/地区组按首页节点名称筛选。',
@@ -98,7 +98,7 @@ function clientReadme(client,rulesets,features,baseUrl,featureRegistry,sourceReg
   const extensions=profileRoutingResources(client.id,rulesets),activeExtensions=profileRoutingResources(client.id,embedded);
   const regex=regexRoutingFor(client.id),native=nativeRoutingSettings(client.id);
   const extensionRows=extensions.map(rule=>`| [${rule.id}${ids.has(rule.sourceId)?'':'（可选）'}](${rule.path}) | ${rule.entries.length.toLocaleString('en-US')} | ${rule.license} |`).join('\n');
-  const names={geoip:'出口定位','search-redirect':'Bing 搜索跳转','quick-search':'47 项快速搜索',redirects:'59 项网站重定向','biliintl-region':'BiliIntl 菲律宾参数','anti-ad':'可选反广告','https-upgrade':'六站 HTTPS 升级',boxjs:'BoxJS','script-hub':'ScriptHub','sub-store':'Sub-Store','body-replacement':'正文替换工具','resource-parser':'外部资源解析器','qx-regex-compat':'QX服务兼容补充（非无损）'};
+  const names={geoip:'出口定位','search-redirect':'Bing 搜索跳转','quick-search':'47 项快速搜索',redirects:'59 项网站重定向','biliintl-region':'BiliIntl 菲律宾参数','anti-ad':'可选反广告','https-upgrade':'六站 HTTPS 升级',boxjs:'BoxJS','script-hub':'ScriptHub','sub-store':'Sub-Store','body-replacement':'正文替换工具','resource-parser':'资源解析器','qx-regex-compat':'QX服务兼容补充（非无损）'};
   const available=featureRegistry.features.filter(feature=>feature.clients?.[client.id]);
   const featureList=available.length?'| 功能 | 实际入口/导入方式 |\n| --- | --- |\n'+available.map(feature=>`| ${names[feature.id]??feature.id} | ${feature.clients[client.id].artifacts.map(path=>`[${path}](${path})`).join(' · ')}；${feature.clients[client.id].kind} |`).join('\n'):'该核心不支持原生 HTTP 重写/JS 模块。';
   return `# ${client.name}
@@ -138,9 +138,9 @@ ${featureList}
 
 modules 保存脚本功能安装资源，rewrites 保存纯重写，fragments 需要手工合并。QX 的 modules/*.snippet 仍在 App 中按“重写资源”导入；Surge/SR 用各自模块入口，Loon 用插件，Egern 用模块，Stash 用覆写，不能混用相同扩展名推断兼容。
 
-BoxJS、ScriptHub、Sub-Store 为明确可选的上游工具，脚本入口固定版本，GUI 导入未实测；BoxJS 会读写宿主脚本存储，转换工具会读取订阅/用户指定 URL。没有自动同步任务，也不会自动启用 MITM 或安装 CA。第三方脚本与前端的完整依赖树不全部固定，见[工具许可与边界](../../src/vendor/integrations/)。外部解析器片段只链接作者发布脚本，不是本仓库实现的解析器。
+BoxJS、ScriptHub、Sub-Store 为明确可选的上游工具，脚本入口固定版本，GUI 导入未实测；BoxJS 会读写宿主脚本存储，转换工具会读取订阅/用户指定 URL。没有自动同步任务，也不会自动启用 MITM 或安装 CA。第三方脚本与前端的完整依赖树不全部固定，见[工具许可与边界](../../src/vendor/integrations/)。QX 资源解析器为本仓库原创实现，打包 YAML 依赖；Loon 解析器片段仍链接固定上游脚本，许可与权限单独登记。
 
-Mihomo/sing-box 提供原生规则、DNS、节点与可选反广告；BoxJS 等 GUI 模块和 HTTP 重写不是这两个核心的能力。需要订阅转换时可另用 [Sub-Store 官方服务](https://github.com/sub-store-org/Sub-Store)，不要把 GUI 脚本格式塞进核心配置。QX 主配置已经接入 GeoIP；其片段供其他既有配置使用。完整边界见[逐项覆盖](../../docs/coverage.md)与[功能说明](../../docs/features.md)。${client.id==='quantumultX'?' 两份服务兼容分流与HTTP/HTTPS广告资源均为独立可选，扩大范围、顺序和MITM前提见[QX接入说明](../../docs/qx-compatibility.md)，不计入14/24严格覆盖。':''}
+Mihomo/sing-box 提供原生规则、DNS、节点与可选反广告；BoxJS 等 GUI 模块和 HTTP 重写不是这两个核心的能力。需要订阅转换时可另用 [Sub-Store 官方服务](https://github.com/sub-store-org/Sub-Store)，不要把 GUI 脚本格式塞进核心配置。QX 主配置已经接入自有资源解析器和中文 GeoIP；片段供既有配置手工合并。支持范围及严格拒绝项见功能说明，转换不会加载或执行订阅中的脚本。完整边界见[逐项覆盖](../../docs/coverage.md)与[功能说明](../../docs/features.md)。${client.id==='quantumultX'?' 两份服务兼容分流与HTTP/HTTPS广告资源均为独立可选，扩大范围、顺序和MITM前提见[QX接入说明](../../docs/qx-compatibility.md)，不计入14/24严格覆盖。':''}
 
 ## 高级：离线配置或本地私有转换
 
@@ -174,7 +174,7 @@ export async function createBuild(root,{baseUrl=defaultBaseUrl}={}){
     const profile=renderManagedProfile(client.id,{rulesets,baseUrl});
     const validation=validateManagedProfile(client.id,profile.content,rulesets,{baseUrl});
     put(prefix+profile.path,profile.content);
-    const standalone=renderProfile(client.id,{rulesets});
+    const standalone=renderProfile(client.id,{rulesets,baseUrl});
     validateProfile(client.id,standalone.content,rulesets,{requireRejectDefault:true});
     put(prefix+`profiles/standalone.${client.profileExtension}`,standalone.content);
     put(prefix+'profiles/input.example.json',json({version:1,nodes:[],subscriptions:[]}));
@@ -205,7 +205,7 @@ export async function createBuild(root,{baseUrl=defaultBaseUrl}={}){
         resources:routingResources.map(resource=>({id:resource.id,sourceId:resource.sourceId,path:resource.path,entries:resource.entries.length,license:resource.license,defaultProfile:embeddedIds.has(resource.sourceId)})),
       },
       validation:{profile:validation.level,rules:'canonical-semantic-round-trip',native:'not-run',nativeRequirement:client.nativeVerification,features:'host-contract-tests-run-separately'},
-      features:clientFeatures.map(feature=>({id:feature.id,defaultEnabled:client.id==='quantumultX'&&feature.id==='geoip',license:feature.license??'MIT (original code)',adapter:feature.clients[client.id],upstream:feature.upstream??null,sourceRegistry:feature.sourceRegistry??null})),
+      features:clientFeatures.map(feature=>({id:feature.id,defaultEnabled:client.id==='quantumultX'&&['geoip','resource-parser'].includes(feature.id),license:feature.license??'MIT (original code)',adapter:feature.clients[client.id],upstream:feature.upstream??null,sourceRegistry:feature.sourceRegistry??null})),
       sources:{repositories:registry.repositories,rules:registry.rulesets.map(record=>({id:record.id,tag:record.category,defaultProfile:embeddedIds.has(record.id),source:record.source,license:record.source.repository?registry.repositories.find(repo=>repo.id===record.source.repository).license:record.source.license,sha256:record.outputSha256,entries:record.entryCount,updatedAt:record.updatedAt,projection:record.selection??'first-party-selection',excludedExpressions:record.appliedExclusions??[]})),inputs:sources},
       artifacts
     };

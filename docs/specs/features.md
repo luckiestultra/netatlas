@@ -24,7 +24,7 @@ HTTPS-upgrade 为固定 GPL-2.0 原文的六主机投影，保留 path/query，�
 
 共享纯核心 src/features/geoip/core.mjs 支持 IPinfo、ipwho.de、ip-api 响应格式。外部字段必须校验类型；空 ASN、空组织、无城市、无数据、错误 JSON、API 错误状态、限流和传输超时不得导致未完成回调。
 
-结果保留来源给出的地理信息，不推断物理机房，不硬编码某国或某个用户 IP，不填入虚构城市或运营商。收到响应、定位成功和网络整体正常是不同事实。
+结果保留来源给出的地理信息，不推断物理机房，不硬编码某国或某个用户 IP，不填入虚构城市或运营商。QX显示按源国家代码使用固定Unicode CLDR 48中文国家/地区名称，原始provider字段不改；title、subtitle、ip、description均保留完整源IP。CLDR数据采用Unicode-3.0许可，固定版本、原文哈希与完整许可分别保留在localization目录；生成脚本带完整Unicode许可。收到响应、定位成功和网络整体正常是不同事实。VM验证不等于原生QX界面截图或设备实测。
 
 QX 原生适配器只解析 $response，不再联网或更改节点。生成的 fragments/geoip.conf 是 [general] 合并片段，不是重写订阅；它的脚本 URL 只有对应文件推送到公开提交后才能使用。
 
@@ -49,7 +49,21 @@ npm run test:live
 
 ## 完整可选资源
 
-本轮增加原创47动作快速搜索、固定GPL完整59动作跳转与独立BiliIntl参数资源（六GUI）；三类官方工具18个可选安装包；QX/Loon两个外部解析器片段；原创Surge正文替换。安装格式、许可、入口权限、直接依赖固定范围和nativeApp:not-run分别登记，不以核心不支持的格式伪造Mihomo/sing-box模块。完整机器清单为metadata/features.json、metadata/integrations.json、metadata/resource-parsers.json和metadata/coverage.json。
+本轮增加原创47动作快速搜索、固定GPL完整59动作跳转与独立BiliIntl参数资源（六GUI）；三类官方工具18个可选安装包；原创QX资源解析器及Loon外部解析器片段；原创Surge正文替换。安装格式、许可、入口权限、直接依赖固定范围和nativeApp:not-run分别登记，不以核心不支持的格式伪造Mihomo/sing-box模块。完整机器清单为metadata/features.json、metadata/integrations.json、metadata/resource-parsers.json和metadata/coverage.json。
+
+## QX 资源解析器
+
+QX的`resource_parser_url`指向本仓库的`scripts/resource-parser.js`，源码入口为`src/features/resource-parser/entry.mjs`。构建为不依赖Node、浏览器DOM、URL、Buffer、atob或TextDecoder全局的浏览器IIFE，包含MIT原创代码和yaml 2.9.1 ISC许可。`fragments/resource-parser.conf`只合并`[general]`；本仓库QX配置默认启用，Loon外部解析器仍可选。六个其他客户端不输出未有原生依据的解析器设置。
+
+宿主输入为`$resource.content`、可选`link`和字符串`type`；每次转换完整校验后调用一次`$done({content})`，失败只返回受控、不含原文的`$done({error})`，不输出部分结果或自动降级。未知数字type不猜测含义。解析器不联网、不持久化、不执行订阅中的脚本或自定义表达式、不请求原生UA重试、不更改运行中配置。生成资源可以包含经验证的HTTPS脚本引用，但安装后由QX执行该脚本不在解析器离线权限承诺之内。
+
+支持已实现的节点URI/原生节点/Clash YAML与sing-box JSON节点字段，严格处理TLS与传输；不支持的协议、传输、mux、未知参数、无法表达的字段或名称冲突导致整份订阅失败。规则支持QX原生及已登记的classical类型、Surge DOMAIN-SET、Clash payload和sing-box headless地址条件。Surge DOMAIN-SET的`.domain`包含根域；Clash的`.domain`排除根域，`+.domain`包含根域；Clash单标签通配不能放大为QX跨点通配。Clash域名payload必须显式`domain-mode=exact`，suffix模式冲突报错。任意新DOMAIN-REGEX、端口/进程/逻辑AND与其他附加条件不得丢弃或转成更宽集合。
+
+`no-resolve`没有在已查证QX接口中找到等价字段，默认报错；仅显式`allow-resolve=1`移除并在结果注释中标出DNS行为变化。`policy`是显式覆盖所有源策略的操作，也必须输出提示。正则只对已登记的确切表达式生成经过证明的通配或有限枚举；其他表达式整资源失败，不冒称完整正则支持。
+
+重写支持QX原生已实现动作、Surge/Loon 302/307跳转和可等价的Loon响应体拒绝动作；不同reject语义、header URL替换、未实现的重写DSL、CA/证书设置、本地脚本路径及其他功能段报错。跨宿主Script转换必须显式`script-compat=qx`声明脚本本体已经支持QX，只有可表达字段能转换；该声明不翻译JavaScript宿主API，也不允许忽略timeout、argument、binary-body或max-size等字段。
+
+helper的三个`$parser`函数按固定官方协议独立可提取；哈希参数只做声明式类型/格式/策略选择与字面名称处理，未知或重复参数不自动忽略。测试必须执行真实生成bundle的节点、规则、重写、错误回调及helper契约；VM测试不宣称QX设备导入成功。用户本地QX配置不得用于测试或被修改。
 
 ## QX 正则缺口的可选兼容处理
 

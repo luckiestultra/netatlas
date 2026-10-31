@@ -20,7 +20,8 @@ test('QX native response parser completes once and never performs another networ
   }, { timeout: 1000 });
   assert.equal(results.length, 1);
   assert.equal(results[0].ip, '192.0.2.10');
-  assert.match(results[0].title, /Oxford/);
+  assert.match(results[0].title, /英国.*192\.0\.2\.10/);
+  assert.match(results[0].subtitle, /Oxford/);
   assert.doesNotMatch(script, /\$task|\$prefs|\$persistentStore|\$surge/);
 });
 
@@ -70,7 +71,7 @@ test('Surge timeout returns a result once even if a late response arrives', () =
   timeout();
   callback(null, { status: 200 }, JSON.stringify({ ip: '192.0.2.10', country: 'GB' }));
   assert.equal(results.length, 1);
-  assert.match(results[0].title, /timeout/i);
+  assert.match(results[0].title, /超时/);
 });
 
 test('Surge synchronous HTTP-client failure produces an error panel instead of an uncaught exception', () => {
@@ -81,7 +82,7 @@ test('Surge synchronous HTTP-client failure produces an error panel instead of a
     setTimeout: () => {},
   }, { timeout: 1000 });
   assert.equal(results.length, 1);
-  assert.match(results[0].title, /network/i);
+  assert.match(results[0].title, /网络错误/);
 });
 
 test('feature URLs use the requested public base, including a trailing slash', () => {
