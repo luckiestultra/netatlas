@@ -37,7 +37,7 @@
       ],
       "sourceContract": {
         "input": "QX $resource object with content and optional link/type; unknown type values are not guessed from numbers.",
-        "completion": "Exactly one $done({content}) or $done({error}); no retry/download request.",
+        "completion": "Exactly one $done({content}) or $done({error}), and the complete script evaluates to that same result object; no retry/download request.",
         "supportedResourceTypes": [
           "server",
           "filter",

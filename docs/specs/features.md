@@ -55,7 +55,7 @@ npm run test:live
 
 QX的`resource_parser_url`指向本仓库的`scripts/resource-parser.js`，源码入口为`src/features/resource-parser/entry.mjs`。构建为不依赖Node、浏览器DOM、URL、Buffer、atob或TextDecoder全局的浏览器IIFE，包含MIT原创代码和yaml 2.9.1 ISC许可。`fragments/resource-parser.conf`只合并`[general]`；本仓库QX配置默认启用，Loon外部解析器仍可选。六个其他客户端不输出未有原生依据的解析器设置。
 
-宿主输入为`$resource.content`、可选`link`和字符串`type`；每次转换完整校验后调用一次`$done({content})`，失败只返回受控、不含原文的`$done({error})`，不输出部分结果或自动降级。未知数字type不猜测含义。解析器不联网、不持久化、不执行订阅中的脚本或自定义表达式、不请求原生UA重试、不更改运行中配置。生成资源可以包含经验证的HTTPS脚本引用，但安装后由QX执行该脚本不在解析器离线权限承诺之内。
+宿主输入为`$resource.content`、可选`link`和字符串`type`；每次转换完整校验后调用一次`$done({content})`，失败只返回受控、不含原文的`$done({error})`；整段脚本的最终求值也必须是同一结果对象，不能只检查回调副作用。不输出部分结果或自动降级。未知数字type不猜测含义。解析器不联网、不持久化、不执行订阅中的脚本或自定义表达式、不请求原生UA重试、不更改运行中配置。生成资源可以包含经验证的HTTPS脚本引用，但安装后由QX执行该脚本不在解析器离线权限承诺之内。
 
 支持已实现的节点URI/原生节点/Clash YAML与sing-box JSON节点字段，严格处理TLS与传输；不支持的协议、传输、mux、未知参数、无法表达的字段或名称冲突导致整份订阅失败。规则支持QX原生及已登记的classical类型、Surge DOMAIN-SET、Clash payload和sing-box headless地址条件。Surge DOMAIN-SET的`.domain`包含根域；Clash的`.domain`排除根域，`+.domain`包含根域；Clash单标签通配不能放大为QX跨点通配。Clash域名payload必须显式`domain-mode=exact`，suffix模式冲突报错。任意新DOMAIN-REGEX、端口/进程/逻辑AND与其他附加条件不得丢弃或转成更宽集合。
 

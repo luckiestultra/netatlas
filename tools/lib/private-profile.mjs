@@ -35,6 +35,13 @@ export async function fetchSubscriptionText(value){
  fail('Subscription redirect limit exceeded');
 }
 function decoded64(text){try{return Buffer.from(text.replace(/-/g,'+').replace(/_/g,'/'),'base64').toString('utf8');}catch{fail('Invalid encoded subscription');}}
+function subscriptionAlpn(value,allowString=false){
+ if(value===undefined)return undefined;
+ const protocols=allowString&&typeof value==='string'?(value===''?[]:value.split(',')):value;
+ if(!Array.isArray(protocols)||protocols.some(protocol=>typeof protocol!=='string'||Buffer.byteLength(protocol)<1||Buffer.byteLength(protocol)>255)
+  ||protocols.reduce((size,protocol)=>size+1+Buffer.byteLength(protocol),0)>65535)fail('Invalid subscription ALPN list');
+ return [...protocols];
+}
 function transport(type,host,pathValue){
  if(!type||type==='tcp')return undefined;
  if(type==='ws'){
@@ -49,15 +56,20 @@ function uriNode(line,index){
  if(line.startsWith('vmess://')){
   let item;try{item=JSON.parse(decoded64(line.slice(8)));}catch{fail('Invalid VMess subscription node');}
   if((!item.net||item.net==='tcp')&&item.type&&!['none',''].includes(item.type))fail('VMess TCP header obfuscation requires native sing-box outbounds');
-  return {type:'vmess',tag:item.ps||`Subscription-${index+1}`,server:item.add,server_port:Number(item.port),uuid:item.id,security:item.scy||'auto',alter_id:Number(item.aid||0),...(item.tls==='tls'?{tls:{enabled:true,server_name:item.sni||item.host||item.add}}:{}),...(item.net&&item.net!=='tcp'?{transport:transport(item.net,item.host,item.path)}:{})};
+  const alpn=subscriptionAlpn(item.alpn,true);
+  if(alpn?.length&&item.tls!=='tls')fail('Subscription ALPN requires TLS');
+  return {type:'vmess',tag:item.ps||`Subscription-${index+1}`,server:item.add,server_port:Number(item.port),uuid:item.id,security:item.scy||'auto',alter_id:Number(item.aid||0),...(item.tls==='tls'?{tls:{enabled:true,server_name:item.sni||item.host||item.add,...(alpn!==undefined?{alpn}:{})}}:{}),...(item.net&&item.net!=='tcp'?{transport:transport(item.net,item.host,item.path)}:{})};
  }
  if(line.startsWith('ss://')){
-  const raw=line.slice(5).split('#')[0];let credentials,endpoint;
-  if(raw.includes('@')){const pivot=raw.lastIndexOf('@');credentials=raw.slice(0,pivot);endpoint=raw.slice(pivot+1);if(!credentials.includes(':'))credentials=decoded64(credentials);}
-  else {const decoded=decoded64(raw);const pivot=decoded.lastIndexOf('@');if(pivot<0)fail('Invalid Shadowsocks subscription node');credentials=decoded.slice(0,pivot);endpoint=decoded.slice(pivot+1);}
+  const raw=line.slice(5).split('#')[0];let credentials,endpoint,base64Credentials=false;
+  if(raw.includes('@')){const pivot=raw.lastIndexOf('@');credentials=raw.slice(0,pivot);endpoint=raw.slice(pivot+1);if(!credentials.includes(':')){credentials=decoded64(credentials);base64Credentials=true;}}
+  else {const decoded=decoded64(raw);const pivot=decoded.lastIndexOf('@');if(pivot<0)fail('Invalid Shadowsocks subscription node');credentials=decoded.slice(0,pivot);endpoint=decoded.slice(pivot+1);base64Credentials=true;}
   const parsed=new URL('socks://'+endpoint);if(parsed.search)fail('Shadowsocks plugins require native sing-box outbounds');
   const pivot=credentials.indexOf(':');if(pivot<0)fail('Invalid Shadowsocks credentials');
-  return {type:'shadowsocks',tag:decodeURIComponent(line.split('#')[1]||`Subscription-${index+1}`),server:parsed.hostname.replace(/^\[|\]$/g,''),server_port:Number(parsed.port),method:decodeURIComponent(credentials.slice(0,pivot)),password:decodeURIComponent(credentials.slice(pivot+1))};
+  // SIP002 percent decoding applies only to raw userinfo, never decoded Base64.
+  let method=credentials.slice(0,pivot),password=credentials.slice(pivot+1);
+  if(!base64Credentials){method=decodeURIComponent(method);password=decodeURIComponent(password);}
+  return {type:'shadowsocks',tag:decodeURIComponent(line.split('#')[1]||`Subscription-${index+1}`),server:parsed.hostname.replace(/^\[|\]$/g,''),server_port:Number(parsed.port),method,password};
  }
  let uri;try{uri=new URL(line);}catch{fail('Invalid subscription node URI');}
  const type=uri.protocol.slice(0,-1);if(!['vless','trojan'].includes(type))fail('Unsupported subscription node URI');
@@ -66,6 +78,10 @@ function uriNode(line,index){
  if(q.get('allowInsecure')==='1'||q.get('insecure')==='1')fail('Subscription requests disabled TLS verification');
  const tls=security==='none'?undefined:{enabled:true,server_name:q.get('sni')||q.get('peer')||uri.hostname,...(q.get('fp')?{utls:{enabled:true,fingerprint:q.get('fp')}}:{}),...(security==='reality'?{reality:{enabled:true,public_key:q.get('pbk'),short_id:q.get('sid')||''},utls:{enabled:true,fingerprint:q.get('fp')||'chrome'}}:{})};
  if(!['none','tls','reality'].includes(security))fail('Unsupported subscription TLS mode');
+ if(q.getAll('alpn').length>1)fail('Ambiguous subscription ALPN query');
+ const alpn=subscriptionAlpn(q.has('alpn')?q.get('alpn'):undefined,true);
+ if(alpn?.length&&!tls)fail('Subscription ALPN requires TLS');
+ if(tls&&alpn!==undefined)tls.alpn=alpn;
  const trans=transport(q.get('type'),q.get('host'),q.get('serviceName')||q.get('path'));
  return {type,tag:decodeURIComponent(uri.hash.slice(1)||`Subscription-${index+1}`),server:uri.hostname.replace(/^\[|\]$/g,''),server_port:Number(uri.port)||(tls?443:0),[type==='vless'?'uuid':'password']:decodeURIComponent(uri.username),...(type==='vless'&&q.get('flow')?{flow:q.get('flow')}:{}),...(tls?{tls}:{}),...(trans?{transport:trans}:{})};
 }
@@ -77,7 +93,13 @@ function clashNode(item){
  if(type==='socks'&&item.tls)fail('TLS-wrapped SOCKS requires native sing-box outbounds');
  if(item['ws-opts']?.['v2ray-http-upgrade']||item['ws-opts']?.['v2ray-http-upgrade-fast-open'])fail('HTTP upgrade subscriptions require native sing-box outbounds');
  if(item['skip-cert-verify'])fail('Subscription requests disabled TLS verification');
+ // Mihomo fingerprint pins SHA256(cert.Raw); sing-box 1.14's SPKI pin hashes different bytes.
+ // https://github.com/MetaCubeX/mihomo/blob/v1.19.33/component/ca/fingerprint.go
+ if(item.fingerprint!==undefined&&item.fingerprint!=='')fail('Clash certificate fingerprint pins require native sing-box outbounds with an explicitly chosen TLS constraint');
+ const alpn=subscriptionAlpn(item.alpn);
  const tls=item.tls||['trojan','hysteria2','tuic','anytls'].includes(type)||item['reality-opts']?{enabled:true,server_name:item.servername||item.sni||item.server,...(item['client-fingerprint']?{utls:{enabled:true,fingerprint:item['client-fingerprint']}}:{}),...(item['reality-opts']?{reality:{enabled:true,public_key:item['reality-opts']['public-key'],short_id:item['reality-opts']['short-id']||''}}:{})}:undefined;
+ if(alpn?.length&&!tls)fail('Subscription ALPN requires TLS');
+ if(tls&&alpn!==undefined)tls.alpn=alpn;
  const trans=item.network&&item.network!=='tcp'?transport(item.network,item['ws-opts']?.headers,item['ws-opts']?.path||item['grpc-opts']?.['grpc-service-name']):undefined;
  if(trans?.type==='ws'){
   if(item['ws-opts']?.['max-early-data']!==undefined){const size=item['ws-opts']['max-early-data'];if(!Number.isSafeInteger(size)||size<0)fail('Invalid WebSocket early data size');trans.max_early_data=size;}
@@ -102,6 +124,26 @@ export function materializeSubscription(client,text){
   else {const candidates=Array.isArray(parsed)?parsed:parsed.outbounds||parsed.nodes;if(!Array.isArray(candidates))fail('Subscription contains no native nodes');nodes=candidates.filter(node=>proxyTypes.has(node?.type));}
  } else nodes=body.split(/\r?\n/).map(x=>x.trim()).filter(x=>x&&!x.startsWith('#')).map(uriNode);
  if(!nodes?.length||nodes.length>2000)fail('Subscription contains no supported nodes or exceeds the node limit');return nodes;
+}
+function validateSingBoxDependencies(content){
+ // Validate the final graph, including local nodes, every source and generated selectors.
+ // A source-local check would incorrectly reject a detour supplied by another source.
+ const outbounds=JSON.parse(content).outbounds;
+ const graph=new Map(outbounds.map(node=>{
+  if(node.detour!==undefined&&typeof node.detour!=='string')fail('Invalid native outbound detour');
+  return [node.tag,new Set([...(node.type==='selector'||node.type==='urltest'?node.outbounds:[]),...(node.detour?[node.detour]:[])])];
+ }));
+ const dependents=new Map([...graph.keys()].map(tag=>[tag,[]]));
+ for(const [tag,references] of graph)for(const reference of references){
+  if(!graph.has(reference))fail('Unknown native outbound dependency; provide complete native sing-box nodes');
+  dependents.get(reference).push(tag);
+ }
+ const pending=new Map([...graph].map(([tag,references])=>[tag,references.size]));
+ const ready=[...pending].filter(([,count])=>count===0).map(([tag])=>tag);
+ for(let index=0;index<ready.length;index++)for(const tag of dependents.get(ready[index])){
+  const count=pending.get(tag)-1;pending.set(tag,count);if(count===0)ready.push(tag);
+ }
+ if(ready.length!==graph.size)fail('Cyclic native outbound dependency');
 }
 function privatePath(root,value){
  if(typeof value!=='string'||!value)fail('Private input and output paths are required');const resolved=path.resolve(root,value),rel=path.relative(path.resolve(root,'private'),resolved);
@@ -129,6 +171,7 @@ export async function createPrivateProfile({root,client,inputFile,outputFile,fet
  }
  const {rulesets}=await loadCatalog(root);let profile;
  try{profile=renderProfile(client,{rulesets,...options,nodes});}catch{fail('Native profile rendering failed; check node names, source format and DNS options');}
+ if(client==='singBox')validateSingBoxDependencies(profile.content);
  await assertManagedPaths(root,[input,output]);if(digest(await readFile(input))!==digest(original))fail('Private input changed while subscriptions were loading');
  const now=await snapshot(output);if((now?digest(now):null)!==(previous?digest(previous):null))fail('Private output changed while subscriptions were loading');
  await mkdir(path.dirname(output),{recursive:true,mode:0o700});const staged=output+'.pending-'+randomUUID();await assertManagedPaths(root,[staged]);

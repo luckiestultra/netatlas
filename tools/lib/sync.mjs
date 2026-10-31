@@ -4,6 +4,7 @@ import path from 'node:path';
 import { isIP } from 'node:net';
 import { normalizeEntry, normalizeRuleset, stableId } from './rules.mjs';
 import { assertManagedPaths } from './managed-paths.mjs';
+import { withSyncLock } from './sync-lock.mjs';
 import { parseClassicalYaml } from './classical-source.mjs';
 import { loadRuleSupplement } from './rule-supplements.mjs';
 
@@ -276,7 +277,12 @@ async function verifyInputs(root, expectedMetadataSha256, expectedSourceHashes) 
   }
 }
 
-export async function recoverPublication(root, { dryRun = false } = {}) {
+export async function recoverPublication(root, options = {}) {
+  return withSyncLock(root, assertOwned => recoverPublicationLocked(root, options, assertOwned));
+}
+
+async function recoverPublicationLocked(root, { dryRun = false } = {}, assertOwned) {
+  await assertOwned();
   await assertManagedPaths(root, ['metadata/upstreams.json', 'src/rules', '.cache/sync']);
   if ((await exists(path.join(root, '.cache')))?.isSymbolicLink()) throw new Error('Refusing a symlink for the cache root');
   const cache = path.join(root, '.cache', 'sync');
@@ -311,7 +317,11 @@ export async function recoverPublication(root, { dryRun = false } = {}) {
   }
 }
 
-export async function publishCatalog(root, outputs, metadataText, { expectedMetadataSha256, expectedSourceHashes } = {}) {
+export async function publishCatalog(root, outputs, metadataText, options = {}) {
+  return withSyncLock(root, assertOwned => publishCatalogLocked(root, outputs, metadataText, options, assertOwned));
+}
+
+async function publishCatalogLocked(root, outputs, metadataText, { expectedMetadataSha256, expectedSourceHashes } = {}, assertOwned) {
   await assertManagedPaths(root, ['metadata/upstreams.json', 'src/rules', '.cache/sync']);
   const rules = path.join(root, 'src', 'rules');
   const metadata = path.join(root, 'metadata', 'upstreams.json');
@@ -345,6 +355,7 @@ export async function publishCatalog(root, outputs, metadataText, { expectedMeta
   let committed = false;
   try {
     await verifyInputs(root, expectedMetadataSha256, expectedSourceHashes);
+    await assertOwned();
     if (previousExists) { await rename(rules, previousRules); movedPrevious = true; }
     await rename(stagedRules, rules);
     installed = true;
@@ -362,8 +373,12 @@ export async function publishCatalog(root, outputs, metadataText, { expectedMeta
   // Previous batches stay in the ignored cache as recoverable local backups.
 }
 
-export async function syncCatalog({ root, revision, repository, latest = false, dryRun = false, fetchText = fetchBoundedText } = {}) {
-  if (!root) throw new Error('A repository root is required');
+export async function syncCatalog(options = {}) {
+  if (!options.root) throw new Error('A repository root is required');
+  return withSyncLock(options.root, assertOwned => syncCatalogLocked(options, assertOwned));
+}
+
+async function syncCatalogLocked({ root, revision, repository, latest = false, dryRun = false, fetchText = fetchBoundedText }, assertOwned) {
   await assertManagedPaths(root, ['metadata/upstreams.json', 'src/rules', '.cache/sync']);
   if (revision && latest) throw new Error('Use --revision or --latest, not both');
   const metadataPath = path.join(root, 'metadata', 'upstreams.json');
@@ -375,7 +390,7 @@ export async function syncCatalog({ root, revision, repository, latest = false, 
   if (repository && !revision && !latest) throw new Error('A repository selector requires --latest or --revision');
   if (revision && registry.repositories.length > 1 && !repository) throw new Error('Multiple repositories require --repository with --revision');
   // Reject ambiguous version operations before recovery can write any journal or directory.
-  await recoverPublication(root, { dryRun });
+  await recoverPublicationLocked(root, { dryRun }, assertOwned);
   await rejectSymlinks(path.join(root, 'src', 'rules'));
   const originals = new Map();
   const expectedSourceHashes = new Map();
@@ -522,6 +537,6 @@ export async function syncCatalog({ root, revision, repository, latest = false, 
   const changed = report.some(item => item.changed) || newMetadata !== originalMetadata;
   const expectedMetadataSha256 = sha256(originalMetadata);
   await verifyInputs(root, expectedMetadataSha256, expectedSourceHashes);
-  if (!dryRun && changed) await publishCatalog(root, outputs, newMetadata, { expectedMetadataSha256, expectedSourceHashes });
+  if (!dryRun && changed) await publishCatalogLocked(root, outputs, newMetadata, { expectedMetadataSha256, expectedSourceHashes }, assertOwned);
   return { dryRun, changed, repositories: [...repositories.values()].map(repo => ({ id: repo.id, revision: repo.revision })), downloadedFiles: cache.size, downloadedBytes, rulesets: report };
 }

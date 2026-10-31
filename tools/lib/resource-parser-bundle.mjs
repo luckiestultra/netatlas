@@ -37,9 +37,12 @@ export function bundleResourceParser(){
   }
   const result=buildSync({
     absWorkingDir:root,entryPoints:[entry],bundle:true,write:false,
-    platform:'browser',format:'iife',target:'es2020',charset:'utf8',
+    platform:'browser',format:'iife',globalName:'NetAtlasResourceParser',target:'es2020',charset:'utf8',
     legalComments:'inline',sourcemap:false,metafile:true,minify:true,
-    banner:{js:banner()},logLevel:'silent',
+    banner:{js:banner()},
+    // QX consumes the program's final value; an IIFE alone loses completion.
+    footer:{js:'typeof $resource !== "undefined" && typeof $done === "function" ? NetAtlasResourceParser.runResource($resource,$done) : undefined;'},
+    logLevel:'silent',
   });
   if(result.outputFiles.length!==1)throw new Error('Unexpected resource-parser build output');
   const output=result.outputFiles[0].text;

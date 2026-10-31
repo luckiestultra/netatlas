@@ -136,17 +136,32 @@ function pluginParts(input) {
     else if(input[i]===';'){result.push(value);value='';}else value+=input[i];
   }result.push(value);return result;
 }
+function ssPluginValues(n,name,values,clash=false) {
+  if(name==='obfs-local'||name==='simple-obfs'){
+    keys(values,['obfs','obfs-host']);if(!['http','tls'].includes(values.obfs))error('unsupported plugin mode');put(n,'obfs',values.obfs);put(n,'obfs-host',values['obfs-host']);
+  }else if(name==='v2ray-plugin'){
+    keys(values,['mode','tls','host','path','mux']);if(values.mode&&values.mode!=='websocket')error('unsupported plugin mode');if(values.mux===undefined||bool(values.mux))error('plugin multiplexing unsupported');
+    const encrypted=values.tls!==undefined&&bool(values.tls);
+    if(!clash&&values.tls!==undefined&&!encrypted)error('conflicting plugin TLS flag');
+    // Clash/Mihomo's structured plugin defaults differ from SIP003 v2ray-plugin.
+    put(n,'obfs',encrypted?'wss':'ws');put(n,'obfs-host',values.host||(clash?'bing.com':'cloudfront.com'));put(n,'obfs-uri',values.path||'/');if(encrypted)put(n,'tls-verification','true');
+  }else error('unsupported plugin');
+}
 function ssPlugin(n,plugin,options) {
   if(!plugin){if(options)error('plugin options without plugin');return;}
   const pieces=pluginParts(String(plugin));let name=pieces.shift(),values=Object.create(null);
   for(const part of [...pieces,...(options?pluginParts(String(options)):[])]){if(!part)continue;const p=part.indexOf('='),key=p<0?part:part.slice(0,p);if(own(values,key))error('duplicate plugin option');values[key]=p<0?'true':part.slice(p+1);}
-  if(name==='obfs-local'||name==='simple-obfs'){
-    keys(values,['obfs','obfs-host']);if(!['http','tls'].includes(values.obfs))error('unsupported plugin mode');put(n,'obfs',values.obfs);put(n,'obfs-host',values['obfs-host']);
-  }else if(name==='v2ray-plugin'){
-    keys(values,['mode','tls','host','path','mux']);if(values.mode&&values.mode!=='websocket')error('unsupported plugin mode');if(!['0','false'].includes(values.mux))error('plugin multiplexing unsupported');
-    if(values.tls!==undefined&&!bool(values.tls))error('conflicting plugin TLS flag');
-    put(n,'obfs',values.tls&&bool(values.tls)?'wss':'ws');put(n,'obfs-host',values.host||'cloudfront.com');put(n,'obfs-uri',values.path||'/');if(n.fields.obfs==='wss')put(n,'tls-verification','true');
-  }else error('unsupported plugin');
+  ssPluginValues(n,name,values);
+}
+function ssPluginObject(n,plugin,options) {
+  const values=Object.create(null);
+  for(const key of Object.keys(options)){
+    const name=plugin==='obfs'?(key==='mode'?'obfs':key==='host'?'obfs-host':key):key;
+    if(own(values,name))error('duplicate plugin option');
+    // Object values are literal fields, never a SIP003 option string.
+    values[name]=['tls','mux'].includes(key)?bool(options[key]):text(options[key],true);
+  }
+  ssPluginValues(n,plugin==='obfs'?'obfs-local':plugin,values,true);
 }
 function parseSs(u) {
   keys(u.query,['plugin','udp','tfo']);let authority=u.authority;
@@ -208,10 +223,8 @@ function fromObject(o) {
     put(n,'method',o.cipher||o.method);put(n,'password',o.password);
     if(o.type==='ssr'){
       put(n,'ssr-protocol',o.protocol);put(n,'ssr-protocol-param',o['protocol-param']);if(o.obfs&&o.obfs!=='plain')put(n,'obfs',o.obfs);put(n,'obfs-host',o['obfs-param']);
-    }else if(object(o['plugin-opts'])){
-      const opts=o['plugin-opts'];keys(opts,['mode','host','path','tls','mux','obfs','obfs-host']);
-      let values=[];for(const k of Object.keys(opts)){let name=k;if(o.plugin==='obfs'){name=k==='mode'?'obfs':k==='host'?'obfs-host':k;}values.push(name+'='+String(opts[k]));}ssPlugin(n,o.plugin==='obfs'?'obfs-local':o.plugin,values.join(';'));
-    }else ssPlugin(n,o.plugin,o.plugin_opts||o['plugin-opts']);
+    }else if(object(o['plugin-opts']))ssPluginObject(n,o.plugin,o['plugin-opts']);
+    else ssPlugin(n,o.plugin,o.plugin_opts||o['plugin-opts']);
     for(const k of ['tls','network','ws-opts','servername','sni','flow','reality-opts','alpn','skip-cert-verify'])if(own(o,k))error('unsupported Shadowsocks field');
   }else{
     if(type==='vmess'||type==='vless'){put(n,'password',uuid(o.uuid||o.id));const method=o.cipher||o.security||'auto';put(n,'method',type==='vless'?'none':method==='auto'?'chacha20-poly1305':method==='chacha20-ietf-poly1305'?'chacha20-poly1305':method);if(+(o.alterId??o['alter-id']??0)!==0)error('legacy VMess alter ID unsupported');}

@@ -86,7 +86,7 @@ npm run profile -- --client quantumultX --input private/quantumultX.json --outpu
 
 sing-box 支持原生 JSON 数组/`outbounds`，基本 Clash YAML/JSON `proxies`，及常见 VLESS、Trojan、Shadowsocks SIP002、VMess 的普通/整批 Base64 URI；支持已实现的 TCP、WebSocket、gRPC 传输，WS 自定义鉴权头会完整保留。原生 JSON 是复杂选项的首选格式。
 
-不把未知功能静默简化：SS 插件、HY2 混淆、TLS 包装 SOCKS、VMess TCP HTTP header 等尚未转换的特征会明确拒绝，要求提供正确原生 outbounds。这样失败不会把能用的配置覆盖成握手错误的节点。不要把“支持某类订阅”理解为已经实现该类所有扩展字段。
+不把未知功能静默简化：SS 插件、HY2 混淆、TLS 包装 SOCKS、VMess TCP HTTP header 等尚未转换的特征会明确拒绝，要求提供正确原生 outbounds。Clash 的 `fingerprint` 是[整张 DER 证书的 SHA-256](https://github.com/MetaCubeX/mihomo/blob/v1.19.33/component/ca/fingerprint.go)，不能改名当作 sing-box 的 SPKI pin；无法等价转换时在发布前拒绝，`client-fingerprint` 仍单独表示客户端握手指纹。显式 ALPN 按来源格式校验并保留顺序；SS 的 Base64 凭据解码后不再做第二次 URI 解码。原生 outbounds 的依赖必须完整，不能删除 selector 后留下悬空 detour。这样失败不会把能用的配置覆盖成握手错误的节点。不要把“支持某类订阅”理解为已经实现该类所有扩展字段。
 
 Shadowrocket 本地导入器支持原生 `[Proxy]` 节点文本或 `{"nodes":["My-Node = ..."]}`；URI 机场来源通过 Shadowrocket 自身导入。不会伪造 Surge 的 policy-path 或 sing-box 不存在的 provider 字段。
 
@@ -130,7 +130,7 @@ npm run check
 npm run test:native
 ~~~
 
-验证区分默认远程资源配置和高级内联配置。固定 Mihomo、sing-box 内核检查与路由测试验证真实内核行为；私有输入工作流另验证 HTTP 订阅、节点刷新、四种 DNS 角色和 HTTP/SOCKS 目标请求。远程资源测试使用受控本地服务检查实际拉取与更新，不能以 YAML/JSON 可解析代替连通性结果。具体已执行项目与结果以[验证记录](validation.md)为准。
+验证区分默认远程资源配置和高级内联配置。固定 Mihomo、sing-box 内核检查与路由测试验证真实内核行为；私有输入工作流另验证 HTTP 订阅、节点刷新、四种 DNS 角色和 HTTP/SOCKS 目标请求。远程资源测试使用受控本地服务检查实际拉取与更新，不能以 YAML/JSON 可解析代替连通性结果。原生套件还包含合成证书的 pin 拒绝与 ALPN 握手回归：真实回环订阅→生成私人配置→固定内核→HTTP 请求，并用错误 pin / 缺失 ALPN 作负控；证书信任仅写入测试进程配置。具体已执行项目与结果以[验证记录](validation.md)为准。
 
 六个闭源应用没有可用测试设备，以官方文档、固定高星完整配置和独立接入/边界测试交叉核对；这些不是 GUI 导入或流量实测。来源记录见 [profile-references.json](../metadata/profile-references.json)，实际日志和结论见验证记录。测试和生成都不更改用户现用 QX 或其他客户端配置。
 

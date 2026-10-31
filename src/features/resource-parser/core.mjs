@@ -73,4 +73,5 @@ export function completeResource(resource, done) {
   // Host completion is deliberately outside the catch: a host exception cannot
   // result in a second $done invocation or a partial-success fallback.
   done(result);
+  return result;
 }

@@ -962,7 +962,16 @@ export async function runNativeVerification({ root, onProgress = () => {} }) {
   const privateWorkflow = await testPrivateProfileWorkflow({ root, binaries: installed.binaries, onProgress });
   const { runManagedProfileVerification } = await import('./managed-workflow.mjs');
   const managedWorkflow = await runManagedProfileVerification({ root, binaries: installed.binaries, onProgress });
-  const report = { status: 'passed', startedAt, completedAt: new Date().toISOString(), artifacts: installed.artifacts, checks, routing, nativeDatabases, optionalRulesets, privateWorkflow, managedWorkflow };
+  const { testSubscriptionTlsWorkflow } = await import('./subscription-tls-flow.mjs');
+  onProgress('Native subscription TLS: pin rejection and ALPN handshake');
+  const subscriptionTls = await testSubscriptionTlsWorkflow({ root, binaries: installed.binaries });
+  const { testResourceParserPlugins } = await import('./resource-parser-plugin-flow.mjs');
+  onProgress('Native parser plugins: literal WebSocket path and source Host defaults');
+  const parserPlugins = await testResourceParserPlugins({ root, binaries: installed.binaries });
+  const { testSubscriptionIntegrityWorkflow } = await import('./subscription-integrity-flow.mjs');
+  onProgress('Native subscription integrity: exact SS credentials and complete outbound dependencies');
+  const subscriptionIntegrity = await testSubscriptionIntegrityWorkflow({ root, binaries: installed.binaries });
+  const report = { status: 'passed', startedAt, completedAt: new Date().toISOString(), artifacts: installed.artifacts, checks, routing, nativeDatabases, optionalRulesets, privateWorkflow, managedWorkflow, subscriptionTls, parserPlugins, subscriptionIntegrity };
   await writeNativeReport({ root, report });
   return report;
 }

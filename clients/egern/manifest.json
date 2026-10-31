@@ -2,7 +2,7 @@
   "version": 1,
   "client": "egern",
   "builder": "netatlas@0.1.0",
-  "inputSha256": "c5d5172613aec31c6baf76eca8dda3365d34f4733fdb5839604c144ccb1b519f",
+  "inputSha256": "cd59d8b8134ffd99797272362799a42e9a6c23741c84b3792d0f1efc78534ee4",
   "baseUrl": "https://raw.githubusercontent.com/luckiestultra/netatlas/main",
   "targetVersion": null,
   "counts": {
