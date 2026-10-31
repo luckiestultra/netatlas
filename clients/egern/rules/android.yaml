@@ -1,0 +1,7 @@
+no_resolve: true
+domain_suffix_set:
+  - android
+  - android.com
+  - androidify.com
+domain_set:
+  - android.googlesource.com

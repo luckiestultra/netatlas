@@ -1,0 +1,2807 @@
+{
+  "version": 1,
+  "id": "tencent",
+  "category": "system",
+  "entries": [
+    {
+      "type": "domain-suffix",
+      "value": "17roco.com"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "97ting.com"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "acctdns.com"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "acctdns.net"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "acimg.cn"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "ad.browser.qq.com"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "ad.qq.com"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "ad.qun.qq.com"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "ad.tencentmusic.com"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "ad.weixin.qq.com"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "adbehavior.ximalaya.com"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "adfilter.imtt.qq.com"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "adnet.qq.com"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "adping.qq.com"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "adpm.app.qq.com"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "ads.service.kugou.com"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "adsclick.qq.com"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "adse.wsa.ximalaya.com"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "adse.ximalaya.com"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "adserviceretry.kglink.cn"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "adserviceretry.kugou.com"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "adsfile.qq.com"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "adshmmsg.qq.com"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "adslvfile.qq.com"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "adslvseed.qq.com"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "adsmind.apdcdn.tc.qq.com"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "adsqqclick.qq.com"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "adstats.tencentmusic.com"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "adstestview.qq.com"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "adsview.qq.com"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "adsview2.qq.com"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "adv.app.qq.com"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "adver.qq.com"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "aegis.qq.com"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "aireads.cn"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "aitransfy.com"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "alloyteam.com"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "anticheatexpert.com"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "ap-bangkok.myqcloud.com"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "ap-bangkok.tencentcos.cn"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "ap-bangkok.tencentcos.com"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "ap-bangkok.tencentcos.com.cn"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "ap-hongkong.myqcloud.com"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "ap-hongkong.tencentcos.cn"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "ap-hongkong.tencentcos.com"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "ap-hongkong.tencentcos.com.cn"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "ap-jakarta.myqcloud.com"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "ap-jakarta.tencentcos.cn"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "ap-jakarta.tencentcos.com"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "ap-jakarta.tencentcos.com.cn"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "ap-mumbai.myqcloud.com"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "ap-mumbai.tencentcos.cn"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "ap-mumbai.tencentcos.com"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "ap-mumbai.tencentcos.com.cn"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "ap-seoul.myqcloud.com"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "ap-seoul.tencentcos.cn"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "ap-seoul.tencentcos.com"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "ap-seoul.tencentcos.com.cn"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "ap-singapore.myqcloud.com"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "ap-singapore.tencentcos.cn"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "ap-singapore.tencentcos.com"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "ap-singapore.tencentcos.com.cn"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "ap-tokyo.myqcloud.com"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "ap-tokyo.tencentcos.cn"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "ap-tokyo.tencentcos.com"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "ap-tokyo.tencentcos.com.cn"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "apaas-zone-test.com"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "apcdns.net"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "apdcdn.com"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "apdcdn.net"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "apigwtencent.com"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "badjs.weixinbridge.com"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "battlecare.net"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "bcfmglobal.com"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "beacon.cdn.qq.com"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "beacon.qq.com"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "beaconcdn.qq.com"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "binglianhuajianzhan.com"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "bj.file.myqcloud.com"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "bkapigw.com"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "bkapps.com"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "bkclouds.cc"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "bktencent.com"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "brawlstars.cn"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "btrace.qq.com"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "bugly.qq.com"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "build9s.io"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "byodonline.com"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "ca.file.myqcloud.com"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "cd.file.myqcloud.com"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "cdn-go.cn"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "cdndoctor.com"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "cdngot.com"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "cdntip.com"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "cdntips.com"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "cdntips.net"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "cdnv1.cn"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "cdnv2.cn"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "cdnv3.cn"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "chatdrama.cn"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "chatdrama.net"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "chatqidian.cn"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "chatqidian.net"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "chattext.cn"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "chatwrite.net"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "chatxiaoxiang.com"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "chatyuewen.cn"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "cloud-industry-delivery.site"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "cloudbase.cn"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "cloudbase.net"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "cloudidaas.com"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "cloudsite.vip"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "cnb.cool"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "cnb.space"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "cncqcloud.com"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "coding.me"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "coding.net"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "codm.com"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "computeinit.com"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "comsenz.com"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "coolsite.vip"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "cosbj.myqcloud.com"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "cosca.myqcloud.com"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "coscd.myqcloud.com"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "cosger.myqcloud.com"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "cosgz.myqcloud.com"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "coshk.myqcloud.com"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "cossgp.myqcloud.com"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "cossh.myqcloud.com"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "costj.myqcloud.com"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "dcloudlive.com"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "dcloudlive.net"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "dcloudsp.com"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "dcloudsp.net"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "dcloudstc.com"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "dcloudstc.net"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "dcloudvod.com"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "dcloudvod.net"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "discuz.net"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "discuz.org"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "dishu3.com"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "dns.pub"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "dnsapi.cn"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "dnse0.cn"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "dnse0.com"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "dnse1.cn"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "dnse1.com"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "dnse2.cn"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "dnse2.com"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "dnse3.cn"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "dnse3.com"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "dnse4.cn"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "dnse4.com"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "dnse5.cn"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "dnse5.com"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "dnspod.cn"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "dnspod.com"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "dnspod.com.cn"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "dnspod.mobi"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "dnspod.net"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "dnspod.org"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "dnsv1.com"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "dnsv1.com.cn"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "dnsv2.com"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "dnsv3.com"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "dnsv4.com"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "dnsv5.com"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "doh.pub"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "dot.pub"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "dothework.cn"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "e.qq.com"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "ectencent.cn"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "ectencent.com.cn"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "edgeone.cool"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "edgeonedy1.com"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "essurl.com"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "eu-frankfurt.myqcloud.com"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "eu-frankfurt.tencentcos.cn"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "eu-frankfurt.tencentcos.com"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "eu-frankfurt.tencentcos.com.cn"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "eu-moscow.myqcloud.com"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "eu-moscow.tencentcos.cn"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "eu-moscow.tencentcos.com"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "eu-moscow.tencentcos.com.cn"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "exmailgz.com"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "fanxingliveshow.com"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "ffbuddy.com"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "foxmail.com"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "foxmail.com.cn"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "fsphere.cn"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "fyeds.com"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "fyeds0.com"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "fyeds1.com"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "fyeds3.com"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "fyeds4.com"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "fyeds5.com"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "fyeds6.com"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "fyeds7.com"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "fyeds8.com"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "fyeds9.com"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "fymall0.com"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "fymall1.com"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "fymall4.com"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "fymall7.com"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "fymall9.com"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "fymallqa0.com"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "fymallqa1.com"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "fymallqa2.com"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "fymallqa3.com"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "fymallqa4.com"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "fymallqa7.com"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "fymallqa9.com"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "gaapqcloud.com"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "gamebonfire.com"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "gameitop.com"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "gameloop.com"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "gcloudcs.com"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "gcloudcstest.com"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "gcloudcstestonly.com"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "gclouddolphin.com"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "gcloudsdk.com"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "gcloudsvcs.com"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "gdt.qq.com"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "gdtimg.com"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "ger.file.myqcloud.com"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "ggoplay.com"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "ggowan.com"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "gitdrone.cn"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "gmedev.cn"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "go2map.com"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "goto-game.com"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "goto-game.mobi"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "goto-game.net.cn"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "goto-game.org"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "gotolink.net"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "gouhuo.qq.com"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "govqcloud.com"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "gsadds.com"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "gtgres.com"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "gtimg.cn"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "gtimg.com"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "gtimg.com.cn"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "gtm.pub"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "gz.file.myqcloud.com"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "happyhlddz.com"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "haydaypop.cn"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "hdyxgame.com"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "hk.file.myqcloud.com"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "hkgcloudcs.com"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "hongxiu.com"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "hq-tracking.qq.com"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "hr-welink.com"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "htrace.wetvinfo.com"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "idcgcloudcs.com"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "idqqimg.com"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "iemiq.com"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "igtm-meeting-tencent.com"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "igtm.pub"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "ihappystudio.cn"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "ihappystudio.com"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "imqq.com"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "imweb.io"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "in.th"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "inte.sogou.com"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "inte.sogoucdn.com"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "intltencentcos.com"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "iot-tencent.com"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "isd.com"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "isdspeed.qq.com"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "ispqcloud.com"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "itopsdk.com"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "ivweb.io"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "jrzk.net.cn"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "kg.qq.com"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "kgimg.com"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "kglink.cn"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "koowo.cn"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "koowo.com"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "ktv.com"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "kugoo.com"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "kugou.com"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "kugou.net"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "kugouaudio.com"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "kugouipv6.com"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "kugoukid.com"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "kugouliveshow.com"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "kugouringtone.com"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "kugousenior.com"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "kugoustore.com"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "kugouvoice.com"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "kugouyouth.com"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "kuwo.cn"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "labycore.cn"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "log.tbs.qq.com"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "lrts.me"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "lu.sogou.com"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "lu.sogoucdn.com"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "ludosuperstar.cn"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "ludoworld.net"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "m1.run"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "m6.run"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "m9.run"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "ma.run"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "mahjongai.net"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "mahjongcup.cn"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "mahjongcup.com"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "mahjongcup.net"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "mdt.qq.com"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "metalrevolution.com"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "midasbuy.com"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "mmbizurl.cn"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "monitor.music.qq.com"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "monitor.uu.qq.com"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "mpush.qq.com"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "mszdld.cn"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "mszdld.com"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "mszdld.net"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "mting.info"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "mtrace.qq.com"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "music.qq.com"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "my-imcloud.com"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "my-qcloud.com"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "myapp.com"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "myelasticsearch.com"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "myqcloud.com"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "na-ashburn.myqcloud.com"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "na-ashburn.tencentcos.cn"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "na-ashburn.tencentcos.com"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "na-ashburn.tencentcos.com.cn"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "na-siliconvalley.myqcloud.com"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "na-siliconvalley.tencentcos.cn"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "na-siliconvalley.tencentcos.com"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "na-siliconvalley.tencentcos.com.cn"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "na-toronto.myqcloud.com"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "na-toronto.tencentcos.cn"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "na-toronto.tencentcos.com"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "na-toronto.tencentcos.com.cn"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "nagcloudcs.com"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "nextstudios.com"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "nextworkshop.net"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "onexmail.com"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "openapp.run"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "openmidas.com"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "oracle-tencent.cn"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "oracle-tencent.com"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "oracle-tencent.com.cn"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "oracle-tencent.net"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "oracle-tencent.net.cn"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "ovscdns.com"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "ovscdns.net"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "pb.i.sogou.com"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "pgdt.gtimg.cn"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "pingjs.qq.com"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "pinyin.cn"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "pmir.3g.qq.com"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "pn1waq.com"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "proximabeta.com"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "pubghelper.com"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "pubgno1.cn"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "pubgtool.com"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "push.qq.com"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "qcloud-edumall.com"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "qcloud.com"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "qcloud.la"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "qcloudapps.com"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "qcloudcdn.com"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "qcloudcdntest.cn"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "qcloudclass.com"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "qcloudcos.cn"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "qcloudcos.com"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "qcloudcos.com.cn"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "qclouder.com"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "qcloudgme.com"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "qcloudimg.com"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "qcloudipv6.com"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "qcloudmarket.com"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "qcloudns.com"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "qcloudsmartiot.com"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "qcloudtcic.com"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "qcloudtiw.com"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "qcloudtrip.com"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "qcloudtt.com"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "qcloudwaf.com"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "qd.ink"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "qdmm.com"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "qdwebim.com"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "qeodns.com"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "qeodns.net"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "qidian.com"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "qlivecdn.com"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "qlogo.cn"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "qpic.cn"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "qq.cn.com"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "qq.com"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "qq.com.cn"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "qq.design"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "qq.wang"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "qq.xn--fiqs8s"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "qqdata.ab.qq.com"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "qqgameapp.com"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "qqgamedesign.com"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "qqmail.com"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "qqmra.cn"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "qqmra.com"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "qqmusic.com"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "qyunapp.com"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "qzone.com"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "readnovel.com"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "realcybertron.com"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "report.qqweb.qq.com"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "report.tencentmusic.com"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "rmonitor.qq.com"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "rmwxgame.com"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "roblox.cn"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "roblox.qq.com"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "robloxdev.cn"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "roco.qq.com"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "rongshuxia.com"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "rtx.com.cn"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "rumt-sg.com"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "rumt-us.com"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "rumt-zh.com"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "sa-saopaulo.myqcloud.com"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "sa-saopaulo.tencentcos.cn"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "sa-saopaulo.tencentcos.com"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "sa-saopaulo.tencentcos.com.cn"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "sccreator.cn"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "sccreators.cn"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "scescdn.cn"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "scid.cn"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "scsentry.cn"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "serverlesscloud.cn"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "servicewechat.com"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "sg.cn"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "sgp.file.myqcloud.com"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "sgtmos.com"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "sgyeyou.com"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "sgyouxi.com"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "sh.file.myqcloud.com"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "skydweller.cn"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "smtcdns.com"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "smtcdns.net"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "sngmta.qq.com"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "sogo.com"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "sogou-inc.com"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "sogou-op.org"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "sogou.cn"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "sogou.com"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "sogou.com.cn"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "sogou.net"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "sogoucdn.com"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "sogoucdndl.com"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "sogouimecdn.com"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "soso.com"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "soso.com.cn"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "sososnap.com"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "spcdntip.com"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "spcdntipbak.com"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "spcloudhw.com"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "spcloudhw.net"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "srmkp.cn"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "starlakelab.com"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "stat.y.qq.com"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "supercellcommunity.cn"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "supercellsupport.cn"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "syxlgame.com"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "tajs.qq.com"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "tamaegis.com"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "tapd.cn"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "tcdlive.com"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "tcdnhw.com"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "tcdnkcbak.com"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "tcdnlive.com"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "tcdnlivebak1.com"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "tcdnlivebak2.com"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "tcdnos.com"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "tcdnos.net"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "tcdntip.com"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "tcdnvod.com"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "tcdnvodbak.com"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "tcfmglobal.com"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "tcloudbase.com"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "tcloudbase.net"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "tcloudbaseapp.com"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "tcloudbi.com"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "tclouddrive.com"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "tcloudedu.com"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "tcloudhw.com"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "tcloudhw.net"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "tcloudscdn.com"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "tcloudscdn.net"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "tcss.qq.com"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "tdnsdl1.cn"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "tdnsdl1.com.cn"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "tdnsdl2.cn"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "tdnsdl2.com.cn"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "tdnsdl3.cn"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "tdnsdl3.com.cn"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "tdnsdl4.cn"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "tdnsdl4.com.cn"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "tdnsdl5.cn"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "tdnsdl5.com.cn"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "tdnsstic1.cn"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "tdnsv1.com"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "tdnsv1.net"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "tdnsv10.com"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "tdnsv10.net"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "tdnsv11.com"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "tdnsv11.net"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "tdnsv12.com"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "tdnsv12.net"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "tdnsv13.com"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "tdnsv13.net"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "tdnsv14.com"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "tdnsv14.net"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "tdnsv15.com"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "tdnsv15.net"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "tdnsv2.com"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "tdnsv2.net"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "tdnsv3.com"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "tdnsv3.net"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "tdnsv4.com"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "tdnsv4.net"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "tdnsv5.com"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "tdnsv5.net"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "tdnsv6.com"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "tdnsv6.net"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "tdnsv7.com"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "tdnsv7.net"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "tdnsv8.com"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "tdnsv8.net"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "tdnsv9.com"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "tdnsv9.net"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "tdnsx1.com"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "techo.chat"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "teemo.cn"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "tefscloud.com"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "tefscloud.net"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "tenant-zone-dev.com"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "tencdns.net"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "tencent-cloud.cn"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "tencent-cloud.com"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "tencent-cloud.net"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "tencent-gcloud.com"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "tencent.cn"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "tencent.co.id"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "tencent.com"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "tencent.com.cn"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "tencent.com.hk"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "tencent.design"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "tencent.net"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "tencent.net.cn"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "tencentapps.com"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "tencentbyod.com"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "tencentcdb.cn"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "tencentcdb.com"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "tencentcdb.com.cn"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "tencentclb.cn"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "tencentclb.com"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "tencentclb.com.cn"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "tencentcloud-aiot.com"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "tencentcloud.com"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "tencentcloudapi.com"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "tencentcloudclub.com"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "tencentcloudcr.com"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "tencentcloudmarket.com"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "tencentcloudns.com"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "tencentcloudsec.com"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "tencentcloudses.com"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "tencentcos.cn"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "tencentcos.com"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "tencentcos.com.cn"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "tencentcs.cn"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "tencentcs.com"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "tencentdayu.com"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "tencentdb.com"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "tencentdevices.com"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "tencentdigitalassistant.com"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "tencentdms.com"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "tencenteiam.com"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "tencentelasticsearch.com"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "tencentid.com"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "tencentidentity.com"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "tencentmiying.com"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "tencentmusic.com"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "tencentproxy.com"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "tencentrio.com"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "tencentstart.com"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "tencenttid.com"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "tencentwemeet.club"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "tencentwepark.com"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "tencentyun.com"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "tendbcluster.com"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "tendis.net"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "tengmed.com"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "tenpay.com"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "testjrzk.net.cn"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "testmeet.cn"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "testwaf.com"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "texasholdemcup.cn"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "texasholdemcup.com"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "texasholdemcup.net"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "tfogc.com"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "tgovcloud.com"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "theta.sogoucdn.com"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "tidaas.com"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "timatrix.com.cn"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "timibase.com"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "timmerse.com"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "tingbook.com"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "tingmall.com"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "tj.file.myqcloud.com"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "tjstats.com"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "tlivecdn.com"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "tlivemcdn.com"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "tlivepush.com"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "tlivesource.com"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "tmead.y.qq.com"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "tmeadcomm.y.qq.com"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "tourismshow.cn"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "tourismuser.cn"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "tpstelemetry.tencent.com"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "trace.qq.com"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "tsparkling.com"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "tx-exhibition.com"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "txbyod.com"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "txidc.wang"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "txlivecdn.com"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "txtyxg.com"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "txyscdn.com"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "txyscdn.net"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "ugdtimg.com"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "ultimatemusic.cn"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "um.run"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "uncnn.cn"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "uranus.sogou.com"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "url.cn"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "vcloudstc.com"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "vcloudstc.net"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "vcloudvod.com"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "videoxiaoyouxi.com"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "vodtcbk.com"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "vxo7tu.com"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "wannianqingjianzhan.com"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "wcbygame.com"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "webnovel.com"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "wechat.com"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "wechatpay.cn"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "wegame.com"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "wegame.com.cn"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "wegamedeveloper.com"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "wegameplus.com"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "weishi.com"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "weixin.com"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "weixinbridge.com"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "weixinsxy.com"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "weiyun.com"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "werepository.com.cn"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "wetv.vip"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "wetvinfo.com"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "weui.io"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "wework-studio.com"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "wit.qq.com"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "wting.info"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "wuliao.epro.sogou.com"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "wxaurl.cn"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "wxcloudrun.com"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "wxgateway.com"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "wxlivecdn.com"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "wxmpurl.cn"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "xiangrikuijianzhan.com"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "xiangrikuisite.com"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "ximalaya.com"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "xinyan.cn"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "xmcdn.com"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "xn--owtw8cc49ajfl.cn"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "xn--r70as2s.xn--fiqs8s"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "xqymuy.com"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "xs.cn"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "xs8.cn"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "xxsy.net"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "xxsypro.com"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "y.qq.com"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "yeyousg.com"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "yidianliulan.cn"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "yidianliulan.com"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "ym.run"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "yuewen.com"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "yufuid.com"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "yufuid.com.cn"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "yufuid.net"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "yunjitele.com"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "yuweikuijianzhan.com"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "yxdmgame.com"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "yximg.cn"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "yxwsgame.com"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "yzyxgame.com"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "zcjbgame.com"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "zhuoyuegame.com"
+    },
+    {
+      "type": "domain",
+      "value": "wetv.qq.com"
+    }
+  ]
+}

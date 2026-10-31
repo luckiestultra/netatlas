@@ -1,0 +1,79 @@
+{
+  "version": 1,
+  "id": "wikimedia",
+  "category": "system",
+  "entries": [
+    {
+      "type": "domain-suffix",
+      "value": "mediawiki.org"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "toolforge.org"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "w.wiki"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "wikibooks.org"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "wikidata.org"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "wikimedia.org"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "wikimediacloud.org"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "wikimediafoundation.org"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "wikinews.org"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "wikipedia.org"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "wikiquote.org"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "wikisource.org"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "wikiversity.org"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "wikivoyage.org"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "wiktionary.org"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "wmcloud.org"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "wmflabs.org"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "wmfusercontent.org"
+    }
+  ]
+}

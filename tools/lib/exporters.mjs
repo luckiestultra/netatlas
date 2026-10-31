@@ -3,10 +3,10 @@ import { getClient } from './clients.mjs';
 import { normalizeEntry, normalizeRuleset } from './rules.mjs';
 import { policyForRuleset } from './policies.mjs';
 
-const classical = { domain: 'DOMAIN', 'domain-suffix': 'DOMAIN-SUFFIX', 'ip-cidr': 'IP-CIDR', 'ip-cidr6': 'IP-CIDR6' };
-const quantumult = { domain: 'host', 'domain-suffix': 'host-suffix', 'ip-cidr': 'ip-cidr', 'ip-cidr6': 'ip6-cidr' };
-const egern = { domain: 'domain_set', 'domain-suffix': 'domain_suffix_set', 'ip-cidr': 'ip_cidr_set', 'ip-cidr6': 'ip_cidr6_set' };
-const singBox = { domain: 'domain', 'domain-suffix': 'domain_suffix', 'ip-cidr': 'ip_cidr', 'ip-cidr6': 'ip_cidr' };
+const classical = { domain: 'DOMAIN', 'domain-suffix': 'DOMAIN-SUFFIX', 'domain-keyword': 'DOMAIN-KEYWORD', 'ip-cidr': 'IP-CIDR', 'ip-cidr6': 'IP-CIDR6' };
+const quantumult = { domain: 'host', 'domain-suffix': 'host-suffix', 'domain-keyword': 'host-keyword', 'ip-cidr': 'ip-cidr', 'ip-cidr6': 'ip6-cidr' };
+const egern = { domain: 'domain_set', 'domain-suffix': 'domain_suffix_set', 'domain-keyword': 'domain_keyword_set', 'ip-cidr': 'ip_cidr_set', 'ip-cidr6': 'ip_cidr6_set' };
+const singBox = { domain: 'domain', 'domain-suffix': 'domain_suffix', 'domain-keyword': 'domain_keyword', 'ip-cidr': 'ip_cidr', 'ip-cidr6': 'ip_cidr' };
 const json = value => `${JSON.stringify(value, null, 2)}\n`;
 
 export function renderRuleset(clientId, input) {
@@ -38,7 +38,7 @@ export function decodeRuleset(clientId, text) {
     const objects = client.ruleFormat === 'egern' ? [object] : object.rules;
     if (!Array.isArray(objects) || objects.length === 0) throw new Error('Missing native rule conditions');
     for (const item of objects) {
-      const mapping = client.ruleFormat === 'egern' ? { domain_set: 'domain', domain_suffix_set: 'domain-suffix', ip_cidr_set: 'ip-cidr', ip_cidr6_set: 'ip-cidr6' } : { domain: 'domain', domain_suffix: 'domain-suffix', ip_cidr: null };
+      const mapping = client.ruleFormat === 'egern' ? { domain_set: 'domain', domain_suffix_set: 'domain-suffix', domain_keyword_set: 'domain-keyword', ip_cidr_set: 'ip-cidr', ip_cidr6_set: 'ip-cidr6' } : { domain: 'domain', domain_suffix: 'domain-suffix', domain_keyword: 'domain-keyword', ip_cidr: null };
       for (const [field, values] of Object.entries(item)) {
         if (field === 'no_resolve' && client.ruleFormat === 'egern') continue;
         if (!(field in mapping) || !Array.isArray(values)) throw new Error(`Unsupported native condition: ${field}`);

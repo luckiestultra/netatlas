@@ -1,0 +1,19 @@
+{
+  "version": 1,
+  "id": "tidal",
+  "category": "media",
+  "entries": [
+    {
+      "type": "domain-suffix",
+      "value": "tidal.com"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "tidalhifi.com"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "wimpmusic.com"
+    }
+  ]
+}

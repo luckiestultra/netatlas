@@ -29,6 +29,7 @@ const fixtureHosts = new Set([
   'tv.apple.com', 'cdn.tv.apple.com', 'hls.itunes.apple.com', 'sub.hls.itunes.apple.com',
   'copilot-proxy.githubusercontent.com', 'sub.copilot-proxy.githubusercontent.com',
   'registry.npmjs.org', 'www.apple.com', 'api.github.com',
+  'prefix-nativekw-suffix.netatlas.test', 'prefix-nativek-suffix.netatlas.test',
 ]);
 
 export function artifactFor(registry, id, platform = `${process.platform}-${process.arch}`) {
@@ -489,7 +490,7 @@ export async function testLocalRouting({ root, binaries, onProgress = () => {} }
   let upstream;
   const rulesets = orderedRulesets([
     { version: 1, id: 'lan', category: 'network', entries: [{ type: 'domain', value: 'allowed.netatlas.test' }] },
-    { version: 1, id: 'adblock', category: 'privacy', entries: [{ type: 'domain', value: 'blocked.netatlas.test' }, { type: 'domain-suffix', value: 'doubleclick.net' }] },
+    { version: 1, id: 'adblock', category: 'privacy', entries: [{ type: 'domain', value: 'blocked.netatlas.test' }, { type: 'domain-suffix', value: 'doubleclick.net' }, { type: 'domain-keyword', value: 'nativekw' }] },
     ...serviceRulesets,
   ]);
   const cases = [];
@@ -546,6 +547,8 @@ export async function testLocalRouting({ root, binaries, onProgress = () => {} }
                 ['www.apple.com', true, 'apple-parent-direct', false], ['api.github.com', true, 'github-parent-direct', false],
                 ['sub.hls.itunes.apple.com', true, 'apple-tv-exact-child-parent', false],
                 ['sub.copilot-proxy.githubusercontent.com', true, 'copilot-exact-child-parent', false]];
+          targets.push(['prefix-nativekw-suffix.netatlas.test',false,'keyword-substring-reject',false]);
+          targets.push(['prefix-nativek-suffix.netatlas.test',selection!=='REJECT','keyword-near-miss-fallback',selection==='FixtureProxy']);
           for (const [protocol, request] of [['http', httpThroughProxy], ['socks5', socksThroughProxy]]) {
             for (const [host, permitted, behavior, usesUpstream] of targets) {
               const before = targetRequests;

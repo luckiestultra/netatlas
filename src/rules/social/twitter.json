@@ -1,0 +1,103 @@
+{
+  "version": 1,
+  "id": "twitter",
+  "category": "social",
+  "entries": [
+    {
+      "type": "domain-suffix",
+      "value": "ads-twitter.com"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "cms-twdigitalassets.com"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "periscope.tv"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "pscp.tv"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "t.co"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "tellapart.com"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "tweetdeck.com"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "twimg.com"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "twitpic.com"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "twitter.biz"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "twitter.com"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "twitter.jp"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "twitter.map.fastly.net"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "twittercommunity.com"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "twitterflightschool.com"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "twitterinc.com"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "twitteroauth.com"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "twitterstat.us"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "twtrdns.net"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "twttr.com"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "twttr.net"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "twvid.com"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "vine.co"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "x.com"
+    }
+  ]
+}

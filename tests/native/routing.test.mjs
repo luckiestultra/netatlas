@@ -25,6 +25,8 @@ test('both real kernels enforce suffix boundaries and canonical parent/child pol
   const binaries = { mihomo: path.join(root, '.cache/bin/mihomo'), singBox: path.join(root, '.cache/bin/sing-box') };
   const result = await testLocalRouting({ root, binaries });
   assert.equal(result.status, 'passed');
+  assert.equal(result.cases.filter(item=>item.behavior==='keyword-substring-reject').length,12);
+  assert.equal(result.cases.filter(item=>item.behavior==='keyword-near-miss-fallback').length,12);
   assert.ok(result.upstreamRequests > 0, 'fallback must traverse the real loopback SOCKS fixture');
   assert.deepEqual(result.serviceRulesets.map(item=>item.id).sort(), ['apple','apple-tvplus','github','github-copilot','npmjs']);
   for (const client of ['mihomo', 'singBox']) {

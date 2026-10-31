@@ -1,0 +1,27 @@
+payload:
+  - DOMAIN-SUFFIX,app-store.wang
+  - DOMAIN-SUFFIX,appe-store.com
+  - DOMAIN-SUFFIX,apple-appstore.cn
+  - DOMAIN-SUFFIX,appleappstore.cn
+  - DOMAIN-SUFFIX,appleappstore.net
+  - DOMAIN-SUFFIX,appleappstore.tv
+  - DOMAIN-SUFFIX,appsto.re
+  - DOMAIN-SUFFIX,appstore.co.id
+  - DOMAIN-SUFFIX,appstore.hk
+  - DOMAIN-SUFFIX,appstore.my
+  - DOMAIN-SUFFIX,appstore.ph
+  - DOMAIN-SUFFIX,appstoreapple.cn
+  - DOMAIN-SUFFIX,asto.re
+  - DOMAIN-SUFFIX,tvappstore.net
+  - DOMAIN,amp-api-edge.apps.apple.com
+  - DOMAIN,amp-api-search-edge.apps.apple.com
+  - DOMAIN,amp-api-updates.apps.apple.com
+  - DOMAIN,amp-api.apps.apple.com
+  - DOMAIN,api-edge.apps.apple.com
+  - DOMAIN,inappcheck-cn.itunes-apple.com.akadns.net
+  - DOMAIN,inappcheck-lb.itunes-apple.com.akadns.net
+  - DOMAIN,inappcheck.itunes.apple.com
+  - DOMAIN,iosapps.itunes.apple.com
+  - DOMAIN,iosapps.itunes.g.aaplimg.com
+  - DOMAIN,osxapps.itunes.apple.com
+  - DOMAIN,osxapps.itunes.g.aaplimg.com

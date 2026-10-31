@@ -1,0 +1,55 @@
+{
+  "version": 1,
+  "id": "heroku",
+  "category": "system",
+  "entries": [
+    {
+      "type": "domain-suffix",
+      "value": "codei.sh"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "codeish.co"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "codeish.io"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "heroku-app.com"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "heroku-charge.com"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "heroku.co"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "heroku.com"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "heroku.me"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "herokuapp.com"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "herokucdn.com"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "herokucharge.com"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "herokussl.com"
+    }
+  ]
+}

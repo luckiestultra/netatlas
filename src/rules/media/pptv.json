@@ -1,0 +1,19 @@
+{
+  "version": 1,
+  "id": "pptv",
+  "category": "media",
+  "entries": [
+    {
+      "type": "domain-suffix",
+      "value": "pplive.cn"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "pplive.com"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "pptv.com"
+    }
+  ]
+}

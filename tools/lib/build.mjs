@@ -54,7 +54,7 @@ export async function loadCatalog(root){
     if(record.entryCount!==rule.entries.length)throw new Error(`Source entry count mismatch: ${path}`);
     if(record.source.repository){
       const upstream=registry.repositories.find(repo=>repo.id===record.source.repository);
-      if(!upstream||upstream.license!=='MIT'||!/^[a-f0-9]{40}$/.test(upstream.revision)||!/^[a-f0-9]{64}$/.test(upstream.licenseSha256))throw new Error(`Missing licensed pinned source: ${rule.id}`);
+      if(!upstream||!['MIT','GPL-2.0-only'].includes(upstream.license)||!/^[a-f0-9]{40}$/.test(upstream.revision)||!/^[a-f0-9]{64}$/.test(upstream.licenseSha256))throw new Error(`Missing licensed pinned source: ${rule.id}`);
       if(!record.files?.length||record.files.some(file=>!/^[a-f0-9]{64}$/.test(file.sha256)))throw new Error(`Missing source file integrity: ${rule.id}`);
     }else if(record.source.type!=='local'||record.source.license!=='MIT'||!record.source.references?.length)throw new Error(`Missing local source references: ${rule.id}`);
     seen.add(rule.id);rulesets.push(rule);sources.push({path:'src/rules/'+path,sha256:sha256(bytes)});
@@ -72,7 +72,7 @@ async function inputIdentity(root){
   return {sha256:sha256(json(inputs)),files:inputs};
 }
 
-function clientReadme(client,rulesets,features,baseUrl){
+function clientReadme(client,rulesets,features,baseUrl,featureRegistry,sourceRegistry){
   const embedded=profileRulesetsFor(rulesets),ids=new Set(embedded.map(rule=>rule.id));
   const steps={
     quantumultX:'导入主配置后，在节点页添加自己的节点或原生 QX 订阅资源（也可编辑 [server_remote]）。节点选择默认使用 App 内置 proxy；选择实际节点即可，自动/地区组按节点名称筛选。定位显示已接入。',
@@ -84,8 +84,11 @@ function clientReadme(client,rulesets,features,baseUrl){
     mihomo:'在 GUI 前端导入主配置，在 proxy-providers 添加自己的 Mihomo 原生订阅，将 provider 名称加入节点选择、自动选择和地区组的 use（include-all 也会纳入节点）。也可填写 proxies；加载后选择实际节点。',
     singBox:'主配置面向 sing-box 1.14.4 核心。填入原生 outbounds，并将节点 tag 加入节点选择、自动选择和对应地区组的 outbounds，更新 selector.default。核心没有通用机场订阅 provider；支持订阅合并的前端需按其说明接入。需要本地转换时再使用下方高级工具，不向在线转换站上传秘密。',
   };
-  const rows=rulesets.map(rule=>`| [${rule.id}${ids.has(rule.id)?'':'（可选）'}](rules/${rule.id}.${client.ruleExtension}) | ${rule.entries.length.toLocaleString('en-US')} |`).join('\n');
-  const featureList=features.length?features.map(file=>`- [${file.path}](${file.path})`).join('\n'):'该客户端没有对应可选成品。';
+  const licenseFor=id=>{const record=sourceRegistry.rulesets.find(item=>item.id===id);return record.source.repository?sourceRegistry.repositories.find(repo=>repo.id===record.source.repository).license:record.source.license;};
+  const rows=rulesets.map(rule=>`| [${rule.id}${ids.has(rule.id)?'':'（可选）'}](rules/${rule.id}.${client.ruleExtension}) | ${rule.entries.length.toLocaleString('en-US')} | ${licenseFor(rule.id)} |`).join('\n');
+  const names={geoip:'出口定位','search-redirect':'Bing 搜索跳转','quick-search':'47 项快速搜索',redirects:'59 项网站重定向','biliintl-region':'BiliIntl 菲律宾参数','anti-ad':'可选反广告','https-upgrade':'六站 HTTPS 升级',boxjs:'BoxJS','script-hub':'ScriptHub','sub-store':'Sub-Store','body-replacement':'正文替换工具','resource-parser':'外部资源解析器'};
+  const available=featureRegistry.features.filter(feature=>feature.clients?.[client.id]);
+  const featureList=available.length?'| 功能 | 实际入口/导入方式 |\n| --- | --- |\n'+available.map(feature=>`| ${names[feature.id]??feature.id} | ${feature.clients[client.id].artifacts.map(path=>`[${path}](${path})`).join(' · ')}；${feature.clients[client.id].kind} |`).join('\n'):'该核心不支持原生 HTTP 重写/JS 模块。';
   return `# ${client.name}
 
 [主配置](profiles/default.${client.profileExtension}) · [Raw 导入地址](${baseUrl.replace(/\/+$/,'')}/clients/${client.id}/profiles/default.${client.profileExtension}) · [详细接入](../../docs/profile-setup.md)
@@ -104,15 +107,19 @@ DNS 按各客户端原生能力配置引导、直连/国内、代理目的地和
 
 rules/ 按具体应用或服务 ID 平铺，可单独订阅；QX 资源的 force-policy 覆盖文件策略，其他客户端在主配置引用处指定策略。anti-AD 为可选的 100,682 条，不默认启用。
 
-| 规则资源 | 条目 |
-| --- | ---: |
+| 规则资源 | 条目 | 许可 |
+| --- | ---: | --- |
 ${rows}
 
 ## 可选功能
 
 ${featureList}
 
-modules 是原生安装包，rewrites 是纯重写资源，fragments 需要合并。QX 主配置已经接入 GeoIP；geoip.conf 片段供已有其他配置使用。重写、MITM 和证书均不自动启用。功能依各客户端语法导入，见[功能说明](../../docs/features.md)。
+modules 保存脚本功能安装资源，rewrites 保存纯重写，fragments 需要手工合并。QX 的 modules/*.snippet 仍在 App 中按“重写资源”导入；Surge/SR 用各自模块入口，Loon 用插件，Egern 用模块，Stash 用覆写，不能混用相同扩展名推断兼容。
+
+BoxJS、ScriptHub、Sub-Store 为明确可选的上游工具，脚本入口固定版本，GUI 导入未实测；BoxJS 会读写宿主脚本存储，转换工具会读取订阅/用户指定 URL。没有自动同步任务，也不会自动启用 MITM 或安装 CA。第三方脚本与前端的完整依赖树不全部固定，见[工具许可与边界](../../src/vendor/integrations/)。外部解析器片段只链接作者发布脚本，不是本仓库实现的解析器。
+
+Mihomo/sing-box 提供原生规则、DNS、节点与可选反广告；BoxJS 等 GUI 模块和 HTTP 重写不是这两个核心的能力。需要订阅转换时可另用 [Sub-Store 官方服务](https://github.com/sub-store-org/Sub-Store)，不要把 GUI 脚本格式塞进核心配置。QX 主配置已经接入 GeoIP；其片段供其他既有配置使用。完整边界见[逐项覆盖](../../docs/coverage.md)与[功能说明](../../docs/features.md)。
 
 ## 高级：离线配置或本地私有转换
 
@@ -159,7 +166,7 @@ export async function createBuild(root,{baseUrl=defaultBaseUrl}={}){
     const emitted=new Set(features.map(artifact=>artifact.path));
     if(baseUrl)for(const feature of clientFeatures)for(const path of feature.clients[client.id].artifacts)if(!emitted.has(path))throw new Error(`Declared feature artifact was not emitted: ${client.id}/${path}`);
     for(const artifact of features)put(prefix+artifact.path,artifact.content);
-    put(prefix+'README.md',clientReadme(client,rulesets,features,baseUrl));
+    put(prefix+'README.md',clientReadme(client,rulesets,features,baseUrl,featureRegistry,registry));
     const artifacts=[...files].filter(([path])=>path.startsWith(prefix)).map(([path,content])=>({path:path.slice(prefix.length),sha256:sha256(content),bytes:Buffer.byteLength(content)})).sort((a,b)=>a.path.localeCompare(b.path,'en'));
     const embedded=profileRulesetsFor(rulesets);
     const embeddedIds=new Set(embedded.map(rule=>rule.id));
@@ -168,7 +175,7 @@ export async function createBuild(root,{baseUrl=defaultBaseUrl}={}){
       counts:{defaultRuleSets:embedded.length,defaultEntries:embedded.reduce((sum,rule)=>sum+rule.entries.length,0),optionalRuleSets:rulesets.length-embedded.length,totalEntries:rulesets.reduce((sum,rule)=>sum+rule.entries.length,0)},
       validation:{profile:validation.level,rules:'canonical-semantic-round-trip',native:'not-run',nativeRequirement:client.nativeVerification,features:'host-contract-tests-run-separately'},
       features:clientFeatures.map(feature=>({id:feature.id,defaultEnabled:client.id==='quantumultX'&&feature.id==='geoip',license:feature.license??'MIT (original code)',adapter:feature.clients[client.id],upstream:feature.upstream??null,sourceRegistry:feature.sourceRegistry??null})),
-      sources:{repositories:registry.repositories,rules:registry.rulesets.map(record=>({id:record.id,tag:record.category,defaultProfile:embeddedIds.has(record.id),source:record.source,sha256:record.outputSha256,entries:record.entryCount,updatedAt:record.updatedAt,projection:record.selection??'first-party-selection',excludedExpressions:record.appliedExclusions??[]})),inputs:sources},
+      sources:{repositories:registry.repositories,rules:registry.rulesets.map(record=>({id:record.id,tag:record.category,defaultProfile:embeddedIds.has(record.id),source:record.source,license:record.source.repository?registry.repositories.find(repo=>repo.id===record.source.repository).license:record.source.license,sha256:record.outputSha256,entries:record.entryCount,updatedAt:record.updatedAt,projection:record.selection??'first-party-selection',excludedExpressions:record.appliedExclusions??[]})),inputs:sources},
       artifacts
     };
     put(prefix+'manifest.json',json(manifest));

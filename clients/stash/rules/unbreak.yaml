@@ -1,0 +1,4 @@
+payload:
+  - DOMAIN,captive.apple.com
+  - DOMAIN,dns.msftncsi.com
+  - DOMAIN,www.msftconnecttest.com

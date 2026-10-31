@@ -1,0 +1,27 @@
+{
+  "version": 1,
+  "id": "wechat",
+  "category": "social",
+  "entries": [
+    {
+      "type": "domain-suffix",
+      "value": "servicewechat.com"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "wechat.com"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "wechatpay.cn"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "weixin.com"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "weixinsxy.com"
+    }
+  ]
+}

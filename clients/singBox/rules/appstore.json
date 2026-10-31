@@ -1,0 +1,37 @@
+{
+  "version": 3,
+  "rules": [
+    {
+      "domain_suffix": [
+        "app-store.wang",
+        "appe-store.com",
+        "apple-appstore.cn",
+        "appleappstore.cn",
+        "appleappstore.net",
+        "appleappstore.tv",
+        "appsto.re",
+        "appstore.co.id",
+        "appstore.hk",
+        "appstore.my",
+        "appstore.ph",
+        "appstoreapple.cn",
+        "asto.re",
+        "tvappstore.net"
+      ],
+      "domain": [
+        "amp-api-edge.apps.apple.com",
+        "amp-api-search-edge.apps.apple.com",
+        "amp-api-updates.apps.apple.com",
+        "amp-api.apps.apple.com",
+        "api-edge.apps.apple.com",
+        "inappcheck-cn.itunes-apple.com.akadns.net",
+        "inappcheck-lb.itunes-apple.com.akadns.net",
+        "inappcheck.itunes.apple.com",
+        "iosapps.itunes.apple.com",
+        "iosapps.itunes.g.aaplimg.com",
+        "osxapps.itunes.apple.com",
+        "osxapps.itunes.g.aaplimg.com"
+      ]
+    }
+  ]
+}

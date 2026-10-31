@@ -1,0 +1,15 @@
+{
+  "version": 1,
+  "id": "deezer",
+  "category": "media",
+  "entries": [
+    {
+      "type": "domain-suffix",
+      "value": "deezer.com"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "dzcdn.net"
+    }
+  ]
+}

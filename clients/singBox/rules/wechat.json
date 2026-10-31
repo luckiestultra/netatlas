@@ -1,0 +1,14 @@
+{
+  "version": 3,
+  "rules": [
+    {
+      "domain_suffix": [
+        "servicewechat.com",
+        "wechat.com",
+        "wechatpay.cn",
+        "weixin.com",
+        "weixinsxy.com"
+      ]
+    }
+  ]
+}

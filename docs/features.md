@@ -93,3 +93,29 @@ QX/Surge/Loon/Egern/Stash 使用 `rewrites/https-upgrade.<原生扩展名>`；Lo
 ## 未直接引入的候选
 
 DualSubs 的根许可虽为 Apache-2.0，固定 gitlink 仍含 GPL-3.0 组件，且一项 protobuf 对应源不可公开读取；不能据根 SPDX 将完整 bundle 认作 Apache-only。其偏好面板 API 还可跨模块读写持久化字段。本批没有导入这些 bundle/API。Sub-Store 涉及 AGPL-3.0、订阅存储与自动上传配置，需要独立的明确方案。老单文件也不拿聚合仓近期更新冒充文件新维护。
+
+## 快速搜索与扩展跳转
+
+quick-search 为原创六端原生资源，共47项：34站点搜索、9个Apple旧版storefront链接、3个翻译动作及普通查询Google兜底。支持q参数任意顺序、单字符/中文/多词与编码分隔；搜索词只放入固定HTTPS查询参数，避免表单加号跨到路径后改变含义。Apple指令只打开官方旧路由，不承诺改变账户国家。JD/淘宝使用HTTPS搜索入口。详见[src/features/quick-search/NOTICE.md](../src/features/quick-search/NOTICE.md)。
+
+redirects 从既有固定GPL原文适配59项：严格匹配主机，保留HTTP升级与Google跳转的路径/查询，软件站跳转按原意进入对应官网。原来的两个HTTP降级目标已改为真实TLS验证的HTTPS地址；源码重复规则去重。biliintl-region独立提供两个菲律宾locale/SIM参数功能，实际序列化4条覆盖两种参数顺序，修正捕获组错误，保留其他编码参数。它们不会自动进入主配置或安装证书。
+
+QX按重写资源导入；Surge使用sgmodule；Loon Rewrite v2要求3.5.1(978)+；Shadowrocket为手工合并片段；Egern是原生模块，Stash是覆写。MITM主机仅使用登记的精确集合：快速搜索duckduckgo.com，BiliIntl为两个API主机，一般跳转113个HTTPS主机别名。不要把协议、导入方式或不同包的许可混同。[完整GPL源与修改](../src/features/redirects/NOTICE.md)。
+
+## BoxJS、ScriptHub、Sub-Store
+
+六GUI各提供三个可选安装包，共18个，位于各自modules/。QX的snippet仍使用App的重写资源入口；Surge/SR用各自模块入口，Loon用插件，Egern用模块，Stash用覆写。ScriptHub在Loon使用Script v2，最低3.5.1(983)，不能与Rewrite v2的978要求混用。
+
+BoxJS处理脚本设置与宿主存储；ScriptHub拉取、编辑和转换用户指定资源，部分动作可执行用户脚本；Sub-Store管理节点订阅并可在用户手动操作后同步。所有自动同步/cron已从安装包移除；没有捆绑CA或关闭TLS校验。导入才启用脚本和工具主机MITM。完整许可、官方原始安装包、修改后源码、上游版本、入口JS字节哈希与权限见[第三方集成](../src/vendor/integrations/)及[机器清单](../metadata/integrations.json)。
+
+BoxJS/ScriptHub安装包为GPL-3.0-only，Sub-Store为AGPL-3.0-only。只固定直接执行的入口脚本；BoxJS的HTML/CDN、Vercel前端和ScriptHub另行生成资源的依赖不都在固定闭包内，不能称为全依赖锁定。入口真实GET、源标记与node --check通过，但未执行第三方代码、读写用户存储或触发Gist同步。六GUI仍未实机导入。
+
+ScriptHub选择器只读取固定上游实际解析的唯一/_end_/之后的外层type；拒绝重复/编码别名、值后缀及嵌套分隔符，内嵌来源URL的type不再干扰。QX入口不承诺其他五端的所有edit/reload/convert能力。
+
+Mihomo、sing-box核心不执行这些GUI的HTTP重写/JS模块；需要转换时可单独使用[官方Sub-Store服务](https://github.com/sub-store-org/Sub-Store)，再将原生provider/outbounds/完整配置接到相应核心。没有生成假兼容模块。
+
+## 外部解析器与正文替换
+
+QX和Loon各有fragments/resource-parser.conf，需要合并General设置，而非当模块或重写订阅导入。QX链接作者发布的固定KOP解析器；未声明许可的源码不由本仓库复制分发。Loon链接固定AGPL Sub-Store解析器。它们是外部工具入口，接收订阅原文并在宿主权限下执行；本仓库未实施其格式转换或宣称隔离执行。详细来源/哈希/支持范围见[解析器登记](../metadata/resource-parsers.json)。
+
+Surge的scripts/replace-body.js为原创文本请求/响应正文替换工具；片段中的例子全部注释，需使用者指定自己的窄URL与规则。支持旧式pattern->replacement、/pattern/flags及百分号编码JSON规则；先编译完整配方，任何错误或不支持输入都一次性原样放行，不输出正文、联网或修改headers。需要requires-body=true与明确max-size；HTTPS仅在使用者已有可信CA及对应主机启用MITM时可用。[Surge请求契约](https://manual.nssurge.com/scripting/http-request.html)、[响应契约](https://manual.nssurge.com/scripting/http-response.html)。

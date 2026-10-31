@@ -1,0 +1,219 @@
+{
+  "version": 1,
+  "id": "bilibili",
+  "category": "media",
+  "entries": [
+    {
+      "type": "domain-suffix",
+      "value": "acg.tv"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "acgvideo.com"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "animetamashi.cn"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "animetamashi.com"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "anitama.cn"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "anitama.net"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "b23.tv"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "bigfun.cn"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "bigfunapp.cn"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "bili22.cn"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "bili2233.cn"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "bili23.cn"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "bili33.cn"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "biliapi.com"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "biliapi.net"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "bilibili.cc"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "bilibili.cn"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "bilibili.com"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "bilibili.net"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "bilibili.tv"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "bilibiligame.cn"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "bilibiligame.co"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "bilibiligame.net"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "bilibilipay.cn"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "bilibilipay.com"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "bilicdn1.com"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "bilicdn2.com"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "bilicdn3.com"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "bilicdn4.com"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "bilicdn5.com"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "bilicomic.com"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "bilicomics.com"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "biligame.co"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "biligame.com"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "biligame.net"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "biligo.com"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "biliimg.com"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "biliintl.com"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "bilivideo.cn"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "bilivideo.com"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "bilivideo.net"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "dreamcast.hk"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "hdslb.com"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "hdslb.org"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "huasheng.cn"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "im9.com"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "maoer.com"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "maoercdn.com"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "mincdn.com"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "missevan.com"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "updream.cn"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "yo9.com"
+    },
+    {
+      "type": "domain",
+      "value": "upos-hz-mirrorakam.akamaized.net"
+    }
+  ]
+}

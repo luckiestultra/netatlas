@@ -1,0 +1,107 @@
+{
+  "version": 1,
+  "id": "blizzard",
+  "category": "gaming",
+  "entries": [
+    {
+      "type": "domain-suffix",
+      "value": "battle.net"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "blizzard.com"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "blizzardgearstore.com"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "blz-contentstack.com"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "diablo.com"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "diablo3.com"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "diablo4.com"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "diabloimmortal.com"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "firesidegatherings.com"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "heroesofthestorm.com"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "playhearthstone.com"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "playoverwatch.com"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "playwarcraft3.com"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "starcraft.com"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "starcraft2.com"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "worldofwarcraft.com"
+    },
+    {
+      "type": "domain",
+      "value": "blizzard.nefficient.co.kr"
+    },
+    {
+      "type": "domain",
+      "value": "blizzcon-a.akamaihd.net"
+    },
+    {
+      "type": "domain",
+      "value": "blzddist1-a.akamaihd.net"
+    },
+    {
+      "type": "domain",
+      "value": "blzddistkr1-a.akamaihd.net"
+    },
+    {
+      "type": "domain",
+      "value": "blzmedia-a.akamaihd.net"
+    },
+    {
+      "type": "domain",
+      "value": "blznav.akamaized.net"
+    },
+    {
+      "type": "domain",
+      "value": "bnetcmsus-a.akamaihd.net"
+    },
+    {
+      "type": "domain",
+      "value": "bnetproduct-a.akamaihd.net"
+    },
+    {
+      "type": "domain",
+      "value": "bnetshopus.akamaized.net"
+    }
+  ]
+}

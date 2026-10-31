@@ -1,0 +1,951 @@
+{
+  "version": 1,
+  "id": "disney",
+  "category": "media",
+  "entries": [
+    {
+      "type": "domain-suffix",
+      "value": "112263.com"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "20thcenturystudios.com"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "20thcenturystudios.com.au"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "20thcenturystudios.com.br"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "20thcenturystudios.jp"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "abc-studios.com"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "abc.com"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "abcnews.com"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "adventuresbydisney.com"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "babble.com"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "babyzone.com"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "bamgrid.com"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "bamtech.net"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "beautyandthebeastmusical.co.uk"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "callhulu.com"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "detpress.com"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "dilcdn.com"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "disney-asia.com"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "disney-discount.com"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "disney-plus.net"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "disney-portal.my.onetrust.com"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "disney-studio.com"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "disney-studio.net"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "disney.asia"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "disney.be"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "disney.bg"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "disney.ca"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "disney.ch"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "disney.co.il"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "disney.co.jp"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "disney.co.kr"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "disney.co.th"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "disney.co.uk"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "disney.co.za"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "disney.com"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "disney.com.au"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "disney.com.br"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "disney.com.hk"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "disney.com.tw"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "disney.cz"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "disney.de"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "disney.dk"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "disney.es"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "disney.fi"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "disney.fr"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "disney.gr"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "disney.hu"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "disney.id"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "disney.in"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "disney.io"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "disney.it"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "disney.my"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "disney.nl"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "disney.no"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "disney.ph"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "disney.pl"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "disney.pt"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "disney.ro"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "disney.ru"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "disney.se"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "disney.sg"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "disneyaccount.com"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "disneyadsales.com"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "disneyanimation.com"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "disneyarena.com"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "disneyaulani.com"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "disneybaby.com"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "disneycareers.com"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "disneychannelonstage.com"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "disneychannelroadtrip.com"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "disneycruisebrasil.com"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "disneyenconcert.com"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "disneyiejobs.com"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "disneyinflight.com"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "disneyinternational.com"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "disneyinternationalhd.com"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "disneyjunior.com"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "disneyjuniortreataday.com"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "disneylandparis.com"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "disneylatino.com"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "disneymagicmoments.co.il"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "disneymagicmoments.co.uk"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "disneymagicmoments.co.za"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "disneymagicmoments.de"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "disneymagicmoments.es"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "disneymagicmoments.fr"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "disneymagicmoments.gen.tr"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "disneymagicmoments.gr"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "disneymagicmoments.it"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "disneymagicmoments.pl"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "disneymagicmomentsme.com"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "disneyme.com"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "disneymeetingsandevents.com"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "disneymovieinsiders.com"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "disneymusicpromotion.com"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "disneynewseries.com"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "disneynow.com"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "disneypeoplesurveys.com"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "disneyplus.bn5x.net"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "disneyplus.com"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "disneyprivacycenter.com"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "disneyredirects.com"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "disneysrivieraresort.com"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "disneystore.com"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "disneystreaming.com"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "disneysubscription.com"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "disneytermsofuse.com"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "disneytickets.co.uk"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "disneyturkiye.com.tr"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "disneytvajobs.com"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "disneyworld-go.com"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "dmed.technology"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "dssott.com"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "dtci.co"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "dtci.technology"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "edgedatg.com"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "espn.co.uk"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "espn.com"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "espn.net"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "espncdn.com"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "espnqa.com"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "findyourlimits.com"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "freeform.com"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "freehulu.com"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "fxnetwork.com"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "fxnetworks.com"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "go-disneyworldgo.com"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "go.com"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "hongkongdisneyland.com"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "hooloo.tv"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "hoolu.com"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "hoolu.tv"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "hotstar-cdn.net"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "hotstar-labs.com"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "hotstar.com"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "hotstarext.com"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "hsprepack.akamaized.net"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "hu1u.com"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "huloo.cc"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "huloo.tv"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "hulu.com"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "hulu.jp"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "hulu.tv"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "hulu.us"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "huluaction.com"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "huluad.com"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "huluapp.com"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "huluasks.com"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "hulucall.com"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "hulufree.com"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "hulugans.com"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "hulugermany.com"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "hulugo.com"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "huluim.com"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "huluinstantmessenger.com"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "huluitaly.com"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "hulunet.com"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "hulunetwork.com"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "huluplus.com"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "hulupremium.com"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "hulupurchase.com"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "huluqa.com"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "hulurussia.com"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "huluspain.com"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "hulusports.com"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "hulustream.com"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "huluteam.com"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "hulutv.com"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "huluusa.com"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "joinmaidez.com"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "lucasfilm.com"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "marvel.com"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "marvel10thanniversary.com"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "marveldimensionofheroes.com"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "marvelparty.net"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "marvelpinball.com"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "marvelsdoubleagent.com"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "marvelspotlightplays.com"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "marvelsuperheroseptember.com"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "marvelsuperwar.com"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "mickey.tv"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "moviesanywhere.com"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "mushymush.tv"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "myhulu.com"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "natgeomaps.com"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "nationalgeographic.com"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "nationalgeographicpartners.com"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "ngeo.com"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "nomadlandmovie.ch"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "originalhulu.com"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "payhulu.com"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "pixar.com"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "playmation.com"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "registerhulu.com"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "searchlightpictures.com"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "shanghaidisneyresort.com"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "shopdisney.com"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "shops-disney.com"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "sorcerersarena.com"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "spaindisney.com"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "star-brasil.com"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "star-latam.com"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "star.api.edge.bamgrid.com"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "star.connections.edge.bamgrid.com"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "star.content.edge.bamgrid.com"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "star.playback.edge.bamgrid.com"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "starott.com"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "starplus.com"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "starwars.com"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "starwarsgalacticstarcruiser.com"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "starwarskids.com"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "streamingdisney.net"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "thehulubraintrust.com"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "themarvelexperiencetour.com"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "thestationbymaker.com"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "thewaltdisneycompany.com"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "thisispolaris.com"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "tokyodisneyresort.jp"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "waltdisneystudios.com"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "watchdisneyfe.com"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "watchespn.com"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "wwwhuluplus.com"
+    },
+    {
+      "type": "domain",
+      "value": "disney.my.sentry.io"
+    },
+    {
+      "type": "domain",
+      "value": "disneyplus.com.ssl.sc.omtrdc.net"
+    },
+    {
+      "type": "domain",
+      "value": "espn.api.edge.bamgrid.com"
+    },
+    {
+      "type": "domain",
+      "value": "espn.hb.omtrdc.net"
+    },
+    {
+      "type": "domain",
+      "value": "espndotcom.tt.omtrdc.net"
+    },
+    {
+      "type": "domain",
+      "value": "hses.akamaized.net"
+    },
+    {
+      "type": "domain",
+      "value": "hses1.akamaized.net"
+    },
+    {
+      "type": "domain",
+      "value": "hses2.akamaized.net"
+    },
+    {
+      "type": "domain",
+      "value": "hses3.akamaized.net"
+    },
+    {
+      "type": "domain",
+      "value": "hses4.akamaized.net"
+    },
+    {
+      "type": "domain",
+      "value": "hses5.akamaized.net"
+    },
+    {
+      "type": "domain",
+      "value": "hses6.akamaized.net"
+    },
+    {
+      "type": "domain",
+      "value": "hses7.akamaized.net"
+    },
+    {
+      "type": "domain",
+      "value": "hulu.playback.edge.bamgrid.com"
+    }
+  ]
+}

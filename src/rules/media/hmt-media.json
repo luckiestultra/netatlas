@@ -1,0 +1,247 @@
+{
+  "version": 1,
+  "id": "hmt-media",
+  "category": "media",
+  "entries": [
+    {
+      "type": "domain-suffix",
+      "value": "bigbigchannel.com.hk"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "bigbigshop.com"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "catchplay.com"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "encoretvb.com"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "kfs.io"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "kk.stream"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "kkbox.com"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "kkbox.com.tw"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "kktix.com"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "kktv.com.tw"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "kktv.me"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "litv.tv"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "litvfreepc.akamaized.net"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "mytvsuper.com"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "neigbuy.com"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "ofiii.com"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "theater-kktv.cdn.hinet.net"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "tra-ww000-cp.akamaized.net"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "tvb.com"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "tvb.com.au"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "tvbanywhere.com"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "tvbanywhere.com.sg"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "tvbc.com.cn"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "tvbeventpower.com.hk"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "tvbusa.com"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "tvbweekly.com"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "tvmedia.net.au"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "viu.com"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "viu.tv"
+    },
+    {
+      "type": "domain",
+      "value": "api.viu.now.com"
+    },
+    {
+      "type": "domain",
+      "value": "apl-hamivideo.cdn.hinet.net"
+    },
+    {
+      "type": "domain",
+      "value": "chatscc-hamivideo2.cdn.hinet.net"
+    },
+    {
+      "type": "domain",
+      "value": "d1k2us671qcoau.cloudfront.net"
+    },
+    {
+      "type": "domain",
+      "value": "d2anahhhmp1ffz.cloudfront.net"
+    },
+    {
+      "type": "domain",
+      "value": "dfp6rglgjqszk.cloudfront.net"
+    },
+    {
+      "type": "domain",
+      "value": "efe8f8a4-abd5-44c9-bf5c-cd217442c52f.t.ssp.hinet.net"
+    },
+    {
+      "type": "domain",
+      "value": "favoritescc-hamivideo2.cdn.hinet.net"
+    },
+    {
+      "type": "domain",
+      "value": "hamivideo.hinet.net"
+    },
+    {
+      "type": "domain",
+      "value": "hls-hamivideo.cdn.hinet.net"
+    },
+    {
+      "type": "domain",
+      "value": "lgcscc-hamivideo2.cdn.hinet.net"
+    },
+    {
+      "type": "domain",
+      "value": "mobilelive-hamivideo.cdn.hinet.net"
+    },
+    {
+      "type": "domain",
+      "value": "ntdfreemobile-tgc.cdn.hinet.net"
+    },
+    {
+      "type": "domain",
+      "value": "ntdfreepc-tgc.cdn.hinet.net"
+    },
+    {
+      "type": "domain",
+      "value": "ntdfreetv-tgc.cdn.hinet.net"
+    },
+    {
+      "type": "domain",
+      "value": "ntdfreevcpc-tgc.cdn.hinet.net"
+    },
+    {
+      "type": "domain",
+      "value": "ntdofifreemobile-tgc.cdn.hinet.net"
+    },
+    {
+      "type": "domain",
+      "value": "ntdofifreepc-tgc.cdn.hinet.net"
+    },
+    {
+      "type": "domain",
+      "value": "ntdofifreetv-tgc.cdn.hinet.net"
+    },
+    {
+      "type": "domain",
+      "value": "ntdofifreevcpc-tgc.cdn.hinet.net"
+    },
+    {
+      "type": "domain",
+      "value": "pvr-hamivideo.cdn.hinet.net"
+    },
+    {
+      "type": "domain",
+      "value": "scc-hamivideo.cdn.hinet.net"
+    },
+    {
+      "type": "domain",
+      "value": "scc.ott.hinet.net"
+    },
+    {
+      "type": "domain",
+      "value": "static-hamivideo.cdn.hinet.net"
+    },
+    {
+      "type": "domain",
+      "value": "t.ssp.hinet.net"
+    },
+    {
+      "type": "domain",
+      "value": "thumbnail-hamivideo.cdn.hinet.net"
+    },
+    {
+      "type": "domain",
+      "value": "tlmr-hamivideo2.cdn.hinet.net"
+    },
+    {
+      "type": "domain",
+      "value": "tvcastlive-hamivideo.cdn.hinet.net"
+    },
+    {
+      "type": "domain",
+      "value": "weblive-hamivideo.cdn.hinet.net"
+    },
+    {
+      "type": "domain",
+      "value": "weblivea-hamivideo.cdn.hinet.net"
+    },
+    {
+      "type": "domain",
+      "value": "webvodad-hamivideo.cdn.hinet.net"
+    }
+  ]
+}

@@ -4,12 +4,13 @@ import path from 'node:path';
 import { isIP } from 'node:net';
 import { normalizeEntry, normalizeRuleset, stableId } from './rules.mjs';
 import { assertManagedPaths } from './managed-paths.mjs';
+import { parseClassicalYaml } from './classical-source.mjs';
 
 const limits = { maxDepth: 20, maxFiles: 512, maxVisits: 4096, maxEntries: 250_000, maxFileBytes: 1_000_000, maxTotalBytes: 24_000_000 };
 // CN includes share source files with service lists but need more than 512
 // downloads across the whole catalog. Each include closure remains capped at 512.
 const maxDownloadFiles = 1024;
-const licenses = new Set(['MIT', 'BSD-2-Clause', 'BSD-3-Clause', 'Apache-2.0', 'ISC', 'CC0-1.0']);
+const licenses = new Set(['MIT', 'BSD-2-Clause', 'BSD-3-Clause', 'Apache-2.0', 'ISC', 'CC0-1.0', 'GPL-2.0-only']);
 const hardMaxFileBytes = 4_000_000;
 const listName = /^[a-z0-9][a-z0-9.!_-]*$/;
 const sha256 = content => createHash('sha256').update(content).digest('hex');
@@ -110,11 +111,52 @@ function selected(attributes, filters) {
   return filters.every(filter => filter.startsWith('-') ? !attributes.includes(filter.slice(1)) : attributes.includes(filter));
 }
 
+function sourceLists(value) {
+  const names = Array.isArray(value) ? value : [value];
+  if (!names.length || names.length > 128 || names.some(name => !validList(name)) || new Set(names).size !== names.length) throw new Error('Invalid explicit source lists');
+  return names;
+}
+
+const hotstarExpression = 'regexp:^hses[1-7]?\\.akamaized\\.net$';
+
+function sourceSelection(select, roots) {
+  if (select === undefined) return null;
+  if (!Array.isArray(select) || !select.length || select.length > 2048) throw new Error('Invalid exact token selection');
+  const wanted = new Map();
+  for (const item of select) {
+    if (!item || Object.keys(item).some(key => !['file', 'rule', 'attributes'].includes(key)) || !roots.includes(item.file) || typeof item.rule !== 'string') throw new Error('Invalid exact token selector');
+    if (item.attributes !== undefined && (!Array.isArray(item.attributes) || !item.attributes.length || item.attributes.length > 16 || item.attributes.some(attribute => typeof attribute !== 'string' || !/^[a-z0-9!_-]+$/i.test(attribute)) || new Set(item.attributes).size !== item.attributes.length)) throw new Error('Invalid selected token attribute guard');
+    const tokens = parseDomainList(item.rule, item.file);
+    if (tokens.length !== 1 || tokens[0].kind === 'include' || tokens[0].sourceLine !== item.rule || tokens[0].rule !== item.rule) throw new Error('Selectors require one exact source token without annotations or includes');
+    const key = `${item.file}:${item.rule}`;
+    if (wanted.has(key)) throw new Error('Duplicate exact token selector');
+    wanted.set(key, { found: false, attributes: item.attributes });
+  }
+  return wanted;
+}
+
+function sourceExpansions(expansions, exclusions) {
+  if (!Array.isArray(expansions) || expansions.length > 32) throw new Error('Invalid portable expansion registration');
+  const registered = new Map();
+  for (const item of expansions) {
+    if (!item || Object.keys(item).some(key => !['file', 'rule', 'conversion', 'reason'].includes(key)) || item.file !== 'hotstar' || item.rule !== hotstarExpression || item.conversion !== 'hotstar-hosts-v1' || typeof item.reason !== 'string' || !item.reason.trim()) throw new Error('Unproved portable expression expansion');
+    const key = `${item.file}:${item.rule}`;
+    if (registered.has(key) || exclusions.some(value => value.file === item.file && value.rule === item.rule)) throw new Error('Conflicting portable expansion registration');
+    registered.set(key, item);
+  }
+  return registered;
+}
+
 export async function collectDomainList(name, options) {
-  const { readFile: read, exclusions = [], ...bounds } = options;
+  const { readFile: read, exclusions = [], select, expansions = [], ...bounds } = options;
+  const roots = sourceLists(name);
+  const wanted = sourceSelection(select, roots);
+  const registeredExpansions = sourceExpansions(expansions, exclusions);
   const config = { ...limits, ...bounds };
   const files = new Map();
   const excluded = new Map();
+  const expanded = new Map();
+  const selectedTokens = new Map();
   const entries = [];
   let totalBytes = 0;
   let attributeFiltered = 0;
@@ -136,6 +178,16 @@ export async function collectDomainList(name, options) {
       files.set(file, { text, sha256: sha256(text) });
     }
     for (const token of parseDomainList(files.get(file).text, file)) {
+      const key = `${file}:${token.rule}`;
+      // Exact selectors inspect only the explicitly named files. Includes do not
+      // silently broaden a selected service to its entire corporate parent.
+      if (wanted && !wanted.has(key)) continue;
+      if (wanted) {
+        const selection = wanted.get(key);
+        if (selection.attributes && (selection.attributes.length !== token.attributes.length || selection.attributes.some(attribute => !token.attributes.includes(attribute)))) throw new Error(`${file}:${token.line}: Selected token attributes changed`);
+        selection.found = true;
+        selectedTokens.set(key, { file, line: token.line, rule: token.rule, sourceLine: token.sourceLine, ...(selection.attributes ? { attributes: token.attributes } : {}) });
+      }
       if (token.kind === 'include') {
         await visit(token.value, [...stack, file], [...filters, ...token.attributes]);
         continue;
@@ -146,18 +198,35 @@ export async function collectDomainList(name, options) {
         entries.push({ type: token.kind === 'full' ? 'domain' : 'domain-suffix', value: token.value });
         if (entries.length > config.maxEntries) throw new Error('Expanded entry count exceeded');
       } else {
+        const conversion = registeredExpansions.get(key);
+        if (conversion) {
+          // The fully anchored optional single digit has precisely this finite
+          // language. Do not reuse this conversion for arbitrary regular expressions.
+          const converted = ['', '1', '2', '3', '4', '5', '6', '7'].map(digit => ({ type: 'domain', value: `hses${digit}.akamaized.net` }));
+          entries.push(...converted);
+          if (entries.length > config.maxEntries) throw new Error('Expanded entry count exceeded');
+          expanded.set(key, { ...conversion, line: token.line, sourceLine: token.sourceLine, entries: converted });
+          continue;
+        }
         const approved = exclusions.find(item => item.file === file && item.rule === token.rule && typeof item.reason === 'string' && item.reason.trim());
-        if (!approved) throw new Error(`${file}:${token.line}: Unsupported ${token.rule}; review an exact portable exclusion before updating`);
-        excluded.set(`${file}:${token.line}`, { file, line: token.line, rule: token.rule, sourceLine: token.sourceLine, reason: approved.reason });
+        if (approved) excluded.set(`${file}:${token.line}`, { file, line: token.line, rule: token.rule, sourceLine: token.sourceLine, reason: approved.reason });
+        else if (token.kind === 'keyword') {
+          entries.push(normalizeEntry({ type: 'domain-keyword', value: token.value }));
+          if (entries.length > config.maxEntries) throw new Error('Expanded entry count exceeded');
+        } else throw new Error(`${file}:${token.line}: Unsupported ${token.rule}; review an exact portable exclusion before updating`);
       }
     }
   }
-  await visit(name, [], []);
+  for (const root of roots) await visit(root, [], []);
+  if (wanted && [...wanted.values()].some(item => !item.found)) throw new Error('A registered selected token is missing from its source file');
+  if ([...registeredExpansions.keys()].some(key => !expanded.has(key))) throw new Error('A registered portable expansion is missing from the selected source');
   const normalized = normalizeRuleset({ version: 1, id: 'collected', category: 'portable', entries });
   return {
     entries: normalized.entries,
     files: [...files].map(([file, value]) => ({ file, sha256: value.sha256 })).sort((a, b) => a.file.localeCompare(b.file, 'en')),
     excluded: [...excluded.values()].sort((a, b) => `${a.file}:${a.line}`.localeCompare(`${b.file}:${b.line}`, 'en')),
+    expanded: [...expanded.values()].sort((a, b) => `${a.file}:${a.line}`.localeCompare(`${b.file}:${b.line}`, 'en')),
+    selectedTokens: [...selectedTokens.values()].sort((a, b) => `${a.file}:${a.line}`.localeCompare(`${b.file}:${b.line}`, 'en')),
     attributeFiltered,
     affiliationDeclarations
   };
@@ -368,6 +437,7 @@ export async function syncCatalog({ root, revision, repository, latest = false, 
     const unselectedMetadata = repository && item.source?.repository !== repository ? json(item) : null;
     let ruleset;
     if (item.source?.type === 'local') {
+      if (['lists', 'select', 'expansions'].some(key => item.source[key] !== undefined)) throw new Error('DLC selection fields are not valid for a local source');
       if (item.source.license !== 'MIT' || typeof item.source.author !== 'string' || !item.source.author.trim() || !validDate(item.source.updatedAt) || !Array.isArray(item.source.references) || !item.source.references.length) throw new Error(`Missing first-party provenance: ${item.id}`);
       if (current === null) throw new Error(`Missing first-party source: ${relative}`);
       ruleset = normalizeRuleset(JSON.parse(current));
@@ -381,7 +451,21 @@ export async function syncCatalog({ root, revision, repository, latest = false, 
       if (current !== null && !item.outputSha256) throw new Error(`No recorded checksum for existing managed ruleset: ${relative}`);
       if (current !== null && item.outputSha256 && sha256(current) !== item.outputSha256) throw new Error(`Local changes in managed ruleset: ${relative}`);
       const format = item.source.format ?? 'domain-list-community';
-      if (format === 'domain-lines' || format === 'cidr-lines') {
+      if(format!=='classical-yaml'&&item.source.selectPayload!==undefined)throw new Error('Classical payload selection requires classical-yaml format');
+      if (format !== 'domain-list-community' && ['lists', 'select', 'expansions'].some(key => item.source[key] !== undefined)) throw new Error('DLC union, selection and expansion fields require domain-list-community format');
+      if (format === 'classical-yaml') {
+        if(item.exclusions?.length||item.source.linePrefix!==undefined||item.source.matchType!==undefined)throw new Error('Classical sources require exact supported payload conditions');
+        const file=sourcePath(item.source.path),url=`https://raw.githubusercontent.com/${repo.repository}/${repo.revision}/${file}`;
+        const text=await download(url,{maxBytes:fileBudget(item.source.maxFileBytes)});
+        const collected=parseClassicalYaml(text,file,item.source.selectPayload);
+        ruleset=normalizeRuleset({version:1,id:item.id,category:item.category,entries:collected.entries});
+        item.files=[{path:file,url,sha256:sha256(text)}];
+        item.appliedExclusions=[];item.attributeFiltered=0;item.affiliationDeclarations=0;
+        item.rawEntryCount=collected.rawEntryCount;
+        if(item.source.selectPayload!==undefined)item.selectedTokens=collected.selectedTokens;
+        else delete item.selectedTokens;
+        item.selection=item.source.selectPayload!==undefined?'exact registered payload tokens; unrelated conditions are not included':'complete five-type classical YAML payload; unsupported conditions fail closed';
+      } else if (format === 'domain-lines' || format === 'cidr-lines') {
         const file = sourcePath(item.source.path);
         const maxBytes = fileBudget(item.source.maxFileBytes);
         if (item.exclusions?.length) throw new Error('Domain-line sources do not allow silent expression exclusions');
@@ -400,13 +484,20 @@ export async function syncCatalog({ root, revision, repository, latest = false, 
         if (item.source.maxFileBytes !== undefined) throw new Error('File budget overrides require registered domain-lines format');
         if (item.source.linePrefix !== undefined) throw new Error('Line prefixes require registered domain-lines format');
         const base = `https://raw.githubusercontent.com/${repo.repository}/${repo.revision}/data/`;
-        const collected = await collectDomainList(item.source.list, { readFile: name => download(base + name), exclusions: item.exclusions || [] });
+        if ((item.source.list === undefined) === (item.source.lists === undefined)) throw new Error('A DLC source requires exactly one of list or lists');
+        if (item.source.list !== undefined && typeof item.source.list !== 'string') throw new Error('DLC list must be a single registered name');
+        if (item.source.lists !== undefined && !Array.isArray(item.source.lists)) throw new Error('DLC lists must be an explicit array');
+        const collected = await collectDomainList(item.source.list ?? item.source.lists, { readFile: name => download(base + name), exclusions: item.exclusions || [], select: item.source.select, expansions: item.source.expansions });
         ruleset = normalizeRuleset({ version: 1, id: item.id, category: item.category, entries: collected.entries });
         item.files = collected.files.map(file => ({ path: `data/${file.file}`, url: base + file.file, sha256: file.sha256 }));
         item.appliedExclusions = collected.excluded;
         item.attributeFiltered = collected.attributeFiltered;
         item.affiliationDeclarations = collected.affiliationDeclarations;
-        item.selection = 'selected files and explicit includes; not global affiliation expansion';
+        if (item.source.expansions !== undefined) item.appliedExpansions = collected.expanded;
+        else delete item.appliedExpansions;
+        if (item.source.select !== undefined) item.selectedTokens = collected.selectedTokens;
+        else delete item.selectedTokens;
+        item.selection = item.source.select !== undefined ? 'exact registered portable tokens in named files; includes are not expanded' : item.source.lists !== undefined ? 'explicit named source union and include closures; not global affiliation expansion' : 'selected files and explicit includes; not global affiliation expansion';
       } else {
         throw new Error(`Unregistered rule source format: ${format}`);
       }

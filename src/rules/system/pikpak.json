@@ -1,0 +1,35 @@
+{
+  "version": 1,
+  "id": "pikpak",
+  "category": "system",
+  "entries": [
+    {
+      "type": "domain-suffix",
+      "value": "mypikpak.com"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "mypikpak.net"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "pickpackapp.com"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "pikpak.io"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "pikpak.me"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "pikpakdrive.com"
+    },
+    {
+      "type": "domain",
+      "value": "o4504926511693824.ingest.sentry.io"
+    }
+  ]
+}

@@ -18,24 +18,28 @@ export const profileFormats = Object.freeze({
 const nativeRuleTypes = {
   domain: 'DOMAIN',
   'domain-suffix': 'DOMAIN-SUFFIX',
+  'domain-keyword': 'DOMAIN-KEYWORD',
   'ip-cidr': 'IP-CIDR',
   'ip-cidr6': 'IP-CIDR6',
 };
 const qxRuleTypes = {
   domain: 'host',
   'domain-suffix': 'host-suffix',
+  'domain-keyword': 'host-keyword',
   'ip-cidr': 'ip-cidr',
   'ip-cidr6': 'ip6-cidr',
 };
 const egernRuleTypes = {
   domain: 'domain',
   'domain-suffix': 'domain_suffix',
+  'domain-keyword': 'domain_keyword',
   'ip-cidr': 'ip_cidr',
   'ip-cidr6': 'ip_cidr6',
 };
 const singBoxRuleTypes = {
   domain: 'domain',
   'domain-suffix': 'domain_suffix',
+  'domain-keyword': 'domain_keyword',
   'ip-cidr': 'ip_cidr',
   'ip-cidr6': 'ip_cidr',
 };

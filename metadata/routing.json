@@ -6,16 +6,61 @@
     "adblock": "REJECT",
     "anti-ad": "REJECT",
     "china-ipv4": "DIRECT",
-    "china-ipv6": "DIRECT"
+    "china-ipv6": "DIRECT",
+    "unbreak": "DIRECT"
   },
   "initialSelection": {
-    "apple": "DIRECT"
+    "apple": "DIRECT",
+    "amap": "DIRECT",
+    "acfun": "DIRECT",
+    "baidu": "DIRECT",
+    "bilibili": "DIRECT",
+    "coolapk": "DIRECT",
+    "douban": "DIRECT",
+    "douyin": "DIRECT",
+    "douyu": "DIRECT",
+    "huya": "DIRECT",
+    "iqiyi": "DIRECT",
+    "pptv": "DIRECT",
+    "xiaohongshu": "DIRECT",
+    "ximalaya": "DIRECT",
+    "youku": "DIRECT",
+    "alipay": "DIRECT",
+    "wechat": "DIRECT",
+    "weibo": "DIRECT",
+    "quark": "DIRECT",
+    "alibaba": "DIRECT",
+    "bytedance": "DIRECT",
+    "netease": "DIRECT",
+    "tencent": "DIRECT",
+    "china-media": "DIRECT",
+    "netease-music": "DIRECT",
+    "google-cn": "DIRECT",
+    "steam-cn": "DIRECT",
+    "icloud": "DIRECT",
+    "appstore": "DIRECT"
   },
   "first": [
     "lan",
+    "unbreak",
     "adblock"
   ],
   "last": [
+    "hulu",
+    "hbo",
+    "steam",
+    "quora",
+    "tvb",
+    "disney",
+    "china-media",
+    "hmt-media",
+    "global-media",
+    "amazon-portable",
+    "akamai",
+    "alibaba",
+    "bytedance",
+    "netease",
+    "tencent",
     "apple",
     "github",
     "google",
@@ -25,6 +70,8 @@
     "china-ipv6"
   ],
   "excludedFromDefault": [
-    "anti-ad"
+    "anti-ad",
+    "global",
+    "google-cn"
   ]
 }

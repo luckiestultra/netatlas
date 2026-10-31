@@ -1,0 +1,71 @@
+{
+  "version": 1,
+  "id": "amap",
+  "category": "system",
+  "entries": [
+    {
+      "type": "domain-suffix",
+      "value": "a-map.cn"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "a-map.co"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "a-map.link"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "a-map.vip"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "acloudrender.com"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "adashx.ut.amap.com"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "amap.com"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "amap.net"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "amapauto.com"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "anav.com"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "autonavi.com"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "dualstack-logs.amap.com"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "gaode.com"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "logs.amap.com"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "optimus-ads.amap.com"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "v6-adashx.ut.amap.com"
+    }
+  ]
+}

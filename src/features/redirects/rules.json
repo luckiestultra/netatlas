@@ -1,0 +1,1328 @@
+{
+  "version": 1,
+  "license": "GPL-2.0-only",
+  "defaultEnabled": false,
+  "upstream": {
+    "repository": "blackmatrix7/ios_rule_script",
+    "author": "blackmatrix7",
+    "commit": "0b6897dc17e0c513d25449c935a9694818e32f0c",
+    "path": "rewrite/QuantumultX/Redirect/Redirect.conf",
+    "url": "https://raw.githubusercontent.com/blackmatrix7/ios_rule_script/0b6897dc17e0c513d25449c935a9694818e32f0c/rewrite/QuantumultX/Redirect/Redirect.conf",
+    "sharedSource": "src/features/https-upgrade/upstream/Redirect.conf.txt",
+    "vendoredSource": "src/features/redirects/upstream/Redirect.conf.txt",
+    "vendoredLicense": "src/features/redirects/LICENSE",
+    "sourceSha256": "85311fcf996fbaf7279daba3ec4c3cff31d6035d333ae6b3c939d86039d16357",
+    "licenseSha256": "8177f97513213526df2cf6184d8ff986c675afb514d4e68a404010521b880643",
+    "sourceArchiveExecutable": false
+  },
+  "deduplicatedUpstreamLines": [
+    67
+  ],
+  "actions": [
+    {
+      "id": "aicoin",
+      "upstreamLines": [
+        12
+      ],
+      "schemes": [
+        "http"
+      ],
+      "mode": "root",
+      "host": {
+        "type": "optional-www",
+        "child": {
+          "type": "hosts",
+          "values": [
+            "aicoin.cn"
+          ]
+        }
+      },
+      "target": "https://www.aicoin.com/",
+      "upstreamTarget": "https://www.aicoin.com/"
+    },
+    {
+      "id": "jd",
+      "upstreamLines": [
+        13
+      ],
+      "schemes": [
+        "http"
+      ],
+      "mode": "upgrade",
+      "host": {
+        "type": "optional-www",
+        "child": {
+          "type": "hosts",
+          "values": [
+            "jd.com"
+          ]
+        }
+      },
+      "target": "https://{host}{suffix}",
+      "upstreamTarget": "https://www.jd.com/"
+    },
+    {
+      "id": "mi",
+      "upstreamLines": [
+        14
+      ],
+      "schemes": [
+        "http"
+      ],
+      "mode": "upgrade",
+      "host": {
+        "type": "optional-www",
+        "child": {
+          "type": "hosts",
+          "values": [
+            "mi.com"
+          ]
+        }
+      },
+      "target": "https://{host}{suffix}",
+      "upstreamTarget": "https://www.mi.com/"
+    },
+    {
+      "id": "suning",
+      "upstreamLines": [
+        15
+      ],
+      "schemes": [
+        "http"
+      ],
+      "mode": "upgrade",
+      "host": {
+        "type": "optional-www",
+        "child": {
+          "type": "hosts",
+          "values": [
+            "suning.com"
+          ]
+        }
+      },
+      "target": "https://{host}{suffix}",
+      "upstreamTarget": "https://suning.com/"
+    },
+    {
+      "id": "taobao",
+      "upstreamLines": [
+        16
+      ],
+      "schemes": [
+        "http"
+      ],
+      "mode": "upgrade",
+      "host": {
+        "type": "optional-www",
+        "child": {
+          "type": "hosts",
+          "values": [
+            "taobao.com"
+          ]
+        }
+      },
+      "target": "https://{host}{suffix}",
+      "upstreamTarget": "https://taobao.com/"
+    },
+    {
+      "id": "yhd",
+      "upstreamLines": [
+        17
+      ],
+      "schemes": [
+        "http"
+      ],
+      "mode": "upgrade",
+      "host": {
+        "type": "optional-www",
+        "child": {
+          "type": "hosts",
+          "values": [
+            "yhd.com"
+          ]
+        }
+      },
+      "target": "https://{host}{suffix}",
+      "upstreamTarget": "https://yhd.com/"
+    },
+    {
+      "id": "netease-you",
+      "upstreamLines": [
+        18
+      ],
+      "schemes": [
+        "http"
+      ],
+      "mode": "upgrade",
+      "host": {
+        "type": "hosts",
+        "values": [
+          "you.163.com"
+        ]
+      },
+      "target": "https://{host}{suffix}",
+      "upstreamTarget": "https://you.163.com/"
+    },
+    {
+      "id": "google-maps",
+      "upstreamLines": [
+        19
+      ],
+      "schemes": [
+        "http",
+        "https"
+      ],
+      "mode": "google",
+      "host": {
+        "type": "hosts",
+        "values": [
+          "ditu.google.cn",
+          "maps.google.cn"
+        ]
+      },
+      "target": "https://maps.google.com",
+      "upstreamTarget": "https://maps.google.com"
+    },
+    {
+      "id": "betterzip",
+      "upstreamLines": [
+        20
+      ],
+      "schemes": [
+        "http",
+        "https"
+      ],
+      "mode": "homepage",
+      "host": {
+        "type": "optional-www",
+        "child": {
+          "type": "hosts",
+          "values": [
+            "betterzipcn.com",
+            "betterzipcn.net",
+            "betterzip.com",
+            "betterzip.net"
+          ]
+        }
+      },
+      "target": "https://macitbetter.com/",
+      "upstreamTarget": "https://macitbetter.com/"
+    },
+    {
+      "id": "google",
+      "upstreamLines": [
+        21
+      ],
+      "schemes": [
+        "http",
+        "https"
+      ],
+      "mode": "google",
+      "host": {
+        "type": "optional-www",
+        "child": {
+          "type": "hosts",
+          "values": [
+            "g.cn",
+            "google.cn"
+          ]
+        }
+      },
+      "target": "https://www.google.com",
+      "upstreamTarget": "https://www.google.com"
+    },
+    {
+      "id": "cleanmymac",
+      "upstreamLines": [
+        22
+      ],
+      "schemes": [
+        "http",
+        "https"
+      ],
+      "mode": "homepage",
+      "host": {
+        "type": "optional-www",
+        "child": {
+          "type": "hosts",
+          "values": [
+            "mycleanmymac.com",
+            "xitongqingli.com"
+          ]
+        }
+      },
+      "target": "https://macpaw.com/",
+      "upstreamTarget": "https://macpaw.com/"
+    },
+    {
+      "id": "abbyy",
+      "upstreamLines": [
+        23
+      ],
+      "schemes": [
+        "http",
+        "https"
+      ],
+      "mode": "homepage",
+      "host": {
+        "type": "optional-www",
+        "child": {
+          "type": "hosts",
+          "values": [
+            "abbyychina.com"
+          ]
+        }
+      },
+      "target": "https://www.abbyy.cn/",
+      "upstreamTarget": "https://www.abbyy.cn/"
+    },
+    {
+      "id": "exposure",
+      "upstreamLines": [
+        24
+      ],
+      "schemes": [
+        "http",
+        "https"
+      ],
+      "mode": "homepage",
+      "host": {
+        "type": "optional-www",
+        "child": {
+          "type": "hosts",
+          "values": [
+            "alienskins.cn"
+          ]
+        }
+      },
+      "target": "https://exposure.software/",
+      "upstreamTarget": "https://exposure.software/"
+    },
+    {
+      "id": "anydesk",
+      "upstreamLines": [
+        25
+      ],
+      "schemes": [
+        "http",
+        "https"
+      ],
+      "mode": "homepage",
+      "host": {
+        "type": "optional-www",
+        "child": {
+          "type": "hosts",
+          "values": [
+            "anydeskchina.cn"
+          ]
+        }
+      },
+      "target": "https://anydesk.com/zhs",
+      "upstreamTarget": "https://anydesk.com/zhs"
+    },
+    {
+      "id": "bartender",
+      "upstreamLines": [
+        26
+      ],
+      "schemes": [
+        "http",
+        "https"
+      ],
+      "mode": "homepage",
+      "host": {
+        "type": "optional-www",
+        "child": {
+          "type": "hosts",
+          "values": [
+            "bartender.cc"
+          ]
+        }
+      },
+      "target": "https://www.macbartender.com/",
+      "upstreamTarget": "https://www.macbartender.com/"
+    },
+    {
+      "id": "beyond-compare",
+      "upstreamLines": [
+        27
+      ],
+      "schemes": [
+        "http",
+        "https"
+      ],
+      "mode": "homepage",
+      "host": {
+        "type": "optional-www",
+        "child": {
+          "type": "hosts",
+          "values": [
+            "beyondcompare.cc"
+          ]
+        }
+      },
+      "target": "https://www.scootersoftware.com/",
+      "upstreamTarget": "https://www.scootersoftware.com/"
+    },
+    {
+      "id": "deep-freeze",
+      "upstreamLines": [
+        28
+      ],
+      "schemes": [
+        "http",
+        "https"
+      ],
+      "mode": "homepage",
+      "host": {
+        "type": "optional-www",
+        "child": {
+          "type": "hosts",
+          "values": [
+            "bingdianhuanyuan.cn"
+          ]
+        }
+      },
+      "target": "https://www.faronics.com/zh-hans/products/deep-freeze",
+      "upstreamTarget": "https://www.faronics.com/zh-hans/products/deep-freeze"
+    },
+    {
+      "id": "chemdraw",
+      "upstreamLines": [
+        29
+      ],
+      "schemes": [
+        "http",
+        "https"
+      ],
+      "mode": "homepage",
+      "host": {
+        "type": "optional-www",
+        "child": {
+          "type": "hosts",
+          "values": [
+            "chemdraw.com.cn"
+          ]
+        }
+      },
+      "target": "https://www.perkinelmer.com.cn/",
+      "upstreamTarget": "https://www.perkinelmer.com.cn/"
+    },
+    {
+      "id": "codesoft",
+      "upstreamLines": [
+        30
+      ],
+      "schemes": [
+        "http",
+        "https"
+      ],
+      "mode": "homepage",
+      "host": {
+        "type": "optional-www",
+        "child": {
+          "type": "hosts",
+          "values": [
+            "codesoftchina.com"
+          ]
+        }
+      },
+      "target": "https://www.teklynx.com/",
+      "upstreamTarget": "https://www.teklynx.com/"
+    },
+    {
+      "id": "coreldraw",
+      "upstreamLines": [
+        31
+      ],
+      "schemes": [
+        "http",
+        "https"
+      ],
+      "mode": "homepage",
+      "host": {
+        "type": "optional-www",
+        "child": {
+          "type": "hosts",
+          "values": [
+            "coreldrawchina.com"
+          ]
+        }
+      },
+      "target": "https://www.coreldraw.com/cn/",
+      "upstreamTarget": "https://www.coreldraw.com/cn/"
+    },
+    {
+      "id": "crossover",
+      "upstreamLines": [
+        32
+      ],
+      "schemes": [
+        "http",
+        "https"
+      ],
+      "mode": "homepage",
+      "host": {
+        "type": "optional-www",
+        "child": {
+          "type": "hosts",
+          "values": [
+            "crossoverchina.com"
+          ]
+        }
+      },
+      "target": "https://www.codeweavers.com/",
+      "upstreamTarget": "https://www.codeweavers.com/"
+    },
+    {
+      "id": "dongman",
+      "upstreamLines": [
+        33
+      ],
+      "schemes": [
+        "http",
+        "https"
+      ],
+      "mode": "homepage",
+      "host": {
+        "type": "optional-www",
+        "child": {
+          "type": "hosts",
+          "values": [
+            "dongmansoft.com"
+          ]
+        }
+      },
+      "target": "https://www.udongman.cn/",
+      "upstreamTarget": "https://www.udongman.cn/"
+    },
+    {
+      "id": "earmaster",
+      "upstreamLines": [
+        34
+      ],
+      "schemes": [
+        "http",
+        "https"
+      ],
+      "mode": "homepage",
+      "host": {
+        "type": "optional-www",
+        "child": {
+          "type": "hosts",
+          "values": [
+            "earmasterchina.cn"
+          ]
+        }
+      },
+      "target": "https://www.earmaster.com/",
+      "upstreamTarget": "https://www.earmaster.com/"
+    },
+    {
+      "id": "easyrecovery",
+      "upstreamLines": [
+        35
+      ],
+      "schemes": [
+        "http",
+        "https"
+      ],
+      "mode": "homepage",
+      "host": {
+        "type": "optional-www",
+        "child": {
+          "type": "hosts",
+          "values": [
+            "easyrecoverychina.com"
+          ]
+        }
+      },
+      "target": "https://www.ontrack.com/",
+      "upstreamTarget": "https://www.ontrack.com/"
+    },
+    {
+      "id": "edius",
+      "upstreamLines": [
+        36
+      ],
+      "schemes": [
+        "http",
+        "https"
+      ],
+      "mode": "homepage",
+      "host": {
+        "type": "optional-www",
+        "child": {
+          "type": "hosts",
+          "values": [
+            "ediuschina.com"
+          ]
+        }
+      },
+      "target": "https://www.grassvalley.com/",
+      "upstreamTarget": "https://www.grassvalley.com/"
+    },
+    {
+      "id": "firefox",
+      "upstreamLines": [
+        37
+      ],
+      "schemes": [
+        "http",
+        "https"
+      ],
+      "mode": "firefox",
+      "host": {
+        "type": "optional-www",
+        "child": {
+          "type": "hosts",
+          "values": [
+            "firefox.com.cn"
+          ]
+        }
+      },
+      "target": "https://www.mozilla.org/zh-CN/firefox/new/",
+      "upstreamTarget": "https://www.mozilla.org/zh-CN/firefox/new/"
+    },
+    {
+      "id": "flstudio",
+      "upstreamLines": [
+        38
+      ],
+      "schemes": [
+        "http",
+        "https"
+      ],
+      "mode": "homepage",
+      "host": {
+        "type": "optional-www",
+        "child": {
+          "type": "hosts",
+          "values": [
+            "flstudiochina.com"
+          ]
+        }
+      },
+      "target": "https://www.image-line.com/",
+      "upstreamTarget": "https://www.image-line.com/"
+    },
+    {
+      "id": "folx",
+      "upstreamLines": [
+        39
+      ],
+      "schemes": [
+        "http",
+        "https"
+      ],
+      "mode": "homepage",
+      "host": {
+        "type": "optional-www",
+        "child": {
+          "type": "hosts",
+          "values": [
+            "folxchina.cn"
+          ]
+        }
+      },
+      "target": "https://mac.eltima.com/cn/download-manager.html",
+      "upstreamTarget": "https://mac.eltima.com/cn/download-manager.html"
+    },
+    {
+      "id": "navicat",
+      "upstreamLines": [
+        40
+      ],
+      "schemes": [
+        "http",
+        "https"
+      ],
+      "mode": "homepage",
+      "host": {
+        "type": "optional-www",
+        "child": {
+          "type": "hosts",
+          "values": [
+            "formysql.com"
+          ]
+        }
+      },
+      "target": "https://www.navicat.com.cn/",
+      "upstreamTarget": "https://www.navicat.com.cn/"
+    },
+    {
+      "id": "guitar-pro",
+      "upstreamLines": [
+        41
+      ],
+      "schemes": [
+        "http",
+        "https"
+      ],
+      "mode": "homepage",
+      "host": {
+        "type": "optional-www",
+        "child": {
+          "type": "hosts",
+          "values": [
+            "guitarpro.cc"
+          ]
+        }
+      },
+      "target": "https://www.guitar-pro.com/",
+      "upstreamTarget": "https://www.guitar-pro.com/"
+    },
+    {
+      "id": "videostudio",
+      "upstreamLines": [
+        42
+      ],
+      "schemes": [
+        "http",
+        "https"
+      ],
+      "mode": "homepage",
+      "host": {
+        "type": "optional-www",
+        "child": {
+          "type": "hosts",
+          "values": [
+            "huishenghuiying.com.cn"
+          ]
+        }
+      },
+      "target": "https://www.coreldraw.com/cn/",
+      "upstreamTarget": "https://www.coreldraw.com/cn/"
+    },
+    {
+      "id": "hype",
+      "upstreamLines": [
+        43
+      ],
+      "schemes": [
+        "http",
+        "https"
+      ],
+      "mode": "homepage",
+      "host": {
+        "type": "optional-www",
+        "child": {
+          "type": "hosts",
+          "values": [
+            "hypeapp.cn"
+          ]
+        }
+      },
+      "target": "https://tumult.com/hype/",
+      "upstreamTarget": "https://tumult.com/hype/"
+    },
+    {
+      "id": "iconworkshop",
+      "upstreamLines": [
+        44
+      ],
+      "schemes": [
+        "http",
+        "https"
+      ],
+      "mode": "homepage",
+      "host": {
+        "type": "optional-www",
+        "child": {
+          "type": "hosts",
+          "values": [
+            "iconworkshop.cn"
+          ]
+        }
+      },
+      "target": "https://www.axialis.com/",
+      "upstreamTarget": "https://www.axialis.com/"
+    },
+    {
+      "id": "idm",
+      "upstreamLines": [
+        45
+      ],
+      "schemes": [
+        "http",
+        "https"
+      ],
+      "mode": "homepage",
+      "host": {
+        "type": "optional-www",
+        "child": {
+          "type": "hosts",
+          "values": [
+            "idmchina.net"
+          ]
+        }
+      },
+      "target": "https://www.internetdownloadmanager.com/",
+      "upstreamTarget": "https://www.internetdownloadmanager.com/"
+    },
+    {
+      "id": "ign",
+      "upstreamLines": [
+        46
+      ],
+      "schemes": [
+        "http",
+        "https"
+      ],
+      "mode": "homepage",
+      "host": {
+        "type": "optional-www",
+        "child": {
+          "type": "hosts",
+          "values": [
+            "ign.xn--fiqs8s"
+          ]
+        }
+      },
+      "target": "https://cn.ign.com/ccpref/us",
+      "upstreamTarget": "http://cn.ign.com/ccpref/us"
+    },
+    {
+      "id": "imazing",
+      "upstreamLines": [
+        47
+      ],
+      "schemes": [
+        "http",
+        "https"
+      ],
+      "mode": "homepage",
+      "host": {
+        "type": "optional-www",
+        "child": {
+          "type": "hosts",
+          "values": [
+            "imazingchina.com"
+          ]
+        }
+      },
+      "target": "https://imazing.com/zh",
+      "upstreamTarget": "https://imazing.com/zh"
+    },
+    {
+      "id": "imindmap",
+      "upstreamLines": [
+        48
+      ],
+      "schemes": [
+        "http",
+        "https"
+      ],
+      "mode": "homepage",
+      "host": {
+        "type": "optional-www",
+        "child": {
+          "type": "hosts",
+          "values": [
+            "imindmap.cc"
+          ]
+        }
+      },
+      "target": "https://www.ayoa.com/previously-imindmap/",
+      "upstreamTarget": "https://www.ayoa.com/previously-imindmap/"
+    },
+    {
+      "id": "sketchpad",
+      "upstreamLines": [
+        49
+      ],
+      "schemes": [
+        "http",
+        "https"
+      ],
+      "mode": "homepage",
+      "host": {
+        "type": "optional-www",
+        "child": {
+          "type": "hosts",
+          "values": [
+            "jihehuaban.com.cn"
+          ]
+        }
+      },
+      "target": "https://www.chartwellyorke.com/sketchpad/x24795.html",
+      "upstreamTarget": "https://www.chartwellyorke.com/sketchpad/x24795.html"
+    },
+    {
+      "id": "kingdee",
+      "upstreamLines": [
+        50
+      ],
+      "schemes": [
+        "http",
+        "https"
+      ],
+      "mode": "homepage",
+      "host": {
+        "type": "optional-www",
+        "child": {
+          "type": "hosts",
+          "values": [
+            "kingdeecn.cn"
+          ]
+        }
+      },
+      "target": "https://www.kingdee.com/",
+      "upstreamTarget": "http://www.kingdee.com/"
+    },
+    {
+      "id": "logo-design",
+      "upstreamLines": [
+        51
+      ],
+      "schemes": [
+        "http",
+        "https"
+      ],
+      "mode": "homepage",
+      "host": {
+        "type": "optional-www",
+        "child": {
+          "type": "hosts",
+          "values": [
+            "logoshejishi.com"
+          ]
+        }
+      },
+      "target": "https://www.sothink.com/product/logo-design-software/",
+      "upstreamTarget": "https://www.sothink.com/product/logo-design-software/"
+    },
+    {
+      "id": "techsmith",
+      "upstreamLines": [
+        52
+      ],
+      "schemes": [
+        "http",
+        "https"
+      ],
+      "mode": "homepage",
+      "host": {
+        "type": "optional-www",
+        "child": {
+          "type": "hosts",
+          "values": [
+            "luping.net.cn"
+          ]
+        }
+      },
+      "target": "https://www.techsmith.com/",
+      "upstreamTarget": "https://www.techsmith.com/"
+    },
+    {
+      "id": "mathtype",
+      "upstreamLines": [
+        53
+      ],
+      "schemes": [
+        "http",
+        "https"
+      ],
+      "mode": "homepage",
+      "host": {
+        "type": "optional-www",
+        "child": {
+          "type": "hosts",
+          "values": [
+            "mathtype.cn"
+          ]
+        }
+      },
+      "target": "https://www.dessci.com/",
+      "upstreamTarget": "https://www.dessci.com/"
+    },
+    {
+      "id": "mindmanager",
+      "upstreamLines": [
+        54
+      ],
+      "schemes": [
+        "http",
+        "https"
+      ],
+      "mode": "homepage",
+      "host": {
+        "type": "optional-www",
+        "child": {
+          "type": "hosts",
+          "values": [
+            "mindmanager.cc",
+            "mindmanager.cn"
+          ]
+        }
+      },
+      "target": "https://www.mindjet.com/cn/",
+      "upstreamTarget": "https://www.mindjet.com/cn/"
+    },
+    {
+      "id": "mindmapper",
+      "upstreamLines": [
+        55
+      ],
+      "schemes": [
+        "http",
+        "https"
+      ],
+      "mode": "homepage",
+      "host": {
+        "type": "optional-www",
+        "child": {
+          "type": "hosts",
+          "values": [
+            "mindmapper.cc"
+          ]
+        }
+      },
+      "target": "https://www.mindmapper.com/",
+      "upstreamTarget": "https://www.mindmapper.com/"
+    },
+    {
+      "id": "nicelabel",
+      "upstreamLines": [
+        56
+      ],
+      "schemes": [
+        "http",
+        "https"
+      ],
+      "mode": "homepage",
+      "host": {
+        "type": "optional-www",
+        "child": {
+          "type": "hosts",
+          "values": [
+            "nicelabel.cc"
+          ]
+        }
+      },
+      "target": "https://www.nicelabel.com/zh/",
+      "upstreamTarget": "https://www.nicelabel.com/zh/"
+    },
+    {
+      "id": "ntfs-for-mac",
+      "upstreamLines": [
+        57
+      ],
+      "schemes": [
+        "http",
+        "https"
+      ],
+      "mode": "homepage",
+      "host": {
+        "type": "optional-www",
+        "child": {
+          "type": "hosts",
+          "values": [
+            "ntfsformac.cn"
+          ]
+        }
+      },
+      "target": "https://china.paragon-software.com/home-mac/ntfs-for-mac/",
+      "upstreamTarget": "https://china.paragon-software.com/home-mac/ntfs-for-mac/"
+    },
+    {
+      "id": "microsoft-365",
+      "upstreamLines": [
+        58
+      ],
+      "schemes": [
+        "http",
+        "https"
+      ],
+      "mode": "homepage",
+      "host": {
+        "type": "optional-www",
+        "child": {
+          "type": "hosts",
+          "values": [
+            "officesoftcn.com"
+          ]
+        }
+      },
+      "target": "https://www.microsoft.com/zh-cn/microsoft-365",
+      "upstreamTarget": "https://www.microsoft.com/zh-cn/microsoft-365"
+    },
+    {
+      "id": "overture",
+      "upstreamLines": [
+        59
+      ],
+      "schemes": [
+        "http",
+        "https"
+      ],
+      "mode": "homepage",
+      "host": {
+        "type": "optional-www",
+        "child": {
+          "type": "hosts",
+          "values": [
+            "overturechina.com"
+          ]
+        }
+      },
+      "target": "https://sonicscores.com/",
+      "upstreamTarget": "https://sonicscores.com/"
+    },
+    {
+      "id": "password-recovery",
+      "upstreamLines": [
+        60
+      ],
+      "schemes": [
+        "http",
+        "https"
+      ],
+      "mode": "homepage",
+      "host": {
+        "type": "optional-www",
+        "child": {
+          "type": "hosts",
+          "values": [
+            "passwordrecovery.cn"
+          ]
+        }
+      },
+      "target": "https://cn.elcomsoft.com/aopr.html",
+      "upstreamTarget": "https://cn.elcomsoft.com/aopr.html"
+    },
+    {
+      "id": "pdfexpert",
+      "upstreamLines": [
+        61
+      ],
+      "schemes": [
+        "http",
+        "https"
+      ],
+      "mode": "homepage",
+      "host": {
+        "type": "optional-www",
+        "child": {
+          "type": "hosts",
+          "values": [
+            "pdfexpert.cc"
+          ]
+        }
+      },
+      "target": "https://pdfexpert.com/zh",
+      "upstreamTarget": "https://pdfexpert.com/zh"
+    },
+    {
+      "id": "photozoom",
+      "upstreamLines": [
+        62
+      ],
+      "schemes": [
+        "http",
+        "https"
+      ],
+      "mode": "homepage",
+      "host": {
+        "type": "optional-www",
+        "child": {
+          "type": "hosts",
+          "values": [
+            "photozoomchina.com"
+          ]
+        }
+      },
+      "target": "https://www.benvista.com/",
+      "upstreamTarget": "https://www.benvista.com/"
+    },
+    {
+      "id": "flash-decompiler",
+      "upstreamLines": [
+        63
+      ],
+      "schemes": [
+        "http",
+        "https"
+      ],
+      "mode": "homepage",
+      "host": {
+        "type": "optional-www",
+        "child": {
+          "type": "hosts",
+          "values": [
+            "shankejingling.com"
+          ]
+        }
+      },
+      "target": "https://www.sothink.com/product/flashdecompiler/",
+      "upstreamTarget": "https://www.sothink.com/product/flashdecompiler/"
+    },
+    {
+      "id": "vegas",
+      "upstreamLines": [
+        64
+      ],
+      "schemes": [
+        "http",
+        "https"
+      ],
+      "mode": "homepage",
+      "host": {
+        "type": "optional-www",
+        "child": {
+          "type": "hosts",
+          "values": [
+            "vegaschina.cn"
+          ]
+        }
+      },
+      "target": "https://www.vegascreativesoftware.com/",
+      "upstreamTarget": "https://www.vegascreativesoftware.com/"
+    },
+    {
+      "id": "xshell",
+      "upstreamLines": [
+        65
+      ],
+      "schemes": [
+        "http",
+        "https"
+      ],
+      "mode": "homepage",
+      "host": {
+        "type": "optional-www",
+        "child": {
+          "type": "hosts",
+          "values": [
+            "xshellcn.com"
+          ]
+        }
+      },
+      "target": "https://www.netsarang.com/zh/xshell/",
+      "upstreamTarget": "https://www.netsarang.com/zh/xshell/"
+    },
+    {
+      "id": "teamviewer",
+      "upstreamLines": [
+        66
+      ],
+      "schemes": [
+        "http",
+        "https"
+      ],
+      "mode": "homepage",
+      "host": {
+        "type": "optional-www",
+        "child": {
+          "type": "hosts",
+          "values": [
+            "yuanchengxiezuo.com"
+          ]
+        }
+      },
+      "target": "https://www.teamviewer.com/",
+      "upstreamTarget": "https://www.teamviewer.com/"
+    },
+    {
+      "id": "zbrush",
+      "upstreamLines": [
+        68
+      ],
+      "schemes": [
+        "http",
+        "https"
+      ],
+      "mode": "homepage",
+      "host": {
+        "type": "optional-www",
+        "child": {
+          "type": "hosts",
+          "values": [
+            "zbrushcn.com"
+          ]
+        }
+      },
+      "target": "https://pixologic.com/",
+      "upstreamTarget": "https://pixologic.com/"
+    },
+    {
+      "id": "ultraiso",
+      "upstreamLines": [
+        69
+      ],
+      "schemes": [
+        "http",
+        "https"
+      ],
+      "mode": "homepage",
+      "host": {
+        "type": "hosts",
+        "values": [
+          "cn.ultraiso.net"
+        ]
+      },
+      "target": "https://cn.ezbsystems.com/ultraiso/",
+      "upstreamTarget": "https://cn.ezbsystems.com/ultraiso/"
+    },
+    {
+      "id": "hypersnap",
+      "upstreamLines": [
+        70
+      ],
+      "schemes": [
+        "http",
+        "https"
+      ],
+      "mode": "homepage",
+      "host": {
+        "type": "hosts",
+        "values": [
+          "hypersnap.mairuan.com"
+        ]
+      },
+      "target": "https://www.keyshot.com/",
+      "upstreamTarget": "https://www.keyshot.com/"
+    },
+    {
+      "id": "logo-design-mairuan",
+      "upstreamLines": [
+        71
+      ],
+      "schemes": [
+        "http",
+        "https"
+      ],
+      "mode": "homepage",
+      "host": {
+        "type": "hosts",
+        "values": [
+          "logoshejishi.mairuan.com"
+        ]
+      },
+      "target": "https://www.sothink.com/product/logo-design-software/",
+      "upstreamTarget": "https://www.sothink.com/product/logo-design-software/"
+    }
+  ],
+  "regionActions": [
+    {
+      "id": "biliintl-app",
+      "upstreamLines": [
+        10
+      ],
+      "host": "app.biliintl.com",
+      "pathKind": "app",
+      "locale": "zh-Hans_PH",
+      "simCode": "51503"
+    },
+    {
+      "id": "biliintl-passport",
+      "upstreamLines": [
+        11
+      ],
+      "host": "passport.biliintl.com",
+      "pathKind": "passport",
+      "locale": "zh-Hans_PH",
+      "simCode": "51503"
+    }
+  ]
+}

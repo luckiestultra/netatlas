@@ -1,0 +1,223 @@
+{
+  "version": 1,
+  "id": "netease",
+  "category": "system",
+  "entries": [
+    {
+      "type": "domain-suffix",
+      "value": "126.com"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "126.link"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "126.net"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "127.com"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "127.net"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "163.com"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "163cn.tv"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "163industry.com"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "163jiasu.com"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "163mail.com"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "163qiyukf.com"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "163yun.com"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "166.com"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "166.net"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "188.com"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "321fenx.com"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "a.youdao.com"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "admusicpic.music.126.net"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "ads.music.126.net"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "analytics.163.com"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "crash.163.com"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "crashlytics.163.com"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "easebar.com"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "g.163.com"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "haowu.link"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "iadmat.nosdn.127.net"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "iadmatapk.nosdn.127.net"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "iadmusicmat.music.126.net"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "iadmusicmatvideo.music.126.net"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "icourse163.org"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "kada.com"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "lf126.net"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "lf127.net"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "lofter.com"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "nease.net"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "netease-inc.com"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "netease.com"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "netease.im"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "netstatic.net"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "qiyukf.com"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "qiyukf.net"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "qiyukf.net.cn"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "sentry.music.163.com"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "static163.net"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "weiyang.cn"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "ydstatic.com"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "yeah.net"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "yjwujian.cn"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "youdao.com"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "youdaoads.com"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "yunxindns.com"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "yunxinfw.com"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "yysls.cn"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "zhuanzfx.com"
+    }
+  ]
+}

@@ -85,3 +85,13 @@ npm run sync -- --repository <来源ID> --revision <完整SHA>  # 经审查后�
 完整节点、订阅、DNS 与策略适配参考原生官方文档，并与 Repcz/Tool、Orz-3/QuantumultX、LOWERTOP/Shadowrocket 和 Aethersailor/Custom_OpenClash_Rules 的固定完整配置交叉核对。仓库星标、配置文件更新时间、固定版本和使用方式见 metadata/profile-references.json。没有复制无许可证仓库的规则、脚本、证书或源代码；API 字段做独立适配。Repcz 的 MIT 原许可保存在 src/vendor/profile-references/Repcz-LICENSE。
 
 CN 域名来自已有 MIT 固定 DLC 的 cn 完整 include 闭包，保留3条逐字登记的不可移植正则例外；不冒称与原生 GeoSite 完全等价。CN IPv4/IPv6 来自 gaoyifan/china-operator-ip 的 ip-lists 分支固定 f7533065e164cbe0cf24b488a77ca75b8e897923，MIT Copyright 2017 Yifan Gao。完整许可、固定说明及关联文档在 src/vendor/china-operator-ip/；来源、SHA 与网络分类边界在 metadata/upstreams.json。数据用于路由分类，不作为服务器物理地点结论。
+
+## 扩展 Redirect 与规则数据
+
+扩展Redirect及BiliIntl从同一固定GPL-2.0原文适配，保留[完整源码、许可与修改](src/features/redirects/NOTICE.md)。另外六套规则数据从blackmatrix7固定许可来源导入，完整原始YAML、GPL与字节/Git哈希位于[src/vendor/rule-sources/blackmatrix7](src/vendor/rule-sources/blackmatrix7)。每套规则许可由metadata/upstreams.json及生成manifest的sources.rules[].license登记；含这些规则数据的成品不能整体标为MIT。global选用Proxy_Classical的完整五类型数据，未声称等于其他Global集合。
+
+## 外部脚本工具
+
+BoxJS和ScriptHub的安装包采用GPL-3.0-only，Sub-Store采用AGPL-3.0-only；完整许可证、作者、官方原包、改版包与对应源码入口见[src/vendor/integrations](src/vendor/integrations)。本仓库发布小安装资源，入口脚本仍从上游获取，没有将大型bundle重新分发或改标MIT。Sub-Store的发布bundle提交与对应源码tag分开登记，不把当前README提交当成其构建来源。前端/CDN及生成资源的全部依赖闭包未宣称锁定。
+
+QX资源解析器只提供原作者外部安装设置；未取得源码再分发许可，不复制其脚本。Loon解析器链接官方AGPL发布入口及对应完整源码。原创quick-search和正文替换采用MIT；功能清单参考不等于复制未声明许可的配置/脚本。边界与哈希见[解析器登记](metadata/resource-parsers.json)、[工具登记](metadata/integrations.json)。

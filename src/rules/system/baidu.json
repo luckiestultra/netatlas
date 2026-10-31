@@ -1,0 +1,535 @@
+{
+  "version": 1,
+  "id": "baidu",
+  "category": "system",
+  "entries": [
+    {
+      "type": "domain-suffix",
+      "value": "91.com"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "adscdn.baidu.com"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "adx.xiaodutv.com"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "afd.baidu.com"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "afdconf.baidu.com"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "aipage.com"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "antpcdn.com"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "apollo.auto"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "baidu"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "baidu-cdn.cn"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "baidu-cdn.com"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "baidu-cdn.net"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "baidu.cn"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "baidu.com"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "baidu.com.cn"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "baiduapp.com"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "baidubce.com"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "baidubcr.com"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "baiducontent.com"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "baidupcs.com"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "baidustatic.com"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "baiduyuncdn.cn"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "baiduyuncdn.com"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "baiduyuncdn.net"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "baifae.com"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "baifen.music.baidu.com"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "baifubao.com"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "bce-cdn.cn"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "bce-cdn.com"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "bce-cdn.net"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "bcebos.com"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "bcelive.com"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "bdcloudapi.com"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "bdimg.com"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "bdstatic.com"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "bdtjrcv.com"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "bdurl.net"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "bdycdn.cn"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "bdycdn.net"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "bdydns.cn"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "bdydns.com"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "bdydns.net"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "bzclk.baidu.com"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "cb.baidu.com"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "cbjs.baidu.com"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "chuanke.com"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "cm.baidu.com"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "combofin.com"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "cpro.baidu.com"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "cpro.baidustatic.com"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "cpu.baidu.com"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "cstm.baidu.com"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "dlnel.com"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "dlnel.org"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "drmcmm.baidu.com"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "duapp.com"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "duapp.net"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "duapps.com"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "duiwai.baidu.com"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "dup.baidustatic.com"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "duurl.cn"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "duxiaoman-int.com"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "duxiaoman.com"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "duxiaomanfintech.com"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "duxiaomanfund.com"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "duxiaomantech.com"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "dwz.cn"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "dxm-cdn.com"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "dxm-int.com"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "dxmbaoxian.com"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "dxmjinr.com"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "dxmlcf.com"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "dxmlcfintech.com"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "dxmpay.com"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "dxmstatic.com"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "dxmyqh.com"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "eclick.baidu.com"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "ecma.bdimg.com"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "ecmb.bdimg.com"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "ecmc.bdimg.com"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "eduad.baidu.com"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "eiv.baidu.com"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "fclick.baidu.com"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "fclog.baidu.com"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "h2tcbox.baidu.com"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "hao123.com"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "hao123img.com"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "hao123union.baidu.com"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "hao222.com"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "haokan.com"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "hm.baidu.com"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "hmma.baidu.com"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "imgstat.baidu.com"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "iwanad.baidu.com"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "jomocdn.cn"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "jomocdn.net"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "jomodns.cn"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "jomodns.com"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "jomodns.net"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "jomoxc.com"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "miaowu.baidu.com"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "mipcache.bdstatic.com"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "mipcdn.com"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "mobads-logs.baidu.com"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "mobads-pre-config.cdn.bcebos.com"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "mobads.baidu.com"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "mountain.zhidao.baidu.com"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "nsclick.baidu.com"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "nsclickvideo.baidu.com"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "nuomi.com"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "paydxm.com"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "pimlog.baidu.com"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "pos.baidu.com"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "quyaoya.com"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "sclick.baidu.com"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "shifen.com"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "smartapps.cn"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "spcode.baidu.com"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "tcbox.baidu.com"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "tieba.com"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "tiebaimg.com"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "ubmcvideo.baidustatic.com"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "union.baidu.com"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "unionimage.baidu.com"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "wangmeng.baidu.com"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "wkctj.baidu.com"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "wm.baidu.com"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "xdrtc.com"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "xianfae.com"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "xiaodutv.com"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "yoojia.com"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "zz.bdstatic.com"
+    }
+  ]
+}

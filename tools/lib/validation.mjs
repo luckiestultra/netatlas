@@ -3,9 +3,9 @@ import { getClient } from './clients.mjs';
 import { normalizeEntry } from './rules.mjs';
 import { policyForRuleset, profileRulesetsFor } from './policies.mjs';
 
-const classicTypes = { DOMAIN:'domain', 'DOMAIN-SUFFIX':'domain-suffix', 'IP-CIDR':'ip-cidr', 'IP-CIDR6':'ip-cidr6' };
-const qxTypes = { host:'domain', 'host-suffix':'domain-suffix', 'ip-cidr':'ip-cidr', 'ip6-cidr':'ip-cidr6' };
-const egernTypes = { domain:'domain', domain_suffix:'domain-suffix', ip_cidr:'ip-cidr', ip_cidr6:'ip-cidr6' };
+const classicTypes = { DOMAIN:'domain', 'DOMAIN-SUFFIX':'domain-suffix', 'DOMAIN-KEYWORD':'domain-keyword', 'IP-CIDR':'ip-cidr', 'IP-CIDR6':'ip-cidr6' };
+const qxTypes = { host:'domain', 'host-suffix':'domain-suffix', 'host-keyword':'domain-keyword', 'ip-cidr':'ip-cidr', 'ip6-cidr':'ip-cidr6' };
+const egernTypes = { domain:'domain', domain_suffix:'domain-suffix', domain_keyword:'domain-keyword', ip_cidr:'ip-cidr', ip_cidr6:'ip-cidr6' };
 function ini(text) {
   const sections = {}; let section;
   for (const raw of text.split(/\r?\n/)) {
@@ -62,7 +62,7 @@ export function inspectProfile(clientId,text) {
     if(!Array.isArray(object.inbounds)||object.inbounds.some(inbound=>inbound.listen!=='127.0.0.1'||inbound.set_system_proxy!==false))throw new Error('Nonlocal or system proxy listener');
     if(!Array.isArray(object.outbounds)||!object.route)throw new Error('Missing native outbounds or route');
     groups=object.outbounds.filter(out=>out.type==='selector').map(out=>({name:out.tag,choices:out.outbounds}));
-    for(const rule of object.route.rules??[]){if(rule.action==='resolve'&&Object.keys(rule).length===1)continue;const fields=Object.keys(rule).filter(key=>!['action','outbound'].includes(key));if(!['route','reject'].includes(rule.action)||fields.length!==1||(rule.action==='reject'&&rule.outbound))throw new Error('Unexpected route shape');const field=fields[0];if(!Array.isArray(rule[field]))throw new Error('Invalid route values');for(const value of rule[field])rules.push({...normalizeEntry({type:field==='domain'?'domain':field==='domain_suffix'?'domain-suffix':field==='ip_cidr'?(value.includes(':')?'ip-cidr6':'ip-cidr'):null,value}),policy:rule.action==='reject'?'REJECT':rule.outbound});}
+    for(const rule of object.route.rules??[]){if(rule.action==='resolve'&&Object.keys(rule).length===1)continue;const fields=Object.keys(rule).filter(key=>!['action','outbound'].includes(key));if(!['route','reject'].includes(rule.action)||fields.length!==1||(rule.action==='reject'&&rule.outbound))throw new Error('Unexpected route shape');const field=fields[0];if(!Array.isArray(rule[field]))throw new Error('Invalid route values');for(const value of rule[field])rules.push({...normalizeEntry({type:field==='domain'?'domain':field==='domain_suffix'?'domain-suffix':field==='domain_keyword'?'domain-keyword':field==='ip_cidr'?(value.includes(':')?'ip-cidr6':'ip-cidr'):null,value}),policy:rule.action==='reject'?'REJECT':rule.outbound});}
     fallback=object.route.final;
   }else if(clientId==='egern'){
     object=parse(text);

@@ -1,0 +1,291 @@
+{
+  "version": 1,
+  "id": "douyin",
+  "category": "media",
+  "entries": [
+    {
+      "type": "domain-suffix",
+      "value": "activity-wbsj.com"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "aihst8.com"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "amemv.cn"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "amemv.com"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "amemv.net"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "awemeughun.com"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "awemeuglang.com"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "awemeugsoul.com"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "awemeugwave.com"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "betastar.cn"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "boxdouyin.com"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "cookicut.com"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "douyin.com"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "douyinact.com"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "douyinact.net"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "douyincdn.com"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "douyinec.com"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "douyinfe.com"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "douyinliving.com"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "douyinmusicpromotion.com"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "douyinpay.com"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "douyinpic.com"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "douyinstatic.com"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "douyinvod.com"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "duoshan.com"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "huoshan.com"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "huoshancdn.com"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "huoshangroup.com"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "huoshanimg.com"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "huoshanlive.com"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "huoshanparty.com"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "huoshanstatic.com"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "huoshante8.com"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "huoshanvideo.cn"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "huoshanvideo.net"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "huoshanvod.com"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "huoshanxiaoshipin.cn"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "huoshanxiaoshipin.net"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "huoshanzhibo.cn"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "huoshanzhibo.com"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "huoshanzhibo.net"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "hypercachenode.com"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "idouyinliving.com"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "idouyinpic.com"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "idouyinstatic.com"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "idouyinvod.com"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "iesdouyin.com"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "iesdouyin.net"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "ieshuodong.cn"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "ieshuodong.net"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "ihst8.com"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "ihuoshanimg.com"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "ihuoshanlive.com"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "ihuoshanstatic.com"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "ihuoshanvod.com"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "kolbuyer.cn"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "lifexue.com"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "nextvid.net"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "open-douyin.com"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "ppkankan01.com"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "qishui.cn"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "qishui.com"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "qishui.com.cn"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "qishuimusic.cn"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "qishuimusic.com.cn"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "supercachenet.com"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "supercachenode.com"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "ulpay.com"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "ultracachenode.com"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "woaihuoshan.com"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "wohst8.com"
+    }
+  ]
+}

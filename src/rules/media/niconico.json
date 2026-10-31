@@ -1,0 +1,47 @@
+{
+  "version": 1,
+  "id": "niconico",
+  "category": "media",
+  "entries": [
+    {
+      "type": "domain-suffix",
+      "value": "nico"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "nico.ms"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "nicochannel.jp"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "nicodic.jp"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "nicomanga.jp"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "niconico.com"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "nicoseiga.jp"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "nicovideo.jp"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "nimg.jp"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "simg.jp"
+    }
+  ]
+}

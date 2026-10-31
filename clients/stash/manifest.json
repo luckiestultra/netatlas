@@ -2,14 +2,14 @@
   "version": 1,
   "client": "stash",
   "builder": "netatlas@0.1.0",
-  "inputSha256": "b5885024e6e8e050ef5aa92e5b3b45d8f524416f95a2a98d08e9fcc4641ee306",
+  "inputSha256": "cd467a13326c5eebed7f4ad5b84bda0ff3fada8bfc270938edd1c697d9788265",
   "baseUrl": "https://raw.githubusercontent.com/luckiestultra/netatlas/main",
   "targetVersion": null,
   "counts": {
-    "defaultRuleSets": 40,
-    "defaultEntries": 23476,
-    "optionalRuleSets": 1,
-    "totalEntries": 124158
+    "defaultRuleSets": 114,
+    "defaultEntries": 29103,
+    "optionalRuleSets": 3,
+    "totalEntries": 136894
   },
   "validation": {
     "profile": "managed-resources-and-references",
@@ -69,6 +69,90 @@
         "sourceArchiveExecutable": false
       },
       "sourceRegistry": null
+    },
+    {
+      "id": "quick-search",
+      "defaultEnabled": false,
+      "license": "MIT",
+      "adapter": {
+        "artifacts": [
+          "rewrites/quick-search.stoverride"
+        ],
+        "kind": "native-override",
+        "nativeApp": "not-run"
+      },
+      "upstream": null,
+      "sourceRegistry": "src/features/quick-search/actions.json"
+    },
+    {
+      "id": "redirects",
+      "defaultEnabled": false,
+      "license": "GPL-2.0-only",
+      "adapter": {
+        "artifacts": [
+          "rewrites/redirects.stoverride"
+        ],
+        "kind": "native-override",
+        "nativeApp": "not-run"
+      },
+      "upstream": null,
+      "sourceRegistry": "src/features/redirects/rules.json"
+    },
+    {
+      "id": "biliintl-region",
+      "defaultEnabled": false,
+      "license": "GPL-2.0-only",
+      "adapter": {
+        "artifacts": [
+          "rewrites/biliintl-region.stoverride"
+        ],
+        "kind": "native-override",
+        "nativeApp": "not-run"
+      },
+      "upstream": null,
+      "sourceRegistry": "src/features/redirects/rules.json"
+    },
+    {
+      "id": "boxjs",
+      "defaultEnabled": false,
+      "license": "GPL-3.0-only",
+      "adapter": {
+        "artifacts": [
+          "modules/boxjs.stoverride"
+        ],
+        "kind": "native-override",
+        "nativeApp": "not-run"
+      },
+      "upstream": null,
+      "sourceRegistry": "metadata/integrations.json"
+    },
+    {
+      "id": "script-hub",
+      "defaultEnabled": false,
+      "license": "GPL-3.0-only",
+      "adapter": {
+        "artifacts": [
+          "modules/script-hub.stoverride"
+        ],
+        "kind": "native-override",
+        "nativeApp": "not-run"
+      },
+      "upstream": null,
+      "sourceRegistry": "metadata/integrations.json"
+    },
+    {
+      "id": "sub-store",
+      "defaultEnabled": false,
+      "license": "AGPL-3.0-only",
+      "adapter": {
+        "artifacts": [
+          "modules/sub-store.stoverride"
+        ],
+        "kind": "native-override",
+        "nativeApp": "not-run"
+      },
+      "upstream": null,
+      "sourceRegistry": "metadata/integrations.json"
     }
   ],
   "sources": {
@@ -113,6 +197,19 @@
         "sourceCodeRevision": "0ca552913948e444853d3bce99f2f3f2477f17c7",
         "author": "Yifan Gao and china-operator-ip contributors",
         "revisionDate": "2026-10-30T09:07:05Z"
+      },
+      {
+        "id": "ios-rule-script",
+        "repository": "blackmatrix7/ios_rule_script",
+        "branch": "master",
+        "revision": "0b6897dc17e0c513d25449c935a9694818e32f0c",
+        "license": "GPL-2.0-only",
+        "licensePath": "LICENSE",
+        "licenseSha256": "8177f97513213526df2cf6184d8ff986c675afb514d4e68a404010521b880643",
+        "licenseUrl": "https://raw.githubusercontent.com/blackmatrix7/ios_rule_script/0b6897dc17e0c513d25449c935a9694818e32f0c/LICENSE",
+        "documentation": "https://github.com/blackmatrix7/ios_rule_script/blob/0b6897dc17e0c513d25449c935a9694818e32f0c/README.md",
+        "author": "blackmatrix7 and contributors",
+        "revisionDate": "2026-10-27T21:45:18Z"
       }
     ],
     "rules": [
@@ -124,6 +221,7 @@
           "repository": "domain-list-community",
           "list": "openai"
         },
+        "license": "MIT",
         "sha256": "f17af9afded802389e299929e57160d77d9c5714d1cbe0ce8ed6b4a518aea0e1",
         "entries": 24,
         "updatedAt": "2026-10-30T13:25:16Z",
@@ -134,7 +232,7 @@
             "line": 21,
             "rule": "regexp:^chatgpt-async-webps-prod-\\S+-\\d+\\.webpubsub\\.azure\\.com$",
             "sourceLine": "regexp:^chatgpt-async-webps-prod-\\S+-\\d+\\.webpubsub\\.azure\\.com$",
-            "reason": "Excluded from the four-type portable catalog: no equivalent cross-client regex matcher. Keep this exact expression recorded; newly introduced expressions block sync."
+            "reason": "Excluded from the five-type portable catalog: no equivalent cross-client regex matcher. Keep this exact expression recorded; newly introduced expressions block sync."
           }
         ]
       },
@@ -146,6 +244,7 @@
           "repository": "domain-list-community",
           "list": "anthropic"
         },
+        "license": "MIT",
         "sha256": "9c87150e6ce6dd28bd6f21646c6fa6588ceccccfed7d7ac9d38479f8ecb4e190",
         "entries": 19,
         "updatedAt": "2026-10-30T13:25:16Z",
@@ -160,6 +259,7 @@
           "repository": "domain-list-community",
           "list": "google-deepmind"
         },
+        "license": "MIT",
         "sha256": "9fc0d48ab6e13f31c4df712a98fa96b275e9eacc30e45e27121bf156405b653d",
         "entries": 49,
         "updatedAt": "2026-10-30T13:25:16Z",
@@ -174,6 +274,7 @@
           "repository": "domain-list-community",
           "list": "google"
         },
+        "license": "MIT",
         "sha256": "9bfa4c5dc2c83b50434aa55acfa6c1368d533da35e3276ed16025f0500aa84e1",
         "entries": 1123,
         "updatedAt": "2026-10-30T13:25:16Z",
@@ -184,14 +285,14 @@
             "line": 12,
             "rule": "regexp:^r+[0-9]+(---|\\.)sn-(2x3|ni5|j5o)\\w{5}\\.xn--ngstr-lra8j\\.com$",
             "sourceLine": "regexp:^r+[0-9]+(---|\\.)sn-(2x3|ni5|j5o)\\w{5}\\.xn--ngstr-lra8j\\.com$ @cn",
-            "reason": "Excluded from the four-type portable catalog: no equivalent cross-client regex matcher. Keep this exact expression recorded; newly introduced expressions block sync."
+            "reason": "Excluded from the five-type portable catalog: no equivalent cross-client regex matcher. Keep this exact expression recorded; newly introduced expressions block sync."
           },
           {
             "file": "google-play",
             "line": 14,
             "rule": "regexp:^r+[0-9]+(---|\\.)sn-(2x3|ni5|j5o)\\w{5}\\.googlevideo\\.com$",
             "sourceLine": "regexp:^r+[0-9]+(---|\\.)sn-(2x3|ni5|j5o)\\w{5}\\.googlevideo\\.com$ @cn",
-            "reason": "Excluded from the four-type portable catalog: no equivalent cross-client regex matcher. Keep this exact expression recorded; newly introduced expressions block sync."
+            "reason": "Excluded from the five-type portable catalog: no equivalent cross-client regex matcher. Keep this exact expression recorded; newly introduced expressions block sync."
           }
         ]
       },
@@ -203,6 +304,7 @@
           "repository": "domain-list-community",
           "list": "microsoft"
         },
+        "license": "MIT",
         "sha256": "fb0cb416dc6536d87c9659e622aa06a0216af23c40a8612d54180f0a9d971b6d",
         "entries": 760,
         "updatedAt": "2026-10-30T13:25:16Z",
@@ -217,6 +319,7 @@
           "repository": "domain-list-community",
           "list": "apple"
         },
+        "license": "MIT",
         "sha256": "15a0f78055fababd85a1307cf43b1ddcfdd1962e858ef5b967e662b396e04745",
         "entries": 1826,
         "updatedAt": "2026-10-30T13:25:16Z",
@@ -231,6 +334,7 @@
           "repository": "domain-list-community",
           "list": "github"
         },
+        "license": "MIT",
         "sha256": "f8fdabd4e96d450f370e7fa13f83fcda8c1e358f7b309d0215efb2e6c75c7aea",
         "entries": 65,
         "updatedAt": "2026-10-30T13:25:16Z",
@@ -245,6 +349,7 @@
           "repository": "domain-list-community",
           "list": "telegram"
         },
+        "license": "MIT",
         "sha256": "11e4b489354b2ce7d53742c8c65c7cbe441732b6d9a137488ca50b6872b3bcf9",
         "entries": 21,
         "updatedAt": "2026-10-30T13:25:16Z",
@@ -259,6 +364,7 @@
           "repository": "domain-list-community",
           "list": "youtube"
         },
+        "license": "MIT",
         "sha256": "f8b41812508a1352f708a971d1dde23f889654309d5c96c3b9ce4c0ae036a914",
         "entries": 178,
         "updatedAt": "2026-10-30T13:25:16Z",
@@ -273,6 +379,7 @@
           "repository": "domain-list-community",
           "list": "netflix"
         },
+        "license": "MIT",
         "sha256": "41049917d778640f04d2b679e8cf11ecc3304cce65f2fb92188a5db19fc3e6e3",
         "entries": 24,
         "updatedAt": "2026-10-30T13:25:16Z",
@@ -283,28 +390,28 @@
             "line": 28,
             "rule": "regexp:(^|\\.)apiproxy-device-prod-nlb-.+\\.amazonaws\\.com$",
             "sourceLine": "regexp:(^|\\.)apiproxy-device-prod-nlb-.+\\.amazonaws\\.com$",
-            "reason": "Excluded from the four-type portable catalog: no equivalent cross-client regex matcher. Keep this exact expression recorded; newly introduced expressions block sync."
+            "reason": "Excluded from the five-type portable catalog: no equivalent cross-client regex matcher. Keep this exact expression recorded; newly introduced expressions block sync."
           },
           {
             "file": "netflix",
             "line": 29,
             "rule": "regexp:(^|\\.)apiproxy-website-nlb-prod-.+\\.amazonaws\\.com$",
             "sourceLine": "regexp:(^|\\.)apiproxy-website-nlb-prod-.+\\.amazonaws\\.com$",
-            "reason": "Excluded from the four-type portable catalog: no equivalent cross-client regex matcher. Keep this exact expression recorded; newly introduced expressions block sync."
+            "reason": "Excluded from the five-type portable catalog: no equivalent cross-client regex matcher. Keep this exact expression recorded; newly introduced expressions block sync."
           },
           {
             "file": "netflix",
             "line": 30,
             "rule": "regexp:(^|\\.)dualstack\\.apiproxy-.+\\.amazonaws\\.com$",
             "sourceLine": "regexp:(^|\\.)dualstack\\.apiproxy-.+\\.amazonaws\\.com$",
-            "reason": "Excluded from the four-type portable catalog: no equivalent cross-client regex matcher. Keep this exact expression recorded; newly introduced expressions block sync."
+            "reason": "Excluded from the five-type portable catalog: no equivalent cross-client regex matcher. Keep this exact expression recorded; newly introduced expressions block sync."
           },
           {
             "file": "netflix",
             "line": 31,
             "rule": "regexp:(^|\\.)dualstack\\.ichnaea-web-.+\\.amazonaws\\.com$",
             "sourceLine": "regexp:(^|\\.)dualstack\\.ichnaea-web-.+\\.amazonaws\\.com$",
-            "reason": "Excluded from the four-type portable catalog: no equivalent cross-client regex matcher. Keep this exact expression recorded; newly introduced expressions block sync."
+            "reason": "Excluded from the five-type portable catalog: no equivalent cross-client regex matcher. Keep this exact expression recorded; newly introduced expressions block sync."
           }
         ]
       },
@@ -316,6 +423,7 @@
           "repository": "domain-list-community",
           "list": "spotify"
         },
+        "license": "MIT",
         "sha256": "f0ac15b8db784eae05db6be36737697253aff3f909e1df259d3846f0ee07a041",
         "entries": 28,
         "updatedAt": "2026-10-30T13:25:16Z",
@@ -330,6 +438,7 @@
           "repository": "domain-list-community",
           "list": "ookla-speedtest"
         },
+        "license": "MIT",
         "sha256": "fbfc31b5701de55d4305fb8d75f08690359f280f9094134235fab381e438b1b9",
         "entries": 20,
         "updatedAt": "2026-10-30T13:25:16Z",
@@ -340,7 +449,7 @@
             "line": 26,
             "rule": "regexp:^speed\\.(coe|open)\\.ad\\.[a-z]{2,6}\\.prod\\.hosts\\.ooklaserver\\.net$",
             "sourceLine": "regexp:^speed\\.(coe|open)\\.ad\\.[a-z]{2,6}\\.prod\\.hosts\\.ooklaserver\\.net$ @ads",
-            "reason": "Excluded from the four-type portable catalog: no equivalent cross-client regex matcher. Keep this exact expression recorded; newly introduced expressions block sync."
+            "reason": "Excluded from the five-type portable catalog: no equivalent cross-client regex matcher. Keep this exact expression recorded; newly introduced expressions block sync."
           }
         ]
       },
@@ -352,6 +461,7 @@
           "repository": "domain-list-community",
           "list": "category-ads-all"
         },
+        "license": "MIT",
         "sha256": "b496b379af943dc48ce71591effc2de88e232629c4eb3e00f3da7269cc65628d",
         "entries": 904,
         "updatedAt": "2026-10-30T13:25:16Z",
@@ -362,7 +472,7 @@
             "line": 26,
             "rule": "regexp:^speed\\.(coe|open)\\.ad\\.[a-z]{2,6}\\.prod\\.hosts\\.ooklaserver\\.net$",
             "sourceLine": "regexp:^speed\\.(coe|open)\\.ad\\.[a-z]{2,6}\\.prod\\.hosts\\.ooklaserver\\.net$ @ads",
-            "reason": "Excluded from the four-type portable catalog: no equivalent cross-client regex matcher. Keep this exact expression recorded; newly introduced expressions block sync."
+            "reason": "Excluded from the five-type portable catalog: no equivalent cross-client regex matcher. Keep this exact expression recorded; newly introduced expressions block sync."
           }
         ]
       },
@@ -386,6 +496,7 @@
           "author": "netatlas contributors",
           "updatedAt": "2026-10-31"
         },
+        "license": "MIT",
         "sha256": "47154f24fd63ae78749dc484933d428aa2cc716446790c7b31d5cbcdf8df6ee7",
         "entries": 17,
         "updatedAt": "2026-10-31",
@@ -401,6 +512,7 @@
           "list": "cn",
           "description": "Complete explicit cn include closure (tld-cn plus geolocation-cn), with upstream include attribute filters and three exact nonportable regex exclusions. A whole pinned data-tree audit found no external affiliations targeting any included list. Does not claim native GeoSite regex equivalence."
         },
+        "license": "MIT",
         "sha256": "0022afee1c71b56924f1a4e47334e855f15098399607999cbd6b31d5113cb845",
         "entries": 8387,
         "updatedAt": "2026-10-30T13:25:16Z",
@@ -437,6 +549,7 @@
           "repository": "domain-list-community",
           "list": "apple-tvplus"
         },
+        "license": "MIT",
         "sha256": "9ad1a73f395157d0d59c8fccf2ca3ff79c5c71fc1361382bff4267116a056dbe",
         "entries": 8,
         "updatedAt": "2026-10-30T13:25:16Z",
@@ -451,6 +564,7 @@
           "repository": "domain-list-community",
           "list": "cursor"
         },
+        "license": "MIT",
         "sha256": "7296533d1381e9d81b2f5c4192bb1a3fd64b061dd9194c748a224de9487be178",
         "entries": 5,
         "updatedAt": "2026-10-30T13:25:16Z",
@@ -465,6 +579,7 @@
           "repository": "domain-list-community",
           "list": "discord"
         },
+        "license": "MIT",
         "sha256": "06d69318cf9f1fd017c1e0726dabfdf5f62c03403baba4017b35cc8c621b6664",
         "entries": 28,
         "updatedAt": "2026-10-30T13:25:16Z",
@@ -479,6 +594,7 @@
           "repository": "domain-list-community",
           "list": "docker"
         },
+        "license": "MIT",
         "sha256": "eeb976dfcb20e0a579cdcb18c6af2918c2ad8b8a37b98f8622f0a838dc43a419",
         "entries": 6,
         "updatedAt": "2026-10-30T13:25:16Z",
@@ -493,6 +609,7 @@
           "repository": "domain-list-community",
           "list": "github-copilot"
         },
+        "license": "MIT",
         "sha256": "67ce214112eb5ec933c08457fb1bf5ce2940a2ee4912fb723cd060f131be2b3b",
         "entries": 6,
         "updatedAt": "2026-10-30T13:25:16Z",
@@ -507,6 +624,7 @@
           "repository": "domain-list-community",
           "list": "gitlab"
         },
+        "license": "MIT",
         "sha256": "3c38de2b7372cb6f24f1c5157619fa717fcc450adc73ef106028a933d8310803",
         "entries": 5,
         "updatedAt": "2026-10-30T13:25:16Z",
@@ -521,6 +639,7 @@
           "repository": "domain-list-community",
           "list": "groq"
         },
+        "license": "MIT",
         "sha256": "94864c4909f79f883c627efc5b8b5b84ec614433f70980f11eb585b4e35acebf",
         "entries": 1,
         "updatedAt": "2026-10-30T13:25:16Z",
@@ -535,6 +654,7 @@
           "repository": "domain-list-community",
           "list": "hbo"
         },
+        "license": "MIT",
         "sha256": "a7893566b499e8fd031f8e7df3d0c1f9d13b6690191bdd327cb0ab732a2a5e28",
         "entries": 65,
         "updatedAt": "2026-10-30T13:25:16Z",
@@ -549,6 +669,7 @@
           "repository": "domain-list-community",
           "list": "huggingface"
         },
+        "license": "MIT",
         "sha256": "a9e41f7a130bf6c761e97a86e3f14ab8eccb968731cf4a95b1922cbafbeffb96",
         "entries": 3,
         "updatedAt": "2026-10-30T13:25:16Z",
@@ -563,6 +684,7 @@
           "repository": "domain-list-community",
           "list": "jetbrains"
         },
+        "license": "MIT",
         "sha256": "7b218af98a343342606a994de743f04b212837a975f2613bac3671c69d7ed7a0",
         "entries": 25,
         "updatedAt": "2026-10-30T13:25:16Z",
@@ -577,6 +699,7 @@
           "repository": "domain-list-community",
           "list": "line"
         },
+        "license": "MIT",
         "sha256": "7267e66d1461fd2c04ddf9bbac64ed6123d6fc0fe327bd0b71a8d356eba262b2",
         "entries": 20,
         "updatedAt": "2026-10-30T13:25:16Z",
@@ -591,6 +714,7 @@
           "repository": "domain-list-community",
           "list": "npmjs"
         },
+        "license": "MIT",
         "sha256": "bf2b101a08cc99983539cbe57c0949012db9d5e090b4518e4664ade87012c1f5",
         "entries": 3,
         "updatedAt": "2026-10-30T13:25:16Z",
@@ -605,6 +729,7 @@
           "repository": "domain-list-community",
           "list": "perplexity"
         },
+        "license": "MIT",
         "sha256": "dffba0daea5a70cc02e5feeb04449ab9dde582b607fa6872da2d40382e1aec9b",
         "entries": 5,
         "updatedAt": "2026-10-30T13:25:16Z",
@@ -619,6 +744,7 @@
           "repository": "domain-list-community",
           "list": "poe"
         },
+        "license": "MIT",
         "sha256": "e2a19435d4c12647ef5360c6d86d8087130cf703d336bb7fe74632383735babb",
         "entries": 2,
         "updatedAt": "2026-10-30T13:25:16Z",
@@ -633,6 +759,7 @@
           "repository": "domain-list-community",
           "list": "signal"
         },
+        "license": "MIT",
         "sha256": "9d29a4f2125343492ccc5d4c36a96deb32f7359ff864206c9cfc144cc5c4cdbb",
         "entries": 8,
         "updatedAt": "2026-10-30T13:25:16Z",
@@ -647,6 +774,7 @@
           "repository": "domain-list-community",
           "list": "slack"
         },
+        "license": "MIT",
         "sha256": "3561f0c3370f329bd4eba09046e8579b77642afcc50826cffebefb63609c95f3",
         "entries": 11,
         "updatedAt": "2026-10-30T13:25:16Z",
@@ -661,6 +789,7 @@
           "repository": "domain-list-community",
           "list": "steam"
         },
+        "license": "MIT",
         "sha256": "8b6659bb238b6f0f181dd0b3038eb7e7500a9d8687583da16fa5e7f4c9eaf05c",
         "entries": 61,
         "updatedAt": "2026-10-30T13:25:16Z",
@@ -675,6 +804,7 @@
           "repository": "domain-list-community",
           "list": "tiktok"
         },
+        "license": "MIT",
         "sha256": "fbc2742592166d96049a7109947859472b37c0892aeb7557c4b068ecbd155be7",
         "entries": 40,
         "updatedAt": "2026-10-30T13:25:16Z",
@@ -689,6 +819,7 @@
           "repository": "domain-list-community",
           "list": "twitch"
         },
+        "license": "MIT",
         "sha256": "0bd18bbfc29efcee7e122c4c44bbca41c0017050c99882a427c5deea77f83855",
         "entries": 35,
         "updatedAt": "2026-10-30T13:25:16Z",
@@ -703,6 +834,7 @@
           "repository": "domain-list-community",
           "list": "vercel"
         },
+        "license": "MIT",
         "sha256": "8018ebcf88cbfca3914abe8399d74b2142f7332a58d2d9bdd340ee8cefc4462d",
         "entries": 27,
         "updatedAt": "2026-10-30T13:25:16Z",
@@ -717,6 +849,7 @@
           "repository": "domain-list-community",
           "list": "whatsapp"
         },
+        "license": "MIT",
         "sha256": "bbbf5be7e02f62954a4e01269212673975639f2ef4ff9abace58c9856dd996a9",
         "entries": 11,
         "updatedAt": "2026-10-30T13:25:16Z",
@@ -731,6 +864,7 @@
           "repository": "domain-list-community",
           "list": "xai"
         },
+        "license": "MIT",
         "sha256": "eaac63b557f701926e7556bf9537c21b5dae1599266c5b4866940a285e3a2e62",
         "entries": 4,
         "updatedAt": "2026-10-30T13:25:16Z",
@@ -745,6 +879,7 @@
           "repository": "domain-list-community",
           "list": "zoom"
         },
+        "license": "MIT",
         "sha256": "0459d4de26e3985cf79b0658d3bdb5894b3923c1b65f5cb7f3995af175fd4b40",
         "entries": 3,
         "updatedAt": "2026-10-30T13:25:16Z",
@@ -768,6 +903,7 @@
             "semantics": "All 100682 companion payload items use +. suffix roots; sets are bidirectionally identical to the registered dot-prefixed DOMAIN-SET."
           }
         },
+        "license": "MIT",
         "sha256": "b2681e3f2ae69707b0dbb348d32ef14229147979486e4e6f64c792258a5e41bd",
         "entries": 100682,
         "updatedAt": "2026-10-30T12:57:57Z",
@@ -785,6 +921,7 @@
           "matchType": "ip-cidr",
           "description": "Complete pinned China network list: trusted domestic BGP classification plus unannounced RIR-CN registration fallback. Routing evidence, not a guarantee of physical location or of all China access points."
         },
+        "license": "MIT",
         "sha256": "41fe2d4dff281e41cc358ec6cad400f8f7e7b15038e40b22d68b1c5efa1e5784",
         "entries": 6174,
         "updatedAt": "2026-10-30T09:07:05Z",
@@ -802,10 +939,2635 @@
           "matchType": "ip-cidr6",
           "description": "Complete pinned China network list: trusted domestic BGP classification plus unannounced RIR-CN registration fallback. Routing evidence, not a guarantee of physical location or of all China access points."
         },
+        "license": "MIT",
         "sha256": "c3eda4cfb286512bb1cb6adda7f5618ad801fe402f713cf265e9a4b6a4f347a0",
         "entries": 3475,
         "updatedAt": "2026-10-30T09:07:05Z",
         "projection": "complete registered CIDR-line file; explicit ip-cidr6 semantics",
+        "excludedExpressions": []
+      },
+      {
+        "id": "abc",
+        "tag": "media",
+        "defaultProfile": true,
+        "source": {
+          "repository": "domain-list-community",
+          "list": "abc",
+          "description": "Complete explicit pinned DLC service include closure. A licensed independent source; no identity with another project or completeness beyond that source is claimed."
+        },
+        "license": "MIT",
+        "sha256": "e432e80f3cc75da58b8025b21e2da55a0663039dbaf2c28a443881f911d9cb70",
+        "entries": 4,
+        "updatedAt": "2026-10-30T13:25:16Z",
+        "projection": "selected files and explicit includes; not global affiliation expansion",
+        "excludedExpressions": []
+      },
+      {
+        "id": "amap",
+        "tag": "system",
+        "defaultProfile": true,
+        "source": {
+          "repository": "domain-list-community",
+          "list": "amap",
+          "description": "Complete explicit pinned DLC service include closure. A licensed independent source; no identity with another project or completeness beyond that source is claimed."
+        },
+        "license": "MIT",
+        "sha256": "4dc999d5bb99cd8e58358644be3adaa8b8289867041b812db6ff4729536d6076",
+        "entries": 16,
+        "updatedAt": "2026-10-30T13:25:16Z",
+        "projection": "selected files and explicit includes; not global affiliation expansion",
+        "excludedExpressions": []
+      },
+      {
+        "id": "abema",
+        "tag": "media",
+        "defaultProfile": true,
+        "source": {
+          "repository": "domain-list-community",
+          "list": "abema",
+          "description": "Complete explicit pinned DLC service include closure. A licensed independent source; no identity with another project or completeness beyond that source is claimed."
+        },
+        "license": "MIT",
+        "sha256": "2bac35b8babb0b1dea66a6647789e5e62bf640587d60a10ec3aebfc9205cfc90",
+        "entries": 21,
+        "updatedAt": "2026-10-30T13:25:16Z",
+        "projection": "selected files and explicit includes; not global affiliation expansion",
+        "excludedExpressions": []
+      },
+      {
+        "id": "acfun",
+        "tag": "media",
+        "defaultProfile": true,
+        "source": {
+          "repository": "domain-list-community",
+          "list": "acfun",
+          "description": "Complete explicit pinned DLC service include closure. A licensed independent source; no identity with another project or completeness beyond that source is claimed."
+        },
+        "license": "MIT",
+        "sha256": "72f132a8a36a61aa9f51e36213b8e07b34dd29c5f907561dd23d84ffa3e1367f",
+        "entries": 8,
+        "updatedAt": "2026-10-30T13:25:16Z",
+        "projection": "selected files and explicit includes; not global affiliation expansion",
+        "excludedExpressions": []
+      },
+      {
+        "id": "akamai",
+        "tag": "network",
+        "defaultProfile": true,
+        "source": {
+          "repository": "domain-list-community",
+          "list": "akamai",
+          "description": "Complete explicit pinned DLC service include closure. A licensed independent source; no identity with another project or completeness beyond that source is claimed."
+        },
+        "license": "MIT",
+        "sha256": "5c87d6d472b22bb0830c321bd40d5aa9360c68f9978ab6f10bd24278eb04aa91",
+        "entries": 81,
+        "updatedAt": "2026-10-30T13:25:16Z",
+        "projection": "selected files and explicit includes; not global affiliation expansion",
+        "excludedExpressions": []
+      },
+      {
+        "id": "alibaba",
+        "tag": "system",
+        "defaultProfile": true,
+        "source": {
+          "repository": "domain-list-community",
+          "list": "alibaba",
+          "description": "Complete explicit pinned DLC service include closure. A licensed independent source; no identity with another project or completeness beyond that source is claimed."
+        },
+        "license": "MIT",
+        "sha256": "73023dbbb80303d74e7add78e59021f2ff62b5258dca5a7fc00485f1fe6ba34a",
+        "entries": 464,
+        "updatedAt": "2026-10-30T13:25:16Z",
+        "projection": "selected files and explicit includes; not global affiliation expansion",
+        "excludedExpressions": []
+      },
+      {
+        "id": "android",
+        "tag": "system",
+        "defaultProfile": true,
+        "source": {
+          "repository": "domain-list-community",
+          "list": "android",
+          "description": "Complete explicit pinned DLC service include closure. A licensed independent source; no identity with another project or completeness beyond that source is claimed."
+        },
+        "license": "MIT",
+        "sha256": "a43606f0b29ba6603c23fb1b5ccf9b232837207229a56f51fc72ca28603dbd1c",
+        "entries": 4,
+        "updatedAt": "2026-10-30T13:25:16Z",
+        "projection": "selected files and explicit includes; not global affiliation expansion",
+        "excludedExpressions": []
+      },
+      {
+        "id": "baidu",
+        "tag": "system",
+        "defaultProfile": true,
+        "source": {
+          "repository": "domain-list-community",
+          "list": "baidu",
+          "description": "Complete explicit pinned DLC service include closure. A licensed independent source; no identity with another project or completeness beyond that source is claimed."
+        },
+        "license": "MIT",
+        "sha256": "6175cf836ff284563f0bbb16f424af15241cf533b61cec10cb85c3ffbb6231af",
+        "entries": 132,
+        "updatedAt": "2026-10-30T13:25:16Z",
+        "projection": "selected files and explicit includes; not global affiliation expansion",
+        "excludedExpressions": []
+      },
+      {
+        "id": "bilibili",
+        "tag": "media",
+        "defaultProfile": true,
+        "source": {
+          "repository": "domain-list-community",
+          "list": "bilibili",
+          "description": "Complete explicit pinned DLC service include closure. A licensed independent source; no identity with another project or completeness beyond that source is claimed."
+        },
+        "license": "MIT",
+        "sha256": "3b8b4b18de2c4d563afc4f8ab7f926c6bd716dacc68ee058ec85f3b430424d22",
+        "entries": 53,
+        "updatedAt": "2026-10-30T13:25:16Z",
+        "projection": "selected files and explicit includes; not global affiliation expansion",
+        "excludedExpressions": []
+      },
+      {
+        "id": "blizzard",
+        "tag": "gaming",
+        "defaultProfile": true,
+        "source": {
+          "repository": "domain-list-community",
+          "list": "blizzard",
+          "description": "Complete explicit pinned DLC service include closure. A licensed independent source; no identity with another project or completeness beyond that source is claimed."
+        },
+        "license": "MIT",
+        "sha256": "5bf008b0d17ef5d556bbe825835760205757c58ca16059dde829e1fd9da8627b",
+        "entries": 25,
+        "updatedAt": "2026-10-30T13:25:16Z",
+        "projection": "selected files and explicit includes; not global affiliation expansion",
+        "excludedExpressions": []
+      },
+      {
+        "id": "bytedance",
+        "tag": "system",
+        "defaultProfile": true,
+        "source": {
+          "repository": "domain-list-community",
+          "list": "bytedance",
+          "description": "Complete explicit pinned DLC service include closure. A licensed independent source; no identity with another project or completeness beyond that source is claimed."
+        },
+        "license": "MIT",
+        "sha256": "f013e8e24076dfc18878c8b92a0bd8e4e0709cc2b011f71a24286212aab59c9f",
+        "entries": 960,
+        "updatedAt": "2026-10-30T13:25:16Z",
+        "projection": "selected files and explicit includes; not global affiliation expansion",
+        "excludedExpressions": []
+      },
+      {
+        "id": "coolapk",
+        "tag": "system",
+        "defaultProfile": true,
+        "source": {
+          "repository": "domain-list-community",
+          "list": "coolapk",
+          "description": "Complete explicit pinned DLC service include closure. A licensed independent source; no identity with another project or completeness beyond that source is claimed."
+        },
+        "license": "MIT",
+        "sha256": "7391f3ff5047e998f1f785f814eab6dd5ba2ba498494c2460e3a43a9c59a4873",
+        "entries": 3,
+        "updatedAt": "2026-10-30T13:25:16Z",
+        "projection": "selected files and explicit includes; not global affiliation expansion",
+        "excludedExpressions": []
+      },
+      {
+        "id": "deezer",
+        "tag": "media",
+        "defaultProfile": true,
+        "source": {
+          "repository": "domain-list-community",
+          "list": "deezer",
+          "description": "Complete explicit pinned DLC service include closure. A licensed independent source; no identity with another project or completeness beyond that source is claimed."
+        },
+        "license": "MIT",
+        "sha256": "17879728982426dae3d3cb7458b9d83836731f53d26f75717654fb7f41ff80ac",
+        "entries": 2,
+        "updatedAt": "2026-10-30T13:25:16Z",
+        "projection": "selected files and explicit includes; not global affiliation expansion",
+        "excludedExpressions": []
+      },
+      {
+        "id": "discovery",
+        "tag": "media",
+        "defaultProfile": true,
+        "source": {
+          "repository": "domain-list-community",
+          "list": "discoveryplus",
+          "description": "Complete explicit pinned DLC service include closure. A licensed independent source; no identity with another project or completeness beyond that source is claimed."
+        },
+        "license": "MIT",
+        "sha256": "11a4e8c88ab2335bf13a46152afc12f040b8552a4e86287c70e96962b3278cfb",
+        "entries": 3,
+        "updatedAt": "2026-10-30T13:25:16Z",
+        "projection": "selected files and explicit includes; not global affiliation expansion",
+        "excludedExpressions": []
+      },
+      {
+        "id": "douban",
+        "tag": "system",
+        "defaultProfile": true,
+        "source": {
+          "repository": "domain-list-community",
+          "list": "douban",
+          "description": "Complete explicit pinned DLC service include closure. A licensed independent source; no identity with another project or completeness beyond that source is claimed."
+        },
+        "license": "MIT",
+        "sha256": "2891ce8a65f2867bdfc222d70f8bc5c295780f5cbc166acc17f637e6d71fb877",
+        "entries": 3,
+        "updatedAt": "2026-10-30T13:25:16Z",
+        "projection": "selected files and explicit includes; not global affiliation expansion",
+        "excludedExpressions": []
+      },
+      {
+        "id": "douyin",
+        "tag": "media",
+        "defaultProfile": true,
+        "source": {
+          "repository": "domain-list-community",
+          "list": "douyin",
+          "description": "Complete explicit pinned DLC service include closure. A licensed independent source; no identity with another project or completeness beyond that source is claimed."
+        },
+        "license": "MIT",
+        "sha256": "92446e730032f5837377b4807b8d69907eaa9c8e780377a9fca3ad8d8fb7a038",
+        "entries": 71,
+        "updatedAt": "2026-10-30T13:25:16Z",
+        "projection": "selected files and explicit includes; not global affiliation expansion",
+        "excludedExpressions": []
+      },
+      {
+        "id": "douyu",
+        "tag": "media",
+        "defaultProfile": true,
+        "source": {
+          "repository": "domain-list-community",
+          "list": "douyu",
+          "description": "Complete explicit pinned DLC service include closure. A licensed independent source; no identity with another project or completeness beyond that source is claimed."
+        },
+        "license": "MIT",
+        "sha256": "5344cfa906148be4237aaffa68156d288c3c7a04dd8a477b998b4697071e1aa6",
+        "entries": 7,
+        "updatedAt": "2026-10-30T13:25:16Z",
+        "projection": "selected files and explicit includes; not global affiliation expansion",
+        "excludedExpressions": []
+      },
+      {
+        "id": "dropbox",
+        "tag": "system",
+        "defaultProfile": true,
+        "source": {
+          "repository": "domain-list-community",
+          "list": "dropbox",
+          "description": "Complete explicit pinned DLC service include closure. A licensed independent source; no identity with another project or completeness beyond that source is claimed."
+        },
+        "license": "MIT",
+        "sha256": "1d22de503594eedfe4397f44b8c231b2df2b8b72e19e06e91b7d1e2c8561636b",
+        "entries": 25,
+        "updatedAt": "2026-10-30T13:25:16Z",
+        "projection": "selected files and explicit includes; not global affiliation expansion",
+        "excludedExpressions": []
+      },
+      {
+        "id": "facebook",
+        "tag": "social",
+        "defaultProfile": true,
+        "source": {
+          "repository": "domain-list-community",
+          "list": "facebook",
+          "description": "Complete explicit pinned DLC service include closure. A licensed independent source; no identity with another project or completeness beyond that source is claimed."
+        },
+        "license": "MIT",
+        "sha256": "8d67197c2bf501fe527fce16a6e29aac03cd7137c0d56b6bc582c5837d197c72",
+        "entries": 397,
+        "updatedAt": "2026-10-30T13:25:16Z",
+        "projection": "selected files and explicit includes; not global affiliation expansion",
+        "excludedExpressions": []
+      },
+      {
+        "id": "heroku",
+        "tag": "system",
+        "defaultProfile": true,
+        "source": {
+          "repository": "domain-list-community",
+          "list": "heroku",
+          "description": "Complete explicit pinned DLC service include closure. A licensed independent source; no identity with another project or completeness beyond that source is claimed."
+        },
+        "license": "MIT",
+        "sha256": "edef7ebc8568572e526884dff12d4c404c94748ca50dbc7f06b086312f4ea6cd",
+        "entries": 12,
+        "updatedAt": "2026-10-30T13:25:16Z",
+        "projection": "selected files and explicit includes; not global affiliation expansion",
+        "excludedExpressions": []
+      },
+      {
+        "id": "huya",
+        "tag": "media",
+        "defaultProfile": true,
+        "source": {
+          "repository": "domain-list-community",
+          "list": "huya",
+          "description": "Complete explicit pinned DLC service include closure. A licensed independent source; no identity with another project or completeness beyond that source is claimed."
+        },
+        "license": "MIT",
+        "sha256": "aa1e2462e75b30ce8cef6d56241935099164eb1847a999acfeb78816fe8dbbf6",
+        "entries": 2,
+        "updatedAt": "2026-10-30T13:25:16Z",
+        "projection": "selected files and explicit includes; not global affiliation expansion",
+        "excludedExpressions": []
+      },
+      {
+        "id": "hulu",
+        "tag": "media",
+        "defaultProfile": true,
+        "source": {
+          "repository": "domain-list-community",
+          "list": "hulu",
+          "description": "Complete explicit pinned DLC service include closure. A licensed independent source; no identity with another project or completeness beyond that source is claimed."
+        },
+        "license": "MIT",
+        "sha256": "a8edbb8678a94836f3f955b2efd5413e4c3df2c74e1b26806fa0a6fd4bf2b728",
+        "entries": 48,
+        "updatedAt": "2026-10-30T13:25:16Z",
+        "projection": "selected files and explicit includes; not global affiliation expansion",
+        "excludedExpressions": []
+      },
+      {
+        "id": "iqiyi",
+        "tag": "media",
+        "defaultProfile": true,
+        "source": {
+          "repository": "domain-list-community",
+          "list": "iqiyi",
+          "description": "Complete explicit pinned DLC service include closure. A licensed independent source; no identity with another project or completeness beyond that source is claimed."
+        },
+        "license": "MIT",
+        "sha256": "0842588fa5e1d9185339df00c6a69c22523f7afc92e53d6e2499ea1400fc0ef4",
+        "entries": 20,
+        "updatedAt": "2026-10-30T13:25:16Z",
+        "projection": "selected files and explicit includes; not global affiliation expansion",
+        "excludedExpressions": []
+      },
+      {
+        "id": "kkbox",
+        "tag": "media",
+        "defaultProfile": true,
+        "source": {
+          "repository": "domain-list-community",
+          "list": "kkbox",
+          "description": "Complete explicit pinned DLC service include closure. A licensed independent source; no identity with another project or completeness beyond that source is claimed."
+        },
+        "license": "MIT",
+        "sha256": "73a156b32f4e76d624e297f981d3870afeeb19c87031c3a564f743ac92b0438d",
+        "entries": 5,
+        "updatedAt": "2026-10-30T13:25:16Z",
+        "projection": "selected files and explicit includes; not global affiliation expansion",
+        "excludedExpressions": []
+      },
+      {
+        "id": "kktv",
+        "tag": "media",
+        "defaultProfile": true,
+        "source": {
+          "repository": "domain-list-community",
+          "list": "kktv",
+          "description": "Complete explicit pinned DLC service include closure. A licensed independent source; no identity with another project or completeness beyond that source is claimed."
+        },
+        "license": "MIT",
+        "sha256": "cc572eaedf3562a4f3c429628ce60dce66358adbc3b0124e800f1b8101aae3ae",
+        "entries": 3,
+        "updatedAt": "2026-10-30T13:25:16Z",
+        "projection": "selected files and explicit includes; not global affiliation expansion",
+        "excludedExpressions": []
+      },
+      {
+        "id": "mozilla",
+        "tag": "system",
+        "defaultProfile": true,
+        "source": {
+          "repository": "domain-list-community",
+          "list": "mozilla",
+          "description": "Complete explicit pinned DLC service include closure. A licensed independent source; no identity with another project or completeness beyond that source is claimed."
+        },
+        "license": "MIT",
+        "sha256": "8330d5050c69382e2ac3a3de6d253d6969eec6099c401597e69d3bee9806325c",
+        "entries": 77,
+        "updatedAt": "2026-10-30T13:25:16Z",
+        "projection": "selected files and explicit includes; not global affiliation expansion",
+        "excludedExpressions": []
+      },
+      {
+        "id": "mytvsuper",
+        "tag": "media",
+        "defaultProfile": true,
+        "source": {
+          "repository": "domain-list-community",
+          "list": "mytvsuper",
+          "description": "Complete explicit pinned DLC service include closure. A licensed independent source; no identity with another project or completeness beyond that source is claimed."
+        },
+        "license": "MIT",
+        "sha256": "733aab6ef7f51cd0102b179fff6e2dc6aa161f92076fde7afd68bcc8c6ace742",
+        "entries": 1,
+        "updatedAt": "2026-10-30T13:25:16Z",
+        "projection": "selected files and explicit includes; not global affiliation expansion",
+        "excludedExpressions": []
+      },
+      {
+        "id": "netease",
+        "tag": "system",
+        "defaultProfile": true,
+        "source": {
+          "repository": "domain-list-community",
+          "list": "netease",
+          "description": "Complete explicit pinned DLC service include closure. A licensed independent source; no identity with another project or completeness beyond that source is claimed."
+        },
+        "license": "MIT",
+        "sha256": "2a74723698c585c5ea20c24a56eb9230803c346fbff805ba9cda575e19a0a82e",
+        "entries": 54,
+        "updatedAt": "2026-10-30T13:25:16Z",
+        "projection": "selected files and explicit includes; not global affiliation expansion",
+        "excludedExpressions": []
+      },
+      {
+        "id": "niconico",
+        "tag": "media",
+        "defaultProfile": true,
+        "source": {
+          "repository": "domain-list-community",
+          "list": "niconico",
+          "description": "Complete explicit pinned DLC service include closure. A licensed independent source; no identity with another project or completeness beyond that source is claimed."
+        },
+        "license": "MIT",
+        "sha256": "8b34cb20fdbe9fdf75cee0306cb878ad8ca0394e11fb53b5164a49cb39f6cf6f",
+        "entries": 10,
+        "updatedAt": "2026-10-30T13:25:16Z",
+        "projection": "selected files and explicit includes; not global affiliation expansion",
+        "excludedExpressions": []
+      },
+      {
+        "id": "notion",
+        "tag": "development",
+        "defaultProfile": true,
+        "source": {
+          "repository": "domain-list-community",
+          "list": "notion",
+          "description": "Complete explicit pinned DLC service include closure. A licensed independent source; no identity with another project or completeness beyond that source is claimed."
+        },
+        "license": "MIT",
+        "sha256": "df5448f9e77da87d76ac42f9900470fd1d8228e25577d02f430222880d13c02a",
+        "entries": 7,
+        "updatedAt": "2026-10-30T13:25:16Z",
+        "projection": "selected files and explicit includes; not global affiliation expansion",
+        "excludedExpressions": []
+      },
+      {
+        "id": "olevod",
+        "tag": "media",
+        "defaultProfile": true,
+        "source": {
+          "repository": "domain-list-community",
+          "list": "olevod",
+          "description": "Complete explicit pinned DLC service include closure. A licensed independent source; no identity with another project or completeness beyond that source is claimed."
+        },
+        "license": "MIT",
+        "sha256": "f8adb7fc542ed682216173aadee42c9616bf9fcccdf00e8b00b5fb2915d92f1f",
+        "entries": 9,
+        "updatedAt": "2026-10-30T13:25:16Z",
+        "projection": "selected files and explicit includes; not global affiliation expansion",
+        "excludedExpressions": []
+      },
+      {
+        "id": "onedrive",
+        "tag": "system",
+        "defaultProfile": true,
+        "source": {
+          "repository": "domain-list-community",
+          "list": "onedrive",
+          "description": "Complete explicit pinned DLC service include closure. A licensed independent source; no identity with another project or completeness beyond that source is claimed."
+        },
+        "license": "MIT",
+        "sha256": "14fe9b5f4b9888b867db24250dc2c972be82c5e427f1256cc35d4f153c777d90",
+        "entries": 11,
+        "updatedAt": "2026-10-30T13:25:16Z",
+        "projection": "selected files and explicit includes; not global affiliation expansion",
+        "excludedExpressions": []
+      },
+      {
+        "id": "oracle",
+        "tag": "development",
+        "defaultProfile": true,
+        "source": {
+          "repository": "domain-list-community",
+          "list": "oracle",
+          "description": "Complete explicit pinned DLC service include closure. A licensed independent source; no identity with another project or completeness beyond that source is claimed."
+        },
+        "license": "MIT",
+        "sha256": "63b9b5745db6f3967b3276c11eadbc91ae538550cb605cac5e1683f2bab8aa47",
+        "entries": 19,
+        "updatedAt": "2026-10-30T13:25:16Z",
+        "projection": "selected files and explicit includes; not global affiliation expansion",
+        "excludedExpressions": []
+      },
+      {
+        "id": "pptv",
+        "tag": "media",
+        "defaultProfile": true,
+        "source": {
+          "repository": "domain-list-community",
+          "list": "pptv",
+          "description": "Complete explicit pinned DLC service include closure. A licensed independent source; no identity with another project or completeness beyond that source is claimed."
+        },
+        "license": "MIT",
+        "sha256": "a639288d08f487a410fb8b99f3d7b5a59b0e89749d2f22c912621016c84f2dfc",
+        "entries": 3,
+        "updatedAt": "2026-10-30T13:25:16Z",
+        "projection": "selected files and explicit includes; not global affiliation expansion",
+        "excludedExpressions": []
+      },
+      {
+        "id": "paypal",
+        "tag": "system",
+        "defaultProfile": true,
+        "source": {
+          "repository": "domain-list-community",
+          "list": "paypal",
+          "description": "Complete explicit pinned DLC service include closure. A licensed independent source; no identity with another project or completeness beyond that source is claimed."
+        },
+        "license": "MIT",
+        "sha256": "60ccfab15ec97a31e70ad4e30f7a916c095941683906910d1343f18504001189",
+        "entries": 245,
+        "updatedAt": "2026-10-30T13:25:16Z",
+        "projection": "selected files and explicit includes; not global affiliation expansion",
+        "excludedExpressions": []
+      },
+      {
+        "id": "pikpak",
+        "tag": "system",
+        "defaultProfile": true,
+        "source": {
+          "repository": "domain-list-community",
+          "list": "pikpak",
+          "description": "Complete explicit pinned DLC service include closure. A licensed independent source; no identity with another project or completeness beyond that source is claimed."
+        },
+        "license": "MIT",
+        "sha256": "c1af3a8b5aabefa59fbda98452edaa3745eb8ea91b21e427edb81b2cbd6dd4f5",
+        "entries": 7,
+        "updatedAt": "2026-10-30T13:25:16Z",
+        "projection": "selected files and explicit includes; not global affiliation expansion",
+        "excludedExpressions": []
+      },
+      {
+        "id": "pornhub",
+        "tag": "media",
+        "defaultProfile": true,
+        "source": {
+          "repository": "domain-list-community",
+          "list": "pornhub",
+          "description": "Complete explicit pinned DLC service include closure. A licensed independent source; no identity with another project or completeness beyond that source is claimed."
+        },
+        "license": "MIT",
+        "sha256": "26f182d4cb546d53f6d47e999c78d723fc723bf14b0b6e41e4e86a5243f60586",
+        "entries": 9,
+        "updatedAt": "2026-10-30T13:25:16Z",
+        "projection": "selected files and explicit includes; not global affiliation expansion",
+        "excludedExpressions": []
+      },
+      {
+        "id": "primevideo",
+        "tag": "media",
+        "defaultProfile": true,
+        "source": {
+          "repository": "domain-list-community",
+          "list": "primevideo",
+          "description": "Complete explicit pinned DLC service include closure. A licensed independent source; no identity with another project or completeness beyond that source is claimed."
+        },
+        "license": "MIT",
+        "sha256": "922050ddc46b97d858a7f01e8c160a6c890f49f1c2bfa61235052028aa9f32f3",
+        "entries": 24,
+        "updatedAt": "2026-10-30T13:25:16Z",
+        "projection": "selected files and explicit includes; not global affiliation expansion",
+        "excludedExpressions": []
+      },
+      {
+        "id": "quora",
+        "tag": "social",
+        "defaultProfile": true,
+        "source": {
+          "repository": "domain-list-community",
+          "list": "quora",
+          "description": "Complete explicit pinned DLC service include closure. A licensed independent source; no identity with another project or completeness beyond that source is claimed."
+        },
+        "license": "MIT",
+        "sha256": "0ec581e19b834f831c7da262bda50b4dc33cdd6341388cb7a246d393094e07ab",
+        "entries": 6,
+        "updatedAt": "2026-10-30T13:25:16Z",
+        "projection": "selected files and explicit includes; not global affiliation expansion",
+        "excludedExpressions": []
+      },
+      {
+        "id": "xiaohongshu",
+        "tag": "social",
+        "defaultProfile": true,
+        "source": {
+          "repository": "domain-list-community",
+          "list": "xiaohongshu",
+          "description": "Complete explicit pinned DLC service include closure. A licensed independent source; no identity with another project or completeness beyond that source is claimed."
+        },
+        "license": "MIT",
+        "sha256": "106642bdf95640e40d677e09d07a71b20438b2bdbdd00f72e1e6a122758a6ee8",
+        "entries": 12,
+        "updatedAt": "2026-10-30T13:25:16Z",
+        "projection": "selected files and explicit includes; not global affiliation expansion",
+        "excludedExpressions": []
+      },
+      {
+        "id": "soundcloud",
+        "tag": "media",
+        "defaultProfile": true,
+        "source": {
+          "repository": "domain-list-community",
+          "list": "soundcloud",
+          "description": "Complete explicit pinned DLC service include closure. A licensed independent source; no identity with another project or completeness beyond that source is claimed."
+        },
+        "license": "MIT",
+        "sha256": "1d097eb739883334d00bdba9d85274c9c4ab0f9c02225836473c001fcbc2b3f6",
+        "entries": 3,
+        "updatedAt": "2026-10-30T13:25:16Z",
+        "projection": "selected files and explicit includes; not global affiliation expansion",
+        "excludedExpressions": []
+      },
+      {
+        "id": "tidal",
+        "tag": "media",
+        "defaultProfile": true,
+        "source": {
+          "repository": "domain-list-community",
+          "list": "tidal",
+          "description": "Complete explicit pinned DLC service include closure. A licensed independent source; no identity with another project or completeness beyond that source is claimed."
+        },
+        "license": "MIT",
+        "sha256": "2e0a8c6f9b8e049f545e2ad3ed305f926c255225780318455a209f0f3d1fdc74",
+        "entries": 3,
+        "updatedAt": "2026-10-30T13:25:16Z",
+        "projection": "selected files and explicit includes; not global affiliation expansion",
+        "excludedExpressions": []
+      },
+      {
+        "id": "taptap",
+        "tag": "gaming",
+        "defaultProfile": true,
+        "source": {
+          "repository": "domain-list-community",
+          "list": "taptap",
+          "description": "Complete explicit pinned DLC service include closure. A licensed independent source; no identity with another project or completeness beyond that source is claimed."
+        },
+        "license": "MIT",
+        "sha256": "c05dc70a4d99423efdaff990fd3673460e186f1fde57ae8916939e3eafb72129",
+        "entries": 7,
+        "updatedAt": "2026-10-30T13:25:16Z",
+        "projection": "selected files and explicit includes; not global affiliation expansion",
+        "excludedExpressions": []
+      },
+      {
+        "id": "tencent",
+        "tag": "system",
+        "defaultProfile": true,
+        "source": {
+          "repository": "domain-list-community",
+          "list": "tencent",
+          "description": "Complete explicit pinned DLC service include closure. A licensed independent source; no identity with another project or completeness beyond that source is claimed."
+        },
+        "license": "MIT",
+        "sha256": "2ebebf695d9b8c45c28d7d92cc26ddfcd4f410b9451ecbca162de73b95add5c6",
+        "entries": 700,
+        "updatedAt": "2026-10-30T13:25:16Z",
+        "projection": "selected files and explicit includes; not global affiliation expansion",
+        "excludedExpressions": []
+      },
+      {
+        "id": "terabox",
+        "tag": "system",
+        "defaultProfile": true,
+        "source": {
+          "repository": "domain-list-community",
+          "list": "terabox",
+          "description": "Complete explicit pinned DLC service include closure. A licensed independent source; no identity with another project or completeness beyond that source is claimed."
+        },
+        "license": "MIT",
+        "sha256": "03a322b8e284638b6733313408a831b8a3b5602b32ab3689a821b1ed33cf8299",
+        "entries": 7,
+        "updatedAt": "2026-10-30T13:25:16Z",
+        "projection": "selected files and explicit includes; not global affiliation expansion",
+        "excludedExpressions": []
+      },
+      {
+        "id": "twitter",
+        "tag": "social",
+        "defaultProfile": true,
+        "source": {
+          "repository": "domain-list-community",
+          "list": "twitter",
+          "description": "Complete explicit pinned DLC service include closure. A licensed independent source; no identity with another project or completeness beyond that source is claimed."
+        },
+        "license": "MIT",
+        "sha256": "0ec4362be59169de52a9bef5a546fcf43db68f677875a3713157939f5ced4296",
+        "entries": 24,
+        "updatedAt": "2026-10-30T13:25:16Z",
+        "projection": "selected files and explicit includes; not global affiliation expansion",
+        "excludedExpressions": []
+      },
+      {
+        "id": "wikimedia",
+        "tag": "system",
+        "defaultProfile": true,
+        "source": {
+          "repository": "domain-list-community",
+          "list": "wikimedia",
+          "description": "Complete explicit pinned DLC service include closure. A licensed independent source; no identity with another project or completeness beyond that source is claimed."
+        },
+        "license": "MIT",
+        "sha256": "fcf36daad1880041d6a091b9e59a08417a12e1e179530908c901c7407fc59589",
+        "entries": 18,
+        "updatedAt": "2026-10-30T13:25:16Z",
+        "projection": "selected files and explicit includes; not global affiliation expansion",
+        "excludedExpressions": []
+      },
+      {
+        "id": "ximalaya",
+        "tag": "media",
+        "defaultProfile": true,
+        "source": {
+          "repository": "domain-list-community",
+          "list": "ximalaya",
+          "description": "Complete explicit pinned DLC service include closure. A licensed independent source; no identity with another project or completeness beyond that source is claimed."
+        },
+        "license": "MIT",
+        "sha256": "db825176480ae4565314bdf8397e0457f2fcb93906cf576566312fc5871104c9",
+        "entries": 5,
+        "updatedAt": "2026-10-30T13:25:16Z",
+        "projection": "selected files and explicit includes; not global affiliation expansion",
+        "excludedExpressions": []
+      },
+      {
+        "id": "yandex",
+        "tag": "system",
+        "defaultProfile": true,
+        "source": {
+          "repository": "domain-list-community",
+          "list": "yandex",
+          "description": "Complete explicit pinned DLC service include closure. A licensed independent source; no identity with another project or completeness beyond that source is claimed."
+        },
+        "license": "MIT",
+        "sha256": "ec6a5460ea5111ecd9f55389b4affa65a5f37469f81d61839729d7fcb701c3df",
+        "entries": 157,
+        "updatedAt": "2026-10-30T13:25:16Z",
+        "projection": "selected files and explicit includes; not global affiliation expansion",
+        "excludedExpressions": []
+      },
+      {
+        "id": "youku",
+        "tag": "media",
+        "defaultProfile": true,
+        "source": {
+          "repository": "domain-list-community",
+          "list": "youku",
+          "description": "Complete explicit pinned DLC service include closure. A licensed independent source; no identity with another project or completeness beyond that source is claimed."
+        },
+        "license": "MIT",
+        "sha256": "f9e0b89b309526a4cce4734357c4dc9cc8d88d22cbd33123a2f000f8a792340f",
+        "entries": 31,
+        "updatedAt": "2026-10-30T13:25:16Z",
+        "projection": "selected files and explicit includes; not global affiliation expansion",
+        "excludedExpressions": []
+      },
+      {
+        "id": "z-library",
+        "tag": "system",
+        "defaultProfile": true,
+        "source": {
+          "repository": "domain-list-community",
+          "list": "z-library",
+          "description": "Complete explicit pinned DLC service include closure. A licensed independent source; no identity with another project or completeness beyond that source is claimed."
+        },
+        "license": "MIT",
+        "sha256": "6d8f583117a2f8fec8844ce7c9b16d1a82b1bddbc642f6d8e6a7c82e0b420893",
+        "entries": 48,
+        "updatedAt": "2026-10-30T13:25:16Z",
+        "projection": "selected files and explicit includes; not global affiliation expansion",
+        "excludedExpressions": []
+      },
+      {
+        "id": "icloud",
+        "tag": "system",
+        "defaultProfile": true,
+        "source": {
+          "repository": "domain-list-community",
+          "list": "icloud",
+          "description": "Complete explicit pinned DLC service include closure. A licensed independent source; no identity with another project or completeness beyond that source is claimed."
+        },
+        "license": "MIT",
+        "sha256": "05cb2c00eb1878e7ed8bbf72cfa57f7e741331b29cf74906b0412ce721b5334f",
+        "entries": 55,
+        "updatedAt": "2026-10-30T13:25:16Z",
+        "projection": "selected files and explicit includes; not global affiliation expansion",
+        "excludedExpressions": []
+      },
+      {
+        "id": "disney",
+        "tag": "media",
+        "defaultProfile": true,
+        "source": {
+          "repository": "domain-list-community",
+          "list": "disney",
+          "expansions": [
+            {
+              "file": "hotstar",
+              "rule": "regexp:^hses[1-7]?\\.akamaized\\.net$",
+              "conversion": "hotstar-hosts-v1",
+              "reason": "The fully anchored hses[1-7]? host expression has precisely eight hostnames: hses and hses1 through hses7. Convert all eight to exact domain rules without widening to subdomains."
+            }
+          ],
+          "description": "Complete explicit pinned DLC Disney service closure with the finite Hotstar expression exactly expanded to eight full hosts; not limited to Disney+ content delivery."
+        },
+        "license": "MIT",
+        "sha256": "1607ee950eda65d467ab8446c56cb6defd5f842929920ecd52b31c92d13a4c14",
+        "entries": 236,
+        "updatedAt": "2026-10-30T13:25:16Z",
+        "projection": "selected files and explicit includes; not global affiliation expansion",
+        "excludedExpressions": []
+      },
+      {
+        "id": "amazon-portable",
+        "tag": "system",
+        "defaultProfile": true,
+        "source": {
+          "repository": "domain-list-community",
+          "list": "amazon",
+          "description": "Portable domain projection of the pinned Amazon include closure; exactly three unbounded AWS DNS expressions are preserved as explicit omissions. Not a complete Amazon matching source."
+        },
+        "license": "MIT",
+        "sha256": "a4fad5b7294ea4a870fb11e60a7f133fecadc61af2be8a18c91852ce0e162926",
+        "entries": 250,
+        "updatedAt": "2026-10-30T13:25:16Z",
+        "projection": "selected files and explicit includes; not global affiliation expansion",
+        "excludedExpressions": [
+          {
+            "file": "aws-cn",
+            "line": 31,
+            "rule": "regexp:.+\\.awsdns-cn-[0-9][0-9]\\.(biz|com|net|top)$",
+            "sourceLine": "regexp:.+\\.awsdns-cn-[0-9][0-9]\\.(biz|com|net|top)$ @cn",
+            "reason": "Explicit omission from amazon-portable: this unbounded nameserver regex has no exact domain/domain-suffix equivalent. This named projection does not claim complete upstream semantics; newly changed expressions must fail sync."
+          },
+          {
+            "file": "aws-cn",
+            "line": 32,
+            "rule": "regexp:.+\\.awsdns-cn-[0-9][a-e0-9]\\.cn$",
+            "sourceLine": "regexp:.+\\.awsdns-cn-[0-9][a-e0-9]\\.cn$ @cn",
+            "reason": "Explicit omission from amazon-portable: this unbounded nameserver regex has no exact domain/domain-suffix equivalent. This named projection does not claim complete upstream semantics; newly changed expressions must fail sync."
+          },
+          {
+            "file": "aws",
+            "line": 61,
+            "rule": "regexp:.+\\.awsdns-[0-9][0-9]\\.(co\\.uk|com|net|org)$",
+            "sourceLine": "regexp:.+\\.awsdns-[0-9][0-9]\\.(co\\.uk|com|net|org)$",
+            "reason": "Explicit omission from amazon-portable: this unbounded nameserver regex has no exact domain/domain-suffix equivalent. This named projection does not claim complete upstream semantics; newly changed expressions must fail sync."
+          }
+        ]
+      },
+      {
+        "id": "viu-portable",
+        "tag": "media",
+        "defaultProfile": true,
+        "source": {
+          "repository": "domain-list-community",
+          "list": "viu",
+          "description": "Portable domain projection of the pinned Viu service list, omitting the recorded unbounded numeric CDN expression. Viu and ViuTV service scopes are not claimed identical."
+        },
+        "license": "MIT",
+        "sha256": "67b093f012de65349b02afa3be3b269262f7b81d32b9c1b156adc6ac664f69ff",
+        "entries": 6,
+        "updatedAt": "2026-10-30T13:25:16Z",
+        "projection": "selected files and explicit includes; not global affiliation expansion",
+        "excludedExpressions": [
+          {
+            "file": "viu",
+            "line": 4,
+            "rule": "regexp:^ewcdn[0-9]+\\.nowe\\.com$",
+            "sourceLine": "regexp:^ewcdn[0-9]+\\.nowe\\.com$",
+            "reason": "Explicit omission from viu-portable and streaming unions: the unbounded numeric CDN regex cannot be finitely represented by exact portable domains. This projection does not claim complete upstream or ViuTV coverage."
+          }
+        ]
+      },
+      {
+        "id": "tvb",
+        "tag": "media",
+        "defaultProfile": true,
+        "source": {
+          "repository": "domain-list-community",
+          "list": "tvb",
+          "description": "Complete pinned DLC TVB parent-service include closure, including published EncoreTVB and MyTVSuper domains; not a dedicated EncoreTVB subset."
+        },
+        "license": "MIT",
+        "sha256": "208ca3f211e5d538b46a8f8b43c31933ceb5a555b331a0c841f1f01ffbbdf9b6",
+        "entries": 14,
+        "updatedAt": "2026-10-30T13:25:16Z",
+        "projection": "selected files and explicit includes; not global affiliation expansion",
+        "excludedExpressions": []
+      },
+      {
+        "id": "mudvod",
+        "tag": "media",
+        "defaultProfile": true,
+        "source": {
+          "repository": "domain-list-community",
+          "list": "mudvod",
+          "description": "Complete pinned DLC Mudvod related-service list, including its published Nivod domains; not the complete NivodTV keyword or IP surface."
+        },
+        "license": "MIT",
+        "sha256": "c6e1404212e8aefd600d5d970d10b8a9c49a652e161f33f19b6f31d7ab41a88f",
+        "entries": 10,
+        "updatedAt": "2026-10-30T13:25:16Z",
+        "projection": "selected files and explicit includes; not global affiliation expansion",
+        "excludedExpressions": []
+      },
+      {
+        "id": "alipay",
+        "tag": "system",
+        "defaultProfile": true,
+        "source": {
+          "repository": "domain-list-community",
+          "list": "alibaba",
+          "select": [
+            {
+              "file": "alibaba",
+              "rule": "alipay"
+            },
+            {
+              "file": "alibaba",
+              "rule": "alipay-eco.com"
+            },
+            {
+              "file": "alibaba",
+              "rule": "alipay.cn"
+            },
+            {
+              "file": "alibaba",
+              "rule": "alipay.com"
+            },
+            {
+              "file": "alibaba",
+              "rule": "alipay.com.cn"
+            },
+            {
+              "file": "alibaba",
+              "rule": "alipaydns.com"
+            },
+            {
+              "file": "alibaba",
+              "rule": "alipaylog.com"
+            },
+            {
+              "file": "alibaba",
+              "rule": "alipayobjects.com"
+            },
+            {
+              "file": "alibaba",
+              "rule": "alipayplus.com"
+            },
+            {
+              "file": "alibaba",
+              "rule": "alipay.hk"
+            },
+            {
+              "file": "alibaba",
+              "rule": "alipaymo.com"
+            }
+          ],
+          "description": "Exact published Alipay-branded tokens selected from the MIT Alibaba source. Includes are disabled; unrelated Alibaba services and broader Ant corporate domains are not selected. This is not a claim of complete Alipay infrastructure."
+        },
+        "license": "MIT",
+        "sha256": "2b5a4cdb7c427b61b6cbd6472714443407959992872b96b5358bec2b89acf64d",
+        "entries": 11,
+        "updatedAt": "2026-10-30T13:25:16Z",
+        "projection": "exact registered portable tokens in named files; includes are not expanded",
+        "excludedExpressions": []
+      },
+      {
+        "id": "wechat",
+        "tag": "social",
+        "defaultProfile": true,
+        "source": {
+          "repository": "domain-list-community",
+          "list": "tencent",
+          "select": [
+            {
+              "file": "tencent",
+              "rule": "servicewechat.com"
+            },
+            {
+              "file": "tencent",
+              "rule": "wechat.com"
+            },
+            {
+              "file": "tencent",
+              "rule": "wechatpay.cn"
+            },
+            {
+              "file": "tencent",
+              "rule": "weixin.com"
+            },
+            {
+              "file": "tencent",
+              "rule": "weixinsxy.com"
+            }
+          ],
+          "description": "Exact published WeChat/Weixin-branded tokens selected from the MIT Tencent source. Does not include all qq.com domains, Tencent products, native service IP rules or claim complete WeChat endpoint coverage."
+        },
+        "license": "MIT",
+        "sha256": "f04089dc21c17282d98241eadee32f8a55fdc3b436f395f530eec3d6dc28c577",
+        "entries": 5,
+        "updatedAt": "2026-10-30T13:25:16Z",
+        "projection": "exact registered portable tokens in named files; includes are not expanded",
+        "excludedExpressions": []
+      },
+      {
+        "id": "weibo",
+        "tag": "social",
+        "defaultProfile": true,
+        "source": {
+          "repository": "domain-list-community",
+          "list": "sina",
+          "select": [
+            {
+              "file": "sina",
+              "rule": "weibo"
+            },
+            {
+              "file": "sina",
+              "rule": "weibo.cn"
+            },
+            {
+              "file": "sina",
+              "rule": "weibo.com"
+            },
+            {
+              "file": "sina",
+              "rule": "weibo.com.cn"
+            },
+            {
+              "file": "sina",
+              "rule": "weibocdn.com"
+            },
+            {
+              "file": "sina",
+              "rule": "weibopay.com"
+            }
+          ],
+          "description": "Exact published Weibo-branded root tokens selected from the MIT Sina source. No unrelated Sina roots or claim of complete client-native matching semantics."
+        },
+        "license": "MIT",
+        "sha256": "b83bf89a13383a39ec56f9c4c397167f0dac908227484a413e76335f85f5fc6d",
+        "entries": 6,
+        "updatedAt": "2026-10-30T13:25:16Z",
+        "projection": "exact registered portable tokens in named files; includes are not expanded",
+        "excludedExpressions": []
+      },
+      {
+        "id": "quark",
+        "tag": "system",
+        "defaultProfile": true,
+        "source": {
+          "repository": "domain-list-community",
+          "list": "alibaba",
+          "select": [
+            {
+              "file": "alibaba",
+              "rule": "cueme.cn"
+            },
+            {
+              "file": "alibaba",
+              "rule": "myquark.cn"
+            },
+            {
+              "file": "alibaba",
+              "rule": "quark.cn"
+            }
+          ],
+          "description": "Exact tokens in the pinned Alibaba source Quark section. Includes are disabled; no unrelated Alibaba services are selected."
+        },
+        "license": "MIT",
+        "sha256": "f13d559a98464ead40cebafcca0318512516bc46ee9f01747f5f3c9a56d73a16",
+        "entries": 3,
+        "updatedAt": "2026-10-30T13:25:16Z",
+        "projection": "exact registered portable tokens in named files; includes are not expanded",
+        "excludedExpressions": []
+      },
+      {
+        "id": "appstore",
+        "tag": "system",
+        "defaultProfile": true,
+        "source": {
+          "repository": "domain-list-community",
+          "lists": [
+            "apple",
+            "itunes"
+          ],
+          "select": [
+            {
+              "file": "apple",
+              "rule": "app-store.wang"
+            },
+            {
+              "file": "apple",
+              "rule": "appe-store.com"
+            },
+            {
+              "file": "apple",
+              "rule": "apple-appstore.cn"
+            },
+            {
+              "file": "apple",
+              "rule": "appleappstore.cn"
+            },
+            {
+              "file": "apple",
+              "rule": "appleappstore.net"
+            },
+            {
+              "file": "apple",
+              "rule": "appleappstore.tv"
+            },
+            {
+              "file": "apple",
+              "rule": "appsto.re"
+            },
+            {
+              "file": "apple",
+              "rule": "appstore.co.id"
+            },
+            {
+              "file": "apple",
+              "rule": "appstore.hk"
+            },
+            {
+              "file": "apple",
+              "rule": "appstore.my"
+            },
+            {
+              "file": "apple",
+              "rule": "appstore.ph"
+            },
+            {
+              "file": "apple",
+              "rule": "appstoreapple.cn"
+            },
+            {
+              "file": "apple",
+              "rule": "asto.re"
+            },
+            {
+              "file": "apple",
+              "rule": "tvappstore.net"
+            },
+            {
+              "file": "apple",
+              "rule": "full:amp-api-edge.apps.apple.com"
+            },
+            {
+              "file": "apple",
+              "rule": "full:amp-api-search-edge.apps.apple.com"
+            },
+            {
+              "file": "apple",
+              "rule": "full:amp-api.apps.apple.com"
+            },
+            {
+              "file": "apple",
+              "rule": "full:api-edge.apps.apple.com"
+            },
+            {
+              "file": "apple",
+              "rule": "full:amp-api-updates.apps.apple.com"
+            },
+            {
+              "file": "itunes",
+              "rule": "full:inappcheck-cn.itunes-apple.com.akadns.net"
+            },
+            {
+              "file": "itunes",
+              "rule": "full:inappcheck-lb.itunes-apple.com.akadns.net"
+            },
+            {
+              "file": "itunes",
+              "rule": "full:inappcheck.itunes.apple.com"
+            },
+            {
+              "file": "itunes",
+              "rule": "full:iosapps.itunes.apple.com"
+            },
+            {
+              "file": "itunes",
+              "rule": "full:osxapps.itunes.apple.com"
+            },
+            {
+              "file": "itunes",
+              "rule": "full:iosapps.itunes.g.aaplimg.com"
+            },
+            {
+              "file": "itunes",
+              "rule": "full:osxapps.itunes.g.aaplimg.com"
+            }
+          ],
+          "description": "Exact published App Store-branded domains, apps.apple.com API hosts and app delivery hosts selected from pinned MIT Apple/iTunes files. This scoped subset does not broaden to apple.com, all iTunes services or claim every App Store endpoint."
+        },
+        "license": "MIT",
+        "sha256": "28049a5839275267546e78ed603ae71a59e29d2840a137c4222a1c3fff32ae53",
+        "entries": 26,
+        "updatedAt": "2026-10-30T13:25:16Z",
+        "projection": "exact registered portable tokens in named files; includes are not expanded",
+        "excludedExpressions": []
+      },
+      {
+        "id": "joox",
+        "tag": "media",
+        "defaultProfile": true,
+        "source": {
+          "repository": "domain-list-community",
+          "list": "category-entertainment",
+          "select": [
+            {
+              "file": "category-entertainment",
+              "rule": "joox.com"
+            }
+          ],
+          "description": "Exact published JOOX domain token selected from the pinned MIT entertainment file; no entertainment includes, keyword matcher or completeness claim."
+        },
+        "license": "MIT",
+        "sha256": "223234fc362e285e0351c72299a0f748ee55d330d88b83d05c18a252ed3bfb4b",
+        "entries": 1,
+        "updatedAt": "2026-10-30T13:25:16Z",
+        "projection": "exact registered portable tokens in named files; includes are not expanded",
+        "excludedExpressions": []
+      },
+      {
+        "id": "qobuz",
+        "tag": "media",
+        "defaultProfile": true,
+        "source": {
+          "repository": "domain-list-community",
+          "list": "category-entertainment",
+          "select": [
+            {
+              "file": "category-entertainment",
+              "rule": "qobuz.com"
+            }
+          ],
+          "description": "Exact published Qobuz domain token selected from the pinned MIT entertainment file; no entertainment includes, keyword matcher or completeness claim."
+        },
+        "license": "MIT",
+        "sha256": "9b4d12c0dafc133727117d4b6111d31c5152f3eaf9fe2d0e0532dfd9f701bd73",
+        "entries": 1,
+        "updatedAt": "2026-10-30T13:25:16Z",
+        "projection": "exact registered portable tokens in named files; includes are not expanded",
+        "excludedExpressions": []
+      },
+      {
+        "id": "china-media",
+        "tag": "media",
+        "defaultProfile": true,
+        "source": {
+          "repository": "domain-list-community",
+          "lists": [
+            "acfun",
+            "bilibili",
+            "cctv",
+            "douyin",
+            "douyu",
+            "huya",
+            "iqiyi",
+            "hunantv",
+            "pptv",
+            "tencent-tme",
+            "youku"
+          ],
+          "description": "First-party union of explicit pinned domestic video, audio and streaming service sources. Source include closures can include related service domains. No news-publication category, broad NetEase company list, native keyword/IP coverage or external-list identity is claimed."
+        },
+        "license": "MIT",
+        "sha256": "872ca2fb02480698dbe7a9f59e3b95facec346fc090acac67c50658c28db19e1",
+        "entries": 297,
+        "updatedAt": "2026-10-30T13:25:16Z",
+        "projection": "explicit named source union and include closures; not global affiliation expansion",
+        "excludedExpressions": []
+      },
+      {
+        "id": "global-media",
+        "tag": "media",
+        "defaultProfile": true,
+        "source": {
+          "repository": "domain-list-community",
+          "lists": [
+            "abc",
+            "abema",
+            "apple-tvplus",
+            "deezer",
+            "discoveryplus",
+            "disney",
+            "hbo",
+            "hulu",
+            "kkbox",
+            "kktv",
+            "mytvsuper",
+            "netflix",
+            "niconico",
+            "olevod",
+            "primevideo",
+            "soundcloud",
+            "spotify",
+            "tidal",
+            "tiktok",
+            "twitch",
+            "viu",
+            "youtube"
+          ],
+          "expansions": [
+            {
+              "file": "hotstar",
+              "rule": "regexp:^hses[1-7]?\\.akamaized\\.net$",
+              "conversion": "hotstar-hosts-v1",
+              "reason": "The fully anchored hses[1-7]? host expression has precisely eight hostnames: hses and hses1 through hses7. Convert all eight to exact domain rules without widening to subdomains."
+            }
+          ],
+          "description": "First-party domain-based streaming service union from explicitly named pinned DLC sources. Includes related domains in each upstream service closure. The recorded Netflix and Viu unbounded regexes are omitted; the finite Hotstar regex is exactly expanded. Not a news, games/novels or complete native streaming ruleset."
+        },
+        "license": "MIT",
+        "sha256": "40943e39736c5f7b50b6db17c7ee6d444d7da381a28466d11e44d2508d295626",
+        "entries": 704,
+        "updatedAt": "2026-10-30T13:25:16Z",
+        "projection": "explicit named source union and include closures; not global affiliation expansion",
+        "excludedExpressions": [
+          {
+            "file": "netflix",
+            "line": 28,
+            "rule": "regexp:(^|\\.)apiproxy-device-prod-nlb-.+\\.amazonaws\\.com$",
+            "sourceLine": "regexp:(^|\\.)apiproxy-device-prod-nlb-.+\\.amazonaws\\.com$",
+            "reason": "Excluded from the five-type portable catalog: no equivalent cross-client regex matcher. Keep this exact expression recorded; newly introduced expressions block sync."
+          },
+          {
+            "file": "netflix",
+            "line": 29,
+            "rule": "regexp:(^|\\.)apiproxy-website-nlb-prod-.+\\.amazonaws\\.com$",
+            "sourceLine": "regexp:(^|\\.)apiproxy-website-nlb-prod-.+\\.amazonaws\\.com$",
+            "reason": "Excluded from the five-type portable catalog: no equivalent cross-client regex matcher. Keep this exact expression recorded; newly introduced expressions block sync."
+          },
+          {
+            "file": "netflix",
+            "line": 30,
+            "rule": "regexp:(^|\\.)dualstack\\.apiproxy-.+\\.amazonaws\\.com$",
+            "sourceLine": "regexp:(^|\\.)dualstack\\.apiproxy-.+\\.amazonaws\\.com$",
+            "reason": "Excluded from the five-type portable catalog: no equivalent cross-client regex matcher. Keep this exact expression recorded; newly introduced expressions block sync."
+          },
+          {
+            "file": "netflix",
+            "line": 31,
+            "rule": "regexp:(^|\\.)dualstack\\.ichnaea-web-.+\\.amazonaws\\.com$",
+            "sourceLine": "regexp:(^|\\.)dualstack\\.ichnaea-web-.+\\.amazonaws\\.com$",
+            "reason": "Excluded from the five-type portable catalog: no equivalent cross-client regex matcher. Keep this exact expression recorded; newly introduced expressions block sync."
+          },
+          {
+            "file": "viu",
+            "line": 4,
+            "rule": "regexp:^ewcdn[0-9]+\\.nowe\\.com$",
+            "sourceLine": "regexp:^ewcdn[0-9]+\\.nowe\\.com$",
+            "reason": "Explicit omission from viu-portable and streaming unions: the unbounded numeric CDN regex cannot be finitely represented by exact portable domains. This projection does not claim complete upstream or ViuTV coverage."
+          }
+        ]
+      },
+      {
+        "id": "hmt-media",
+        "tag": "media",
+        "defaultProfile": true,
+        "source": {
+          "repository": "domain-list-community",
+          "lists": [
+            "catchplay",
+            "hamivideo",
+            "kkbox",
+            "kktv",
+            "litv",
+            "mytvsuper",
+            "tvb",
+            "viu"
+          ],
+          "description": "First-party domain union of explicitly named Hong Kong and Taiwan streaming-service sources. The recorded unbounded Viu numeric CDN regex is omitted. This selection is not a geography database or a complete keyword/IP streaming ruleset."
+        },
+        "license": "MIT",
+        "sha256": "ea3c25688577a149aeb7440d36ad5a8a27e6ed0c3c43e007c8d84dfc869bca01",
+        "entries": 60,
+        "updatedAt": "2026-10-30T13:25:16Z",
+        "projection": "explicit named source union and include closures; not global affiliation expansion",
+        "excludedExpressions": [
+          {
+            "file": "viu",
+            "line": 4,
+            "rule": "regexp:^ewcdn[0-9]+\\.nowe\\.com$",
+            "sourceLine": "regexp:^ewcdn[0-9]+\\.nowe\\.com$",
+            "reason": "Explicit omission from viu-portable and streaming unions: the unbounded numeric CDN regex cannot be finitely represented by exact portable domains. This projection does not claim complete upstream or ViuTV coverage."
+          }
+        ]
+      },
+      {
+        "id": "google-cn",
+        "tag": "system",
+        "defaultProfile": false,
+        "source": {
+          "repository": "domain-list-community",
+          "lists": [
+            "firebase",
+            "google",
+            "google-play",
+            "google-trust-services",
+            "youtube"
+          ],
+          "select": [
+            {
+              "file": "firebase",
+              "rule": "full:crashlyticsreports-pa.googleapis.com",
+              "attributes": [
+                "cn",
+                "telemetry"
+              ]
+            },
+            {
+              "file": "firebase",
+              "rule": "full:firebase-settings.crashlytics.com",
+              "attributes": [
+                "cn",
+                "telemetry"
+              ]
+            },
+            {
+              "file": "firebase",
+              "rule": "full:update.crashlytics.com",
+              "attributes": [
+                "cn",
+                "telemetry"
+              ]
+            },
+            {
+              "file": "google",
+              "rule": "google.cn",
+              "attributes": [
+                "cn"
+              ]
+            },
+            {
+              "file": "google",
+              "rule": "g.cn",
+              "attributes": [
+                "cn"
+              ]
+            },
+            {
+              "file": "google",
+              "rule": "gkecnapps.cn",
+              "attributes": [
+                "cn"
+              ]
+            },
+            {
+              "file": "google",
+              "rule": "googlecnapps.cn",
+              "attributes": [
+                "cn"
+              ]
+            },
+            {
+              "file": "google",
+              "rule": "gstatic.cn",
+              "attributes": [
+                "cn"
+              ]
+            },
+            {
+              "file": "google",
+              "rule": "gstaticcnapps.cn",
+              "attributes": [
+                "cn"
+              ]
+            },
+            {
+              "file": "google",
+              "rule": "265.com",
+              "attributes": [
+                "cn"
+              ]
+            },
+            {
+              "file": "google",
+              "rule": "gvt1-cn.com",
+              "attributes": [
+                "cn"
+              ]
+            },
+            {
+              "file": "google",
+              "rule": "gvt2-cn.com",
+              "attributes": [
+                "cn"
+              ]
+            },
+            {
+              "file": "google",
+              "rule": "full:recaptcha-cn.net",
+              "attributes": [
+                "cn"
+              ]
+            },
+            {
+              "file": "google",
+              "rule": "full:recaptcha.net",
+              "attributes": [
+                "cn"
+              ]
+            },
+            {
+              "file": "google",
+              "rule": "full:www.recaptcha-cn.net",
+              "attributes": [
+                "cn"
+              ]
+            },
+            {
+              "file": "google",
+              "rule": "full:www.recaptcha.net",
+              "attributes": [
+                "cn"
+              ]
+            },
+            {
+              "file": "google",
+              "rule": "full:2mdn-cn.net",
+              "attributes": [
+                "cn"
+              ]
+            },
+            {
+              "file": "google",
+              "rule": "full:2mdn.net",
+              "attributes": [
+                "cn"
+              ]
+            },
+            {
+              "file": "google",
+              "rule": "full:admob-cn.com",
+              "attributes": [
+                "cn"
+              ]
+            },
+            {
+              "file": "google",
+              "rule": "full:adservice.google.com",
+              "attributes": [
+                "cn"
+              ]
+            },
+            {
+              "file": "google",
+              "rule": "full:app-analytics-services.com",
+              "attributes": [
+                "cn"
+              ]
+            },
+            {
+              "file": "google",
+              "rule": "full:app-measurement-cn.com",
+              "attributes": [
+                "cn"
+              ]
+            },
+            {
+              "file": "google",
+              "rule": "full:app-measurement.com",
+              "attributes": [
+                "cn"
+              ]
+            },
+            {
+              "file": "google",
+              "rule": "full:apps5.oingo.com",
+              "attributes": [
+                "cn"
+              ]
+            },
+            {
+              "file": "google",
+              "rule": "full:avail.googleflights.net",
+              "attributes": [
+                "cn"
+              ]
+            },
+            {
+              "file": "google",
+              "rule": "full:beacons.gcp.gvt2.com",
+              "attributes": [
+                "cn"
+              ]
+            },
+            {
+              "file": "google",
+              "rule": "full:beacons.gvt2.com",
+              "attributes": [
+                "cn"
+              ]
+            },
+            {
+              "file": "google",
+              "rule": "full:beacons2.gvt2.com",
+              "attributes": [
+                "cn"
+              ]
+            },
+            {
+              "file": "google",
+              "rule": "full:beacons3.gvt2.com",
+              "attributes": [
+                "cn"
+              ]
+            },
+            {
+              "file": "google",
+              "rule": "full:c.admob.com",
+              "attributes": [
+                "cn"
+              ]
+            },
+            {
+              "file": "google",
+              "rule": "full:c.android.clients.google.com",
+              "attributes": [
+                "cn"
+              ]
+            },
+            {
+              "file": "google",
+              "rule": "full:cache-management-prod.google.com",
+              "attributes": [
+                "cn"
+              ]
+            },
+            {
+              "file": "google",
+              "rule": "full:cache.pack.google.com",
+              "attributes": [
+                "cn"
+              ]
+            },
+            {
+              "file": "google",
+              "rule": "full:checkin.gstatic.com",
+              "attributes": [
+                "cn"
+              ]
+            },
+            {
+              "file": "google",
+              "rule": "full:clickserve.cc-dt.com",
+              "attributes": [
+                "cn"
+              ]
+            },
+            {
+              "file": "google",
+              "rule": "full:clickserve.dartsearch.net",
+              "attributes": [
+                "cn"
+              ]
+            },
+            {
+              "file": "google",
+              "rule": "full:clickserver.googleads.com",
+              "attributes": [
+                "cn"
+              ]
+            },
+            {
+              "file": "google",
+              "rule": "full:clientservices.googleapis.com",
+              "attributes": [
+                "cn"
+              ]
+            },
+            {
+              "file": "google",
+              "rule": "full:cn.widevine.com",
+              "attributes": [
+                "cn"
+              ]
+            },
+            {
+              "file": "google",
+              "rule": "full:connectivitycheck.gstatic.com",
+              "attributes": [
+                "cn"
+              ]
+            },
+            {
+              "file": "google",
+              "rule": "full:csi.gstatic.com",
+              "attributes": [
+                "cn"
+              ]
+            },
+            {
+              "file": "google",
+              "rule": "full:dartsearch-cn.net",
+              "attributes": [
+                "cn"
+              ]
+            },
+            {
+              "file": "google",
+              "rule": "full:dg-meta.video.google.com",
+              "attributes": [
+                "cn"
+              ]
+            },
+            {
+              "file": "google",
+              "rule": "full:dl.google.com",
+              "attributes": [
+                "cn"
+              ]
+            },
+            {
+              "file": "google",
+              "rule": "full:dl.l.google.com",
+              "attributes": [
+                "cn"
+              ]
+            },
+            {
+              "file": "google",
+              "rule": "full:doubleclick-cn.net",
+              "attributes": [
+                "cn"
+              ]
+            },
+            {
+              "file": "google",
+              "rule": "full:doubleclick.net",
+              "attributes": [
+                "cn"
+              ]
+            },
+            {
+              "file": "google",
+              "rule": "full:download.mlcc.google.com",
+              "attributes": [
+                "cn"
+              ]
+            },
+            {
+              "file": "google",
+              "rule": "full:download.tensorflow.google.com",
+              "attributes": [
+                "cn"
+              ]
+            },
+            {
+              "file": "google",
+              "rule": "full:fontfiles.googleapis.com",
+              "attributes": [
+                "cn"
+              ]
+            },
+            {
+              "file": "google",
+              "rule": "full:fonts.googleapis.com",
+              "attributes": [
+                "cn"
+              ]
+            },
+            {
+              "file": "google",
+              "rule": "full:fonts.gstatic.com",
+              "attributes": [
+                "cn"
+              ]
+            },
+            {
+              "file": "google",
+              "rule": "full:g0.gstatic.com",
+              "attributes": [
+                "cn"
+              ]
+            },
+            {
+              "file": "google",
+              "rule": "full:g1.gstatic.com",
+              "attributes": [
+                "cn"
+              ]
+            },
+            {
+              "file": "google",
+              "rule": "full:g2.gstatic.com",
+              "attributes": [
+                "cn"
+              ]
+            },
+            {
+              "file": "google",
+              "rule": "full:g3.gstatic.com",
+              "attributes": [
+                "cn"
+              ]
+            },
+            {
+              "file": "google",
+              "rule": "full:gonglchuangl.net",
+              "attributes": [
+                "cn"
+              ]
+            },
+            {
+              "file": "google",
+              "rule": "full:gongyichuangyi.net",
+              "attributes": [
+                "cn"
+              ]
+            },
+            {
+              "file": "google",
+              "rule": "full:google-analytics-cn.com",
+              "attributes": [
+                "cn"
+              ]
+            },
+            {
+              "file": "google",
+              "rule": "full:google-analytics.com",
+              "attributes": [
+                "cn"
+              ]
+            },
+            {
+              "file": "google",
+              "rule": "full:googleadservices-cn.com",
+              "attributes": [
+                "cn"
+              ]
+            },
+            {
+              "file": "google",
+              "rule": "full:googleadservices.com",
+              "attributes": [
+                "cn"
+              ]
+            },
+            {
+              "file": "google",
+              "rule": "full:googleanalytics.com",
+              "attributes": [
+                "cn"
+              ]
+            },
+            {
+              "file": "google",
+              "rule": "full:googleapis-cn.com",
+              "attributes": [
+                "cn"
+              ]
+            },
+            {
+              "file": "google",
+              "rule": "full:googleapps-cn.com",
+              "attributes": [
+                "cn"
+              ]
+            },
+            {
+              "file": "google",
+              "rule": "full:googleflights-cn.net",
+              "attributes": [
+                "cn"
+              ]
+            },
+            {
+              "file": "google",
+              "rule": "full:googleoptimize-cn.com",
+              "attributes": [
+                "cn"
+              ]
+            },
+            {
+              "file": "google",
+              "rule": "full:googleoptimize.com",
+              "attributes": [
+                "cn"
+              ]
+            },
+            {
+              "file": "google",
+              "rule": "full:googlesyndication-cn.com",
+              "attributes": [
+                "cn"
+              ]
+            },
+            {
+              "file": "google",
+              "rule": "full:googlesyndication.com",
+              "attributes": [
+                "cn"
+              ]
+            },
+            {
+              "file": "google",
+              "rule": "full:googletagmanager-cn.com",
+              "attributes": [
+                "cn"
+              ]
+            },
+            {
+              "file": "google",
+              "rule": "full:googletagmanager.com",
+              "attributes": [
+                "cn"
+              ]
+            },
+            {
+              "file": "google",
+              "rule": "full:googletagservices-cn.com",
+              "attributes": [
+                "cn"
+              ]
+            },
+            {
+              "file": "google",
+              "rule": "full:googletagservices.com",
+              "attributes": [
+                "cn"
+              ]
+            },
+            {
+              "file": "google",
+              "rule": "full:googletraveladservices-cn.com",
+              "attributes": [
+                "cn"
+              ]
+            },
+            {
+              "file": "google",
+              "rule": "full:googletraveladservices.com",
+              "attributes": [
+                "cn"
+              ]
+            },
+            {
+              "file": "google",
+              "rule": "full:googlevads-cn.com",
+              "attributes": [
+                "cn"
+              ]
+            },
+            {
+              "file": "google",
+              "rule": "full:gstatic-cn.com",
+              "attributes": [
+                "cn"
+              ]
+            },
+            {
+              "file": "google",
+              "rule": "full:gstaticadssl.l.google.com",
+              "attributes": [
+                "cn"
+              ]
+            },
+            {
+              "file": "google",
+              "rule": "full:gtm.oasisfeng.com",
+              "attributes": [
+                "cn"
+              ]
+            },
+            {
+              "file": "google",
+              "rule": "full:imasdk.googleapis.com",
+              "attributes": [
+                "cn"
+              ]
+            },
+            {
+              "file": "google",
+              "rule": "full:pagead-googlehosted.l.google.com",
+              "attributes": [
+                "cn"
+              ]
+            },
+            {
+              "file": "google",
+              "rule": "full:performanceparameters.googleapis.com",
+              "attributes": [
+                "cn"
+              ]
+            },
+            {
+              "file": "google",
+              "rule": "full:prod-controlbe.floonet.goog",
+              "attributes": [
+                "cn"
+              ]
+            },
+            {
+              "file": "google",
+              "rule": "full:prod-databe.floonet.goog",
+              "attributes": [
+                "cn"
+              ]
+            },
+            {
+              "file": "google",
+              "rule": "full:prod.databe.floonet.goog",
+              "attributes": [
+                "cn"
+              ]
+            },
+            {
+              "file": "google",
+              "rule": "full:qiao-cn.com",
+              "attributes": [
+                "cn"
+              ]
+            },
+            {
+              "file": "google",
+              "rule": "full:qpx.googleflights.net",
+              "attributes": [
+                "cn"
+              ]
+            },
+            {
+              "file": "google",
+              "rule": "full:redirector.bdn.dev",
+              "attributes": [
+                "cn"
+              ]
+            },
+            {
+              "file": "google",
+              "rule": "full:redirector.c.chat.google.com",
+              "attributes": [
+                "cn"
+              ]
+            },
+            {
+              "file": "google",
+              "rule": "full:redirector.c.mail.google.com",
+              "attributes": [
+                "cn"
+              ]
+            },
+            {
+              "file": "google",
+              "rule": "full:redirector.c.pack.google.com",
+              "attributes": [
+                "cn"
+              ]
+            },
+            {
+              "file": "google",
+              "rule": "full:redirector.c.youtubeeducation.com",
+              "attributes": [
+                "cn"
+              ]
+            },
+            {
+              "file": "google",
+              "rule": "full:redirector.gcpcdn.gvt1.com",
+              "attributes": [
+                "cn"
+              ]
+            },
+            {
+              "file": "google",
+              "rule": "full:redirector.gvt1.com",
+              "attributes": [
+                "cn"
+              ]
+            },
+            {
+              "file": "google",
+              "rule": "full:redirector.offline-maps.gvt1.com",
+              "attributes": [
+                "cn"
+              ]
+            },
+            {
+              "file": "google",
+              "rule": "full:redirector.snap.gvt1.com",
+              "attributes": [
+                "cn"
+              ]
+            },
+            {
+              "file": "google",
+              "rule": "full:redirector.xn--ngstr-lra8j.com",
+              "attributes": [
+                "cn"
+              ]
+            },
+            {
+              "file": "google",
+              "rule": "full:safebrowsing-cache.google.com",
+              "attributes": [
+                "cn"
+              ]
+            },
+            {
+              "file": "google",
+              "rule": "full:safebrowsing.googleapis.com",
+              "attributes": [
+                "cn"
+              ]
+            },
+            {
+              "file": "google",
+              "rule": "full:service.urchin.com",
+              "attributes": [
+                "cn"
+              ]
+            },
+            {
+              "file": "google",
+              "rule": "full:ssl-google-analytics.l.google.com",
+              "attributes": [
+                "cn"
+              ]
+            },
+            {
+              "file": "google",
+              "rule": "full:ssl.gstatic.com",
+              "attributes": [
+                "cn"
+              ]
+            },
+            {
+              "file": "google",
+              "rule": "full:staging-controlbe.floonet.goog",
+              "attributes": [
+                "cn"
+              ]
+            },
+            {
+              "file": "google",
+              "rule": "full:staging-databe.floonet.goog",
+              "attributes": [
+                "cn"
+              ]
+            },
+            {
+              "file": "google",
+              "rule": "full:staging.databe.floonet.goog",
+              "attributes": [
+                "cn"
+              ]
+            },
+            {
+              "file": "google",
+              "rule": "full:tac.googleapis.com",
+              "attributes": [
+                "cn"
+              ]
+            },
+            {
+              "file": "google",
+              "rule": "full:tools.google.com",
+              "attributes": [
+                "cn"
+              ]
+            },
+            {
+              "file": "google",
+              "rule": "full:update.googleapis.com",
+              "attributes": [
+                "cn"
+              ]
+            },
+            {
+              "file": "google",
+              "rule": "full:wear.googleapis.com",
+              "attributes": [
+                "cn"
+              ]
+            },
+            {
+              "file": "google",
+              "rule": "full:www-google-analytics.l.google.com",
+              "attributes": [
+                "cn"
+              ]
+            },
+            {
+              "file": "google",
+              "rule": "full:www-googletagmanager.l.google.com",
+              "attributes": [
+                "cn"
+              ]
+            },
+            {
+              "file": "google",
+              "rule": "full:www.destinationurl.com",
+              "attributes": [
+                "cn"
+              ]
+            },
+            {
+              "file": "google",
+              "rule": "full:www.gstatic.com",
+              "attributes": [
+                "cn"
+              ]
+            },
+            {
+              "file": "google",
+              "rule": "full:www.pxcc.com",
+              "attributes": [
+                "cn"
+              ]
+            },
+            {
+              "file": "google-play",
+              "rule": "regexp:^r+[0-9]+(---|\\.)sn-(2x3|ni5|j5o)\\w{5}\\.xn--ngstr-lra8j\\.com$",
+              "attributes": [
+                "cn"
+              ]
+            },
+            {
+              "file": "google-play",
+              "rule": "regexp:^r+[0-9]+(---|\\.)sn-(2x3|ni5|j5o)\\w{5}\\.googlevideo\\.com$",
+              "attributes": [
+                "cn"
+              ]
+            },
+            {
+              "file": "google-play",
+              "rule": "full:redirector.c.play.google.com",
+              "attributes": [
+                "cn"
+              ]
+            },
+            {
+              "file": "google-trust-services",
+              "rule": "full:pki-goog.l.google.com",
+              "attributes": [
+                "cn"
+              ]
+            },
+            {
+              "file": "google-trust-services",
+              "rule": "full:c.pki.goog",
+              "attributes": [
+                "cn"
+              ]
+            },
+            {
+              "file": "google-trust-services",
+              "rule": "full:i.pki.goog",
+              "attributes": [
+                "cn"
+              ]
+            },
+            {
+              "file": "google-trust-services",
+              "rule": "full:o.pki.goog",
+              "attributes": [
+                "cn"
+              ]
+            },
+            {
+              "file": "google-trust-services",
+              "rule": "full:crl.pki.goog",
+              "attributes": [
+                "cn"
+              ]
+            },
+            {
+              "file": "google-trust-services",
+              "rule": "full:crls.pki.goog",
+              "attributes": [
+                "cn"
+              ]
+            },
+            {
+              "file": "google-trust-services",
+              "rule": "full:ocsp.pki.goog",
+              "attributes": [
+                "cn"
+              ]
+            },
+            {
+              "file": "youtube",
+              "rule": "ggpht.cn",
+              "attributes": [
+                "cn"
+              ]
+            }
+          ],
+          "description": "Portable projection of all explicitly @cn-tagged source expressions in the pinned Google service closure. Exact selectors guard every original attribute set and list each contributing nested file explicitly. The two recorded Google Play unbounded regexes are omitted; this is upstream access-point tagging, not physical geography or complete Google-in-China service semantics."
+        },
+        "license": "MIT",
+        "sha256": "8d99c67217ba6da17e558bf7e19007b420db0e62fa0a675490db61daeba67b88",
+        "entries": 124,
+        "updatedAt": "2026-10-30T13:25:16Z",
+        "projection": "exact registered portable tokens in named files; includes are not expanded",
+        "excludedExpressions": [
+          {
+            "file": "google-play",
+            "line": 12,
+            "rule": "regexp:^r+[0-9]+(---|\\.)sn-(2x3|ni5|j5o)\\w{5}\\.xn--ngstr-lra8j\\.com$",
+            "sourceLine": "regexp:^r+[0-9]+(---|\\.)sn-(2x3|ni5|j5o)\\w{5}\\.xn--ngstr-lra8j\\.com$ @cn",
+            "reason": "Explicit omission from the Google CN portable projection: this @cn-tagged unbounded Google Play CDN regex cannot be represented exactly by finite domain/domain-suffix rules. It remains selected and recorded; new expressions or attribute changes block sync."
+          },
+          {
+            "file": "google-play",
+            "line": 14,
+            "rule": "regexp:^r+[0-9]+(---|\\.)sn-(2x3|ni5|j5o)\\w{5}\\.googlevideo\\.com$",
+            "sourceLine": "regexp:^r+[0-9]+(---|\\.)sn-(2x3|ni5|j5o)\\w{5}\\.googlevideo\\.com$ @cn",
+            "reason": "Explicit omission from the Google CN portable projection: this @cn-tagged unbounded Google Play CDN regex cannot be represented exactly by finite domain/domain-suffix rules. It remains selected and recorded; new expressions or attribute changes block sync."
+          }
+        ]
+      },
+      {
+        "id": "steam-cn",
+        "tag": "gaming",
+        "defaultProfile": true,
+        "source": {
+          "repository": "domain-list-community",
+          "list": "steam",
+          "select": [
+            {
+              "file": "steam",
+              "rule": "csgo.com.cn",
+              "attributes": [
+                "cn"
+              ]
+            },
+            {
+              "file": "steam",
+              "rule": "csgo.wmsj.cn",
+              "attributes": [
+                "cn"
+              ]
+            },
+            {
+              "file": "steam",
+              "rule": "dota2.com.cn",
+              "attributes": [
+                "cn"
+              ]
+            },
+            {
+              "file": "steam",
+              "rule": "dota2.wmsj.cn",
+              "attributes": [
+                "cn"
+              ]
+            },
+            {
+              "file": "steam",
+              "rule": "wmsjsteam.com",
+              "attributes": [
+                "cn"
+              ]
+            },
+            {
+              "file": "steam",
+              "rule": "client-update.queniuqe.com",
+              "attributes": [
+                "cn"
+              ]
+            },
+            {
+              "file": "steam",
+              "rule": "dl.steam.clngaa.com",
+              "attributes": [
+                "cn"
+              ]
+            },
+            {
+              "file": "steam",
+              "rule": "st.dl.bscstorage.net",
+              "attributes": [
+                "cn"
+              ]
+            },
+            {
+              "file": "steam",
+              "rule": "st.dl.eccdnx.com",
+              "attributes": [
+                "cn"
+              ]
+            },
+            {
+              "file": "steam",
+              "rule": "st.dl.pinyuncloud.com",
+              "attributes": [
+                "cn"
+              ]
+            },
+            {
+              "file": "steam",
+              "rule": "steampowered.com.8686c.com",
+              "attributes": [
+                "cn"
+              ]
+            },
+            {
+              "file": "steam",
+              "rule": "steamstatic.com.8686c.com",
+              "attributes": [
+                "cn"
+              ]
+            },
+            {
+              "file": "steam",
+              "rule": "full:alibaba.cdn.steampipe.steamcontent.com",
+              "attributes": [
+                "cn"
+              ]
+            },
+            {
+              "file": "steam",
+              "rule": "full:lv.queniujq.cn",
+              "attributes": [
+                "cn"
+              ]
+            },
+            {
+              "file": "steam",
+              "rule": "full:xz.pphimalayanrt.com",
+              "attributes": [
+                "cn"
+              ]
+            },
+            {
+              "file": "steam",
+              "rule": "steamchina.com",
+              "attributes": [
+                "cn"
+              ]
+            },
+            {
+              "file": "steam",
+              "rule": "gstore.val.manlaxy.com",
+              "attributes": [
+                "cn"
+              ]
+            }
+          ],
+          "description": "Exact @cn-tagged portable tokens from the pinned MIT Steam source, with original attribute sets guarded. No whole Steam parent rename, non-tagged international endpoints, or claim of geographic reachability."
+        },
+        "license": "MIT",
+        "sha256": "9b94315e2c671cffe230e8882803a2ae0ff1dc6a45ac4c2fe0f49177b53b2f2c",
+        "entries": 17,
+        "updatedAt": "2026-10-30T13:25:16Z",
+        "projection": "exact registered portable tokens in named files; includes are not expanded",
+        "excludedExpressions": []
+      },
+      {
+        "id": "hulu-jp",
+        "tag": "media",
+        "defaultProfile": true,
+        "source": {
+          "repository": "ios-rule-script",
+          "format": "classical-yaml",
+          "path": "rule/Clash/HuluJP/HuluJP.yaml",
+          "description": "Complete pinned GPL HuluJP classical YAML payload: five explicitly published Japan service/domain suffixes. Replaces the earlier single-domain MIT subset; no unlisted endpoint or complete playback-infrastructure claim is inferred."
+        },
+        "license": "GPL-2.0-only",
+        "sha256": "97b4771a0e1e6bdda8c6af78f7649e2928254c83531b68979c6ffb3336250754",
+        "entries": 5,
+        "updatedAt": "2026-10-27T21:45:18Z",
+        "projection": "complete five-type classical YAML payload; unsupported conditions fail closed",
+        "excludedExpressions": []
+      },
+      {
+        "id": "hbo-asia",
+        "tag": "media",
+        "defaultProfile": true,
+        "source": {
+          "repository": "ios-rule-script",
+          "format": "classical-yaml",
+          "path": "rule/Clash/HBOAsia/HBOAsia.yaml",
+          "description": "Complete pinned GPL HBOAsia classical YAML payload, preserving its exact API/CDN hosts, domain suffixes and native domain-keyword matcher. No shared corporate parent is substituted for the regional service."
+        },
+        "license": "GPL-2.0-only",
+        "sha256": "ba768f5866b7411f5c7a88cfd05a460f0f7197c0bcd0cd18c2c5226210ebce64",
+        "entries": 19,
+        "updatedAt": "2026-10-27T21:45:18Z",
+        "projection": "complete five-type classical YAML payload; unsupported conditions fail closed",
+        "excludedExpressions": []
+      },
+      {
+        "id": "all4",
+        "tag": "media",
+        "defaultProfile": true,
+        "source": {
+          "repository": "ios-rule-script",
+          "format": "classical-yaml",
+          "path": "rule/Clash/All4/All4.yaml",
+          "description": "Complete two-domain pinned GPL All4 classical YAML payload. This licensed service source is not a claim of identity with any other project or of every client-specific upstream matcher."
+        },
+        "license": "GPL-2.0-only",
+        "sha256": "85fee980dd2fdcf1a83422227c5b87e7d45b845ac94a10d4bb980c820b1178ee",
+        "entries": 2,
+        "updatedAt": "2026-10-27T21:45:18Z",
+        "projection": "complete five-type classical YAML payload; unsupported conditions fail closed",
+        "excludedExpressions": []
+      },
+      {
+        "id": "netease-music",
+        "tag": "media",
+        "defaultProfile": true,
+        "source": {
+          "repository": "ios-rule-script",
+          "format": "classical-yaml",
+          "path": "rule/Clash/NetEaseMusic/NetEaseMusic.yaml",
+          "description": "Complete pinned GPL NetEase Music classical YAML payload, preserving its exact domains, suffixes and IPv4 destinations. No broad NetEase corporate list is relabeled as the music service."
+        },
+        "license": "GPL-2.0-only",
+        "sha256": "a5366400250b6676d53b0941ebf4caf93c28c52547f1f7df7e6f7fec9c8291bb",
+        "entries": 28,
+        "updatedAt": "2026-10-27T21:45:18Z",
+        "projection": "complete five-type classical YAML payload; unsupported conditions fail closed",
+        "excludedExpressions": []
+      },
+      {
+        "id": "global",
+        "tag": "network",
+        "defaultProfile": false,
+        "source": {
+          "repository": "ios-rule-script",
+          "format": "classical-yaml",
+          "path": "rule/Clash/Proxy/Proxy_Classical.yaml",
+          "description": "Explicit global-routing alternative from the complete pinned GPL Proxy_Classical five-type payload. It is the upstream Proxy selection, not the upstream Global list, a geolocation database or a claim of identity with another ruleset."
+        },
+        "license": "GPL-2.0-only",
+        "sha256": "8146a29792be17bb023c40e753c808c06b25ad886c766c3c570e6b888f1b57ea",
+        "entries": 6985,
+        "updatedAt": "2026-10-27T21:45:18Z",
+        "projection": "complete five-type classical YAML payload; unsupported conditions fail closed",
+        "excludedExpressions": []
+      },
+      {
+        "id": "five-itv",
+        "tag": "media",
+        "defaultProfile": true,
+        "source": {
+          "repository": "ios-rule-script",
+          "format": "classical-yaml",
+          "path": "rule/Clash/GlobalMedia/GlobalMedia_Classical.yaml",
+          "selectPayload": [
+            "DOMAIN-SUFFIX,5itv.tv",
+            "DOMAIN-SUFFIX,ocnttv.com"
+          ],
+          "description": "Exact published 5iTV/OCNTTV domain suffix tokens selected from the pinned GPL GlobalMedia classical source. This narrow selection includes neither unrelated media services nor unselected native process conditions; no entire upstream media payload or cross-project semantic identity is claimed."
+        },
+        "license": "GPL-2.0-only",
+        "sha256": "f7ce38b72b464f3085aafb4c95e12ab5f3f2bf7fa856ee0df6566c39671e36a9",
+        "entries": 2,
+        "updatedAt": "2026-10-27T21:45:18Z",
+        "projection": "exact registered payload tokens; unrelated conditions are not included",
+        "excludedExpressions": []
+      },
+      {
+        "id": "unbreak",
+        "tag": "network",
+        "defaultProfile": true,
+        "source": {
+          "type": "local",
+          "license": "MIT",
+          "references": [
+            "https://support.apple.com/en-ie/101555",
+            "https://learn.microsoft.com/en-us/troubleshoot/windows-server/networking/troubleshoot-ncsi-guidance"
+          ],
+          "description": "Small explicit connectivity-probe allowlist, not a copy or completeness claim for third-party repair sets.",
+          "author": "NetAtlas contributors",
+          "updatedAt": "2026-10-31T00:00:00Z"
+        },
+        "license": "MIT",
+        "sha256": "ef5fcf5a4f68fef49ff6f8a43949fe63c7ed0f12df3c78cfad878dffbd0e83bc",
+        "entries": 3,
+        "updatedAt": "2026-10-31T00:00:00Z",
+        "projection": "three exact first-party connectivity-probe hosts; no suffix matching",
         "excludedExpressions": []
       }
     ],
@@ -867,44 +3629,216 @@
         "sha256": "7b218af98a343342606a994de743f04b212837a975f2613bac3671c69d7ed7a0"
       },
       {
+        "path": "src/rules/development/notion.json",
+        "sha256": "df5448f9e77da87d76ac42f9900470fd1d8228e25577d02f430222880d13c02a"
+      },
+      {
         "path": "src/rules/development/npmjs.json",
         "sha256": "bf2b101a08cc99983539cbe57c0949012db9d5e090b4518e4664ade87012c1f5"
+      },
+      {
+        "path": "src/rules/development/oracle.json",
+        "sha256": "63b9b5745db6f3967b3276c11eadbc91ae538550cb605cac5e1683f2bab8aa47"
       },
       {
         "path": "src/rules/development/vercel.json",
         "sha256": "8018ebcf88cbfca3914abe8399d74b2142f7332a58d2d9bdd340ee8cefc4462d"
       },
       {
+        "path": "src/rules/gaming/blizzard.json",
+        "sha256": "5bf008b0d17ef5d556bbe825835760205757c58ca16059dde829e1fd9da8627b"
+      },
+      {
+        "path": "src/rules/gaming/steam-cn.json",
+        "sha256": "9b94315e2c671cffe230e8882803a2ae0ff1dc6a45ac4c2fe0f49177b53b2f2c"
+      },
+      {
         "path": "src/rules/gaming/steam.json",
         "sha256": "8b6659bb238b6f0f181dd0b3038eb7e7500a9d8687583da16fa5e7f4c9eaf05c"
+      },
+      {
+        "path": "src/rules/gaming/taptap.json",
+        "sha256": "c05dc70a4d99423efdaff990fd3673460e186f1fde57ae8916939e3eafb72129"
+      },
+      {
+        "path": "src/rules/media/abc.json",
+        "sha256": "e432e80f3cc75da58b8025b21e2da55a0663039dbaf2c28a443881f911d9cb70"
+      },
+      {
+        "path": "src/rules/media/abema.json",
+        "sha256": "2bac35b8babb0b1dea66a6647789e5e62bf640587d60a10ec3aebfc9205cfc90"
+      },
+      {
+        "path": "src/rules/media/acfun.json",
+        "sha256": "72f132a8a36a61aa9f51e36213b8e07b34dd29c5f907561dd23d84ffa3e1367f"
+      },
+      {
+        "path": "src/rules/media/all4.json",
+        "sha256": "85fee980dd2fdcf1a83422227c5b87e7d45b845ac94a10d4bb980c820b1178ee"
       },
       {
         "path": "src/rules/media/apple-tvplus.json",
         "sha256": "9ad1a73f395157d0d59c8fccf2ca3ff79c5c71fc1361382bff4267116a056dbe"
       },
       {
+        "path": "src/rules/media/bilibili.json",
+        "sha256": "3b8b4b18de2c4d563afc4f8ab7f926c6bd716dacc68ee058ec85f3b430424d22"
+      },
+      {
+        "path": "src/rules/media/china-media.json",
+        "sha256": "872ca2fb02480698dbe7a9f59e3b95facec346fc090acac67c50658c28db19e1"
+      },
+      {
+        "path": "src/rules/media/deezer.json",
+        "sha256": "17879728982426dae3d3cb7458b9d83836731f53d26f75717654fb7f41ff80ac"
+      },
+      {
+        "path": "src/rules/media/discovery.json",
+        "sha256": "11a4e8c88ab2335bf13a46152afc12f040b8552a4e86287c70e96962b3278cfb"
+      },
+      {
+        "path": "src/rules/media/disney.json",
+        "sha256": "1607ee950eda65d467ab8446c56cb6defd5f842929920ecd52b31c92d13a4c14"
+      },
+      {
+        "path": "src/rules/media/douyin.json",
+        "sha256": "92446e730032f5837377b4807b8d69907eaa9c8e780377a9fca3ad8d8fb7a038"
+      },
+      {
+        "path": "src/rules/media/douyu.json",
+        "sha256": "5344cfa906148be4237aaffa68156d288c3c7a04dd8a477b998b4697071e1aa6"
+      },
+      {
+        "path": "src/rules/media/five-itv.json",
+        "sha256": "f7ce38b72b464f3085aafb4c95e12ab5f3f2bf7fa856ee0df6566c39671e36a9"
+      },
+      {
+        "path": "src/rules/media/global-media.json",
+        "sha256": "40943e39736c5f7b50b6db17c7ee6d444d7da381a28466d11e44d2508d295626"
+      },
+      {
+        "path": "src/rules/media/hbo-asia.json",
+        "sha256": "ba768f5866b7411f5c7a88cfd05a460f0f7197c0bcd0cd18c2c5226210ebce64"
+      },
+      {
         "path": "src/rules/media/hbo.json",
         "sha256": "a7893566b499e8fd031f8e7df3d0c1f9d13b6690191bdd327cb0ab732a2a5e28"
+      },
+      {
+        "path": "src/rules/media/hmt-media.json",
+        "sha256": "ea3c25688577a149aeb7440d36ad5a8a27e6ed0c3c43e007c8d84dfc869bca01"
+      },
+      {
+        "path": "src/rules/media/hulu-jp.json",
+        "sha256": "97b4771a0e1e6bdda8c6af78f7649e2928254c83531b68979c6ffb3336250754"
+      },
+      {
+        "path": "src/rules/media/hulu.json",
+        "sha256": "a8edbb8678a94836f3f955b2efd5413e4c3df2c74e1b26806fa0a6fd4bf2b728"
+      },
+      {
+        "path": "src/rules/media/huya.json",
+        "sha256": "aa1e2462e75b30ce8cef6d56241935099164eb1847a999acfeb78816fe8dbbf6"
+      },
+      {
+        "path": "src/rules/media/iqiyi.json",
+        "sha256": "0842588fa5e1d9185339df00c6a69c22523f7afc92e53d6e2499ea1400fc0ef4"
+      },
+      {
+        "path": "src/rules/media/joox.json",
+        "sha256": "223234fc362e285e0351c72299a0f748ee55d330d88b83d05c18a252ed3bfb4b"
+      },
+      {
+        "path": "src/rules/media/kkbox.json",
+        "sha256": "73a156b32f4e76d624e297f981d3870afeeb19c87031c3a564f743ac92b0438d"
+      },
+      {
+        "path": "src/rules/media/kktv.json",
+        "sha256": "cc572eaedf3562a4f3c429628ce60dce66358adbc3b0124e800f1b8101aae3ae"
+      },
+      {
+        "path": "src/rules/media/mudvod.json",
+        "sha256": "c6e1404212e8aefd600d5d970d10b8a9c49a652e161f33f19b6f31d7ab41a88f"
+      },
+      {
+        "path": "src/rules/media/mytvsuper.json",
+        "sha256": "733aab6ef7f51cd0102b179fff6e2dc6aa161f92076fde7afd68bcc8c6ace742"
+      },
+      {
+        "path": "src/rules/media/netease-music.json",
+        "sha256": "a5366400250b6676d53b0941ebf4caf93c28c52547f1f7df7e6f7fec9c8291bb"
       },
       {
         "path": "src/rules/media/netflix.json",
         "sha256": "41049917d778640f04d2b679e8cf11ecc3304cce65f2fb92188a5db19fc3e6e3"
       },
       {
+        "path": "src/rules/media/niconico.json",
+        "sha256": "8b34cb20fdbe9fdf75cee0306cb878ad8ca0394e11fb53b5164a49cb39f6cf6f"
+      },
+      {
+        "path": "src/rules/media/olevod.json",
+        "sha256": "f8adb7fc542ed682216173aadee42c9616bf9fcccdf00e8b00b5fb2915d92f1f"
+      },
+      {
+        "path": "src/rules/media/pornhub.json",
+        "sha256": "26f182d4cb546d53f6d47e999c78d723fc723bf14b0b6e41e4e86a5243f60586"
+      },
+      {
+        "path": "src/rules/media/pptv.json",
+        "sha256": "a639288d08f487a410fb8b99f3d7b5a59b0e89749d2f22c912621016c84f2dfc"
+      },
+      {
+        "path": "src/rules/media/primevideo.json",
+        "sha256": "922050ddc46b97d858a7f01e8c160a6c890f49f1c2bfa61235052028aa9f32f3"
+      },
+      {
+        "path": "src/rules/media/qobuz.json",
+        "sha256": "9b4d12c0dafc133727117d4b6111d31c5152f3eaf9fe2d0e0532dfd9f701bd73"
+      },
+      {
+        "path": "src/rules/media/soundcloud.json",
+        "sha256": "1d097eb739883334d00bdba9d85274c9c4ab0f9c02225836473c001fcbc2b3f6"
+      },
+      {
         "path": "src/rules/media/spotify.json",
         "sha256": "f0ac15b8db784eae05db6be36737697253aff3f909e1df259d3846f0ee07a041"
+      },
+      {
+        "path": "src/rules/media/tidal.json",
+        "sha256": "2e0a8c6f9b8e049f545e2ad3ed305f926c255225780318455a209f0f3d1fdc74"
       },
       {
         "path": "src/rules/media/tiktok.json",
         "sha256": "fbc2742592166d96049a7109947859472b37c0892aeb7557c4b068ecbd155be7"
       },
       {
+        "path": "src/rules/media/tvb.json",
+        "sha256": "208ca3f211e5d538b46a8f8b43c31933ceb5a555b331a0c841f1f01ffbbdf9b6"
+      },
+      {
         "path": "src/rules/media/twitch.json",
         "sha256": "0bd18bbfc29efcee7e122c4c44bbca41c0017050c99882a427c5deea77f83855"
       },
       {
+        "path": "src/rules/media/viu-portable.json",
+        "sha256": "67b093f012de65349b02afa3be3b269262f7b81d32b9c1b156adc6ac664f69ff"
+      },
+      {
+        "path": "src/rules/media/ximalaya.json",
+        "sha256": "db825176480ae4565314bdf8397e0457f2fcb93906cf576566312fc5871104c9"
+      },
+      {
+        "path": "src/rules/media/youku.json",
+        "sha256": "f9e0b89b309526a4cce4734357c4dc9cc8d88d22cbd33123a2f000f8a792340f"
+      },
+      {
         "path": "src/rules/media/youtube.json",
         "sha256": "f8b41812508a1352f708a971d1dde23f889654309d5c96c3b9ce4c0ae036a914"
+      },
+      {
+        "path": "src/rules/network/akamai.json",
+        "sha256": "5c87d6d472b22bb0830c321bd40d5aa9360c68f9978ab6f10bd24278eb04aa91"
       },
       {
         "path": "src/rules/network/china-ipv4.json",
@@ -915,12 +3849,20 @@
         "sha256": "c3eda4cfb286512bb1cb6adda7f5618ad801fe402f713cf265e9a4b6a4f347a0"
       },
       {
+        "path": "src/rules/network/global.json",
+        "sha256": "8146a29792be17bb023c40e753c808c06b25ad886c766c3c570e6b888f1b57ea"
+      },
+      {
         "path": "src/rules/network/lan.json",
         "sha256": "47154f24fd63ae78749dc484933d428aa2cc716446790c7b31d5cbcdf8df6ee7"
       },
       {
         "path": "src/rules/network/speedtest.json",
         "sha256": "fbfc31b5701de55d4305fb8d75f08690359f280f9094134235fab381e438b1b9"
+      },
+      {
+        "path": "src/rules/network/unbreak.json",
+        "sha256": "ef5fcf5a4f68fef49ff6f8a43949fe63c7ed0f12df3c78cfad878dffbd0e83bc"
       },
       {
         "path": "src/rules/privacy/adblock.json",
@@ -935,8 +3877,16 @@
         "sha256": "06d69318cf9f1fd017c1e0726dabfdf5f62c03403baba4017b35cc8c621b6664"
       },
       {
+        "path": "src/rules/social/facebook.json",
+        "sha256": "8d67197c2bf501fe527fce16a6e29aac03cd7137c0d56b6bc582c5837d197c72"
+      },
+      {
         "path": "src/rules/social/line.json",
         "sha256": "7267e66d1461fd2c04ddf9bbac64ed6123d6fc0fe327bd0b71a8d356eba262b2"
+      },
+      {
+        "path": "src/rules/social/quora.json",
+        "sha256": "0ec581e19b834f831c7da262bda50b4dc33cdd6341388cb7a246d393094e07ab"
       },
       {
         "path": "src/rules/social/signal.json",
@@ -951,28 +3901,144 @@
         "sha256": "11e4b489354b2ce7d53742c8c65c7cbe441732b6d9a137488ca50b6872b3bcf9"
       },
       {
+        "path": "src/rules/social/twitter.json",
+        "sha256": "0ec4362be59169de52a9bef5a546fcf43db68f677875a3713157939f5ced4296"
+      },
+      {
+        "path": "src/rules/social/wechat.json",
+        "sha256": "f04089dc21c17282d98241eadee32f8a55fdc3b436f395f530eec3d6dc28c577"
+      },
+      {
+        "path": "src/rules/social/weibo.json",
+        "sha256": "b83bf89a13383a39ec56f9c4c397167f0dac908227484a413e76335f85f5fc6d"
+      },
+      {
         "path": "src/rules/social/whatsapp.json",
         "sha256": "bbbf5be7e02f62954a4e01269212673975639f2ef4ff9abace58c9856dd996a9"
+      },
+      {
+        "path": "src/rules/social/xiaohongshu.json",
+        "sha256": "106642bdf95640e40d677e09d07a71b20438b2bdbdd00f72e1e6a122758a6ee8"
       },
       {
         "path": "src/rules/social/zoom.json",
         "sha256": "0459d4de26e3985cf79b0658d3bdb5894b3923c1b65f5cb7f3995af175fd4b40"
       },
       {
+        "path": "src/rules/system/alibaba.json",
+        "sha256": "73023dbbb80303d74e7add78e59021f2ff62b5258dca5a7fc00485f1fe6ba34a"
+      },
+      {
+        "path": "src/rules/system/alipay.json",
+        "sha256": "2b5a4cdb7c427b61b6cbd6472714443407959992872b96b5358bec2b89acf64d"
+      },
+      {
+        "path": "src/rules/system/amap.json",
+        "sha256": "4dc999d5bb99cd8e58358644be3adaa8b8289867041b812db6ff4729536d6076"
+      },
+      {
+        "path": "src/rules/system/amazon-portable.json",
+        "sha256": "a4fad5b7294ea4a870fb11e60a7f133fecadc61af2be8a18c91852ce0e162926"
+      },
+      {
+        "path": "src/rules/system/android.json",
+        "sha256": "a43606f0b29ba6603c23fb1b5ccf9b232837207229a56f51fc72ca28603dbd1c"
+      },
+      {
         "path": "src/rules/system/apple.json",
         "sha256": "15a0f78055fababd85a1307cf43b1ddcfdd1962e858ef5b967e662b396e04745"
+      },
+      {
+        "path": "src/rules/system/appstore.json",
+        "sha256": "28049a5839275267546e78ed603ae71a59e29d2840a137c4222a1c3fff32ae53"
+      },
+      {
+        "path": "src/rules/system/baidu.json",
+        "sha256": "6175cf836ff284563f0bbb16f424af15241cf533b61cec10cb85c3ffbb6231af"
+      },
+      {
+        "path": "src/rules/system/bytedance.json",
+        "sha256": "f013e8e24076dfc18878c8b92a0bd8e4e0709cc2b011f71a24286212aab59c9f"
       },
       {
         "path": "src/rules/system/china.json",
         "sha256": "0022afee1c71b56924f1a4e47334e855f15098399607999cbd6b31d5113cb845"
       },
       {
+        "path": "src/rules/system/coolapk.json",
+        "sha256": "7391f3ff5047e998f1f785f814eab6dd5ba2ba498494c2460e3a43a9c59a4873"
+      },
+      {
+        "path": "src/rules/system/douban.json",
+        "sha256": "2891ce8a65f2867bdfc222d70f8bc5c295780f5cbc166acc17f637e6d71fb877"
+      },
+      {
+        "path": "src/rules/system/dropbox.json",
+        "sha256": "1d22de503594eedfe4397f44b8c231b2df2b8b72e19e06e91b7d1e2c8561636b"
+      },
+      {
+        "path": "src/rules/system/google-cn.json",
+        "sha256": "8d99c67217ba6da17e558bf7e19007b420db0e62fa0a675490db61daeba67b88"
+      },
+      {
         "path": "src/rules/system/google.json",
         "sha256": "9bfa4c5dc2c83b50434aa55acfa6c1368d533da35e3276ed16025f0500aa84e1"
       },
       {
+        "path": "src/rules/system/heroku.json",
+        "sha256": "edef7ebc8568572e526884dff12d4c404c94748ca50dbc7f06b086312f4ea6cd"
+      },
+      {
+        "path": "src/rules/system/icloud.json",
+        "sha256": "05cb2c00eb1878e7ed8bbf72cfa57f7e741331b29cf74906b0412ce721b5334f"
+      },
+      {
         "path": "src/rules/system/microsoft.json",
         "sha256": "fb0cb416dc6536d87c9659e622aa06a0216af23c40a8612d54180f0a9d971b6d"
+      },
+      {
+        "path": "src/rules/system/mozilla.json",
+        "sha256": "8330d5050c69382e2ac3a3de6d253d6969eec6099c401597e69d3bee9806325c"
+      },
+      {
+        "path": "src/rules/system/netease.json",
+        "sha256": "2a74723698c585c5ea20c24a56eb9230803c346fbff805ba9cda575e19a0a82e"
+      },
+      {
+        "path": "src/rules/system/onedrive.json",
+        "sha256": "14fe9b5f4b9888b867db24250dc2c972be82c5e427f1256cc35d4f153c777d90"
+      },
+      {
+        "path": "src/rules/system/paypal.json",
+        "sha256": "60ccfab15ec97a31e70ad4e30f7a916c095941683906910d1343f18504001189"
+      },
+      {
+        "path": "src/rules/system/pikpak.json",
+        "sha256": "c1af3a8b5aabefa59fbda98452edaa3745eb8ea91b21e427edb81b2cbd6dd4f5"
+      },
+      {
+        "path": "src/rules/system/quark.json",
+        "sha256": "f13d559a98464ead40cebafcca0318512516bc46ee9f01747f5f3c9a56d73a16"
+      },
+      {
+        "path": "src/rules/system/tencent.json",
+        "sha256": "2ebebf695d9b8c45c28d7d92cc26ddfcd4f410b9451ecbca162de73b95add5c6"
+      },
+      {
+        "path": "src/rules/system/terabox.json",
+        "sha256": "03a322b8e284638b6733313408a831b8a3b5602b32ab3689a821b1ed33cf8299"
+      },
+      {
+        "path": "src/rules/system/wikimedia.json",
+        "sha256": "fcf36daad1880041d6a091b9e59a08417a12e1e179530908c901c7407fc59589"
+      },
+      {
+        "path": "src/rules/system/yandex.json",
+        "sha256": "ec6a5460ea5111ecd9f55389b4affa65a5f37469f81d61839729d7fcb701c3df"
+      },
+      {
+        "path": "src/rules/system/z-library.json",
+        "sha256": "6d8f583117a2f8fec8844ce7c9b16d1a82b1bddbc642f6d8e6a7c82e0b420893"
       }
     ]
   },
@@ -983,9 +4049,24 @@
       "bytes": 377
     },
     {
+      "path": "modules/boxjs.stoverride",
+      "sha256": "f3cce35aedad00585adc83b9a0ba05fc76e248b4599fd5d0eeffaa023833b573",
+      "bytes": 1882
+    },
+    {
+      "path": "modules/script-hub.stoverride",
+      "sha256": "7005a4985c32c2e66ba6349809a023cc932bbb0a60f6ec7549540ec741954d95",
+      "bytes": 3239
+    },
+    {
+      "path": "modules/sub-store.stoverride",
+      "sha256": "6d68b21ad5596c3820f1caaccdf444fc6738b02daa24682a9f7a818d472d5836",
+      "bytes": 2052
+    },
+    {
       "path": "profiles/default.yaml",
-      "sha256": "2b6c223ea9997b81b4a5d2b9de2e6c10a767ccdac011864b3ef85580200e3d4e",
-      "bytes": 17356
+      "sha256": "b3df176be6d429f405c0418e1ecd4948a312ad2f522491c0da79ad47848f51a0",
+      "bytes": 40478
     },
     {
       "path": "profiles/input.example.json",
@@ -994,13 +4075,18 @@
     },
     {
       "path": "profiles/standalone.yaml",
-      "sha256": "1690fd10e235716909b32865c67695f07f13c7c45a1e362c45a0f745cee32f9e",
-      "bytes": 1611182
+      "sha256": "041a2503a470b22051a2f506d3ad190e9890d948c3156eed258f57b3f419c02a",
+      "bytes": 1966313
     },
     {
       "path": "README.md",
-      "sha256": "824e400586a1c6b8aaea8a718dd3967a6256258586ca8c157edf3ab32da8acea",
-      "bytes": 4824
+      "sha256": "ce3a481fa06cb3bf33c175e0b75738a0c421f15145a33431c5065889974ea114",
+      "bytes": 10234
+    },
+    {
+      "path": "rewrites/biliintl-region.stoverride",
+      "sha256": "b1ea7c18b6409c1e1affe6c63b35d8b7851824f83e8e27ab7afb2298a9836112",
+      "bytes": 7071
     },
     {
       "path": "rewrites/https-upgrade.stoverride",
@@ -1008,9 +4094,69 @@
       "bytes": 1364
     },
     {
+      "path": "rewrites/quick-search.stoverride",
+      "sha256": "7c5926bf844689dc522bd3c5a9e3be2a1e78da082189d2d2238914c40208cdc8",
+      "bytes": 19629
+    },
+    {
+      "path": "rewrites/redirects.stoverride",
+      "sha256": "6f4ce4c8f858ec4d1a8445897754d88aae2b010547891a96a601e35aa7c3872c",
+      "bytes": 11072
+    },
+    {
+      "path": "rules/abc.yaml",
+      "sha256": "0bf872f3185c4a2a44cbfe7229873d31ac1d7f64a027d8a32efd64000bd394e0",
+      "bytes": 130
+    },
+    {
+      "path": "rules/abema.yaml",
+      "sha256": "8152d3ab5ee4e5ba958aeb8f30004dcd4c1c5671723ee61bd705df6ae310db6e",
+      "bytes": 690
+    },
+    {
+      "path": "rules/acfun.yaml",
+      "sha256": "29481fe27139bf02d25e5e7c610a68cbfdb35485b8b14e786ebf603e1a299006",
+      "bytes": 248
+    },
+    {
       "path": "rules/adblock.yaml",
       "sha256": "1fc70bc42e4853ca6ff3b9d8e992aaa073e9672eb7f7267a212d625468d693a4",
       "bytes": 31081
+    },
+    {
+      "path": "rules/akamai.yaml",
+      "sha256": "5effea937b4b45bd6a2491ff8e0a4e5d2044324c3e4cb480600b47e668992128",
+      "bytes": 2737
+    },
+    {
+      "path": "rules/alibaba.yaml",
+      "sha256": "58bec053bbb905c510d8565f0dbff875aca4742304696ec136546c26d5729af5",
+      "bytes": 15391
+    },
+    {
+      "path": "rules/alipay.yaml",
+      "sha256": "bbf13d554a8b89853fc018ba7840283692e762b98a885bbffd51aeae8f40de78",
+      "bytes": 348
+    },
+    {
+      "path": "rules/all4.yaml",
+      "sha256": "f791ef9641e2ac633c53499ec8656d7291bc0fcc1d4c85d92f5aa993aaa42f38",
+      "bytes": 71
+    },
+    {
+      "path": "rules/amap.yaml",
+      "sha256": "559d515abfcb0800d15a8c96bfdc7c69f64869836aa426b863784454da51b290",
+      "bytes": 516
+    },
+    {
+      "path": "rules/amazon-portable.yaml",
+      "sha256": "cd38a2163ec7f9dc80009a76f830b964c5591dba8e82021c200684c0e77bc96e",
+      "bytes": 8457
+    },
+    {
+      "path": "rules/android.yaml",
+      "sha256": "4dc3feb46b5ea8434eeca06da3eecbc90bad5aeadaf37acd90163736a29dbf29",
+      "bytes": 134
     },
     {
       "path": "rules/anti-ad.yaml",
@@ -1028,6 +4174,31 @@
       "bytes": 65563
     },
     {
+      "path": "rules/appstore.yaml",
+      "sha256": "711e3bc1f225511778d1d5122089dd3fe0d6829b401552eee64609497a2bf2ef",
+      "bytes": 955
+    },
+    {
+      "path": "rules/baidu.yaml",
+      "sha256": "d50c313563d1ef394f2e2b5cacc4f30e7b361490f08344668dd76c5750c3a3f4",
+      "bytes": 4261
+    },
+    {
+      "path": "rules/bilibili.yaml",
+      "sha256": "c498e3322e2c6b3ae911292115aa2b1521f400974a994a447b8dbbe44c0ce969",
+      "bytes": 1631
+    },
+    {
+      "path": "rules/blizzard.yaml",
+      "sha256": "92fcb2cc31e866e5ce0d0c9e2a52b4e6b931cd1cb95929c24c886a83bc697af2",
+      "bytes": 890
+    },
+    {
+      "path": "rules/bytedance.yaml",
+      "sha256": "68920c52c1a72e5b6edae42719e503da0a22d2deb455b9b62e02b81165d473e6",
+      "bytes": 31631
+    },
+    {
       "path": "rules/china-ipv4.yaml",
       "sha256": "2225c0d955574254ccebdbade2b1f762e00b31f0867d94e2da91a68a1f89d723",
       "bytes": 170088
@@ -1036,6 +4207,11 @@
       "path": "rules/china-ipv6.yaml",
       "sha256": "0ee450788f3780fd581e14b12550181736401473e11dec9bd84cb126040865e6",
       "bytes": 103072
+    },
+    {
+      "path": "rules/china-media.yaml",
+      "sha256": "59716b6107529924ee42f2e378abd11b7a08fc34f0dce4b696a4362d37a1a3b0",
+      "bytes": 9625
     },
     {
       "path": "rules/china.yaml",
@@ -1048,9 +4224,19 @@
       "bytes": 634
     },
     {
+      "path": "rules/coolapk.yaml",
+      "sha256": "ed624bb59d6ed581503af1bf63555ce801cd99d68c176d44c1e884f99449fdf9",
+      "bytes": 111
+    },
+    {
       "path": "rules/cursor.yaml",
       "sha256": "41dbaeeb52c3f36304820c7eff71ad4d5dc1d041b171ff78e9ca690fbb7be696",
       "bytes": 162
+    },
+    {
+      "path": "rules/deezer.yaml",
+      "sha256": "60179ad5d1330b302f78ba697a759d6d7c4ece184e18c56289066ce2296a0c99",
+      "bytes": 66
     },
     {
       "path": "rules/discord.yaml",
@@ -1058,9 +4244,49 @@
       "bytes": 990
     },
     {
+      "path": "rules/discovery.yaml",
+      "sha256": "76b8e8c9dfad30cf9decd7a4678efe6146430237901441129b03a398f5c8fd56",
+      "bytes": 134
+    },
+    {
+      "path": "rules/disney.yaml",
+      "sha256": "9a3c3a8483998e729cc992c1324bb44204393f838c12186a695b79268c7290a1",
+      "bytes": 8126
+    },
+    {
       "path": "rules/docker.yaml",
       "sha256": "ba581c6779d46bb47dd4221b85dc640bd182e169ad62c673442ef97e10164a13",
       "bytes": 273
+    },
+    {
+      "path": "rules/douban.yaml",
+      "sha256": "3e89f7c0484f68831be6b907bee075ebed71cce17c135397d4cd4ea0e488eba9",
+      "bytes": 97
+    },
+    {
+      "path": "rules/douyin.yaml",
+      "sha256": "8a40bc258a9539d464fec1fe2d3832c694c1ce2831db82bb99138f8b21be1404",
+      "bytes": 2354
+    },
+    {
+      "path": "rules/douyu.yaml",
+      "sha256": "8148aa556e6935af629a02c4751c15f663e6fff39306db3ce8a6191a7bfa06d3",
+      "bytes": 217
+    },
+    {
+      "path": "rules/dropbox.yaml",
+      "sha256": "7ec4b0ac0b57fbb5c6a47704c8474ea5f2ba321731e1ea80714feef7948b9016",
+      "bytes": 867
+    },
+    {
+      "path": "rules/facebook.yaml",
+      "sha256": "6ad3a213806b1510923ad0f13e926b327ebd8cb03faef759b7f55360d66790ca",
+      "bytes": 13489
+    },
+    {
+      "path": "rules/five-itv.yaml",
+      "sha256": "1ee7d7ee05bdf22b68bf53960a09d335f4b919127d73fcef50f73116e0bda1ca",
+      "bytes": 64
     },
     {
       "path": "rules/gemini.yaml",
@@ -1083,6 +4309,21 @@
       "bytes": 185
     },
     {
+      "path": "rules/global-media.yaml",
+      "sha256": "4a5e890bd93ad309915622baa0b3b2cd5713a307f1aaf1f9f5d213948788c911",
+      "bytes": 23608
+    },
+    {
+      "path": "rules/global.yaml",
+      "sha256": "e2c072a2b19d3ef89a3186b4b9c4be3b00b360e266a92853276d749531985c09",
+      "bytes": 218457
+    },
+    {
+      "path": "rules/google-cn.yaml",
+      "sha256": "60bc128718ac890742491d4202891fd2d09bd882331a9aca05d699f139ded02e",
+      "bytes": 4062
+    },
+    {
       "path": "rules/google.yaml",
       "sha256": "2eed65d58f7dc82d0d9624f5014f354c9077bab28477169eec2d0a1b07f2ccaf",
       "bytes": 36307
@@ -1093,9 +4334,24 @@
       "bytes": 36
     },
     {
+      "path": "rules/hbo-asia.yaml",
+      "sha256": "afca3cddd1d6163e26fd10453487379c555d3934e242a75f64a5cfac3fa925a9",
+      "bytes": 728
+    },
+    {
       "path": "rules/hbo.yaml",
       "sha256": "fb1c3c9e0f7dfa65d6c84698eec0458cd566a2a48c028dace407c7b033f82283",
       "bytes": 2007
+    },
+    {
+      "path": "rules/heroku.yaml",
+      "sha256": "b7550f23e04f4b15d36fda7d9fbbc523f2a6cc20bb21d2eb76bfc1bc772843dd",
+      "bytes": 379
+    },
+    {
+      "path": "rules/hmt-media.yaml",
+      "sha256": "86a7e5e279492c351275a38606f9911d0e9f2d7abb2adfd94d271b489225e1c3",
+      "bytes": 2208
     },
     {
       "path": "rules/huggingface.yaml",
@@ -1103,9 +4359,49 @@
       "bytes": 93
     },
     {
+      "path": "rules/hulu-jp.yaml",
+      "sha256": "29dd74501e14e0846ceb8cd41c50e742378030fe6433e39189334601d193df8a",
+      "bytes": 154
+    },
+    {
+      "path": "rules/hulu.yaml",
+      "sha256": "805e90ee3d3931604c39f40f04f75222e634d7d22868d8d04bc8f21205e24f6c",
+      "bytes": 1512
+    },
+    {
+      "path": "rules/huya.yaml",
+      "sha256": "fdd3bf5c38608e02754009154f202a331f53de2ad8fdab9e2537b59f1a34570b",
+      "bytes": 67
+    },
+    {
+      "path": "rules/icloud.yaml",
+      "sha256": "f6f818c69e4544ee07ddd13524fe4b6b60174fd9c9b45dec2499021f583942c9",
+      "bytes": 1745
+    },
+    {
+      "path": "rules/iqiyi.yaml",
+      "sha256": "3a4067cb01666ddca02a5ff0a8ba1173af8f3524c516dbfed67d0246138ffdde",
+      "bytes": 641
+    },
+    {
       "path": "rules/jetbrains.yaml",
       "sha256": "53412e94c857f610c22d70d1478c8d5ebc0da10a32d9ca936326b892c9203c9e",
       "bytes": 809
+    },
+    {
+      "path": "rules/joox.yaml",
+      "sha256": "4a2b9d719b97e23e2024ca286e0a3c2f7fc0094e39bcb13d8b8d64f67be270bd",
+      "bytes": 36
+    },
+    {
+      "path": "rules/kkbox.yaml",
+      "sha256": "e48fc6674de057bd4d3be85e665ee1d8b132c9a2a78b203f7a5c7157a1087455",
+      "bytes": 149
+    },
+    {
+      "path": "rules/kktv.yaml",
+      "sha256": "ee5c8646aa564ddbdeaafbf0291ddbe35b5df4046ab7453352d660599a7eac10",
+      "bytes": 110
     },
     {
       "path": "rules/lan.yaml",
@@ -1123,9 +4419,44 @@
       "bytes": 27341
     },
     {
+      "path": "rules/mozilla.yaml",
+      "sha256": "8477adb00bdd9d3e01216bdc8f9ddf94c8406a1d95a69c7a2c6adc84c2df0208",
+      "bytes": 2610
+    },
+    {
+      "path": "rules/mudvod.yaml",
+      "sha256": "e7398fdf3cbc1be2f718a22826afb74ed3231e80629fcbdcc9fb8a2f543009d1",
+      "bytes": 289
+    },
+    {
+      "path": "rules/mytvsuper.yaml",
+      "sha256": "face6452246b9d3e3a640c1d57f8895637badc946a53b49f688bf3f13f3df16a",
+      "bytes": 41
+    },
+    {
+      "path": "rules/netease-music.yaml",
+      "sha256": "4202781fa4af467c6765946ddf38e71ce72892d9bed9b207858e1ecd62786e50",
+      "bytes": 1072
+    },
+    {
+      "path": "rules/netease.yaml",
+      "sha256": "63b00b13b9c9f18ba8dac4c69b7fa9e69b22c2a41544c5c4383fb4d43c137ef4",
+      "bytes": 1692
+    },
+    {
       "path": "rules/netflix.yaml",
       "sha256": "71a22cc5d5e6ec02366d245ed49c1a60f053a02895e4ceece0870060ccd76eb9",
       "bytes": 848
+    },
+    {
+      "path": "rules/niconico.yaml",
+      "sha256": "7360c08c304a1ff61495604fb764d9db76fb4538c9208271288ac317e2c51f28",
+      "bytes": 296
+    },
+    {
+      "path": "rules/notion.yaml",
+      "sha256": "cdf8cbb4aaaab577619a5c13e96f5a4ac77e4a782a2fa593252db9a3e16238b5",
+      "bytes": 237
     },
     {
       "path": "rules/npmjs.yaml",
@@ -1133,9 +4464,29 @@
       "bytes": 97
     },
     {
+      "path": "rules/olevod.yaml",
+      "sha256": "e2b3d3513067d63f2644b138a4f3ed724823f9569414e74e6ec1e75ae5666ba2",
+      "bytes": 276
+    },
+    {
+      "path": "rules/onedrive.yaml",
+      "sha256": "c2cedf31107e39c766ebe7bea604702b50460fd6f7084540a0d01c2b38134422",
+      "bytes": 355
+    },
+    {
       "path": "rules/openai.yaml",
       "sha256": "4dd1480ee2bc21808d446f081be3211851d21ac7d8ebc750e4ed5d99a0430a2d",
       "bytes": 906
+    },
+    {
+      "path": "rules/oracle.yaml",
+      "sha256": "e1f1a1ea3a91e9da8459efeb7a827839df9dcdfb38ae99e67cffa4d83da4c7bb",
+      "bytes": 597
+    },
+    {
+      "path": "rules/paypal.yaml",
+      "sha256": "650f4ee9e9a901340cc8451cef029abdac047ce038f6ed70be3359a806059784",
+      "bytes": 8575
     },
     {
       "path": "rules/perplexity.yaml",
@@ -1143,9 +4494,44 @@
       "bytes": 182
     },
     {
+      "path": "rules/pikpak.yaml",
+      "sha256": "1b68852403e1a490715f7a765b9238c16ef65e14ee3b9ae10a257405b43861cb",
+      "bytes": 241
+    },
+    {
       "path": "rules/poe.yaml",
       "sha256": "4d7ad196082985b2f7ca79ddebe433a4a40e734fe8b0a5c1923583937108f4a9",
       "bytes": 64
+    },
+    {
+      "path": "rules/pornhub.yaml",
+      "sha256": "68e8aeeaec33f4eb73266c7afc826b536c98541b66b008f93977d5c0f8e7982c",
+      "bytes": 300
+    },
+    {
+      "path": "rules/pptv.yaml",
+      "sha256": "7a6cd414fee346407e914b56dbeadd852148c2bc0889abd0a846f09c6bee9d78",
+      "bytes": 93
+    },
+    {
+      "path": "rules/primevideo.yaml",
+      "sha256": "9be854ea1f7ea3343c9ca087ce0655543a30dea89720ef34dc9ecc303fd7455d",
+      "bytes": 904
+    },
+    {
+      "path": "rules/qobuz.yaml",
+      "sha256": "abf1a26bfe7974c716982f692aeb379a1f3cf3799040878ff539057339858e43",
+      "bytes": 37
+    },
+    {
+      "path": "rules/quark.yaml",
+      "sha256": "3c508082251d8b16d644339895c7e09f88e63cb42c63366414732d2d96104ac0",
+      "bytes": 92
+    },
+    {
+      "path": "rules/quora.yaml",
+      "sha256": "556b71cc7c9850488c7b466123e4ff7ecedce5e692cd38704e2ebee3c009148d",
+      "bytes": 191
     },
     {
       "path": "rules/signal.yaml",
@@ -1158,6 +4544,11 @@
       "bytes": 365
     },
     {
+      "path": "rules/soundcloud.yaml",
+      "sha256": "b7e30745cba013e4c8ad8c4054f354c19b63d3b4eb2363aa4a49725dace79233",
+      "bytes": 106
+    },
+    {
       "path": "rules/speedtest.yaml",
       "sha256": "49eea3ba502b67d71512f4c54db6c57001e30c75a095bade34cb0aa5fddcb41f",
       "bytes": 680
@@ -1168,9 +4559,19 @@
       "bytes": 1032
     },
     {
+      "path": "rules/steam-cn.yaml",
+      "sha256": "07e9481a235f904ea764a2a38bf632205fec392c24abbaf20604e9599d193191",
+      "bytes": 633
+    },
+    {
       "path": "rules/steam.yaml",
       "sha256": "1fe8d86a77930e3467c9fbdffa3e7037cdccdb19b147bc8409c29c6ead35ca6b",
       "bytes": 2277
+    },
+    {
+      "path": "rules/taptap.yaml",
+      "sha256": "4b6a201537f38fc8a891253986d6e9896a20594c1463d32ce568e428898db9f8",
+      "bytes": 215
     },
     {
       "path": "rules/telegram.yaml",
@@ -1178,9 +4579,29 @@
       "bytes": 639
     },
     {
+      "path": "rules/tencent.yaml",
+      "sha256": "558846b1872f6bbab54e72596e8aac9c5f07fc8e744f17e3de6e8e31f68f9cbc",
+      "bytes": 22930
+    },
+    {
+      "path": "rules/terabox.yaml",
+      "sha256": "18202de1b11fde25d6dbb29c0821f0d5eaaee0a9c6c246d92e6ce3bfaf00605b",
+      "bytes": 242
+    },
+    {
+      "path": "rules/tidal.yaml",
+      "sha256": "4431c12470db4be8e74408cff6138e7ac509a5d823a7b14129a8a8d7ae2ab843",
+      "bytes": 101
+    },
+    {
       "path": "rules/tiktok.yaml",
       "sha256": "ee6b858fced10620bff503dbb6ad9e1dd992f5c4c28a09f00b5bb871bf7dad01",
       "bytes": 1447
+    },
+    {
+      "path": "rules/tvb.yaml",
+      "sha256": "f7d92c9e93f2b0ede5cb0893e0fa6b43f4bc3dae6f8cca796b51d865c90084ff",
+      "bytes": 464
     },
     {
       "path": "rules/twitch.yaml",
@@ -1188,9 +4609,34 @@
       "bytes": 1353
     },
     {
+      "path": "rules/twitter.yaml",
+      "sha256": "8161d4fada5071765c387454c6c86c81224d47a72c13265cb0dc531a57e77758",
+      "bytes": 763
+    },
+    {
+      "path": "rules/unbreak.yaml",
+      "sha256": "25a84366ca0b39d48e0fce697b2460cd1a747e2d99d5e9aea39864b2ea550476",
+      "bytes": 101
+    },
+    {
       "path": "rules/vercel.yaml",
       "sha256": "a2e30d8f95c7cd8573e1f623d9900d4b47a638fb8241176d717d2d83bee26b5a",
       "bytes": 814
+    },
+    {
+      "path": "rules/viu-portable.yaml",
+      "sha256": "8de24ab4c486f203cd7a47b07cf01a4e6e49cdb7fb8d6d87b6830ef6d877c6d4",
+      "bytes": 209
+    },
+    {
+      "path": "rules/wechat.yaml",
+      "sha256": "a188aeeb40cac4bff0a7e5bbcaf728ed03e4d217bf462041806bdce5d7a7992a",
+      "bytes": 166
+    },
+    {
+      "path": "rules/weibo.yaml",
+      "sha256": "c475a04ddef1d0ba93bf8fd1a151725dc7dfdad3b67d0355890f99a72826bbc1",
+      "bytes": 181
     },
     {
       "path": "rules/whatsapp.yaml",
@@ -1198,14 +4644,44 @@
       "bytes": 362
     },
     {
+      "path": "rules/wikimedia.yaml",
+      "sha256": "1fbb98b0da850dcbfce9e4c0fa5ec35e9d8fc4e4fda1d3f96009a0c49dd1644a",
+      "bytes": 597
+    },
+    {
       "path": "rules/xai.yaml",
       "sha256": "4de4097ede55181c45b73389c06a3c3ad42e2783bff3462127f81802f0679c54",
       "bytes": 121
     },
     {
+      "path": "rules/xiaohongshu.yaml",
+      "sha256": "d9f74f4c85b1e80ef197d2b89ad68e5a98dcc0c3fbc4d1fbe17fbd4ccaebeecc",
+      "bytes": 385
+    },
+    {
+      "path": "rules/ximalaya.yaml",
+      "sha256": "38b1465d6580628472e0c7f0091a834623073b6f2216ff0aa8054eea804e8f15",
+      "bytes": 186
+    },
+    {
+      "path": "rules/yandex.yaml",
+      "sha256": "6457ca9aaea1604f7bfd0a4125e0a82e33800b6021839ccd02533253283a7f0d",
+      "bytes": 4892
+    },
+    {
+      "path": "rules/youku.yaml",
+      "sha256": "bd2e9d9ade41567d89f2f855ba8235ee39b447b2207e4af0320681c8d59bf5ba",
+      "bytes": 1076
+    },
+    {
       "path": "rules/youtube.yaml",
       "sha256": "1454f982cc8f54a6e78d347df49771852389110e2d7159d15178bdf6f43b6f5d",
       "bytes": 5596
+    },
+    {
+      "path": "rules/z-library.yaml",
+      "sha256": "5402ff820958303dcd8a6370f5b2ff369eea9d3352dd407cc3f79c0e0fb0c825",
+      "bytes": 1438
     },
     {
       "path": "rules/zoom.yaml",

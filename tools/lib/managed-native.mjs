@@ -32,7 +32,7 @@ function validate(model) {
 }
 
 function domainRule(rule) {
-  return rule.id !== 'lan' && (rule.entryTypes ? rule.entryTypes.some(type => ['domain', 'domain-suffix'].includes(type)) : !['china-ipv4', 'china-ipv6'].includes(rule.id));
+  return rule.id !== 'lan' && (rule.entryTypes ? rule.entryTypes.some(type => ['domain', 'domain-suffix', 'domain-keyword'].includes(type)) : !['china-ipv4', 'china-ipv6'].includes(rule.id));
 }
 
 function directPolicies(model) {

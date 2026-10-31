@@ -1,0 +1,23 @@
+# SPDX-License-Identifier: AGPL-3.0-only
+# Adapted from sub-store-org/Sub-Store; authors: Peng-YM and Sub-Store contributors.
+# Changed by NetAtlas on 2026-10-31: pin entry scripts, remove scheduled tasks and cosmetic/routing additions; see NOTICE.
+# Upstream complete source: https://github.com/sub-store-org/Sub-Store/tree/352f01b7091c99f4e219c44e4ec96f3288059843
+# Modified installer sources and changes: https://raw.githubusercontent.com/luckiestultra/netatlas/main/src/vendor/integrations/sub-store/
+# Renderer source: https://raw.githubusercontent.com/luckiestultra/netatlas/main/tools/lib/integrations.mjs
+# License: https://raw.githubusercontent.com/luckiestultra/netatlas/main/src/vendor/integrations/sub-store/LICENSE
+# Provided WITHOUT ANY WARRANTY. This installer and the remote scripts are not covered by NetAtlas MIT.
+# Optional: importing/enabling this resource activates remote JavaScript and tool-host MITM.
+# Requires an existing trusted user CA for HTTPS; no CA or automatic task is supplied.
+# Remote scripts can access host storage and user-selected URLs/scripts. Pin scope and permissions: https://raw.githubusercontent.com/luckiestultra/netatlas/main/src/vendor/integrations/sub-store/README.md
+
+#!name=Sub-Store
+#!desc=Optional subscription manager; manual synchronization only. No scheduled task.
+#!category=订阅管理
+
+[MITM]
+hostname = %APPEND% sub.store
+
+[Script]
+# 主程序 已经去掉 Sub-Store Core 的参数 [,ability=http-client-policy] 不会爆内存，这个参数在 Surge 非常占用内存； 如果不需要使用指定节点功能 例如[加旗帜脚本或者cname脚本] 则可以使用此脚本
+Sub-Store Core=type=http-request,pattern=^https?:\/\/sub\.store\/((download)|api\/(preview|sync|(utils\/node-info))),script-path=https://raw.githubusercontent.com/sub-store-org/Sub-Store/d26e713e38901e02565a6505c1ae5cb8bb8a1a22/sub-store-1.min.js,requires-body=true,max-size=-1,timeout=900
+Sub-Store Simple=type=http-request,pattern=^https?:\/\/sub\.store(?=\/|$),script-path=https://raw.githubusercontent.com/sub-store-org/Sub-Store/d26e713e38901e02565a6505c1ae5cb8bb8a1a22/sub-store-0.min.js,requires-body=true,max-size=-1,timeout=900

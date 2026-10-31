@@ -1,0 +1,131 @@
+{
+  "version": 1,
+  "id": "youku",
+  "category": "media",
+  "entries": [
+    {
+      "type": "domain-suffix",
+      "value": "9xsecndns.cn"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "ad.api.3g.youku.com"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "ad.api.mobile.youku.com"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "ad.mobile.youku.com"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "adashx.ut.youku.com"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "atm.youku.com"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "e.stat.ykimg.com"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "ems.youku.com"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "guanggaoad.youku.com"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "h-adashx.ut.youku.com"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "kumiao.com"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "lstat.youku.com"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "mobilemsg.youku.com"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "msg.youku.com"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "p-log.ykimg.com"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "passport-log.youku.com"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "pl.youku.com"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "s-adashx.ut.youku.com"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "soku.com"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "stat.youku.com"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "statis.api.3g.youku.com"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "tudou.com"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "v6-adashx.ut.youku.com"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "yk-ssp.ad.youku.com"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "ykad-data.youku.com"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "ykimg.com"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "youku.com"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "youku.tv"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "youkuhonor.com"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "youkuplay.com"
+    },
+    {
+      "type": "domain",
+      "value": "ykimg.alicdn.com"
+    }
+  ]
+}

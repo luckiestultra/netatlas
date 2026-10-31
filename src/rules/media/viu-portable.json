@@ -1,0 +1,31 @@
+{
+  "version": 1,
+  "id": "viu-portable",
+  "category": "media",
+  "entries": [
+    {
+      "type": "domain-suffix",
+      "value": "viu.com"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "viu.tv"
+    },
+    {
+      "type": "domain",
+      "value": "api.viu.now.com"
+    },
+    {
+      "type": "domain",
+      "value": "d1k2us671qcoau.cloudfront.net"
+    },
+    {
+      "type": "domain",
+      "value": "d2anahhhmp1ffz.cloudfront.net"
+    },
+    {
+      "type": "domain",
+      "value": "dfp6rglgjqszk.cloudfront.net"
+    }
+  ]
+}

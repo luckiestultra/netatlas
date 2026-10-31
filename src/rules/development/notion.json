@@ -1,0 +1,35 @@
+{
+  "version": 1,
+  "id": "notion",
+  "category": "development",
+  "entries": [
+    {
+      "type": "domain-suffix",
+      "value": "notion-static.com"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "notion-status.com"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "notion.com"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "notion.new"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "notion.site"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "notion.so"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "notionusercontent.com"
+    }
+  ]
+}

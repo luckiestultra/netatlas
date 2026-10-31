@@ -1,0 +1,75 @@
+{
+  "version": 1,
+  "id": "steam-cn",
+  "category": "gaming",
+  "entries": [
+    {
+      "type": "domain-suffix",
+      "value": "client-update.queniuqe.com"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "csgo.com.cn"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "csgo.wmsj.cn"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "dl.steam.clngaa.com"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "dota2.com.cn"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "dota2.wmsj.cn"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "gstore.val.manlaxy.com"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "st.dl.bscstorage.net"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "st.dl.eccdnx.com"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "st.dl.pinyuncloud.com"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "steamchina.com"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "steampowered.com.8686c.com"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "steamstatic.com.8686c.com"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "wmsjsteam.com"
+    },
+    {
+      "type": "domain",
+      "value": "alibaba.cdn.steampipe.steamcontent.com"
+    },
+    {
+      "type": "domain",
+      "value": "lv.queniujq.cn"
+    },
+    {
+      "type": "domain",
+      "value": "xz.pphimalayanrt.com"
+    }
+  ]
+}

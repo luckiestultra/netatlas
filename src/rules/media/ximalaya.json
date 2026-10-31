@@ -1,0 +1,27 @@
+{
+  "version": 1,
+  "id": "ximalaya",
+  "category": "media",
+  "entries": [
+    {
+      "type": "domain-suffix",
+      "value": "adbehavior.ximalaya.com"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "adse.wsa.ximalaya.com"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "adse.ximalaya.com"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "ximalaya.com"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "xmcdn.com"
+    }
+  ]
+}

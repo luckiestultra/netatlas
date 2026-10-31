@@ -1,0 +1,29 @@
+name: Sub-Store
+desc: Optional subscription manager; manual synchronization only. No scheduled task.
+
+http:
+  mitm:
+    - sub.store
+  script:
+    - match: ^https?:\/\/sub\.store\/((download)|api\/(preview|sync|(utils\/node-info)))
+      name: sub-store-1
+      type: request
+      require-body: true
+      max-size: -1
+      timeout: 900
+    - match: ^https?:\/\/sub\.store(?=\/|$)
+      name: sub-store-0
+      type: request
+      require-body: true
+      max-size: -1
+      timeout: 900
+
+script-providers:
+  sub-store-0:
+    url: https://raw.githubusercontent.com/sub-store-org/Sub-Store/d26e713e38901e02565a6505c1ae5cb8bb8a1a22/sub-store-0.min.js
+    interval: 86400
+
+  sub-store-1:
+    url: https://raw.githubusercontent.com/sub-store-org/Sub-Store/d26e713e38901e02565a6505c1ae5cb8bb8a1a22/sub-store-1.min.js
+    interval: 86400
+

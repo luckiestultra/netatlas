@@ -1,0 +1,12 @@
+#!name=BoxJs
+#!desc=Data manager
+#!openUrl=http://boxjs.com
+#!author=chavyleung
+#!homepage=https://chavyleung.gitbook.io/boxjs/
+
+[Script]
+http-request ^https?:\/\/(?:[A-Za-z0-9-]+\.)*boxjs\.(?:com|net)(?=\/|$) script-path=https://raw.githubusercontent.com/chavyleung/scripts/bfab3c906f3d5d126e9094f15730e025f7f32128/box/chavy.boxjs.js, requires-body=true, timeout=120, tag=BoxJs
+
+[MITM]
+hostname = boxjs.com, boxjs.net, *.boxjs.com, *.boxjs.net
+

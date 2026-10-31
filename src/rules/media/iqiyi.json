@@ -1,0 +1,87 @@
+{
+  "version": 1,
+  "id": "iqiyi",
+  "category": "media",
+  "entries": [
+    {
+      "type": "domain-suffix",
+      "value": "71.am"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "71edge.com"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "ad.m.iqiyi.com"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "afp.iqiyi.com"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "c.uaa.iqiyi.com"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "cloudpush.iqiyi.com"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "cupid.iqiyi.com"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "ifacelog.iqiyi.com"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "iq.com"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "iqiyi.com"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "iqiyipic.com"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "mbdlog.iqiyi.com"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "msg.video.qiyi.com"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "msg2.video.qiyi.com"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "policy.video.iqiyi.com"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "pps.tv"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "ppsimg.com"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "qiyi.com"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "qiyipic.com"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "qy.net"
+    }
+  ]
+}

@@ -1,0 +1,23 @@
+{
+  "version": 1,
+  "id": "abc",
+  "category": "media",
+  "entries": [
+    {
+      "type": "domain-suffix",
+      "value": "abc-studios.com"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "abc.com"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "abcnews.com"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "edgedatg.com"
+    }
+  ]
+}

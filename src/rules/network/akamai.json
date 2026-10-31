@@ -1,0 +1,331 @@
+{
+  "version": 1,
+  "id": "akamai",
+  "category": "network",
+  "entries": [
+    {
+      "type": "domain-suffix",
+      "value": "accdn.com.cn"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "ak1.net"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "aka-ai.com"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "aka-ai.net"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "akacrypto.net"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "akadeem.net"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "akadns.com"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "akadns.net"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "akadns6.net"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "akadns88.net"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "akadns99.net"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "akaeai.com"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "akafms.net"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "akagtm.org"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "akahost.net"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "akaint.net"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "akam.net"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "akamaa.com"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "akamah.com"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "akamai-access.com"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "akamai-access.net"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "akamai-cdn.com"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "akamai-platform-internal.net"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "akamai-platform-staging.com"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "akamai-platform.net"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "akamai-regression.net"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "akamai-staging.net"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "akamai-sucks.net"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "akamai-thailand.com"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "akamai-thailand.net"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "akamai-trials.com"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "akamai.co.kr"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "akamai.com"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "akamai.net"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "akamaiedge.net"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "akamaientrypoint.net"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "akamaietpcnctest.com"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "akamaietpcompromisedcnctest.com"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "akamaietpcompromisedmalwaretest.com"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "akamaietpmalwaretest.com"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "akamaietpphishingtest.com"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "akamaihd-staging.net"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "akamaihd.com"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "akamaihd.net"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "akamaimagicmath.net"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "akamainewzealand.com"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "akamaiphillipines.com"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "akamaiphillipines.net"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "akamaisingapore.net"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "akamaistream.net"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "akamaitech.com"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "akamaitech.net"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "akamaitechnologies.com"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "akamaitechnologies.net"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "akamaized-staging.net"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "akamaized.net"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "akamaizercentral.com"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "akamak.com"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "akamam.com"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "akamci.com"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "akami.com"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "akami.net"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "akamii.com"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "akamqi.com"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "akastream.com"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "akastream.net"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "akatns.net"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "akcdn.com.cn"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "akstat.io"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "aptdn.net"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "edgekey.net"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "edgekey88.net"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "edgesuite.net"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "iamakamai.com"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "iamakamai.net"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "janrain.biz"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "janrainservices.com"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "skycdn.com.cn"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "soasta-dswb.com"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "srtcdn.net"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "tl88.net"
+    }
+  ]
+}

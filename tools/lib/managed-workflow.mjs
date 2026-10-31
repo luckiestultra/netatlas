@@ -23,6 +23,8 @@ const cases = [
   { host: 'managed.home.arpa', permitted: true, proxied: false, dnsRole: 'local', behavior: 'lan-name' },
   { host: 'www.baidu.com', permitted: true, proxied: false, dnsRole: 'domestic', behavior: 'domestic-domain' },
   { host: 'www.apple.com', permitted: true, proxied: false, dnsRole: 'domestic', behavior: 'apple-direct' },
+  { host: 'y.qq.com', permitted: true, proxied: false, dnsRole: 'domestic', behavior: 'domestic-media-before-parent' },
+  { host: 'litvfreepc.akamaized.net', permitted: true, proxied: true, dnsRole: 'remote', behavior: 'regional-media-before-cdn' },
   { host: 'chatgpt.com', permitted: true, proxied: true, dnsRole: 'remote', behavior: 'ai-service' },
   { host: 'www.google.cn', permitted: true, proxied: true, dnsRole: 'remote', behavior: 'specific-before-cn' },
   { host: 'managed-unmatched.example', permitted: true, proxied: true, dnsRole: 'remote', behavior: 'fallback-proxy' },

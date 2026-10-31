@@ -6,7 +6,7 @@
 
 主配置面向 sing-box 1.14.4 核心。填入原生 outbounds，并将节点 tag 加入节点选择、自动选择和对应地区组的 outbounds，更新 selector.default。核心没有通用机场订阅 provider；支持订阅合并的前端需按其说明接入。需要本地转换时再使用下方高级工具，不向在线转换站上传秘密。
 
-首次使用需由客户端下载远程规则。主配置引用本客户端的 40 份规则资源，覆盖 23,476 条规则，更新由客户端处理；主配置升级与规则刷新是两件事。没有私人节点，配置不会凭空提供代理服务。除 QX/SR 使用 App 内置节点选择外，无节点时节点选择保持 REJECT，导入后核对实际选择。
+首次使用需由客户端下载远程规则。主配置引用本客户端的 114 份规则资源，覆盖 29,103 条规则，更新由客户端处理；主配置升级与规则刷新是两件事。没有私人节点，配置不会凭空提供代理服务。除 QX/SR 使用 App 内置节点选择外，无节点时节点选择保持 REJECT，导入后核对实际选择。
 
 AI、苹果、谷歌、微软、开发、通讯、游戏、媒体与最终兜底可独立选策略；支持手选、自动选择及六地区测速组。地区名来自节点标签，不是 IP 定位结论；没有匹配节点时不要选择该组，不承诺空组自动回退。苹果服务初始直连，其余业务默认走节点选择。
 
@@ -16,55 +16,137 @@ DNS 按各客户端原生能力配置引导、直连/国内、代理目的地和
 
 rules/ 按具体应用或服务 ID 平铺，可单独订阅；QX 资源的 force-policy 覆盖文件策略，其他客户端在主配置引用处指定策略。anti-AD 为可选的 100,682 条，不默认启用。
 
-| 规则资源 | 条目 |
-| --- | ---: |
-| [lan](rules/lan.json) | 17 |
-| [adblock](rules/adblock.json) | 904 |
-| [anti-ad（可选）](rules/anti-ad.json) | 100,682 |
-| [apple-tvplus](rules/apple-tvplus.json) | 8 |
-| [claude](rules/claude.json) | 19 |
-| [cursor](rules/cursor.json) | 5 |
-| [discord](rules/discord.json) | 28 |
-| [docker](rules/docker.json) | 6 |
-| [gemini](rules/gemini.json) | 49 |
-| [github-copilot](rules/github-copilot.json) | 6 |
-| [gitlab](rules/gitlab.json) | 5 |
-| [groq](rules/groq.json) | 1 |
-| [hbo](rules/hbo.json) | 65 |
-| [huggingface](rules/huggingface.json) | 3 |
-| [jetbrains](rules/jetbrains.json) | 25 |
-| [line](rules/line.json) | 20 |
-| [netflix](rules/netflix.json) | 24 |
-| [npmjs](rules/npmjs.json) | 3 |
-| [openai](rules/openai.json) | 24 |
-| [perplexity](rules/perplexity.json) | 5 |
-| [poe](rules/poe.json) | 2 |
-| [signal](rules/signal.json) | 8 |
-| [slack](rules/slack.json) | 11 |
-| [speedtest](rules/speedtest.json) | 20 |
-| [spotify](rules/spotify.json) | 28 |
-| [steam](rules/steam.json) | 61 |
-| [telegram](rules/telegram.json) | 21 |
-| [tiktok](rules/tiktok.json) | 40 |
-| [twitch](rules/twitch.json) | 35 |
-| [vercel](rules/vercel.json) | 27 |
-| [whatsapp](rules/whatsapp.json) | 11 |
-| [xai](rules/xai.json) | 4 |
-| [youtube](rules/youtube.json) | 178 |
-| [zoom](rules/zoom.json) | 3 |
-| [apple](rules/apple.json) | 1,826 |
-| [github](rules/github.json) | 65 |
-| [google](rules/google.json) | 1,123 |
-| [microsoft](rules/microsoft.json) | 760 |
-| [china](rules/china.json) | 8,387 |
-| [china-ipv4](rules/china-ipv4.json) | 6,174 |
-| [china-ipv6](rules/china-ipv6.json) | 3,475 |
+| 规则资源 | 条目 | 许可 |
+| --- | ---: | --- |
+| [lan](rules/lan.json) | 17 | MIT |
+| [unbreak](rules/unbreak.json) | 3 | MIT |
+| [adblock](rules/adblock.json) | 904 | MIT |
+| [abc](rules/abc.json) | 4 | MIT |
+| [abema](rules/abema.json) | 21 | MIT |
+| [acfun](rules/acfun.json) | 8 | MIT |
+| [alipay](rules/alipay.json) | 11 | MIT |
+| [all4](rules/all4.json) | 2 | GPL-2.0-only |
+| [amap](rules/amap.json) | 16 | MIT |
+| [android](rules/android.json) | 4 | MIT |
+| [anti-ad（可选）](rules/anti-ad.json) | 100,682 | MIT |
+| [apple-tvplus](rules/apple-tvplus.json) | 8 | MIT |
+| [appstore](rules/appstore.json) | 26 | MIT |
+| [baidu](rules/baidu.json) | 132 | MIT |
+| [bilibili](rules/bilibili.json) | 53 | MIT |
+| [blizzard](rules/blizzard.json) | 25 | MIT |
+| [claude](rules/claude.json) | 19 | MIT |
+| [coolapk](rules/coolapk.json) | 3 | MIT |
+| [cursor](rules/cursor.json) | 5 | MIT |
+| [deezer](rules/deezer.json) | 2 | MIT |
+| [discord](rules/discord.json) | 28 | MIT |
+| [discovery](rules/discovery.json) | 3 | MIT |
+| [docker](rules/docker.json) | 6 | MIT |
+| [douban](rules/douban.json) | 3 | MIT |
+| [douyin](rules/douyin.json) | 71 | MIT |
+| [douyu](rules/douyu.json) | 7 | MIT |
+| [dropbox](rules/dropbox.json) | 25 | MIT |
+| [facebook](rules/facebook.json) | 397 | MIT |
+| [five-itv](rules/five-itv.json) | 2 | GPL-2.0-only |
+| [gemini](rules/gemini.json) | 49 | MIT |
+| [github-copilot](rules/github-copilot.json) | 6 | MIT |
+| [gitlab](rules/gitlab.json) | 5 | MIT |
+| [global（可选）](rules/global.json) | 6,985 | GPL-2.0-only |
+| [google-cn（可选）](rules/google-cn.json) | 124 | MIT |
+| [groq](rules/groq.json) | 1 | MIT |
+| [hbo-asia](rules/hbo-asia.json) | 19 | GPL-2.0-only |
+| [heroku](rules/heroku.json) | 12 | MIT |
+| [huggingface](rules/huggingface.json) | 3 | MIT |
+| [hulu-jp](rules/hulu-jp.json) | 5 | GPL-2.0-only |
+| [huya](rules/huya.json) | 2 | MIT |
+| [icloud](rules/icloud.json) | 55 | MIT |
+| [iqiyi](rules/iqiyi.json) | 20 | MIT |
+| [jetbrains](rules/jetbrains.json) | 25 | MIT |
+| [joox](rules/joox.json) | 1 | MIT |
+| [kkbox](rules/kkbox.json) | 5 | MIT |
+| [kktv](rules/kktv.json) | 3 | MIT |
+| [line](rules/line.json) | 20 | MIT |
+| [mozilla](rules/mozilla.json) | 77 | MIT |
+| [mudvod](rules/mudvod.json) | 10 | MIT |
+| [mytvsuper](rules/mytvsuper.json) | 1 | MIT |
+| [netease-music](rules/netease-music.json) | 28 | GPL-2.0-only |
+| [netflix](rules/netflix.json) | 24 | MIT |
+| [niconico](rules/niconico.json) | 10 | MIT |
+| [notion](rules/notion.json) | 7 | MIT |
+| [npmjs](rules/npmjs.json) | 3 | MIT |
+| [olevod](rules/olevod.json) | 9 | MIT |
+| [onedrive](rules/onedrive.json) | 11 | MIT |
+| [openai](rules/openai.json) | 24 | MIT |
+| [oracle](rules/oracle.json) | 19 | MIT |
+| [paypal](rules/paypal.json) | 245 | MIT |
+| [perplexity](rules/perplexity.json) | 5 | MIT |
+| [pikpak](rules/pikpak.json) | 7 | MIT |
+| [poe](rules/poe.json) | 2 | MIT |
+| [pornhub](rules/pornhub.json) | 9 | MIT |
+| [pptv](rules/pptv.json) | 3 | MIT |
+| [primevideo](rules/primevideo.json) | 24 | MIT |
+| [qobuz](rules/qobuz.json) | 1 | MIT |
+| [quark](rules/quark.json) | 3 | MIT |
+| [signal](rules/signal.json) | 8 | MIT |
+| [slack](rules/slack.json) | 11 | MIT |
+| [soundcloud](rules/soundcloud.json) | 3 | MIT |
+| [speedtest](rules/speedtest.json) | 20 | MIT |
+| [spotify](rules/spotify.json) | 28 | MIT |
+| [steam-cn](rules/steam-cn.json) | 17 | MIT |
+| [taptap](rules/taptap.json) | 7 | MIT |
+| [telegram](rules/telegram.json) | 21 | MIT |
+| [terabox](rules/terabox.json) | 7 | MIT |
+| [tidal](rules/tidal.json) | 3 | MIT |
+| [tiktok](rules/tiktok.json) | 40 | MIT |
+| [twitch](rules/twitch.json) | 35 | MIT |
+| [twitter](rules/twitter.json) | 24 | MIT |
+| [vercel](rules/vercel.json) | 27 | MIT |
+| [viu-portable](rules/viu-portable.json) | 6 | MIT |
+| [wechat](rules/wechat.json) | 5 | MIT |
+| [weibo](rules/weibo.json) | 6 | MIT |
+| [whatsapp](rules/whatsapp.json) | 11 | MIT |
+| [wikimedia](rules/wikimedia.json) | 18 | MIT |
+| [xai](rules/xai.json) | 4 | MIT |
+| [xiaohongshu](rules/xiaohongshu.json) | 12 | MIT |
+| [ximalaya](rules/ximalaya.json) | 5 | MIT |
+| [yandex](rules/yandex.json) | 157 | MIT |
+| [youku](rules/youku.json) | 31 | MIT |
+| [youtube](rules/youtube.json) | 178 | MIT |
+| [z-library](rules/z-library.json) | 48 | MIT |
+| [zoom](rules/zoom.json) | 3 | MIT |
+| [hulu](rules/hulu.json) | 48 | MIT |
+| [hbo](rules/hbo.json) | 65 | MIT |
+| [steam](rules/steam.json) | 61 | MIT |
+| [quora](rules/quora.json) | 6 | MIT |
+| [tvb](rules/tvb.json) | 14 | MIT |
+| [disney](rules/disney.json) | 236 | MIT |
+| [china-media](rules/china-media.json) | 297 | MIT |
+| [hmt-media](rules/hmt-media.json) | 60 | MIT |
+| [global-media](rules/global-media.json) | 704 | MIT |
+| [amazon-portable](rules/amazon-portable.json) | 250 | MIT |
+| [akamai](rules/akamai.json) | 81 | MIT |
+| [alibaba](rules/alibaba.json) | 464 | MIT |
+| [bytedance](rules/bytedance.json) | 960 | MIT |
+| [netease](rules/netease.json) | 54 | MIT |
+| [tencent](rules/tencent.json) | 700 | MIT |
+| [apple](rules/apple.json) | 1,826 | MIT |
+| [github](rules/github.json) | 65 | MIT |
+| [google](rules/google.json) | 1,123 | MIT |
+| [microsoft](rules/microsoft.json) | 760 | MIT |
+| [china](rules/china.json) | 8,387 | MIT |
+| [china-ipv4](rules/china-ipv4.json) | 6,174 | MIT |
+| [china-ipv6](rules/china-ipv6.json) | 3,475 | MIT |
 
 ## 可选功能
 
-- [fragments/anti-ad.json](fragments/anti-ad.json)
+| 功能 | 实际入口/导入方式 |
+| --- | --- |
+| 可选反广告 | [fragments/anti-ad.json](fragments/anti-ad.json)；merge-fragment |
 
-modules 是原生安装包，rewrites 是纯重写资源，fragments 需要合并。QX 主配置已经接入 GeoIP；geoip.conf 片段供已有其他配置使用。重写、MITM 和证书均不自动启用。功能依各客户端语法导入，见[功能说明](../../docs/features.md)。
+modules 保存脚本功能安装资源，rewrites 保存纯重写，fragments 需要手工合并。QX 的 modules/*.snippet 仍在 App 中按“重写资源”导入；Surge/SR 用各自模块入口，Loon 用插件，Egern 用模块，Stash 用覆写，不能混用相同扩展名推断兼容。
+
+BoxJS、ScriptHub、Sub-Store 为明确可选的上游工具，脚本入口固定版本，GUI 导入未实测；BoxJS 会读写宿主脚本存储，转换工具会读取订阅/用户指定 URL。没有自动同步任务，也不会自动启用 MITM 或安装 CA。第三方脚本与前端的完整依赖树不全部固定，见[工具许可与边界](../../src/vendor/integrations/)。外部解析器片段只链接作者发布脚本，不是本仓库实现的解析器。
+
+Mihomo/sing-box 提供原生规则、DNS、节点与可选反广告；BoxJS 等 GUI 模块和 HTTP 重写不是这两个核心的能力。需要订阅转换时可另用 [Sub-Store 官方服务](https://github.com/sub-store-org/Sub-Store)，不要把 GUI 脚本格式塞进核心配置。QX 主配置已经接入 GeoIP；其片段供其他既有配置使用。完整边界见[逐项覆盖](../../docs/coverage.md)与[功能说明](../../docs/features.md)。
 
 ## 高级：离线配置或本地私有转换
 

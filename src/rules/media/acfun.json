@@ -1,0 +1,39 @@
+{
+  "version": 1,
+  "id": "acfun",
+  "category": "media",
+  "entries": [
+    {
+      "type": "domain-suffix",
+      "value": "ac.fun"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "acfun.cn"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "acfun.net"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "acfunchina.cn"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "acfunchina.com"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "acfunchina.net"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "aixifan.com"
+    },
+    {
+      "type": "domain",
+      "value": "apilog-web.acfun.cn"
+    }
+  ]
+}

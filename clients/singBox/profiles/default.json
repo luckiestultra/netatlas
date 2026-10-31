@@ -41,13 +41,97 @@
       },
       {
         "rule_set": [
+          "unbreak"
+        ],
+        "action": "route",
+        "server": "domestic"
+      },
+      {
+        "rule_set": [
           "adblock"
         ],
         "action": "reject"
       },
       {
         "rule_set": [
+          "abc"
+        ],
+        "action": "route",
+        "server": "remote"
+      },
+      {
+        "rule_set": [
+          "abema"
+        ],
+        "action": "route",
+        "server": "remote"
+      },
+      {
+        "rule_set": [
+          "acfun"
+        ],
+        "action": "route",
+        "server": "domestic"
+      },
+      {
+        "rule_set": [
+          "alipay"
+        ],
+        "action": "route",
+        "server": "domestic"
+      },
+      {
+        "rule_set": [
+          "all4"
+        ],
+        "action": "route",
+        "server": "remote"
+      },
+      {
+        "rule_set": [
+          "amap"
+        ],
+        "action": "route",
+        "server": "domestic"
+      },
+      {
+        "rule_set": [
+          "android"
+        ],
+        "action": "route",
+        "server": "remote"
+      },
+      {
+        "rule_set": [
           "apple-tvplus"
+        ],
+        "action": "route",
+        "server": "remote"
+      },
+      {
+        "rule_set": [
+          "appstore"
+        ],
+        "action": "route",
+        "server": "domestic"
+      },
+      {
+        "rule_set": [
+          "baidu"
+        ],
+        "action": "route",
+        "server": "domestic"
+      },
+      {
+        "rule_set": [
+          "bilibili"
+        ],
+        "action": "route",
+        "server": "domestic"
+      },
+      {
+        "rule_set": [
+          "blizzard"
         ],
         "action": "route",
         "server": "remote"
@@ -61,7 +145,21 @@
       },
       {
         "rule_set": [
+          "coolapk"
+        ],
+        "action": "route",
+        "server": "domestic"
+      },
+      {
+        "rule_set": [
           "cursor"
+        ],
+        "action": "route",
+        "server": "remote"
+      },
+      {
+        "rule_set": [
+          "deezer"
         ],
         "action": "route",
         "server": "remote"
@@ -75,7 +173,56 @@
       },
       {
         "rule_set": [
+          "discovery"
+        ],
+        "action": "route",
+        "server": "remote"
+      },
+      {
+        "rule_set": [
           "docker"
+        ],
+        "action": "route",
+        "server": "remote"
+      },
+      {
+        "rule_set": [
+          "douban"
+        ],
+        "action": "route",
+        "server": "domestic"
+      },
+      {
+        "rule_set": [
+          "douyin"
+        ],
+        "action": "route",
+        "server": "domestic"
+      },
+      {
+        "rule_set": [
+          "douyu"
+        ],
+        "action": "route",
+        "server": "domestic"
+      },
+      {
+        "rule_set": [
+          "dropbox"
+        ],
+        "action": "route",
+        "server": "remote"
+      },
+      {
+        "rule_set": [
+          "facebook"
+        ],
+        "action": "route",
+        "server": "remote"
+      },
+      {
+        "rule_set": [
+          "five-itv"
         ],
         "action": "route",
         "server": "remote"
@@ -110,7 +257,14 @@
       },
       {
         "rule_set": [
-          "hbo"
+          "hbo-asia"
+        ],
+        "action": "route",
+        "server": "remote"
+      },
+      {
+        "rule_set": [
+          "heroku"
         ],
         "action": "route",
         "server": "remote"
@@ -124,7 +278,56 @@
       },
       {
         "rule_set": [
+          "hulu-jp"
+        ],
+        "action": "route",
+        "server": "remote"
+      },
+      {
+        "rule_set": [
+          "huya"
+        ],
+        "action": "route",
+        "server": "domestic"
+      },
+      {
+        "rule_set": [
+          "icloud"
+        ],
+        "action": "route",
+        "server": "domestic"
+      },
+      {
+        "rule_set": [
+          "iqiyi"
+        ],
+        "action": "route",
+        "server": "domestic"
+      },
+      {
+        "rule_set": [
           "jetbrains"
+        ],
+        "action": "route",
+        "server": "remote"
+      },
+      {
+        "rule_set": [
+          "joox"
+        ],
+        "action": "route",
+        "server": "remote"
+      },
+      {
+        "rule_set": [
+          "kkbox"
+        ],
+        "action": "route",
+        "server": "remote"
+      },
+      {
+        "rule_set": [
+          "kktv"
         ],
         "action": "route",
         "server": "remote"
@@ -138,7 +341,49 @@
       },
       {
         "rule_set": [
+          "mozilla"
+        ],
+        "action": "route",
+        "server": "remote"
+      },
+      {
+        "rule_set": [
+          "mudvod"
+        ],
+        "action": "route",
+        "server": "remote"
+      },
+      {
+        "rule_set": [
+          "mytvsuper"
+        ],
+        "action": "route",
+        "server": "remote"
+      },
+      {
+        "rule_set": [
+          "netease-music"
+        ],
+        "action": "route",
+        "server": "domestic"
+      },
+      {
+        "rule_set": [
           "netflix"
+        ],
+        "action": "route",
+        "server": "remote"
+      },
+      {
+        "rule_set": [
+          "niconico"
+        ],
+        "action": "route",
+        "server": "remote"
+      },
+      {
+        "rule_set": [
+          "notion"
         ],
         "action": "route",
         "server": "remote"
@@ -152,7 +397,35 @@
       },
       {
         "rule_set": [
+          "olevod"
+        ],
+        "action": "route",
+        "server": "remote"
+      },
+      {
+        "rule_set": [
+          "onedrive"
+        ],
+        "action": "route",
+        "server": "remote"
+      },
+      {
+        "rule_set": [
           "openai"
+        ],
+        "action": "route",
+        "server": "remote"
+      },
+      {
+        "rule_set": [
+          "oracle"
+        ],
+        "action": "route",
+        "server": "remote"
+      },
+      {
+        "rule_set": [
+          "paypal"
         ],
         "action": "route",
         "server": "remote"
@@ -166,10 +439,52 @@
       },
       {
         "rule_set": [
+          "pikpak"
+        ],
+        "action": "route",
+        "server": "remote"
+      },
+      {
+        "rule_set": [
           "poe"
         ],
         "action": "route",
         "server": "remote"
+      },
+      {
+        "rule_set": [
+          "pornhub"
+        ],
+        "action": "route",
+        "server": "remote"
+      },
+      {
+        "rule_set": [
+          "pptv"
+        ],
+        "action": "route",
+        "server": "domestic"
+      },
+      {
+        "rule_set": [
+          "primevideo"
+        ],
+        "action": "route",
+        "server": "remote"
+      },
+      {
+        "rule_set": [
+          "qobuz"
+        ],
+        "action": "route",
+        "server": "remote"
+      },
+      {
+        "rule_set": [
+          "quark"
+        ],
+        "action": "route",
+        "server": "domestic"
       },
       {
         "rule_set": [
@@ -181,6 +496,13 @@
       {
         "rule_set": [
           "slack"
+        ],
+        "action": "route",
+        "server": "remote"
+      },
+      {
+        "rule_set": [
+          "soundcloud"
         ],
         "action": "route",
         "server": "remote"
@@ -201,7 +523,14 @@
       },
       {
         "rule_set": [
-          "steam"
+          "steam-cn"
+        ],
+        "action": "route",
+        "server": "domestic"
+      },
+      {
+        "rule_set": [
+          "taptap"
         ],
         "action": "route",
         "server": "remote"
@@ -209,6 +538,20 @@
       {
         "rule_set": [
           "telegram"
+        ],
+        "action": "route",
+        "server": "remote"
+      },
+      {
+        "rule_set": [
+          "terabox"
+        ],
+        "action": "route",
+        "server": "remote"
+      },
+      {
+        "rule_set": [
+          "tidal"
         ],
         "action": "route",
         "server": "remote"
@@ -229,6 +572,13 @@
       },
       {
         "rule_set": [
+          "twitter"
+        ],
+        "action": "route",
+        "server": "remote"
+      },
+      {
+        "rule_set": [
           "vercel"
         ],
         "action": "route",
@@ -236,7 +586,35 @@
       },
       {
         "rule_set": [
+          "viu-portable"
+        ],
+        "action": "route",
+        "server": "remote"
+      },
+      {
+        "rule_set": [
+          "wechat"
+        ],
+        "action": "route",
+        "server": "domestic"
+      },
+      {
+        "rule_set": [
+          "weibo"
+        ],
+        "action": "route",
+        "server": "domestic"
+      },
+      {
+        "rule_set": [
           "whatsapp"
+        ],
+        "action": "route",
+        "server": "remote"
+      },
+      {
+        "rule_set": [
+          "wikimedia"
         ],
         "action": "route",
         "server": "remote"
@@ -250,7 +628,42 @@
       },
       {
         "rule_set": [
+          "xiaohongshu"
+        ],
+        "action": "route",
+        "server": "domestic"
+      },
+      {
+        "rule_set": [
+          "ximalaya"
+        ],
+        "action": "route",
+        "server": "domestic"
+      },
+      {
+        "rule_set": [
+          "yandex"
+        ],
+        "action": "route",
+        "server": "remote"
+      },
+      {
+        "rule_set": [
+          "youku"
+        ],
+        "action": "route",
+        "server": "domestic"
+      },
+      {
+        "rule_set": [
           "youtube"
+        ],
+        "action": "route",
+        "server": "remote"
+      },
+      {
+        "rule_set": [
+          "z-library"
         ],
         "action": "route",
         "server": "remote"
@@ -261,6 +674,111 @@
         ],
         "action": "route",
         "server": "remote"
+      },
+      {
+        "rule_set": [
+          "hulu"
+        ],
+        "action": "route",
+        "server": "remote"
+      },
+      {
+        "rule_set": [
+          "hbo"
+        ],
+        "action": "route",
+        "server": "remote"
+      },
+      {
+        "rule_set": [
+          "steam"
+        ],
+        "action": "route",
+        "server": "remote"
+      },
+      {
+        "rule_set": [
+          "quora"
+        ],
+        "action": "route",
+        "server": "remote"
+      },
+      {
+        "rule_set": [
+          "tvb"
+        ],
+        "action": "route",
+        "server": "remote"
+      },
+      {
+        "rule_set": [
+          "disney"
+        ],
+        "action": "route",
+        "server": "remote"
+      },
+      {
+        "rule_set": [
+          "china-media"
+        ],
+        "action": "route",
+        "server": "domestic"
+      },
+      {
+        "rule_set": [
+          "hmt-media"
+        ],
+        "action": "route",
+        "server": "remote"
+      },
+      {
+        "rule_set": [
+          "global-media"
+        ],
+        "action": "route",
+        "server": "remote"
+      },
+      {
+        "rule_set": [
+          "amazon-portable"
+        ],
+        "action": "route",
+        "server": "remote"
+      },
+      {
+        "rule_set": [
+          "akamai"
+        ],
+        "action": "route",
+        "server": "remote"
+      },
+      {
+        "rule_set": [
+          "alibaba"
+        ],
+        "action": "route",
+        "server": "domestic"
+      },
+      {
+        "rule_set": [
+          "bytedance"
+        ],
+        "action": "route",
+        "server": "domestic"
+      },
+      {
+        "rule_set": [
+          "netease"
+        ],
+        "action": "route",
+        "server": "domestic"
+      },
+      {
+        "rule_set": [
+          "tencent"
+        ],
+        "action": "route",
+        "server": "domestic"
       },
       {
         "rule_set": [
@@ -378,6 +896,38 @@
     {
       "type": "selector",
       "tag": "苹果服务",
+      "outbounds": [
+        "DIRECT",
+        "节点选择",
+        "自动选择",
+        "香港节点",
+        "台湾节点",
+        "日本节点",
+        "韩国节点",
+        "新加坡节点",
+        "美国节点"
+      ],
+      "default": "DIRECT"
+    },
+    {
+      "type": "selector",
+      "tag": "国内服务",
+      "outbounds": [
+        "DIRECT",
+        "节点选择",
+        "自动选择",
+        "香港节点",
+        "台湾节点",
+        "日本节点",
+        "韩国节点",
+        "新加坡节点",
+        "美国节点"
+      ],
+      "default": "DIRECT"
+    },
+    {
+      "type": "selector",
+      "tag": "国内媒体",
       "outbounds": [
         "DIRECT",
         "节点选择",
@@ -594,9 +1144,73 @@
       },
       {
         "type": "remote",
+        "tag": "unbreak",
+        "format": "source",
+        "url": "https://raw.githubusercontent.com/luckiestultra/netatlas/main/clients/singBox/rules/unbreak.json",
+        "http_client": "netatlas-resources",
+        "update_interval": "1d"
+      },
+      {
+        "type": "remote",
         "tag": "adblock",
         "format": "source",
         "url": "https://raw.githubusercontent.com/luckiestultra/netatlas/main/clients/singBox/rules/adblock.json",
+        "http_client": "netatlas-resources",
+        "update_interval": "1d"
+      },
+      {
+        "type": "remote",
+        "tag": "abc",
+        "format": "source",
+        "url": "https://raw.githubusercontent.com/luckiestultra/netatlas/main/clients/singBox/rules/abc.json",
+        "http_client": "netatlas-resources",
+        "update_interval": "1d"
+      },
+      {
+        "type": "remote",
+        "tag": "abema",
+        "format": "source",
+        "url": "https://raw.githubusercontent.com/luckiestultra/netatlas/main/clients/singBox/rules/abema.json",
+        "http_client": "netatlas-resources",
+        "update_interval": "1d"
+      },
+      {
+        "type": "remote",
+        "tag": "acfun",
+        "format": "source",
+        "url": "https://raw.githubusercontent.com/luckiestultra/netatlas/main/clients/singBox/rules/acfun.json",
+        "http_client": "netatlas-resources",
+        "update_interval": "1d"
+      },
+      {
+        "type": "remote",
+        "tag": "alipay",
+        "format": "source",
+        "url": "https://raw.githubusercontent.com/luckiestultra/netatlas/main/clients/singBox/rules/alipay.json",
+        "http_client": "netatlas-resources",
+        "update_interval": "1d"
+      },
+      {
+        "type": "remote",
+        "tag": "all4",
+        "format": "source",
+        "url": "https://raw.githubusercontent.com/luckiestultra/netatlas/main/clients/singBox/rules/all4.json",
+        "http_client": "netatlas-resources",
+        "update_interval": "1d"
+      },
+      {
+        "type": "remote",
+        "tag": "amap",
+        "format": "source",
+        "url": "https://raw.githubusercontent.com/luckiestultra/netatlas/main/clients/singBox/rules/amap.json",
+        "http_client": "netatlas-resources",
+        "update_interval": "1d"
+      },
+      {
+        "type": "remote",
+        "tag": "android",
+        "format": "source",
+        "url": "https://raw.githubusercontent.com/luckiestultra/netatlas/main/clients/singBox/rules/android.json",
         "http_client": "netatlas-resources",
         "update_interval": "1d"
       },
@@ -610,9 +1224,49 @@
       },
       {
         "type": "remote",
+        "tag": "appstore",
+        "format": "source",
+        "url": "https://raw.githubusercontent.com/luckiestultra/netatlas/main/clients/singBox/rules/appstore.json",
+        "http_client": "netatlas-resources",
+        "update_interval": "1d"
+      },
+      {
+        "type": "remote",
+        "tag": "baidu",
+        "format": "source",
+        "url": "https://raw.githubusercontent.com/luckiestultra/netatlas/main/clients/singBox/rules/baidu.json",
+        "http_client": "netatlas-resources",
+        "update_interval": "1d"
+      },
+      {
+        "type": "remote",
+        "tag": "bilibili",
+        "format": "source",
+        "url": "https://raw.githubusercontent.com/luckiestultra/netatlas/main/clients/singBox/rules/bilibili.json",
+        "http_client": "netatlas-resources",
+        "update_interval": "1d"
+      },
+      {
+        "type": "remote",
+        "tag": "blizzard",
+        "format": "source",
+        "url": "https://raw.githubusercontent.com/luckiestultra/netatlas/main/clients/singBox/rules/blizzard.json",
+        "http_client": "netatlas-resources",
+        "update_interval": "1d"
+      },
+      {
+        "type": "remote",
         "tag": "claude",
         "format": "source",
         "url": "https://raw.githubusercontent.com/luckiestultra/netatlas/main/clients/singBox/rules/claude.json",
+        "http_client": "netatlas-resources",
+        "update_interval": "1d"
+      },
+      {
+        "type": "remote",
+        "tag": "coolapk",
+        "format": "source",
+        "url": "https://raw.githubusercontent.com/luckiestultra/netatlas/main/clients/singBox/rules/coolapk.json",
         "http_client": "netatlas-resources",
         "update_interval": "1d"
       },
@@ -626,6 +1280,14 @@
       },
       {
         "type": "remote",
+        "tag": "deezer",
+        "format": "source",
+        "url": "https://raw.githubusercontent.com/luckiestultra/netatlas/main/clients/singBox/rules/deezer.json",
+        "http_client": "netatlas-resources",
+        "update_interval": "1d"
+      },
+      {
+        "type": "remote",
         "tag": "discord",
         "format": "source",
         "url": "https://raw.githubusercontent.com/luckiestultra/netatlas/main/clients/singBox/rules/discord.json",
@@ -634,9 +1296,65 @@
       },
       {
         "type": "remote",
+        "tag": "discovery",
+        "format": "source",
+        "url": "https://raw.githubusercontent.com/luckiestultra/netatlas/main/clients/singBox/rules/discovery.json",
+        "http_client": "netatlas-resources",
+        "update_interval": "1d"
+      },
+      {
+        "type": "remote",
         "tag": "docker",
         "format": "source",
         "url": "https://raw.githubusercontent.com/luckiestultra/netatlas/main/clients/singBox/rules/docker.json",
+        "http_client": "netatlas-resources",
+        "update_interval": "1d"
+      },
+      {
+        "type": "remote",
+        "tag": "douban",
+        "format": "source",
+        "url": "https://raw.githubusercontent.com/luckiestultra/netatlas/main/clients/singBox/rules/douban.json",
+        "http_client": "netatlas-resources",
+        "update_interval": "1d"
+      },
+      {
+        "type": "remote",
+        "tag": "douyin",
+        "format": "source",
+        "url": "https://raw.githubusercontent.com/luckiestultra/netatlas/main/clients/singBox/rules/douyin.json",
+        "http_client": "netatlas-resources",
+        "update_interval": "1d"
+      },
+      {
+        "type": "remote",
+        "tag": "douyu",
+        "format": "source",
+        "url": "https://raw.githubusercontent.com/luckiestultra/netatlas/main/clients/singBox/rules/douyu.json",
+        "http_client": "netatlas-resources",
+        "update_interval": "1d"
+      },
+      {
+        "type": "remote",
+        "tag": "dropbox",
+        "format": "source",
+        "url": "https://raw.githubusercontent.com/luckiestultra/netatlas/main/clients/singBox/rules/dropbox.json",
+        "http_client": "netatlas-resources",
+        "update_interval": "1d"
+      },
+      {
+        "type": "remote",
+        "tag": "facebook",
+        "format": "source",
+        "url": "https://raw.githubusercontent.com/luckiestultra/netatlas/main/clients/singBox/rules/facebook.json",
+        "http_client": "netatlas-resources",
+        "update_interval": "1d"
+      },
+      {
+        "type": "remote",
+        "tag": "five-itv",
+        "format": "source",
+        "url": "https://raw.githubusercontent.com/luckiestultra/netatlas/main/clients/singBox/rules/five-itv.json",
         "http_client": "netatlas-resources",
         "update_interval": "1d"
       },
@@ -674,9 +1392,17 @@
       },
       {
         "type": "remote",
-        "tag": "hbo",
+        "tag": "hbo-asia",
         "format": "source",
-        "url": "https://raw.githubusercontent.com/luckiestultra/netatlas/main/clients/singBox/rules/hbo.json",
+        "url": "https://raw.githubusercontent.com/luckiestultra/netatlas/main/clients/singBox/rules/hbo-asia.json",
+        "http_client": "netatlas-resources",
+        "update_interval": "1d"
+      },
+      {
+        "type": "remote",
+        "tag": "heroku",
+        "format": "source",
+        "url": "https://raw.githubusercontent.com/luckiestultra/netatlas/main/clients/singBox/rules/heroku.json",
         "http_client": "netatlas-resources",
         "update_interval": "1d"
       },
@@ -690,9 +1416,65 @@
       },
       {
         "type": "remote",
+        "tag": "hulu-jp",
+        "format": "source",
+        "url": "https://raw.githubusercontent.com/luckiestultra/netatlas/main/clients/singBox/rules/hulu-jp.json",
+        "http_client": "netatlas-resources",
+        "update_interval": "1d"
+      },
+      {
+        "type": "remote",
+        "tag": "huya",
+        "format": "source",
+        "url": "https://raw.githubusercontent.com/luckiestultra/netatlas/main/clients/singBox/rules/huya.json",
+        "http_client": "netatlas-resources",
+        "update_interval": "1d"
+      },
+      {
+        "type": "remote",
+        "tag": "icloud",
+        "format": "source",
+        "url": "https://raw.githubusercontent.com/luckiestultra/netatlas/main/clients/singBox/rules/icloud.json",
+        "http_client": "netatlas-resources",
+        "update_interval": "1d"
+      },
+      {
+        "type": "remote",
+        "tag": "iqiyi",
+        "format": "source",
+        "url": "https://raw.githubusercontent.com/luckiestultra/netatlas/main/clients/singBox/rules/iqiyi.json",
+        "http_client": "netatlas-resources",
+        "update_interval": "1d"
+      },
+      {
+        "type": "remote",
         "tag": "jetbrains",
         "format": "source",
         "url": "https://raw.githubusercontent.com/luckiestultra/netatlas/main/clients/singBox/rules/jetbrains.json",
+        "http_client": "netatlas-resources",
+        "update_interval": "1d"
+      },
+      {
+        "type": "remote",
+        "tag": "joox",
+        "format": "source",
+        "url": "https://raw.githubusercontent.com/luckiestultra/netatlas/main/clients/singBox/rules/joox.json",
+        "http_client": "netatlas-resources",
+        "update_interval": "1d"
+      },
+      {
+        "type": "remote",
+        "tag": "kkbox",
+        "format": "source",
+        "url": "https://raw.githubusercontent.com/luckiestultra/netatlas/main/clients/singBox/rules/kkbox.json",
+        "http_client": "netatlas-resources",
+        "update_interval": "1d"
+      },
+      {
+        "type": "remote",
+        "tag": "kktv",
+        "format": "source",
+        "url": "https://raw.githubusercontent.com/luckiestultra/netatlas/main/clients/singBox/rules/kktv.json",
         "http_client": "netatlas-resources",
         "update_interval": "1d"
       },
@@ -706,9 +1488,57 @@
       },
       {
         "type": "remote",
+        "tag": "mozilla",
+        "format": "source",
+        "url": "https://raw.githubusercontent.com/luckiestultra/netatlas/main/clients/singBox/rules/mozilla.json",
+        "http_client": "netatlas-resources",
+        "update_interval": "1d"
+      },
+      {
+        "type": "remote",
+        "tag": "mudvod",
+        "format": "source",
+        "url": "https://raw.githubusercontent.com/luckiestultra/netatlas/main/clients/singBox/rules/mudvod.json",
+        "http_client": "netatlas-resources",
+        "update_interval": "1d"
+      },
+      {
+        "type": "remote",
+        "tag": "mytvsuper",
+        "format": "source",
+        "url": "https://raw.githubusercontent.com/luckiestultra/netatlas/main/clients/singBox/rules/mytvsuper.json",
+        "http_client": "netatlas-resources",
+        "update_interval": "1d"
+      },
+      {
+        "type": "remote",
+        "tag": "netease-music",
+        "format": "source",
+        "url": "https://raw.githubusercontent.com/luckiestultra/netatlas/main/clients/singBox/rules/netease-music.json",
+        "http_client": "netatlas-resources",
+        "update_interval": "1d"
+      },
+      {
+        "type": "remote",
         "tag": "netflix",
         "format": "source",
         "url": "https://raw.githubusercontent.com/luckiestultra/netatlas/main/clients/singBox/rules/netflix.json",
+        "http_client": "netatlas-resources",
+        "update_interval": "1d"
+      },
+      {
+        "type": "remote",
+        "tag": "niconico",
+        "format": "source",
+        "url": "https://raw.githubusercontent.com/luckiestultra/netatlas/main/clients/singBox/rules/niconico.json",
+        "http_client": "netatlas-resources",
+        "update_interval": "1d"
+      },
+      {
+        "type": "remote",
+        "tag": "notion",
+        "format": "source",
+        "url": "https://raw.githubusercontent.com/luckiestultra/netatlas/main/clients/singBox/rules/notion.json",
         "http_client": "netatlas-resources",
         "update_interval": "1d"
       },
@@ -722,9 +1552,41 @@
       },
       {
         "type": "remote",
+        "tag": "olevod",
+        "format": "source",
+        "url": "https://raw.githubusercontent.com/luckiestultra/netatlas/main/clients/singBox/rules/olevod.json",
+        "http_client": "netatlas-resources",
+        "update_interval": "1d"
+      },
+      {
+        "type": "remote",
+        "tag": "onedrive",
+        "format": "source",
+        "url": "https://raw.githubusercontent.com/luckiestultra/netatlas/main/clients/singBox/rules/onedrive.json",
+        "http_client": "netatlas-resources",
+        "update_interval": "1d"
+      },
+      {
+        "type": "remote",
         "tag": "openai",
         "format": "source",
         "url": "https://raw.githubusercontent.com/luckiestultra/netatlas/main/clients/singBox/rules/openai.json",
+        "http_client": "netatlas-resources",
+        "update_interval": "1d"
+      },
+      {
+        "type": "remote",
+        "tag": "oracle",
+        "format": "source",
+        "url": "https://raw.githubusercontent.com/luckiestultra/netatlas/main/clients/singBox/rules/oracle.json",
+        "http_client": "netatlas-resources",
+        "update_interval": "1d"
+      },
+      {
+        "type": "remote",
+        "tag": "paypal",
+        "format": "source",
+        "url": "https://raw.githubusercontent.com/luckiestultra/netatlas/main/clients/singBox/rules/paypal.json",
         "http_client": "netatlas-resources",
         "update_interval": "1d"
       },
@@ -738,9 +1600,57 @@
       },
       {
         "type": "remote",
+        "tag": "pikpak",
+        "format": "source",
+        "url": "https://raw.githubusercontent.com/luckiestultra/netatlas/main/clients/singBox/rules/pikpak.json",
+        "http_client": "netatlas-resources",
+        "update_interval": "1d"
+      },
+      {
+        "type": "remote",
         "tag": "poe",
         "format": "source",
         "url": "https://raw.githubusercontent.com/luckiestultra/netatlas/main/clients/singBox/rules/poe.json",
+        "http_client": "netatlas-resources",
+        "update_interval": "1d"
+      },
+      {
+        "type": "remote",
+        "tag": "pornhub",
+        "format": "source",
+        "url": "https://raw.githubusercontent.com/luckiestultra/netatlas/main/clients/singBox/rules/pornhub.json",
+        "http_client": "netatlas-resources",
+        "update_interval": "1d"
+      },
+      {
+        "type": "remote",
+        "tag": "pptv",
+        "format": "source",
+        "url": "https://raw.githubusercontent.com/luckiestultra/netatlas/main/clients/singBox/rules/pptv.json",
+        "http_client": "netatlas-resources",
+        "update_interval": "1d"
+      },
+      {
+        "type": "remote",
+        "tag": "primevideo",
+        "format": "source",
+        "url": "https://raw.githubusercontent.com/luckiestultra/netatlas/main/clients/singBox/rules/primevideo.json",
+        "http_client": "netatlas-resources",
+        "update_interval": "1d"
+      },
+      {
+        "type": "remote",
+        "tag": "qobuz",
+        "format": "source",
+        "url": "https://raw.githubusercontent.com/luckiestultra/netatlas/main/clients/singBox/rules/qobuz.json",
+        "http_client": "netatlas-resources",
+        "update_interval": "1d"
+      },
+      {
+        "type": "remote",
+        "tag": "quark",
+        "format": "source",
+        "url": "https://raw.githubusercontent.com/luckiestultra/netatlas/main/clients/singBox/rules/quark.json",
         "http_client": "netatlas-resources",
         "update_interval": "1d"
       },
@@ -762,6 +1672,14 @@
       },
       {
         "type": "remote",
+        "tag": "soundcloud",
+        "format": "source",
+        "url": "https://raw.githubusercontent.com/luckiestultra/netatlas/main/clients/singBox/rules/soundcloud.json",
+        "http_client": "netatlas-resources",
+        "update_interval": "1d"
+      },
+      {
+        "type": "remote",
         "tag": "speedtest",
         "format": "source",
         "url": "https://raw.githubusercontent.com/luckiestultra/netatlas/main/clients/singBox/rules/speedtest.json",
@@ -778,9 +1696,17 @@
       },
       {
         "type": "remote",
-        "tag": "steam",
+        "tag": "steam-cn",
         "format": "source",
-        "url": "https://raw.githubusercontent.com/luckiestultra/netatlas/main/clients/singBox/rules/steam.json",
+        "url": "https://raw.githubusercontent.com/luckiestultra/netatlas/main/clients/singBox/rules/steam-cn.json",
+        "http_client": "netatlas-resources",
+        "update_interval": "1d"
+      },
+      {
+        "type": "remote",
+        "tag": "taptap",
+        "format": "source",
+        "url": "https://raw.githubusercontent.com/luckiestultra/netatlas/main/clients/singBox/rules/taptap.json",
         "http_client": "netatlas-resources",
         "update_interval": "1d"
       },
@@ -789,6 +1715,22 @@
         "tag": "telegram",
         "format": "source",
         "url": "https://raw.githubusercontent.com/luckiestultra/netatlas/main/clients/singBox/rules/telegram.json",
+        "http_client": "netatlas-resources",
+        "update_interval": "1d"
+      },
+      {
+        "type": "remote",
+        "tag": "terabox",
+        "format": "source",
+        "url": "https://raw.githubusercontent.com/luckiestultra/netatlas/main/clients/singBox/rules/terabox.json",
+        "http_client": "netatlas-resources",
+        "update_interval": "1d"
+      },
+      {
+        "type": "remote",
+        "tag": "tidal",
+        "format": "source",
+        "url": "https://raw.githubusercontent.com/luckiestultra/netatlas/main/clients/singBox/rules/tidal.json",
         "http_client": "netatlas-resources",
         "update_interval": "1d"
       },
@@ -810,9 +1752,41 @@
       },
       {
         "type": "remote",
+        "tag": "twitter",
+        "format": "source",
+        "url": "https://raw.githubusercontent.com/luckiestultra/netatlas/main/clients/singBox/rules/twitter.json",
+        "http_client": "netatlas-resources",
+        "update_interval": "1d"
+      },
+      {
+        "type": "remote",
         "tag": "vercel",
         "format": "source",
         "url": "https://raw.githubusercontent.com/luckiestultra/netatlas/main/clients/singBox/rules/vercel.json",
+        "http_client": "netatlas-resources",
+        "update_interval": "1d"
+      },
+      {
+        "type": "remote",
+        "tag": "viu-portable",
+        "format": "source",
+        "url": "https://raw.githubusercontent.com/luckiestultra/netatlas/main/clients/singBox/rules/viu-portable.json",
+        "http_client": "netatlas-resources",
+        "update_interval": "1d"
+      },
+      {
+        "type": "remote",
+        "tag": "wechat",
+        "format": "source",
+        "url": "https://raw.githubusercontent.com/luckiestultra/netatlas/main/clients/singBox/rules/wechat.json",
+        "http_client": "netatlas-resources",
+        "update_interval": "1d"
+      },
+      {
+        "type": "remote",
+        "tag": "weibo",
+        "format": "source",
+        "url": "https://raw.githubusercontent.com/luckiestultra/netatlas/main/clients/singBox/rules/weibo.json",
         "http_client": "netatlas-resources",
         "update_interval": "1d"
       },
@@ -826,9 +1800,49 @@
       },
       {
         "type": "remote",
+        "tag": "wikimedia",
+        "format": "source",
+        "url": "https://raw.githubusercontent.com/luckiestultra/netatlas/main/clients/singBox/rules/wikimedia.json",
+        "http_client": "netatlas-resources",
+        "update_interval": "1d"
+      },
+      {
+        "type": "remote",
         "tag": "xai",
         "format": "source",
         "url": "https://raw.githubusercontent.com/luckiestultra/netatlas/main/clients/singBox/rules/xai.json",
+        "http_client": "netatlas-resources",
+        "update_interval": "1d"
+      },
+      {
+        "type": "remote",
+        "tag": "xiaohongshu",
+        "format": "source",
+        "url": "https://raw.githubusercontent.com/luckiestultra/netatlas/main/clients/singBox/rules/xiaohongshu.json",
+        "http_client": "netatlas-resources",
+        "update_interval": "1d"
+      },
+      {
+        "type": "remote",
+        "tag": "ximalaya",
+        "format": "source",
+        "url": "https://raw.githubusercontent.com/luckiestultra/netatlas/main/clients/singBox/rules/ximalaya.json",
+        "http_client": "netatlas-resources",
+        "update_interval": "1d"
+      },
+      {
+        "type": "remote",
+        "tag": "yandex",
+        "format": "source",
+        "url": "https://raw.githubusercontent.com/luckiestultra/netatlas/main/clients/singBox/rules/yandex.json",
+        "http_client": "netatlas-resources",
+        "update_interval": "1d"
+      },
+      {
+        "type": "remote",
+        "tag": "youku",
+        "format": "source",
+        "url": "https://raw.githubusercontent.com/luckiestultra/netatlas/main/clients/singBox/rules/youku.json",
         "http_client": "netatlas-resources",
         "update_interval": "1d"
       },
@@ -842,9 +1856,137 @@
       },
       {
         "type": "remote",
+        "tag": "z-library",
+        "format": "source",
+        "url": "https://raw.githubusercontent.com/luckiestultra/netatlas/main/clients/singBox/rules/z-library.json",
+        "http_client": "netatlas-resources",
+        "update_interval": "1d"
+      },
+      {
+        "type": "remote",
         "tag": "zoom",
         "format": "source",
         "url": "https://raw.githubusercontent.com/luckiestultra/netatlas/main/clients/singBox/rules/zoom.json",
+        "http_client": "netatlas-resources",
+        "update_interval": "1d"
+      },
+      {
+        "type": "remote",
+        "tag": "hulu",
+        "format": "source",
+        "url": "https://raw.githubusercontent.com/luckiestultra/netatlas/main/clients/singBox/rules/hulu.json",
+        "http_client": "netatlas-resources",
+        "update_interval": "1d"
+      },
+      {
+        "type": "remote",
+        "tag": "hbo",
+        "format": "source",
+        "url": "https://raw.githubusercontent.com/luckiestultra/netatlas/main/clients/singBox/rules/hbo.json",
+        "http_client": "netatlas-resources",
+        "update_interval": "1d"
+      },
+      {
+        "type": "remote",
+        "tag": "steam",
+        "format": "source",
+        "url": "https://raw.githubusercontent.com/luckiestultra/netatlas/main/clients/singBox/rules/steam.json",
+        "http_client": "netatlas-resources",
+        "update_interval": "1d"
+      },
+      {
+        "type": "remote",
+        "tag": "quora",
+        "format": "source",
+        "url": "https://raw.githubusercontent.com/luckiestultra/netatlas/main/clients/singBox/rules/quora.json",
+        "http_client": "netatlas-resources",
+        "update_interval": "1d"
+      },
+      {
+        "type": "remote",
+        "tag": "tvb",
+        "format": "source",
+        "url": "https://raw.githubusercontent.com/luckiestultra/netatlas/main/clients/singBox/rules/tvb.json",
+        "http_client": "netatlas-resources",
+        "update_interval": "1d"
+      },
+      {
+        "type": "remote",
+        "tag": "disney",
+        "format": "source",
+        "url": "https://raw.githubusercontent.com/luckiestultra/netatlas/main/clients/singBox/rules/disney.json",
+        "http_client": "netatlas-resources",
+        "update_interval": "1d"
+      },
+      {
+        "type": "remote",
+        "tag": "china-media",
+        "format": "source",
+        "url": "https://raw.githubusercontent.com/luckiestultra/netatlas/main/clients/singBox/rules/china-media.json",
+        "http_client": "netatlas-resources",
+        "update_interval": "1d"
+      },
+      {
+        "type": "remote",
+        "tag": "hmt-media",
+        "format": "source",
+        "url": "https://raw.githubusercontent.com/luckiestultra/netatlas/main/clients/singBox/rules/hmt-media.json",
+        "http_client": "netatlas-resources",
+        "update_interval": "1d"
+      },
+      {
+        "type": "remote",
+        "tag": "global-media",
+        "format": "source",
+        "url": "https://raw.githubusercontent.com/luckiestultra/netatlas/main/clients/singBox/rules/global-media.json",
+        "http_client": "netatlas-resources",
+        "update_interval": "1d"
+      },
+      {
+        "type": "remote",
+        "tag": "amazon-portable",
+        "format": "source",
+        "url": "https://raw.githubusercontent.com/luckiestultra/netatlas/main/clients/singBox/rules/amazon-portable.json",
+        "http_client": "netatlas-resources",
+        "update_interval": "1d"
+      },
+      {
+        "type": "remote",
+        "tag": "akamai",
+        "format": "source",
+        "url": "https://raw.githubusercontent.com/luckiestultra/netatlas/main/clients/singBox/rules/akamai.json",
+        "http_client": "netatlas-resources",
+        "update_interval": "1d"
+      },
+      {
+        "type": "remote",
+        "tag": "alibaba",
+        "format": "source",
+        "url": "https://raw.githubusercontent.com/luckiestultra/netatlas/main/clients/singBox/rules/alibaba.json",
+        "http_client": "netatlas-resources",
+        "update_interval": "1d"
+      },
+      {
+        "type": "remote",
+        "tag": "bytedance",
+        "format": "source",
+        "url": "https://raw.githubusercontent.com/luckiestultra/netatlas/main/clients/singBox/rules/bytedance.json",
+        "http_client": "netatlas-resources",
+        "update_interval": "1d"
+      },
+      {
+        "type": "remote",
+        "tag": "netease",
+        "format": "source",
+        "url": "https://raw.githubusercontent.com/luckiestultra/netatlas/main/clients/singBox/rules/netease.json",
+        "http_client": "netatlas-resources",
+        "update_interval": "1d"
+      },
+      {
+        "type": "remote",
+        "tag": "tencent",
+        "format": "source",
+        "url": "https://raw.githubusercontent.com/luckiestultra/netatlas/main/clients/singBox/rules/tencent.json",
         "http_client": "netatlas-resources",
         "update_interval": "1d"
       },
@@ -936,13 +2078,69 @@
         "outbound": "DIRECT"
       },
       {
+        "action": "resolve"
+      },
+      {
+        "rule_set": [
+          "unbreak"
+        ],
+        "action": "route",
+        "outbound": "DIRECT"
+      },
+      {
         "rule_set": [
           "adblock"
         ],
         "action": "reject"
       },
       {
-        "action": "resolve"
+        "rule_set": [
+          "abc"
+        ],
+        "action": "route",
+        "outbound": "国外媒体"
+      },
+      {
+        "rule_set": [
+          "abema"
+        ],
+        "action": "route",
+        "outbound": "国外媒体"
+      },
+      {
+        "rule_set": [
+          "acfun"
+        ],
+        "action": "route",
+        "outbound": "国内媒体"
+      },
+      {
+        "rule_set": [
+          "alipay"
+        ],
+        "action": "route",
+        "outbound": "国内服务"
+      },
+      {
+        "rule_set": [
+          "all4"
+        ],
+        "action": "route",
+        "outbound": "国外媒体"
+      },
+      {
+        "rule_set": [
+          "amap"
+        ],
+        "action": "route",
+        "outbound": "国内服务"
+      },
+      {
+        "rule_set": [
+          "android"
+        ],
+        "action": "route",
+        "outbound": "谷歌服务"
       },
       {
         "rule_set": [
@@ -953,10 +2151,45 @@
       },
       {
         "rule_set": [
+          "appstore"
+        ],
+        "action": "route",
+        "outbound": "苹果服务"
+      },
+      {
+        "rule_set": [
+          "baidu"
+        ],
+        "action": "route",
+        "outbound": "国内服务"
+      },
+      {
+        "rule_set": [
+          "bilibili"
+        ],
+        "action": "route",
+        "outbound": "国内媒体"
+      },
+      {
+        "rule_set": [
+          "blizzard"
+        ],
+        "action": "route",
+        "outbound": "游戏平台"
+      },
+      {
+        "rule_set": [
           "claude"
         ],
         "action": "route",
         "outbound": "AI服务"
+      },
+      {
+        "rule_set": [
+          "coolapk"
+        ],
+        "action": "route",
+        "outbound": "国内服务"
       },
       {
         "rule_set": [
@@ -967,6 +2200,13 @@
       },
       {
         "rule_set": [
+          "deezer"
+        ],
+        "action": "route",
+        "outbound": "国外媒体"
+      },
+      {
+        "rule_set": [
           "discord"
         ],
         "action": "route",
@@ -974,10 +2214,59 @@
       },
       {
         "rule_set": [
+          "discovery"
+        ],
+        "action": "route",
+        "outbound": "国外媒体"
+      },
+      {
+        "rule_set": [
           "docker"
         ],
         "action": "route",
         "outbound": "开发服务"
+      },
+      {
+        "rule_set": [
+          "douban"
+        ],
+        "action": "route",
+        "outbound": "国内服务"
+      },
+      {
+        "rule_set": [
+          "douyin"
+        ],
+        "action": "route",
+        "outbound": "国内媒体"
+      },
+      {
+        "rule_set": [
+          "douyu"
+        ],
+        "action": "route",
+        "outbound": "国内媒体"
+      },
+      {
+        "rule_set": [
+          "dropbox"
+        ],
+        "action": "route",
+        "outbound": "国外网站"
+      },
+      {
+        "rule_set": [
+          "facebook"
+        ],
+        "action": "route",
+        "outbound": "即时通讯"
+      },
+      {
+        "rule_set": [
+          "five-itv"
+        ],
+        "action": "route",
+        "outbound": "国外媒体"
       },
       {
         "rule_set": [
@@ -1009,10 +2298,17 @@
       },
       {
         "rule_set": [
-          "hbo"
+          "hbo-asia"
         ],
         "action": "route",
         "outbound": "国外媒体"
+      },
+      {
+        "rule_set": [
+          "heroku"
+        ],
+        "action": "route",
+        "outbound": "开发服务"
       },
       {
         "rule_set": [
@@ -1023,10 +2319,59 @@
       },
       {
         "rule_set": [
+          "hulu-jp"
+        ],
+        "action": "route",
+        "outbound": "国外媒体"
+      },
+      {
+        "rule_set": [
+          "huya"
+        ],
+        "action": "route",
+        "outbound": "国内媒体"
+      },
+      {
+        "rule_set": [
+          "icloud"
+        ],
+        "action": "route",
+        "outbound": "苹果服务"
+      },
+      {
+        "rule_set": [
+          "iqiyi"
+        ],
+        "action": "route",
+        "outbound": "国内媒体"
+      },
+      {
+        "rule_set": [
           "jetbrains"
         ],
         "action": "route",
         "outbound": "开发服务"
+      },
+      {
+        "rule_set": [
+          "joox"
+        ],
+        "action": "route",
+        "outbound": "国外媒体"
+      },
+      {
+        "rule_set": [
+          "kkbox"
+        ],
+        "action": "route",
+        "outbound": "国外媒体"
+      },
+      {
+        "rule_set": [
+          "kktv"
+        ],
+        "action": "route",
+        "outbound": "国外媒体"
       },
       {
         "rule_set": [
@@ -1037,10 +2382,52 @@
       },
       {
         "rule_set": [
+          "mozilla"
+        ],
+        "action": "route",
+        "outbound": "国外网站"
+      },
+      {
+        "rule_set": [
+          "mudvod"
+        ],
+        "action": "route",
+        "outbound": "国外媒体"
+      },
+      {
+        "rule_set": [
+          "mytvsuper"
+        ],
+        "action": "route",
+        "outbound": "国外媒体"
+      },
+      {
+        "rule_set": [
+          "netease-music"
+        ],
+        "action": "route",
+        "outbound": "国内媒体"
+      },
+      {
+        "rule_set": [
           "netflix"
         ],
         "action": "route",
         "outbound": "国外媒体"
+      },
+      {
+        "rule_set": [
+          "niconico"
+        ],
+        "action": "route",
+        "outbound": "国外媒体"
+      },
+      {
+        "rule_set": [
+          "notion"
+        ],
+        "action": "route",
+        "outbound": "开发服务"
       },
       {
         "rule_set": [
@@ -1051,10 +2438,38 @@
       },
       {
         "rule_set": [
+          "olevod"
+        ],
+        "action": "route",
+        "outbound": "国外媒体"
+      },
+      {
+        "rule_set": [
+          "onedrive"
+        ],
+        "action": "route",
+        "outbound": "微软服务"
+      },
+      {
+        "rule_set": [
           "openai"
         ],
         "action": "route",
         "outbound": "AI服务"
+      },
+      {
+        "rule_set": [
+          "oracle"
+        ],
+        "action": "route",
+        "outbound": "开发服务"
+      },
+      {
+        "rule_set": [
+          "paypal"
+        ],
+        "action": "route",
+        "outbound": "国外网站"
       },
       {
         "rule_set": [
@@ -1065,10 +2480,52 @@
       },
       {
         "rule_set": [
+          "pikpak"
+        ],
+        "action": "route",
+        "outbound": "国外网站"
+      },
+      {
+        "rule_set": [
           "poe"
         ],
         "action": "route",
         "outbound": "AI服务"
+      },
+      {
+        "rule_set": [
+          "pornhub"
+        ],
+        "action": "route",
+        "outbound": "国外媒体"
+      },
+      {
+        "rule_set": [
+          "pptv"
+        ],
+        "action": "route",
+        "outbound": "国内媒体"
+      },
+      {
+        "rule_set": [
+          "primevideo"
+        ],
+        "action": "route",
+        "outbound": "国外媒体"
+      },
+      {
+        "rule_set": [
+          "qobuz"
+        ],
+        "action": "route",
+        "outbound": "国外媒体"
+      },
+      {
+        "rule_set": [
+          "quark"
+        ],
+        "action": "route",
+        "outbound": "国内服务"
       },
       {
         "rule_set": [
@@ -1086,6 +2543,13 @@
       },
       {
         "rule_set": [
+          "soundcloud"
+        ],
+        "action": "route",
+        "outbound": "国外媒体"
+      },
+      {
+        "rule_set": [
           "speedtest"
         ],
         "action": "route",
@@ -1100,7 +2564,14 @@
       },
       {
         "rule_set": [
-          "steam"
+          "steam-cn"
+        ],
+        "action": "route",
+        "outbound": "国内服务"
+      },
+      {
+        "rule_set": [
+          "taptap"
         ],
         "action": "route",
         "outbound": "游戏平台"
@@ -1111,6 +2582,20 @@
         ],
         "action": "route",
         "outbound": "即时通讯"
+      },
+      {
+        "rule_set": [
+          "terabox"
+        ],
+        "action": "route",
+        "outbound": "国外网站"
+      },
+      {
+        "rule_set": [
+          "tidal"
+        ],
+        "action": "route",
+        "outbound": "国外媒体"
       },
       {
         "rule_set": [
@@ -1128,10 +2613,38 @@
       },
       {
         "rule_set": [
+          "twitter"
+        ],
+        "action": "route",
+        "outbound": "即时通讯"
+      },
+      {
+        "rule_set": [
           "vercel"
         ],
         "action": "route",
         "outbound": "开发服务"
+      },
+      {
+        "rule_set": [
+          "viu-portable"
+        ],
+        "action": "route",
+        "outbound": "国外媒体"
+      },
+      {
+        "rule_set": [
+          "wechat"
+        ],
+        "action": "route",
+        "outbound": "国内服务"
+      },
+      {
+        "rule_set": [
+          "weibo"
+        ],
+        "action": "route",
+        "outbound": "国内服务"
       },
       {
         "rule_set": [
@@ -1142,10 +2655,45 @@
       },
       {
         "rule_set": [
+          "wikimedia"
+        ],
+        "action": "route",
+        "outbound": "国外网站"
+      },
+      {
+        "rule_set": [
           "xai"
         ],
         "action": "route",
         "outbound": "AI服务"
+      },
+      {
+        "rule_set": [
+          "xiaohongshu"
+        ],
+        "action": "route",
+        "outbound": "国内服务"
+      },
+      {
+        "rule_set": [
+          "ximalaya"
+        ],
+        "action": "route",
+        "outbound": "国内媒体"
+      },
+      {
+        "rule_set": [
+          "yandex"
+        ],
+        "action": "route",
+        "outbound": "国外网站"
+      },
+      {
+        "rule_set": [
+          "youku"
+        ],
+        "action": "route",
+        "outbound": "国内媒体"
       },
       {
         "rule_set": [
@@ -1156,10 +2704,122 @@
       },
       {
         "rule_set": [
+          "z-library"
+        ],
+        "action": "route",
+        "outbound": "国外网站"
+      },
+      {
+        "rule_set": [
           "zoom"
         ],
         "action": "route",
         "outbound": "即时通讯"
+      },
+      {
+        "rule_set": [
+          "hulu"
+        ],
+        "action": "route",
+        "outbound": "国外媒体"
+      },
+      {
+        "rule_set": [
+          "hbo"
+        ],
+        "action": "route",
+        "outbound": "国外媒体"
+      },
+      {
+        "rule_set": [
+          "steam"
+        ],
+        "action": "route",
+        "outbound": "游戏平台"
+      },
+      {
+        "rule_set": [
+          "quora"
+        ],
+        "action": "route",
+        "outbound": "国外网站"
+      },
+      {
+        "rule_set": [
+          "tvb"
+        ],
+        "action": "route",
+        "outbound": "国外媒体"
+      },
+      {
+        "rule_set": [
+          "disney"
+        ],
+        "action": "route",
+        "outbound": "国外媒体"
+      },
+      {
+        "rule_set": [
+          "china-media"
+        ],
+        "action": "route",
+        "outbound": "国内媒体"
+      },
+      {
+        "rule_set": [
+          "hmt-media"
+        ],
+        "action": "route",
+        "outbound": "国外媒体"
+      },
+      {
+        "rule_set": [
+          "global-media"
+        ],
+        "action": "route",
+        "outbound": "国外媒体"
+      },
+      {
+        "rule_set": [
+          "amazon-portable"
+        ],
+        "action": "route",
+        "outbound": "国外网站"
+      },
+      {
+        "rule_set": [
+          "akamai"
+        ],
+        "action": "route",
+        "outbound": "国外网站"
+      },
+      {
+        "rule_set": [
+          "alibaba"
+        ],
+        "action": "route",
+        "outbound": "国内服务"
+      },
+      {
+        "rule_set": [
+          "bytedance"
+        ],
+        "action": "route",
+        "outbound": "国内服务"
+      },
+      {
+        "rule_set": [
+          "netease"
+        ],
+        "action": "route",
+        "outbound": "国内服务"
+      },
+      {
+        "rule_set": [
+          "tencent"
+        ],
+        "action": "route",
+        "outbound": "国内服务"
       },
       {
         "rule_set": [

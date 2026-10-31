@@ -1,0 +1,503 @@
+{
+  "version": 1,
+  "id": "google-cn",
+  "category": "system",
+  "entries": [
+    {
+      "type": "domain-suffix",
+      "value": "265.com"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "g.cn"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "ggpht.cn"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "gkecnapps.cn"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "google.cn"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "googlecnapps.cn"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "gstatic.cn"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "gstaticcnapps.cn"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "gvt1-cn.com"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "gvt2-cn.com"
+    },
+    {
+      "type": "domain",
+      "value": "2mdn-cn.net"
+    },
+    {
+      "type": "domain",
+      "value": "2mdn.net"
+    },
+    {
+      "type": "domain",
+      "value": "admob-cn.com"
+    },
+    {
+      "type": "domain",
+      "value": "adservice.google.com"
+    },
+    {
+      "type": "domain",
+      "value": "app-analytics-services.com"
+    },
+    {
+      "type": "domain",
+      "value": "app-measurement-cn.com"
+    },
+    {
+      "type": "domain",
+      "value": "app-measurement.com"
+    },
+    {
+      "type": "domain",
+      "value": "apps5.oingo.com"
+    },
+    {
+      "type": "domain",
+      "value": "avail.googleflights.net"
+    },
+    {
+      "type": "domain",
+      "value": "beacons.gcp.gvt2.com"
+    },
+    {
+      "type": "domain",
+      "value": "beacons.gvt2.com"
+    },
+    {
+      "type": "domain",
+      "value": "beacons2.gvt2.com"
+    },
+    {
+      "type": "domain",
+      "value": "beacons3.gvt2.com"
+    },
+    {
+      "type": "domain",
+      "value": "c.admob.com"
+    },
+    {
+      "type": "domain",
+      "value": "c.android.clients.google.com"
+    },
+    {
+      "type": "domain",
+      "value": "c.pki.goog"
+    },
+    {
+      "type": "domain",
+      "value": "cache-management-prod.google.com"
+    },
+    {
+      "type": "domain",
+      "value": "cache.pack.google.com"
+    },
+    {
+      "type": "domain",
+      "value": "checkin.gstatic.com"
+    },
+    {
+      "type": "domain",
+      "value": "clickserve.cc-dt.com"
+    },
+    {
+      "type": "domain",
+      "value": "clickserve.dartsearch.net"
+    },
+    {
+      "type": "domain",
+      "value": "clickserver.googleads.com"
+    },
+    {
+      "type": "domain",
+      "value": "clientservices.googleapis.com"
+    },
+    {
+      "type": "domain",
+      "value": "cn.widevine.com"
+    },
+    {
+      "type": "domain",
+      "value": "connectivitycheck.gstatic.com"
+    },
+    {
+      "type": "domain",
+      "value": "crashlyticsreports-pa.googleapis.com"
+    },
+    {
+      "type": "domain",
+      "value": "crl.pki.goog"
+    },
+    {
+      "type": "domain",
+      "value": "crls.pki.goog"
+    },
+    {
+      "type": "domain",
+      "value": "csi.gstatic.com"
+    },
+    {
+      "type": "domain",
+      "value": "dartsearch-cn.net"
+    },
+    {
+      "type": "domain",
+      "value": "dg-meta.video.google.com"
+    },
+    {
+      "type": "domain",
+      "value": "dl.google.com"
+    },
+    {
+      "type": "domain",
+      "value": "dl.l.google.com"
+    },
+    {
+      "type": "domain",
+      "value": "doubleclick-cn.net"
+    },
+    {
+      "type": "domain",
+      "value": "doubleclick.net"
+    },
+    {
+      "type": "domain",
+      "value": "download.mlcc.google.com"
+    },
+    {
+      "type": "domain",
+      "value": "download.tensorflow.google.com"
+    },
+    {
+      "type": "domain",
+      "value": "firebase-settings.crashlytics.com"
+    },
+    {
+      "type": "domain",
+      "value": "fontfiles.googleapis.com"
+    },
+    {
+      "type": "domain",
+      "value": "fonts.googleapis.com"
+    },
+    {
+      "type": "domain",
+      "value": "fonts.gstatic.com"
+    },
+    {
+      "type": "domain",
+      "value": "g0.gstatic.com"
+    },
+    {
+      "type": "domain",
+      "value": "g1.gstatic.com"
+    },
+    {
+      "type": "domain",
+      "value": "g2.gstatic.com"
+    },
+    {
+      "type": "domain",
+      "value": "g3.gstatic.com"
+    },
+    {
+      "type": "domain",
+      "value": "gonglchuangl.net"
+    },
+    {
+      "type": "domain",
+      "value": "gongyichuangyi.net"
+    },
+    {
+      "type": "domain",
+      "value": "google-analytics-cn.com"
+    },
+    {
+      "type": "domain",
+      "value": "google-analytics.com"
+    },
+    {
+      "type": "domain",
+      "value": "googleadservices-cn.com"
+    },
+    {
+      "type": "domain",
+      "value": "googleadservices.com"
+    },
+    {
+      "type": "domain",
+      "value": "googleanalytics.com"
+    },
+    {
+      "type": "domain",
+      "value": "googleapis-cn.com"
+    },
+    {
+      "type": "domain",
+      "value": "googleapps-cn.com"
+    },
+    {
+      "type": "domain",
+      "value": "googleflights-cn.net"
+    },
+    {
+      "type": "domain",
+      "value": "googleoptimize-cn.com"
+    },
+    {
+      "type": "domain",
+      "value": "googleoptimize.com"
+    },
+    {
+      "type": "domain",
+      "value": "googlesyndication-cn.com"
+    },
+    {
+      "type": "domain",
+      "value": "googlesyndication.com"
+    },
+    {
+      "type": "domain",
+      "value": "googletagmanager-cn.com"
+    },
+    {
+      "type": "domain",
+      "value": "googletagmanager.com"
+    },
+    {
+      "type": "domain",
+      "value": "googletagservices-cn.com"
+    },
+    {
+      "type": "domain",
+      "value": "googletagservices.com"
+    },
+    {
+      "type": "domain",
+      "value": "googletraveladservices-cn.com"
+    },
+    {
+      "type": "domain",
+      "value": "googletraveladservices.com"
+    },
+    {
+      "type": "domain",
+      "value": "googlevads-cn.com"
+    },
+    {
+      "type": "domain",
+      "value": "gstatic-cn.com"
+    },
+    {
+      "type": "domain",
+      "value": "gstaticadssl.l.google.com"
+    },
+    {
+      "type": "domain",
+      "value": "gtm.oasisfeng.com"
+    },
+    {
+      "type": "domain",
+      "value": "i.pki.goog"
+    },
+    {
+      "type": "domain",
+      "value": "imasdk.googleapis.com"
+    },
+    {
+      "type": "domain",
+      "value": "o.pki.goog"
+    },
+    {
+      "type": "domain",
+      "value": "ocsp.pki.goog"
+    },
+    {
+      "type": "domain",
+      "value": "pagead-googlehosted.l.google.com"
+    },
+    {
+      "type": "domain",
+      "value": "performanceparameters.googleapis.com"
+    },
+    {
+      "type": "domain",
+      "value": "pki-goog.l.google.com"
+    },
+    {
+      "type": "domain",
+      "value": "prod-controlbe.floonet.goog"
+    },
+    {
+      "type": "domain",
+      "value": "prod-databe.floonet.goog"
+    },
+    {
+      "type": "domain",
+      "value": "prod.databe.floonet.goog"
+    },
+    {
+      "type": "domain",
+      "value": "qiao-cn.com"
+    },
+    {
+      "type": "domain",
+      "value": "qpx.googleflights.net"
+    },
+    {
+      "type": "domain",
+      "value": "recaptcha-cn.net"
+    },
+    {
+      "type": "domain",
+      "value": "recaptcha.net"
+    },
+    {
+      "type": "domain",
+      "value": "redirector.bdn.dev"
+    },
+    {
+      "type": "domain",
+      "value": "redirector.c.chat.google.com"
+    },
+    {
+      "type": "domain",
+      "value": "redirector.c.mail.google.com"
+    },
+    {
+      "type": "domain",
+      "value": "redirector.c.pack.google.com"
+    },
+    {
+      "type": "domain",
+      "value": "redirector.c.play.google.com"
+    },
+    {
+      "type": "domain",
+      "value": "redirector.c.youtubeeducation.com"
+    },
+    {
+      "type": "domain",
+      "value": "redirector.gcpcdn.gvt1.com"
+    },
+    {
+      "type": "domain",
+      "value": "redirector.gvt1.com"
+    },
+    {
+      "type": "domain",
+      "value": "redirector.offline-maps.gvt1.com"
+    },
+    {
+      "type": "domain",
+      "value": "redirector.snap.gvt1.com"
+    },
+    {
+      "type": "domain",
+      "value": "redirector.xn--ngstr-lra8j.com"
+    },
+    {
+      "type": "domain",
+      "value": "safebrowsing-cache.google.com"
+    },
+    {
+      "type": "domain",
+      "value": "safebrowsing.googleapis.com"
+    },
+    {
+      "type": "domain",
+      "value": "service.urchin.com"
+    },
+    {
+      "type": "domain",
+      "value": "ssl-google-analytics.l.google.com"
+    },
+    {
+      "type": "domain",
+      "value": "ssl.gstatic.com"
+    },
+    {
+      "type": "domain",
+      "value": "staging-controlbe.floonet.goog"
+    },
+    {
+      "type": "domain",
+      "value": "staging-databe.floonet.goog"
+    },
+    {
+      "type": "domain",
+      "value": "staging.databe.floonet.goog"
+    },
+    {
+      "type": "domain",
+      "value": "tac.googleapis.com"
+    },
+    {
+      "type": "domain",
+      "value": "tools.google.com"
+    },
+    {
+      "type": "domain",
+      "value": "update.crashlytics.com"
+    },
+    {
+      "type": "domain",
+      "value": "update.googleapis.com"
+    },
+    {
+      "type": "domain",
+      "value": "wear.googleapis.com"
+    },
+    {
+      "type": "domain",
+      "value": "www-google-analytics.l.google.com"
+    },
+    {
+      "type": "domain",
+      "value": "www-googletagmanager.l.google.com"
+    },
+    {
+      "type": "domain",
+      "value": "www.destinationurl.com"
+    },
+    {
+      "type": "domain",
+      "value": "www.gstatic.com"
+    },
+    {
+      "type": "domain",
+      "value": "www.pxcc.com"
+    },
+    {
+      "type": "domain",
+      "value": "www.recaptcha-cn.net"
+    },
+    {
+      "type": "domain",
+      "value": "www.recaptcha.net"
+    }
+  ]
+}

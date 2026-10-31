@@ -1,0 +1,63 @@
+{
+  "version": 1,
+  "id": "tvb",
+  "category": "media",
+  "entries": [
+    {
+      "type": "domain-suffix",
+      "value": "bigbigchannel.com.hk"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "bigbigshop.com"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "encoretvb.com"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "mytvsuper.com"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "neigbuy.com"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "tvb.com"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "tvb.com.au"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "tvbanywhere.com"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "tvbanywhere.com.sg"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "tvbc.com.cn"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "tvbeventpower.com.hk"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "tvbusa.com"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "tvbweekly.com"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "tvmedia.net.au"
+    }
+  ]
+}

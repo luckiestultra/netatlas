@@ -1,0 +1,31 @@
+{
+  "version": 1,
+  "id": "weibo",
+  "category": "social",
+  "entries": [
+    {
+      "type": "domain-suffix",
+      "value": "weibo"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "weibo.cn"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "weibo.com"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "weibo.com.cn"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "weibocdn.com"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "weibopay.com"
+    }
+  ]
+}

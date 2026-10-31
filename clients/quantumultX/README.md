@@ -6,7 +6,7 @@
 
 导入主配置后，在节点页添加自己的节点或原生 QX 订阅资源（也可编辑 [server_remote]）。节点选择默认使用 App 内置 proxy；选择实际节点即可，自动/地区组按节点名称筛选。定位显示已接入。
 
-首次使用需由客户端下载远程规则。主配置引用本客户端的 40 份规则资源，覆盖 23,476 条规则，更新由客户端处理；主配置升级与规则刷新是两件事。没有私人节点，配置不会凭空提供代理服务。除 QX/SR 使用 App 内置节点选择外，无节点时节点选择保持 REJECT，导入后核对实际选择。
+首次使用需由客户端下载远程规则。主配置引用本客户端的 114 份规则资源，覆盖 29,103 条规则，更新由客户端处理；主配置升级与规则刷新是两件事。没有私人节点，配置不会凭空提供代理服务。除 QX/SR 使用 App 内置节点选择外，无节点时节点选择保持 REJECT，导入后核对实际选择。
 
 AI、苹果、谷歌、微软、开发、通讯、游戏、媒体与最终兜底可独立选策略；支持手选、自动选择及六地区测速组。地区名来自节点标签，不是 IP 定位结论；没有匹配节点时不要选择该组，不承诺空组自动回退。苹果服务初始直连，其余业务默认走节点选择。
 
@@ -16,59 +16,147 @@ DNS 按各客户端原生能力配置引导、直连/国内、代理目的地和
 
 rules/ 按具体应用或服务 ID 平铺，可单独订阅；QX 资源的 force-policy 覆盖文件策略，其他客户端在主配置引用处指定策略。anti-AD 为可选的 100,682 条，不默认启用。
 
-| 规则资源 | 条目 |
-| --- | ---: |
-| [lan](rules/lan.list) | 17 |
-| [adblock](rules/adblock.list) | 904 |
-| [anti-ad（可选）](rules/anti-ad.list) | 100,682 |
-| [apple-tvplus](rules/apple-tvplus.list) | 8 |
-| [claude](rules/claude.list) | 19 |
-| [cursor](rules/cursor.list) | 5 |
-| [discord](rules/discord.list) | 28 |
-| [docker](rules/docker.list) | 6 |
-| [gemini](rules/gemini.list) | 49 |
-| [github-copilot](rules/github-copilot.list) | 6 |
-| [gitlab](rules/gitlab.list) | 5 |
-| [groq](rules/groq.list) | 1 |
-| [hbo](rules/hbo.list) | 65 |
-| [huggingface](rules/huggingface.list) | 3 |
-| [jetbrains](rules/jetbrains.list) | 25 |
-| [line](rules/line.list) | 20 |
-| [netflix](rules/netflix.list) | 24 |
-| [npmjs](rules/npmjs.list) | 3 |
-| [openai](rules/openai.list) | 24 |
-| [perplexity](rules/perplexity.list) | 5 |
-| [poe](rules/poe.list) | 2 |
-| [signal](rules/signal.list) | 8 |
-| [slack](rules/slack.list) | 11 |
-| [speedtest](rules/speedtest.list) | 20 |
-| [spotify](rules/spotify.list) | 28 |
-| [steam](rules/steam.list) | 61 |
-| [telegram](rules/telegram.list) | 21 |
-| [tiktok](rules/tiktok.list) | 40 |
-| [twitch](rules/twitch.list) | 35 |
-| [vercel](rules/vercel.list) | 27 |
-| [whatsapp](rules/whatsapp.list) | 11 |
-| [xai](rules/xai.list) | 4 |
-| [youtube](rules/youtube.list) | 178 |
-| [zoom](rules/zoom.list) | 3 |
-| [apple](rules/apple.list) | 1,826 |
-| [github](rules/github.list) | 65 |
-| [google](rules/google.list) | 1,123 |
-| [microsoft](rules/microsoft.list) | 760 |
-| [china](rules/china.list) | 8,387 |
-| [china-ipv4](rules/china-ipv4.list) | 6,174 |
-| [china-ipv6](rules/china-ipv6.list) | 3,475 |
+| 规则资源 | 条目 | 许可 |
+| --- | ---: | --- |
+| [lan](rules/lan.list) | 17 | MIT |
+| [unbreak](rules/unbreak.list) | 3 | MIT |
+| [adblock](rules/adblock.list) | 904 | MIT |
+| [abc](rules/abc.list) | 4 | MIT |
+| [abema](rules/abema.list) | 21 | MIT |
+| [acfun](rules/acfun.list) | 8 | MIT |
+| [alipay](rules/alipay.list) | 11 | MIT |
+| [all4](rules/all4.list) | 2 | GPL-2.0-only |
+| [amap](rules/amap.list) | 16 | MIT |
+| [android](rules/android.list) | 4 | MIT |
+| [anti-ad（可选）](rules/anti-ad.list) | 100,682 | MIT |
+| [apple-tvplus](rules/apple-tvplus.list) | 8 | MIT |
+| [appstore](rules/appstore.list) | 26 | MIT |
+| [baidu](rules/baidu.list) | 132 | MIT |
+| [bilibili](rules/bilibili.list) | 53 | MIT |
+| [blizzard](rules/blizzard.list) | 25 | MIT |
+| [claude](rules/claude.list) | 19 | MIT |
+| [coolapk](rules/coolapk.list) | 3 | MIT |
+| [cursor](rules/cursor.list) | 5 | MIT |
+| [deezer](rules/deezer.list) | 2 | MIT |
+| [discord](rules/discord.list) | 28 | MIT |
+| [discovery](rules/discovery.list) | 3 | MIT |
+| [docker](rules/docker.list) | 6 | MIT |
+| [douban](rules/douban.list) | 3 | MIT |
+| [douyin](rules/douyin.list) | 71 | MIT |
+| [douyu](rules/douyu.list) | 7 | MIT |
+| [dropbox](rules/dropbox.list) | 25 | MIT |
+| [facebook](rules/facebook.list) | 397 | MIT |
+| [five-itv](rules/five-itv.list) | 2 | GPL-2.0-only |
+| [gemini](rules/gemini.list) | 49 | MIT |
+| [github-copilot](rules/github-copilot.list) | 6 | MIT |
+| [gitlab](rules/gitlab.list) | 5 | MIT |
+| [global（可选）](rules/global.list) | 6,985 | GPL-2.0-only |
+| [google-cn（可选）](rules/google-cn.list) | 124 | MIT |
+| [groq](rules/groq.list) | 1 | MIT |
+| [hbo-asia](rules/hbo-asia.list) | 19 | GPL-2.0-only |
+| [heroku](rules/heroku.list) | 12 | MIT |
+| [huggingface](rules/huggingface.list) | 3 | MIT |
+| [hulu-jp](rules/hulu-jp.list) | 5 | GPL-2.0-only |
+| [huya](rules/huya.list) | 2 | MIT |
+| [icloud](rules/icloud.list) | 55 | MIT |
+| [iqiyi](rules/iqiyi.list) | 20 | MIT |
+| [jetbrains](rules/jetbrains.list) | 25 | MIT |
+| [joox](rules/joox.list) | 1 | MIT |
+| [kkbox](rules/kkbox.list) | 5 | MIT |
+| [kktv](rules/kktv.list) | 3 | MIT |
+| [line](rules/line.list) | 20 | MIT |
+| [mozilla](rules/mozilla.list) | 77 | MIT |
+| [mudvod](rules/mudvod.list) | 10 | MIT |
+| [mytvsuper](rules/mytvsuper.list) | 1 | MIT |
+| [netease-music](rules/netease-music.list) | 28 | GPL-2.0-only |
+| [netflix](rules/netflix.list) | 24 | MIT |
+| [niconico](rules/niconico.list) | 10 | MIT |
+| [notion](rules/notion.list) | 7 | MIT |
+| [npmjs](rules/npmjs.list) | 3 | MIT |
+| [olevod](rules/olevod.list) | 9 | MIT |
+| [onedrive](rules/onedrive.list) | 11 | MIT |
+| [openai](rules/openai.list) | 24 | MIT |
+| [oracle](rules/oracle.list) | 19 | MIT |
+| [paypal](rules/paypal.list) | 245 | MIT |
+| [perplexity](rules/perplexity.list) | 5 | MIT |
+| [pikpak](rules/pikpak.list) | 7 | MIT |
+| [poe](rules/poe.list) | 2 | MIT |
+| [pornhub](rules/pornhub.list) | 9 | MIT |
+| [pptv](rules/pptv.list) | 3 | MIT |
+| [primevideo](rules/primevideo.list) | 24 | MIT |
+| [qobuz](rules/qobuz.list) | 1 | MIT |
+| [quark](rules/quark.list) | 3 | MIT |
+| [signal](rules/signal.list) | 8 | MIT |
+| [slack](rules/slack.list) | 11 | MIT |
+| [soundcloud](rules/soundcloud.list) | 3 | MIT |
+| [speedtest](rules/speedtest.list) | 20 | MIT |
+| [spotify](rules/spotify.list) | 28 | MIT |
+| [steam-cn](rules/steam-cn.list) | 17 | MIT |
+| [taptap](rules/taptap.list) | 7 | MIT |
+| [telegram](rules/telegram.list) | 21 | MIT |
+| [terabox](rules/terabox.list) | 7 | MIT |
+| [tidal](rules/tidal.list) | 3 | MIT |
+| [tiktok](rules/tiktok.list) | 40 | MIT |
+| [twitch](rules/twitch.list) | 35 | MIT |
+| [twitter](rules/twitter.list) | 24 | MIT |
+| [vercel](rules/vercel.list) | 27 | MIT |
+| [viu-portable](rules/viu-portable.list) | 6 | MIT |
+| [wechat](rules/wechat.list) | 5 | MIT |
+| [weibo](rules/weibo.list) | 6 | MIT |
+| [whatsapp](rules/whatsapp.list) | 11 | MIT |
+| [wikimedia](rules/wikimedia.list) | 18 | MIT |
+| [xai](rules/xai.list) | 4 | MIT |
+| [xiaohongshu](rules/xiaohongshu.list) | 12 | MIT |
+| [ximalaya](rules/ximalaya.list) | 5 | MIT |
+| [yandex](rules/yandex.list) | 157 | MIT |
+| [youku](rules/youku.list) | 31 | MIT |
+| [youtube](rules/youtube.list) | 178 | MIT |
+| [z-library](rules/z-library.list) | 48 | MIT |
+| [zoom](rules/zoom.list) | 3 | MIT |
+| [hulu](rules/hulu.list) | 48 | MIT |
+| [hbo](rules/hbo.list) | 65 | MIT |
+| [steam](rules/steam.list) | 61 | MIT |
+| [quora](rules/quora.list) | 6 | MIT |
+| [tvb](rules/tvb.list) | 14 | MIT |
+| [disney](rules/disney.list) | 236 | MIT |
+| [china-media](rules/china-media.list) | 297 | MIT |
+| [hmt-media](rules/hmt-media.list) | 60 | MIT |
+| [global-media](rules/global-media.list) | 704 | MIT |
+| [amazon-portable](rules/amazon-portable.list) | 250 | MIT |
+| [akamai](rules/akamai.list) | 81 | MIT |
+| [alibaba](rules/alibaba.list) | 464 | MIT |
+| [bytedance](rules/bytedance.list) | 960 | MIT |
+| [netease](rules/netease.list) | 54 | MIT |
+| [tencent](rules/tencent.list) | 700 | MIT |
+| [apple](rules/apple.list) | 1,826 | MIT |
+| [github](rules/github.list) | 65 | MIT |
+| [google](rules/google.list) | 1,123 | MIT |
+| [microsoft](rules/microsoft.list) | 760 | MIT |
+| [china](rules/china.list) | 8,387 | MIT |
+| [china-ipv4](rules/china-ipv4.list) | 6,174 | MIT |
+| [china-ipv6](rules/china-ipv6.list) | 3,475 | MIT |
 
 ## 可选功能
 
-- [scripts/geoip.js](scripts/geoip.js)
-- [rewrites/search-redirect.snippet](rewrites/search-redirect.snippet)
-- [fragments/geoip.conf](fragments/geoip.conf)
-- [fragments/anti-ad.conf](fragments/anti-ad.conf)
-- [rewrites/https-upgrade.snippet](rewrites/https-upgrade.snippet)
+| 功能 | 实际入口/导入方式 |
+| --- | --- |
+| 出口定位 | [scripts/geoip.js](scripts/geoip.js) · [fragments/geoip.conf](fragments/geoip.conf)；general-fragment |
+| Bing 搜索跳转 | [rewrites/search-redirect.snippet](rewrites/search-redirect.snippet)；rewrite-resource |
+| 可选反广告 | [fragments/anti-ad.conf](fragments/anti-ad.conf)；merge-fragment |
+| 六站 HTTPS 升级 | [rewrites/https-upgrade.snippet](rewrites/https-upgrade.snippet)；rewrite-resource |
+| 47 项快速搜索 | [rewrites/quick-search.snippet](rewrites/quick-search.snippet)；rewrite-resource |
+| 59 项网站重定向 | [rewrites/redirects.snippet](rewrites/redirects.snippet)；rewrite-resource |
+| BiliIntl 菲律宾参数 | [rewrites/biliintl-region.snippet](rewrites/biliintl-region.snippet)；rewrite-resource |
+| BoxJS | [modules/boxjs.snippet](modules/boxjs.snippet)；rewrite-resource |
+| ScriptHub | [modules/script-hub.snippet](modules/script-hub.snippet)；rewrite-resource |
+| Sub-Store | [modules/sub-store.snippet](modules/sub-store.snippet)；rewrite-resource |
+| 外部资源解析器 | [fragments/resource-parser.conf](fragments/resource-parser.conf)；manual-general-fragment |
 
-modules 是原生安装包，rewrites 是纯重写资源，fragments 需要合并。QX 主配置已经接入 GeoIP；geoip.conf 片段供已有其他配置使用。重写、MITM 和证书均不自动启用。功能依各客户端语法导入，见[功能说明](../../docs/features.md)。
+modules 保存脚本功能安装资源，rewrites 保存纯重写，fragments 需要手工合并。QX 的 modules/*.snippet 仍在 App 中按“重写资源”导入；Surge/SR 用各自模块入口，Loon 用插件，Egern 用模块，Stash 用覆写，不能混用相同扩展名推断兼容。
+
+BoxJS、ScriptHub、Sub-Store 为明确可选的上游工具，脚本入口固定版本，GUI 导入未实测；BoxJS 会读写宿主脚本存储，转换工具会读取订阅/用户指定 URL。没有自动同步任务，也不会自动启用 MITM 或安装 CA。第三方脚本与前端的完整依赖树不全部固定，见[工具许可与边界](../../src/vendor/integrations/)。外部解析器片段只链接作者发布脚本，不是本仓库实现的解析器。
+
+Mihomo/sing-box 提供原生规则、DNS、节点与可选反广告；BoxJS 等 GUI 模块和 HTTP 重写不是这两个核心的能力。需要订阅转换时可另用 [Sub-Store 官方服务](https://github.com/sub-store-org/Sub-Store)，不要把 GUI 脚本格式塞进核心配置。QX 主配置已经接入 GeoIP；其片段供其他既有配置使用。完整边界见[逐项覆盖](../../docs/coverage.md)与[功能说明](../../docs/features.md)。
 
 ## 高级：离线配置或本地私有转换
 

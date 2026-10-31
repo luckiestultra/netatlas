@@ -1,0 +1,51 @@
+{
+  "version": 1,
+  "id": "alipay",
+  "category": "system",
+  "entries": [
+    {
+      "type": "domain-suffix",
+      "value": "alipay"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "alipay-eco.com"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "alipay.cn"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "alipay.com"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "alipay.com.cn"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "alipay.hk"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "alipaydns.com"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "alipaylog.com"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "alipaymo.com"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "alipayobjects.com"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "alipayplus.com"
+    }
+  ]
+}

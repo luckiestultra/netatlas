@@ -1,0 +1,31 @@
+{
+  "version": 1,
+  "id": "quora",
+  "category": "social",
+  "entries": [
+    {
+      "type": "domain-suffix",
+      "value": "poe.com"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "poecdn.net"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "qr.ae"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "quora.com"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "quoracdn.net"
+    },
+    {
+      "type": "domain",
+      "value": "www.quora.com.cdn.cloudflare.net"
+    }
+  ]
+}

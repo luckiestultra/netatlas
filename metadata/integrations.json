@@ -1,0 +1,716 @@
+{
+  "version": 1,
+  "observedAt": "2026-10-31",
+  "defaultEnabled": false,
+  "sourceRegistry": {
+    "rendererLicense": "MIT",
+    "wrapperLicenseScope": "Each adapted installer is separately GPL-3.0-only or AGPL-3.0-only as registered. Remote scripts retain their upstream project license and third-party notices; no blanket MIT claim.",
+    "archiveNormalization": "Upstream text snapshots and full licenses have one additional terminating newline. Registered archive hashes cover the stored bytes; original URLs identify the immutable upstream bytes.",
+    "pinScope": "Installer-configured JavaScript entry points only. BoxJS HTML/CDN dependencies, Vercel frontends, user-selected URLs/scripts and ScriptHub-generated auxiliary script references remain upstream-managed; no complete dependency closure or reproducible bundle claim.",
+    "nativeApp": "not-run"
+  },
+  "remoteDependencies": [
+    {
+      "id": "boxjs-core",
+      "project": "boxjs",
+      "repository": "chavyleung/scripts",
+      "commit": "bfab3c906f3d5d126e9094f15730e025f7f32128",
+      "path": "box/chavy.boxjs.js",
+      "url": "https://raw.githubusercontent.com/chavyleung/scripts/bfab3c906f3d5d126e9094f15730e025f7f32128/box/chavy.boxjs.js",
+      "bytes": 52473,
+      "sha256": "24ab4513d9b210d3921f87660175ddf408f2c4728a01ecb391082e82d8f8ffa6",
+      "license": "GPL-3.0-only",
+      "fetchedAt": "2026-10-31",
+      "httpStatus": 200,
+      "tlsVerified": true,
+      "syntaxCheck": "node --check (no execution)",
+      "sourceMarkers": [
+        "isEgern",
+        "$done",
+        "KEY_usercfgs"
+      ]
+    },
+    {
+      "id": "script-hub-script-hub",
+      "project": "script-hub",
+      "repository": "Script-Hub-Org/Script-Hub",
+      "commit": "502cf03f7db2e077d96c07c2cb151a8f0b152a80",
+      "path": "script-hub.js",
+      "url": "https://raw.githubusercontent.com/Script-Hub-Org/Script-Hub/502cf03f7db2e077d96c07c2cb151a8f0b152a80/script-hub.js",
+      "bytes": 259406,
+      "sha256": "6a0c1d8e05136e7f134bfbf0dd94a8ab7356b22607a1ba7bace57820e2bc7af1",
+      "license": "GPL-3.0-only",
+      "fetchedAt": "2026-10-31",
+      "httpStatus": 200,
+      "tlsVerified": true,
+      "syntaxCheck": "node --check (no execution)",
+      "sourceMarkers": [
+        "$done",
+        "script.hub"
+      ]
+    },
+    {
+      "id": "script-hub-script-converter",
+      "project": "script-hub",
+      "repository": "Script-Hub-Org/Script-Hub",
+      "commit": "502cf03f7db2e077d96c07c2cb151a8f0b152a80",
+      "path": "script-converter.js",
+      "url": "https://raw.githubusercontent.com/Script-Hub-Org/Script-Hub/502cf03f7db2e077d96c07c2cb151a8f0b152a80/script-converter.js",
+      "bytes": 29542,
+      "sha256": "27fc22ac5a40364fbe0728d7264e163431656e7b142cde6337ecad11e5d60b78",
+      "license": "GPL-3.0-only",
+      "fetchedAt": "2026-10-31",
+      "httpStatus": 200,
+      "tlsVerified": true,
+      "syntaxCheck": "node --check (no execution)",
+      "sourceMarkers": [
+        "$done"
+      ]
+    },
+    {
+      "id": "script-hub-rewrite-parser",
+      "project": "script-hub",
+      "repository": "Script-Hub-Org/Script-Hub",
+      "commit": "502cf03f7db2e077d96c07c2cb151a8f0b152a80",
+      "path": "Rewrite-Parser.js",
+      "url": "https://raw.githubusercontent.com/Script-Hub-Org/Script-Hub/502cf03f7db2e077d96c07c2cb151a8f0b152a80/Rewrite-Parser.js",
+      "bytes": 114680,
+      "sha256": "c5e46afa219424e22bcba151dbd6f5e4c6caf518cfdf3317381f4c7e2068e51b",
+      "license": "GPL-3.0-only",
+      "fetchedAt": "2026-10-31",
+      "httpStatus": 200,
+      "tlsVerified": true,
+      "syntaxCheck": "node --check (no execution)",
+      "sourceMarkers": [
+        "$done",
+        "script.hub"
+      ]
+    },
+    {
+      "id": "script-hub-rule-parser",
+      "project": "script-hub",
+      "repository": "Script-Hub-Org/Script-Hub",
+      "commit": "502cf03f7db2e077d96c07c2cb151a8f0b152a80",
+      "path": "rule-parser.js",
+      "url": "https://raw.githubusercontent.com/Script-Hub-Org/Script-Hub/502cf03f7db2e077d96c07c2cb151a8f0b152a80/rule-parser.js",
+      "bytes": 24403,
+      "sha256": "6d30380cc68e112b5bcb5d9b2013d553d3c48612b1c61e78f0e0bfae3e48ca2c",
+      "license": "GPL-3.0-only",
+      "fetchedAt": "2026-10-31",
+      "httpStatus": 200,
+      "tlsVerified": true,
+      "syntaxCheck": "node --check (no execution)",
+      "sourceMarkers": [
+        "$done"
+      ]
+    },
+    {
+      "id": "sub-store-0",
+      "project": "sub-store",
+      "repository": "sub-store-org/Sub-Store",
+      "commit": "d26e713e38901e02565a6505c1ae5cb8bb8a1a22",
+      "sourceCommit": "c1018115a7eee4cdcb9042cce5e94afda41e48ba",
+      "release": "2.44.2",
+      "path": "sub-store-0.min.js",
+      "url": "https://raw.githubusercontent.com/sub-store-org/Sub-Store/d26e713e38901e02565a6505c1ae5cb8bb8a1a22/sub-store-0.min.js",
+      "bytes": 1333524,
+      "sha256": "e7bfcaf78bc4ec2354e8a545211f8794f3137e8a91eea5cd7be7386cdf3a2f09",
+      "license": "AGPL-3.0-only",
+      "fetchedAt": "2026-10-31",
+      "httpStatus": 200,
+      "tlsVerified": true,
+      "syntaxCheck": "node --check (no execution)",
+      "sourceMarkers": [
+        "$done",
+        "2.44.2"
+      ]
+    },
+    {
+      "id": "sub-store-1",
+      "project": "sub-store",
+      "repository": "sub-store-org/Sub-Store",
+      "commit": "d26e713e38901e02565a6505c1ae5cb8bb8a1a22",
+      "sourceCommit": "c1018115a7eee4cdcb9042cce5e94afda41e48ba",
+      "release": "2.44.2",
+      "path": "sub-store-1.min.js",
+      "url": "https://raw.githubusercontent.com/sub-store-org/Sub-Store/d26e713e38901e02565a6505c1ae5cb8bb8a1a22/sub-store-1.min.js",
+      "bytes": 1322427,
+      "sha256": "5818bc626d203a6bcedbe82d84a87fb25d0d917f78457beb2aa60ac5f48dc2b9",
+      "license": "AGPL-3.0-only",
+      "fetchedAt": "2026-10-31",
+      "httpStatus": 200,
+      "tlsVerified": true,
+      "syntaxCheck": "node --check (no execution)",
+      "sourceMarkers": [
+        "$done",
+        "2.44.2"
+      ]
+    }
+  ],
+  "integrations": [
+    {
+      "id": "boxjs",
+      "name": "BoxJS",
+      "defaultEnabled": false,
+      "license": "GPL-3.0-only",
+      "remoteScriptLicense": "GPL-3.0-only",
+      "authors": "chavyleung",
+      "repository": "chavyleung/scripts",
+      "sourceCommit": "bfab3c906f3d5d126e9094f15730e025f7f32128",
+      "sourceUrl": "https://github.com/chavyleung/scripts/tree/bfab3c906f3d5d126e9094f15730e025f7f32128",
+      "officialDocumentation": "https://docs.boxjs.app/",
+      "licenseFile": {
+        "path": "src/vendor/integrations/boxjs/LICENSE",
+        "sha256": "ce477465e75afd63abca416dc9055375dbb4037f70b72f8d324c53f9d1581e36",
+        "bytes": 35148
+      },
+      "mitmHosts": [
+        "boxjs.com",
+        "boxjs.net",
+        "*.boxjs.com",
+        "*.boxjs.net"
+      ],
+      "permissions": {
+        "storage": "Reads and writes host-app persistent keys, preferences, sessions and backups, including user-selected application keys.",
+        "subscriptions": "Fetches user-added BoxJS application subscription JSON.",
+        "network": "Fetches the official HTML frontend, release metadata and user-selected resources; optional user-selected scripts can run.",
+        "converterEval": false,
+        "userScriptEval": true,
+        "externalUpload": "Only user-selected scripts/backup integrations; no automatic task is installed.",
+        "mitm": "Only the registered tool hostnames; an existing trusted user CA is needed for HTTPS. No CA payload is supplied.",
+        "automaticTasks": false
+      },
+      "changes": [
+        "Pin every configured JavaScript entry point to the registered immutable upstream/release commit.",
+        "Remove cosmetic icons and unrelated fixed-PROXY routing rules; preserve runtime notification/body/timeout settings.",
+        "Create an original Egern http_request wrapper from the vendor schema; the pinned official JS includes isEgern and Egern completion/storage branches."
+      ],
+      "clients": {
+        "quantumultX": {
+          "artifacts": [
+            "modules/boxjs.snippet"
+          ],
+          "kind": "rewrite-resource",
+          "nativeApp": "not-run",
+          "readiness": "adapted official installer; device import not run",
+          "installer": {
+            "path": "src/vendor/integrations/boxjs/installers/quantumultX.txt",
+            "sha256": "b2fc08ce454efcc76b688d8e1f4bc26e4a92156a0934b2feac7b19c26c5bd7b2",
+            "bytes": 265
+          },
+          "upstreamInstaller": {
+            "url": "https://raw.githubusercontent.com/chavyleung/scripts/bfab3c906f3d5d126e9094f15730e025f7f32128/box/rewrite/boxjs.rewrite.quanx.conf",
+            "path": "src/vendor/integrations/boxjs/upstream/quantumultX.txt",
+            "sha256": "e601858455e496bd04ffaa6a1fec7adf03b98a76e6e00d0a6549f82c2148bf26",
+            "bytes": 208
+          },
+          "dependencyIds": [
+            "boxjs-core"
+          ]
+        },
+        "surge": {
+          "artifacts": [
+            "modules/boxjs.sgmodule"
+          ],
+          "kind": "sgmodule",
+          "nativeApp": "not-run",
+          "readiness": "adapted official installer; device import not run",
+          "installer": {
+            "path": "src/vendor/integrations/boxjs/installers/surge.txt",
+            "sha256": "c9a4ac06bafa7f01398fbb5ac901ce01322f575db816f549a9399c508791f2e7",
+            "bytes": 548
+          },
+          "upstreamInstaller": {
+            "url": "https://raw.githubusercontent.com/chavyleung/scripts/bfab3c906f3d5d126e9094f15730e025f7f32128/box/rewrite/boxjs.rewrite.surge.sgmodule",
+            "path": "src/vendor/integrations/boxjs/upstream/surge.txt",
+            "sha256": "b1c930f311caa114f991b205635a9d7412d3aad227fbbd0667c980a2e346b36e",
+            "bytes": 578
+          },
+          "dependencyIds": [
+            "boxjs-core"
+          ]
+        },
+        "loon": {
+          "artifacts": [
+            "modules/boxjs.plugin"
+          ],
+          "kind": "plugin",
+          "nativeApp": "not-run",
+          "readiness": "adapted official installer; device import not run",
+          "installer": {
+            "path": "src/vendor/integrations/boxjs/installers/loon.txt",
+            "sha256": "9545a08aaa662e7b1b3ca62c41eaeaef0b4c21d319958fc7897605fde11846db",
+            "bytes": 446
+          },
+          "upstreamInstaller": {
+            "url": "https://raw.githubusercontent.com/chavyleung/scripts/bfab3c906f3d5d126e9094f15730e025f7f32128/box/rewrite/boxjs.rewrite.loon.plugin",
+            "path": "src/vendor/integrations/boxjs/upstream/loon.txt",
+            "sha256": "e0d6844f338ee4544126999fb85da5407528798e4cf35c17040627d8ac25f9bc",
+            "bytes": 517
+          },
+          "dependencyIds": [
+            "boxjs-core"
+          ]
+        },
+        "shadowrocket": {
+          "artifacts": [
+            "modules/boxjs.module"
+          ],
+          "kind": "official-module",
+          "nativeApp": "not-run",
+          "readiness": "adapted official installer; device import not run",
+          "installer": {
+            "path": "src/vendor/integrations/boxjs/installers/shadowrocket.txt",
+            "sha256": "c9a4ac06bafa7f01398fbb5ac901ce01322f575db816f549a9399c508791f2e7",
+            "bytes": 548
+          },
+          "upstreamInstaller": {
+            "url": "https://raw.githubusercontent.com/chavyleung/scripts/bfab3c906f3d5d126e9094f15730e025f7f32128/box/rewrite/boxjs.rewrite.surge.sgmodule",
+            "path": "src/vendor/integrations/boxjs/upstream/shadowrocket.txt",
+            "sha256": "b1c930f311caa114f991b205635a9d7412d3aad227fbbd0667c980a2e346b36e",
+            "bytes": 578
+          },
+          "dependencyIds": [
+            "boxjs-core"
+          ]
+        },
+        "egern": {
+          "artifacts": [
+            "modules/boxjs.yaml"
+          ],
+          "kind": "native-module",
+          "nativeApp": "not-run",
+          "readiness": "documented schema plus pinned upstream Egern branch; device import not run",
+          "installer": {
+            "path": "src/vendor/integrations/boxjs/installers/egern.txt",
+            "sha256": "82f302078d2056fc6e94f9db93b8d3ccc210c97a814be2e4ddde1a66990f09ce",
+            "bytes": 556
+          },
+          "upstreamInstaller": null,
+          "schemaSources": [
+            "https://egernapp.com/docs/configuration/modules/",
+            "https://egernapp.com/docs/configuration/scriptings/",
+            "https://egernapp.com/docs/configuration/example/"
+          ],
+          "scriptSupportEvidence": "Pinned box/chavy.boxjs.js contains isEgern(), Egern getEnv/completion and persistent-store compatibility branches.",
+          "dependencyIds": [
+            "boxjs-core"
+          ]
+        },
+        "stash": {
+          "artifacts": [
+            "modules/boxjs.stoverride"
+          ],
+          "kind": "native-override",
+          "nativeApp": "not-run",
+          "readiness": "adapted official installer; device import not run",
+          "installer": {
+            "path": "src/vendor/integrations/boxjs/installers/stash.txt",
+            "sha256": "d5602c5a777a5d539cd38a54c154cea9a5d0e52c0f602eaba3d740a22bc67712",
+            "bytes": 711
+          },
+          "upstreamInstaller": {
+            "url": "https://raw.githubusercontent.com/chavyleung/scripts/bfab3c906f3d5d126e9094f15730e025f7f32128/box/rewrite/boxjs.rewrite.stash.stoverride",
+            "path": "src/vendor/integrations/boxjs/upstream/stash.txt",
+            "sha256": "776a07456a48e5da1f088f9d81a6ba324fb70946fa571909f41d09d76d29c25b",
+            "bytes": 742
+          },
+          "dependencyIds": [
+            "boxjs-core"
+          ]
+        }
+      }
+    },
+    {
+      "id": "script-hub",
+      "name": "ScriptHub",
+      "defaultEnabled": false,
+      "license": "GPL-3.0-only",
+      "remoteScriptLicense": "GPL-3.0-only",
+      "authors": "小白脸, xream, keywos, ckyb",
+      "repository": "Script-Hub-Org/Script-Hub",
+      "sourceCommit": "502cf03f7db2e077d96c07c2cb151a8f0b152a80",
+      "sourceUrl": "https://github.com/Script-Hub-Org/Script-Hub/tree/502cf03f7db2e077d96c07c2cb151a8f0b152a80",
+      "officialDocumentation": "https://github.com/Script-Hub-Org/Script-Hub/wiki",
+      "licenseFile": {
+        "path": "src/vendor/integrations/script-hub/LICENSE",
+        "sha256": "e57f1c320b8cf8798a7d2ff83a6f9e06a33a03585f6e065fea97f1d86db84052",
+        "bytes": 35150
+      },
+      "mitmHosts": [
+        "script.hub"
+      ],
+      "permissions": {
+        "storage": "Reads and writes converter preferences and user-supplied local text.",
+        "subscriptions": "Fetches user-supplied rule/module/script URLs for conversion; not a proxy subscription manager.",
+        "network": "Fetches source URLs and optional icon/auxiliary resources; the QX root route opens the upstream Vercel frontend.",
+        "converterEval": true,
+        "userScriptEval": true,
+        "externalUpload": "No upload or scheduled task is configured by this installer.",
+        "mitm": "Only the registered tool hostnames; an existing trusted user CA is needed for HTTPS. No CA payload is supplied.",
+        "automaticTasks": false
+      },
+      "changes": [
+        "Pin every configured JavaScript entry point to the registered immutable upstream/release commit.",
+        "Remove cosmetic icons and unrelated fixed-PROXY routing rules; preserve runtime notification/body/timeout settings.",
+        "Narrow MITM/force-engine hostnames to script.hub; repair the QX root hostname dot escape.",
+        "Bind parser selection to one unambiguous outer type parameter after exactly one /_end_/; reject nested delimiters, duplicate or encoded selector aliases and value suffixes."
+      ],
+      "selectorContract": {
+        "route": "Exactly one literal /_end_/ boundary, nonempty source and filename; nested literal file/_start_/ or /_end_/ delimiters are rejected.",
+        "query": "One literal lowercase type key and full supported value; other unencoded ASCII names may appear before or after it. Percent-encoded separators stay within values. Encoded parameter names and encoded type values are unsupported.",
+        "reason": "Pinned upstream scripts split at the first /_end_/ and first subsequent question mark; choosing the last delimiter would disagree with the executed parser.",
+        "sourceEvidence": [
+          "https://github.com/Script-Hub-Org/Script-Hub/blob/502cf03f7db2e077d96c07c2cb151a8f0b152a80/Rewrite-Parser.js",
+          "https://github.com/Script-Hub-Org/Script-Hub/blob/502cf03f7db2e077d96c07c2cb151a8f0b152a80/rule-parser.js"
+        ],
+        "nativeApp": "not-run"
+      },
+      "clients": {
+        "quantumultX": {
+          "artifacts": [
+            "modules/script-hub.snippet"
+          ],
+          "kind": "rewrite-resource",
+          "nativeApp": "not-run",
+          "readiness": "adapted official installer; device import not run",
+          "installer": {
+            "path": "src/vendor/integrations/script-hub/installers/quantumultX.txt",
+            "sha256": "f049dcda13b3cb970a407466e19006e4a96f005fc9012b60c57f84b3cec72ac9",
+            "bytes": 1009
+          },
+          "upstreamInstaller": {
+            "url": "https://raw.githubusercontent.com/Script-Hub-Org/Script-Hub/502cf03f7db2e077d96c07c2cb151a8f0b152a80/modules/script-hub.qx.conf",
+            "path": "src/vendor/integrations/script-hub/upstream/quantumultX.txt",
+            "sha256": "23b448d1213def0168f5ffea6483091bd9d9a94d60f8a0185534a64f6ae4273a",
+            "bytes": 458
+          },
+          "dependencyIds": [
+            "script-hub-rewrite-parser",
+            "script-hub-rule-parser"
+          ],
+          "limitations": "QX installs two parsers and a Vercel frontend redirect, not the other clients' /convert, /edit or /reload request hooks."
+        },
+        "surge": {
+          "artifacts": [
+            "modules/script-hub.sgmodule"
+          ],
+          "kind": "sgmodule",
+          "nativeApp": "not-run",
+          "readiness": "adapted official installer; device import not run",
+          "installer": {
+            "path": "src/vendor/integrations/script-hub/installers/surge.txt",
+            "sha256": "e5e9f712854220c9d3c02ff07bafee91e232830ce565e7338c985252d2a81cbd",
+            "bytes": 1928
+          },
+          "upstreamInstaller": {
+            "url": "https://raw.githubusercontent.com/Script-Hub-Org/Script-Hub/502cf03f7db2e077d96c07c2cb151a8f0b152a80/modules/script-hub.surge.sgmodule",
+            "path": "src/vendor/integrations/script-hub/upstream/surge.txt",
+            "sha256": "67649ab56ec69847ce428ce1b494c3fdcec2844288b656755f8c81cd700bd13d",
+            "bytes": 1331
+          },
+          "dependencyIds": [
+            "script-hub-script-hub",
+            "script-hub-script-converter",
+            "script-hub-rewrite-parser",
+            "script-hub-rule-parser"
+          ]
+        },
+        "loon": {
+          "artifacts": [
+            "modules/script-hub.plugin"
+          ],
+          "kind": "plugin",
+          "nativeApp": "not-run",
+          "readiness": "adapted official installer; device import not run",
+          "installer": {
+            "path": "src/vendor/integrations/script-hub/installers/loon.txt",
+            "sha256": "8ba48c2151de72d7119c4673bb21338f5dacccbe04fcc7bdf7cc5c6883f60c6b",
+            "bytes": 1939
+          },
+          "upstreamInstaller": {
+            "url": "https://raw.githubusercontent.com/Script-Hub-Org/Script-Hub/502cf03f7db2e077d96c07c2cb151a8f0b152a80/modules/script-hub.loon.plugin",
+            "path": "src/vendor/integrations/script-hub/upstream/loon.txt",
+            "sha256": "e7e2ed40217314176a8df26394d285ccee51384bb426dc2a9c8df91b03bf89eb",
+            "bytes": 1811
+          },
+          "dependencyIds": [
+            "script-hub-script-hub",
+            "script-hub-script-converter",
+            "script-hub-rewrite-parser",
+            "script-hub-rule-parser"
+          ],
+          "minimumVersion": "3.5.1(983)"
+        },
+        "shadowrocket": {
+          "artifacts": [
+            "modules/script-hub.module"
+          ],
+          "kind": "official-module",
+          "nativeApp": "not-run",
+          "readiness": "adapted official installer; device import not run",
+          "installer": {
+            "path": "src/vendor/integrations/script-hub/installers/shadowrocket.txt",
+            "sha256": "b8efbf68d2bb8769633ca92f9565e597b46c9b65b2a10695549f8b25aa633c53",
+            "bytes": 1721
+          },
+          "upstreamInstaller": {
+            "url": "https://raw.githubusercontent.com/Script-Hub-Org/Script-Hub/502cf03f7db2e077d96c07c2cb151a8f0b152a80/modules/script-hub.rocket.module",
+            "path": "src/vendor/integrations/script-hub/upstream/shadowrocket.txt",
+            "sha256": "7f46685d277e0d06917d9b94f7ebdb2ae8707ed477d931bb0122357fdd2be7f9",
+            "bytes": 1124
+          },
+          "dependencyIds": [
+            "script-hub-script-hub",
+            "script-hub-script-converter",
+            "script-hub-rewrite-parser",
+            "script-hub-rule-parser"
+          ]
+        },
+        "egern": {
+          "artifacts": [
+            "modules/script-hub.yaml"
+          ],
+          "kind": "native-module",
+          "nativeApp": "not-run",
+          "readiness": "adapted official installer; device import not run",
+          "installer": {
+            "path": "src/vendor/integrations/script-hub/installers/egern.txt",
+            "sha256": "aca8777e7414d3f24a826fe8d3e9b6143e9423cf96cd8170824c2c4fced2566a",
+            "bytes": 1998
+          },
+          "upstreamInstaller": {
+            "url": "https://raw.githubusercontent.com/Script-Hub-Org/Script-Hub/502cf03f7db2e077d96c07c2cb151a8f0b152a80/modules/script-hub.egern.yaml",
+            "path": "src/vendor/integrations/script-hub/upstream/egern.txt",
+            "sha256": "4fb7be65e007d31808491a04d1418a65a904294f1c049b19f7baac66c27a361f",
+            "bytes": 1492
+          },
+          "dependencyIds": [
+            "script-hub-script-hub",
+            "script-hub-script-converter",
+            "script-hub-rewrite-parser",
+            "script-hub-rule-parser"
+          ]
+        },
+        "stash": {
+          "artifacts": [
+            "modules/script-hub.stoverride"
+          ],
+          "kind": "native-override",
+          "nativeApp": "not-run",
+          "readiness": "adapted official installer; device import not run",
+          "installer": {
+            "path": "src/vendor/integrations/script-hub/installers/stash.txt",
+            "sha256": "9092b7005a96caa65e5a922146adac4671df333d0b654d23d5a64096cc1916dc",
+            "bytes": 2019
+          },
+          "upstreamInstaller": {
+            "url": "https://raw.githubusercontent.com/Script-Hub-Org/Script-Hub/502cf03f7db2e077d96c07c2cb151a8f0b152a80/modules/script-hub.stash.stoverride",
+            "path": "src/vendor/integrations/script-hub/upstream/stash.txt",
+            "sha256": "7c43f322f744c2b0d07faaa4b813fa5664a677617f10be6154bd4341a65e1d00",
+            "bytes": 1531
+          },
+          "dependencyIds": [
+            "script-hub-script-hub",
+            "script-hub-script-converter",
+            "script-hub-rewrite-parser",
+            "script-hub-rule-parser"
+          ]
+        }
+      }
+    },
+    {
+      "id": "sub-store",
+      "name": "Sub-Store",
+      "defaultEnabled": false,
+      "license": "AGPL-3.0-only",
+      "remoteScriptLicense": "AGPL-3.0-only",
+      "authors": "Peng-YM and Sub-Store contributors",
+      "repository": "sub-store-org/Sub-Store",
+      "sourceCommit": "352f01b7091c99f4e219c44e4ec96f3288059843",
+      "sourceUrl": "https://github.com/sub-store-org/Sub-Store/tree/352f01b7091c99f4e219c44e4ec96f3288059843",
+      "officialDocumentation": "https://github.com/sub-store-org/Sub-Store/blob/352f01b7091c99f4e219c44e4ec96f3288059843/config/README.md",
+      "licenseFile": {
+        "path": "src/vendor/integrations/sub-store/LICENSE",
+        "sha256": "cc3943b050dcb0aa365cf69c65e477bf24802bfaebcfe39f49d84668f47f460e",
+        "bytes": 34578
+      },
+      "mitmHosts": [
+        "sub.store"
+      ],
+      "permissions": {
+        "storage": "Reads and writes subscriptions, files, settings, caches and user-configured service credentials.",
+        "subscriptions": "Fetches, combines, stores, transforms and serves user-configured proxy subscription URLs.",
+        "network": "Fetches subscription sources and user-selected script/resources; manual sync can upload configured artifacts to a private Gist.",
+        "converterEval": true,
+        "userScriptEval": true,
+        "externalUpload": "Manual sync/API only after user configuration; all upstream cron/schedule hooks are removed.",
+        "mitm": "Only the registered tool hostnames; an existing trusted user CA is needed for HTTPS. No CA payload is supplied.",
+        "automaticTasks": false
+      },
+      "changes": [
+        "Pin every configured JavaScript entry point to the registered immutable upstream/release commit.",
+        "Remove cosmetic icons and unrelated fixed-PROXY routing rules; preserve runtime notification/body/timeout settings.",
+        "Remove all cron/schedule hooks and their unused arguments/providers; keep manual sync APIs.",
+        "Use the official no-ability package for Surge and Shadowrocket; no automatic policy-test ability is added.",
+        "Keep the official Egern request handlers and CORS argument; remove schedule parameters; set timeout to the documented 600-second maximum."
+      ],
+      "clients": {
+        "quantumultX": {
+          "artifacts": [
+            "modules/sub-store.snippet"
+          ],
+          "kind": "rewrite-resource",
+          "nativeApp": "not-run",
+          "readiness": "adapted official installer; device import not run",
+          "installer": {
+            "path": "src/vendor/integrations/sub-store/installers/quantumultX.txt",
+            "sha256": "574ca885d1e77f0bd34248a58c62698e962da24904c023685214de1a13acd5f0",
+            "bytes": 430
+          },
+          "upstreamInstaller": {
+            "url": "https://raw.githubusercontent.com/sub-store-org/Sub-Store/352f01b7091c99f4e219c44e4ec96f3288059843/config/QX.snippet",
+            "path": "src/vendor/integrations/sub-store/upstream/quantumultX.txt",
+            "sha256": "ff20413377b3ce2336917a4034406acb0a340ec3d3168b2a1b45d580e53a0ce5",
+            "bytes": 359
+          },
+          "dependencyIds": [
+            "sub-store-0",
+            "sub-store-1"
+          ]
+        },
+        "surge": {
+          "artifacts": [
+            "modules/sub-store.sgmodule"
+          ],
+          "kind": "sgmodule",
+          "nativeApp": "not-run",
+          "readiness": "adapted official installer; device import not run",
+          "installer": {
+            "path": "src/vendor/integrations/sub-store/installers/surge.txt",
+            "sha256": "226faf4380be41749d649e6954cda2c823df199e2f13b0447857097aed049adb",
+            "bytes": 961
+          },
+          "upstreamInstaller": {
+            "url": "https://raw.githubusercontent.com/sub-store-org/Sub-Store/352f01b7091c99f4e219c44e4ec96f3288059843/config/Surge-Noability.sgmodule",
+            "path": "src/vendor/integrations/sub-store/upstream/surge.txt",
+            "sha256": "e2d6822f9e0e9aaa3e4a987728d63a8ce1f8e4ea4b2850731668045bb496e72c",
+            "bytes": 1324
+          },
+          "dependencyIds": [
+            "sub-store-0",
+            "sub-store-1"
+          ]
+        },
+        "loon": {
+          "artifacts": [
+            "modules/sub-store.plugin"
+          ],
+          "kind": "plugin",
+          "nativeApp": "not-run",
+          "readiness": "adapted official installer; device import not run",
+          "installer": {
+            "path": "src/vendor/integrations/sub-store/installers/loon.txt",
+            "sha256": "125eb99be452bde75ef4ef3e413f1770325ee55c0b0b53defcd3ec2da8ac19b2",
+            "bytes": 1035
+          },
+          "upstreamInstaller": {
+            "url": "https://raw.githubusercontent.com/sub-store-org/Sub-Store/352f01b7091c99f4e219c44e4ec96f3288059843/config/Loon.plugin",
+            "path": "src/vendor/integrations/sub-store/upstream/loon.txt",
+            "sha256": "f3cd9dc4aecfd16344cc3aacdd869d01a77d386fbbd3a29232dab2b1b2ae70ae",
+            "bytes": 1617
+          },
+          "dependencyIds": [
+            "sub-store-0",
+            "sub-store-1"
+          ]
+        },
+        "shadowrocket": {
+          "artifacts": [
+            "modules/sub-store.module"
+          ],
+          "kind": "official-module",
+          "nativeApp": "not-run",
+          "readiness": "adapted official installer; device import not run",
+          "installer": {
+            "path": "src/vendor/integrations/sub-store/installers/shadowrocket.txt",
+            "sha256": "226faf4380be41749d649e6954cda2c823df199e2f13b0447857097aed049adb",
+            "bytes": 961
+          },
+          "upstreamInstaller": {
+            "url": "https://raw.githubusercontent.com/sub-store-org/Sub-Store/352f01b7091c99f4e219c44e4ec96f3288059843/config/Surge-Noability.sgmodule",
+            "path": "src/vendor/integrations/sub-store/upstream/shadowrocket.txt",
+            "sha256": "e2d6822f9e0e9aaa3e4a987728d63a8ce1f8e4ea4b2850731668045bb496e72c",
+            "bytes": 1324
+          },
+          "dependencyIds": [
+            "sub-store-0",
+            "sub-store-1"
+          ]
+        },
+        "egern": {
+          "artifacts": [
+            "modules/sub-store.yaml"
+          ],
+          "kind": "native-module",
+          "nativeApp": "not-run",
+          "readiness": "adapted official installer; device import not run",
+          "installer": {
+            "path": "src/vendor/integrations/sub-store/installers/egern.txt",
+            "sha256": "c64ca6a6af0754e031f1d4999763f74645d8768122ad983617a03fe3a6bfd7fe",
+            "bytes": 1104
+          },
+          "upstreamInstaller": {
+            "url": "https://raw.githubusercontent.com/sub-store-org/Sub-Store/352f01b7091c99f4e219c44e4ec96f3288059843/config/Egern.yaml",
+            "path": "src/vendor/integrations/sub-store/upstream/egern.txt",
+            "sha256": "dc2ca2049904a1bd81b4ad2063c73fd732edf3f0c7315401f2ade6e3662e1bd5",
+            "bytes": 3732
+          },
+          "dependencyIds": [
+            "sub-store-0",
+            "sub-store-1"
+          ]
+        },
+        "stash": {
+          "artifacts": [
+            "modules/sub-store.stoverride"
+          ],
+          "kind": "native-override",
+          "nativeApp": "not-run",
+          "readiness": "adapted official installer; device import not run",
+          "installer": {
+            "path": "src/vendor/integrations/sub-store/installers/stash.txt",
+            "sha256": "f2ba4b21ac1463a0425b952206faa4d3c2c69edbba992449a592fef9a624dcff",
+            "bytes": 834
+          },
+          "upstreamInstaller": {
+            "url": "https://raw.githubusercontent.com/sub-store-org/Sub-Store/352f01b7091c99f4e219c44e4ec96f3288059843/config/Stash.stoverride",
+            "path": "src/vendor/integrations/sub-store/upstream/stash.txt",
+            "sha256": "42a3cfdabd68a784d6ce0c6ec6d63824e57de928dd2586eef125f29fb1073a69",
+            "bytes": 1180
+          },
+          "dependencyIds": [
+            "sub-store-0",
+            "sub-store-1"
+          ]
+        }
+      }
+    }
+  ],
+  "unsupportedClients": {
+    "mihomo": {
+      "nativeJavaScript": false,
+      "artifacts": [],
+      "externalOption": "Use the official Sub-Store server/frontend outside the core; its supported output formats include Mihomo.",
+      "documentation": "https://github.com/sub-store-org/Sub-Store/blob/352f01b7091c99f4e219c44e4ec96f3288059843/config/README.md",
+      "frontend": "https://sub-store.vercel.app"
+    },
+    "singBox": {
+      "nativeJavaScript": false,
+      "artifacts": [],
+      "externalOption": "Use the official Sub-Store server/frontend outside the core; its supported output formats include sing-box.",
+      "documentation": "https://github.com/sub-store-org/Sub-Store/blob/352f01b7091c99f4e219c44e4ec96f3288059843/config/README.md",
+      "frontend": "https://sub-store.vercel.app"
+    }
+  }
+}

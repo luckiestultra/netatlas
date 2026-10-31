@@ -1,0 +1,227 @@
+{
+  "version": 1,
+  "id": "icloud",
+  "category": "system",
+  "entries": [
+    {
+      "type": "domain-suffix",
+      "value": "apple-icloud.cn"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "appleicloud.cn"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "applemx-icloud.com"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "icloud-apple.cn"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "icloud-content.com"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "icloud-content.com.cn"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "icloud-isupport.com"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "icloud-sandbox.com"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "icloud.ch"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "icloud.com"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "icloud.com.cn"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "icloud.de"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "icloud.ee"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "icloud.fi"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "icloud.fr"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "icloud.hu"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "icloud.ie"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "icloud.is"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "icloud.jp"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "icloud.lv"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "icloud.net.cn"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "icloud.om"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "icloud.org"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "icloud.pt"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "icloud.ro"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "icloud.se"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "icloud.si"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "icloud.sk"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "icloud.vn"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "icloudads.net"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "icloudapple.cn"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "icloudbox.net"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "icloudbrowser.net"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "icloude.com"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "icloudhome.com"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "icloudmail.net"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "icloudmusic.net"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "icloudnet.net"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "icloudo.com"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "icloudo.de"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "icloudo.net"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "icloudos.de"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "icloudos.net"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "icloudpay.net"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "icloudsecure.net"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "icloudsetup.com"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "ios-icloud.com"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "mask-api.icloud.com"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "mask-h2.icloud.com"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "mask.icloud.com"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "me.com"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "myicloud.net"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "mylcloud.net"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "wwwicloud.com"
+    },
+    {
+      "type": "domain",
+      "value": "www-cdn.icloud.com.akadns.net"
+    }
+  ]
+}

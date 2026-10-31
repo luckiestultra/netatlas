@@ -1,0 +1,22 @@
+#!name=Script Hub: 重写 & 规则集转换
+#!desc=https://script.hub
+#!author=@小白脸 @xream @keywos @ckyb
+#!category=工具
+#!arguments=Notify:开启通知
+#!arguments-desc=Notify:\nScriptHub通知设置, 可选 开启通知, 关闭通知, 跟随链接
+
+[General]
+force-http-engine-hosts = %APPEND% script.hub
+
+[Script]
+Script Hub: 前端 = type=http-request, pattern=^https?:\/\/script\.hub\/($|edit\/|reload), script-path=https://raw.githubusercontent.com/Script-Hub-Org/Script-Hub/502cf03f7db2e077d96c07c2cb151a8f0b152a80/script-hub.js, timeout=300
+
+Script Hub: 重写转换 = type=http-request, pattern=^https?:\/\/script\.hub\/file\/_start_\/(?![\s\S]*\/_end_(?=\/)[\s\S]*\/_end_\/)(?:(?!file\/_start_\/)[^\s#])+\/_end_\/[^\/?&#\s]+\?(?:(?!type=)[A-Za-z0-9_.~-]+=(?:[^%&#?\s]|%[A-Fa-f0-9][A-Fa-f0-9])*&)*type=(?:qx-rewrite|surge-module|loon-plugin|all-module)(?:&(?!type=)[A-Za-z0-9_.~-]+=(?:[^%&#?\s]|%[A-Fa-f0-9][A-Fa-f0-9])*)*(?![\s\S]), script-path=https://raw.githubusercontent.com/Script-Hub-Org/Script-Hub/502cf03f7db2e077d96c07c2cb151a8f0b152a80/Rewrite-Parser.js, timeout=300, argument=Notify={{{Notify}}}
+
+Script Hub: 规则集转换 = type=http-request, pattern=^https?:\/\/script\.hub\/file\/_start_\/(?![\s\S]*\/_end_(?=\/)[\s\S]*\/_end_\/)(?:(?!file\/_start_\/)[^\s#])+\/_end_\/[^\/?&#\s]+\?(?:(?!type=)[A-Za-z0-9_.~-]+=(?:[^%&#?\s]|%[A-Fa-f0-9][A-Fa-f0-9])*&)*type=rule-set(?:&(?!type=)[A-Za-z0-9_.~-]+=(?:[^%&#?\s]|%[A-Fa-f0-9][A-Fa-f0-9])*)*(?![\s\S]), script-path=https://raw.githubusercontent.com/Script-Hub-Org/Script-Hub/502cf03f7db2e077d96c07c2cb151a8f0b152a80/rule-parser.js, timeout=300, argument=Notify={{{Notify}}}
+
+Script Hub: 脚本转换 = type=http-request, pattern=^https?:\/\/script\.hub\/convert\/, script-path=https://raw.githubusercontent.com/Script-Hub-Org/Script-Hub/502cf03f7db2e077d96c07c2cb151a8f0b152a80/script-converter.js, timeout=300
+
+[MITM]
+hostname = %APPEND% script.hub
+

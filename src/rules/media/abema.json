@@ -1,0 +1,91 @@
+{
+  "version": 1,
+  "id": "abema",
+  "category": "media",
+  "entries": [
+    {
+      "type": "domain-suffix",
+      "value": "abema-tv.com"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "abema.io"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "abema.tv"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "abematv.co.jp"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "adx.promo"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "ameba.jp"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "amebame.com"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "amebaownd.com"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "amebaowndme.com"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "ameblo.jp"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "bucketeer.jp"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "dokusho-ojikan.jp"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "hayabusa.dev"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "hayabusa.io"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "hayabusa.media"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "winticket.jp"
+    },
+    {
+      "type": "domain",
+      "value": "abematv.akamaized.net"
+    },
+    {
+      "type": "domain",
+      "value": "ds-linear-abematv.akamaized.net"
+    },
+    {
+      "type": "domain",
+      "value": "ds-vod-abematv.akamaized.net"
+    },
+    {
+      "type": "domain",
+      "value": "linear-abematv.akamaized.net"
+    },
+    {
+      "type": "domain",
+      "value": "vod-abematv.akamaized.net"
+    }
+  ]
+}

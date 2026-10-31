@@ -1,0 +1,635 @@
+{
+  "version": 1,
+  "id": "yandex",
+  "category": "system",
+  "entries": [
+    {
+      "type": "domain-suffix",
+      "value": "adfox.ru"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "adfox.yandex.ru"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "admetrica.ru"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "ads.yandex"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "ads.yandex.ru"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "adv.yandex.com"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "adv.yandex.ru"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "an.yandex.ru"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "appmetrica.yandex.com"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "appmetrica.yandex.net"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "appmetrica.yandex.ru"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "appmetrica.yango.com"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "berizaryad.ru"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "beru.ru"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "bookmate.ru"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "bs.yandex.ru"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "cabconnect.org"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "clck.ru"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "clck.yandex.ru"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "clstorage.net"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "counter.yandex.ru"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "delivery-club.ru"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "driveawaytaxi.org"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "edadeal.ru"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "elama.ru"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "foodfox.ru"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "gogettaxi.org"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "goup.ai"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "hayya.ae"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "kinopoisk-ru.clstorage.net"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "kinopoisk.ru"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "kp.yandex.net"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "market.ru"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "mc.yandex.ru"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "meteum.ai"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "metrika.yandex.com"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "metrika.yandex.net"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "metrika.yandex.ru"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "my-manager-account.com"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "naydex.net"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "realtyverif.ru"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "rostaxi.org"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "rutaxi.ru"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "shedevrum.ai"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "shedevrum.com"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "shedevrum.ru"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "sourcecraft.dev"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "static-storage.net"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "support-uber.com"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "taxiaid.org"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "taxiguru.org"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "taxitax.org"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "thequestion.ru"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "turbopages.org"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "vezet.ru"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "webvisor.com"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "webvisor.org"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "xn--d1acpjx3f.xn--p1ai"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "ya.cc"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "ya.ru"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "yadi.sk"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "yads.tech"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "yandex"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "yandex-ad.cn"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "yandex-bank.net"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "yandex-metrica.ru"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "yandex-team.com"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "yandex-team.ru"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "yandex.aero"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "yandex.asia"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "yandex.az"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "yandex.by"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "yandex.cloud"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "yandex.co.il"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "yandex.com"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "yandex.com.am"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "yandex.com.ge"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "yandex.com.ru"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "yandex.com.tr"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "yandex.com.ua"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "yandex.de"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "yandex.ee"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "yandex.eu"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "yandex.fi"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "yandex.fr"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "yandex.it"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "yandex.jobs"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "yandex.kg"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "yandex.kz"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "yandex.lt"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "yandex.lv"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "yandex.market"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "yandex.md"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "yandex.mobi"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "yandex.net"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "yandex.net.ru"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "yandex.org"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "yandex.pl"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "yandex.pro"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "yandex.ru"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "yandex.st"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "yandex.sx"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "yandex.taxi"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "yandex.tj"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "yandex.tm"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "yandex.tr"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "yandex.travel"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "yandex.ua"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "yandex.uz"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "yandexadexchange.net"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "yandexcloud.net"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "yandexcom.net"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "yandexdataschool.com"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "yandexdataschool.ru"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "yandexgo.com"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "yandexlyceum.ru"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "yandexmetrica.com"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "yandexwebcache.net"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "yandexwebcache.org"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "yango-ads.com"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "yango-b2b.com"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "yango-team.com"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "yango-tech.com"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "yango.africa"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "yango.ao"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "yango.bh"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "yango.co.il"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "yango.com"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "yango.fi"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "yango.qa"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "yango.taxi"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "yango.tech"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "yangofellowship.com"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "yastat.net"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "yastatic-net.ru"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "yastatic.net"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "yccdn.ru"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "ydb.tech"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "yndx.net"
+    },
+    {
+      "type": "domain",
+      "value": "adfstat.yandex.ru"
+    },
+    {
+      "type": "domain",
+      "value": "ads.yandex.com"
+    },
+    {
+      "type": "domain",
+      "value": "ads.yango.com"
+    },
+    {
+      "type": "domain",
+      "value": "adsdk.yandex.ru"
+    },
+    {
+      "type": "domain",
+      "value": "amc.yandex.ru"
+    },
+    {
+      "type": "domain",
+      "value": "analytics.mobile.yandex.net"
+    },
+    {
+      "type": "domain",
+      "value": "clck.yandex.com"
+    },
+    {
+      "type": "domain",
+      "value": "clck.yandex.net"
+    },
+    {
+      "type": "domain",
+      "value": "clck.yango.com"
+    },
+    {
+      "type": "domain",
+      "value": "informer.yandex.ru"
+    },
+    {
+      "type": "domain",
+      "value": "kp-config-smart-tv.akamaized.net"
+    },
+    {
+      "type": "domain",
+      "value": "kp-configs-smart-tv.s3.eu-central-1.amazonaws.com"
+    },
+    {
+      "type": "domain",
+      "value": "log.strm.yandex.ru"
+    },
+    {
+      "type": "domain",
+      "value": "mc.yandex.com"
+    },
+    {
+      "type": "domain",
+      "value": "mc.yandex.net"
+    },
+    {
+      "type": "domain",
+      "value": "mc.yango.com"
+    },
+    {
+      "type": "domain",
+      "value": "pixel.yandex.com"
+    },
+    {
+      "type": "domain",
+      "value": "report.ap.yandex-net.ru"
+    }
+  ]
+}

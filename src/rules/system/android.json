@@ -1,0 +1,23 @@
+{
+  "version": 1,
+  "id": "android",
+  "category": "system",
+  "entries": [
+    {
+      "type": "domain-suffix",
+      "value": "android"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "android.com"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "androidify.com"
+    },
+    {
+      "type": "domain",
+      "value": "android.googlesource.com"
+    }
+  ]
+}

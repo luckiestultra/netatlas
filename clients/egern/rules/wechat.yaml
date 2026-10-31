@@ -1,0 +1,7 @@
+no_resolve: true
+domain_suffix_set:
+  - servicewechat.com
+  - wechat.com
+  - wechatpay.cn
+  - weixin.com
+  - weixinsxy.com

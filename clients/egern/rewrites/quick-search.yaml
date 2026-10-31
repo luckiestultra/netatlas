@@ -1,0 +1,160 @@
+# SPDX-License-Identifier: MIT
+# Original NetAtlas implementation; command inventory reference is not copied code.
+# Source, endpoint changes and limitations: https://raw.githubusercontent.com/luckiestultra/netatlas/main/src/features/quick-search/NOTICE.md
+# License: https://raw.githubusercontent.com/luckiestultra/netatlas/main/src/features/quick-search/LICENSE
+# Optional; absent from default profiles. Importing this resource opts in to its redirects.
+# Requires an existing trusted MITM CA and enabled HTTPS rewriting for duckduckgo.com only.
+# This file supplies no CA, runtime script, storage, background request or TLS bypass.
+# Native app import/interception has not been run. Shadowrocket is a manual merge fragment.
+# Apple commands open a legacy storefront route; no account-country change is promised.
+
+name: NetAtlas Quick Search
+description: Optional DuckDuckGo prefix searches, Apple storefront links,
+  translations and Google fallback; existing MITM CA required.
+author: NetAtlas contributors
+homepage: https://github.com/luckiestultra/netatlas
+url_rewrites:
+  - match: ^https:\/\/duckduckgo\.com\/\?(?:(?!q(?:=|&|$))[A-Za-z0-9_.~-]+(?:=(?:[A-Za-z0-9._~!$'()*+,;=:@\/?-]|%[0-9A-Fa-f]{2})*)?&)*q=af(?:\+|%20|%2[bB])((?!(?:\+|%20)*(?:&|$))(?:[A-Za-z0-9._~!$'()*+,;=:@\/?-]|%[0-9A-Fa-f]{2})+)(?:&(?!q(?:=|&|$))[A-Za-z0-9_.~-]+(?:=(?:[A-Za-z0-9._~!$'()*+,;=:@\/?-]|%[0-9A-Fa-f]{2})*)?)*(?![\s\S])
+    location: https://www.acfun.cn/search?keyword=$1
+    status_code: 302
+  - match: ^https:\/\/duckduckgo\.com\/\?(?:(?!q(?:=|&|$))[A-Za-z0-9_.~-]+(?:=(?:[A-Za-z0-9._~!$'()*+,;=:@\/?-]|%[0-9A-Fa-f]{2})*)?&)*q=bd(?:\+|%20|%2[bB])((?!(?:\+|%20)*(?:&|$))(?:[A-Za-z0-9._~!$'()*+,;=:@\/?-]|%[0-9A-Fa-f]{2})+)(?:&(?!q(?:=|&|$))[A-Za-z0-9_.~-]+(?:=(?:[A-Za-z0-9._~!$'()*+,;=:@\/?-]|%[0-9A-Fa-f]{2})*)?)*(?![\s\S])
+    location: https://www.baidu.com/s?wd=$1
+    status_code: 302
+  - match: ^https:\/\/duckduckgo\.com\/\?(?:(?!q(?:=|&|$))[A-Za-z0-9_.~-]+(?:=(?:[A-Za-z0-9._~!$'()*+,;=:@\/?-]|%[0-9A-Fa-f]{2})*)?&)*q=bl(?:\+|%20|%2[bB])((?!(?:\+|%20)*(?:&|$))(?:[A-Za-z0-9._~!$'()*+,;=:@\/?-]|%[0-9A-Fa-f]{2})+)(?:&(?!q(?:=|&|$))[A-Za-z0-9_.~-]+(?:=(?:[A-Za-z0-9._~!$'()*+,;=:@\/?-]|%[0-9A-Fa-f]{2})*)?)*(?![\s\S])
+    location: https://m.bilibili.com/search?keyword=$1
+    status_code: 302
+  - match: ^https:\/\/duckduckgo\.com\/\?(?:(?!q(?:=|&|$))[A-Za-z0-9_.~-]+(?:=(?:[A-Za-z0-9._~!$'()*+,;=:@\/?-]|%[0-9A-Fa-f]{2})*)?&)*q=by(?:\+|%20|%2[bB])((?!(?:\+|%20)*(?:&|$))(?:[A-Za-z0-9._~!$'()*+,;=:@\/?-]|%[0-9A-Fa-f]{2})+)(?:&(?!q(?:=|&|$))[A-Za-z0-9_.~-]+(?:=(?:[A-Za-z0-9._~!$'()*+,;=:@\/?-]|%[0-9A-Fa-f]{2})*)?)*(?![\s\S])
+    location: https://www.bing.com/search?q=$1
+    status_code: 302
+  - match: ^https:\/\/duckduckgo\.com\/\?(?:(?!q(?:=|&|$))[A-Za-z0-9_.~-]+(?:=(?:[A-Za-z0-9._~!$'()*+,;=:@\/?-]|%[0-9A-Fa-f]{2})*)?&)*q=cf(?:\+|%20|%2[bB])((?!(?:\+|%20)*(?:&|$))(?:[A-Za-z0-9._~!$'()*+,;=:@\/?-]|%[0-9A-Fa-f]{2})+)(?:&(?!q(?:=|&|$))[A-Za-z0-9_.~-]+(?:=(?:[A-Za-z0-9._~!$'()*+,;=:@\/?-]|%[0-9A-Fa-f]{2})*)?)*(?![\s\S])
+    location: https://cupfox.app/search?key=$1
+    status_code: 302
+  - match: ^https:\/\/duckduckgo\.com\/\?(?:(?!q(?:=|&|$))[A-Za-z0-9_.~-]+(?:=(?:[A-Za-z0-9._~!$'()*+,;=:@\/?-]|%[0-9A-Fa-f]{2})*)?&)*q=db(?:\+|%20|%2[bB])((?!(?:\+|%20)*(?:&|$))(?:[A-Za-z0-9._~!$'()*+,;=:@\/?-]|%[0-9A-Fa-f]{2})+)(?:&(?!q(?:=|&|$))[A-Za-z0-9_.~-]+(?:=(?:[A-Za-z0-9._~!$'()*+,;=:@\/?-]|%[0-9A-Fa-f]{2})*)?)*(?![\s\S])
+    location: https://m.douban.com/search?query=$1
+    status_code: 302
+  - match: ^https:\/\/duckduckgo\.com\/\?(?:(?!q(?:=|&|$))[A-Za-z0-9_.~-]+(?:=(?:[A-Za-z0-9._~!$'()*+,;=:@\/?-]|%[0-9A-Fa-f]{2})*)?&)*q=gc(?:\+|%20|%2[bB])((?!(?:\+|%20)*(?:&|$))(?:[A-Za-z0-9._~!$'()*+,;=:@\/?-]|%[0-9A-Fa-f]{2})+)(?:&(?!q(?:=|&|$))[A-Za-z0-9_.~-]+(?:=(?:[A-Za-z0-9._~!$'()*+,;=:@\/?-]|%[0-9A-Fa-f]{2})*)?)*(?![\s\S])
+    location: https://github.com/search?type=code&q=$1
+    status_code: 302
+  - match: ^https:\/\/duckduckgo\.com\/\?(?:(?!q(?:=|&|$))[A-Za-z0-9_.~-]+(?:=(?:[A-Za-z0-9._~!$'()*+,;=:@\/?-]|%[0-9A-Fa-f]{2})*)?&)*q=gd(?:\+|%20|%2[bB])((?!(?:\+|%20)*(?:&|$))(?:[A-Za-z0-9._~!$'()*+,;=:@\/?-]|%[0-9A-Fa-f]{2})+)(?:&(?!q(?:=|&|$))[A-Za-z0-9_.~-]+(?:=(?:[A-Za-z0-9._~!$'()*+,;=:@\/?-]|%[0-9A-Fa-f]{2})*)?)*(?![\s\S])
+    location: https://www.google.com/search?q=%22Google%20Drive%22%20$1
+    status_code: 302
+  - match: ^https:\/\/duckduckgo\.com\/\?(?:(?!q(?:=|&|$))[A-Za-z0-9_.~-]+(?:=(?:[A-Za-z0-9._~!$'()*+,;=:@\/?-]|%[0-9A-Fa-f]{2})*)?&)*q=gh(?:\+|%20|%2[bB])((?!(?:\+|%20)*(?:&|$))(?:[A-Za-z0-9._~!$'()*+,;=:@\/?-]|%[0-9A-Fa-f]{2})+)(?:&(?!q(?:=|&|$))[A-Za-z0-9_.~-]+(?:=(?:[A-Za-z0-9._~!$'()*+,;=:@\/?-]|%[0-9A-Fa-f]{2})*)?)*(?![\s\S])
+    location: https://github.com/search?q=$1
+    status_code: 302
+  - match: ^https:\/\/duckduckgo\.com\/\?(?:(?!q(?:=|&|$))[A-Za-z0-9_.~-]+(?:=(?:[A-Za-z0-9._~!$'()*+,;=:@\/?-]|%[0-9A-Fa-f]{2})*)?&)*q=gi(?:\+|%20|%2[bB])((?!(?:\+|%20)*(?:&|$))(?:[A-Za-z0-9._~!$'()*+,;=:@\/?-]|%[0-9A-Fa-f]{2})+)(?:&(?!q(?:=|&|$))[A-Za-z0-9_.~-]+(?:=(?:[A-Za-z0-9._~!$'()*+,;=:@\/?-]|%[0-9A-Fa-f]{2})*)?)*(?![\s\S])
+    location: https://www.google.com/search?tbm=isch&q=$1
+    status_code: 302
+  - match: ^https:\/\/duckduckgo\.com\/\?(?:(?!q(?:=|&|$))[A-Za-z0-9_.~-]+(?:=(?:[A-Za-z0-9._~!$'()*+,;=:@\/?-]|%[0-9A-Fa-f]{2})*)?&)*q=gu(?:\+|%20|%2[bB])((?!(?:\+|%20)*(?:&|$))(?:[A-Za-z0-9._~!$'()*+,;=:@\/?-]|%[0-9A-Fa-f]{2})+)(?:&(?!q(?:=|&|$))[A-Za-z0-9_.~-]+(?:=(?:[A-Za-z0-9._~!$'()*+,;=:@\/?-]|%[0-9A-Fa-f]{2})*)?)*(?![\s\S])
+    location: https://github.com/search?type=users&q=$1
+    status_code: 302
+  - match: ^https:\/\/duckduckgo\.com\/\?(?:(?!q(?:=|&|$))[A-Za-z0-9_.~-]+(?:=(?:[A-Za-z0-9._~!$'()*+,;=:@\/?-]|%[0-9A-Fa-f]{2})*)?&)*q=jd(?:\+|%20|%2[bB])((?!(?:\+|%20)*(?:&|$))(?:[A-Za-z0-9._~!$'()*+,;=:@\/?-]|%[0-9A-Fa-f]{2})+)(?:&(?!q(?:=|&|$))[A-Za-z0-9_.~-]+(?:=(?:[A-Za-z0-9._~!$'()*+,;=:@\/?-]|%[0-9A-Fa-f]{2})*)?)*(?![\s\S])
+    location: https://search.jd.com/Search?keyword=$1
+    status_code: 302
+  - match: ^https:\/\/duckduckgo\.com\/\?(?:(?!q(?:=|&|$))[A-Za-z0-9_.~-]+(?:=(?:[A-Za-z0-9._~!$'()*+,;=:@\/?-]|%[0-9A-Fa-f]{2})*)?&)*q=ph(?:\+|%20|%2[bB])((?!(?:\+|%20)*(?:&|$))(?:[A-Za-z0-9._~!$'()*+,;=:@\/?-]|%[0-9A-Fa-f]{2})+)(?:&(?!q(?:=|&|$))[A-Za-z0-9_.~-]+(?:=(?:[A-Za-z0-9._~!$'()*+,;=:@\/?-]|%[0-9A-Fa-f]{2})*)?)*(?![\s\S])
+    location: https://cn.pornhub.com/video/search?search=$1
+    status_code: 302
+  - match: ^https:\/\/duckduckgo\.com\/\?(?:(?!q(?:=|&|$))[A-Za-z0-9_.~-]+(?:=(?:[A-Za-z0-9._~!$'()*+,;=:@\/?-]|%[0-9A-Fa-f]{2})*)?&)*q=qm(?:\+|%20|%2[bB])((?!(?:\+|%20)*(?:&|$))(?:[A-Za-z0-9._~!$'()*+,;=:@\/?-]|%[0-9A-Fa-f]{2})+)(?:&(?!q(?:=|&|$))[A-Za-z0-9_.~-]+(?:=(?:[A-Za-z0-9._~!$'()*+,;=:@\/?-]|%[0-9A-Fa-f]{2})*)?)*(?![\s\S])
+    location: https://www.qimai.cn/search/index?search=$1
+    status_code: 302
+  - match: ^https:\/\/duckduckgo\.com\/\?(?:(?!q(?:=|&|$))[A-Za-z0-9_.~-]+(?:=(?:[A-Za-z0-9._~!$'()*+,;=:@\/?-]|%[0-9A-Fa-f]{2})*)?&)*q=rd(?:\+|%20|%2[bB])((?!(?:\+|%20)*(?:&|$))(?:[A-Za-z0-9._~!$'()*+,;=:@\/?-]|%[0-9A-Fa-f]{2})+)(?:&(?!q(?:=|&|$))[A-Za-z0-9_.~-]+(?:=(?:[A-Za-z0-9._~!$'()*+,;=:@\/?-]|%[0-9A-Fa-f]{2})*)?)*(?![\s\S])
+    location: https://www.reddit.com/search?q=$1
+    status_code: 302
+  - match: ^https:\/\/duckduckgo\.com\/\?(?:(?!q(?:=|&|$))[A-Za-z0-9_.~-]+(?:=(?:[A-Za-z0-9._~!$'()*+,;=:@\/?-]|%[0-9A-Fa-f]{2})*)?&)*q=se(?:\+|%20|%2[bB])((?!(?:\+|%20)*(?:&|$))(?:[A-Za-z0-9._~!$'()*+,;=:@\/?-]|%[0-9A-Fa-f]{2})+)(?:&(?!q(?:=|&|$))[A-Za-z0-9_.~-]+(?:=(?:[A-Za-z0-9._~!$'()*+,;=:@\/?-]|%[0-9A-Fa-f]{2})*)?)*(?![\s\S])
+    location: https://stackexchange.com/search?q=$1
+    status_code: 302
+  - match: ^https:\/\/duckduckgo\.com\/\?(?:(?!q(?:=|&|$))[A-Za-z0-9_.~-]+(?:=(?:[A-Za-z0-9._~!$'()*+,;=:@\/?-]|%[0-9A-Fa-f]{2})*)?&)*q=so(?:\+|%20|%2[bB])((?!(?:\+|%20)*(?:&|$))(?:[A-Za-z0-9._~!$'()*+,;=:@\/?-]|%[0-9A-Fa-f]{2})+)(?:&(?!q(?:=|&|$))[A-Za-z0-9_.~-]+(?:=(?:[A-Za-z0-9._~!$'()*+,;=:@\/?-]|%[0-9A-Fa-f]{2})*)?)*(?![\s\S])
+    location: https://stackoverflow.com/search?q=$1
+    status_code: 302
+  - match: ^https:\/\/duckduckgo\.com\/\?(?:(?!q(?:=|&|$))[A-Za-z0-9_.~-]+(?:=(?:[A-Za-z0-9._~!$'()*+,;=:@\/?-]|%[0-9A-Fa-f]{2})*)?&)*q=tb(?:\+|%20|%2[bB])((?!(?:\+|%20)*(?:&|$))(?:[A-Za-z0-9._~!$'()*+,;=:@\/?-]|%[0-9A-Fa-f]{2})+)(?:&(?!q(?:=|&|$))[A-Za-z0-9_.~-]+(?:=(?:[A-Za-z0-9._~!$'()*+,;=:@\/?-]|%[0-9A-Fa-f]{2})*)?)*(?![\s\S])
+    location: https://s.taobao.com/search?q=$1
+    status_code: 302
+  - match: ^https:\/\/duckduckgo\.com\/\?(?:(?!q(?:=|&|$))[A-Za-z0-9_.~-]+(?:=(?:[A-Za-z0-9._~!$'()*+,;=:@\/?-]|%[0-9A-Fa-f]{2})*)?&)*q=td(?:\+|%20|%2[bB])((?!(?:\+|%20)*(?:&|$))(?:[A-Za-z0-9._~!$'()*+,;=:@\/?-]|%[0-9A-Fa-f]{2})+)(?:&(?!q(?:=|&|$))[A-Za-z0-9_.~-]+(?:=(?:[A-Za-z0-9._~!$'()*+,;=:@\/?-]|%[0-9A-Fa-f]{2})*)?)*(?![\s\S])
+    location: https://t.me/s/gdurl?q=$1
+    status_code: 302
+  - match: ^https:\/\/duckduckgo\.com\/\?(?:(?!q(?:=|&|$))[A-Za-z0-9_.~-]+(?:=(?:[A-Za-z0-9._~!$'()*+,;=:@\/?-]|%[0-9A-Fa-f]{2})*)?&)*q=tt(?:\+|%20|%2[bB])((?!(?:\+|%20)*(?:&|$))(?:[A-Za-z0-9._~!$'()*+,;=:@\/?-]|%[0-9A-Fa-f]{2})+)(?:&(?!q(?:=|&|$))[A-Za-z0-9_.~-]+(?:=(?:[A-Za-z0-9._~!$'()*+,;=:@\/?-]|%[0-9A-Fa-f]{2})*)?)*(?![\s\S])
+    location: https://so.toutiao.com/search?keyword=$1
+    status_code: 302
+  - match: ^https:\/\/duckduckgo\.com\/\?(?:(?!q(?:=|&|$))[A-Za-z0-9_.~-]+(?:=(?:[A-Za-z0-9._~!$'()*+,;=:@\/?-]|%[0-9A-Fa-f]{2})*)?&)*q=tw(?:\+|%20|%2[bB])((?!(?:\+|%20)*(?:&|$))(?:[A-Za-z0-9._~!$'()*+,;=:@\/?-]|%[0-9A-Fa-f]{2})+)(?:&(?!q(?:=|&|$))[A-Za-z0-9_.~-]+(?:=(?:[A-Za-z0-9._~!$'()*+,;=:@\/?-]|%[0-9A-Fa-f]{2})*)?)*(?![\s\S])
+    location: https://twitter.com/search?q=$1
+    status_code: 302
+  - match: ^https:\/\/duckduckgo\.com\/\?(?:(?!q(?:=|&|$))[A-Za-z0-9_.~-]+(?:=(?:[A-Za-z0-9._~!$'()*+,;=:@\/?-]|%[0-9A-Fa-f]{2})*)?&)*q=up(?:\+|%20|%2[bB])((?!(?:\+|%20)*(?:&|$))(?:[A-Za-z0-9._~!$'()*+,;=:@\/?-]|%[0-9A-Fa-f]{2})+)(?:&(?!q(?:=|&|$))[A-Za-z0-9_.~-]+(?:=(?:[A-Za-z0-9._~!$'()*+,;=:@\/?-]|%[0-9A-Fa-f]{2})*)?)*(?![\s\S])
+    location: https://unsplash.com/s?searchKeyword=$1
+    status_code: 302
+  - match: ^https:\/\/duckduckgo\.com\/\?(?:(?!q(?:=|&|$))[A-Za-z0-9_.~-]+(?:=(?:[A-Za-z0-9._~!$'()*+,;=:@\/?-]|%[0-9A-Fa-f]{2})*)?&)*q=wa(?:\+|%20|%2[bB])((?!(?:\+|%20)*(?:&|$))(?:[A-Za-z0-9._~!$'()*+,;=:@\/?-]|%[0-9A-Fa-f]{2})+)(?:&(?!q(?:=|&|$))[A-Za-z0-9_.~-]+(?:=(?:[A-Za-z0-9._~!$'()*+,;=:@\/?-]|%[0-9A-Fa-f]{2})*)?)*(?![\s\S])
+    location: https://www.wolframalpha.com/input/?i=$1
+    status_code: 302
+  - match: ^https:\/\/duckduckgo\.com\/\?(?:(?!q(?:=|&|$))[A-Za-z0-9_.~-]+(?:=(?:[A-Za-z0-9._~!$'()*+,;=:@\/?-]|%[0-9A-Fa-f]{2})*)?&)*q=wb(?:\+|%20|%2[bB])((?!(?:\+|%20)*(?:&|$))(?:[A-Za-z0-9._~!$'()*+,;=:@\/?-]|%[0-9A-Fa-f]{2})+)(?:&(?!q(?:=|&|$))[A-Za-z0-9_.~-]+(?:=(?:[A-Za-z0-9._~!$'()*+,;=:@\/?-]|%[0-9A-Fa-f]{2})*)?)*(?![\s\S])
+    location: https://s.weibo.com/weibo?q=$1
+    status_code: 302
+  - match: ^https:\/\/duckduckgo\.com\/\?(?:(?!q(?:=|&|$))[A-Za-z0-9_.~-]+(?:=(?:[A-Za-z0-9._~!$'()*+,;=:@\/?-]|%[0-9A-Fa-f]{2})*)?&)*q=wk(?:\+|%20|%2[bB])((?!(?:\+|%20)*(?:&|$))(?:[A-Za-z0-9._~!$'()*+,;=:@\/?-]|%[0-9A-Fa-f]{2})+)(?:&(?!q(?:=|&|$))[A-Za-z0-9_.~-]+(?:=(?:[A-Za-z0-9._~!$'()*+,;=:@\/?-]|%[0-9A-Fa-f]{2})*)?)*(?![\s\S])
+    location: https://zh.wikipedia.org/w/index.php?search=$1
+    status_code: 302
+  - match: ^https:\/\/duckduckgo\.com\/\?(?:(?!q(?:=|&|$))[A-Za-z0-9_.~-]+(?:=(?:[A-Za-z0-9._~!$'()*+,;=:@\/?-]|%[0-9A-Fa-f]{2})*)?&)*q=wx(?:\+|%20|%2[bB])((?!(?:\+|%20)*(?:&|$))(?:[A-Za-z0-9._~!$'()*+,;=:@\/?-]|%[0-9A-Fa-f]{2})+)(?:&(?!q(?:=|&|$))[A-Za-z0-9_.~-]+(?:=(?:[A-Za-z0-9._~!$'()*+,;=:@\/?-]|%[0-9A-Fa-f]{2})*)?)*(?![\s\S])
+    location: https://weixin.sogou.com/weixinwap?query=$1
+    status_code: 302
+  - match: ^https:\/\/duckduckgo\.com\/\?(?:(?!q(?:=|&|$))[A-Za-z0-9_.~-]+(?:=(?:[A-Za-z0-9._~!$'()*+,;=:@\/?-]|%[0-9A-Fa-f]{2})*)?&)*q=wz(?:\+|%20|%2[bB])((?!(?:\+|%20)*(?:&|$))(?:[A-Za-z0-9._~!$'()*+,;=:@\/?-]|%[0-9A-Fa-f]{2})+)(?:&(?!q(?:=|&|$))[A-Za-z0-9_.~-]+(?:=(?:[A-Za-z0-9._~!$'()*+,;=:@\/?-]|%[0-9A-Fa-f]{2})*)?)*(?![\s\S])
+    location: https://www.wuzhuiso.com/s?q=$1
+    status_code: 302
+  - match: ^https:\/\/duckduckgo\.com\/\?(?:(?!q(?:=|&|$))[A-Za-z0-9_.~-]+(?:=(?:[A-Za-z0-9._~!$'()*+,;=:@\/?-]|%[0-9A-Fa-f]{2})*)?&)*q=yd(?:\+|%20|%2[bB])((?!(?:\+|%20)*(?:&|$))(?:[A-Za-z0-9._~!$'()*+,;=:@\/?-]|%[0-9A-Fa-f]{2})+)(?:&(?!q(?:=|&|$))[A-Za-z0-9_.~-]+(?:=(?:[A-Za-z0-9._~!$'()*+,;=:@\/?-]|%[0-9A-Fa-f]{2})*)?)*(?![\s\S])
+    location: https://dict.youdao.com/search?q=$1
+    status_code: 302
+  - match: ^https:\/\/duckduckgo\.com\/\?(?:(?!q(?:=|&|$))[A-Za-z0-9_.~-]+(?:=(?:[A-Za-z0-9._~!$'()*+,;=:@\/?-]|%[0-9A-Fa-f]{2})*)?&)*q=yh(?:\+|%20|%2[bB])((?!(?:\+|%20)*(?:&|$))(?:[A-Za-z0-9._~!$'()*+,;=:@\/?-]|%[0-9A-Fa-f]{2})+)(?:&(?!q(?:=|&|$))[A-Za-z0-9_.~-]+(?:=(?:[A-Za-z0-9._~!$'()*+,;=:@\/?-]|%[0-9A-Fa-f]{2})*)?)*(?![\s\S])
+    location: https://greasyfork.org/zh-CN/scripts?q=$1
+    status_code: 302
+  - match: ^https:\/\/duckduckgo\.com\/\?(?:(?!q(?:=|&|$))[A-Za-z0-9_.~-]+(?:=(?:[A-Za-z0-9._~!$'()*+,;=:@\/?-]|%[0-9A-Fa-f]{2})*)?&)*q=yt(?:\+|%20|%2[bB])((?!(?:\+|%20)*(?:&|$))(?:[A-Za-z0-9._~!$'()*+,;=:@\/?-]|%[0-9A-Fa-f]{2})+)(?:&(?!q(?:=|&|$))[A-Za-z0-9_.~-]+(?:=(?:[A-Za-z0-9._~!$'()*+,;=:@\/?-]|%[0-9A-Fa-f]{2})*)?)*(?![\s\S])
+    location: https://www.youtube.com/results?search_query=$1
+    status_code: 302
+  - match: ^https:\/\/duckduckgo\.com\/\?(?:(?!q(?:=|&|$))[A-Za-z0-9_.~-]+(?:=(?:[A-Za-z0-9._~!$'()*+,;=:@\/?-]|%[0-9A-Fa-f]{2})*)?&)*q=zh(?:\+|%20|%2[bB])((?!(?:\+|%20)*(?:&|$))(?:[A-Za-z0-9._~!$'()*+,;=:@\/?-]|%[0-9A-Fa-f]{2})+)(?:&(?!q(?:=|&|$))[A-Za-z0-9_.~-]+(?:=(?:[A-Za-z0-9._~!$'()*+,;=:@\/?-]|%[0-9A-Fa-f]{2})*)?)*(?![\s\S])
+    location: https://www.zhihu.com/search?q=$1
+    status_code: 302
+  - match: ^https:\/\/duckduckgo\.com\/\?(?:(?!q(?:=|&|$))[A-Za-z0-9_.~-]+(?:=(?:[A-Za-z0-9._~!$'()*+,;=:@\/?-]|%[0-9A-Fa-f]{2})*)?&)*q=cnr(?:&(?!q(?:=|&|$))[A-Za-z0-9_.~-]+(?:=(?:[A-Za-z0-9._~!$'()*+,;=:@\/?-]|%[0-9A-Fa-f]{2})*)?)*(?![\s\S])
+    location: https://itunes.apple.com/WebObjects/MZStore.woa/wa/resetAndRedirect?dsf=143465&mt=8&url=%2FWebObjects%2FMZStore.woa%2Fwa%2FviewSoftware%3Fmt%3D8%26id%3D1108187390%26cc%3Dcn%26urlDesc%3D
+    status_code: 302
+  - match: ^https:\/\/duckduckgo\.com\/\?(?:(?!q(?:=|&|$))[A-Za-z0-9_.~-]+(?:=(?:[A-Za-z0-9._~!$'()*+,;=:@\/?-]|%[0-9A-Fa-f]{2})*)?&)*q=hkr(?:&(?!q(?:=|&|$))[A-Za-z0-9_.~-]+(?:=(?:[A-Za-z0-9._~!$'()*+,;=:@\/?-]|%[0-9A-Fa-f]{2})*)?)*(?![\s\S])
+    location: https://itunes.apple.com/WebObjects/MZStore.woa/wa/resetAndRedirect?dsf=143463&mt=8&url=%2FWebObjects%2FMZStore.woa%2Fwa%2FviewSoftware%3Fmt%3D8%26id%3D1108187390%26cc%3Dhk%26urlDesc%3D
+    status_code: 302
+  - match: ^https:\/\/duckduckgo\.com\/\?(?:(?!q(?:=|&|$))[A-Za-z0-9_.~-]+(?:=(?:[A-Za-z0-9._~!$'()*+,;=:@\/?-]|%[0-9A-Fa-f]{2})*)?&)*q=jpr(?:&(?!q(?:=|&|$))[A-Za-z0-9_.~-]+(?:=(?:[A-Za-z0-9._~!$'()*+,;=:@\/?-]|%[0-9A-Fa-f]{2})*)?)*(?![\s\S])
+    location: https://itunes.apple.com/WebObjects/MZStore.woa/wa/resetAndRedirect?dsf=143462&mt=8&url=%2FWebObjects%2FMZStore.woa%2Fwa%2FviewSoftware%3Fmt%3D8%26id%3D1108187390%26cc%3Djp%26urlDesc%3D
+    status_code: 302
+  - match: ^https:\/\/duckduckgo\.com\/\?(?:(?!q(?:=|&|$))[A-Za-z0-9_.~-]+(?:=(?:[A-Za-z0-9._~!$'()*+,;=:@\/?-]|%[0-9A-Fa-f]{2})*)?&)*q=krr(?:&(?!q(?:=|&|$))[A-Za-z0-9_.~-]+(?:=(?:[A-Za-z0-9._~!$'()*+,;=:@\/?-]|%[0-9A-Fa-f]{2})*)?)*(?![\s\S])
+    location: https://itunes.apple.com/WebObjects/MZStore.woa/wa/resetAndRedirect?dsf=143466&mt=8&url=%2FWebObjects%2FMZStore.woa%2Fwa%2FviewSoftware%3Fmt%3D8%26id%3D1108187390%26cc%3Dkr%26urlDesc%3D
+    status_code: 302
+  - match: ^https:\/\/duckduckgo\.com\/\?(?:(?!q(?:=|&|$))[A-Za-z0-9_.~-]+(?:=(?:[A-Za-z0-9._~!$'()*+,;=:@\/?-]|%[0-9A-Fa-f]{2})*)?&)*q=rur(?:&(?!q(?:=|&|$))[A-Za-z0-9_.~-]+(?:=(?:[A-Za-z0-9._~!$'()*+,;=:@\/?-]|%[0-9A-Fa-f]{2})*)?)*(?![\s\S])
+    location: https://itunes.apple.com/WebObjects/MZStore.woa/wa/resetAndRedirect?dsf=143469&mt=8&url=%2FWebObjects%2FMZStore.woa%2Fwa%2FviewSoftware%3Fmt%3D8%26id%3D1108187390%26cc%3Dru%26urlDesc%3D
+    status_code: 302
+  - match: ^https:\/\/duckduckgo\.com\/\?(?:(?!q(?:=|&|$))[A-Za-z0-9_.~-]+(?:=(?:[A-Za-z0-9._~!$'()*+,;=:@\/?-]|%[0-9A-Fa-f]{2})*)?&)*q=sgr(?:&(?!q(?:=|&|$))[A-Za-z0-9_.~-]+(?:=(?:[A-Za-z0-9._~!$'()*+,;=:@\/?-]|%[0-9A-Fa-f]{2})*)?)*(?![\s\S])
+    location: https://itunes.apple.com/WebObjects/MZStore.woa/wa/resetAndRedirect?dsf=143464&mt=8&url=%2FWebObjects%2FMZStore.woa%2Fwa%2FviewSoftware%3Fmt%3D8%26id%3D1108187390%26cc%3Dsg%26urlDesc%3D
+    status_code: 302
+  - match: ^https:\/\/duckduckgo\.com\/\?(?:(?!q(?:=|&|$))[A-Za-z0-9_.~-]+(?:=(?:[A-Za-z0-9._~!$'()*+,;=:@\/?-]|%[0-9A-Fa-f]{2})*)?&)*q=trr(?:&(?!q(?:=|&|$))[A-Za-z0-9_.~-]+(?:=(?:[A-Za-z0-9._~!$'()*+,;=:@\/?-]|%[0-9A-Fa-f]{2})*)?)*(?![\s\S])
+    location: https://itunes.apple.com/WebObjects/MZStore.woa/wa/resetAndRedirect?dsf=143480&mt=8&url=%2FWebObjects%2FMZStore.woa%2Fwa%2FviewSoftware%3Fmt%3D8%26id%3D1108187390%26cc%3Dtr%26urlDesc%3D
+    status_code: 302
+  - match: ^https:\/\/duckduckgo\.com\/\?(?:(?!q(?:=|&|$))[A-Za-z0-9_.~-]+(?:=(?:[A-Za-z0-9._~!$'()*+,;=:@\/?-]|%[0-9A-Fa-f]{2})*)?&)*q=twr(?:&(?!q(?:=|&|$))[A-Za-z0-9_.~-]+(?:=(?:[A-Za-z0-9._~!$'()*+,;=:@\/?-]|%[0-9A-Fa-f]{2})*)?)*(?![\s\S])
+    location: https://itunes.apple.com/WebObjects/MZStore.woa/wa/resetAndRedirect?dsf=143470&mt=8&url=%2FWebObjects%2FMZStore.woa%2Fwa%2FviewSoftware%3Fmt%3D8%26id%3D1108187390%26cc%3Dtw%26urlDesc%3D
+    status_code: 302
+  - match: ^https:\/\/duckduckgo\.com\/\?(?:(?!q(?:=|&|$))[A-Za-z0-9_.~-]+(?:=(?:[A-Za-z0-9._~!$'()*+,;=:@\/?-]|%[0-9A-Fa-f]{2})*)?&)*q=usr(?:&(?!q(?:=|&|$))[A-Za-z0-9_.~-]+(?:=(?:[A-Za-z0-9._~!$'()*+,;=:@\/?-]|%[0-9A-Fa-f]{2})*)?)*(?![\s\S])
+    location: https://itunes.apple.com/WebObjects/MZStore.woa/wa/resetAndRedirect?dsf=143441&mt=8&url=%2FWebObjects%2FMZStore.woa%2Fwa%2FviewSoftware%3Fmt%3D8%26id%3D1108187390%26cc%3Dus%26urlDesc%3D
+    status_code: 302
+  - match: ^https:\/\/duckduckgo\.com\/\?(?:(?!q(?:=|&|$))[A-Za-z0-9_.~-]+(?:=(?:[A-Za-z0-9._~!$'()*+,;=:@\/?-]|%[0-9A-Fa-f]{2})*)?&)*q=gssp(?:\+|%20|%2[bB])((?!(?:\+|%20)*(?:&|$))(?:[A-Za-z0-9._~!$'()*+,;=:@\/?-]|%[0-9A-Fa-f]{2})+)(?:&(?!q(?:=|&|$))[A-Za-z0-9_.~-]+(?:=(?:[A-Za-z0-9._~!$'()*+,;=:@\/?-]|%[0-9A-Fa-f]{2})*)?)*(?![\s\S])
+    location: https://www.google.com/search?as_sitesearch=sspai.com&as_q=$1
+    status_code: 302
+  - match: ^https:\/\/duckduckgo\.com\/\?(?:(?!q(?:=|&|$))[A-Za-z0-9_.~-]+(?:=(?:[A-Za-z0-9._~!$'()*+,;=:@\/?-]|%[0-9A-Fa-f]{2})*)?&)*q=ssp(?:\+|%20|%2[bB])((?!(?:\+|%20)*(?:&|$))(?:[A-Za-z0-9._~!$'()*+,;=:@\/?-]|%[0-9A-Fa-f]{2})+)(?:&(?!q(?:=|&|$))[A-Za-z0-9_.~-]+(?:=(?:[A-Za-z0-9._~!$'()*+,;=:@\/?-]|%[0-9A-Fa-f]{2})*)?)*(?![\s\S])
+    location: https://sspai.com/search?q=$1
+    status_code: 302
+  - match: ^https:\/\/duckduckgo\.com\/\?(?:(?!q(?:=|&|$))[A-Za-z0-9_.~-]+(?:=(?:[A-Za-z0-9._~!$'()*+,;=:@\/?-]|%[0-9A-Fa-f]{2})*)?&)*q=zdm(?:\+|%20|%2[bB])((?!(?:\+|%20)*(?:&|$))(?:[A-Za-z0-9._~!$'()*+,;=:@\/?-]|%[0-9A-Fa-f]{2})+)(?:&(?!q(?:=|&|$))[A-Za-z0-9_.~-]+(?:=(?:[A-Za-z0-9._~!$'()*+,;=:@\/?-]|%[0-9A-Fa-f]{2})*)?)*(?![\s\S])
+    location: https://search.m.smzdm.com/?v=b&s=$1
+    status_code: 302
+  - match: ^https:\/\/duckduckgo\.com\/\?(?:(?!q(?:=|&|$))[A-Za-z0-9_.~-]+(?:=(?:[A-Za-z0-9._~!$'()*+,;=:@\/?-]|%[0-9A-Fa-f]{2})*)?&)*q=tren(?:\+|%20|%2[bB])((?!(?:\+|%20)*(?:&|$))(?:[A-Za-z0-9._~!$'()*+,;=:@\/?-]|%[0-9A-Fa-f]{2})+)(?:&(?!q(?:=|&|$))[A-Za-z0-9_.~-]+(?:=(?:[A-Za-z0-9._~!$'()*+,;=:@\/?-]|%[0-9A-Fa-f]{2})*)?)*(?![\s\S])
+    location: https://translate.google.com/?sl=auto&tl=en&op=translate&text=$1
+    status_code: 302
+  - match: ^https:\/\/duckduckgo\.com\/\?(?:(?!q(?:=|&|$))[A-Za-z0-9_.~-]+(?:=(?:[A-Za-z0-9._~!$'()*+,;=:@\/?-]|%[0-9A-Fa-f]{2})*)?&)*q=trja(?:\+|%20|%2[bB])((?!(?:\+|%20)*(?:&|$))(?:[A-Za-z0-9._~!$'()*+,;=:@\/?-]|%[0-9A-Fa-f]{2})+)(?:&(?!q(?:=|&|$))[A-Za-z0-9_.~-]+(?:=(?:[A-Za-z0-9._~!$'()*+,;=:@\/?-]|%[0-9A-Fa-f]{2})*)?)*(?![\s\S])
+    location: https://translate.google.com/?sl=auto&tl=ja&op=translate&text=$1
+    status_code: 302
+  - match: ^https:\/\/duckduckgo\.com\/\?(?:(?!q(?:=|&|$))[A-Za-z0-9_.~-]+(?:=(?:[A-Za-z0-9._~!$'()*+,;=:@\/?-]|%[0-9A-Fa-f]{2})*)?&)*q=trzh(?:\+|%20|%2[bB])((?!(?:\+|%20)*(?:&|$))(?:[A-Za-z0-9._~!$'()*+,;=:@\/?-]|%[0-9A-Fa-f]{2})+)(?:&(?!q(?:=|&|$))[A-Za-z0-9_.~-]+(?:=(?:[A-Za-z0-9._~!$'()*+,;=:@\/?-]|%[0-9A-Fa-f]{2})*)?)*(?![\s\S])
+    location: https://translate.google.com/?sl=auto&tl=zh-CN&op=translate&text=$1
+    status_code: 302
+  - match: ^https:\/\/duckduckgo\.com\/\?(?:(?!q(?:=|&|$))[A-Za-z0-9_.~-]+(?:=(?:[A-Za-z0-9._~!$'()*+,;=:@\/?-]|%[0-9A-Fa-f]{2})*)?&)*q=(?!(?:af|bd|bl|by|cf|db|gc|gd|gh|gi|gu|jd|ph|qm|rd|se|so|tb|td|tt|tw|up|wa|wb|wk|wx|wz|yd|yh|yt|zh|gssp|ssp|zdm|tren|trja|trzh)(?:\+|%20|%2[bB]))(?!(?:cnr|hkr|jpr|krr|rur|sgr|trr|twr|usr)(?:(?:\+|%20|%2[bB])|&|$))((?!(?:\+|%20)*(?:&|$))(?:[A-Za-z0-9._~!$'()*+,;=:@\/?-]|%[0-9A-Fa-f]{2})+)(?:&(?!q(?:=|&|$))[A-Za-z0-9_.~-]+(?:=(?:[A-Za-z0-9._~!$'()*+,;=:@\/?-]|%[0-9A-Fa-f]{2})*)?)*(?![\s\S])
+    location: https://www.google.com/search?q=$1
+    status_code: 302
+mitm:
+  hostnames:
+    - duckduckgo.com

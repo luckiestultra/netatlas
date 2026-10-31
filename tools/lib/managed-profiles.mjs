@@ -32,7 +32,7 @@ export function managedModel(clientId, { rulesets = [], baseUrl = managedBaseUrl
     const entryTypes = [...new Set(rule.entries.map(entry => entry.type))];
     return { id: rule.id, policy: routing.fixed[rule.id] ?? byId.get(rule.id) ?? settings.defaultBusiness,
       url: `${baseUrl}/clients/${clientId}/rules/${rule.id}.${client.ruleExtension}`,
-      entryTypes, domainOnly: entryTypes.every(type => type === 'domain' || type === 'domain-suffix') };
+      entryTypes, domainOnly: entryTypes.every(type => type === 'domain' || type === 'domain-suffix' || type === 'domain-keyword') };
   });
   return { groups, rules, baseUrl, ruleBase: `${baseUrl}/clients/${clientId}/rules`, root: settings.root, fallback: settings.fallback, checkUrl: 'https://www.gstatic.com/generate_204', updateInterval: 86400 };
 }

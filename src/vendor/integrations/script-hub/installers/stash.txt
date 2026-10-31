@@ -1,0 +1,47 @@
+name: "Script Hub: 重写 & 规则集转换"
+desc: "https://script.hub"
+author: "@小白脸 @xream @keywos @ckyb"
+category: "工具"
+
+http:
+  force-http-engine:
+    - "script.hub"
+
+  mitm:
+    - "script.hub"
+
+  script:
+    - match: ^https?:\/\/script\.hub\/($|edit\/|reload)
+      name: "Script Hub: 前端"
+      type: request
+      timeout: 300
+
+    - match: ^https?:\/\/script\.hub\/file\/_start_\/(?![\s\S]*\/_end_(?=\/)[\s\S]*\/_end_\/)(?:(?!file\/_start_\/)[^\s#])+\/_end_\/[^\/?&#\s]+\?(?:(?!type=)[A-Za-z0-9_.~-]+=(?:[^%&#?\s]|%[A-Fa-f0-9][A-Fa-f0-9])*&)*type=(?:qx-rewrite|surge-module|loon-plugin|all-module)(?:&(?!type=)[A-Za-z0-9_.~-]+=(?:[^%&#?\s]|%[A-Fa-f0-9][A-Fa-f0-9])*)*(?![\s\S])
+      name: "Script Hub: 重写转换"
+      type: request
+      timeout: 300
+
+    - match: ^https?:\/\/script\.hub\/file\/_start_\/(?![\s\S]*\/_end_(?=\/)[\s\S]*\/_end_\/)(?:(?!file\/_start_\/)[^\s#])+\/_end_\/[^\/?&#\s]+\?(?:(?!type=)[A-Za-z0-9_.~-]+=(?:[^%&#?\s]|%[A-Fa-f0-9][A-Fa-f0-9])*&)*type=rule-set(?:&(?!type=)[A-Za-z0-9_.~-]+=(?:[^%&#?\s]|%[A-Fa-f0-9][A-Fa-f0-9])*)*(?![\s\S])
+      name: "Script Hub: 规则集转换"
+      type: request
+      timeout: 300
+
+    - match: ^https?:\/\/script\.hub\/convert\/
+      name: "Script Hub: 脚本转换"
+      type: request
+      timeout: 300
+
+script-providers:
+  "Script Hub: 前端":
+    url: https://raw.githubusercontent.com/Script-Hub-Org/Script-Hub/502cf03f7db2e077d96c07c2cb151a8f0b152a80/script-hub.js
+    interval: 86400
+  "Script Hub: 重写转换":
+    url: https://raw.githubusercontent.com/Script-Hub-Org/Script-Hub/502cf03f7db2e077d96c07c2cb151a8f0b152a80/Rewrite-Parser.js
+    interval: 86400
+  "Script Hub: 规则集转换":
+    url: https://raw.githubusercontent.com/Script-Hub-Org/Script-Hub/502cf03f7db2e077d96c07c2cb151a8f0b152a80/rule-parser.js
+    interval: 86400
+  "Script Hub: 脚本转换":
+    url: https://raw.githubusercontent.com/Script-Hub-Org/Script-Hub/502cf03f7db2e077d96c07c2cb151a8f0b152a80/script-converter.js
+    interval: 86400
+

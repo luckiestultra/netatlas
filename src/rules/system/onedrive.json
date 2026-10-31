@@ -1,0 +1,51 @@
+{
+  "version": 1,
+  "id": "onedrive",
+  "category": "system",
+  "entries": [
+    {
+      "type": "domain-suffix",
+      "value": "1drv.com"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "1drv.ms"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "livefilestore.com"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "onedrive.co"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "onedrive.co.uk"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "onedrive.com"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "onedrive.eu"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "onedrive.live.com"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "onedrive.net"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "onedrive.org"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "storage.live.com"
+    }
+  ]
+}

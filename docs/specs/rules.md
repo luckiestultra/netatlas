@@ -52,3 +52,9 @@ npm run test:rules
 - 所有八种目标用相同正反例检查转换前后语义。
 - 相同固定输入重复同步产生相同字节，不添加当前时钟形成无意义变更。
 - 个人节点、订阅、令牌、证书和真实出口响应不属于规则源。
+
+## 关键词与许可来源补充
+
+规则模型包含domain-keyword，语义是ASCII大小写归一后的域名子串匹配，不能改写成domain-suffix。分别导出QX host-keyword、classical DOMAIN-KEYWORD、Egern domain_keyword_set和sing-box domain_keyword；格式与实际内核案例独立验证。不把不支持的regex、进程、USER-AGENT、ASN静默塞入该模型。
+
+classical-yaml为明确登记的原始五类型来源，未知条件/额外动作字段/非canonical CIDR/重复YAML键均拒绝。selectPayload只选精确原始token，缺失就阻止同步，不扩展为企业全站。完整原始GPL数据、LICENSE和SHA/Git blob归档于src/vendor/rule-sources/blackmatrix7；MIT/GPL逐规则登记。默认不加载可选global代理替代集，它不是Geolocation或原Global逐条复刻。

@@ -1,0 +1,15 @@
+{
+  "version": 1,
+  "id": "five-itv",
+  "category": "media",
+  "entries": [
+    {
+      "type": "domain-suffix",
+      "value": "5itv.tv"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "ocnttv.com"
+    }
+  ]
+}

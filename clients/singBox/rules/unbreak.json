@@ -1,0 +1,12 @@
+{
+  "version": 3,
+  "rules": [
+    {
+      "domain": [
+        "captive.apple.com",
+        "dns.msftncsi.com",
+        "www.msftconnecttest.com"
+      ]
+    }
+  ]
+}

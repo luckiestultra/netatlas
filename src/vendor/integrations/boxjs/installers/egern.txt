@@ -1,0 +1,18 @@
+name: BoxJS
+description: Optional BoxJS data manager; original Egern wrapper for the pinned official script.
+author: chavyleung; NetAtlas wrapper
+scriptings:
+  - http_request:
+      name: BoxJS
+      match: ^https?:\/\/(?:[A-Za-z0-9-]+\.)*boxjs\.(?:com|net)(?=\/|$)
+      script_url: https://raw.githubusercontent.com/chavyleung/scripts/bfab3c906f3d5d126e9094f15730e025f7f32128/box/chavy.boxjs.js
+      timeout: 120
+      body_required: true
+mitm:
+  hostnames:
+    includes:
+      - boxjs.com
+      - boxjs.net
+      - '*.boxjs.com'
+      - '*.boxjs.net'
+

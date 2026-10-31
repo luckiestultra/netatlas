@@ -1,0 +1,1007 @@
+{
+  "version": 1,
+  "id": "amazon-portable",
+  "category": "system",
+  "entries": [
+    {
+      "type": "domain-suffix",
+      "value": "a2z.com"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "a2z.org.cn"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "aboutamazon.cn"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "aboutamazon.co.uk"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "aboutamazon.com"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "aboutamazon.com.au"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "aboutamazon.de"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "aboutamazon.es"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "aboutamazon.eu"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "aboutamazon.fr"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "aboutamazon.in"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "aboutamazon.it"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "aboutamazon.jp"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "aboutamazon.pl"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "aboutamazon.sg"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "acmvalidations.com"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "acmvalidationsaws.com"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "aesworkshops.com"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "aiv-cdn.net"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "alexa.com"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "alexafund.cn"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "alexafund.com.cn"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "amaaozn.com"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "amazon"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "amazon-adsystem.com"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "amazon-fashions.com"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "amazon-jp-recruiting.com"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "amazon-lantern.com"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "amazon-launchpad.com"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "amazon.ae"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "amazon.ca"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "amazon.cl"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "amazon.cn"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "amazon.co.jp"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "amazon.co.uk"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "amazon.co.za"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "amazon.com"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "amazon.com.au"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "amazon.com.be"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "amazon.com.br"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "amazon.com.co"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "amazon.com.mx"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "amazon.com.ng"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "amazon.com.tr"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "amazon.de"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "amazon.dev"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "amazon.eg"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "amazon.es"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "amazon.fr"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "amazon.ie"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "amazon.in"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "amazon.it"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "amazon.jobs"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "amazon.jp"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "amazon.lu"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "amazon.nl"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "amazon.pl"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "amazon.red"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "amazon.sa"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "amazon.se"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "amazon.sg"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "amazonalexavoxcon.com"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "amazonauthorinsights.com"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "amazonaws-china.com"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "amazonaws.biz"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "amazonaws.cn"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "amazonaws.co.uk"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "amazonaws.com"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "amazonaws.com.cn"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "amazonaws.info"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "amazonaws.net"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "amazonaws.org"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "amazonaws.tv"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "amazonbusiness.cn"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "amazonbusiness.com.cn"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "amazonbusiness.org"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "amazonbusinessblog.com"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "amazonchoice.cn"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "amazonchoice.com.cn"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "amazonchoices.cn"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "amazonchoices.com.cn"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "amazoncognito.com"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "amazondevicesupport.com"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "amazonfctours.com"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "amazonianblog.com"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "amazonimages.com"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "amazoninspire.cn"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "amazoninspire.com.cn"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "amazonlaunchpad.cn"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "amazonlaunchpad.com"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "amazonlaunchpad.com.cn"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "amazonlending.com.cn"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "amazonliterarypartnership.com"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "amazonlumberyard.wang"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "amazonnow.cn"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "amazonnow.com.cn"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "amazonpay.com"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "amazonpay.in"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "amazonprimevideo.cn"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "amazonprimevideo.com.cn"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "amazonprimevideos.com"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "amazonsdi.com"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "amazonses.com"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "amazonstudiosguilds.com"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "amazontrust.com"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "amazonvideo.cc"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "amazonvideo.com"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "amazonvideodirect.com"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "amazonwebservices.cn"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "amazonwebservices.com"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "amazonwebservices.com.cn"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "amazonworkdocs.cn"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "amazonworkdocs.com"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "amazonworkdocs.com.cn"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "amplifyapp.com"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "amplifyframework.com"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "amzn.asia"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "amzn.com"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "amzn.to"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "amzndns-cn.biz"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "amzndns-cn.cn"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "amzndns-cn.com"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "amzndns-cn.net"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "amzndns.co.uk"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "amzndns.com"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "amzndns.net"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "amzndns.org"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "amznl.com"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "asfiovnxocqpcry.com.cn"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "assoc-amazon.cn"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "associates-amazon.com"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "audible.com"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "aws"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "aws-border.cn"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "aws-icp-domain-manager.cn"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "aws-iot-hackathon.com"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "aws.a2z.com"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "aws.amazon.com"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "aws.com"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "aws.dev"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "awsapprunner.com"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "awsapps.cn"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "awsapps.com"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "awsapps.com.cn"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "awsautopilot.com"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "awsautoscaling.com"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "awsbraket.com"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "awscommandlineinterface.com"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "awsedstart.com"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "awseducate.com"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "awseducate.net"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "awseducate.org"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "awsglobalaccelerator.com"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "awsloft-johannesburg.com"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "awsloft-stockholm.com"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "awssecworkshops.com"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "awsstatic.cn"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "awsstatic.com"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "awsthinkbox.com"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "awstrack.me"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "awstrust.com"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "awswaf.com"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "boxofficemojo.com"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "cdkworkshop.com"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "cloudfront-cn.net"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "cloudfront-test.cn"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "cloudfront.cn"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "cloudfront.com"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "cloudfront.net"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "containersonaws.com"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "createspace.com"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "elasticbeanstalk.com"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "gameon-masters.com"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "gdansk-amazon.com"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "images-amazon.com"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "imdb"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "imdb.com"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "imdb.to"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "kindle"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "kindle.cn"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "kindle.co.jp"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "kindle.co.uk"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "kindle.com"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "kindle.de"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "kindle.es"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "kindle.fr"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "kindle.in"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "kindle.it"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "kindle.jp"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "kindleoasis.cn"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "kindleoasis.com"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "kindleoasis.com.cn"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "kindleoasis.info"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "kindleoasis.jp"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "kindleoasis.org"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "kindleoasis.us"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "kindleoasisnews.com"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "kindleproject.com"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "media-amazon.com"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "media-imdb.com"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "nwcdcloud.cn"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "nwcdcloud.com.cn"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "nwcddns.cn"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "nwcdinfosec.cn"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "prime-video.com"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "primeday.cn"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "primeday.com.cn"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "primeday.info"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "primevideo.cc"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "primevideo.com"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "primevideo.info"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "primevideo.org"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "primevideo.tv"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "prod.service.minerva.devices.a2z.com"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "pv-cdn.net"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "route53.cn"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "sagemaker.com.cn"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "seattlespheres.com"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "serving-sys.com"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "siege-amazon.com"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "ss2.us"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "ssl-images-amazon.com"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "thinkboxsoftware.com"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "ueberamazon.de"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "wfm.com"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "wholecitiesfoundation.org"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "wholefoods.com"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "wholefoodsmarket.co.uk"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "wholefoodsmarket.com"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "wholekidsfoundation.org"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "wholeplanetfoundation.org"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "xn--cckwcxetd"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "xn--jlq480n2rg"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "yamaxun"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "yamaxun.cn"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "yamaxun.com"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "z.cn"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "zappos"
+    },
+    {
+      "type": "domain",
+      "value": "d1v5ir2lpwr8os.cloudfront.net"
+    },
+    {
+      "type": "domain",
+      "value": "d22qjgkvxw22r6.cloudfront.net"
+    },
+    {
+      "type": "domain",
+      "value": "d25xi40x97liuc.cloudfront.net"
+    },
+    {
+      "type": "domain",
+      "value": "d27xxe7juh1us6.cloudfront.net"
+    },
+    {
+      "type": "domain",
+      "value": "dmqdd6hw24ucf.cloudfront.net"
+    },
+    {
+      "type": "domain",
+      "value": "images-cn-8.ssl-images-amazon.com"
+    },
+    {
+      "type": "domain",
+      "value": "images-cn.ssl-images-amazon.com"
+    },
+    {
+      "type": "domain",
+      "value": "images-eu.ssl-images-amazon.com"
+    },
+    {
+      "type": "domain",
+      "value": "images-fe.ssl-images-amazon.com"
+    },
+    {
+      "type": "domain",
+      "value": "images-na.ssl-images-amazon.com"
+    },
+    {
+      "type": "domain",
+      "value": "msh.amazon.co.uk"
+    },
+    {
+      "type": "domain",
+      "value": "static.siege-amazon.com"
+    }
+  ]
+}

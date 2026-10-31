@@ -15,7 +15,7 @@
 | mihomo | YAML | classical YAML | anti-AD 规则与合并片段；不伪造 HTTP 重写能力 | 固定版本内核可检查 |
 | singBox | JSON | 原生 headless JSON | anti-AD 规则与合并片段；不伪造 HTTP 重写能力 | 固定版本内核可检查 |
 
-QX 主配置默认接入 GeoIP 显示，重写、MITM 和其他可选功能不默认启用。默认主配置远程引用 40 组、23,476 条；anti-AD 的 100,682 条只单独发布。Loon HTTPS-upgrade 要求 3.5.1(978)+；六个图形客户端尚未实际导入，结构和文本验证不等于设备实测。GeoIP 脚本仍仅适配 QX、Surge，不能把新原生规则资源理解成已实现其他宿主的 JS API。客户端来源及目标版本见 [metadata/clients.json](../metadata/clients.json)，当前验证证据见 [验证记录](validation.md)。
+QX 主配置默认接入 GeoIP 显示，重写、MITM 和其他可选功能不默认启用。默认主配置远程引用 114 组、29,103 条；anti-AD 的100,682条与global的6,985条为可选独立资源。Loon HTTPS-upgrade 要求 3.5.1(978)+；六个图形客户端尚未实际导入，结构和文本验证不等于设备实测。GeoIP 脚本仍仅适配 QX、Surge，不能把新原生规则资源理解成已实现其他宿主的 JS API。客户端来源及目标版本见 [metadata/clients.json](../metadata/clients.json)，当前验证证据见 [验证记录](validation.md)。
 
 Mihomo 固定检查版本为 1.19.33，sing-box 为 1.14.4；二进制资产及 SHA-256 登记在 [native-tools.json](../metadata/native-tools.json)。其余六个应用必须在实际应用中导入后另行记录，结构检查和 JS VM 测试不能替代这一步。
 
@@ -43,3 +43,5 @@ rules/ 直接放 openai、netflix、github 等具体服务 ID，不增加 ai、m
 | 构建验证 | 统一输出、引用检查、内容清单、原生验证入口 | [构建规格](specs/build.md) |
 
 固定策略和规则顺序保存在 [routing.json](../metadata/routing.json)，主配置业务/地区选择层在 [managed-policies.json](../metadata/managed-policies.json)；不从 category 推断路由。更多实现说明见 [架构](architecture.md)、[客户端格式](client-formats.md)和[可选功能](features.md)。
+
+完整八端功能、110类逐项对照和明确剩余差异，统一见[逐项覆盖](coverage.md)。六GUI现有快速搜索、扩展跳转及三个外部工具包；脚本解析器/定位/正文入口按宿主分别登记，不声明各软件功能完全相同。

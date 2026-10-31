@@ -81,3 +81,5 @@ QX 仅将内建 `DIRECT`、`REJECT` 转为小写，保留 `Proxy` 和各服务 I
 八客户端完整接入流程、每种原生节点形态、原生 URL 与本地 materialize 区别、DNS 角色和失败保护统一见[完整接入说明](profile-setup.md)。不要把节点数据跨客户端直接复制，或把不支持的原生 provider 字段假装成订阅方案。
 
 参考配置版本、星标和实际文件更新时间登记在[来源清单](../metadata/profile-references.json)。对没有公开完整 vendor grammar 的字段，明确注明由高星维护配置交叉核对；不把它称为官方语法证明。六 GUI 未运行，验证层次见[验证记录](validation.md)。
+
+域名关键词是第五种规范条件：QX使用host-keyword；Surge/Loon/Shadowrocket/Stash/Mihomo使用DOMAIN-KEYWORD；Egern规则对象domain_keyword、规则集domain_keyword_set；sing-box使用domain_keyword数组。按字面子串匹配，不转换为后缀。其它匹配仍维持显式格式边界。

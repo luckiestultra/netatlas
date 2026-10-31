@@ -1,0 +1,15 @@
+{
+  "version": 1,
+  "id": "all4",
+  "category": "media",
+  "entries": [
+    {
+      "type": "domain-suffix",
+      "value": "c4assets.com"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "channel4.com"
+    }
+  ]
+}

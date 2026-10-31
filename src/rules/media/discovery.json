@@ -1,0 +1,19 @@
+{
+  "version": 1,
+  "id": "discovery",
+  "category": "media",
+  "entries": [
+    {
+      "type": "domain-suffix",
+      "value": "content-ause1-ur-discovery1.uplynk.com"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "disco-api.com"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "discoveryplus.com"
+    }
+  ]
+}

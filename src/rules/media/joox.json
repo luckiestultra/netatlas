@@ -1,0 +1,11 @@
+{
+  "version": 1,
+  "id": "joox",
+  "category": "media",
+  "entries": [
+    {
+      "type": "domain-suffix",
+      "value": "joox.com"
+    }
+  ]
+}

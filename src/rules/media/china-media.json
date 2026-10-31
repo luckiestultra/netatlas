@@ -1,0 +1,1195 @@
+{
+  "version": 1,
+  "id": "china-media",
+  "category": "media",
+  "entries": [
+    {
+      "type": "domain-suffix",
+      "value": "71.am"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "71edge.com"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "97ting.com"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "9xsecndns.cn"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "ac.fun"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "acfun.cn"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "acfun.net"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "acfunchina.cn"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "acfunchina.com"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "acfunchina.net"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "acg.tv"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "acgvideo.com"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "activity-wbsj.com"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "ad.api.3g.youku.com"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "ad.api.mobile.youku.com"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "ad.cctv.com"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "ad.m.iqiyi.com"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "ad.mobile.youku.com"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "ad.tencentmusic.com"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "adashx.ut.youku.com"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "adbehavior.ximalaya.com"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "ads.service.kugou.com"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "adse.wsa.ximalaya.com"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "adse.ximalaya.com"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "adserviceretry.kglink.cn"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "adserviceretry.kugou.com"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "adstats.tencentmusic.com"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "afp.iqiyi.com"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "aihst8.com"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "aixifan.com"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "amemv.cn"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "amemv.com"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "amemv.net"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "animetamashi.cn"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "animetamashi.com"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "anitama.cn"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "anitama.net"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "atm.youku.com"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "awemeughun.com"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "awemeuglang.com"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "awemeugsoul.com"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "awemeugwave.com"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "b23.tv"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "betastar.cn"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "bigfun.cn"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "bigfunapp.cn"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "bili22.cn"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "bili2233.cn"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "bili23.cn"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "bili33.cn"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "biliapi.com"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "biliapi.net"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "bilibili.cc"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "bilibili.cn"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "bilibili.com"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "bilibili.net"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "bilibili.tv"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "bilibiligame.cn"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "bilibiligame.co"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "bilibiligame.net"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "bilibilipay.cn"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "bilibilipay.com"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "bilicdn1.com"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "bilicdn2.com"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "bilicdn3.com"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "bilicdn4.com"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "bilicdn5.com"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "bilicomic.com"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "bilicomics.com"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "biligame.co"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "biligame.com"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "biligame.net"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "biligo.com"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "biliimg.com"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "biliintl.com"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "bilivideo.cn"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "bilivideo.com"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "bilivideo.net"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "boxdouyin.com"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "c.uaa.iqiyi.com"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "cctv.cn"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "cctv.com"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "cctv4g.com"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "cctvlib.cn"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "cctvlib.com.cn"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "cctvlibrary.cn"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "cctvlibrary.com.cn"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "cctvpic.com"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "cctvpro.cn"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "cctvpro.com.cn"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "chinaepg.cn"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "chinalive.com"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "chinaott.com"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "citv.net.cn"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "click.hunantv.com"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "cloudpush.iqiyi.com"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "cnms.net.cn"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "cntv.cn"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "cntv.com.cn"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "cntvwb.cn"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "cookicut.com"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "cri.cn"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "cupid.iqiyi.com"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "da.hunantv.com"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "da.mgtv.com"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "douyin.com"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "douyinact.com"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "douyinact.net"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "douyincdn.com"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "douyinec.com"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "douyinfe.com"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "douyinliving.com"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "douyinmusicpromotion.com"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "douyinpay.com"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "douyinpic.com"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "douyinstatic.com"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "douyinvod.com"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "douyu.com"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "douyu.tv"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "douyucdn.cn"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "douyucdn2.cn"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "douyuscdn.com"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "douyutv.com"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "dreamcast.hk"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "duoshan.com"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "e.stat.ykimg.com"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "edgesrv.com"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "ems.youku.com"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "fanxingliveshow.com"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "gjgbdszt.cn"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "gjgbdszt.com.cn"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "gjgbdszt.net.cn"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "guanggaoad.youku.com"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "h-adashx.ut.youku.com"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "hdslb.com"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "hdslb.org"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "hifuntv.com"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "hitv.com"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "hnbntv.com"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "huasheng.cn"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "hunaniptv.com"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "hunantv.com"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "huoshan.com"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "huoshancdn.com"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "huoshangroup.com"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "huoshanimg.com"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "huoshanlive.com"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "huoshanparty.com"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "huoshanstatic.com"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "huoshante8.com"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "huoshanvideo.cn"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "huoshanvideo.net"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "huoshanvod.com"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "huoshanxiaoshipin.cn"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "huoshanxiaoshipin.net"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "huoshanzhibo.cn"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "huoshanzhibo.com"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "huoshanzhibo.net"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "huya.com"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "hypercachenode.com"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "icntvcdn.com"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "idouyinliving.com"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "idouyinpic.com"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "idouyinstatic.com"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "idouyinvod.com"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "iesdouyin.com"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "iesdouyin.net"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "ieshuodong.cn"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "ieshuodong.net"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "ifacelog.iqiyi.com"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "ihst8.com"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "ihuoshanimg.com"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "ihuoshanlive.com"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "ihuoshanstatic.com"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "ihuoshanvod.com"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "im9.com"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "imgo.tv"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "ipanda.cn"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "ipanda.com"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "ipanda.com.cn"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "ipanda.net"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "iq.com"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "iqiyi.com"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "iqiyipic.com"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "kg.qq.com"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "kgimg.com"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "kglink.cn"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "kolbuyer.cn"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "koowo.cn"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "koowo.com"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "ktv.com"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "kugoo.com"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "kugou.com"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "kugou.net"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "kugouaudio.com"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "kugouipv6.com"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "kugoukid.com"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "kugouliveshow.com"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "kugouringtone.com"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "kugousenior.com"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "kugoustore.com"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "kugouvoice.com"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "kugouyouth.com"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "kumiao.com"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "kuwo.cn"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "lifexue.com"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "livechina.cn"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "livechina.com"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "log.hunantv.com"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "log.v2.hunantv.com"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "lrts.me"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "lstat.youku.com"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "maoer.com"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "maoercdn.com"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "mbdlog.iqiyi.com"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "mgtv.com"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "mincdn.com"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "missevan.com"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "mobilemsg.youku.com"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "monitor.music.qq.com"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "msg.video.qiyi.com"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "msg.youku.com"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "msg2.video.qiyi.com"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "msstatic.com"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "mting.info"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "music.qq.com"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "nextvid.net"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "olympicchannelchina.cn"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "open-douyin.com"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "ottcn.com"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "p-log.ykimg.com"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "passport-log.youku.com"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "pl.youku.com"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "policy.video.iqiyi.com"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "ppkankan01.com"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "pplive.cn"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "pplive.com"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "pps.tv"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "ppsimg.com"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "pptv.com"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "qishui.cn"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "qishui.com"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "qishui.com.cn"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "qishuimusic.cn"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "qishuimusic.com.cn"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "qiyi.com"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "qiyipic.com"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "qqmusic.com"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "qy.net"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "report.tencentmusic.com"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "res.hunantv.com"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "s-adashx.ut.youku.com"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "soku.com"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "stat.y.qq.com"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "stat.youku.com"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "statis.api.3g.youku.com"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "supercachenet.com"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "supercachenode.com"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "tencentmusic.com"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "tingmall.com"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "tmead.y.qq.com"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "tmeadcomm.y.qq.com"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "tudou.com"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "tvcc.cn"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "tvcc.com.cn"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "ulpay.com"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "ultimatemusic.cn"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "ultracachenode.com"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "updream.cn"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "v6-adashx.ut.youku.com"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "woaihuoshan.com"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "wohst8.com"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "wting.info"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "ximalaya.com"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "xmcdn.com"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "xn--fiq53l6wcx3kp9bc7joo6apn8a.cn"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "xn--fiq53l6wcx3kp9bc7joo6apn8a.xn--fiqs8s"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "xn--fiq53l90et9fpncc7joo6apn8a.cn"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "xn--kprv4ewxfr9cpxcc7joo6apn8a.cn"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "xn--kprv4ewxfr9cpxcc7joo6apn8a.xn--fiqs8s"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "y.qq.com"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "yangshipin.cn"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "yk-ssp.ad.youku.com"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "ykad-data.youku.com"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "ykimg.com"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "yo9.com"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "youku.com"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "youku.tv"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "youkuhonor.com"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "youkuplay.com"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "zggbdszt.cn"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "zggbdszt.com.cn"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "zggbdszt.net.cn"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "zygbdszt.net.cn"
+    },
+    {
+      "type": "domain",
+      "value": "apilog-web.acfun.cn"
+    },
+    {
+      "type": "domain",
+      "value": "upos-hz-mirrorakam.akamaized.net"
+    },
+    {
+      "type": "domain",
+      "value": "ykimg.alicdn.com"
+    }
+  ]
+}

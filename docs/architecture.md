@@ -50,7 +50,7 @@ flowchart LR
   C --> V[语义、结构及可用原生检查]
 ~~~
 
-规则源只描述精确域名、域名后缀、IPv4 CIDR 和 IPv6 CIDR。category 是内部标签，公开 rules/ 按具体应用或服务 ID 平铺。固定策略与优先级由 routing.json 决定；主配置的业务组、地区筛选和服务映射由 managed-policies.json 维护。新增未映射服务归入国外网站，可单独登记业务策略，不为八个客户端复制规则事实。
+规则源只描述精确域名、域名后缀、域名关键词、IPv4 CIDR 和 IPv6 CIDR。category 是内部标签，公开 rules/ 按具体应用或服务 ID 平铺。固定策略与优先级由 routing.json 决定；主配置的业务组、地区筛选和服务映射由 managed-policies.json 维护。新增未映射服务归入国外网站，可单独登记业务策略，不为八个客户端复制规则事实。
 
 `routing.excludedFromDefault` 指定只单独发布的可选大规则集。当前 anti-ad 有 100,682 条，不进入默认 40 组主配置；仍为八客户端生成独立规则与安装包/合并片段。清单分别记录默认与可选数量，不能把所有可下载规则误认为全部默认生效。
 
@@ -79,3 +79,5 @@ scripts/ 保存已适配的 JS，rewrites/ 保存纯重写，modules/ 保存原�
 用户节点、订阅、令牌和证书保留在本地。公开模板、fixture、生成文件和日志不包含这些内容，工具不读取用户正在运行的客户端配置。
 
 接口和验收分别见[规则](specs/rules.md)、[配置](specs/profiles.md)、[功能](specs/features.md)及[构建](specs/build.md)规格；实际证据见[验证记录](validation.md)。
+
+内容覆盖和数据来源现在同时登记在metadata/coverage.json、features.json、integrations.json及resource-parsers.json。分流仍在客户端rules/按服务平铺，纯重写在rewrites/，脚本功能安装资源在modules/，手工合并设置在fragments/。工具安装包可以共享上游实现，但不在不支持的核心里伪造脚本宿主。

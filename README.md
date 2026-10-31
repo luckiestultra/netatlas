@@ -2,11 +2,11 @@
 
 面向 Quantumult X、Surge、Loon、Shadowrocket、Egern、Stash、Mihomo 和 sing-box 的原生配置与规则仓库。先选客户端，再取用主配置、具体服务分流或可选功能。
 
-主配置面向客户端直接导入：保留 DNS、节点/订阅入口、中文业务策略、自动选择与六地区测速，独立订阅本客户端的 **40 份规则资源（23,476 条）**。不需要先安装 Node.js。节点与订阅由你自己提供，具体接入字段见各客户端 README。
+主配置面向客户端直接导入：保留 DNS、节点/订阅入口、中文业务策略、自动选择与六地区测速，独立订阅本客户端的 **114 份规则资源（29,103 条）**。不需要先安装 Node.js。节点与订阅由你自己提供，具体接入字段见各客户端 README。
 
 QX 默认使用 App 内置 proxy，Shadowrocket 使用首页 PROXY；其余客户端在导入后添加原生节点/订阅并选择实际节点。地区组按节点名称筛选，只有存在匹配节点时才选择，不保证空组回退。QX 主配置已接入出口定位；重写、MITM 和证书不自动启用。
 
-规则资源按具体应用或服务平铺；AI、苹果、谷歌、微软、开发、通讯、游戏、媒体及最终兜底可独立选择出口。另有可选 anti-AD **100,682 条**。完整内联版本与私有 CLI 保留为高级选项，不是主配置的使用前提。
+规则资源按具体应用或服务平铺；AI、苹果、谷歌、微软、开发、通讯、游戏、媒体及最终兜底可独立选择出口。另有可选 anti-AD **100,682 条**和 global **6,985 条**；合计 **117 套、136,894 条**规范数据。完整内联版本与私有 CLI 保留为高级选项。六 GUI 可选功能现含 47 项快速搜索、59 项网站重定向、独立 BiliIntl 参数资源，以及 BoxJS、ScriptHub、Sub-Store 安装包。QX/Loon 另有外部资源解析器片段；Surge 有原创正文替换工具。入口与实质差异见[逐项覆盖清单](docs/coverage.md)。
 ## 使用入口
 
 | 客户端 | 主配置 | 目录 |
@@ -48,7 +48,7 @@ clients/<client>/
 
 本仓库不读取或修改你现用的 QX、节点、系统代理和证书。Mihomo、sing-box 用固定内核验证真实远程资源、DNS、节点与路由；其他六个客户端只有资料/结构/引用验证，未声称原生 GUI 实测。[验证记录](docs/validation.md)。
 
-重写在各软件的 rewrites/，原生安装包在 modules/，手工合并片段在 fragments/。QX 主配置已有 GeoIP，geoip.conf 片段供其他既有配置接入使用。HTTPS-upgrade、搜索跳转和 anti-AD 的安装与许可见[功能说明](docs/features.md)。
+重写在各软件的 rewrites/，原生安装包在 modules/，手工合并片段在 fragments/。QX 主配置已有 GeoIP，geoip.conf 片段供其他既有配置接入使用。功能安装、权限和分开许可见[功能说明](docs/features.md)。
 
 ## 本地维护
 
@@ -81,4 +81,4 @@ npm run test:live                    # 单独联网检查 GeoIP；不打印真�
 - [来源审计](docs/upstream-audit.md)与[第三方声明](THIRD_PARTY_NOTICES.md)
 - 规格：[规则](docs/specs/rules.md)、[配置](docs/specs/profiles.md)、[功能](docs/specs/features.md)、[构建](docs/specs/build.md)
 
-本仓库包含多种许可：原创通用代码采用 [MIT License](LICENSE)；HTTPS-upgrade 功能代码和生成资源采用 [GPL-2.0-only](src/features/https-upgrade/LICENSE)。第三方数据按其来源声明保留许可及 credits，不能把整个仓库内容一概视为 MIT。详见[第三方声明](THIRD_PARTY_NOTICES.md)。不读取或发布用户节点、订阅、令牌及证书。
+本仓库包含多种许可：原创通用代码采用 [MIT License](LICENSE)；部分规则数据、HTTPS-upgrade 与扩展 Redirect 代码和生成资源采用 [GPL-2.0-only](src/features/https-upgrade/LICENSE)。BoxJS/ScriptHub 包为 GPL-3.0-only，Sub-Store 包为 AGPL-3.0-only；脚本仍从上游固定入口获取，QX 解析器只提供外部安装说明。第三方数据按各条登记保留许可，不能把整个仓库一概视为 MIT。详见[第三方声明](THIRD_PARTY_NOTICES.md)。不读取或发布用户节点、订阅、令牌及证书。

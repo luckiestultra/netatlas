@@ -1,0 +1,15 @@
+{
+  "version": 3,
+  "rules": [
+    {
+      "domain_suffix": [
+        "weibo",
+        "weibo.cn",
+        "weibo.com",
+        "weibo.com.cn",
+        "weibocdn.com",
+        "weibopay.com"
+      ]
+    }
+  ]
+}

@@ -1,0 +1,315 @@
+{
+  "version": 1,
+  "id": "mozilla",
+  "category": "system",
+  "entries": [
+    {
+      "type": "domain-suffix",
+      "value": "allizom.net"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "allizom.org"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "bugzilla.org"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "detodosparatodos.org"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "developer.allizom.org"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "developer.mozilla.org"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "discovershiretoko.org"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "ecmascript.org"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "extendfirefox.com"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "extensionworkshop.com"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "firefox-portal-detection.com"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "firefox.com"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "firefox.hu"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "firefoxtweetmachine.com"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "firefoxusercontent.com"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "foxkeh.com"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "foxkeh.jp"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "getfirebug.com"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "getpersonas.com"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "getpocket.com"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "hackasaurus.org"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "interforest.org"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "itisatrap.org"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "learningfreedomandtheweb.org"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "lizardwrangler.com"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "mdn.allizom.net"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "mdn.dev"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "mdn.mozilla.net"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "mdn.mozit.cloud"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "mdnplay.dev"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "mdnyalp.dev"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "mecha-mozilla.org"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "mozaws.net"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "mozgcp.net"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "mozilla-europe.org"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "mozilla-hispano.org"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "mozilla-mexico.org"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "mozilla.ai"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "mozilla.com"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "mozilla.community"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "mozilla.cz"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "mozilla.de"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "mozilla.jp"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "mozilla.lt"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "mozilla.net"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "mozilla.org"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "mozilla.org.uk"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "mozilla.pe"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "mozilla.pt"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "mozilla.ro"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "mozillabd.org"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "mozillademos.org"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "mozillafactory.org"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "mozillafoundation.org"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "mozillaignite.org"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "mozillalabs.com"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "mozillaquebec.org"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "mozillazine.jp"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "mozillians.org"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "mozit.cloud"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "mzl.la"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "onemozilla.org"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "opentimetable.jp"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "popcornjs.org"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "publicsuffix.org"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "seamonkey-project.org"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "tb.pro"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "thunderbird.net"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "thundermail.com"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "webmademovies.org"
+    },
+    {
+      "type": "domain",
+      "value": "ads-img.mozilla.org"
+    },
+    {
+      "type": "domain",
+      "value": "ads.mozilla.org"
+    },
+    {
+      "type": "domain",
+      "value": "incoming-telemetry.thunderbird.net"
+    },
+    {
+      "type": "domain",
+      "value": "incoming.telemetry.mozilla.org"
+    },
+    {
+      "type": "domain",
+      "value": "mdn.mozillademos.org"
+    },
+    {
+      "type": "domain",
+      "value": "mozilla-ohttp.fastly-edge.com"
+    },
+    {
+      "type": "domain",
+      "value": "mozilla.map.fastly.net"
+    }
+  ]
+}

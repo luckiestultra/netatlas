@@ -1,0 +1,19 @@
+{
+  "version": 1,
+  "id": "coolapk",
+  "category": "system",
+  "entries": [
+    {
+      "type": "domain-suffix",
+      "value": "coolapk.com"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "coolapkmarket.com"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "coolapkmarket.net"
+    }
+  ]
+}

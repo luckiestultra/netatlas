@@ -3,6 +3,11 @@ import { createGeoIP } from '../../src/features/geoip/core.mjs';
 import { renderAntiAd } from './anti-ad.mjs';
 import { publicArtifactUrl } from './public-url.mjs';
 import { renderHttpsUpgrade } from './https-upgrade.mjs';
+import { renderQuickSearch } from './quick-search.mjs';
+import { renderRedirects, renderBiliIntlRegion } from './redirects.mjs';
+import { renderIntegrations } from './integrations.mjs';
+import { renderBodyReplacement } from './body-replacement.mjs';
+import { renderResourceParsers } from './resource-parsers.mjs';
 
 const clientIds = new Set(['quantumultX', 'surge', 'loon', 'shadowrocket', 'egern', 'stash', 'mihomo', 'singBox']);
 const source = (path) => readFileSync(new URL('../../src/features/' + path, import.meta.url), 'utf8');
@@ -42,5 +47,5 @@ function renderBuiltinFeatures(client, { baseUrl } = {}) {
 }
 
 export function renderFeatures(client,options={}) {
-  return [...renderBuiltinFeatures(client,options),...renderAntiAd(client,options),...renderHttpsUpgrade(client,options)];
+  return [...renderBuiltinFeatures(client,options),...renderAntiAd(client,options),...renderHttpsUpgrade(client,options),...renderQuickSearch(client,options),...renderRedirects(client,options),...renderBiliIntlRegion(client,options),...renderIntegrations(client,options),...renderBodyReplacement(client,options),...renderResourceParsers(client,options)];
 }

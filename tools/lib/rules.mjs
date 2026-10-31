@@ -1,7 +1,7 @@
 import { isIP } from 'node:net';
 import { domainToASCII } from 'node:url';
 
-export const ruleTypes = ['domain', 'domain-suffix', 'ip-cidr', 'ip-cidr6'];
+export const ruleTypes = ['domain', 'domain-suffix', 'domain-keyword', 'ip-cidr', 'ip-cidr6'];
 export const stableId = /^[a-z][a-z0-9]*(?:-[a-z0-9]+)*$/;
 
 function domain(value) {
@@ -56,6 +56,10 @@ export function normalizeEntry(entry) {
     throw new Error(`Unsupported or invalid rule: ${JSON.stringify(entry)}`);
   }
   const value = entry.value.trim();
+  if (entry.type === 'domain-keyword') {
+    if (value.length > 253 || !/^[a-z0-9._-]+$/i.test(value)) throw new Error('Invalid domain keyword');
+    return { type: entry.type, value: value.toLowerCase() };
+  }
   return {
     type: entry.type,
     value: entry.type.startsWith('domain') ? domain(value) : parseCidr(value, entry.type === 'ip-cidr' ? 4 : 6).canonical
@@ -78,6 +82,7 @@ export function matchesEntry(entry, { host, ip } = {}) {
   if (entry.type.startsWith('domain')) {
     if (!host) return false;
     const candidate = domain(host);
+    if (entry.type === 'domain-keyword') return candidate.includes(entry.value);
     return candidate === entry.value || (entry.type === 'domain-suffix' && candidate.endsWith(`.${entry.value}`));
   }
   if (!ip) return false;

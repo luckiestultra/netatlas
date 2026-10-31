@@ -1,0 +1,107 @@
+{
+  "version": 1,
+  "id": "dropbox",
+  "category": "system",
+  "entries": [
+    {
+      "type": "domain-suffix",
+      "value": "addtodropbox.com"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "dash.ai"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "db.tt"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "docsend.com"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "dropbox-dns.com"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "dropbox.com"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "dropbox.tech"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "dropboxapi.com"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "dropboxbusiness.com"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "dropboxcaptcha.com"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "dropboxexperiment.com"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "dropboxforum.com"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "dropboxforums.com"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "dropboxinsiders.com"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "dropboxlegal.com"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "dropboxmail.com"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "dropboxpartners.com"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "dropboxstatic.com"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "dropboxteam.com"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "dropboxusercontent.com"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "getdropbox.com"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "hellofax.com"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "hellosign.com"
+    },
+    {
+      "type": "domain",
+      "value": "dropbox.zendesk.com"
+    },
+    {
+      "type": "domain",
+      "value": "paper-attachments.s3.amazonaws.com"
+    }
+  ]
+}

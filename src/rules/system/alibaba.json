@@ -1,0 +1,1863 @@
+{
+  "version": 1,
+  "id": "alibaba",
+  "category": "system",
+  "entries": [
+    {
+      "type": "domain-suffix",
+      "value": "11222.cn"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "1688.com"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "25pp.com"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "56che.com"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "56xiniao.com"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "88cha.com"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "95095.com"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "9game.cn"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "9xsecndns.cn"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "a-map.cn"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "a-map.co"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "a-map.link"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "a-map.vip"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "a.alimama.cn"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "aaid.umeng.com"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "acjs.aliyun.com"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "acloudrender.com"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "ad.api.3g.youku.com"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "ad.api.mobile.youku.com"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "ad.mobile.youku.com"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "adash-c.m.taobao.com"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "adash-c.ut.taobao.com"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "adash-emas.cn-hangzhou.aliyuncs.com"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "adash.m.taobao.com"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "adash.man.aliyuncs.com"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "adashbc.m.taobao.com"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "adashbc.ut.taobao.com"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "adashx.m.taobao.com"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "adashx.ut.amap.com"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "adashx.ut.ele.me"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "adashx.ut.youku.com"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "adashx4ae.ut.taobao.com"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "adashx4yt.m.taobao.com"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "adashxgc.ut.taobao.com"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "ads.uc.cn"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "adsh.m.taobao.com"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "adslot.uc.cn"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "adtrack.quark.cn"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "ae-rus.net"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "aedns.ru"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "aeplatform.ru"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "aestatic.net"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "ali-health.com"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "aliapp.org"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "alibaba"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "alibaba-inc.com"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "alibaba.com"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "alibabacapital.com"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "alibabachengdun.com"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "alibabachengdun.net"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "alibabacloud.co.in"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "alibabacloud.com"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "alibabacloud.com.au"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "alibabacloud.com.hk"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "alibabacloud.com.my"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "alibabacloud.com.sg"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "alibabacloud.com.tw"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "alibabacorp.com"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "alibabadesign.com"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "alibabadns.com"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "alibabadoctor.com"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "alibabafonts.com"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "alibabafoundation.com"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "alibabafuturehotel.com"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "alibabagroup.com"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "alibabapictures.com"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "alibabaplanet.com"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "alibabaued.com"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "alibabausercontent.com"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "alicdn.com"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "alicloud.com"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "alicloudapi.com"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "alicloudccp.com"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "alidayu.com"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "alidns.com"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "aliexpress-media.com"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "aliexpress.com"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "aliexpress.ru"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "alifanyi.com"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "aligames.com"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "aligenie.com"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "aligfwaf.com"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "alihealth.cn"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "alihealth.com.cn"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "alihealth.hk"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "alihive.com"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "aliimg.com"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "alikmd.com"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "alikunlun.com"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "alikunlun.net"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "alimama.alicdn.com"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "alimama.cn"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "alimama.com"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "alimebot.com"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "alimei.com"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "alimmdn.com"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "alios.cn"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "alipan.com"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "alipay"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "alipay-eco.com"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "alipay.cn"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "alipay.com"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "alipay.com.cn"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "alipay.hk"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "alipaydns.com"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "alipaylog.com"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "alipaymo.com"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "alipayobjects.com"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "alipayplus.com"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "aliplus.com"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "aliresearch.com"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "alisoft.com"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "alisports.com"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "alitianji.com"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "alitrip.com"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "aliunicorn.com"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "aliway.com"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "aliwork.com"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "aliwx.com.cn"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "aliwx.net"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "alixiaomi.com"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "aliyun-inc.com"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "aliyun-iot-share.com"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "aliyun.com"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "aliyuncdn.com"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "aliyuncdn.net"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "aliyundrive.cloud"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "aliyundrive.com"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "aliyundrive.net"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "aliyunfile.com"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "aliyunidaas.com"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "aliyunpds.com"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "alizhaopin.com"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "alog.umeng.com"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "alog.umengcloud.com"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "alogs.umeng.com"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "alogus.umeng.com"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "alyms.cn"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "alysm.cn"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "amap.com"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "amap.net"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "amapauto.com"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "anav.com"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "antfin.com"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "antfortune.com"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "antgroup-inc.cn"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "antgroup.com"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "ap-southeast-1.aliyuncs.com"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "ar.umeng.com"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "asczwa.com"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "asczxcefsv.com"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "asmlink.cn"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "aspect-upush.umeng.com"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "atanx.alicdn.com"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "atanx2.alicdn.com"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "atatech.org"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "atm.youku.com"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "audid.umeng.com"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "autonavi.com"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "b2byao.com"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "baichuan-sdk.alicdn.com"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "bazai.com"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "bcvbw.com"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "c-adash.m.taobao.com"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "cainiao-inc.com"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "cainiao.com"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "cainiao.com.cn"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "cainiaoyizhan.com"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "ccs.umeng.com"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "cdngslb.com"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "cheng.xin"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "cloudeagle.cn"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "cn-beijing.aliyuncs.com"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "cn-chengdu.aliyuncs.com"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "cn-guangzhou.aliyuncs.com"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "cn-hangzhou.aliyuncs.com"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "cn-hongkong.aliyuncs.com"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "cn-shanghai.aliyuncs.com"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "cnlogs.umeng.com"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "cnlogs.umengcloud.com"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "cnzz.com"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "cueme.cn"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "damai.cn"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "danniao.com"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "dayu.com"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "ddurl.to"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "dfkhgj.com"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "dianwoda.cn"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "dianwoda.com"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "dingding.xin"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "dingstore.cn"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "dingtalk.cn"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "dingtalk.com"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "dingtalk.net"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "dingtalkapps.com"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "dingtalkcloud.com"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "doctoryou.ai"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "doctoryou.cn"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "dongting.com"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "doservice.com"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "dratio.com"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "dualstack-logs.amap.com"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "duanqu.com"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "e.stat.ykimg.com"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "ele.me"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "ele.to"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "eleme.cn"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "eleme.io"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "elemecdn.cn"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "elemecdn.com"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "elenet.me"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "emas-poc.com"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "ems.youku.com"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "etao.com"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "fcapp.run"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "feizhu.cn"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "feizhu.com"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "fengniaojipei.net"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "fliggy.com"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "fliggy.hk"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "fourier.taobao.com"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "freshhema.com"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "freshippo.com"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "fund123.cn"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "g.click.taobao.com"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "gaode.com"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "gongyi.xin"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "goofish.com"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "guanggaoad.youku.com"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "guoguo-app.com"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "h-adashx.ut.ele.me"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "h-adashx.ut.taobao.com"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "h-adashx.ut.youku.com"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "h-adashx4yt.ut.taobao.com"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "hemamax.com"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "hemaos.com"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "hemashare.cn"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "hichina.com"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "hotfix-api.aliyuncs.com"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "hupan.com"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "hzchengdun.com"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "hzchengdun.net"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "ialicdn.com"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "ica-alliance.org"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "iconfont.cn"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "ics.design"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "imgcook.com"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "ishuqi.com"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "iuynfg.com"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "jhgtgb.com"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "jiaoyimao.cn"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "jiaoyimao.com"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "jiyoujia.com"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "juhuasuan.com"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "kanbox.com"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "kaola.com"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "kaolacdn.com"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "koubei.com"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "kumiao.com"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "kunlunaq.com"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "kunlunar.com"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "kunlunca.com"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "kunluncan.com"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "kunlunea.com"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "kunlungem.com"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "kunlungr.com"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "kunlunhuf.com"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "kunlunle.com"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "kunlunli.com"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "kunlunno.com"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "kunlunpi.com"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "kunlunra.com"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "kunlunsa.com"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "kunlunsc.com"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "kunlunsl.com"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "kunlunso.com"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "kunlunta.com"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "kunlunvi.com"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "kunlunwe.com"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "laiwang.com"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "lazada.com"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "liangxinyao.com"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "lingshoujia.com"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "lingxigames.com"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "log-global.aliyuncs.com"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "log.umtrack.com"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "logs.amap.com"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "lstat.youku.com"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "lwurl.to"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "lydaas.cn"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "lydaas.com"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "lydaas.com.cn"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "lydaas.net"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "lydass.cn"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "lydass.com.cn"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "lydass.net"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "m-adash.m.taobao.com"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "m-now.cn"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "maitix.com"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "mappcloud.com"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "marketing.alibaba.com"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "mashort.cn"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "mdeer.com"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "mei.com"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "miaostreet.com"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "miaoya.cn"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "mmstat.com"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "mobilemsg.youku.com"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "mobmore.com"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "msg.youku.com"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "mshare.cc"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "mxhichina.com"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "myalicdn.com"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "myquark.cn"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "nbsdk-baichuan.alicdn.com"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "nbsdk-baichuan.taobao.com"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "new-aaid.umeng.com"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "new-aaid.umeng.com.gds.alibabadns.com"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "newstjk.com"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "nic.xin"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "npmmirror.com"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "oc.umeng.com"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "open-uc.cn"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "optimus-ads.amap.com"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "oss-ap-northeast-1.aliyuncs.com"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "oss-ap-northeast-2.aliyuncs.com"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "oss-ap-south-1.aliyuncs.com"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "oss-ap-southeast-1.aliyuncs.com"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "oss-ap-southeast-2.aliyuncs.com"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "oss-ap-southeast-3.aliyuncs.com"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "oss-ap-southeast-5.aliyuncs.com"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "oss-ap-southeast-6.aliyuncs.com"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "oss-ap-southeast-7.aliyuncs.com"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "oss-cn-beijing.aliyuncs.com"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "oss-cn-chengdu.aliyuncs.com"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "oss-cn-guangzhou.aliyuncs.com"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "oss-cn-hangzhou.aliyuncs.com"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "oss-cn-heyuan.aliyuncs.com"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "oss-cn-hongkong.aliyuncs.com"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "oss-cn-huhehaote.aliyuncs.com"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "oss-cn-nanjing.aliyuncs.com"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "oss-cn-qingdao.aliyuncs.com"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "oss-cn-shanghai.aliyuncs.com"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "oss-cn-shenzhen.aliyuncs.com"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "oss-cn-wulanchabu.aliyuncs.com"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "oss-cn-zhangjiakou.aliyuncs.com"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "oss-eu-central-1.aliyuncs.com"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "oss-eu-west-1.aliyuncs.com"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "oss-me-east-1.aliyuncs.com"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "oss-us-east-1.aliyuncs.com"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "oss-us-west-1.aliyuncs.com"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "p-log.ykimg.com"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "pailitao.com"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "passport-log.youku.com"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "philanthropy.xin"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "phpwind.com"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "phpwind.net"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "pl.youku.com"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "plbslog.umeng.com"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "pp.cn"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "puata.info"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "qingtingtrip.com"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "quark.cn"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "registry.aliyuncs.com"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "resolve.umeng.com"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "retcode.taobao.com"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "rexpos.cn"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "s-adashx.ut.youku.com"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "saee.org.cn"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "shejijia.com"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "shenjing.com"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "shujupie.com"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "shuqi.com"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "shuqiapi.com"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "shuqiread.com"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "shuqireader.com"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "shuqistat.com"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "shyhhema.com"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "sm.cn"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "soku.com"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "sparenode.com"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "sqreader.com"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "stat.youku.com"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "statis.api.3g.youku.com"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "supet.com"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "tanx.com"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "taobao"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "taobao.com"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "taobao.net"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "taobao.org"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "taobaocdn.com"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "taobizhong.com"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "taopiaopiao.com"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "taotian.com"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "tb.cn"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "tbcache.com"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "tbcdn.cn"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "tburl.in"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "tce.alicdn.com"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "teambition.com"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "teambition.net"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "teambitionapis.com"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "tmall"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "tmall.com"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "tmall.hk"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "tmall.ru"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "tmalltv.com"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "tmjl.ai"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "tns.simba.taobao.com"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "track.lc.quark.cn"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "ttpod.com"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "tudou.com"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "uc-engine.cn"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "uc.cn"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "uc123.com"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "ucfly.com"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "ucweb.com"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "uczzd.cn"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "ulogs.umeng.com"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "ulogs.umengcloud.com"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "umeng.com"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "umengcloud.com"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "umsns.com"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "umtrack.com"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "utoken.umeng.com"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "uyunad.com"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "v6-adashx.ut.amap.com"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "v6-adashx.ut.cainiao.com"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "v6-adashx.ut.ele.me"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "v6-adashx.ut.taobao.com"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "v6-adashx.ut.youku.com"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "w.cnzz.com"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "wandoujia.com"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "wdjimg.com"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "whalecloud.com"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "xiami.com"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "xiami.fm"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "xiami.net"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "xin.xin"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "xinlingshou.cn"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "xixikf.cn"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "yisou.com"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "yk-ssp.ad.youku.com"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "ykad-data.youku.com"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "ykimg.com"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "youku.com"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "youku.tv"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "youkuhonor.com"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "youkuplay.com"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "yowhale.com"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "yunos-inc.com"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "yunos.com"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "yunpan.aliyun.com"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "yushanfang.com"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "z.gds.cnzz.com"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "zhisheng.com"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "zimgs.cn"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "ztna-dingtalk.com"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "zuodao.com"
+    },
+    {
+      "type": "domain",
+      "value": "account-cn.alibabacloud.com"
+    },
+    {
+      "type": "domain",
+      "value": "api.alibabacloud.com"
+    },
+    {
+      "type": "domain",
+      "value": "cn.alibabacloud.com"
+    },
+    {
+      "type": "domain",
+      "value": "status.alibabacloud.com"
+    },
+    {
+      "type": "domain",
+      "value": "ykimg.alicdn.com"
+    }
+  ]
+}

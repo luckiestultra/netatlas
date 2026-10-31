@@ -1,0 +1,1537 @@
+{
+  "version": 1,
+  "observedAt": "2026-10-31",
+  "reference": {
+    "repository": "Centralmatrix3/Matrix-io",
+    "revision": "a2f8c41c1bc81518d6ea39087e2b2f756503ca3b",
+    "ruleCategories": 110,
+    "guiModuleFamilies": 5,
+    "guiClients": 6,
+    "scripts": 3,
+    "use": "Functional inventory only, no source/payload redistribution or branding."
+  },
+  "ruleCoverage": [
+    {
+      "reference": "5iTV",
+      "canonicalIds": [
+        "five-itv"
+      ],
+      "status": "source",
+      "semanticIdentity": false,
+      "note": "具有独立服务资源；源内容、许可和确切遗漏见来源清单。"
+    },
+    {
+      "reference": "ABC",
+      "canonicalIds": [
+        "abc"
+      ],
+      "status": "source",
+      "semanticIdentity": false,
+      "note": "具有独立服务资源；源内容、许可和确切遗漏见来源清单。"
+    },
+    {
+      "reference": "AMAP",
+      "canonicalIds": [
+        "amap"
+      ],
+      "status": "source",
+      "semanticIdentity": false,
+      "note": "具有独立服务资源；源内容、许可和确切遗漏见来源清单。"
+    },
+    {
+      "reference": "Abema",
+      "canonicalIds": [
+        "abema"
+      ],
+      "status": "source",
+      "semanticIdentity": false,
+      "note": "具有独立服务资源；源内容、许可和确切遗漏见来源清单。"
+    },
+    {
+      "reference": "AcFun",
+      "canonicalIds": [
+        "acfun"
+      ],
+      "status": "source",
+      "semanticIdentity": false,
+      "note": "具有独立服务资源；源内容、许可和确切遗漏见来源清单。"
+    },
+    {
+      "reference": "AdBlock",
+      "canonicalIds": [
+        "adblock",
+        "anti-ad"
+      ],
+      "status": "alternative",
+      "semanticIdentity": false,
+      "note": "独立许可来源/集合或默认策略替代，未声称逐条相等。"
+    },
+    {
+      "reference": "Advertising",
+      "canonicalIds": [
+        "adblock",
+        "anti-ad"
+      ],
+      "status": "alternative",
+      "semanticIdentity": false,
+      "note": "独立许可来源/集合或默认策略替代，未声称逐条相等。"
+    },
+    {
+      "reference": "Akamai",
+      "canonicalIds": [
+        "akamai"
+      ],
+      "status": "source",
+      "semanticIdentity": false,
+      "note": "具有独立服务资源；源内容、许可和确切遗漏见来源清单。"
+    },
+    {
+      "reference": "AliPay",
+      "canonicalIds": [
+        "alipay"
+      ],
+      "status": "source",
+      "semanticIdentity": false,
+      "note": "具有独立服务资源；源内容、许可和确切遗漏见来源清单。"
+    },
+    {
+      "reference": "Alibaba",
+      "canonicalIds": [
+        "alibaba"
+      ],
+      "status": "source",
+      "semanticIdentity": false,
+      "note": "具有独立服务资源；源内容、许可和确切遗漏见来源清单。"
+    },
+    {
+      "reference": "All4",
+      "canonicalIds": [
+        "all4"
+      ],
+      "status": "source",
+      "semanticIdentity": false,
+      "note": "具有独立服务资源；源内容、许可和确切遗漏见来源清单。"
+    },
+    {
+      "reference": "Amazon",
+      "canonicalIds": [
+        "amazon-portable"
+      ],
+      "status": "partial",
+      "semanticIdentity": false,
+      "note": "amazon-portable 明确保留三个不能无损转换的源正则遗漏。"
+    },
+    {
+      "reference": "Android",
+      "canonicalIds": [
+        "android"
+      ],
+      "status": "source",
+      "semanticIdentity": false,
+      "note": "具有独立服务资源；源内容、许可和确切遗漏见来源清单。"
+    },
+    {
+      "reference": "AppStore",
+      "canonicalIds": [
+        "appstore"
+      ],
+      "status": "source",
+      "semanticIdentity": false,
+      "note": "具有独立服务资源；源内容、许可和确切遗漏见来源清单。"
+    },
+    {
+      "reference": "Apple",
+      "canonicalIds": [
+        "apple"
+      ],
+      "status": "source",
+      "semanticIdentity": false,
+      "note": "具有独立服务资源；源内容、许可和确切遗漏见来源清单。"
+    },
+    {
+      "reference": "AppleTV",
+      "canonicalIds": [
+        "apple-tvplus"
+      ],
+      "status": "source",
+      "semanticIdentity": false,
+      "note": "具有独立服务资源；源内容、许可和确切遗漏见来源清单。"
+    },
+    {
+      "reference": "Baidu",
+      "canonicalIds": [
+        "baidu"
+      ],
+      "status": "source",
+      "semanticIdentity": false,
+      "note": "具有独立服务资源；源内容、许可和确切遗漏见来源清单。"
+    },
+    {
+      "reference": "BiliBili",
+      "canonicalIds": [
+        "bilibili"
+      ],
+      "status": "source",
+      "semanticIdentity": false,
+      "note": "具有独立服务资源；源内容、许可和确切遗漏见来源清单。"
+    },
+    {
+      "reference": "Blizzard",
+      "canonicalIds": [
+        "blizzard"
+      ],
+      "status": "source",
+      "semanticIdentity": false,
+      "note": "具有独立服务资源；源内容、许可和确切遗漏见来源清单。"
+    },
+    {
+      "reference": "ByteDance",
+      "canonicalIds": [
+        "bytedance"
+      ],
+      "status": "source",
+      "semanticIdentity": false,
+      "note": "具有独立服务资源；源内容、许可和确切遗漏见来源清单。"
+    },
+    {
+      "reference": "ChinaASN",
+      "canonicalIds": [
+        "china-ipv4",
+        "china-ipv6"
+      ],
+      "status": "native-difference",
+      "semanticIdentity": false,
+      "note": "没有提供 ASN 编号匹配数据；使用 CN IPv4/IPv6 兜底。ASN 归属与静态国家 CIDR 不等价。"
+    },
+    {
+      "reference": "ChinaBGP",
+      "canonicalIds": [
+        "china-ipv4",
+        "china-ipv6"
+      ],
+      "status": "alternative",
+      "semanticIdentity": false,
+      "note": "独立许可来源/集合或默认策略替代，未声称逐条相等。"
+    },
+    {
+      "reference": "ChinaIP",
+      "canonicalIds": [
+        "china-ipv4",
+        "china-ipv6"
+      ],
+      "status": "alternative",
+      "semanticIdentity": false,
+      "note": "独立许可来源/集合或默认策略替代，未声称逐条相等。"
+    },
+    {
+      "reference": "ChinaIPv4",
+      "canonicalIds": [
+        "china-ipv4"
+      ],
+      "status": "alternative",
+      "semanticIdentity": false,
+      "note": "独立许可来源/集合或默认策略替代，未声称逐条相等。"
+    },
+    {
+      "reference": "ChinaIPv6",
+      "canonicalIds": [
+        "china-ipv6"
+      ],
+      "status": "alternative",
+      "semanticIdentity": false,
+      "note": "独立许可来源/集合或默认策略替代，未声称逐条相等。"
+    },
+    {
+      "reference": "ChinaMedia",
+      "canonicalIds": [
+        "china-media"
+      ],
+      "status": "alternative",
+      "semanticIdentity": false,
+      "note": "独立许可来源/集合或默认策略替代，未声称逐条相等。"
+    },
+    {
+      "reference": "Claude",
+      "canonicalIds": [
+        "claude"
+      ],
+      "status": "source",
+      "semanticIdentity": false,
+      "note": "具有独立服务资源；源内容、许可和确切遗漏见来源清单。"
+    },
+    {
+      "reference": "Coolapk",
+      "canonicalIds": [
+        "coolapk"
+      ],
+      "status": "source",
+      "semanticIdentity": false,
+      "note": "具有独立服务资源；源内容、许可和确切遗漏见来源清单。"
+    },
+    {
+      "reference": "DIRECT",
+      "canonicalIds": [
+        "china",
+        "china-ipv4",
+        "china-ipv6"
+      ],
+      "status": "alternative",
+      "semanticIdentity": false,
+      "note": "内置直连策略与国内域/IP 集合；不将它说成同名集合。"
+    },
+    {
+      "reference": "Deezer",
+      "canonicalIds": [
+        "deezer"
+      ],
+      "status": "source",
+      "semanticIdentity": false,
+      "note": "具有独立服务资源；源内容、许可和确切遗漏见来源清单。"
+    },
+    {
+      "reference": "Discord",
+      "canonicalIds": [
+        "discord"
+      ],
+      "status": "source",
+      "semanticIdentity": false,
+      "note": "具有独立服务资源；源内容、许可和确切遗漏见来源清单。"
+    },
+    {
+      "reference": "Discovery",
+      "canonicalIds": [
+        "discovery"
+      ],
+      "status": "source",
+      "semanticIdentity": false,
+      "note": "具有独立服务资源；源内容、许可和确切遗漏见来源清单。"
+    },
+    {
+      "reference": "Disney",
+      "canonicalIds": [
+        "disney"
+      ],
+      "status": "source",
+      "semanticIdentity": false,
+      "note": "具有独立服务资源；源内容、许可和确切遗漏见来源清单。"
+    },
+    {
+      "reference": "Docker",
+      "canonicalIds": [
+        "docker"
+      ],
+      "status": "source",
+      "semanticIdentity": false,
+      "note": "具有独立服务资源；源内容、许可和确切遗漏见来源清单。"
+    },
+    {
+      "reference": "DouBan",
+      "canonicalIds": [
+        "douban"
+      ],
+      "status": "source",
+      "semanticIdentity": false,
+      "note": "具有独立服务资源；源内容、许可和确切遗漏见来源清单。"
+    },
+    {
+      "reference": "DouYin",
+      "canonicalIds": [
+        "douyin"
+      ],
+      "status": "source",
+      "semanticIdentity": false,
+      "note": "具有独立服务资源；源内容、许可和确切遗漏见来源清单。"
+    },
+    {
+      "reference": "DouYu",
+      "canonicalIds": [
+        "douyu"
+      ],
+      "status": "source",
+      "semanticIdentity": false,
+      "note": "具有独立服务资源；源内容、许可和确切遗漏见来源清单。"
+    },
+    {
+      "reference": "Dropbox",
+      "canonicalIds": [
+        "dropbox"
+      ],
+      "status": "source",
+      "semanticIdentity": false,
+      "note": "具有独立服务资源；源内容、许可和确切遗漏见来源清单。"
+    },
+    {
+      "reference": "EncoreTVB",
+      "canonicalIds": [
+        "tvb"
+      ],
+      "status": "alternative",
+      "semanticIdentity": false,
+      "note": "使用 TVB 许可来源；不把 TVB 全体域名叫作 EncoreTVB 专属集合。"
+    },
+    {
+      "reference": "Facebook",
+      "canonicalIds": [
+        "facebook"
+      ],
+      "status": "source",
+      "semanticIdentity": false,
+      "note": "具有独立服务资源；源内容、许可和确切遗漏见来源清单。"
+    },
+    {
+      "reference": "GEOIPCN",
+      "canonicalIds": [
+        "china-ipv4",
+        "china-ipv6"
+      ],
+      "status": "native-difference",
+      "semanticIdentity": false,
+      "note": "使用固定许可来源 CN CIDR，未伪装为动态 GeoIP 数据库匹配。"
+    },
+    {
+      "reference": "Gemini",
+      "canonicalIds": [
+        "gemini"
+      ],
+      "status": "source",
+      "semanticIdentity": false,
+      "note": "具有独立服务资源；源内容、许可和确切遗漏见来源清单。"
+    },
+    {
+      "reference": "GitHub",
+      "canonicalIds": [
+        "github"
+      ],
+      "status": "source",
+      "semanticIdentity": false,
+      "note": "具有独立服务资源；源内容、许可和确切遗漏见来源清单。"
+    },
+    {
+      "reference": "GitLab",
+      "canonicalIds": [
+        "gitlab"
+      ],
+      "status": "source",
+      "semanticIdentity": false,
+      "note": "具有独立服务资源；源内容、许可和确切遗漏见来源清单。"
+    },
+    {
+      "reference": "Global",
+      "canonicalIds": [
+        "global"
+      ],
+      "status": "alternative",
+      "semanticIdentity": false,
+      "note": "可选完整 Proxy_Classical 五类型替代集；不是参考 Global 的逐条复制，不默认加载。"
+    },
+    {
+      "reference": "GlobalMedia",
+      "canonicalIds": [
+        "global-media"
+      ],
+      "status": "alternative",
+      "semanticIdentity": false,
+      "note": "独立许可来源/集合或默认策略替代，未声称逐条相等。"
+    },
+    {
+      "reference": "Google",
+      "canonicalIds": [
+        "google"
+      ],
+      "status": "source",
+      "semanticIdentity": false,
+      "note": "具有独立服务资源；源内容、许可和确切遗漏见来源清单。"
+    },
+    {
+      "reference": "GoogleCN",
+      "canonicalIds": [
+        "google-cn"
+      ],
+      "status": "partial",
+      "semanticIdentity": false,
+      "note": "独立 @cn 可选选择，不改变 Google 默认代理；两个正则遗漏原文与原因已登记。"
+    },
+    {
+      "reference": "HBO",
+      "canonicalIds": [
+        "hbo"
+      ],
+      "status": "source",
+      "semanticIdentity": false,
+      "note": "具有独立服务资源；源内容、许可和确切遗漏见来源清单。"
+    },
+    {
+      "reference": "HBOAsia",
+      "canonicalIds": [
+        "hbo-asia"
+      ],
+      "status": "source",
+      "semanticIdentity": false,
+      "note": "具有独立服务资源；源内容、许可和确切遗漏见来源清单。"
+    },
+    {
+      "reference": "HMTMedia",
+      "canonicalIds": [
+        "hmt-media"
+      ],
+      "status": "alternative",
+      "semanticIdentity": false,
+      "note": "独立许可来源/集合或默认策略替代，未声称逐条相等。"
+    },
+    {
+      "reference": "Heroku",
+      "canonicalIds": [
+        "heroku"
+      ],
+      "status": "source",
+      "semanticIdentity": false,
+      "note": "具有独立服务资源；源内容、许可和确切遗漏见来源清单。"
+    },
+    {
+      "reference": "HuYa",
+      "canonicalIds": [
+        "huya"
+      ],
+      "status": "source",
+      "semanticIdentity": false,
+      "note": "具有独立服务资源；源内容、许可和确切遗漏见来源清单。"
+    },
+    {
+      "reference": "Hulu",
+      "canonicalIds": [
+        "hulu"
+      ],
+      "status": "source",
+      "semanticIdentity": false,
+      "note": "具有独立服务资源；源内容、许可和确切遗漏见来源清单。"
+    },
+    {
+      "reference": "HuluJP",
+      "canonicalIds": [
+        "hulu-jp"
+      ],
+      "status": "source",
+      "semanticIdentity": false,
+      "note": "具有独立服务资源；源内容、许可和确切遗漏见来源清单。"
+    },
+    {
+      "reference": "IQiYi",
+      "canonicalIds": [
+        "iqiyi"
+      ],
+      "status": "source",
+      "semanticIdentity": false,
+      "note": "具有独立服务资源；源内容、许可和确切遗漏见来源清单。"
+    },
+    {
+      "reference": "JOOX",
+      "canonicalIds": [
+        "joox"
+      ],
+      "status": "source",
+      "semanticIdentity": false,
+      "note": "具有独立服务资源；源内容、许可和确切遗漏见来源清单。"
+    },
+    {
+      "reference": "KKBOX",
+      "canonicalIds": [
+        "kkbox"
+      ],
+      "status": "source",
+      "semanticIdentity": false,
+      "note": "具有独立服务资源；源内容、许可和确切遗漏见来源清单。"
+    },
+    {
+      "reference": "KKTV",
+      "canonicalIds": [
+        "kktv"
+      ],
+      "status": "source",
+      "semanticIdentity": false,
+      "note": "具有独立服务资源；源内容、许可和确切遗漏见来源清单。"
+    },
+    {
+      "reference": "LAN",
+      "canonicalIds": [
+        "lan"
+      ],
+      "status": "source",
+      "semanticIdentity": false,
+      "note": "具有独立服务资源；源内容、许可和确切遗漏见来源清单。"
+    },
+    {
+      "reference": "Microsoft",
+      "canonicalIds": [
+        "microsoft"
+      ],
+      "status": "source",
+      "semanticIdentity": false,
+      "note": "具有独立服务资源；源内容、许可和确切遗漏见来源清单。"
+    },
+    {
+      "reference": "Mozilla",
+      "canonicalIds": [
+        "mozilla"
+      ],
+      "status": "source",
+      "semanticIdentity": false,
+      "note": "具有独立服务资源；源内容、许可和确切遗漏见来源清单。"
+    },
+    {
+      "reference": "MyTVSuper",
+      "canonicalIds": [
+        "mytvsuper"
+      ],
+      "status": "source",
+      "semanticIdentity": false,
+      "note": "具有独立服务资源；源内容、许可和确切遗漏见来源清单。"
+    },
+    {
+      "reference": "NetEase",
+      "canonicalIds": [
+        "netease"
+      ],
+      "status": "source",
+      "semanticIdentity": false,
+      "note": "具有独立服务资源；源内容、许可和确切遗漏见来源清单。"
+    },
+    {
+      "reference": "NetEaseMusic",
+      "canonicalIds": [
+        "netease-music"
+      ],
+      "status": "source",
+      "semanticIdentity": false,
+      "note": "具有独立服务资源；源内容、许可和确切遗漏见来源清单。"
+    },
+    {
+      "reference": "Netflix",
+      "canonicalIds": [
+        "netflix"
+      ],
+      "status": "source",
+      "semanticIdentity": false,
+      "note": "具有独立服务资源；源内容、许可和确切遗漏见来源清单。"
+    },
+    {
+      "reference": "Niconico",
+      "canonicalIds": [
+        "niconico"
+      ],
+      "status": "source",
+      "semanticIdentity": false,
+      "note": "具有独立服务资源；源内容、许可和确切遗漏见来源清单。"
+    },
+    {
+      "reference": "NivodTV",
+      "canonicalIds": [
+        "mudvod"
+      ],
+      "status": "source",
+      "semanticIdentity": false,
+      "note": "具有独立服务资源；源内容、许可和确切遗漏见来源清单。"
+    },
+    {
+      "reference": "Notion",
+      "canonicalIds": [
+        "notion"
+      ],
+      "status": "source",
+      "semanticIdentity": false,
+      "note": "具有独立服务资源；源内容、许可和确切遗漏见来源清单。"
+    },
+    {
+      "reference": "Olevod",
+      "canonicalIds": [
+        "olevod"
+      ],
+      "status": "source",
+      "semanticIdentity": false,
+      "note": "具有独立服务资源；源内容、许可和确切遗漏见来源清单。"
+    },
+    {
+      "reference": "OneDrive",
+      "canonicalIds": [
+        "onedrive"
+      ],
+      "status": "source",
+      "semanticIdentity": false,
+      "note": "具有独立服务资源；源内容、许可和确切遗漏见来源清单。"
+    },
+    {
+      "reference": "OpenAI",
+      "canonicalIds": [
+        "openai"
+      ],
+      "status": "source",
+      "semanticIdentity": false,
+      "note": "具有独立服务资源；源内容、许可和确切遗漏见来源清单。"
+    },
+    {
+      "reference": "Oracle",
+      "canonicalIds": [
+        "oracle"
+      ],
+      "status": "source",
+      "semanticIdentity": false,
+      "note": "具有独立服务资源；源内容、许可和确切遗漏见来源清单。"
+    },
+    {
+      "reference": "PPVideo",
+      "canonicalIds": [
+        "pptv"
+      ],
+      "status": "source",
+      "semanticIdentity": false,
+      "note": "具有独立服务资源；源内容、许可和确切遗漏见来源清单。"
+    },
+    {
+      "reference": "PROXY",
+      "canonicalIds": [
+        "global"
+      ],
+      "status": "alternative",
+      "semanticIdentity": false,
+      "note": "默认最终策略已走节点选择；另提供可选 global 数据，两个概念不混同。"
+    },
+    {
+      "reference": "PayPal",
+      "canonicalIds": [
+        "paypal"
+      ],
+      "status": "source",
+      "semanticIdentity": false,
+      "note": "具有独立服务资源；源内容、许可和确切遗漏见来源清单。"
+    },
+    {
+      "reference": "PikPak",
+      "canonicalIds": [
+        "pikpak"
+      ],
+      "status": "source",
+      "semanticIdentity": false,
+      "note": "具有独立服务资源；源内容、许可和确切遗漏见来源清单。"
+    },
+    {
+      "reference": "PornHub",
+      "canonicalIds": [
+        "pornhub"
+      ],
+      "status": "source",
+      "semanticIdentity": false,
+      "note": "具有独立服务资源；源内容、许可和确切遗漏见来源清单。"
+    },
+    {
+      "reference": "PrimeVideo",
+      "canonicalIds": [
+        "primevideo"
+      ],
+      "status": "source",
+      "semanticIdentity": false,
+      "note": "具有独立服务资源；源内容、许可和确切遗漏见来源清单。"
+    },
+    {
+      "reference": "Qobuz",
+      "canonicalIds": [
+        "qobuz"
+      ],
+      "status": "source",
+      "semanticIdentity": false,
+      "note": "具有独立服务资源；源内容、许可和确切遗漏见来源清单。"
+    },
+    {
+      "reference": "Quark",
+      "canonicalIds": [
+        "quark"
+      ],
+      "status": "source",
+      "semanticIdentity": false,
+      "note": "具有独立服务资源；源内容、许可和确切遗漏见来源清单。"
+    },
+    {
+      "reference": "Quora",
+      "canonicalIds": [
+        "quora"
+      ],
+      "status": "source",
+      "semanticIdentity": false,
+      "note": "具有独立服务资源；源内容、许可和确切遗漏见来源清单。"
+    },
+    {
+      "reference": "REJECT",
+      "canonicalIds": [
+        "adblock",
+        "anti-ad"
+      ],
+      "status": "alternative",
+      "semanticIdentity": false,
+      "note": "独立许可来源/集合或默认策略替代，未声称逐条相等。"
+    },
+    {
+      "reference": "RedBook",
+      "canonicalIds": [
+        "xiaohongshu"
+      ],
+      "status": "source",
+      "semanticIdentity": false,
+      "note": "具有独立服务资源；源内容、许可和确切遗漏见来源清单。"
+    },
+    {
+      "reference": "SoundCloud",
+      "canonicalIds": [
+        "soundcloud"
+      ],
+      "status": "source",
+      "semanticIdentity": false,
+      "note": "具有独立服务资源；源内容、许可和确切遗漏见来源清单。"
+    },
+    {
+      "reference": "Speedtest",
+      "canonicalIds": [
+        "speedtest"
+      ],
+      "status": "source",
+      "semanticIdentity": false,
+      "note": "具有独立服务资源；源内容、许可和确切遗漏见来源清单。"
+    },
+    {
+      "reference": "Spotify",
+      "canonicalIds": [
+        "spotify"
+      ],
+      "status": "source",
+      "semanticIdentity": false,
+      "note": "具有独立服务资源；源内容、许可和确切遗漏见来源清单。"
+    },
+    {
+      "reference": "Steam",
+      "canonicalIds": [
+        "steam"
+      ],
+      "status": "source",
+      "semanticIdentity": false,
+      "note": "具有独立服务资源；源内容、许可和确切遗漏见来源清单。"
+    },
+    {
+      "reference": "SteamCN",
+      "canonicalIds": [
+        "steam-cn"
+      ],
+      "status": "source",
+      "semanticIdentity": false,
+      "note": "具有独立服务资源；源内容、许可和确切遗漏见来源清单。"
+    },
+    {
+      "reference": "TIDAL",
+      "canonicalIds": [
+        "tidal"
+      ],
+      "status": "source",
+      "semanticIdentity": false,
+      "note": "具有独立服务资源；源内容、许可和确切遗漏见来源清单。"
+    },
+    {
+      "reference": "TapTap",
+      "canonicalIds": [
+        "taptap"
+      ],
+      "status": "source",
+      "semanticIdentity": false,
+      "note": "具有独立服务资源；源内容、许可和确切遗漏见来源清单。"
+    },
+    {
+      "reference": "Telegram",
+      "canonicalIds": [
+        "telegram"
+      ],
+      "status": "source",
+      "semanticIdentity": false,
+      "note": "具有独立服务资源；源内容、许可和确切遗漏见来源清单。"
+    },
+    {
+      "reference": "Tencent",
+      "canonicalIds": [
+        "tencent"
+      ],
+      "status": "source",
+      "semanticIdentity": false,
+      "note": "具有独立服务资源；源内容、许可和确切遗漏见来源清单。"
+    },
+    {
+      "reference": "TeraBox",
+      "canonicalIds": [
+        "terabox"
+      ],
+      "status": "source",
+      "semanticIdentity": false,
+      "note": "具有独立服务资源；源内容、许可和确切遗漏见来源清单。"
+    },
+    {
+      "reference": "TikTok",
+      "canonicalIds": [
+        "tiktok"
+      ],
+      "status": "source",
+      "semanticIdentity": false,
+      "note": "具有独立服务资源；源内容、许可和确切遗漏见来源清单。"
+    },
+    {
+      "reference": "Twitch",
+      "canonicalIds": [
+        "twitch"
+      ],
+      "status": "source",
+      "semanticIdentity": false,
+      "note": "具有独立服务资源；源内容、许可和确切遗漏见来源清单。"
+    },
+    {
+      "reference": "Twitter",
+      "canonicalIds": [
+        "twitter"
+      ],
+      "status": "source",
+      "semanticIdentity": false,
+      "note": "具有独立服务资源；源内容、许可和确切遗漏见来源清单。"
+    },
+    {
+      "reference": "Unbreak",
+      "canonicalIds": [
+        "unbreak"
+      ],
+      "status": "alternative",
+      "semanticIdentity": false,
+      "note": "自有三个精确连接探测白名单，非参考集合逐条等价，不能声称完整修正所有误拦截。"
+    },
+    {
+      "reference": "Vercel",
+      "canonicalIds": [
+        "vercel"
+      ],
+      "status": "source",
+      "semanticIdentity": false,
+      "note": "具有独立服务资源；源内容、许可和确切遗漏见来源清单。"
+    },
+    {
+      "reference": "ViuTV",
+      "canonicalIds": [
+        "viu-portable"
+      ],
+      "status": "partial",
+      "semanticIdentity": false,
+      "note": "使用 viu-portable 来源，不宣称 Viu、NowE 与 ViuTV 三项服务完全等价。"
+    },
+    {
+      "reference": "WeChat",
+      "canonicalIds": [
+        "wechat"
+      ],
+      "status": "source",
+      "semanticIdentity": false,
+      "note": "具有独立服务资源；源内容、许可和确切遗漏见来源清单。"
+    },
+    {
+      "reference": "WeiBo",
+      "canonicalIds": [
+        "weibo"
+      ],
+      "status": "source",
+      "semanticIdentity": false,
+      "note": "具有独立服务资源；源内容、许可和确切遗漏见来源清单。"
+    },
+    {
+      "reference": "WhatsApp",
+      "canonicalIds": [
+        "whatsapp"
+      ],
+      "status": "source",
+      "semanticIdentity": false,
+      "note": "具有独立服务资源；源内容、许可和确切遗漏见来源清单。"
+    },
+    {
+      "reference": "Wikimedia",
+      "canonicalIds": [
+        "wikimedia"
+      ],
+      "status": "source",
+      "semanticIdentity": false,
+      "note": "具有独立服务资源；源内容、许可和确切遗漏见来源清单。"
+    },
+    {
+      "reference": "Ximalaya",
+      "canonicalIds": [
+        "ximalaya"
+      ],
+      "status": "source",
+      "semanticIdentity": false,
+      "note": "具有独立服务资源；源内容、许可和确切遗漏见来源清单。"
+    },
+    {
+      "reference": "Yandex",
+      "canonicalIds": [
+        "yandex"
+      ],
+      "status": "source",
+      "semanticIdentity": false,
+      "note": "具有独立服务资源；源内容、许可和确切遗漏见来源清单。"
+    },
+    {
+      "reference": "YouTube",
+      "canonicalIds": [
+        "youtube"
+      ],
+      "status": "source",
+      "semanticIdentity": false,
+      "note": "具有独立服务资源；源内容、许可和确切遗漏见来源清单。"
+    },
+    {
+      "reference": "Youku",
+      "canonicalIds": [
+        "youku"
+      ],
+      "status": "source",
+      "semanticIdentity": false,
+      "note": "具有独立服务资源；源内容、许可和确切遗漏见来源清单。"
+    },
+    {
+      "reference": "Z-Library",
+      "canonicalIds": [
+        "z-library"
+      ],
+      "status": "source",
+      "semanticIdentity": false,
+      "note": "具有独立服务资源；源内容、许可和确切遗漏见来源清单。"
+    },
+    {
+      "reference": "iCloud",
+      "canonicalIds": [
+        "icloud"
+      ],
+      "status": "source",
+      "semanticIdentity": false,
+      "note": "具有独立服务资源；源内容、许可和确切遗漏见来源清单。"
+    }
+  ],
+  "featureCoverage": [
+    {
+      "client": "quantumultX",
+      "features": [
+        {
+          "id": "geoip",
+          "artifacts": [
+            "scripts/geoip.js",
+            "fragments/geoip.conf"
+          ],
+          "kind": "general-fragment",
+          "nativeApp": "not-run"
+        },
+        {
+          "id": "search-redirect",
+          "artifacts": [
+            "rewrites/search-redirect.snippet"
+          ],
+          "kind": "rewrite-resource",
+          "nativeApp": "not-run"
+        },
+        {
+          "id": "anti-ad",
+          "artifacts": [
+            "fragments/anti-ad.conf"
+          ],
+          "kind": "merge-fragment",
+          "nativeApp": "not-run"
+        },
+        {
+          "id": "https-upgrade",
+          "artifacts": [
+            "rewrites/https-upgrade.snippet"
+          ],
+          "kind": "rewrite-resource",
+          "nativeApp": "not-run"
+        },
+        {
+          "id": "quick-search",
+          "artifacts": [
+            "rewrites/quick-search.snippet"
+          ],
+          "kind": "rewrite-resource",
+          "nativeApp": "not-run"
+        },
+        {
+          "id": "redirects",
+          "artifacts": [
+            "rewrites/redirects.snippet"
+          ],
+          "kind": "rewrite-resource",
+          "nativeApp": "not-run"
+        },
+        {
+          "id": "biliintl-region",
+          "artifacts": [
+            "rewrites/biliintl-region.snippet"
+          ],
+          "kind": "rewrite-resource",
+          "nativeApp": "not-run"
+        },
+        {
+          "id": "boxjs",
+          "artifacts": [
+            "modules/boxjs.snippet"
+          ],
+          "kind": "rewrite-resource",
+          "nativeApp": "not-run"
+        },
+        {
+          "id": "script-hub",
+          "artifacts": [
+            "modules/script-hub.snippet"
+          ],
+          "kind": "rewrite-resource",
+          "nativeApp": "not-run"
+        },
+        {
+          "id": "sub-store",
+          "artifacts": [
+            "modules/sub-store.snippet"
+          ],
+          "kind": "rewrite-resource",
+          "nativeApp": "not-run"
+        },
+        {
+          "id": "resource-parser",
+          "artifacts": [
+            "fragments/resource-parser.conf"
+          ],
+          "kind": "manual-general-fragment",
+          "nativeApp": "not-run"
+        }
+      ],
+      "httpJsRewrites": "native-installers-not-device-tested",
+      "externalTools": null
+    },
+    {
+      "client": "surge",
+      "features": [
+        {
+          "id": "geoip",
+          "artifacts": [
+            "scripts/geoip.js",
+            "modules/geoip.sgmodule"
+          ],
+          "kind": "generic-panel",
+          "nativeApp": "not-run"
+        },
+        {
+          "id": "search-redirect",
+          "artifacts": [
+            "rewrites/search-redirect.sgmodule"
+          ],
+          "kind": "sgmodule",
+          "nativeApp": "not-run"
+        },
+        {
+          "id": "anti-ad",
+          "artifacts": [
+            "modules/anti-ad.sgmodule"
+          ],
+          "kind": "sgmodule",
+          "nativeApp": "not-run"
+        },
+        {
+          "id": "https-upgrade",
+          "artifacts": [
+            "rewrites/https-upgrade.sgmodule"
+          ],
+          "kind": "sgmodule",
+          "nativeApp": "not-run"
+        },
+        {
+          "id": "quick-search",
+          "artifacts": [
+            "rewrites/quick-search.sgmodule"
+          ],
+          "kind": "sgmodule",
+          "nativeApp": "not-run"
+        },
+        {
+          "id": "redirects",
+          "artifacts": [
+            "rewrites/redirects.sgmodule"
+          ],
+          "kind": "sgmodule",
+          "nativeApp": "not-run"
+        },
+        {
+          "id": "biliintl-region",
+          "artifacts": [
+            "rewrites/biliintl-region.sgmodule"
+          ],
+          "kind": "sgmodule",
+          "nativeApp": "not-run"
+        },
+        {
+          "id": "boxjs",
+          "artifacts": [
+            "modules/boxjs.sgmodule"
+          ],
+          "kind": "sgmodule",
+          "nativeApp": "not-run"
+        },
+        {
+          "id": "script-hub",
+          "artifacts": [
+            "modules/script-hub.sgmodule"
+          ],
+          "kind": "sgmodule",
+          "nativeApp": "not-run"
+        },
+        {
+          "id": "sub-store",
+          "artifacts": [
+            "modules/sub-store.sgmodule"
+          ],
+          "kind": "sgmodule",
+          "nativeApp": "not-run"
+        },
+        {
+          "id": "body-replacement",
+          "artifacts": [
+            "scripts/replace-body.js",
+            "fragments/replace-body.conf"
+          ],
+          "kind": "script-and-manual-fragment",
+          "nativeApp": "not-run"
+        }
+      ],
+      "httpJsRewrites": "native-installers-not-device-tested",
+      "externalTools": null
+    },
+    {
+      "client": "loon",
+      "features": [
+        {
+          "id": "anti-ad",
+          "artifacts": [
+            "fragments/anti-ad.conf"
+          ],
+          "kind": "merge-fragment",
+          "nativeApp": "not-run"
+        },
+        {
+          "id": "https-upgrade",
+          "artifacts": [
+            "rewrites/https-upgrade.plugin"
+          ],
+          "kind": "plugin",
+          "nativeApp": "not-run"
+        },
+        {
+          "id": "quick-search",
+          "artifacts": [
+            "rewrites/quick-search.plugin"
+          ],
+          "kind": "plugin",
+          "nativeApp": "not-run"
+        },
+        {
+          "id": "redirects",
+          "artifacts": [
+            "rewrites/redirects.plugin"
+          ],
+          "kind": "plugin",
+          "nativeApp": "not-run"
+        },
+        {
+          "id": "biliintl-region",
+          "artifacts": [
+            "rewrites/biliintl-region.plugin"
+          ],
+          "kind": "plugin",
+          "nativeApp": "not-run"
+        },
+        {
+          "id": "boxjs",
+          "artifacts": [
+            "modules/boxjs.plugin"
+          ],
+          "kind": "plugin",
+          "nativeApp": "not-run"
+        },
+        {
+          "id": "script-hub",
+          "artifacts": [
+            "modules/script-hub.plugin"
+          ],
+          "kind": "plugin",
+          "nativeApp": "not-run"
+        },
+        {
+          "id": "sub-store",
+          "artifacts": [
+            "modules/sub-store.plugin"
+          ],
+          "kind": "plugin",
+          "nativeApp": "not-run"
+        },
+        {
+          "id": "resource-parser",
+          "artifacts": [
+            "fragments/resource-parser.conf"
+          ],
+          "kind": "manual-general-fragment",
+          "nativeApp": "not-run"
+        }
+      ],
+      "httpJsRewrites": "native-installers-not-device-tested",
+      "externalTools": null
+    },
+    {
+      "client": "shadowrocket",
+      "features": [
+        {
+          "id": "anti-ad",
+          "artifacts": [
+            "fragments/anti-ad.conf"
+          ],
+          "kind": "merge-fragment",
+          "nativeApp": "not-run"
+        },
+        {
+          "id": "https-upgrade",
+          "artifacts": [
+            "rewrites/https-upgrade.conf"
+          ],
+          "kind": "manual-merge-fragment",
+          "nativeApp": "not-run"
+        },
+        {
+          "id": "quick-search",
+          "artifacts": [
+            "rewrites/quick-search.conf"
+          ],
+          "kind": "manual-merge-fragment",
+          "nativeApp": "not-run"
+        },
+        {
+          "id": "redirects",
+          "artifacts": [
+            "rewrites/redirects.conf"
+          ],
+          "kind": "manual-merge-fragment",
+          "nativeApp": "not-run"
+        },
+        {
+          "id": "biliintl-region",
+          "artifacts": [
+            "rewrites/biliintl-region.conf"
+          ],
+          "kind": "manual-merge-fragment",
+          "nativeApp": "not-run"
+        },
+        {
+          "id": "boxjs",
+          "artifacts": [
+            "modules/boxjs.module"
+          ],
+          "kind": "official-module",
+          "nativeApp": "not-run"
+        },
+        {
+          "id": "script-hub",
+          "artifacts": [
+            "modules/script-hub.module"
+          ],
+          "kind": "official-module",
+          "nativeApp": "not-run"
+        },
+        {
+          "id": "sub-store",
+          "artifacts": [
+            "modules/sub-store.module"
+          ],
+          "kind": "official-module",
+          "nativeApp": "not-run"
+        }
+      ],
+      "httpJsRewrites": "native-installers-not-device-tested",
+      "externalTools": null
+    },
+    {
+      "client": "egern",
+      "features": [
+        {
+          "id": "anti-ad",
+          "artifacts": [
+            "modules/anti-ad.yaml"
+          ],
+          "kind": "native-module",
+          "nativeApp": "not-run"
+        },
+        {
+          "id": "https-upgrade",
+          "artifacts": [
+            "rewrites/https-upgrade.yaml"
+          ],
+          "kind": "module",
+          "nativeApp": "not-run"
+        },
+        {
+          "id": "quick-search",
+          "artifacts": [
+            "rewrites/quick-search.yaml"
+          ],
+          "kind": "native-module",
+          "nativeApp": "not-run"
+        },
+        {
+          "id": "redirects",
+          "artifacts": [
+            "rewrites/redirects.yaml"
+          ],
+          "kind": "native-module",
+          "nativeApp": "not-run"
+        },
+        {
+          "id": "biliintl-region",
+          "artifacts": [
+            "rewrites/biliintl-region.yaml"
+          ],
+          "kind": "native-module",
+          "nativeApp": "not-run"
+        },
+        {
+          "id": "boxjs",
+          "artifacts": [
+            "modules/boxjs.yaml"
+          ],
+          "kind": "native-module",
+          "nativeApp": "not-run"
+        },
+        {
+          "id": "script-hub",
+          "artifacts": [
+            "modules/script-hub.yaml"
+          ],
+          "kind": "native-module",
+          "nativeApp": "not-run"
+        },
+        {
+          "id": "sub-store",
+          "artifacts": [
+            "modules/sub-store.yaml"
+          ],
+          "kind": "native-module",
+          "nativeApp": "not-run"
+        }
+      ],
+      "httpJsRewrites": "native-installers-not-device-tested",
+      "externalTools": null
+    },
+    {
+      "client": "stash",
+      "features": [
+        {
+          "id": "anti-ad",
+          "artifacts": [
+            "modules/anti-ad.stoverride"
+          ],
+          "kind": "native-override",
+          "nativeApp": "not-run"
+        },
+        {
+          "id": "https-upgrade",
+          "artifacts": [
+            "rewrites/https-upgrade.stoverride"
+          ],
+          "kind": "override",
+          "nativeApp": "not-run"
+        },
+        {
+          "id": "quick-search",
+          "artifacts": [
+            "rewrites/quick-search.stoverride"
+          ],
+          "kind": "native-override",
+          "nativeApp": "not-run"
+        },
+        {
+          "id": "redirects",
+          "artifacts": [
+            "rewrites/redirects.stoverride"
+          ],
+          "kind": "native-override",
+          "nativeApp": "not-run"
+        },
+        {
+          "id": "biliintl-region",
+          "artifacts": [
+            "rewrites/biliintl-region.stoverride"
+          ],
+          "kind": "native-override",
+          "nativeApp": "not-run"
+        },
+        {
+          "id": "boxjs",
+          "artifacts": [
+            "modules/boxjs.stoverride"
+          ],
+          "kind": "native-override",
+          "nativeApp": "not-run"
+        },
+        {
+          "id": "script-hub",
+          "artifacts": [
+            "modules/script-hub.stoverride"
+          ],
+          "kind": "native-override",
+          "nativeApp": "not-run"
+        },
+        {
+          "id": "sub-store",
+          "artifacts": [
+            "modules/sub-store.stoverride"
+          ],
+          "kind": "native-override",
+          "nativeApp": "not-run"
+        }
+      ],
+      "httpJsRewrites": "native-installers-not-device-tested",
+      "externalTools": null
+    },
+    {
+      "client": "mihomo",
+      "features": [
+        {
+          "id": "anti-ad",
+          "artifacts": [
+            "fragments/anti-ad.yaml"
+          ],
+          "kind": "merge-fragment",
+          "nativeApp": "not-run"
+        }
+      ],
+      "httpJsRewrites": "unsupported-by-core",
+      "externalTools": "Use independently hosted Sub-Store or a frontend; no native JS/module package is claimed."
+    },
+    {
+      "client": "singBox",
+      "features": [
+        {
+          "id": "anti-ad",
+          "artifacts": [
+            "fragments/anti-ad.json"
+          ],
+          "kind": "merge-fragment",
+          "nativeApp": "not-run"
+        }
+      ],
+      "httpJsRewrites": "unsupported-by-core",
+      "externalTools": "Use independently hosted Sub-Store or a frontend; no native JS/module package is claimed."
+    }
+  ],
+  "boundaries": [
+    "Six GUI apps and HTTPS interception have not been imported/run.",
+    "External JS dependency entry points were fetched/hashed/syntax checked, not executed.",
+    "QX/Loon parser fragments link upstream implementations, not an original NetAtlas parser.",
+    "Mihomo and sing-box do not gain GUI HTTP scripting by renaming formats."
+  ]
+}

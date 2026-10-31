@@ -1,0 +1,35 @@
+{
+  "version": 1,
+  "id": "taptap",
+  "category": "gaming",
+  "entries": [
+    {
+      "type": "domain-suffix",
+      "value": "tapapks.com"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "tapimg.com"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "tapimg.net"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "taptap.cn"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "taptap.com"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "taptap.io"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "taptapdada.com"
+    }
+  ]
+}

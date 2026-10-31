@@ -1,0 +1,83 @@
+{
+  "version": 1,
+  "id": "hbo-asia",
+  "category": "media",
+  "entries": [
+    {
+      "type": "domain-keyword",
+      "value": ".hbogoasia."
+    },
+    {
+      "type": "domain-suffix",
+      "value": "hbogoasia.com"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "hbogoasia.hk"
+    },
+    {
+      "type": "domain",
+      "value": "44wilhpljf.execute-api.ap-southeast-1.amazonaws.com"
+    },
+    {
+      "type": "domain",
+      "value": "bcbolthboa-a.akamaihd.net"
+    },
+    {
+      "type": "domain",
+      "value": "cf-images.ap-southeast-1.prod.boltdns.net"
+    },
+    {
+      "type": "domain",
+      "value": "dai3fd1oh325y.cloudfront.net"
+    },
+    {
+      "type": "domain",
+      "value": "hboasia1-i.akamaihd.net"
+    },
+    {
+      "type": "domain",
+      "value": "hboasia2-i.akamaihd.net"
+    },
+    {
+      "type": "domain",
+      "value": "hboasia3-i.akamaihd.net"
+    },
+    {
+      "type": "domain",
+      "value": "hboasia4-i.akamaihd.net"
+    },
+    {
+      "type": "domain",
+      "value": "hboasia5-i.akamaihd.net"
+    },
+    {
+      "type": "domain",
+      "value": "hboasialive.akamaized.net"
+    },
+    {
+      "type": "domain",
+      "value": "hbogoprod-vod.akamaized.net"
+    },
+    {
+      "type": "domain",
+      "value": "hbolb.onwardsmg.com"
+    },
+    {
+      "type": "domain",
+      "value": "hbounify-prod.evergent.com"
+    },
+    {
+      "type": "domain",
+      "value": "players.brightcove.net"
+    },
+    {
+      "type": "domain",
+      "value": "s3-ap-southeast-1.amazonaws.com"
+    },
+    {
+      "type": "domain",
+      "value": "wmff.warnermediacdn.com"
+    }
+  ]
+}

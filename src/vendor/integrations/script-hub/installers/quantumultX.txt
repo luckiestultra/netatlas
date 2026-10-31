@@ -1,0 +1,8 @@
+^https?:\/\/script\.hub\/$ url 302 https://scripthub.vercel.app
+
+^https?:\/\/script\.hub\/file\/_start_\/(?![\s\S]*\/_end_(?=\/)[\s\S]*\/_end_\/)(?:(?!file\/_start_\/)[^\s#])+\/_end_\/[^\/?&#\s]+\?(?:(?!type=)[A-Za-z0-9_.~-]+=(?:[^%&#?\s]|%[A-Fa-f0-9][A-Fa-f0-9])*&)*type=(?:qx-rewrite|surge-module|loon-plugin|all-module)(?:&(?!type=)[A-Za-z0-9_.~-]+=(?:[^%&#?\s]|%[A-Fa-f0-9][A-Fa-f0-9])*)*(?![\s\S]) url script-echo-response https://raw.githubusercontent.com/Script-Hub-Org/Script-Hub/502cf03f7db2e077d96c07c2cb151a8f0b152a80/Rewrite-Parser.js
+
+^https?:\/\/script\.hub\/file\/_start_\/(?![\s\S]*\/_end_(?=\/)[\s\S]*\/_end_\/)(?:(?!file\/_start_\/)[^\s#])+\/_end_\/[^\/?&#\s]+\?(?:(?!type=)[A-Za-z0-9_.~-]+=(?:[^%&#?\s]|%[A-Fa-f0-9][A-Fa-f0-9])*&)*type=rule-set(?:&(?!type=)[A-Za-z0-9_.~-]+=(?:[^%&#?\s]|%[A-Fa-f0-9][A-Fa-f0-9])*)*(?![\s\S]) url script-echo-response https://raw.githubusercontent.com/Script-Hub-Org/Script-Hub/502cf03f7db2e077d96c07c2cb151a8f0b152a80/rule-parser.js
+
+hostname = script.hub
+

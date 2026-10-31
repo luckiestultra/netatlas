@@ -1,0 +1,15 @@
+{
+  "version": 1,
+  "id": "huya",
+  "category": "media",
+  "entries": [
+    {
+      "type": "domain-suffix",
+      "value": "huya.com"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "msstatic.com"
+    }
+  ]
+}

@@ -1,0 +1,26 @@
+# SPDX-License-Identifier: GPL-3.0-only
+# Adapted from chavyleung/scripts; authors: chavyleung.
+# Changed by NetAtlas on 2026-10-31: pin entry scripts, remove scheduled tasks and cosmetic/routing additions; see NOTICE.
+# Upstream complete source: https://github.com/chavyleung/scripts/tree/bfab3c906f3d5d126e9094f15730e025f7f32128
+# Modified installer sources and changes: https://raw.githubusercontent.com/luckiestultra/netatlas/main/src/vendor/integrations/boxjs/
+# Renderer source: https://raw.githubusercontent.com/luckiestultra/netatlas/main/tools/lib/integrations.mjs
+# License: https://raw.githubusercontent.com/luckiestultra/netatlas/main/src/vendor/integrations/boxjs/LICENSE
+# Provided WITHOUT ANY WARRANTY. This installer and the remote scripts are not covered by NetAtlas MIT.
+# Optional: importing/enabling this resource activates remote JavaScript and tool-host MITM.
+# Requires an existing trusted user CA for HTTPS; no CA or automatic task is supplied.
+# Remote scripts can access host storage and user-selected URLs/scripts. Pin scope and permissions: https://raw.githubusercontent.com/luckiestultra/netatlas/main/src/vendor/integrations/boxjs/README.md
+
+#!name=BoxJs
+#!desc=http://boxjs.com
+#!author=ChavyLeung
+#!homepage=https://docs.boxjs.app/
+#!category=BoxJs
+
+[General]
+force-http-engine-hosts = %APPEND% boxjs.com, boxjs.net, *.boxjs.com, *.boxjs.net
+
+[Script]
+Rewrite: BoxJs = type=http-request,pattern=^https?:\/\/(?:[A-Za-z0-9-]+\.)*boxjs\.(?:com|net)(?=\/|$),script-path=https://raw.githubusercontent.com/chavyleung/scripts/bfab3c906f3d5d126e9094f15730e025f7f32128/box/chavy.boxjs.js, requires-body=true, timeout=120
+
+[MITM]
+hostname = %INSERT% boxjs.com, boxjs.net, *.boxjs.com, *.boxjs.net

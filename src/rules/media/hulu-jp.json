@@ -1,0 +1,27 @@
+{
+  "version": 1,
+  "id": "hulu-jp",
+  "category": "media",
+  "entries": [
+    {
+      "type": "domain-suffix",
+      "value": "happyon.jp"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "hjholdings.jp"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "hulu.jp"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "streaks.jp"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "yb.uncn.jp"
+    }
+  ]
+}

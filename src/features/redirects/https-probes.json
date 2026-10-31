@@ -1,0 +1,49 @@
+{
+  "checkedAt": "2026-10-31",
+  "method": "curl HEAD, HTTPS only, standard certificate verification, no redirects followed and no response body saved",
+  "scope": "A small official-origin sample, not every destination or every path. These observations do not verify a native client or promise continued endpoint availability.",
+  "results": [
+    {
+      "url": "https://cn.ign.com/ccpref/us",
+      "httpCode": 302,
+      "sslVerifyResult": 0,
+      "redirectUrl": "https://www.ign.com/?setccpref=US",
+      "curlExit": 0
+    },
+    {
+      "url": "https://www.kingdee.com/",
+      "httpCode": 302,
+      "sslVerifyResult": 0,
+      "redirectUrl": "https://www.kingdee.com/cn",
+      "curlExit": 0
+    },
+    {
+      "url": "https://macitbetter.com/",
+      "httpCode": 200,
+      "sslVerifyResult": 0,
+      "redirectUrl": null,
+      "curlExit": 0
+    },
+    {
+      "url": "https://www.mozilla.org/zh-CN/firefox/new/",
+      "httpCode": 301,
+      "sslVerifyResult": 0,
+      "redirectUrl": "https://www.firefox.com/zh-CN/?redirect_source=mozilla-org",
+      "curlExit": 0
+    },
+    {
+      "url": "https://maps.google.com/",
+      "httpCode": 302,
+      "sslVerifyResult": 0,
+      "redirectUrl": "https://maps.google.com/maps",
+      "curlExit": 0
+    },
+    {
+      "url": "https://www.google.com/",
+      "httpCode": 200,
+      "sslVerifyResult": 0,
+      "redirectUrl": null,
+      "curlExit": 0
+    }
+  ]
+}

@@ -296,6 +296,483 @@
         "https://stash.wiki/configuration/override",
         "https://stash.wiki/http-engine/rewrite"
       ]
+    },
+    {
+      "id": "quick-search",
+      "description": "47 original prefix/search/translation/storefront actions.",
+      "defaultEnabled": false,
+      "license": "MIT",
+      "ruleCount": 47,
+      "sourceRegistry": "src/features/quick-search/actions.json",
+      "clients": {
+        "quantumultX": {
+          "artifacts": [
+            "rewrites/quick-search.snippet"
+          ],
+          "kind": "rewrite-resource",
+          "nativeApp": "not-run"
+        },
+        "surge": {
+          "artifacts": [
+            "rewrites/quick-search.sgmodule"
+          ],
+          "kind": "sgmodule",
+          "nativeApp": "not-run"
+        },
+        "loon": {
+          "artifacts": [
+            "rewrites/quick-search.plugin"
+          ],
+          "kind": "plugin",
+          "nativeApp": "not-run",
+          "minimumVersion": "3.5.1(978)"
+        },
+        "shadowrocket": {
+          "artifacts": [
+            "rewrites/quick-search.conf"
+          ],
+          "kind": "manual-merge-fragment",
+          "nativeApp": "not-run"
+        },
+        "egern": {
+          "artifacts": [
+            "rewrites/quick-search.yaml"
+          ],
+          "kind": "native-module",
+          "nativeApp": "not-run"
+        },
+        "stash": {
+          "artifacts": [
+            "rewrites/quick-search.stoverride"
+          ],
+          "kind": "native-override",
+          "nativeApp": "not-run"
+        }
+      },
+      "validation": {
+        "unit": "Actual serialized six-client redirect fixtures; exact hosts, query encoding and negative cases.",
+        "nativeApp": "not-run"
+      },
+      "sources": [
+        "https://github.com/crossutility/Quantumult-X/blob/master/sample.conf",
+        "https://manual.nssurge.com/http/url-rewrite.html",
+        "https://nsloon.app/docs/Rewrite/rewrite_v2/",
+        "https://egernapp.com/docs/configuration/url_rewrites/",
+        "https://stash.wiki/http-engine/rewrite"
+      ],
+      "requiresMitmForHttps": [
+        "duckduckgo.com"
+      ]
+    },
+    {
+      "id": "redirects",
+      "description": "59 licensed and corrected site redirects; host boundary strict; original HTTP downgrades use verified HTTPS.",
+      "defaultEnabled": false,
+      "license": "GPL-2.0-only",
+      "ruleCount": 59,
+      "sourceRegistry": "src/features/redirects/rules.json",
+      "clients": {
+        "quantumultX": {
+          "artifacts": [
+            "rewrites/redirects.snippet"
+          ],
+          "kind": "rewrite-resource",
+          "nativeApp": "not-run"
+        },
+        "surge": {
+          "artifacts": [
+            "rewrites/redirects.sgmodule"
+          ],
+          "kind": "sgmodule",
+          "nativeApp": "not-run"
+        },
+        "loon": {
+          "artifacts": [
+            "rewrites/redirects.plugin"
+          ],
+          "kind": "plugin",
+          "nativeApp": "not-run",
+          "minimumVersion": "3.5.1(978)"
+        },
+        "shadowrocket": {
+          "artifacts": [
+            "rewrites/redirects.conf"
+          ],
+          "kind": "manual-merge-fragment",
+          "nativeApp": "not-run"
+        },
+        "egern": {
+          "artifacts": [
+            "rewrites/redirects.yaml"
+          ],
+          "kind": "native-module",
+          "nativeApp": "not-run"
+        },
+        "stash": {
+          "artifacts": [
+            "rewrites/redirects.stoverride"
+          ],
+          "kind": "native-override",
+          "nativeApp": "not-run"
+        }
+      },
+      "validation": {
+        "unit": "Actual serialized six-client redirect fixtures; exact hosts, query encoding and negative cases.",
+        "nativeApp": "not-run"
+      },
+      "sources": [
+        "https://github.com/crossutility/Quantumult-X/blob/master/sample.conf",
+        "https://manual.nssurge.com/http/url-rewrite.html",
+        "https://nsloon.app/docs/Rewrite/rewrite_v2/",
+        "https://egernapp.com/docs/configuration/url_rewrites/",
+        "https://stash.wiki/http-engine/rewrite"
+      ],
+      "requiresMitmForHttps": "113 exact registered HTTPS host aliases, see src/features/redirects/rules.json"
+    },
+    {
+      "id": "biliintl-region",
+      "description": "Optional Philippines locale/SIM parameters; two functions, four query-order patterns.",
+      "defaultEnabled": false,
+      "license": "GPL-2.0-only",
+      "ruleCount": 4,
+      "sourceRegistry": "src/features/redirects/rules.json",
+      "clients": {
+        "quantumultX": {
+          "artifacts": [
+            "rewrites/biliintl-region.snippet"
+          ],
+          "kind": "rewrite-resource",
+          "nativeApp": "not-run"
+        },
+        "surge": {
+          "artifacts": [
+            "rewrites/biliintl-region.sgmodule"
+          ],
+          "kind": "sgmodule",
+          "nativeApp": "not-run"
+        },
+        "loon": {
+          "artifacts": [
+            "rewrites/biliintl-region.plugin"
+          ],
+          "kind": "plugin",
+          "nativeApp": "not-run",
+          "minimumVersion": "3.5.1(978)"
+        },
+        "shadowrocket": {
+          "artifacts": [
+            "rewrites/biliintl-region.conf"
+          ],
+          "kind": "manual-merge-fragment",
+          "nativeApp": "not-run"
+        },
+        "egern": {
+          "artifacts": [
+            "rewrites/biliintl-region.yaml"
+          ],
+          "kind": "native-module",
+          "nativeApp": "not-run"
+        },
+        "stash": {
+          "artifacts": [
+            "rewrites/biliintl-region.stoverride"
+          ],
+          "kind": "native-override",
+          "nativeApp": "not-run"
+        }
+      },
+      "validation": {
+        "unit": "Actual serialized six-client redirect fixtures; exact hosts, query encoding and negative cases.",
+        "nativeApp": "not-run"
+      },
+      "sources": [
+        "https://github.com/crossutility/Quantumult-X/blob/master/sample.conf",
+        "https://manual.nssurge.com/http/url-rewrite.html",
+        "https://nsloon.app/docs/Rewrite/rewrite_v2/",
+        "https://egernapp.com/docs/configuration/url_rewrites/",
+        "https://stash.wiki/http-engine/rewrite"
+      ],
+      "requiresMitmForHttps": [
+        "app.biliintl.com",
+        "passport.biliintl.com"
+      ]
+    },
+    {
+      "id": "boxjs",
+      "description": "Optional official BoxJS integration; scripts remain at pinned upstream URLs.",
+      "defaultEnabled": false,
+      "license": "GPL-3.0-only",
+      "sourceRegistry": "metadata/integrations.json",
+      "clients": {
+        "quantumultX": {
+          "artifacts": [
+            "modules/boxjs.snippet"
+          ],
+          "kind": "rewrite-resource",
+          "nativeApp": "not-run"
+        },
+        "surge": {
+          "artifacts": [
+            "modules/boxjs.sgmodule"
+          ],
+          "kind": "sgmodule",
+          "nativeApp": "not-run"
+        },
+        "loon": {
+          "artifacts": [
+            "modules/boxjs.plugin"
+          ],
+          "kind": "plugin",
+          "nativeApp": "not-run"
+        },
+        "shadowrocket": {
+          "artifacts": [
+            "modules/boxjs.module"
+          ],
+          "kind": "official-module",
+          "nativeApp": "not-run"
+        },
+        "egern": {
+          "artifacts": [
+            "modules/boxjs.yaml"
+          ],
+          "kind": "native-module",
+          "nativeApp": "not-run"
+        },
+        "stash": {
+          "artifacts": [
+            "modules/boxjs.stoverride"
+          ],
+          "kind": "native-override",
+          "nativeApp": "not-run"
+        }
+      },
+      "requiresMitmForHttps": [
+        "boxjs.com",
+        "boxjs.net",
+        "*.boxjs.com",
+        "*.boxjs.net"
+      ],
+      "permissions": {
+        "storage": "Reads and writes host-app persistent keys, preferences, sessions and backups, including user-selected application keys.",
+        "subscriptions": "Fetches user-added BoxJS application subscription JSON.",
+        "network": "Fetches the official HTML frontend, release metadata and user-selected resources; optional user-selected scripts can run.",
+        "converterEval": false,
+        "userScriptEval": true,
+        "externalUpload": "Only user-selected scripts/backup integrations; no automatic task is installed.",
+        "mitm": "Only the registered tool hostnames; an existing trusted user CA is needed for HTTPS. No CA payload is supplied.",
+        "automaticTasks": false
+      },
+      "validation": {
+        "unit": "Installer/source/license/hash/route boundary checks; entry scripts GET and syntax check only.",
+        "nativeApp": "not-run"
+      },
+      "sources": [
+        "https://github.com/chavyleung/scripts/tree/bfab3c906f3d5d126e9094f15730e025f7f32128",
+        "https://docs.boxjs.app/"
+      ]
+    },
+    {
+      "id": "script-hub",
+      "description": "Optional official ScriptHub integration; scripts remain at pinned upstream URLs.",
+      "defaultEnabled": false,
+      "license": "GPL-3.0-only",
+      "sourceRegistry": "metadata/integrations.json",
+      "clients": {
+        "quantumultX": {
+          "artifacts": [
+            "modules/script-hub.snippet"
+          ],
+          "kind": "rewrite-resource",
+          "nativeApp": "not-run"
+        },
+        "surge": {
+          "artifacts": [
+            "modules/script-hub.sgmodule"
+          ],
+          "kind": "sgmodule",
+          "nativeApp": "not-run"
+        },
+        "loon": {
+          "artifacts": [
+            "modules/script-hub.plugin"
+          ],
+          "kind": "plugin",
+          "nativeApp": "not-run",
+          "minimumVersion": "3.5.1(983)"
+        },
+        "shadowrocket": {
+          "artifacts": [
+            "modules/script-hub.module"
+          ],
+          "kind": "official-module",
+          "nativeApp": "not-run"
+        },
+        "egern": {
+          "artifacts": [
+            "modules/script-hub.yaml"
+          ],
+          "kind": "native-module",
+          "nativeApp": "not-run"
+        },
+        "stash": {
+          "artifacts": [
+            "modules/script-hub.stoverride"
+          ],
+          "kind": "native-override",
+          "nativeApp": "not-run"
+        }
+      },
+      "requiresMitmForHttps": [
+        "script.hub"
+      ],
+      "permissions": {
+        "storage": "Reads and writes converter preferences and user-supplied local text.",
+        "subscriptions": "Fetches user-supplied rule/module/script URLs for conversion; not a proxy subscription manager.",
+        "network": "Fetches source URLs and optional icon/auxiliary resources; the QX root route opens the upstream Vercel frontend.",
+        "converterEval": true,
+        "userScriptEval": true,
+        "externalUpload": "No upload or scheduled task is configured by this installer.",
+        "mitm": "Only the registered tool hostnames; an existing trusted user CA is needed for HTTPS. No CA payload is supplied.",
+        "automaticTasks": false
+      },
+      "validation": {
+        "unit": "Installer/source/license/hash/route boundary checks; entry scripts GET and syntax check only.",
+        "nativeApp": "not-run"
+      },
+      "sources": [
+        "https://github.com/Script-Hub-Org/Script-Hub/tree/502cf03f7db2e077d96c07c2cb151a8f0b152a80",
+        "https://github.com/Script-Hub-Org/Script-Hub/wiki"
+      ]
+    },
+    {
+      "id": "sub-store",
+      "description": "Optional official Sub-Store integration; scripts remain at pinned upstream URLs.",
+      "defaultEnabled": false,
+      "license": "AGPL-3.0-only",
+      "sourceRegistry": "metadata/integrations.json",
+      "clients": {
+        "quantumultX": {
+          "artifacts": [
+            "modules/sub-store.snippet"
+          ],
+          "kind": "rewrite-resource",
+          "nativeApp": "not-run"
+        },
+        "surge": {
+          "artifacts": [
+            "modules/sub-store.sgmodule"
+          ],
+          "kind": "sgmodule",
+          "nativeApp": "not-run"
+        },
+        "loon": {
+          "artifacts": [
+            "modules/sub-store.plugin"
+          ],
+          "kind": "plugin",
+          "nativeApp": "not-run"
+        },
+        "shadowrocket": {
+          "artifacts": [
+            "modules/sub-store.module"
+          ],
+          "kind": "official-module",
+          "nativeApp": "not-run"
+        },
+        "egern": {
+          "artifacts": [
+            "modules/sub-store.yaml"
+          ],
+          "kind": "native-module",
+          "nativeApp": "not-run"
+        },
+        "stash": {
+          "artifacts": [
+            "modules/sub-store.stoverride"
+          ],
+          "kind": "native-override",
+          "nativeApp": "not-run"
+        }
+      },
+      "requiresMitmForHttps": [
+        "sub.store"
+      ],
+      "permissions": {
+        "storage": "Reads and writes subscriptions, files, settings, caches and user-configured service credentials.",
+        "subscriptions": "Fetches, combines, stores, transforms and serves user-configured proxy subscription URLs.",
+        "network": "Fetches subscription sources and user-selected script/resources; manual sync can upload configured artifacts to a private Gist.",
+        "converterEval": true,
+        "userScriptEval": true,
+        "externalUpload": "Manual sync/API only after user configuration; all upstream cron/schedule hooks are removed.",
+        "mitm": "Only the registered tool hostnames; an existing trusted user CA is needed for HTTPS. No CA payload is supplied.",
+        "automaticTasks": false
+      },
+      "validation": {
+        "unit": "Installer/source/license/hash/route boundary checks; entry scripts GET and syntax check only.",
+        "nativeApp": "not-run"
+      },
+      "sources": [
+        "https://github.com/sub-store-org/Sub-Store/tree/352f01b7091c99f4e219c44e4ec96f3288059843",
+        "https://github.com/sub-store-org/Sub-Store/blob/352f01b7091c99f4e219c44e4ec96f3288059843/config/README.md"
+      ]
+    },
+    {
+      "id": "body-replacement",
+      "description": "Original Surge request/response text replacement utility; explicit per-URL setup, no active example.",
+      "defaultEnabled": false,
+      "license": "MIT",
+      "clients": {
+        "surge": {
+          "artifacts": [
+            "scripts/replace-body.js",
+            "fragments/replace-body.conf"
+          ],
+          "kind": "script-and-manual-fragment",
+          "nativeApp": "not-run"
+        }
+      },
+      "validation": {
+        "unit": "Generated script VM success/error/once-only/network-free cases.",
+        "nativeApp": "not-run"
+      },
+      "sources": [
+        "https://manual.nssurge.com/scripting/http-request.html",
+        "https://manual.nssurge.com/scripting/http-response.html"
+      ]
+    },
+    {
+      "id": "resource-parser",
+      "description": "Optional original-author external parser recipes; code is not redistributed.",
+      "defaultEnabled": false,
+      "license": "MIT (recipe only); remote parser licensing in metadata/resource-parsers.json",
+      "sourceRegistry": "metadata/resource-parsers.json",
+      "clients": {
+        "quantumultX": {
+          "artifacts": [
+            "fragments/resource-parser.conf"
+          ],
+          "kind": "manual-general-fragment",
+          "externalOnly": true,
+          "nativeApp": "not-run"
+        },
+        "loon": {
+          "artifacts": [
+            "fragments/resource-parser.conf"
+          ],
+          "kind": "manual-general-fragment",
+          "externalOnly": true,
+          "nativeApp": "not-run"
+        }
+      },
+      "validation": {
+        "unit": "Fixed URL/hash/real GET/syntax/source contract checks; parser conversion not executed.",
+        "nativeApp": "not-run"
+      },
+      "sources": [
+        "https://raw.githubusercontent.com/KOP-XIAO/QuantumultX/f0177f5ea2f62681ab2592a4ed54677dfbbc4b78/Scripts/resource-parser.js",
+        "https://raw.githubusercontent.com/sub-store-org/Sub-Store/d26e713e38901e02565a6505c1ae5cb8bb8a1a22/sub-store-parser.loon.min.js"
+      ]
     }
   ],
   "unimplementedScriptAdapters": {

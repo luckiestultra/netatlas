@@ -24,15 +24,57 @@ dns:
     +.local: system
     +.localhost: system
     +.lan: system
+    rule-set:unbreak:
+      - https://223.5.5.5/dns-query#DIRECT
+    rule-set:abc:
+      - https://1.1.1.1/dns-query#节点选择
+    rule-set:abema:
+      - https://1.1.1.1/dns-query#节点选择
+    rule-set:acfun:
+      - https://223.5.5.5/dns-query#DIRECT
+    rule-set:alipay:
+      - https://223.5.5.5/dns-query#DIRECT
+    rule-set:all4:
+      - https://1.1.1.1/dns-query#节点选择
+    rule-set:amap:
+      - https://223.5.5.5/dns-query#DIRECT
+    rule-set:android:
+      - https://1.1.1.1/dns-query#节点选择
     rule-set:apple-tvplus:
+      - https://1.1.1.1/dns-query#节点选择
+    rule-set:appstore:
+      - https://223.5.5.5/dns-query#DIRECT
+    rule-set:baidu:
+      - https://223.5.5.5/dns-query#DIRECT
+    rule-set:bilibili:
+      - https://223.5.5.5/dns-query#DIRECT
+    rule-set:blizzard:
       - https://1.1.1.1/dns-query#节点选择
     rule-set:claude:
       - https://1.1.1.1/dns-query#节点选择
+    rule-set:coolapk:
+      - https://223.5.5.5/dns-query#DIRECT
     rule-set:cursor:
+      - https://1.1.1.1/dns-query#节点选择
+    rule-set:deezer:
       - https://1.1.1.1/dns-query#节点选择
     rule-set:discord:
       - https://1.1.1.1/dns-query#节点选择
+    rule-set:discovery:
+      - https://1.1.1.1/dns-query#节点选择
     rule-set:docker:
+      - https://1.1.1.1/dns-query#节点选择
+    rule-set:douban:
+      - https://223.5.5.5/dns-query#DIRECT
+    rule-set:douyin:
+      - https://223.5.5.5/dns-query#DIRECT
+    rule-set:douyu:
+      - https://223.5.5.5/dns-query#DIRECT
+    rule-set:dropbox:
+      - https://1.1.1.1/dns-query#节点选择
+    rule-set:facebook:
+      - https://1.1.1.1/dns-query#节点选择
+    rule-set:five-itv:
       - https://1.1.1.1/dns-query#节点选择
     rule-set:gemini:
       - https://1.1.1.1/dns-query#节点选择
@@ -42,50 +84,156 @@ dns:
       - https://1.1.1.1/dns-query#节点选择
     rule-set:groq:
       - https://1.1.1.1/dns-query#节点选择
-    rule-set:hbo:
+    rule-set:hbo-asia:
+      - https://1.1.1.1/dns-query#节点选择
+    rule-set:heroku:
       - https://1.1.1.1/dns-query#节点选择
     rule-set:huggingface:
       - https://1.1.1.1/dns-query#节点选择
+    rule-set:hulu-jp:
+      - https://1.1.1.1/dns-query#节点选择
+    rule-set:huya:
+      - https://223.5.5.5/dns-query#DIRECT
+    rule-set:icloud:
+      - https://223.5.5.5/dns-query#DIRECT
+    rule-set:iqiyi:
+      - https://223.5.5.5/dns-query#DIRECT
     rule-set:jetbrains:
+      - https://1.1.1.1/dns-query#节点选择
+    rule-set:joox:
+      - https://1.1.1.1/dns-query#节点选择
+    rule-set:kkbox:
+      - https://1.1.1.1/dns-query#节点选择
+    rule-set:kktv:
       - https://1.1.1.1/dns-query#节点选择
     rule-set:line:
       - https://1.1.1.1/dns-query#节点选择
+    rule-set:mozilla:
+      - https://1.1.1.1/dns-query#节点选择
+    rule-set:mudvod:
+      - https://1.1.1.1/dns-query#节点选择
+    rule-set:mytvsuper:
+      - https://1.1.1.1/dns-query#节点选择
+    rule-set:netease-music:
+      - https://223.5.5.5/dns-query#DIRECT
     rule-set:netflix:
+      - https://1.1.1.1/dns-query#节点选择
+    rule-set:niconico:
+      - https://1.1.1.1/dns-query#节点选择
+    rule-set:notion:
       - https://1.1.1.1/dns-query#节点选择
     rule-set:npmjs:
       - https://1.1.1.1/dns-query#节点选择
+    rule-set:olevod:
+      - https://1.1.1.1/dns-query#节点选择
+    rule-set:onedrive:
+      - https://1.1.1.1/dns-query#节点选择
     rule-set:openai:
+      - https://1.1.1.1/dns-query#节点选择
+    rule-set:oracle:
+      - https://1.1.1.1/dns-query#节点选择
+    rule-set:paypal:
       - https://1.1.1.1/dns-query#节点选择
     rule-set:perplexity:
       - https://1.1.1.1/dns-query#节点选择
+    rule-set:pikpak:
+      - https://1.1.1.1/dns-query#节点选择
     rule-set:poe:
       - https://1.1.1.1/dns-query#节点选择
+    rule-set:pornhub:
+      - https://1.1.1.1/dns-query#节点选择
+    rule-set:pptv:
+      - https://223.5.5.5/dns-query#DIRECT
+    rule-set:primevideo:
+      - https://1.1.1.1/dns-query#节点选择
+    rule-set:qobuz:
+      - https://1.1.1.1/dns-query#节点选择
+    rule-set:quark:
+      - https://223.5.5.5/dns-query#DIRECT
     rule-set:signal:
       - https://1.1.1.1/dns-query#节点选择
     rule-set:slack:
+      - https://1.1.1.1/dns-query#节点选择
+    rule-set:soundcloud:
       - https://1.1.1.1/dns-query#节点选择
     rule-set:speedtest:
       - https://1.1.1.1/dns-query#节点选择
     rule-set:spotify:
       - https://1.1.1.1/dns-query#节点选择
-    rule-set:steam:
+    rule-set:steam-cn:
+      - https://223.5.5.5/dns-query#DIRECT
+    rule-set:taptap:
       - https://1.1.1.1/dns-query#节点选择
     rule-set:telegram:
+      - https://1.1.1.1/dns-query#节点选择
+    rule-set:terabox:
+      - https://1.1.1.1/dns-query#节点选择
+    rule-set:tidal:
       - https://1.1.1.1/dns-query#节点选择
     rule-set:tiktok:
       - https://1.1.1.1/dns-query#节点选择
     rule-set:twitch:
       - https://1.1.1.1/dns-query#节点选择
+    rule-set:twitter:
+      - https://1.1.1.1/dns-query#节点选择
     rule-set:vercel:
       - https://1.1.1.1/dns-query#节点选择
+    rule-set:viu-portable:
+      - https://1.1.1.1/dns-query#节点选择
+    rule-set:wechat:
+      - https://223.5.5.5/dns-query#DIRECT
+    rule-set:weibo:
+      - https://223.5.5.5/dns-query#DIRECT
     rule-set:whatsapp:
+      - https://1.1.1.1/dns-query#节点选择
+    rule-set:wikimedia:
       - https://1.1.1.1/dns-query#节点选择
     rule-set:xai:
       - https://1.1.1.1/dns-query#节点选择
+    rule-set:xiaohongshu:
+      - https://223.5.5.5/dns-query#DIRECT
+    rule-set:ximalaya:
+      - https://223.5.5.5/dns-query#DIRECT
+    rule-set:yandex:
+      - https://1.1.1.1/dns-query#节点选择
+    rule-set:youku:
+      - https://223.5.5.5/dns-query#DIRECT
     rule-set:youtube:
+      - https://1.1.1.1/dns-query#节点选择
+    rule-set:z-library:
       - https://1.1.1.1/dns-query#节点选择
     rule-set:zoom:
       - https://1.1.1.1/dns-query#节点选择
+    rule-set:hulu:
+      - https://1.1.1.1/dns-query#节点选择
+    rule-set:hbo:
+      - https://1.1.1.1/dns-query#节点选择
+    rule-set:steam:
+      - https://1.1.1.1/dns-query#节点选择
+    rule-set:quora:
+      - https://1.1.1.1/dns-query#节点选择
+    rule-set:tvb:
+      - https://1.1.1.1/dns-query#节点选择
+    rule-set:disney:
+      - https://1.1.1.1/dns-query#节点选择
+    rule-set:china-media:
+      - https://223.5.5.5/dns-query#DIRECT
+    rule-set:hmt-media:
+      - https://1.1.1.1/dns-query#节点选择
+    rule-set:global-media:
+      - https://1.1.1.1/dns-query#节点选择
+    rule-set:amazon-portable:
+      - https://1.1.1.1/dns-query#节点选择
+    rule-set:akamai:
+      - https://1.1.1.1/dns-query#节点选择
+    rule-set:alibaba:
+      - https://223.5.5.5/dns-query#DIRECT
+    rule-set:bytedance:
+      - https://223.5.5.5/dns-query#DIRECT
+    rule-set:netease:
+      - https://223.5.5.5/dns-query#DIRECT
+    rule-set:tencent:
+      - https://223.5.5.5/dns-query#DIRECT
     rule-set:apple:
       - https://223.5.5.5/dns-query#DIRECT
     rule-set:github:
@@ -139,6 +287,30 @@ proxy-groups:
       - 新加坡节点
       - 美国节点
   - name: 苹果服务
+    type: select
+    proxies:
+      - DIRECT
+      - 节点选择
+      - 自动选择
+      - 香港节点
+      - 台湾节点
+      - 日本节点
+      - 韩国节点
+      - 新加坡节点
+      - 美国节点
+  - name: 国内服务
+    type: select
+    proxies:
+      - DIRECT
+      - 节点选择
+      - 自动选择
+      - 香港节点
+      - 台湾节点
+      - 日本节点
+      - 韩国节点
+      - 新加坡节点
+      - 美国节点
+  - name: 国内媒体
     type: select
     proxies:
       - DIRECT
@@ -308,38 +480,112 @@ proxy-groups:
     lazy: true
 rules:
   - RULE-SET,lan,DIRECT
+  - RULE-SET,unbreak,DIRECT
   - RULE-SET,adblock,REJECT
+  - RULE-SET,abc,国外媒体
+  - RULE-SET,abema,国外媒体
+  - RULE-SET,acfun,国内媒体
+  - RULE-SET,alipay,国内服务
+  - RULE-SET,all4,国外媒体
+  - RULE-SET,amap,国内服务
+  - RULE-SET,android,谷歌服务
   - RULE-SET,apple-tvplus,国外媒体
+  - RULE-SET,appstore,苹果服务
+  - RULE-SET,baidu,国内服务
+  - RULE-SET,bilibili,国内媒体
+  - RULE-SET,blizzard,游戏平台
   - RULE-SET,claude,AI服务
+  - RULE-SET,coolapk,国内服务
   - RULE-SET,cursor,AI服务
+  - RULE-SET,deezer,国外媒体
   - RULE-SET,discord,即时通讯
+  - RULE-SET,discovery,国外媒体
   - RULE-SET,docker,开发服务
+  - RULE-SET,douban,国内服务
+  - RULE-SET,douyin,国内媒体
+  - RULE-SET,douyu,国内媒体
+  - RULE-SET,dropbox,国外网站
+  - RULE-SET,facebook,即时通讯
+  - RULE-SET,five-itv,国外媒体
   - RULE-SET,gemini,AI服务
   - RULE-SET,github-copilot,AI服务
   - RULE-SET,gitlab,开发服务
   - RULE-SET,groq,AI服务
-  - RULE-SET,hbo,国外媒体
+  - RULE-SET,hbo-asia,国外媒体
+  - RULE-SET,heroku,开发服务
   - RULE-SET,huggingface,AI服务
+  - RULE-SET,hulu-jp,国外媒体
+  - RULE-SET,huya,国内媒体
+  - RULE-SET,icloud,苹果服务
+  - RULE-SET,iqiyi,国内媒体
   - RULE-SET,jetbrains,开发服务
+  - RULE-SET,joox,国外媒体
+  - RULE-SET,kkbox,国外媒体
+  - RULE-SET,kktv,国外媒体
   - RULE-SET,line,即时通讯
+  - RULE-SET,mozilla,国外网站
+  - RULE-SET,mudvod,国外媒体
+  - RULE-SET,mytvsuper,国外媒体
+  - RULE-SET,netease-music,国内媒体
   - RULE-SET,netflix,国外媒体
+  - RULE-SET,niconico,国外媒体
+  - RULE-SET,notion,开发服务
   - RULE-SET,npmjs,开发服务
+  - RULE-SET,olevod,国外媒体
+  - RULE-SET,onedrive,微软服务
   - RULE-SET,openai,AI服务
+  - RULE-SET,oracle,开发服务
+  - RULE-SET,paypal,国外网站
   - RULE-SET,perplexity,AI服务
+  - RULE-SET,pikpak,国外网站
   - RULE-SET,poe,AI服务
+  - RULE-SET,pornhub,国外媒体
+  - RULE-SET,pptv,国内媒体
+  - RULE-SET,primevideo,国外媒体
+  - RULE-SET,qobuz,国外媒体
+  - RULE-SET,quark,国内服务
   - RULE-SET,signal,即时通讯
   - RULE-SET,slack,即时通讯
+  - RULE-SET,soundcloud,国外媒体
   - RULE-SET,speedtest,国外网站
   - RULE-SET,spotify,国外媒体
-  - RULE-SET,steam,游戏平台
+  - RULE-SET,steam-cn,国内服务
+  - RULE-SET,taptap,游戏平台
   - RULE-SET,telegram,即时通讯
+  - RULE-SET,terabox,国外网站
+  - RULE-SET,tidal,国外媒体
   - RULE-SET,tiktok,国外媒体
   - RULE-SET,twitch,国外媒体
+  - RULE-SET,twitter,即时通讯
   - RULE-SET,vercel,开发服务
+  - RULE-SET,viu-portable,国外媒体
+  - RULE-SET,wechat,国内服务
+  - RULE-SET,weibo,国内服务
   - RULE-SET,whatsapp,即时通讯
+  - RULE-SET,wikimedia,国外网站
   - RULE-SET,xai,AI服务
+  - RULE-SET,xiaohongshu,国内服务
+  - RULE-SET,ximalaya,国内媒体
+  - RULE-SET,yandex,国外网站
+  - RULE-SET,youku,国内媒体
   - RULE-SET,youtube,国外媒体
+  - RULE-SET,z-library,国外网站
   - RULE-SET,zoom,即时通讯
+  - RULE-SET,hulu,国外媒体
+  - RULE-SET,hbo,国外媒体
+  - RULE-SET,steam,游戏平台
+  - RULE-SET,quora,国外网站
+  - RULE-SET,tvb,国外媒体
+  - RULE-SET,disney,国外媒体
+  - RULE-SET,china-media,国内媒体
+  - RULE-SET,hmt-media,国外媒体
+  - RULE-SET,global-media,国外媒体
+  - RULE-SET,amazon-portable,国外网站
+  - RULE-SET,akamai,国外网站
+  - RULE-SET,alibaba,国内服务
+  - RULE-SET,bytedance,国内服务
+  - RULE-SET,netease,国内服务
+  - RULE-SET,tencent,国内服务
   - RULE-SET,apple,苹果服务
   - RULE-SET,github,开发服务
   - RULE-SET,google,谷歌服务
@@ -368,6 +614,14 @@ rule-providers:
     url: https://raw.githubusercontent.com/luckiestultra/netatlas/main/clients/mihomo/rules/lan.yaml
     path: ./rules/netatlas-lan.yaml
     interval: 86400
+  unbreak:
+    type: http
+    proxy: DIRECT
+    behavior: classical
+    format: yaml
+    url: https://raw.githubusercontent.com/luckiestultra/netatlas/main/clients/mihomo/rules/unbreak.yaml
+    path: ./rules/netatlas-unbreak.yaml
+    interval: 86400
   adblock:
     type: http
     proxy: DIRECT
@@ -375,6 +629,62 @@ rule-providers:
     format: yaml
     url: https://raw.githubusercontent.com/luckiestultra/netatlas/main/clients/mihomo/rules/adblock.yaml
     path: ./rules/netatlas-adblock.yaml
+    interval: 86400
+  abc:
+    type: http
+    proxy: DIRECT
+    behavior: classical
+    format: yaml
+    url: https://raw.githubusercontent.com/luckiestultra/netatlas/main/clients/mihomo/rules/abc.yaml
+    path: ./rules/netatlas-abc.yaml
+    interval: 86400
+  abema:
+    type: http
+    proxy: DIRECT
+    behavior: classical
+    format: yaml
+    url: https://raw.githubusercontent.com/luckiestultra/netatlas/main/clients/mihomo/rules/abema.yaml
+    path: ./rules/netatlas-abema.yaml
+    interval: 86400
+  acfun:
+    type: http
+    proxy: DIRECT
+    behavior: classical
+    format: yaml
+    url: https://raw.githubusercontent.com/luckiestultra/netatlas/main/clients/mihomo/rules/acfun.yaml
+    path: ./rules/netatlas-acfun.yaml
+    interval: 86400
+  alipay:
+    type: http
+    proxy: DIRECT
+    behavior: classical
+    format: yaml
+    url: https://raw.githubusercontent.com/luckiestultra/netatlas/main/clients/mihomo/rules/alipay.yaml
+    path: ./rules/netatlas-alipay.yaml
+    interval: 86400
+  all4:
+    type: http
+    proxy: DIRECT
+    behavior: classical
+    format: yaml
+    url: https://raw.githubusercontent.com/luckiestultra/netatlas/main/clients/mihomo/rules/all4.yaml
+    path: ./rules/netatlas-all4.yaml
+    interval: 86400
+  amap:
+    type: http
+    proxy: DIRECT
+    behavior: classical
+    format: yaml
+    url: https://raw.githubusercontent.com/luckiestultra/netatlas/main/clients/mihomo/rules/amap.yaml
+    path: ./rules/netatlas-amap.yaml
+    interval: 86400
+  android:
+    type: http
+    proxy: DIRECT
+    behavior: classical
+    format: yaml
+    url: https://raw.githubusercontent.com/luckiestultra/netatlas/main/clients/mihomo/rules/android.yaml
+    path: ./rules/netatlas-android.yaml
     interval: 86400
   apple-tvplus:
     type: http
@@ -384,6 +694,38 @@ rule-providers:
     url: https://raw.githubusercontent.com/luckiestultra/netatlas/main/clients/mihomo/rules/apple-tvplus.yaml
     path: ./rules/netatlas-apple-tvplus.yaml
     interval: 86400
+  appstore:
+    type: http
+    proxy: DIRECT
+    behavior: classical
+    format: yaml
+    url: https://raw.githubusercontent.com/luckiestultra/netatlas/main/clients/mihomo/rules/appstore.yaml
+    path: ./rules/netatlas-appstore.yaml
+    interval: 86400
+  baidu:
+    type: http
+    proxy: DIRECT
+    behavior: classical
+    format: yaml
+    url: https://raw.githubusercontent.com/luckiestultra/netatlas/main/clients/mihomo/rules/baidu.yaml
+    path: ./rules/netatlas-baidu.yaml
+    interval: 86400
+  bilibili:
+    type: http
+    proxy: DIRECT
+    behavior: classical
+    format: yaml
+    url: https://raw.githubusercontent.com/luckiestultra/netatlas/main/clients/mihomo/rules/bilibili.yaml
+    path: ./rules/netatlas-bilibili.yaml
+    interval: 86400
+  blizzard:
+    type: http
+    proxy: DIRECT
+    behavior: classical
+    format: yaml
+    url: https://raw.githubusercontent.com/luckiestultra/netatlas/main/clients/mihomo/rules/blizzard.yaml
+    path: ./rules/netatlas-blizzard.yaml
+    interval: 86400
   claude:
     type: http
     proxy: DIRECT
@@ -391,6 +733,14 @@ rule-providers:
     format: yaml
     url: https://raw.githubusercontent.com/luckiestultra/netatlas/main/clients/mihomo/rules/claude.yaml
     path: ./rules/netatlas-claude.yaml
+    interval: 86400
+  coolapk:
+    type: http
+    proxy: DIRECT
+    behavior: classical
+    format: yaml
+    url: https://raw.githubusercontent.com/luckiestultra/netatlas/main/clients/mihomo/rules/coolapk.yaml
+    path: ./rules/netatlas-coolapk.yaml
     interval: 86400
   cursor:
     type: http
@@ -400,6 +750,14 @@ rule-providers:
     url: https://raw.githubusercontent.com/luckiestultra/netatlas/main/clients/mihomo/rules/cursor.yaml
     path: ./rules/netatlas-cursor.yaml
     interval: 86400
+  deezer:
+    type: http
+    proxy: DIRECT
+    behavior: classical
+    format: yaml
+    url: https://raw.githubusercontent.com/luckiestultra/netatlas/main/clients/mihomo/rules/deezer.yaml
+    path: ./rules/netatlas-deezer.yaml
+    interval: 86400
   discord:
     type: http
     proxy: DIRECT
@@ -408,6 +766,14 @@ rule-providers:
     url: https://raw.githubusercontent.com/luckiestultra/netatlas/main/clients/mihomo/rules/discord.yaml
     path: ./rules/netatlas-discord.yaml
     interval: 86400
+  discovery:
+    type: http
+    proxy: DIRECT
+    behavior: classical
+    format: yaml
+    url: https://raw.githubusercontent.com/luckiestultra/netatlas/main/clients/mihomo/rules/discovery.yaml
+    path: ./rules/netatlas-discovery.yaml
+    interval: 86400
   docker:
     type: http
     proxy: DIRECT
@@ -415,6 +781,54 @@ rule-providers:
     format: yaml
     url: https://raw.githubusercontent.com/luckiestultra/netatlas/main/clients/mihomo/rules/docker.yaml
     path: ./rules/netatlas-docker.yaml
+    interval: 86400
+  douban:
+    type: http
+    proxy: DIRECT
+    behavior: classical
+    format: yaml
+    url: https://raw.githubusercontent.com/luckiestultra/netatlas/main/clients/mihomo/rules/douban.yaml
+    path: ./rules/netatlas-douban.yaml
+    interval: 86400
+  douyin:
+    type: http
+    proxy: DIRECT
+    behavior: classical
+    format: yaml
+    url: https://raw.githubusercontent.com/luckiestultra/netatlas/main/clients/mihomo/rules/douyin.yaml
+    path: ./rules/netatlas-douyin.yaml
+    interval: 86400
+  douyu:
+    type: http
+    proxy: DIRECT
+    behavior: classical
+    format: yaml
+    url: https://raw.githubusercontent.com/luckiestultra/netatlas/main/clients/mihomo/rules/douyu.yaml
+    path: ./rules/netatlas-douyu.yaml
+    interval: 86400
+  dropbox:
+    type: http
+    proxy: DIRECT
+    behavior: classical
+    format: yaml
+    url: https://raw.githubusercontent.com/luckiestultra/netatlas/main/clients/mihomo/rules/dropbox.yaml
+    path: ./rules/netatlas-dropbox.yaml
+    interval: 86400
+  facebook:
+    type: http
+    proxy: DIRECT
+    behavior: classical
+    format: yaml
+    url: https://raw.githubusercontent.com/luckiestultra/netatlas/main/clients/mihomo/rules/facebook.yaml
+    path: ./rules/netatlas-facebook.yaml
+    interval: 86400
+  five-itv:
+    type: http
+    proxy: DIRECT
+    behavior: classical
+    format: yaml
+    url: https://raw.githubusercontent.com/luckiestultra/netatlas/main/clients/mihomo/rules/five-itv.yaml
+    path: ./rules/netatlas-five-itv.yaml
     interval: 86400
   gemini:
     type: http
@@ -448,13 +862,21 @@ rule-providers:
     url: https://raw.githubusercontent.com/luckiestultra/netatlas/main/clients/mihomo/rules/groq.yaml
     path: ./rules/netatlas-groq.yaml
     interval: 86400
-  hbo:
+  hbo-asia:
     type: http
     proxy: DIRECT
     behavior: classical
     format: yaml
-    url: https://raw.githubusercontent.com/luckiestultra/netatlas/main/clients/mihomo/rules/hbo.yaml
-    path: ./rules/netatlas-hbo.yaml
+    url: https://raw.githubusercontent.com/luckiestultra/netatlas/main/clients/mihomo/rules/hbo-asia.yaml
+    path: ./rules/netatlas-hbo-asia.yaml
+    interval: 86400
+  heroku:
+    type: http
+    proxy: DIRECT
+    behavior: classical
+    format: yaml
+    url: https://raw.githubusercontent.com/luckiestultra/netatlas/main/clients/mihomo/rules/heroku.yaml
+    path: ./rules/netatlas-heroku.yaml
     interval: 86400
   huggingface:
     type: http
@@ -464,6 +886,38 @@ rule-providers:
     url: https://raw.githubusercontent.com/luckiestultra/netatlas/main/clients/mihomo/rules/huggingface.yaml
     path: ./rules/netatlas-huggingface.yaml
     interval: 86400
+  hulu-jp:
+    type: http
+    proxy: DIRECT
+    behavior: classical
+    format: yaml
+    url: https://raw.githubusercontent.com/luckiestultra/netatlas/main/clients/mihomo/rules/hulu-jp.yaml
+    path: ./rules/netatlas-hulu-jp.yaml
+    interval: 86400
+  huya:
+    type: http
+    proxy: DIRECT
+    behavior: classical
+    format: yaml
+    url: https://raw.githubusercontent.com/luckiestultra/netatlas/main/clients/mihomo/rules/huya.yaml
+    path: ./rules/netatlas-huya.yaml
+    interval: 86400
+  icloud:
+    type: http
+    proxy: DIRECT
+    behavior: classical
+    format: yaml
+    url: https://raw.githubusercontent.com/luckiestultra/netatlas/main/clients/mihomo/rules/icloud.yaml
+    path: ./rules/netatlas-icloud.yaml
+    interval: 86400
+  iqiyi:
+    type: http
+    proxy: DIRECT
+    behavior: classical
+    format: yaml
+    url: https://raw.githubusercontent.com/luckiestultra/netatlas/main/clients/mihomo/rules/iqiyi.yaml
+    path: ./rules/netatlas-iqiyi.yaml
+    interval: 86400
   jetbrains:
     type: http
     proxy: DIRECT
@@ -471,6 +925,30 @@ rule-providers:
     format: yaml
     url: https://raw.githubusercontent.com/luckiestultra/netatlas/main/clients/mihomo/rules/jetbrains.yaml
     path: ./rules/netatlas-jetbrains.yaml
+    interval: 86400
+  joox:
+    type: http
+    proxy: DIRECT
+    behavior: classical
+    format: yaml
+    url: https://raw.githubusercontent.com/luckiestultra/netatlas/main/clients/mihomo/rules/joox.yaml
+    path: ./rules/netatlas-joox.yaml
+    interval: 86400
+  kkbox:
+    type: http
+    proxy: DIRECT
+    behavior: classical
+    format: yaml
+    url: https://raw.githubusercontent.com/luckiestultra/netatlas/main/clients/mihomo/rules/kkbox.yaml
+    path: ./rules/netatlas-kkbox.yaml
+    interval: 86400
+  kktv:
+    type: http
+    proxy: DIRECT
+    behavior: classical
+    format: yaml
+    url: https://raw.githubusercontent.com/luckiestultra/netatlas/main/clients/mihomo/rules/kktv.yaml
+    path: ./rules/netatlas-kktv.yaml
     interval: 86400
   line:
     type: http
@@ -480,6 +958,38 @@ rule-providers:
     url: https://raw.githubusercontent.com/luckiestultra/netatlas/main/clients/mihomo/rules/line.yaml
     path: ./rules/netatlas-line.yaml
     interval: 86400
+  mozilla:
+    type: http
+    proxy: DIRECT
+    behavior: classical
+    format: yaml
+    url: https://raw.githubusercontent.com/luckiestultra/netatlas/main/clients/mihomo/rules/mozilla.yaml
+    path: ./rules/netatlas-mozilla.yaml
+    interval: 86400
+  mudvod:
+    type: http
+    proxy: DIRECT
+    behavior: classical
+    format: yaml
+    url: https://raw.githubusercontent.com/luckiestultra/netatlas/main/clients/mihomo/rules/mudvod.yaml
+    path: ./rules/netatlas-mudvod.yaml
+    interval: 86400
+  mytvsuper:
+    type: http
+    proxy: DIRECT
+    behavior: classical
+    format: yaml
+    url: https://raw.githubusercontent.com/luckiestultra/netatlas/main/clients/mihomo/rules/mytvsuper.yaml
+    path: ./rules/netatlas-mytvsuper.yaml
+    interval: 86400
+  netease-music:
+    type: http
+    proxy: DIRECT
+    behavior: classical
+    format: yaml
+    url: https://raw.githubusercontent.com/luckiestultra/netatlas/main/clients/mihomo/rules/netease-music.yaml
+    path: ./rules/netatlas-netease-music.yaml
+    interval: 86400
   netflix:
     type: http
     proxy: DIRECT
@@ -487,6 +997,22 @@ rule-providers:
     format: yaml
     url: https://raw.githubusercontent.com/luckiestultra/netatlas/main/clients/mihomo/rules/netflix.yaml
     path: ./rules/netatlas-netflix.yaml
+    interval: 86400
+  niconico:
+    type: http
+    proxy: DIRECT
+    behavior: classical
+    format: yaml
+    url: https://raw.githubusercontent.com/luckiestultra/netatlas/main/clients/mihomo/rules/niconico.yaml
+    path: ./rules/netatlas-niconico.yaml
+    interval: 86400
+  notion:
+    type: http
+    proxy: DIRECT
+    behavior: classical
+    format: yaml
+    url: https://raw.githubusercontent.com/luckiestultra/netatlas/main/clients/mihomo/rules/notion.yaml
+    path: ./rules/netatlas-notion.yaml
     interval: 86400
   npmjs:
     type: http
@@ -496,6 +1022,22 @@ rule-providers:
     url: https://raw.githubusercontent.com/luckiestultra/netatlas/main/clients/mihomo/rules/npmjs.yaml
     path: ./rules/netatlas-npmjs.yaml
     interval: 86400
+  olevod:
+    type: http
+    proxy: DIRECT
+    behavior: classical
+    format: yaml
+    url: https://raw.githubusercontent.com/luckiestultra/netatlas/main/clients/mihomo/rules/olevod.yaml
+    path: ./rules/netatlas-olevod.yaml
+    interval: 86400
+  onedrive:
+    type: http
+    proxy: DIRECT
+    behavior: classical
+    format: yaml
+    url: https://raw.githubusercontent.com/luckiestultra/netatlas/main/clients/mihomo/rules/onedrive.yaml
+    path: ./rules/netatlas-onedrive.yaml
+    interval: 86400
   openai:
     type: http
     proxy: DIRECT
@@ -503,6 +1045,22 @@ rule-providers:
     format: yaml
     url: https://raw.githubusercontent.com/luckiestultra/netatlas/main/clients/mihomo/rules/openai.yaml
     path: ./rules/netatlas-openai.yaml
+    interval: 86400
+  oracle:
+    type: http
+    proxy: DIRECT
+    behavior: classical
+    format: yaml
+    url: https://raw.githubusercontent.com/luckiestultra/netatlas/main/clients/mihomo/rules/oracle.yaml
+    path: ./rules/netatlas-oracle.yaml
+    interval: 86400
+  paypal:
+    type: http
+    proxy: DIRECT
+    behavior: classical
+    format: yaml
+    url: https://raw.githubusercontent.com/luckiestultra/netatlas/main/clients/mihomo/rules/paypal.yaml
+    path: ./rules/netatlas-paypal.yaml
     interval: 86400
   perplexity:
     type: http
@@ -512,6 +1070,14 @@ rule-providers:
     url: https://raw.githubusercontent.com/luckiestultra/netatlas/main/clients/mihomo/rules/perplexity.yaml
     path: ./rules/netatlas-perplexity.yaml
     interval: 86400
+  pikpak:
+    type: http
+    proxy: DIRECT
+    behavior: classical
+    format: yaml
+    url: https://raw.githubusercontent.com/luckiestultra/netatlas/main/clients/mihomo/rules/pikpak.yaml
+    path: ./rules/netatlas-pikpak.yaml
+    interval: 86400
   poe:
     type: http
     proxy: DIRECT
@@ -519,6 +1085,46 @@ rule-providers:
     format: yaml
     url: https://raw.githubusercontent.com/luckiestultra/netatlas/main/clients/mihomo/rules/poe.yaml
     path: ./rules/netatlas-poe.yaml
+    interval: 86400
+  pornhub:
+    type: http
+    proxy: DIRECT
+    behavior: classical
+    format: yaml
+    url: https://raw.githubusercontent.com/luckiestultra/netatlas/main/clients/mihomo/rules/pornhub.yaml
+    path: ./rules/netatlas-pornhub.yaml
+    interval: 86400
+  pptv:
+    type: http
+    proxy: DIRECT
+    behavior: classical
+    format: yaml
+    url: https://raw.githubusercontent.com/luckiestultra/netatlas/main/clients/mihomo/rules/pptv.yaml
+    path: ./rules/netatlas-pptv.yaml
+    interval: 86400
+  primevideo:
+    type: http
+    proxy: DIRECT
+    behavior: classical
+    format: yaml
+    url: https://raw.githubusercontent.com/luckiestultra/netatlas/main/clients/mihomo/rules/primevideo.yaml
+    path: ./rules/netatlas-primevideo.yaml
+    interval: 86400
+  qobuz:
+    type: http
+    proxy: DIRECT
+    behavior: classical
+    format: yaml
+    url: https://raw.githubusercontent.com/luckiestultra/netatlas/main/clients/mihomo/rules/qobuz.yaml
+    path: ./rules/netatlas-qobuz.yaml
+    interval: 86400
+  quark:
+    type: http
+    proxy: DIRECT
+    behavior: classical
+    format: yaml
+    url: https://raw.githubusercontent.com/luckiestultra/netatlas/main/clients/mihomo/rules/quark.yaml
+    path: ./rules/netatlas-quark.yaml
     interval: 86400
   signal:
     type: http
@@ -536,6 +1142,14 @@ rule-providers:
     url: https://raw.githubusercontent.com/luckiestultra/netatlas/main/clients/mihomo/rules/slack.yaml
     path: ./rules/netatlas-slack.yaml
     interval: 86400
+  soundcloud:
+    type: http
+    proxy: DIRECT
+    behavior: classical
+    format: yaml
+    url: https://raw.githubusercontent.com/luckiestultra/netatlas/main/clients/mihomo/rules/soundcloud.yaml
+    path: ./rules/netatlas-soundcloud.yaml
+    interval: 86400
   speedtest:
     type: http
     proxy: DIRECT
@@ -552,13 +1166,21 @@ rule-providers:
     url: https://raw.githubusercontent.com/luckiestultra/netatlas/main/clients/mihomo/rules/spotify.yaml
     path: ./rules/netatlas-spotify.yaml
     interval: 86400
-  steam:
+  steam-cn:
     type: http
     proxy: DIRECT
     behavior: classical
     format: yaml
-    url: https://raw.githubusercontent.com/luckiestultra/netatlas/main/clients/mihomo/rules/steam.yaml
-    path: ./rules/netatlas-steam.yaml
+    url: https://raw.githubusercontent.com/luckiestultra/netatlas/main/clients/mihomo/rules/steam-cn.yaml
+    path: ./rules/netatlas-steam-cn.yaml
+    interval: 86400
+  taptap:
+    type: http
+    proxy: DIRECT
+    behavior: classical
+    format: yaml
+    url: https://raw.githubusercontent.com/luckiestultra/netatlas/main/clients/mihomo/rules/taptap.yaml
+    path: ./rules/netatlas-taptap.yaml
     interval: 86400
   telegram:
     type: http
@@ -567,6 +1189,22 @@ rule-providers:
     format: yaml
     url: https://raw.githubusercontent.com/luckiestultra/netatlas/main/clients/mihomo/rules/telegram.yaml
     path: ./rules/netatlas-telegram.yaml
+    interval: 86400
+  terabox:
+    type: http
+    proxy: DIRECT
+    behavior: classical
+    format: yaml
+    url: https://raw.githubusercontent.com/luckiestultra/netatlas/main/clients/mihomo/rules/terabox.yaml
+    path: ./rules/netatlas-terabox.yaml
+    interval: 86400
+  tidal:
+    type: http
+    proxy: DIRECT
+    behavior: classical
+    format: yaml
+    url: https://raw.githubusercontent.com/luckiestultra/netatlas/main/clients/mihomo/rules/tidal.yaml
+    path: ./rules/netatlas-tidal.yaml
     interval: 86400
   tiktok:
     type: http
@@ -584,6 +1222,14 @@ rule-providers:
     url: https://raw.githubusercontent.com/luckiestultra/netatlas/main/clients/mihomo/rules/twitch.yaml
     path: ./rules/netatlas-twitch.yaml
     interval: 86400
+  twitter:
+    type: http
+    proxy: DIRECT
+    behavior: classical
+    format: yaml
+    url: https://raw.githubusercontent.com/luckiestultra/netatlas/main/clients/mihomo/rules/twitter.yaml
+    path: ./rules/netatlas-twitter.yaml
+    interval: 86400
   vercel:
     type: http
     proxy: DIRECT
@@ -591,6 +1237,30 @@ rule-providers:
     format: yaml
     url: https://raw.githubusercontent.com/luckiestultra/netatlas/main/clients/mihomo/rules/vercel.yaml
     path: ./rules/netatlas-vercel.yaml
+    interval: 86400
+  viu-portable:
+    type: http
+    proxy: DIRECT
+    behavior: classical
+    format: yaml
+    url: https://raw.githubusercontent.com/luckiestultra/netatlas/main/clients/mihomo/rules/viu-portable.yaml
+    path: ./rules/netatlas-viu-portable.yaml
+    interval: 86400
+  wechat:
+    type: http
+    proxy: DIRECT
+    behavior: classical
+    format: yaml
+    url: https://raw.githubusercontent.com/luckiestultra/netatlas/main/clients/mihomo/rules/wechat.yaml
+    path: ./rules/netatlas-wechat.yaml
+    interval: 86400
+  weibo:
+    type: http
+    proxy: DIRECT
+    behavior: classical
+    format: yaml
+    url: https://raw.githubusercontent.com/luckiestultra/netatlas/main/clients/mihomo/rules/weibo.yaml
+    path: ./rules/netatlas-weibo.yaml
     interval: 86400
   whatsapp:
     type: http
@@ -600,6 +1270,14 @@ rule-providers:
     url: https://raw.githubusercontent.com/luckiestultra/netatlas/main/clients/mihomo/rules/whatsapp.yaml
     path: ./rules/netatlas-whatsapp.yaml
     interval: 86400
+  wikimedia:
+    type: http
+    proxy: DIRECT
+    behavior: classical
+    format: yaml
+    url: https://raw.githubusercontent.com/luckiestultra/netatlas/main/clients/mihomo/rules/wikimedia.yaml
+    path: ./rules/netatlas-wikimedia.yaml
+    interval: 86400
   xai:
     type: http
     proxy: DIRECT
@@ -607,6 +1285,38 @@ rule-providers:
     format: yaml
     url: https://raw.githubusercontent.com/luckiestultra/netatlas/main/clients/mihomo/rules/xai.yaml
     path: ./rules/netatlas-xai.yaml
+    interval: 86400
+  xiaohongshu:
+    type: http
+    proxy: DIRECT
+    behavior: classical
+    format: yaml
+    url: https://raw.githubusercontent.com/luckiestultra/netatlas/main/clients/mihomo/rules/xiaohongshu.yaml
+    path: ./rules/netatlas-xiaohongshu.yaml
+    interval: 86400
+  ximalaya:
+    type: http
+    proxy: DIRECT
+    behavior: classical
+    format: yaml
+    url: https://raw.githubusercontent.com/luckiestultra/netatlas/main/clients/mihomo/rules/ximalaya.yaml
+    path: ./rules/netatlas-ximalaya.yaml
+    interval: 86400
+  yandex:
+    type: http
+    proxy: DIRECT
+    behavior: classical
+    format: yaml
+    url: https://raw.githubusercontent.com/luckiestultra/netatlas/main/clients/mihomo/rules/yandex.yaml
+    path: ./rules/netatlas-yandex.yaml
+    interval: 86400
+  youku:
+    type: http
+    proxy: DIRECT
+    behavior: classical
+    format: yaml
+    url: https://raw.githubusercontent.com/luckiestultra/netatlas/main/clients/mihomo/rules/youku.yaml
+    path: ./rules/netatlas-youku.yaml
     interval: 86400
   youtube:
     type: http
@@ -616,6 +1326,14 @@ rule-providers:
     url: https://raw.githubusercontent.com/luckiestultra/netatlas/main/clients/mihomo/rules/youtube.yaml
     path: ./rules/netatlas-youtube.yaml
     interval: 86400
+  z-library:
+    type: http
+    proxy: DIRECT
+    behavior: classical
+    format: yaml
+    url: https://raw.githubusercontent.com/luckiestultra/netatlas/main/clients/mihomo/rules/z-library.yaml
+    path: ./rules/netatlas-z-library.yaml
+    interval: 86400
   zoom:
     type: http
     proxy: DIRECT
@@ -623,6 +1341,126 @@ rule-providers:
     format: yaml
     url: https://raw.githubusercontent.com/luckiestultra/netatlas/main/clients/mihomo/rules/zoom.yaml
     path: ./rules/netatlas-zoom.yaml
+    interval: 86400
+  hulu:
+    type: http
+    proxy: DIRECT
+    behavior: classical
+    format: yaml
+    url: https://raw.githubusercontent.com/luckiestultra/netatlas/main/clients/mihomo/rules/hulu.yaml
+    path: ./rules/netatlas-hulu.yaml
+    interval: 86400
+  hbo:
+    type: http
+    proxy: DIRECT
+    behavior: classical
+    format: yaml
+    url: https://raw.githubusercontent.com/luckiestultra/netatlas/main/clients/mihomo/rules/hbo.yaml
+    path: ./rules/netatlas-hbo.yaml
+    interval: 86400
+  steam:
+    type: http
+    proxy: DIRECT
+    behavior: classical
+    format: yaml
+    url: https://raw.githubusercontent.com/luckiestultra/netatlas/main/clients/mihomo/rules/steam.yaml
+    path: ./rules/netatlas-steam.yaml
+    interval: 86400
+  quora:
+    type: http
+    proxy: DIRECT
+    behavior: classical
+    format: yaml
+    url: https://raw.githubusercontent.com/luckiestultra/netatlas/main/clients/mihomo/rules/quora.yaml
+    path: ./rules/netatlas-quora.yaml
+    interval: 86400
+  tvb:
+    type: http
+    proxy: DIRECT
+    behavior: classical
+    format: yaml
+    url: https://raw.githubusercontent.com/luckiestultra/netatlas/main/clients/mihomo/rules/tvb.yaml
+    path: ./rules/netatlas-tvb.yaml
+    interval: 86400
+  disney:
+    type: http
+    proxy: DIRECT
+    behavior: classical
+    format: yaml
+    url: https://raw.githubusercontent.com/luckiestultra/netatlas/main/clients/mihomo/rules/disney.yaml
+    path: ./rules/netatlas-disney.yaml
+    interval: 86400
+  china-media:
+    type: http
+    proxy: DIRECT
+    behavior: classical
+    format: yaml
+    url: https://raw.githubusercontent.com/luckiestultra/netatlas/main/clients/mihomo/rules/china-media.yaml
+    path: ./rules/netatlas-china-media.yaml
+    interval: 86400
+  hmt-media:
+    type: http
+    proxy: DIRECT
+    behavior: classical
+    format: yaml
+    url: https://raw.githubusercontent.com/luckiestultra/netatlas/main/clients/mihomo/rules/hmt-media.yaml
+    path: ./rules/netatlas-hmt-media.yaml
+    interval: 86400
+  global-media:
+    type: http
+    proxy: DIRECT
+    behavior: classical
+    format: yaml
+    url: https://raw.githubusercontent.com/luckiestultra/netatlas/main/clients/mihomo/rules/global-media.yaml
+    path: ./rules/netatlas-global-media.yaml
+    interval: 86400
+  amazon-portable:
+    type: http
+    proxy: DIRECT
+    behavior: classical
+    format: yaml
+    url: https://raw.githubusercontent.com/luckiestultra/netatlas/main/clients/mihomo/rules/amazon-portable.yaml
+    path: ./rules/netatlas-amazon-portable.yaml
+    interval: 86400
+  akamai:
+    type: http
+    proxy: DIRECT
+    behavior: classical
+    format: yaml
+    url: https://raw.githubusercontent.com/luckiestultra/netatlas/main/clients/mihomo/rules/akamai.yaml
+    path: ./rules/netatlas-akamai.yaml
+    interval: 86400
+  alibaba:
+    type: http
+    proxy: DIRECT
+    behavior: classical
+    format: yaml
+    url: https://raw.githubusercontent.com/luckiestultra/netatlas/main/clients/mihomo/rules/alibaba.yaml
+    path: ./rules/netatlas-alibaba.yaml
+    interval: 86400
+  bytedance:
+    type: http
+    proxy: DIRECT
+    behavior: classical
+    format: yaml
+    url: https://raw.githubusercontent.com/luckiestultra/netatlas/main/clients/mihomo/rules/bytedance.yaml
+    path: ./rules/netatlas-bytedance.yaml
+    interval: 86400
+  netease:
+    type: http
+    proxy: DIRECT
+    behavior: classical
+    format: yaml
+    url: https://raw.githubusercontent.com/luckiestultra/netatlas/main/clients/mihomo/rules/netease.yaml
+    path: ./rules/netatlas-netease.yaml
+    interval: 86400
+  tencent:
+    type: http
+    proxy: DIRECT
+    behavior: classical
+    format: yaml
+    url: https://raw.githubusercontent.com/luckiestultra/netatlas/main/clients/mihomo/rules/tencent.yaml
+    path: ./rules/netatlas-tencent.yaml
     interval: 86400
   apple:
     type: http

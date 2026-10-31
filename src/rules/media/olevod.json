@@ -1,0 +1,43 @@
+{
+  "version": 1,
+  "id": "olevod",
+  "category": "media",
+  "entries": [
+    {
+      "type": "domain-suffix",
+      "value": "haiwaikan.com"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "iole.tv"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "olehd.com"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "olelive.com"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "olemovienews.com"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "olevod.com"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "olevod.io"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "olevod.tv"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "olevodtv.com"
+    }
+  ]
+}

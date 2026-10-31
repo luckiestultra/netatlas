@@ -28,7 +28,7 @@ HTTPS-upgrade 为固定 GPL-2.0 原文的六主机投影，保留 path/query，�
 
 QX 原生适配器只解析 $response，不再联网或更改节点。生成的 fragments/geoip.conf 是 [general] 合并片段，不是重写订阅；它的脚本 URL 只有对应文件推送到公开提交后才能使用。
 
-Surge generic 面板的一次查询明确指定已有策略名，默认 Proxy。该选项只影响本次查询，不切换策略组、不读取账户偏好，也不代表其他请求采用相同路由。请求、看门狗和晚响应共用一次完成保护。
+Surge generic 面板的一次查询明确指定已有策略名，发布模块默认节点选择。该选项只影响本次查询，不切换策略组、不读取账户偏好，也不代表其他请求采用相同路由。请求、看门狗和晚响应共用一次完成保护。
 
 ## 诊断与重写
 
@@ -46,3 +46,7 @@ npm run test:live
 离线测试覆盖保留地址样本和异常分支；VM 执行生成的原生适配器检查完成契约。实时 API 检查单独运行并有超时，不进入离线 CI 的稳定断言。VM 通过不能标记为应用内实测，当前原生应用功能验证状态保留 not-run。
 
 新增请求目的地、持久存储、MITM 范围或宿主 API 时更新功能清单与对应测试；不自动修改用户正在运行的客户端。
+
+## 完整可选资源
+
+本轮增加原创47动作快速搜索、固定GPL完整59动作跳转与独立BiliIntl参数资源（六GUI）；三类官方工具18个可选安装包；QX/Loon两个外部解析器片段；原创Surge正文替换。安装格式、许可、入口权限、直接依赖固定范围和nativeApp:not-run分别登记，不以核心不支持的格式伪造Mihomo/sing-box模块。完整机器清单为metadata/features.json、metadata/integrations.json、metadata/resource-parsers.json和metadata/coverage.json。

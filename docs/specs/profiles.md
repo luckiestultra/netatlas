@@ -45,7 +45,7 @@ clients/<client>/
 
 `private-profile.mjs` 与 `tools/profile.mjs` 作为高级工具，负责本地订阅的受限拉取、原生节点 materialize、权限和输入/旧输出保护。六种客户端保留原生订阅；sing-box/Shadowrocket 不伪造 provider，支持格式在本地展开。复杂未实现的握手字段明确失败而非静默删除。输入/输出仅限忽略目录 private/，不触碰用户现用客户端配置。格式、协议范围、失败保护与命令见[完整接入](../profile-setup.md)。
 
-DNS 与 CN 分流是完整配置的一部分。40 个默认资源包含 23,476 条规范规则；当前 CN 含 8,387 域名、6,174 IPv4、3,475 IPv6，在具体服务后作为兜底。基础设施 resolve 动作单独验证，不当作规范规则；CN CIDR 允许主动解析而 LAN CIDR 保留 no-resolve。DNS 独立处理 bootstrap、国内、远端与 LAN，代理自己的地址不通过自身代理递归解析。默认配置通过原生规则资源参与 DNS 分类，不再批量内联同一批域名；高级 standalone 保留完整内联。细节见[完整接入](../profile-setup.md)。
+DNS 与 CN 分流是完整配置的一部分。40 个默认资源包含 29,103 条规范规则；当前 CN 含 8,387 域名、6,174 IPv4、3,475 IPv6，在具体服务后作为兜底。基础设施 resolve 动作单独验证，不当作规范规则；CN CIDR 允许主动解析而 LAN CIDR 保留 no-resolve。DNS 独立处理 bootstrap、国内、远端与 LAN，代理自己的地址不通过自身代理递归解析。默认配置通过原生规则资源参与 DNS 分类，不再批量内联同一批域名；高级 standalone 保留完整内联。细节见[完整接入](../profile-setup.md)。
 
 校验器区分默认 App 配置与高级内联配置，以及 REJECT 初始选择、App 内置节点选择和私有实际节点；识别本地节点、原生来源/匹配器及必要基础设施规则。闭源 GUI 无环境时使用官方与固定高星配置交叉验证，并明确没有原生运行证据。
 
@@ -71,3 +71,5 @@ npm run test:profiles
 构建统一生成八个目标，不提供单客户端 --client 构建开关。验证器支持 --client 筛选。
 
 default 与 standalone 都必须非空、结构可解析、策略引用存在、规则顺序明确。默认配置须引用同一构建实际生成的规则文件，并独立检查远程拉取和更新路径；standalone 须检查完整内联规则。八种目标都执行结构与语义检查；Mihomo、sing-box 另用固定版本内核检查和受控流量验证。其余六个应用标记 manual-import-required，未实际导入或未观察真实流量时，不将文档交叉核对、解析测试或字段断言宣称为 GUI 验证通过。
+
+扩展规则、五种匹配类型及可选工具来源见[覆盖清单](../coverage.md)。

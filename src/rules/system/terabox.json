@@ -1,0 +1,35 @@
+{
+  "version": 1,
+  "id": "terabox",
+  "category": "system",
+  "entries": [
+    {
+      "type": "domain-suffix",
+      "value": "1024terabox.com"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "bestclouddrive.com"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "freeterabox.com"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "nephobox.com"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "terabox.com"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "terabox1024.com"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "teraboxcdn.com"
+    }
+  ]
+}

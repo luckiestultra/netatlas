@@ -1,0 +1,124 @@
+{
+  "version": 1,
+  "defaultEnabled": false,
+  "recipeLicense": "MIT",
+  "sourceRegistry": {
+    "vendoredJavaScript": false,
+    "scope": "Only original external installation recipes are distributed. Each external parser retains its registered upstream license; no blanket MIT or NetAtlas implementation claim.",
+    "verification": "Actual TLS-verified GET bytes plus non-executing node --check and static source-contract review; native application imports and conversion execution are not run."
+  },
+  "clients": {
+    "quantumultX": {
+      "client": "quantumultX",
+      "author": "KOP-XIAO",
+      "repository": "KOP-XIAO/QuantumultX",
+      "commit": "f0177f5ea2f62681ab2592a4ed54677dfbbc4b78",
+      "sourcePath": "Scripts/resource-parser.js",
+      "url": "https://raw.githubusercontent.com/KOP-XIAO/QuantumultX/f0177f5ea2f62681ab2592a4ed54677dfbbc4b78/Scripts/resource-parser.js",
+      "bytes": 271667,
+      "sha256": "1315ad57a31a2431a9fdf3d9fa0c892f7e91b9fa74f1c81bdaac04d521817b67",
+      "upstreamLicense": "unspecified",
+      "sourceMarkers": [
+        "$resource",
+        "$done",
+        "hashSchema",
+        "2026-10-13"
+      ],
+      "sourceContract": {
+        "input": "QX $resource object: type/link/content/info/tag; $environment.version for host build.",
+        "completion": "$done({content,...}) and optional native retry response; hashSchema helper UI.",
+        "helperUiMinimumBuild": 918
+      },
+      "permissions": {
+        "subscriptionContents": true,
+        "userSuppliedScriptEval": true,
+        "network": "Can request a native User-Agent retry to re-fetch a subscription; configured custom filter/rename scripts run in the same host context.",
+        "storage": "The recipe has no storage operations; this is external client code, not an isolated NetAtlas sandbox.",
+        "automaticTasks": false,
+        "mitm": false
+      },
+      "officialDocumentation": [
+        "https://github.com/KOP-XIAO/QuantumultX/blob/f0177f5ea2f62681ab2592a4ed54677dfbbc4b78/README.md",
+        "https://github.com/crossutility/Quantumult-X/blob/master/sample.conf"
+      ],
+      "behavior": "Converts supported subscription nodes, rules and module/rewrite resources and exposes filtering/renaming options; feature and protocol support follow the external parser.",
+      "limitations": "The upstream repository does not declare a root license. NetAtlas only publishes an optional original-author URL recipe; no parser source or modified copy is distributed.",
+      "artifacts": [
+        "fragments/resource-parser.conf"
+      ],
+      "kind": "manual-general-fragment",
+      "defaultEnabled": false,
+      "externalOnly": true,
+      "nativeApp": "not-run",
+      "httpStatus": 200,
+      "tlsVerified": true,
+      "syntaxCheck": "node --check (no execution)",
+      "fetchedAt": "2026-10-31"
+    },
+    "loon": {
+      "client": "loon",
+      "author": "Peng-YM and Sub-Store contributors",
+      "repository": "sub-store-org/Sub-Store",
+      "commit": "d26e713e38901e02565a6505c1ae5cb8bb8a1a22",
+      "sourcePath": "sub-store-parser.loon.min.js",
+      "url": "https://raw.githubusercontent.com/sub-store-org/Sub-Store/d26e713e38901e02565a6505c1ae5cb8bb8a1a22/sub-store-parser.loon.min.js",
+      "bytes": 1276648,
+      "sha256": "54756d35c1777ef73aa384de4bea022d96ed58d8128f3610a14e202ee300d16c",
+      "upstreamLicense": "AGPL-3.0-only",
+      "release": "2.44.2",
+      "sourceCommit": "c1018115a7eee4cdcb9042cce5e94afda41e48ba",
+      "completeSourceUrl": "https://github.com/sub-store-org/Sub-Store/tree/c1018115a7eee4cdcb9042cce5e94afda41e48ba",
+      "licenseUrl": "https://raw.githubusercontent.com/sub-store-org/Sub-Store/c1018115a7eee4cdcb9042cce5e94afda41e48ba/LICENSE",
+      "productSourceUrl": "https://github.com/sub-store-org/Sub-Store/blob/c1018115a7eee4cdcb9042cce5e94afda41e48ba/backend/src/products/resource-parser.loon.js",
+      "sourceMarkers": [
+        "$resource",
+        "$done",
+        "2.44.2"
+      ],
+      "sourceContract": {
+        "input": "Loon $resource string, $resourceType number, $resourceUrl string, $loon and optional $argument.",
+        "completion": "Product source completes with $done(result || '').",
+        "supportedResourceTypes": {
+          "1": "nodes",
+          "2": "rules"
+        },
+        "otherTypes": "Passed through; not a general plugin/script rewrite converter."
+      },
+      "permissions": {
+        "subscriptionContents": true,
+        "userSuppliedScriptEval": false,
+        "network": "Product can download $resourceUrl if supplied content cannot be converted; shared download utilities may use subscription caches.",
+        "storage": "External bundle runs with Loon host privileges and shared download/cache helpers; no wrapper storage or credential setup.",
+        "automaticTasks": false,
+        "mitm": false
+      },
+      "officialDocumentation": [
+        "https://nsloon.app/docs/General/",
+        "https://nsloon.app/docs/Node/subscription/",
+        "https://github.com/sub-store-org/Sub-Store/blob/352f01b7091c99f4e219c44e4ec96f3288059843/config/README.md"
+      ],
+      "behavior": "Parses node and rule resources into Loon format; enable parser-enabled=true on the chosen existing subscription when conversion is needed.",
+      "limitations": "The recipe references the official AGPL release bundle without redistributing it. No automatic synchronization or Gist upload hook is installed. The upstream build is not claimed to be reproducible.",
+      "artifacts": [
+        "fragments/resource-parser.conf"
+      ],
+      "kind": "manual-general-fragment",
+      "defaultEnabled": false,
+      "externalOnly": true,
+      "nativeApp": "not-run",
+      "httpStatus": 200,
+      "tlsVerified": true,
+      "syntaxCheck": "node --check (no execution)",
+      "fetchedAt": "2026-10-31"
+    }
+  },
+  "unsupportedClients": [
+    "surge",
+    "shadowrocket",
+    "egern",
+    "stash",
+    "mihomo",
+    "singBox"
+  ],
+  "unsupportedReason": "This feature only supplies the documented QX/Loon resource-parser settings. Other clients may use separate Sub-Store or ScriptHub tools; no equivalent parser-key compatibility is claimed."
+}

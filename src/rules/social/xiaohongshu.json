@@ -1,0 +1,55 @@
+{
+  "version": 1,
+  "id": "xiaohongshu",
+  "category": "social",
+  "entries": [
+    {
+      "type": "domain-suffix",
+      "value": "askdiandian.com"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "diandianlife.top"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "redelight.cn"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "rednote.com"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "rednote.com.my"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "rednotecdn.com"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "rnote.com"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "xhscdn.com"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "xhscdn.net"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "xhslink.com"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "xhsrcdn.com"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "xiaohongshu.com"
+    }
+  ]
+}

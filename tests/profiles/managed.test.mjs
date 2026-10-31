@@ -12,11 +12,11 @@ const { rulesets } = await loadCatalog(root);
 for (const client of clients) {
   test(`${client.id}: App default is compact and subscribes to the complete ordered rule catalog`, () => {
     const profile = renderManagedProfile(client.id, { rulesets });
-    assert.ok(Buffer.byteLength(profile.content) < 65_536, 'daily profile should contain settings and resource references, not the entire rule database');
+    assert.ok(Buffer.byteLength(profile.content) < 100_000, 'daily profile should contain settings and resource references, not the entire rule database');
     assert.equal(profile.path, `profiles/default.${client.profileExtension}`);
     const result = validateManagedProfile(client.id, profile.content, rulesets);
-    assert.equal(result.resources, 40);
-    assert.equal(result.entries, 23_476);
+    assert.equal(result.resources, 114);
+    assert.equal(result.entries, 29_103);
     assert.doesNotMatch(profile.content, /Matrix|npm run|private input|your-service-provider/);
     assert.ok(profile.content.includes('日本节点'));
     assert.ok(profile.content.includes('自动选择'));
@@ -63,7 +63,7 @@ test('managed validation rejects a wrong policy, missing resource, invalid group
 test('Surge multiple native subscription sources retain quoted include-other-group references', () => {
   const subscriptions = ['个人订阅', '备用订阅'].map(name => ({ name, url: 'https://private.example.test/' + encodeURIComponent(name) }));
   const profile = renderManagedProfile('surge', { rulesets, subscriptions });
-  assert.equal(validateManagedProfile('surge', profile.content, rulesets).resources, 40);
+  assert.equal(validateManagedProfile('surge', profile.content, rulesets).resources, 114);
   assert.throws(() => validateManagedProfile('surge', profile.content.replace('"个人订阅,备用订阅"', '"个人订阅,不存在"'), rulesets), /member/);
 });
 

@@ -1,0 +1,19 @@
+{
+  "version": 1,
+  "id": "soundcloud",
+  "category": "media",
+  "entries": [
+    {
+      "type": "domain-suffix",
+      "value": "sndcdn.com"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "soundcloud.cloud"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "soundcloud.com"
+    }
+  ]
+}

@@ -11,8 +11,8 @@ import { domainToASCII } from 'node:url';
 const header = '# NetAtlas — complete client configuration\n'
   + '# Add private nodes/subscriptions with the local profile command, or the native entry below.\n'
   + '# An unconfigured profile defaults to REJECT; no placeholder endpoint is contacted.\n';
-const types = { domain: 'DOMAIN', 'domain-suffix': 'DOMAIN-SUFFIX', 'ip-cidr': 'IP-CIDR', 'ip-cidr6': 'IP-CIDR6' };
-const egernTypes = { domain: 'domain', 'domain-suffix': 'domain_suffix', 'ip-cidr': 'ip_cidr', 'ip-cidr6': 'ip_cidr6' };
+const types = { domain: 'DOMAIN', 'domain-suffix': 'DOMAIN-SUFFIX', 'domain-keyword': 'DOMAIN-KEYWORD', 'ip-cidr': 'IP-CIDR', 'ip-cidr6': 'IP-CIDR6' };
+const egernTypes = { domain: 'domain', 'domain-suffix': 'domain_suffix', 'domain-keyword': 'domain_keyword', 'ip-cidr': 'ip_cidr', 'ip-cidr6': 'ip_cidr6' };
 const reserved = (groups) => new Set(['DIRECT', 'REJECT', ...groups.map(group => group.name)]);
 const unique = values => [...new Set(values)];
 const countryIp = entry => ['china-ipv4', 'china-ipv6'].includes(entry.rulesetId);
@@ -291,7 +291,7 @@ export function egern(entries, groups, options = {}) {
     policies: proxyChoices(group, nodeNames, [], options.selectedProxy),
     ...(group.name === 'Proxy' ? { urls: subscriptions.map(source => source.url), update_interval: intervals[0] ?? 86400 } : {}),
   } }));
-  const domainEntries = entries.filter(entry => ['domain', 'domain-suffix'].includes(entry.type));
+  const domainEntries = entries.filter(entry => ['domain', 'domain-suffix', 'domain-keyword'].includes(entry.type));
   const localEntries = [
     ...['localhost', 'local', 'home.arpa', 'lan'].map(value => ({ type: 'domain-suffix', value })),
     ...domainEntries.filter(entry => entry.rulesetId === 'lan'),

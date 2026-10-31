@@ -1,0 +1,83 @@
+{
+  "version": 1,
+  "id": "oracle",
+  "category": "development",
+  "entries": [
+    {
+      "type": "domain-suffix",
+      "value": "addthis.com"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "addthiscdn.com"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "addthisedge.com"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "ateam-oracle.com"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "bronto.com"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "covid19-rx.org"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "covid19rx.org"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "custhelp.com"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "java"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "java.com"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "java.net"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "oracle"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "oracle.com"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "oraclecloud.com"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "oraclefoundation.org"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "oracleimg.com"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "oracleinfinity.io"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "sun.com"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "virtualbox.org"
+    }
+  ]
+}

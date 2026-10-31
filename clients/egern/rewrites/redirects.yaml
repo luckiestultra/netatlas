@@ -1,0 +1,310 @@
+# SPDX-License-Identifier: GPL-2.0-only
+# Adapted from Redirect by blackmatrix7 (GPL-2.0); separate from repository MIT-licensed code.
+# Changed by NetAtlas on 2026-10-31: finite exact aliases, URL safeguards, no HTTP destination downgrades; region actions separated.
+# Complete original source: https://raw.githubusercontent.com/luckiestultra/netatlas/main/src/features/redirects/upstream/Redirect.conf.txt
+# Source SHA-256: 85311fcf996fbaf7279daba3ec4c3cff31d6035d333ae6b3c939d86039d16357
+# Changes and limitations: https://raw.githubusercontent.com/luckiestultra/netatlas/main/src/features/redirects/NOTICE.md
+# Full GPL version 2 license: https://raw.githubusercontent.com/luckiestultra/netatlas/main/src/features/redirects/LICENSE
+# Provided WITHOUT ANY WARRANTY; see the GNU General Public License for details.
+# Optional; absent from default profiles. Importing opts in to the listed redirects and exact HTTPS MITM hosts.
+# Requires your existing trusted MITM CA; no CA, certificate, runtime script, storage or background request is supplied.
+# Native app import/interception has not been run. A 302 can change a followed non-GET method.
+
+name: NetAtlas Redirects
+description: Optional official-site, HTTP upgrade and Google China redirects;
+  existing trusted MITM CA required for listed HTTPS hosts.
+author: blackmatrix7; adapted by NetAtlas contributors
+homepage: https://github.com/luckiestultra/netatlas
+url_rewrites:
+  - match: ^http:\/\/(?:aicoin\.cn|www\.aicoin\.cn)\/(?![\s\S])
+    location: https://www.aicoin.com/
+    status_code: 302
+  - match: ^http:\/\/(jd\.com|www\.jd\.com)(\/[^\s#]*)(?![\s\S])
+    location: https://$1$2
+    status_code: 302
+  - match: ^http:\/\/(mi\.com|www\.mi\.com)(\/[^\s#]*)(?![\s\S])
+    location: https://$1$2
+    status_code: 302
+  - match: ^http:\/\/(suning\.com|www\.suning\.com)(\/[^\s#]*)(?![\s\S])
+    location: https://$1$2
+    status_code: 302
+  - match: ^http:\/\/(taobao\.com|www\.taobao\.com)(\/[^\s#]*)(?![\s\S])
+    location: https://$1$2
+    status_code: 302
+  - match: ^http:\/\/(yhd\.com|www\.yhd\.com)(\/[^\s#]*)(?![\s\S])
+    location: https://$1$2
+    status_code: 302
+  - match: ^http:\/\/(you\.163\.com)(\/[^\s#]*)(?![\s\S])
+    location: https://$1$2
+    status_code: 302
+  - match: ^https?:\/\/(?:ditu\.google\.cn|maps\.google\.cn)(\/[^\s#]*)(?![\s\S])
+    location: https://maps.google.com$1
+    status_code: 302
+  - match: ^https?:\/\/(?:betterzipcn\.com|www\.betterzipcn\.com|betterzipcn\.net|www\.betterzipcn\.net|betterzip\.com|www\.betterzip\.com|betterzip\.net|www\.betterzip\.net)\/[^\s#]*(?![\s\S])
+    location: https://macitbetter.com/
+    status_code: 302
+  - match: ^https?:\/\/(?:g\.cn|www\.g\.cn|google\.cn|www\.google\.cn)(\/[^\s#]*)(?![\s\S])
+    location: https://www.google.com$1
+    status_code: 302
+  - match: ^https?:\/\/(?:mycleanmymac\.com|www\.mycleanmymac\.com|xitongqingli\.com|www\.xitongqingli\.com)\/[^\s#]*(?![\s\S])
+    location: https://macpaw.com/
+    status_code: 302
+  - match: ^https?:\/\/(?:abbyychina\.com|www\.abbyychina\.com)\/[^\s#]*(?![\s\S])
+    location: https://www.abbyy.cn/
+    status_code: 302
+  - match: ^https?:\/\/(?:alienskins\.cn|www\.alienskins\.cn)\/[^\s#]*(?![\s\S])
+    location: https://exposure.software/
+    status_code: 302
+  - match: ^https?:\/\/(?:anydeskchina\.cn|www\.anydeskchina\.cn)\/[^\s#]*(?![\s\S])
+    location: https://anydesk.com/zhs
+    status_code: 302
+  - match: ^https?:\/\/(?:bartender\.cc|www\.bartender\.cc)\/[^\s#]*(?![\s\S])
+    location: https://www.macbartender.com/
+    status_code: 302
+  - match: ^https?:\/\/(?:beyondcompare\.cc|www\.beyondcompare\.cc)\/[^\s#]*(?![\s\S])
+    location: https://www.scootersoftware.com/
+    status_code: 302
+  - match: ^https?:\/\/(?:bingdianhuanyuan\.cn|www\.bingdianhuanyuan\.cn)\/[^\s#]*(?![\s\S])
+    location: https://www.faronics.com/zh-hans/products/deep-freeze
+    status_code: 302
+  - match: ^https?:\/\/(?:chemdraw\.com\.cn|www\.chemdraw\.com\.cn)\/[^\s#]*(?![\s\S])
+    location: https://www.perkinelmer.com.cn/
+    status_code: 302
+  - match: ^https?:\/\/(?:codesoftchina\.com|www\.codesoftchina\.com)\/[^\s#]*(?![\s\S])
+    location: https://www.teklynx.com/
+    status_code: 302
+  - match: ^https?:\/\/(?:coreldrawchina\.com|www\.coreldrawchina\.com)\/[^\s#]*(?![\s\S])
+    location: https://www.coreldraw.com/cn/
+    status_code: 302
+  - match: ^https?:\/\/(?:crossoverchina\.com|www\.crossoverchina\.com)\/[^\s#]*(?![\s\S])
+    location: https://www.codeweavers.com/
+    status_code: 302
+  - match: ^https?:\/\/(?:dongmansoft\.com|www\.dongmansoft\.com)\/[^\s#]*(?![\s\S])
+    location: https://www.udongman.cn/
+    status_code: 302
+  - match: ^https?:\/\/(?:earmasterchina\.cn|www\.earmasterchina\.cn)\/[^\s#]*(?![\s\S])
+    location: https://www.earmaster.com/
+    status_code: 302
+  - match: ^https?:\/\/(?:easyrecoverychina\.com|www\.easyrecoverychina\.com)\/[^\s#]*(?![\s\S])
+    location: https://www.ontrack.com/
+    status_code: 302
+  - match: ^https?:\/\/(?:ediuschina\.com|www\.ediuschina\.com)\/[^\s#]*(?![\s\S])
+    location: https://www.grassvalley.com/
+    status_code: 302
+  - match: ^https?:\/\/(?:firefox\.com\.cn|www\.firefox\.com\.cn)\/(?:download\/)?(?![\s\S])
+    location: https://www.mozilla.org/zh-CN/firefox/new/
+    status_code: 302
+  - match: ^https?:\/\/(?:flstudiochina\.com|www\.flstudiochina\.com)\/[^\s#]*(?![\s\S])
+    location: https://www.image-line.com/
+    status_code: 302
+  - match: ^https?:\/\/(?:folxchina\.cn|www\.folxchina\.cn)\/[^\s#]*(?![\s\S])
+    location: https://mac.eltima.com/cn/download-manager.html
+    status_code: 302
+  - match: ^https?:\/\/(?:formysql\.com|www\.formysql\.com)\/[^\s#]*(?![\s\S])
+    location: https://www.navicat.com.cn/
+    status_code: 302
+  - match: ^https?:\/\/(?:guitarpro\.cc|www\.guitarpro\.cc)\/[^\s#]*(?![\s\S])
+    location: https://www.guitar-pro.com/
+    status_code: 302
+  - match: ^https?:\/\/(?:huishenghuiying\.com\.cn|www\.huishenghuiying\.com\.cn)\/[^\s#]*(?![\s\S])
+    location: https://www.coreldraw.com/cn/
+    status_code: 302
+  - match: ^https?:\/\/(?:hypeapp\.cn|www\.hypeapp\.cn)\/[^\s#]*(?![\s\S])
+    location: https://tumult.com/hype/
+    status_code: 302
+  - match: ^https?:\/\/(?:iconworkshop\.cn|www\.iconworkshop\.cn)\/[^\s#]*(?![\s\S])
+    location: https://www.axialis.com/
+    status_code: 302
+  - match: ^https?:\/\/(?:idmchina\.net|www\.idmchina\.net)\/[^\s#]*(?![\s\S])
+    location: https://www.internetdownloadmanager.com/
+    status_code: 302
+  - match: ^https?:\/\/(?:ign\.xn--fiqs8s|www\.ign\.xn--fiqs8s)\/[^\s#]*(?![\s\S])
+    location: https://cn.ign.com/ccpref/us
+    status_code: 302
+  - match: ^https?:\/\/(?:imazingchina\.com|www\.imazingchina\.com)\/[^\s#]*(?![\s\S])
+    location: https://imazing.com/zh
+    status_code: 302
+  - match: ^https?:\/\/(?:imindmap\.cc|www\.imindmap\.cc)\/[^\s#]*(?![\s\S])
+    location: https://www.ayoa.com/previously-imindmap/
+    status_code: 302
+  - match: ^https?:\/\/(?:jihehuaban\.com\.cn|www\.jihehuaban\.com\.cn)\/[^\s#]*(?![\s\S])
+    location: https://www.chartwellyorke.com/sketchpad/x24795.html
+    status_code: 302
+  - match: ^https?:\/\/(?:kingdeecn\.cn|www\.kingdeecn\.cn)\/[^\s#]*(?![\s\S])
+    location: https://www.kingdee.com/
+    status_code: 302
+  - match: ^https?:\/\/(?:logoshejishi\.com|www\.logoshejishi\.com)\/[^\s#]*(?![\s\S])
+    location: https://www.sothink.com/product/logo-design-software/
+    status_code: 302
+  - match: ^https?:\/\/(?:luping\.net\.cn|www\.luping\.net\.cn)\/[^\s#]*(?![\s\S])
+    location: https://www.techsmith.com/
+    status_code: 302
+  - match: ^https?:\/\/(?:mathtype\.cn|www\.mathtype\.cn)\/[^\s#]*(?![\s\S])
+    location: https://www.dessci.com/
+    status_code: 302
+  - match: ^https?:\/\/(?:mindmanager\.cc|www\.mindmanager\.cc|mindmanager\.cn|www\.mindmanager\.cn)\/[^\s#]*(?![\s\S])
+    location: https://www.mindjet.com/cn/
+    status_code: 302
+  - match: ^https?:\/\/(?:mindmapper\.cc|www\.mindmapper\.cc)\/[^\s#]*(?![\s\S])
+    location: https://www.mindmapper.com/
+    status_code: 302
+  - match: ^https?:\/\/(?:nicelabel\.cc|www\.nicelabel\.cc)\/[^\s#]*(?![\s\S])
+    location: https://www.nicelabel.com/zh/
+    status_code: 302
+  - match: ^https?:\/\/(?:ntfsformac\.cn|www\.ntfsformac\.cn)\/[^\s#]*(?![\s\S])
+    location: https://china.paragon-software.com/home-mac/ntfs-for-mac/
+    status_code: 302
+  - match: ^https?:\/\/(?:officesoftcn\.com|www\.officesoftcn\.com)\/[^\s#]*(?![\s\S])
+    location: https://www.microsoft.com/zh-cn/microsoft-365
+    status_code: 302
+  - match: ^https?:\/\/(?:overturechina\.com|www\.overturechina\.com)\/[^\s#]*(?![\s\S])
+    location: https://sonicscores.com/
+    status_code: 302
+  - match: ^https?:\/\/(?:passwordrecovery\.cn|www\.passwordrecovery\.cn)\/[^\s#]*(?![\s\S])
+    location: https://cn.elcomsoft.com/aopr.html
+    status_code: 302
+  - match: ^https?:\/\/(?:pdfexpert\.cc|www\.pdfexpert\.cc)\/[^\s#]*(?![\s\S])
+    location: https://pdfexpert.com/zh
+    status_code: 302
+  - match: ^https?:\/\/(?:photozoomchina\.com|www\.photozoomchina\.com)\/[^\s#]*(?![\s\S])
+    location: https://www.benvista.com/
+    status_code: 302
+  - match: ^https?:\/\/(?:shankejingling\.com|www\.shankejingling\.com)\/[^\s#]*(?![\s\S])
+    location: https://www.sothink.com/product/flashdecompiler/
+    status_code: 302
+  - match: ^https?:\/\/(?:vegaschina\.cn|www\.vegaschina\.cn)\/[^\s#]*(?![\s\S])
+    location: https://www.vegascreativesoftware.com/
+    status_code: 302
+  - match: ^https?:\/\/(?:xshellcn\.com|www\.xshellcn\.com)\/[^\s#]*(?![\s\S])
+    location: https://www.netsarang.com/zh/xshell/
+    status_code: 302
+  - match: ^https?:\/\/(?:yuanchengxiezuo\.com|www\.yuanchengxiezuo\.com)\/[^\s#]*(?![\s\S])
+    location: https://www.teamviewer.com/
+    status_code: 302
+  - match: ^https?:\/\/(?:zbrushcn\.com|www\.zbrushcn\.com)\/[^\s#]*(?![\s\S])
+    location: https://pixologic.com/
+    status_code: 302
+  - match: ^https?:\/\/(?:cn\.ultraiso\.net)\/[^\s#]*(?![\s\S])
+    location: https://cn.ezbsystems.com/ultraiso/
+    status_code: 302
+  - match: ^https?:\/\/(?:hypersnap\.mairuan\.com)\/[^\s#]*(?![\s\S])
+    location: https://www.keyshot.com/
+    status_code: 302
+  - match: ^https?:\/\/(?:logoshejishi\.mairuan\.com)\/[^\s#]*(?![\s\S])
+    location: https://www.sothink.com/product/logo-design-software/
+    status_code: 302
+mitm:
+  hostnames:
+    - abbyychina.com
+    - alienskins.cn
+    - anydeskchina.cn
+    - bartender.cc
+    - betterzip.com
+    - betterzip.net
+    - betterzipcn.com
+    - betterzipcn.net
+    - beyondcompare.cc
+    - bingdianhuanyuan.cn
+    - chemdraw.com.cn
+    - cn.ultraiso.net
+    - codesoftchina.com
+    - coreldrawchina.com
+    - crossoverchina.com
+    - ditu.google.cn
+    - dongmansoft.com
+    - earmasterchina.cn
+    - easyrecoverychina.com
+    - ediuschina.com
+    - firefox.com.cn
+    - flstudiochina.com
+    - folxchina.cn
+    - formysql.com
+    - g.cn
+    - google.cn
+    - guitarpro.cc
+    - huishenghuiying.com.cn
+    - hypeapp.cn
+    - hypersnap.mairuan.com
+    - iconworkshop.cn
+    - idmchina.net
+    - ign.xn--fiqs8s
+    - imazingchina.com
+    - imindmap.cc
+    - jihehuaban.com.cn
+    - kingdeecn.cn
+    - logoshejishi.com
+    - logoshejishi.mairuan.com
+    - luping.net.cn
+    - maps.google.cn
+    - mathtype.cn
+    - mindmanager.cc
+    - mindmanager.cn
+    - mindmapper.cc
+    - mycleanmymac.com
+    - nicelabel.cc
+    - ntfsformac.cn
+    - officesoftcn.com
+    - overturechina.com
+    - passwordrecovery.cn
+    - pdfexpert.cc
+    - photozoomchina.com
+    - shankejingling.com
+    - vegaschina.cn
+    - www.abbyychina.com
+    - www.alienskins.cn
+    - www.anydeskchina.cn
+    - www.bartender.cc
+    - www.betterzip.com
+    - www.betterzip.net
+    - www.betterzipcn.com
+    - www.betterzipcn.net
+    - www.beyondcompare.cc
+    - www.bingdianhuanyuan.cn
+    - www.chemdraw.com.cn
+    - www.codesoftchina.com
+    - www.coreldrawchina.com
+    - www.crossoverchina.com
+    - www.dongmansoft.com
+    - www.earmasterchina.cn
+    - www.easyrecoverychina.com
+    - www.ediuschina.com
+    - www.firefox.com.cn
+    - www.flstudiochina.com
+    - www.folxchina.cn
+    - www.formysql.com
+    - www.g.cn
+    - www.google.cn
+    - www.guitarpro.cc
+    - www.huishenghuiying.com.cn
+    - www.hypeapp.cn
+    - www.iconworkshop.cn
+    - www.idmchina.net
+    - www.ign.xn--fiqs8s
+    - www.imazingchina.com
+    - www.imindmap.cc
+    - www.jihehuaban.com.cn
+    - www.kingdeecn.cn
+    - www.logoshejishi.com
+    - www.luping.net.cn
+    - www.mathtype.cn
+    - www.mindmanager.cc
+    - www.mindmanager.cn
+    - www.mindmapper.cc
+    - www.mycleanmymac.com
+    - www.nicelabel.cc
+    - www.ntfsformac.cn
+    - www.officesoftcn.com
+    - www.overturechina.com
+    - www.passwordrecovery.cn
+    - www.pdfexpert.cc
+    - www.photozoomchina.com
+    - www.shankejingling.com
+    - www.vegaschina.cn
+    - www.xitongqingli.com
+    - www.xshellcn.com
+    - www.yuanchengxiezuo.com
+    - www.zbrushcn.com
+    - xitongqingli.com
+    - xshellcn.com
+    - yuanchengxiezuo.com
+    - zbrushcn.com

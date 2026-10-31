@@ -1,0 +1,199 @@
+{
+  "version": 1,
+  "id": "hulu",
+  "category": "media",
+  "entries": [
+    {
+      "type": "domain-suffix",
+      "value": "112263.com"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "callhulu.com"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "findyourlimits.com"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "freehulu.com"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "hooloo.tv"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "hoolu.com"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "hoolu.tv"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "hu1u.com"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "huloo.cc"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "huloo.tv"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "hulu.com"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "hulu.jp"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "hulu.tv"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "hulu.us"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "huluaction.com"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "huluad.com"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "huluapp.com"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "huluasks.com"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "hulucall.com"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "hulufree.com"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "hulugans.com"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "hulugermany.com"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "hulugo.com"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "huluim.com"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "huluinstantmessenger.com"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "huluitaly.com"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "hulunet.com"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "hulunetwork.com"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "huluplus.com"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "hulupremium.com"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "hulupurchase.com"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "huluqa.com"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "hulurussia.com"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "huluspain.com"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "hulusports.com"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "hulustream.com"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "huluteam.com"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "hulutv.com"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "huluusa.com"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "joinmaidez.com"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "mushymush.tv"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "myhulu.com"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "originalhulu.com"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "payhulu.com"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "registerhulu.com"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "thehulubraintrust.com"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "wwwhuluplus.com"
+    },
+    {
+      "type": "domain",
+      "value": "hulu.playback.edge.bamgrid.com"
+    }
+  ]
+}

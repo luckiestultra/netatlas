@@ -1,0 +1,111 @@
+{
+  "version": 1,
+  "id": "appstore",
+  "category": "system",
+  "entries": [
+    {
+      "type": "domain-suffix",
+      "value": "app-store.wang"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "appe-store.com"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "apple-appstore.cn"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "appleappstore.cn"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "appleappstore.net"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "appleappstore.tv"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "appsto.re"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "appstore.co.id"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "appstore.hk"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "appstore.my"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "appstore.ph"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "appstoreapple.cn"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "asto.re"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "tvappstore.net"
+    },
+    {
+      "type": "domain",
+      "value": "amp-api-edge.apps.apple.com"
+    },
+    {
+      "type": "domain",
+      "value": "amp-api-search-edge.apps.apple.com"
+    },
+    {
+      "type": "domain",
+      "value": "amp-api-updates.apps.apple.com"
+    },
+    {
+      "type": "domain",
+      "value": "amp-api.apps.apple.com"
+    },
+    {
+      "type": "domain",
+      "value": "api-edge.apps.apple.com"
+    },
+    {
+      "type": "domain",
+      "value": "inappcheck-cn.itunes-apple.com.akadns.net"
+    },
+    {
+      "type": "domain",
+      "value": "inappcheck-lb.itunes-apple.com.akadns.net"
+    },
+    {
+      "type": "domain",
+      "value": "inappcheck.itunes.apple.com"
+    },
+    {
+      "type": "domain",
+      "value": "iosapps.itunes.apple.com"
+    },
+    {
+      "type": "domain",
+      "value": "iosapps.itunes.g.aaplimg.com"
+    },
+    {
+      "type": "domain",
+      "value": "osxapps.itunes.apple.com"
+    },
+    {
+      "type": "domain",
+      "value": "osxapps.itunes.g.aaplimg.com"
+    }
+  ]
+}

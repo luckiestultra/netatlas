@@ -14,6 +14,7 @@ export async function loadFeatureRegistry(root) {
   const ids=new Set();
   for(const feature of registry.features){
     if(!stableId.test(feature.id)||ids.has(feature.id)||feature.defaultEnabled!==false)throw new Error('Invalid, duplicate or automatically enabled optional feature');
+    if(!Array.isArray(feature.sources)||feature.sources.some(source=>{try{const url=new URL(source);return typeof source!=='string'||url.protocol!=='https:'||url.username||url.password;}catch{return true;}}))throw new Error('Invalid feature source URL');
     ids.add(feature.id);
     for(const [client,adapter] of Object.entries(feature.clients??{})){
       getClient(client);
@@ -44,6 +45,32 @@ export async function loadFeatureRegistry(root) {
       if(!url||url.hostname!==rule.host||url.pathname!=='/'||url.search||url.hash||url.username||url.password)throw new Error('HTTPS-upgrade destination differs from its registered host');
       const originPattern=rule.upstreamLine.split(/\s+/)[0];
       if(!new RegExp(originPattern).test('http://'+rule.host+'/'))throw new Error('HTTPS-upgrade source does not match the registered origin host');
+    }
+  }
+  const redirects=registry.features.find(item=>item.id==='redirects');
+  if(redirects){
+    const path='src/features/redirects/rules.json';
+    await assertManagedPaths(root,[path]);
+    const detail=JSON.parse(await readFile(resolve(root,path),'utf8'));
+    const region=registry.features.find(item=>item.id==='biliintl-region');
+    if(detail.license!=='GPL-2.0-only'||redirects.license!==detail.license||region?.license!==detail.license||redirects.ruleCount!==detail.actions?.length||region.ruleCount!==detail.regionActions?.length*2)throw new Error('Redirect license or action count mismatch');
+    if(!/^[a-f0-9]{40}$/.test(detail.upstream.commit))throw new Error('Redirect source must be pinned');
+    for(const [path,hash] of [[detail.upstream.vendoredSource,detail.upstream.sourceSha256],[detail.upstream.vendoredLicense,detail.upstream.licenseSha256]]){
+      if(!resolve(root,path).startsWith(resolve(root,'src/features/redirects')+sep))throw new Error('Redirect source escapes registered directory');
+      await assertManagedPaths(root,[path]);
+      if(sha256(await readFile(resolve(root,path)))!==hash)throw new Error('Redirect source or license checksum mismatch');
+    }
+    const lines=(await readFile(resolve(root,detail.upstream.vendoredSource),'utf8')).split(/\r?\n/);
+    const sourceLines=lines.flatMap((line,index)=>/\surl\s+302\s/.test(line)?[index+1]:[]);
+    const covered=[...detail.actions,...detail.regionActions].flatMap(action=>action.upstreamLines??[]);
+    const inventory=[...covered,...detail.deduplicatedUpstreamLines];
+    if(new Set(inventory).size!==inventory.length||JSON.stringify(inventory.sort((a,b)=>a-b))!==JSON.stringify(sourceLines))throw new Error('Redirect source line accounting mismatch');
+    for(const action of detail.actions){
+      if(!['root','upgrade','google','homepage','firefox'].includes(action.mode)||action.upstreamLines.some(index=>lines[index-1].trim().split(/\s+/).at(-1)!==action.upstreamTarget))throw new Error('Redirect action does not identify its original source');
+      if(action.mode!=='upgrade'){
+        const url=new URL(action.target);
+        if(url.protocol!=='https:'||url.username||url.password)throw new Error('Redirect target must use HTTPS');
+      }
     }
   }
   return registry;

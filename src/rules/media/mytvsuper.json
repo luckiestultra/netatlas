@@ -1,0 +1,11 @@
+{
+  "version": 1,
+  "id": "mytvsuper",
+  "category": "media",
+  "entries": [
+    {
+      "type": "domain-suffix",
+      "value": "mytvsuper.com"
+    }
+  ]
+}

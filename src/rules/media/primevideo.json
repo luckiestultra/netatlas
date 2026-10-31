@@ -1,0 +1,103 @@
+{
+  "version": 1,
+  "id": "primevideo",
+  "category": "media",
+  "entries": [
+    {
+      "type": "domain-suffix",
+      "value": "aiv-cdn.net"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "amazonprimevideo.cn"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "amazonprimevideo.com.cn"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "amazonprimevideos.com"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "amazonvideo.cc"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "amazonvideo.com"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "prime-video.com"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "primevideo.cc"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "primevideo.com"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "primevideo.info"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "primevideo.org"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "primevideo.tv"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "prod.service.minerva.devices.a2z.com"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "pv-cdn.net"
+    },
+    {
+      "type": "domain",
+      "value": "d1v5ir2lpwr8os.cloudfront.net"
+    },
+    {
+      "type": "domain",
+      "value": "d22qjgkvxw22r6.cloudfront.net"
+    },
+    {
+      "type": "domain",
+      "value": "d25xi40x97liuc.cloudfront.net"
+    },
+    {
+      "type": "domain",
+      "value": "d27xxe7juh1us6.cloudfront.net"
+    },
+    {
+      "type": "domain",
+      "value": "dmqdd6hw24ucf.cloudfront.net"
+    },
+    {
+      "type": "domain",
+      "value": "images-eu.ssl-images-amazon.com"
+    },
+    {
+      "type": "domain",
+      "value": "images-fe.ssl-images-amazon.com"
+    },
+    {
+      "type": "domain",
+      "value": "images-na.ssl-images-amazon.com"
+    },
+    {
+      "type": "domain",
+      "value": "msh.amazon.co.uk"
+    },
+    {
+      "type": "domain",
+      "value": "static.siege-amazon.com"
+    }
+  ]
+}

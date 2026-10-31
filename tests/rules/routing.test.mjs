@@ -46,7 +46,7 @@ const cases=[
   [{host:'notdiscord.com'},'Proxy'],
   [{host:'nothuggingface.co'},'Proxy'],
   [{host:'tv.apple.com.invalid'},'Proxy'],
-  [{host:'baidu.com'},'DIRECT'],
+  [{host:'baidu.com'},'baidu'],
   [{host:'doubleclick.net'},'REJECT'],
   [{ip:'192.168.1.10'},'DIRECT'],
   [{ip:'fd00::1234'},'DIRECT'],
@@ -54,6 +54,7 @@ const cases=[
 ];
 for(const client of clients)test(`${client.id}: full catalog routes concrete apps before broad parent-service lists`,()=>{
   const profile=inspectProfile(client.id,renderProfile(client.id,{rulesets}).content);
+  assert.equal(profile.groups.find(group=>group.name==='baidu').choices[0].toUpperCase(),'DIRECT','new independent domestic service selector must retain direct initial routing');
   for(const [request,expected] of cases){
     const actual=profile.rules.find(rule=>matchesEntry(rule,request))?.policy??profile.fallback;
     assert.equal(actual,expected,JSON.stringify(request));

@@ -1,0 +1,35 @@
+{
+  "version": 1,
+  "id": "douyu",
+  "category": "media",
+  "entries": [
+    {
+      "type": "domain-suffix",
+      "value": "douyu.com"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "douyu.tv"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "douyucdn.cn"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "douyucdn2.cn"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "douyuscdn.com"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "douyutv.com"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "edgesrv.com"
+    }
+  ]
+}

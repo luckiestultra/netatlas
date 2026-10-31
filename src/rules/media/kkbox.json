@@ -1,0 +1,27 @@
+{
+  "version": 1,
+  "id": "kkbox",
+  "category": "media",
+  "entries": [
+    {
+      "type": "domain-suffix",
+      "value": "kfs.io"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "kk.stream"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "kkbox.com"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "kkbox.com.tw"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "kktix.com"
+    }
+  ]
+}
