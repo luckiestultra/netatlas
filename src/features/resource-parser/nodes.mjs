@@ -21,7 +21,8 @@ function bool(value) {
 }
 // Only registered public schema names can reach diagnostics; arbitrary keys and
 // all values may contain credentials. Context strings below are internal literals.
-const DIAGNOSTIC_FIELDS = new Set('fp spx fingerprint client-fingerprint utls ech mux multiplex packetEncoding packet-encoding certificate certificate_path certificate_public_key_sha256 certificates headers Host host path mode enabled server_name public_key short_id public-key short-id v ps add aid scy net allowInsecure encryption headerType peer pbk sid insecure udpport uot obfsparam protoparam group encrypt-method obfs-name tls-name ws ws-path ws-headers vmess-aead alterid'.split(' '));
+const REALITY_MLKEM_HINT = 'support-x25519mlkem768';
+const DIAGNOSTIC_FIELDS = new Set('support-x25519mlkem768 fp spx fingerprint client-fingerprint utls ech mux multiplex packetEncoding packet-encoding certificate certificate_path certificate_public_key_sha256 certificates headers Host host path mode enabled server_name public_key short_id public-key short-id v ps add aid scy net allowInsecure encryption headerType peer pbk sid insecure udpport uot obfsparam protoparam group encrypt-method obfs-name tls-name ws ws-path ws-headers vmess-aead alterid'.split(' '));
 function keys(o, allowed, context='node options') {
   for(const k of Object.keys(o))if(!(allowed instanceof Set?allowed.has(k):allowed.includes(k))){
     const name=NATIVE_KEYS.has(k)||OBJECT_KEYS.includes(k)||DIAGNOSTIC_FIELDS.has(k)?k:'[unrecognized name]';
@@ -38,6 +39,17 @@ function nativePreferences(input, fields) {
     if(typeof value!=='string'||value.length>NATIVE_PREFERENCES[key]||/[\x00-\x1f\x7f-\x9f\u2028\u2029]/.test(value))error('invalid QX native preference: '+key);
     delete source[key];adaptations.push(key);
   }
+  return {source,adaptations};
+}
+// Current QX Reality natively uses a handshake with X25519MLKEM768 support.
+// This true-only source hint confirms that capability; it is not a QX switch.
+function realityMlkemCapability(input, enabled, uri=false) {
+  const adaptations=[];
+  if(!input||!own(input,REALITY_MLKEM_HINT))return {source:input,adaptations};
+  if(!enabled)error(REALITY_MLKEM_HINT+' requires Reality');
+  const value=input[REALITY_MLKEM_HINT];
+  if(!(value==='true'||value==='1'||!uri&&(value===true||value===1)))error('unsupported value for '+REALITY_MLKEM_HINT+'; QX native Reality requires true');
+  const source={...input};delete source[REALITY_MLKEM_HINT];adaptations.push(REALITY_MLKEM_HINT);
   return {source,adaptations};
 }
 function aliases(o,groups){for(const group of groups)if(group.filter(key=>own(o,key)).length>1)error('duplicate alias options');}
@@ -214,7 +226,8 @@ function parseVmess(u) {
 }
 function parseGenericUri(u) {
   const type=({https:'http',socks:'socks5',socks5s:'socks5'})[u.scheme]||u.scheme;if(!TYPES.has(type))error('unsupported protocol');
-  const preferences=nativePreferences(u.query,['fp','spx']);u={...u,query:preferences.source};
+  const preferences=nativePreferences(u.query,['fp','spx']);
+  const capability=realityMlkemCapability(preferences.source,u.query.security==='reality',true);u={...u,query:capability.source};
   keys(u.query,['encryption','security','type','headerType','host','path','sni','peer','pbk','sid','flow','alpn','allowInsecure','insecure','udp','tfo'],'URI options');
   aliases(u.query,[['sni','peer'],['allowInsecure','insecure']]);
   if(u.query.type&&!['tcp','ws'].includes(u.query.type))error('unsupported transport');
@@ -229,7 +242,7 @@ function parseGenericUri(u) {
   const defaultTls=['trojan','anytls','https','socks5s'].includes(u.scheme);
   if(defaultTls&&u.query.security==='none')error('TLS required by URI scheme');
   tlsTransport(n,{network:u.query.headerType==='http'?'http':u.query.type||'tcp',security:u.query.security||(defaultTls?'tls':'none'),host:u.query.host,path:u.query.path,sni:u.query.sni||u.query.peer,publicKey:u.query.pbk,shortId:u.query.sid,flow:u.query.flow,alpn:u.query.alpn,insecure:u.query.allowInsecure??u.query.insecure});
-  putBool(n,'udp-relay',u.query.udp);putBool(n,'fast-open',u.query.tfo);n.adaptations=preferences.adaptations;return n;
+  putBool(n,'udp-relay',u.query.udp);putBool(n,'fast-open',u.query.tfo);n.adaptations=preferences.adaptations.concat(capability.adaptations);return n;
 }
 function fromUri(line) {const u=uri(line);return u.scheme==='ss'?parseSs(u):u.scheme==='ssr'?parseSsr(u):u.scheme==='vmess'?parseVmess(u):parseGenericUri(u);}
 const OBJECT_KEYS='name tag type server port server_port password username uuid cipher method remarks plugin plugin-opts plugin_opts udp udp-relay tfo fast-open tls servername sni skip-cert-verify network ws-opts flow reality-opts alpn alterId alter-id security version id transport tcp-fast-open udp_over_tcp protocol protocol-param obfs obfs-param'.split(' ');
@@ -243,7 +256,7 @@ function fromObject(o,context='node object') {
   const common=['name','tag','type','server','port','server_port','remarks','udp','udp-relay','tfo','fast-open','tcp-fast-open','udp_over_tcp'];
   const protocolFields=type==='shadowsocks'?['cipher','method','password',...(o.type==='ssr'?['protocol','protocol-param','obfs','obfs-param']:['plugin','plugin-opts','plugin_opts'])]:['tls','servername','sni','skip-cert-verify','network','ws-opts','alpn',...(type==='vmess'?['uuid','id','cipher','security','alterId','alter-id','reality-opts']:type==='vless'?['uuid','id','flow','reality-opts']:['username','password'])];
   keys(o,[...common,...protocolFields],context);
-  const n=node(type,{host:o.server,port:o.port??o.server_port},o.name||o.tag||o.remarks);
+  const n=node(type,{host:o.server,port:o.port??o.server_port},o.name||o.tag||o.remarks);let capabilityAdaptations=[];
   if(type==='shadowsocks'){
     put(n,'method',o.cipher||o.method);put(n,'password',o.password);
     if(o.type==='ssr'){
@@ -254,8 +267,10 @@ function fromObject(o,context='node object') {
   }else{
     if(type==='vmess'||type==='vless'){put(n,'password',uuid(o.uuid||o.id));const method=o.cipher||o.security||'auto';put(n,'method',type==='vless'?'none':method==='auto'?'chacha20-poly1305':method==='chacha20-ietf-poly1305'?'chacha20-poly1305':method);if(+(o.alterId??o['alter-id']??0)!==0)error('legacy VMess alter ID unsupported');}
     else {put(n,'username',o.username);put(n,'password',o.password);}
-    const ws=o['ws-opts']||{};keys(ws,['path','headers'],context+' WebSocket');if(o.network&&!['tcp','ws'].includes(o.network))error('unsupported transport');const reality=o['reality-opts'];if(reality)keys(reality,['public-key','short-id'],context+' Reality');
+    const ws=o['ws-opts']||{};keys(ws,['path','headers'],context+' WebSocket');if(o.network&&!['tcp','ws'].includes(o.network))error('unsupported transport');
     const enabled=o.tls===undefined?(type==='trojan'||type==='anytls'||o.type==='https'):bool(o.tls);
+    const capability=context==='SIP008 node'?{source:o['reality-opts'],adaptations:[]}:realityMlkemCapability(o['reality-opts'],enabled),reality=capability.source;capabilityAdaptations=capability.adaptations;
+    if(reality)keys(reality,['public-key','short-id'],context+' Reality');
     if(o.type==='https'&&!enabled)error('TLS required by protocol');
     if(reality&&!enabled)error('Reality requires enabled TLS');
     let sni=o.servername||o.sni,protocols=o.alpn;
@@ -269,7 +284,7 @@ function fromObject(o,context='node object') {
     tlsTransport(n,{network:o.network||'tcp',security:reality?'reality':enabled?'tls':'none',sni,headers:ws.headers,path:ws.path,flow:o.flow,alpn:protocols,insecure:o['skip-cert-verify'],publicKey:reality&&reality['public-key'],shortId:reality&&reality['short-id']});
     for(const k of ['plugin','plugin_opts','plugin-opts','method'])if(own(o,k))error('unsupported protocol field');
   }
-  putBool(n,'udp-relay',o.udp??o['udp-relay']);putBool(n,'fast-open',o.tfo??o['fast-open']??o['tcp-fast-open']);if(o.udp_over_tcp!==undefined)putBool(n,'udp-over-tcp',o.udp_over_tcp);n.adaptations=preferences.adaptations;return n;
+  putBool(n,'udp-relay',o.udp??o['udp-relay']);putBool(n,'fast-open',o.tfo??o['fast-open']??o['tcp-fast-open']);if(o.udp_over_tcp!==undefined)putBool(n,'udp-over-tcp',o.udp_over_tcp);n.adaptations=preferences.adaptations.concat(capabilityAdaptations);return n;
 }
 function fromSip008(o) {
   if(!object(o))error('invalid SIP008 server');
@@ -398,7 +413,7 @@ export function createNodeParser(utils={}) {
       if(!result.length||result.length>2000)error('empty or oversized subscription');const names=new Set();
       const output=result.map((n,i)=>{validate(n,i);if(names.has(n.fields.tag))error('duplicate node name');names.add(n.fields.tag);return n.original||n.type+'='+(n.host.includes(':')?'['+n.host+']':n.host)+':'+n.port+', '+Object.keys(n.fields).map(k=>k+'='+n.fields[k]).join(', ');}).join('\n')+'\n';
       // Publish metadata only after the complete subscription has validated.
-      if(options&&options.adaptations instanceof Set)for(const n of result)for(const key of n.adaptations||[])if(own(NATIVE_PREFERENCES,key))options.adaptations.add(key);
+      if(options&&options.adaptations instanceof Set)for(const n of result)for(const key of n.adaptations||[])if(own(NATIVE_PREFERENCES,key)||key===REALITY_MLKEM_HINT)options.adaptations.add(key);
       return output;
     }catch(e){if(e instanceof Error&&e.message.startsWith('Node conversion failed: '))throw e;error('invalid node resource');}
   }

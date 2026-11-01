@@ -157,6 +157,10 @@ SIP008 的 `version: 1 + servers` 中，服务器 UUID `id` 是更新标识，�
 
 源节点的三个客户端偏好按 QX 原生方式自动处理，不增加模式开关：VLESS/Trojan/HTTP(S)/SOCKS/AnyTLS URI 的 `fp/spx`、VMess JSON 的 `fp`，以及 Clash 样式节点对象的 `client-fingerprint` 不写入 QX 连接字段。该对象格式也可位于裸数组、nodes 或旧式 servers 中；SS/SSR URI、显式 SIP008 v1 与 sing-box 仍严格校验，不套用这项处理。仅接受有界字符串（指纹偏好128字符、spx 2048字符），非字符串、控制字符及超长值报错。成功资源会带固定注释说明实际使用 QX 原生指纹、忽略 spx，不回显源值；这与旧 KOP 的常见订阅处理一致，不宣称保留 Chrome 指纹。QX Reality 的原生指纹见 [官方说明](https://github.com/crossutility/Quantumult-X/blob/master/sample.conf#L162-L164)。
 
+Reality 的 `support-x25519mlkem768=true` 与这三个偏好分别处理。[3x-ui 的公开生成器](https://github.com/MHSanaei/3x-ui/blob/1a5100ea166361cc2a01d8f245d616fb18baa0dd/internal/sub/service.go#L1243)会给 Reality URI 添加这个能力提示；当前 [QX 原生 Reality 指纹](https://github.com/crossutility/Quantumult-X/blob/master/ios26-safari-fingerprint.txt#L129)已包含对应 supported group 和 key share。转换器只在启用 Reality 的上述通用 URI、Clash VMess/VLESS 的 reality-opts 中接受正值（URI `true/1`，对象 `true/1/"true"/"1"`），交给原生握手兑现，不生成虚构的 QX 参数。需要使用实现该原生握手的 QX 版本；脚本不能给旧 SDK 增加密钥交换算法，也不保证最终协商选中该组。
+
+`false/0`、空值、非标量、非 Reality、错放到顶层、原生 QX/sing-box/SIP008 的同名字段均拒绝；不忽略关闭能力的请求。`pqv` 等签名校验字段不是同一种提示，仍严格处理。资源增加一条固定原生能力说明，源值不回显。证书、pubkey/sid、UUID、flow、真实路径、ALPN/TFO不因该提示改变。
+
 这三个偏好属于节点内容，不是订阅链接 `#` 后的新参数。真实 WS path、Reality 公钥/short-id、UUID、flow、地址和证书校验仍按原逻辑处理；Clash `fingerprint` 等证书 pin、sing-box utls、未知参数与不支持传输仍报错。原生 QX 行不新增 fp 字段。固定注释在整批校验和名称转换成功后添加，info/out/emoji 不被这些说明干扰。
 
 链接哈希提供一套声明式选项：关键词使用下面的 OR/AND 规则，名称替换为字面操作，不支持 eval 或任意自定义解析脚本。示例以文档保留域名表示，请换成自己的资源URL：

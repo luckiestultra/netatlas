@@ -98,3 +98,11 @@ GEOIP 接受合法自定义类别；实际库中是否有对应类别单独说�
 移除只发生在副本上；中间节点保留固定enum metadata，所有节点和重名校验完成后才汇总到内部Set。core在源验证和名称变换/筛选成功后输出固定注释说明差异，不回显源值，不将Chrome声称为已保留；失败只error，不发布metadata或成功通知。连接和安全字段不得因这三项放宽：Clash fingerprint/cert/pin、sing-box utls、真实path/host、地址/UUID/pbk/sid/flow、TLS校验及其它未知字段仍按既有规则处理。源对象不得变化。
 
 以同输入旧KOP对照和新原生偏好回归证明成功字段等于删除这三项后的既有NetAtlas转换结果；原始用户订阅未访问，不能声称这已证实其实际故障原因。新边界必须有控制字符及SIP008 guard变异负控。
+
+### Reality ML-KEM 原生能力提示（2026-11-02）
+
+真实失败源经用户单次只读授权在内存中分析，确认唯一被拒字段support-x25519mlkem768；仅移除该字段即可使同一返回内容转换成功。原文不落盘、不输出节点/凭据，不再请求该源。回归使用公开3x-ui标准true和合成地址/密钥，不能宣称修复后重放了已销毁的私源。
+
+只在generic URI security=reality和Clash VMess/VLESS nested reality-opts且TLS开启时接收true能力提示；URI只允许字符串true/1，结构化对象可用true/1/"true"/"1"。false/0/空/无效类型或值均明确拒绝，非Reality、顶层、native QX、显式sing-box、显式SIP008 v1（含缺id+Clash-like VLESS路径）仍拒绝。SIP008缺id原有无hint行为不因本项清理。
+
+该真值由当前QX官方原生Reality握手的X25519MLKEM768 supported-group/key-share兑现，不是任意未知字段忽略，也不等于已协商选中算法；需要具备该能力的QX版本。不得放宽pqv/签名/证书pin、pubkey/sid/UUID/flow、真实path或修改现有ALPN/TFO/TLS验证。只在副本处理，固定enum metadata在整批成功后发布；core在fp/spx说明之后加入固定原生能力注释，不含源值。真假值/Reality前提/SIP008边界/隐私/原子性均须回归，且前提与正值guard要有变异负控。

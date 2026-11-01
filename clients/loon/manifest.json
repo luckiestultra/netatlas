@@ -2,7 +2,7 @@
   "version": 1,
   "client": "loon",
   "builder": "netatlas@0.1.0",
-  "inputSha256": "ee30273c07b2d811352526d73fd45d29844a3397be5b6938911ba6916cf63941",
+  "inputSha256": "333630e0f3dd3a34fd157b9c95c0c6956e9933fb5fa05ca15251f4f792431d15",
   "baseUrl": "https://raw.githubusercontent.com/luckiestultra/netatlas/main",
   "targetVersion": null,
   "counts": {

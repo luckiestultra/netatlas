@@ -55,6 +55,28 @@
           ],
           "behavior": "Bounded strings use native QX behavior; fixed notices explain that client fingerprint preferences are not preserved and spx is omitted. No mode switch or source values in notices. Source input remains unchanged.",
           "boundaries": "SS/SSR URI, explicit SIP008 v1, sing-box and native QX fields remain strict; no certificate pin, verification, credential, endpoint, flow or transport field is dropped."
+        },
+        "nativeRealityCapabilities": {
+          "field": "support-x25519mlkem768",
+          "sourceFormats": [
+            "Generic URI with security=reality",
+            "Clash VMess/VLESS nested reality-opts with TLS enabled"
+          ],
+          "acceptedTrueValues": {
+            "URI": [
+              "true",
+              "1"
+            ],
+            "object": [
+              true,
+              1,
+              "true",
+              "1"
+            ]
+          },
+          "behavior": "A true hint is satisfied by the documented native QX Reality handshake. A fixed notice describes the capability, not the negotiated group. No extra native QX field or source value is emitted.",
+          "rejected": "False, zero, empty, non-scalar or invalid values; non-Reality or misplaced fields; native QX, sing-box and explicit SIP008 including missing-id paths. pqv and certificate/signature settings remain strict.",
+          "requires": "A QX version implementing the documented native iOS26 Reality handshake with X25519MLKEM768 support."
         }
       },
       "permissions": {
@@ -88,10 +110,13 @@
         "https://shadowsocks.org/doc/sip002.html",
         "https://sing-box.sagernet.org/configuration/shared/udp-over-tcp/",
         "https://github.com/MetaCubeX/mihomo/blob/v1.19.33/adapter/outbound/vmess.go",
-        "https://github.com/MetaCubeX/mihomo/blob/v1.19.33/adapter/outbound/vless.go"
+        "https://github.com/MetaCubeX/mihomo/blob/v1.19.33/adapter/outbound/vless.go",
+        "https://github.com/MHSanaei/3x-ui/blob/1a5100ea166361cc2a01d8f245d616fb18baa0dd/internal/sub/service.go#L1243",
+        "https://github.com/MHSanaei/3x-ui/pull/6712",
+        "https://github.com/crossutility/Quantumult-X/blob/master/ios26-safari-fingerprint.txt"
       ],
-      "behavior": "Atomic offline conversion of supported node subscriptions, rules and rewrites to native QX text. Preserves SS password encoding layers, sing-box UoT defaults and verified Clash WSS Host/SNI/ALPN semantics; rejects executable directives and untranslatable built-ins. Bounded keyword filtering/renaming, common sort/type aliases, info=0/1 quota notices, emoji=0/1/2/-1 and official parser-helper UI are implemented. Only declared fp/spx/client-fingerprint client preferences use documented native QX defaults with fixed notices. Other unknown options remain errors; not a complete KOP option replacement. Referenced HTTPS scripts are emitted only, never fetched or executed.",
-      "limitations": "Except the declared client-preference adaptations, unsupported protocols, transports, fields, unregistered domain regex, conjunctive headless conditions, ambiguous domain formats, local scripts and certificate settings fail the complete resource. Clash VMess/VLESS WS+Reality cannot activate source-ignored Reality settings. GEOIP labels need matching categories in the selected database. reg/regout, sfilter/srename and connection-override options are not implemented. Explicit allow-resolve changes DNS semantics; script-compat=qx declares user-verified API compatibility and does not translate JavaScript. Native QX import/device execution not run.",
+      "behavior": "Atomic offline conversion of supported node subscriptions, rules and rewrites to native QX text. Preserves SS password encoding layers, sing-box UoT defaults and verified Clash WSS Host/SNI/ALPN semantics; rejects executable directives and untranslatable built-ins. Bounded keyword filtering/renaming, common sort/type aliases, info=0/1 quota notices, emoji=0/1/2/-1 and official parser-helper UI are implemented. Only declared fp/spx/client-fingerprint client preferences use documented native QX defaults with fixed notices. A true Reality ML-KEM capability hint is satisfied by native QX support with a fixed notice; false/incompatible hints fail. Other unknown options remain errors; not a complete KOP option replacement. Referenced HTTPS scripts are emitted only, never fetched or executed.",
+      "limitations": "Except the declared client-preference adaptations and native Reality true-capability handling, unsupported protocols, transports, fields, unregistered domain regex, conjunctive headless conditions, ambiguous domain formats, local scripts and certificate settings fail the complete resource. Clash VMess/VLESS WS+Reality cannot activate source-ignored Reality settings. GEOIP labels need matching categories in the selected database. reg/regout, sfilter/srename and connection-override options are not implemented. Explicit allow-resolve changes DNS semantics; script-compat=qx declares user-verified API compatibility and does not translate JavaScript. Native QX import/device execution not run.",
       "artifacts": [
         "scripts/resource-parser.js",
         "fragments/resource-parser.conf"

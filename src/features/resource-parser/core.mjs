@@ -83,6 +83,7 @@ function convertResource(resource) {
     const notes = [];
     if (adaptations.has('fp') || adaptations.has('client-fingerprint')) notes.push('# NetAtlas: QX uses its native TLS fingerprint; source fp/client-fingerprint preferences are not preserved.');
     if (adaptations.has('spx')) notes.push('# NetAtlas: QX has no Reality spider-path setting; source spx is omitted.');
+    if (adaptations.has('support-x25519mlkem768')) notes.push('# NetAtlas: QX uses its native Reality handshake for X25519MLKEM768 support.');
     if (notes.length) content = notes.join('\n') + '\n' + content;
     if (options.info) notice = subscriptionNotification(resource,nativeNodes);
   }

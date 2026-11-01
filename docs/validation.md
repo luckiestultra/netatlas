@@ -1,5 +1,21 @@
 # 完整配置验证记录
 
+## 2026-11-02：实际失败源中的 Reality ML-KEM 字段
+
+用户授权只读查看当前订阅错误后，界面显示四条资源为 `unsupported field in URI options: [unrecognized name]`。随后用户明确允许只读请求其中一条原有订阅一次。该请求保持 TLS 证书验证、不跟随重定向，返回 HTTP 200；原文只在进程内存处理，不输出或落盘节点、地址、UUID、密码、密钥、令牌，公开回归中没有私源内容。
+
+这次返回的编码订阅中只有一个被本解析器拒绝的 URI 参数名：`support-x25519mlkem768`，值非空。对同一返回内容在内存中仅移除这一字段后，转换成功，故已确认这一条的解析阻塞点；未访问其他失败资源。原文随后销毁，没有在修复后再次请求、保存或重放实际返回内容。
+
+[3x-ui 固定源码](https://github.com/MHSanaei/3x-ui/blob/1a5100ea166361cc2a01d8f245d616fb18baa0dd/internal/sub/service.go#L1243)在 Reality 分支无条件生成该字段的标准 `true` 值，相关 PR 为 [#6712](https://github.com/MHSanaei/3x-ui/pull/6712)。[QX 官方配置说明](https://github.com/crossutility/Quantumult-X/blob/master/sample.conf#L163-L164)及[原生指纹](https://github.com/crossutility/Quantumult-X/blob/master/ios26-safari-fingerprint.txt#L129)表明当前原生 Reality 握手提供 X25519MLKEM768 supported group 和 key share。因此修复是识别当前原生已具备的正值能力提示，不生成虚构 QX 参数，也不把算法协商结果当作已测试事实；需要具备该原生握手能力的 QX 版本。
+
+URI 只在 security=reality 时接受字符串 true/1；Clash VMess/VLESS 的 nested reality-opts 在 TLS 开启时可接受 true、1、"true"、"1"。false/0/空/无效值、非 Reality、顶层错放、原生 QX、sing-box、SIP008 v1（含缺 id 的 VLESS 绕入路径）仍拒绝。pqv/签名、证书 pin、UUID、pubkey/sid、flow、path、现有 TFO/ALPN/证书验证不被丢弃或改变。只发布固定 metadata 和无源值的能力说明；输入对象不变，失败不发布前半份结果或说明。
+
+新增节点10组回归在旧实现全部失败，core整份Base64/Clash正值集成2项先失败，严格负例继续通过。SIP008缺id的具体路径另先复现误接受后补排除guard，保持原有无hint语义不变。修复后相关89项通过，解析器专项175项通过；完整 `npm test` 723项，715通过、0失败、8项原生opt-in跳过。独立红方38项定向与210项合成检查通过，删除Reality前提与删除仅正值guard两项变异均被真实回归捕获。
+
+最终生成脚本在真实 Apple JavaScriptCore 中359/359通过（342资源、17独立抽取helper），另18/18源码模块契约通过，共377项；此前293基线完全保留。覆盖整个编码订阅、公开标准true字段结构、错误类型/空/控制字符、精确格式边界、输入深冻结、metadata去重和失败原子性、固定注释顺序及字段值不泄漏。无网络/存储/eval探针与5个负控保持。测试夹具使用公开上游标准值与合成凭据，不声称已验证用户QX导入、实际TLS协商或旧版QX SDK能力。
+
+`npm run check` 验证8客户端1137产物无漂移及语义/引用/来源/哈希。冻结输入 `333630e0f3dd3a34fd157b9c95c0c6956e9933fb5fa05ca15251f4f792431d15`（296文件）；QX解析器 SHA-256 `cebb21a74fc1c296fe15c9435adf3aae8d33153f185c48df6270d7d4feb537d6`。非清单成品仅QX解析器变化；GeoIP、配置、规则和其他客户端保持字节不变，普通main链接不变。公开字节和Linux CI按推送后提交另核验。本轮对QX仅作只读导航，没有更新资源、修改配置或切换节点/连接。
+
 ## 2026-11-02：已登记客户端偏好使用 QX 原生行为
 
 用户在旧 KOP 同输入对照后委托选择简单可用的方式。本次仅对已复现的三个客户端偏好采用 QX 原生行为：VLESS/Trojan/HTTP(S)/SOCKS/AnyTLS URI 的 fp/spx、VMess JSON 的 fp、Clash样式节点对象的 client-fingerprint。输出固定注释说明原生指纹与 spx 省略，不回显源值，不宣称保留 Chrome 指纹，不新增资源参数或模式开关。SS/SSR URI、原生QX字段、显式sing-box与SIP008 v1不套用该处理；证书pin、未知参数、真实path/host、地址、UUID、公钥、short-id、flow和TLS校验规则不被放宽。
