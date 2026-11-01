@@ -168,6 +168,10 @@ https://example.com/rules#type=filter&policy=Proxy
 
 `in/out`用`+`分隔多个名称关键字，匹配任意项；字面加号需编码为`%2B`。`prefix/suffix`添加名称前后缀；`rename`为百分号编码的JSON替换配对，例如`[["香港","HK"]]`；`sort`可选`none/name/name-desc`。`policy`显式覆盖全部源策略，并在输出注释中提示。参数内的保留字符需URL编码，未知、重复参数与无效值报错。QX 1.5.6 build 918+可用原生helper界面编辑这些参数。
 
+兼容这组既有订阅参数，无须修改订阅地址：`#info=1&out=套餐+重置&emoji=2`。`out` 排除名称含“套餐”或“重置”的节点；`info=1` 在成功转换后，根据原生 `$resource.info` 的已有用量发送一次本地通知，没有该信息时可从过滤前的流量/到期伪节点提取纯数字与有效日期。不输出订阅地址、凭据或任意标签文字；未提供数据就不伪造，通知 API 缺失/抛错不影响节点转换。`info=0` 或不设置均不通知。该选项不联网，不修改通知设置。
+
+`emoji=1` 按节点名称添加地区旗，`emoji=2` 使用国行显示模式（台湾对应标记换为 🇨🇳），`emoji=-1` 删除地区旗，`emoji=0` 或不设置保持原样。名称转换之后再添加旗帜并检查重名；未知名称保留已有旗，没有既有旗才加 🏴‍☠️。地区名/城市名仅是名称修饰的有限词表，不能证明实际出口位置；不会影响 GeoIP 查询数据或 TLS 参数。此处参考 [KOP 参数行为](https://github.com/KOP-XIAO/QuantumultX/blob/master/Scripts/resource-parser.js)，实现为原创，不复制其脚本。只有已明确实现的兼容子集：未实现全部别名、点号 AND 筛选、KOP rename 表达式或可执行参数，其他旧选项仍报错，不冒称完整替换所有参数。
+
 有两个选项会改变转换前提，默认均不启用：`allow-resolve=1`明确允许移除源`no-resolve`，可能增加DNS查询，输出会警告行为变化；`script-compat=qx`只是使用者声明所引用的Surge/Loon脚本本体已经支持QX，不翻译JavaScript API，不忽略timeout、argument、binary-body或max-size等无法保留的设置。QX原生HTTPS脚本引用可以保留，解析器不下载或执行脚本；之后QX运行该重写脚本是另一项操作。跨宿主`reject`不能仅因名称相同就等同于QX的HTTP 404。
 
 QX 资源宿主使用 identity `$done` 并消费整段脚本的最终求值；生成脚本必须返回同一 `{content}` 或 `{error}` 对象。回归同时检查回调次数与最终对象，并覆盖 helper 单独加载。任何一行失败都只返回一次错误，不发布前半份结果；更新失败后的缓存和提示由QX处理，本实现不承诺宿主保留旧内容。资源限额为输入/输出各2 Mi字符、2000节点或20000规则/重写行；YAML最大32层、100000个值节点与20个alias，并拒绝循环、重复键和自定义tag。VM测试执行实际生成bundle与helper协议，尚未在原生QX导入运行。详细接口、来源和边界见[解析器登记](../metadata/resource-parsers.json)、[功能规格](specs/features.md)。

@@ -37,7 +37,7 @@
       ],
       "sourceContract": {
         "input": "QX $resource object with content and optional link/type; unknown type values are not guessed from numbers.",
-        "completion": "Exactly one $done({content}) or $done({error}), and the complete script evaluates to that same result object; no retry/download request.",
+        "completion": "Exactly one $done({content}) or $done({error}), and the complete script evaluates to that same result object; successful info=1 conversions may emit one optional local quota notice; no retry/download request.",
         "supportedResourceTypes": [
           "server",
           "filter",
@@ -54,7 +54,8 @@
         "automaticTasks": false,
         "mitm": false,
         "sourceScriptReferenceExecution": false,
-        "noNetworkNoEval": true
+        "noNetworkNoEval": true,
+        "notifications": "Explicit info=1 only, after successful server conversion; numeric usage and expiry only, with no subscription URL, credentials or resource tag."
       },
       "officialDocumentation": [
         "https://github.com/crossutility/Quantumult-X/blob/master/resource-parser.js",
@@ -67,9 +68,10 @@
         "https://nsloon.app/en/docs/Rewrite/",
         "https://nsloon.app/en/docs/Script/",
         "https://sing-box.sagernet.org/configuration/rule-set/headless-rule/",
-        "https://shadowsocks.org/doc/sip008.html"
+        "https://shadowsocks.org/doc/sip008.html",
+        "https://github.com/KOP-XIAO/QuantumultX/blob/master/Scripts/resource-parser.js"
       ],
-      "behavior": "Atomic offline conversion of supported node subscriptions, rule resources and rewrite resources to native QX text. SIP008 v1 server id is validated update metadata only within its servers envelope; unknown connection fields remain errors. Literal name filtering/renaming and official parser-helper UI are implemented. Referenced external HTTPS scripts are emitted only, never executed or fetched by the parser.",
+      "behavior": "Atomic offline conversion of supported node subscriptions, rules and rewrites to native QX text. SIP008 v1 server id is update metadata only within its servers envelope. Literal name filtering/renaming, info=0/1 quota notifications, emoji=0/1/2/-1 flag decoration, and official parser-helper UI are implemented. Unsupported legacy options remain errors; not a complete KOP option replacement. Referenced HTTPS scripts are emitted only, never fetched or executed.",
       "limitations": "Unsupported protocols, transports, fields, unregistered domain regex, conjunctive headless conditions, ambiguous domain formats, local scripts and certificate settings fail the complete resource. Explicit allow-resolve changes DNS semantics; script-compat=qx declares user-verified API compatibility and does not translate JavaScript. Native QX import/device execution not run.",
       "artifacts": [
         "scripts/resource-parser.js",

@@ -151,7 +151,7 @@ test('helper schema follows native v1 shapes without values and includes exactly
   const schema = helperCall('hashSchema');
   assert.equal(schema.version, 1);
   const items = schema.sections.flatMap(group => { assert.equal(group.type, 'group'); return group.items; });
-  assert.deepEqual(items.map(item => item.key).sort(), ['allow-resolve', 'domain-mode', 'format', 'in', 'out', 'policy', 'prefix', 'rename', 'script-compat', 'sort', 'suffix', 'type']);
+  assert.deepEqual(items.map(item => item.key).sort(), ['allow-resolve', 'domain-mode', 'emoji', 'format', 'in', 'info', 'out', 'policy', 'prefix', 'rename', 'script-compat', 'sort', 'suffix', 'type']);
   for (const item of items) {
     assert.equal(Object.hasOwn(item, 'value'), false);
     assert.ok(['select', 'text', 'tags', 'switch'].includes(item.type));

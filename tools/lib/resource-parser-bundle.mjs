@@ -41,7 +41,7 @@ export function bundleResourceParser(){
     legalComments:'inline',sourcemap:false,metafile:true,minify:true,
     banner:{js:banner()},
     // QX consumes the program's final value; an IIFE alone loses completion.
-    footer:{js:'typeof $resource !== "undefined" && typeof $done === "function" ? NetAtlasResourceParser.runResource($resource,$done) : undefined;'},
+    footer:{js:'typeof $resource !== "undefined" && typeof $done === "function" ? NetAtlasResourceParser.runResource($resource,$done,typeof $notify === "function" ? $notify : undefined) : undefined;'},
     logLevel:'silent',
   });
   if(result.outputFiles.length!==1)throw new Error('Unexpected resource-parser build output');

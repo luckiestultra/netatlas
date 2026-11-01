@@ -2,7 +2,7 @@
   "version": 1,
   "client": "stash",
   "builder": "netatlas@0.1.0",
-  "inputSha256": "4af3aa1dc02c3f56a134aff4e511964fd295b50d1116014ec840c91cf450dd68",
+  "inputSha256": "4ec40519a21ea51a2bd8ea655b42912ddd9ebaf72845c0757cf7ec2147553123",
   "baseUrl": "https://raw.githubusercontent.com/luckiestultra/netatlas/main",
   "targetVersion": null,
   "counts": {

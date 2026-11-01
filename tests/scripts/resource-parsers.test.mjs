@@ -90,6 +90,7 @@ test('mixed registry rejects altered ownership, runtime permissions, host contra
     value => { value.clients.quantumultX.externalOnly = true; },
     value => { value.clients.quantumultX.permissions.network = true; },
     value => { value.clients.quantumultX.permissions.storage = true; },
+    value => { value.clients.quantumultX.permissions.notifications = 'always'; },
     value => { value.clients.quantumultX.permissions.userSuppliedScriptEval = true; },
     value => { value.clients.quantumultX.permissions.sourceScriptReferenceExecution = true; },
     value => { value.clients.quantumultX.ownArtifacts = ['fragments/resource-parser.conf']; },

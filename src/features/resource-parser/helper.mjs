@@ -17,6 +17,11 @@ export function installParserHelper(parser) {
         { type: 'text', key: 'prefix', label: '名称前缀' },
         { type: 'text', key: 'suffix', label: '名称后缀' },
         select('sort', '名称排序', ['none', 'name', 'name-desc']),
+        { type: 'select', key: 'emoji', label: '地区旗帜（按节点名称）', options: [
+          { label: '保持原样', value: '0' }, { label: '添加', value: '1' },
+          { label: '国行显示模式', value: '2' }, { label: '删除', value: '-1' },
+        ] },
+        { type: 'switch', key: 'info', label: '订阅流量通知', description: '成功转换后提示已有流量数据，不含订阅地址或凭据。', onValue: '1', offValue: '0' },
       ] },
       { type: 'group', title: '高级选项', items: [
         { type: 'text', key: 'rename', label: '字面替换', description: 'JSON 配对列表，例如 [["香港","HK"]]；依次替换所有匹配文字，不执行正则或脚本。' },
