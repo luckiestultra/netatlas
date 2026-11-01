@@ -1,3 +1,5 @@
+import { createKeywordMatcher } from './options.mjs';
+import { stripComment } from './comments.mjs';
 // Original NetAtlas conversion; scripts are referenced, never loaded/executed.
 // https://github.com/crossutility/Quantumult-X/blob/master/sample.conf
 // https://manual.nssurge.com/http/url-rewrite.html
@@ -28,19 +30,6 @@ function pattern(value) {
 function target(value) {
   if (!/^https?:\/\/[^\s<>"']+$/.test(value) || value.includes('{{{') || value.length > 8192) fail('redirect needs an HTTP URL without unsupported placeholders');
   return value;
-}
-
-function stripForeignComment(line) {
-  let quote = '', escaped = false;
-  for (let index = 0; index < line.length; index++) {
-    const char = line[index];
-    if (escaped) { escaped = false; continue; }
-    if (char === '\\') { escaped = true; continue; }
-    if (quote) { if (char === quote) quote = ''; continue; }
-    if (char === '"' || char === "'") { quote = char; continue; }
-    if (index > 0 && /\s/.test(line[index - 1]) && (char === '#' || char === ';' || line.slice(index, index + 2) === '//')) return line.slice(0, index).trimEnd();
-  }
-  return line;
 }
 
 function hostnames(value) {
@@ -91,8 +80,8 @@ function fields(value) {
 export function parseRewrites(text, options = {}, utils = {}) {
   if (typeof text !== 'string' || /[\x00\x0b\x0c]/.test(text)) fail('invalid resource');
   if (options.scriptCompatibility !== undefined && options.scriptCompatibility !== 'qx') fail('unknown script compatibility declaration');
-  const output = [];
-  const hosts = [];
+  let output = [];
+  let hosts = [];
   let section = null;
   let compatibilityWarning = false;
   const emit = line => { if (output.length >= 20000) fail('output limit exceeded'); output.push(line); };
@@ -159,13 +148,14 @@ export function parseRewrites(text, options = {}, utils = {}) {
   }
   for (let line of text.split(/\r?\n/)) {
     line = line.trim();
-    if (!line || /^[#;]/.test(line) || line.startsWith('//')) continue;
+    if (!line) continue;
+    if (/^[#;]/.test(line) || line.startsWith('//')) { stripComment(line, fail); continue; }
     if (/^\[.*\]$/.test(line)) {
       section = line.slice(1, -1).trim().toLowerCase();
       if (!['url rewrite', 'rewrite', 'rewrite_local', 'script', 'mitm'].includes(section)) fail('unsupported executable or configuration section');
       continue;
     }
-    if (section !== null && section !== 'rewrite_local') line = stripForeignComment(line);
+    if (section !== null && section !== 'rewrite_local' || section === null && !/\surl(?:-and-header)?\s/.test(line)) line = stripComment(line, fail);
     if (/^hostname\s*=/i.test(line)) {
       if (section !== null && section !== 'mitm' && section !== 'rewrite_local') fail('hostname in wrong section');
       hosts.push(...hostnames(line.slice(line.indexOf('=') + 1).trim()));
@@ -177,6 +167,14 @@ export function parseRewrites(text, options = {}, utils = {}) {
     else if (section === null && /^\S+\s+(?:302|307|reject(?:-200|-img|-dict|-array)?)(?:\s|$)/.test(line)) foreignRewrite(line, 'rewrite');
     else native(line);
   }
+  const include = options.in ?? [], exclude = options.out ?? [];
+  const keep = createKeywordMatcher(include), remove = createKeywordMatcher(exclude);
+  const ruleCount = output.length;
+  output = output.filter(line => (!include.length || keep(line)) && !remove(line));
+  if (ruleCount && !output.length && (include.length || exclude.length)) fail('empty resource after filtering');
+  const includeHosts = options.inhn ?? [], excludeHosts = options.outhn ?? [];
+  const keepHost = createKeywordMatcher(includeHosts), removeHost = createKeywordMatcher(excludeHosts);
+  hosts = hosts.filter(name => (!includeHosts.length || keepHost(name)) && !removeHost(name));
   if (!output.length && !hosts.length) fail('empty resource');
   if (hosts.length) emit('hostname = ' + [...new Set(hosts)].join(', '));
   if (compatibilityWarning && output.length >= 20000) fail('output limit exceeded');

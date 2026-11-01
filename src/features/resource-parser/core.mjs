@@ -12,6 +12,10 @@ const fail = message => { throw new Error('Resource parser: ' + message); };
 const own = (value,key) => Object.prototype.hasOwnProperty.call(value,key);
 const nodeParser = createNodeParser({parseYaml});
 
+function isRewriteLine(value) {
+  return /^\[(?:url rewrite|rewrite|rewrite_local|script|mitm)\]$/i.test(value) || /\surl(?:-and-header)?\s/.test(value) || /^hostname\s*=/i.test(value) || /^\S+\s+(?:302|307|reject(?:-\w+)?)(?:\s|$)/.test(value) || /^\S+\s+\S+\s+(?:302|307)$/.test(value);
+}
+
 function detect(text, data) {
   const kinds = new Set();
   if (data && typeof data === 'object') {
@@ -22,11 +26,15 @@ function detect(text, data) {
     for (const line of text.split('\n')) {
       const value=line.trim();
       if (!value || /^[#;]/.test(value) || value.startsWith('//')) continue;
-      if (/^\[(?:proxy|server_local)\]$/i.test(value) || /^[a-z][a-z0-9+.-]*:\/\//i.test(value) || /^(?:shadowsocks|vmess|vless|trojan|http|socks5|anytls)\s*=/i.test(value)) kinds.add('server');
+      const nativeNode = /^(?:shadowsocks|vmess|vless|trojan|http|socks5|anytls)\s*=/i.test(value);
+      const namedNode = /^[^=]+\s*=\s*(?:ss|ssr|shadowsocks|vmess|vless|trojan|http|https|socks5|anytls)\s*,/i.test(value);
+      const uri = /^[a-z][a-z0-9+.-]*:\/\//i.test(value);
+      // Names/fragments may contain the literal word "url". Node declarations
+      // and tagged node URIs take precedence over rewrite heuristics.
+      if (nativeNode || namedNode || uri && /^[^\s]*#/.test(value) || /^\[(?:proxy|server_local)\]$/i.test(value)) kinds.add('server');
+      else if (isRewriteLine(value)) kinds.add('rewrite');
+      else if (uri) kinds.add('server');
       else if (/^\[(?:rule|filter_local)\]$/i.test(value) || /^(?:DOMAIN|HOST|IP|GEOIP|USER-AGENT|FINAL|MATCH|PROCESS|AND|OR|NOT|DEST-PORT|DST-PORT)[A-Z0-9_-]*\s*,/i.test(value)) kinds.add('filter');
-      else if (/^\[(?:url rewrite|rewrite|rewrite_local|script|mitm)\]$/i.test(value) || /\surl(?:-and-header)?\s/.test(value) || /^hostname\s*=/i.test(value) || /^\S+\s+(?:302|307|reject(?:-\w+)?)(?:\s|$)/.test(value) || /^\S+\s+\S+\s+(?:302|307)$/.test(value)) kinds.add('rewrite');
-      // Surge/Loon node declarations have a leading name and protocol.
-      else if (/^[^=]+\s*=\s*(?:ss|ssr|shadowsocks|vmess|vless|trojan|http|https|socks5|anytls)\s*,/i.test(value)) kinds.add('server');
     }
   }
   if (kinds.size !== 1) fail(kinds.size ? 'mixed resource; select type explicitly' : 'unknown resource; select type and format explicitly');
@@ -34,7 +42,8 @@ function detect(text, data) {
 }
 
 function validateOptions(type, options) {
-  const nodeOptions=options.in.length || options.out.length || options.prefix || options.suffix || options.rename.length || options.sort !== 'none' || options.info || options.emoji && options.emoji !== '0';
+  const nodeOptions=options.prefix || options.suffix || options.rename.length || options.sort !== 'none' || options.info || options.emoji && options.emoji !== '0';
+  if (type !== 'rewrite' && (options.inhn.length || options.outhn.length)) fail('hostname options are not valid for this resource');
   const ruleOptions=own(options,'policy') || own(options,'domainSetMode') || options.allowResolve || options.sourceFormat !== 'auto';
   if (type !== 'server' && nodeOptions) fail('node options are not valid for this resource');
   if (type !== 'filter' && ruleOptions) fail('rule options are not valid for this resource');
@@ -43,16 +52,26 @@ function validateOptions(type, options) {
 
 function convertResource(resource) {
   if (!resource || typeof resource.content !== 'string' || resource.content.length > MAX_TEXT) fail('invalid or oversized resource');
-  const options=parseOptions(resource.link ?? '');
+  let link = resource.link ?? '';
+  // Local files historically carry options in a first-line #key=value comment.
+  // Explicit path/URL fragments win; remote content cannot enable options.
+  if (typeof link === 'string' && link && (/^file:/i.test(link) || !/^(?:[a-z][\w+.-]*:|\/\/)/i.test(link)) && !link.includes('#')) {
+    const first = resource.content.replace(/^\uFEFF/, '').split(/\r?\n/, 1)[0].trim();
+    if (/^#[a-z][\w-]*=/i.test(first)) link += first;
+  }
+  const options=parseOptions(link);
   let text=resource.content.replace(/^\uFEFF/,'').replace(/\r\n?/g,'\n').trim();
   if (!text || /[\x00\u2028\u2029]/.test(text) || text.split('\n').length > 20000) fail('empty, invalid or oversized resource');
   if (looksLikeEncodedSubscription(text)) text=decodeBase64Text(text).trim();
   if (text.length > MAX_TEXT) fail('decoded resource limit exceeded');
-  let data;
-  if (/^[{[]/.test(text) && !/^\[[a-z_ ]+\]\s*(?:\n|$)/i.test(text) || /^(?:proxies|outbounds|servers|nodes|payload)\s*:/m.test(text)) data=parseYaml(text);
   // Some hosts expose a type; unknown host values are not guessed from numbers.
   const hostType=['server','filter','rewrite'].includes(resource.type) ? resource.type : null;
-  const type=options.type === 'auto' ? hostType ?? detect(text,data) : options.type;
+  const requestedType=options.type === 'auto' ? hostType : options.type;
+  let data;
+  // A leading regex character class is valid rewrite syntax, not a YAML array.
+  const structured=/^[{[]/.test(text) && !/^\[[a-z_ ]+\]\s*(?:\n|$)/i.test(text) && !(text.startsWith('[') && isRewriteLine(text.split('\n')[0]));
+  if (requestedType !== 'rewrite' && (structured || /^(?:proxies|outbounds|servers|nodes|payload)\s*:/m.test(text))) data=parseYaml(text);
+  const type=requestedType ?? detect(text,data);
   validateOptions(type,options);
   let content, notice = null;
   if (type === 'server') {

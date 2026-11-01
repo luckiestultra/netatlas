@@ -1,3 +1,5 @@
+import { createKeywordMatcher } from './options.mjs';
+import { stripComment } from './comments.mjs';
 // Original NetAtlas converter. Only documented QX conditions are emitted.
 // QX: https://github.com/crossutility/Quantumult-X/blob/master/sample.conf
 // Headless OR/AND semantics: https://sing-box.sagernet.org/configuration/rule-set/headless-rule/
@@ -88,6 +90,7 @@ export function parseRules(text, options = {}, utils = {}) {
     if (finalSeen) fail('condition follows final');
     const native = TYPES[type.toUpperCase()];
     if (!native && type.toUpperCase() !== 'DOMAIN-REGEX') fail('unsupported condition type');
+    if (replacement === null && /^(?:REJECT-(?:TINYGIF|DROP|NO-DROP)|CELLULAR(?:-ONLY)?|HYBRID|NO-HYBRID)$/i.test(sourcePolicy ?? '')) fail('unsupported built-in policy; choose an explicit target policy');
     const selected = replacement ?? policy(sourcePolicy ?? 'proxy');
     const flags = [];
     for (const item of extras) {
@@ -116,7 +119,7 @@ export function parseRules(text, options = {}, utils = {}) {
       value = value.toLowerCase();
     } else if (native === 'ip-cidr' || native === 'ip6-cidr') value = cidr(value, native === 'ip-cidr' ? 4 : 6);
     else if (native === 'geoip') {
-      if (!/^[a-zA-Z]{2}$/.test(value)) fail('invalid GEOIP country');
+      if (!/^[a-zA-Z][a-zA-Z0-9_-]{1,63}$/.test(value)) fail('invalid GEOIP category');
       value = value.toLowerCase();
     } else if (native === 'ip-asn') {
       value = String(value).replace(/^AS/i, '');
@@ -206,23 +209,25 @@ export function parseRules(text, options = {}, utils = {}) {
     let section = null;
     for (let line of text.split(/\r?\n/)) {
       line = line.trim();
-      if (!line || /^[#;]/.test(line) || line.startsWith('//')) continue;
+      line = stripComment(line, fail);
+      if (!line) continue;
       if (/^\[.*\]$/.test(line)) {
         section = line.slice(1, -1).toLowerCase();
         if (section !== 'rule' && section !== 'filter_local') fail('unsupported configuration section');
         continue;
       }
-      // Inline comments require whitespace; a # inside a condition remains data.
-      line = line.replace(/\s+[;#].*$/, '').trim();
       if (format === 'domain-set') domainLine(line);
       else if (line.includes(',')) classical(line);
       else fail('bare domain needs explicit domain-set format');
     }
   }
-  if (!output.length) fail('empty resource');
+  const include = options.in ?? [], exclude = options.out ?? [];
+  const keep = createKeywordMatcher(include), remove = createKeywordMatcher(exclude);
+  const selected = output.filter(line => (!include.length || keep(line)) && !remove(line));
+  if (!selected.length) fail('empty resource after filtering');
   const warnings = [];
   if (replacement !== null) warnings.push('# NetAtlas: explicit policy override replaces every source policy.');
   if (resolveWarning) warnings.push('# NetAtlas: explicit allow-resolve removes no-resolve; DNS lookup behavior changes.');
-  if (warnings.length + output.length > MAX_LINES) fail('output limit exceeded');
-  return [...warnings, ...output].join('\n') + '\n';
+  if (warnings.length + selected.length > MAX_LINES) fail('output limit exceeded');
+  return [...warnings, ...selected].join('\n') + '\n';
 }

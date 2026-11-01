@@ -28,7 +28,7 @@ export function subscriptionNotification(resource, nativeNodes) {
   // and valid calendar dates survive; arbitrary node labels are never echoed.
   let remaining = '', expiry = '';
   for (const line of nativeNodes.split('\n')) {
-    const match = /(?:^|,)\s*tag\s*=\s*("(?:[^"]|"")*"|[^,]*)/.exec(line);
+    const match = /(?:^|,)\s*tag\s*=\s*("(?:[^"]|"")*"|[^,]*)/i.exec(line);
     if (!match) continue;
     const name = match[1].replace(/^"|"$/g, '').replace(/""/g, '"');
     const quota = /剩余流量\s*[:：]?\s*(\d{1,12}(?:\.\d{1,6})?)\s*(GiB|MiB|TiB|KiB|GB|MB|TB|KB|B)(?=$|[^A-Za-z])/i.exec(name);

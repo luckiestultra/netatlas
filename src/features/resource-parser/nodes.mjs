@@ -1,5 +1,6 @@
 // Original, side-effect-free node conversion for Quantumult X's JavaScriptCore host.
 // Unsupported transport/security options are errors: a subscription is atomic.
+import { stripComment } from './comments.mjs';
 const TYPES = new Set(['shadowsocks','vmess','vless','trojan','http','socks5','anytls']);
 const CIPHERS = new Set(['aes-128-gcm','aes-192-gcm','aes-256-gcm','aes-128-cfb','aes-192-cfb','aes-256-cfb','chacha20','chacha20-ietf','chacha20-poly1305','chacha20-ietf-poly1305','xchacha20-ietf-poly1305','rc4-md5','2022-blake3-aes-128-gcm','2022-blake3-aes-256-gcm','2022-blake3-chacha20-poly1305']);
 const NATIVE_KEYS = new Set('method password username ssr-protocol ssr-protocol-param obfs obfs-host obfs-uri over-tls tls-host tls-verification tls-cert-sha256 tls-pubkey-sha256 tls-alpn tls-no-session-ticket tls-no-session-reuse reality-base64-pubkey reality-hex-shortid vless-flow udp-relay udp-over-tcp fast-open aead tls13 server_check_url server_check_user_agent tag'.split(' '));
@@ -112,7 +113,7 @@ function tlsTransport(n,options={}) {
     put(n,'obfs','http');put(n,'obfs-host',wsHost);put(n,'obfs-uri',options.path||'/');
   }else if(network==='ws'){
     if(options.flow)error('unsupported transport');
-    // The source defaults Host and TLS server name independently to its server.
+    // Each importer supplies its source-specific defaults before this check.
     // QX obfs-host controls both; either mismatch would change the connection.
     if(encrypted&&(wsHost||n.host)!==(options.sni||n.host))error('separate TLS and websocket names unsupported');
     if(n.type==='trojan'&&!encrypted)error('TLS required');
@@ -165,8 +166,10 @@ function ssPluginObject(n,plugin,options) {
 }
 function parseSs(u) {
   keys(u.query,['plugin','udp','tfo']);let authority=u.authority;
-  if(!authority.includes('@'))authority=decodeBase64Text(authority);
-  const a=authAddress(authority),auth=a.credentials.includes(':')?decode(a.credentials):decodeBase64Text(a.credentials),p=auth.indexOf(':');if(p<1)error('invalid credentials');
+  // Legacy whole-Base64 credentials are already plaintext, unlike raw SIP002 userinfo.
+  // https://shadowsocks.org/doc/configs.html
+  const legacy=!authority.includes('@');if(legacy)authority=decodeBase64Text(authority);
+  const a=authAddress(authority),auth=legacy?a.credentials:a.credentials.includes(':')?decode(a.credentials):decodeBase64Text(a.credentials),p=auth.indexOf(':');if(p<1)error('invalid credentials');
   const n=node('shadowsocks',a,u.tag);put(n,'method',auth.slice(0,p));put(n,'password',auth.slice(p+1));ssPlugin(n,u.query.plugin);putBool(n,'udp-relay',u.query.udp);putBool(n,'fast-open',u.query.tfo);return n;
 }
 function parseSsr(u) {
@@ -233,7 +236,15 @@ function fromObject(o) {
     const enabled=o.tls===undefined?(type==='trojan'||type==='anytls'||o.type==='https'):bool(o.tls);
     if(o.type==='https'&&!enabled)error('TLS required by protocol');
     if(reality&&!enabled)error('Reality requires enabled TLS');
-    tlsTransport(n,{network:o.network||'tcp',security:reality?'reality':enabled?'tls':'none',sni:o.servername||o.sni,headers:ws.headers,path:ws.path,flow:o.flow,alpn:o.alpn,insecure:o['skip-cert-verify'],publicKey:reality&&reality['public-key'],shortId:reality&&reality['short-id']});
+    let sni=o.servername||o.sni,protocols=o.alpn;
+    if(enabled&&o.network==='ws'&&['vmess','vless'].includes(type)){
+      if(reality)error('Reality over Clash websocket unsupported');
+      // Mihomo WSS defaults SNI to Host and fixes ALPN to HTTP/1.1.
+      // https://github.com/MetaCubeX/mihomo/blob/v1.19.33/adapter/outbound/vmess.go#L183-L218
+      // https://github.com/MetaCubeX/mihomo/blob/v1.19.33/adapter/outbound/vless.go#L167-L197
+      if(o.alpn)alpn(o.alpn);sni=sni||(ws.headers&&(ws.headers.Host||ws.headers.host));protocols=['http/1.1'];
+    }
+    tlsTransport(n,{network:o.network||'tcp',security:reality?'reality':enabled?'tls':'none',sni,headers:ws.headers,path:ws.path,flow:o.flow,alpn:protocols,insecure:o['skip-cert-verify'],publicKey:reality&&reality['public-key'],shortId:reality&&reality['short-id']});
     for(const k of ['plugin','plugin_opts','plugin-opts','method'])if(own(o,k))error('unsupported protocol field');
   }
   putBool(n,'udp-relay',o.udp??o['udp-relay']);putBool(n,'fast-open',o.tfo??o['fast-open']??o['tcp-fast-open']);if(o.udp_over_tcp!==undefined)putBool(n,'udp-over-tcp',o.udp_over_tcp);return n;
@@ -265,7 +276,11 @@ function fromSingbox(o) {
     if(n.type==='vless'||n.type==='vmess'){put(n,'password',uuid(o.uuid));put(n,'method',n.type==='vless'?'none':(o.security==='auto'||!o.security?'chacha20-poly1305':o.security));if(o.alter_id)error('legacy VMess alter ID unsupported');}else{put(n,'username',o.username);put(n,'password',o.password);}
     tlsTransport(n,{network:tr.type||'tcp',security:realityEnabled?'reality':tlsEnabled?'tls':'none',sni:tls.server_name,insecure:tls.insecure,alpn:tls.alpn,path:tr.path,headers:tr.headers,flow:o.flow,publicKey:tls.reality&&tls.reality.public_key,shortId:tls.reality&&tls.reality.short_id});
   }
-  putBool(n,'fast-open',o.tcp_fast_open);if(object(o.udp_over_tcp)){keys(o.udp_over_tcp,['enabled','version']);if(bool(o.udp_over_tcp.enabled??true)){const v=o.udp_over_tcp.version??2;if(![1,2].includes(v))error('unsupported UDP mode');put(n,'udp-over-tcp','sp.v'+v);}else put(n,'udp-over-tcp','false');}else if(o.udp_over_tcp!==undefined)putBool(n,'udp-over-tcp',o.udp_over_tcp);return n;
+  putBool(n,'fast-open',o.tcp_fast_open);
+  // sing-box's boolean shorthand uses SagerNet UoT v2; QX true is a different protocol.
+  // https://sing-box.sagernet.org/configuration/shared/udp-over-tcp/
+  if(object(o.udp_over_tcp)){keys(o.udp_over_tcp,['enabled','version']);if(bool(o.udp_over_tcp.enabled??false)){const v=o.udp_over_tcp.version??2;if(![1,2].includes(v))error('unsupported UDP mode');put(n,'udp-over-tcp','sp.v'+v);}else put(n,'udp-over-tcp','false');}
+  else if(o.udp_over_tcp!==undefined)put(n,'udp-over-tcp',bool(o.udp_over_tcp)?'sp.v2':'false');return n;
 }
 function fromProxy(line) {
   const p=line.indexOf('=');if(p<1)error('invalid proxy line');const name=line.slice(0,p).trim(),parts=csv(line.slice(p+1)),typeName=parts.shift().toLowerCase();
@@ -325,11 +340,14 @@ function fromNative(line) {
   const parts=csv(line),p=parts[0].indexOf('='),type=parts[0].slice(0,p).trim().toLowerCase();const n=node(type,endpoint(parts[0].slice(p+1).trim()));n.fields=assignment(parts.slice(1));for(const k of Object.keys(n.fields))if(!NATIVE_KEYS.has(k))error('unsupported native field');if(n.fields.tag)n.original=line;return n;
 }
 function lines(input) {
-  const raw=input.replace(/^\uFEFF/,'').split(/\r?\n/),hasSections=raw.some(l=>/^\s*\[[^\]]+\]\s*$/.test(l));let section='',out=[];
-  for(let line of raw){line=line.trim();if(!line||line.startsWith('#')||line.startsWith(';')||line.startsWith('//'))continue;const m=/^\[([^\]]+)\]$/.exec(line);if(m){section=m[1].toLowerCase();continue;}
+  const nativePattern=/^(?:shadowsocks|vmess|vless|trojan|http|socks5|anytls)\s*=\s*(?:\[[^\]]+\]|[^,:]+):\d+(?:\s*,|\s*$)/i,uriPattern=/^[a-z][a-z0-9+.-]*:\/\//i;
+  // Native fields and URI fragments may contain literal comment-like text.
+  // Validate directives in every source, but strip inline comments only from Proxy declarations.
+  const raw=input.replace(/^\uFEFF/,'').split(/\r?\n/).map(line=>{line=line.trim();const stripped=stripComment(line,error).trim();return !stripped?'':uriPattern.test(line)||nativePattern.test(line)?line:stripped;}),hasSections=raw.some(l=>/^\[[^\]]+\]$/.test(l));let section='',out=[];
+  for(const line of raw){if(!line)continue;const m=/^\[([^\]]+)\]$/.exec(line);if(m){section=m[1].toLowerCase();continue;}
     if(hasSections&&!['proxy','server_local'].includes(section))continue;
-    if(/^[a-z][a-z0-9+.-]*:\/\//i.test(line))out.push(fromUri(line));
-    else if(section!=='proxy'&&/^(?:shadowsocks|vmess|vless|trojan|http|socks5|anytls)\s*=\s*(?:\[[^\]]+\]|[^,:]+):\d+(?:\s*,|\s*$)/i.test(line))out.push(fromNative(line));else out.push(fromProxy(line));
+    if(uriPattern.test(line))out.push(fromUri(line));
+    else if(section!=='proxy'&&nativePattern.test(line))out.push(fromNative(line));else out.push(fromProxy(line));
     if(out.length>2000)error('node limit exceeded');
   }return out;
 }

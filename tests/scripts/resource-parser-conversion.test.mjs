@@ -47,7 +47,7 @@ test('registered regex conversions preserve nonempty prefixes and unknown regex 
 });
 
 test('rule validation rejects resource injections and invalid IP addresses without leaking source', () => {
-  for (const bad of ['IP-CIDR,999.1.1.1/24,proxy', 'IP-CIDR6,2001::db8::/64,proxy', 'IP-CIDR6,:1:2:3:4:5:6:7:8/64,proxy', 'IP-CIDR6,1:2:3:4:5:6:7:8:/64,proxy', 'GEOIP,ZZZ,proxy', 'IP-ASN,AS-1,proxy', 'FINAL,proxy\nDOMAIN,example.com,proxy', 'DOMAIN,example.com,proxy,force-cellular=evil', 'DOMAIN,secret@example.com,proxy']) {
+  for (const bad of ['IP-CIDR,999.1.1.1/24,proxy', 'IP-CIDR6,2001::db8::/64,proxy', 'IP-CIDR6,:1:2:3:4:5:6:7:8/64,proxy', 'IP-CIDR6,1:2:3:4:5:6:7:8:/64,proxy', 'GEOIP,ZZ Z,proxy', 'IP-ASN,AS-1,proxy', 'FINAL,proxy\nDOMAIN,example.com,proxy', 'DOMAIN,example.com,proxy,force-cellular=evil', 'DOMAIN,secret@example.com,proxy']) {
     assert.throws(() => parseRules(bad), error => !error.message.includes('secret@'));
   }
 });

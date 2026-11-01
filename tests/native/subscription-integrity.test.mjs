@@ -5,14 +5,20 @@ import path from 'node:path';
 import test from 'node:test';
 import { testSubscriptionIntegrityWorkflow } from '../../tools/lib/subscription-integrity-flow.mjs';
 
-test('literal SIP002 passwords and complete native dependencies survive real private subscription workflows', {
+test('literal SS passwords survive private workflows and the final QX parser before native authentication', {
   skip: process.env.NETATLAS_NATIVE_INTEGRITY !== '1', timeout: 60000,
 }, async () => {
   const root = path.resolve(import.meta.dirname, '../..');
   const report = await testSubscriptionIntegrityWorkflow({ root, binaries: { singBox: path.join(root, '.cache/bin/sing-box') } });
   assert.equal(report.status, 'passed');
-  assert.equal(report.cases.length, 8);
+  assert.equal(report.cases.length, 10);
   assert.ok(report.cases.some(item => item.id === 'ss-userinfo' && item.nativeAuthenticatedHttp === 'passed'));
+  for (const format of ['userinfo', 'legacy']) {
+    assert.ok(report.cases.some(item => item.id === 'qx-parser-ss-' + format && item.finalBundle && item.identityCompletion && item.nativeAuthenticatedHttp === 'passed'));
+  }
+  assert.ok(report.cases.some(item => item.id === 'negative-control-ss-password' && item.oldPercentDecodeRejected));
+  assert.match(report.parserBundleSha256, /^[a-f0-9]{64}$/);
+  assert.equal(report.nativeQx, 'not-run');
   assert.ok(report.cases.some(item => item.id === 'discarded-carrier-import' && item.preservedLastGoodProfile));
   assert.ok(report.cases.some(item => item.id === 'preserved-good-profile' && item.actualHttpAfterRejectedRefresh === 'passed'));
 });

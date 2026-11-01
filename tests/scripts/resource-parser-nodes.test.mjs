@@ -117,8 +117,8 @@ test('SIP002 escaped plugin values and plaintext SS2022 keys are decoded exactly
 });
 
 test('pure host code works without Node, browser codec or network globals',async()=>{
-  const {readFile}=await import('node:fs/promises');const source=await readFile(new URL('../../src/features/resource-parser/nodes.mjs',import.meta.url),'utf8');
-  const sandbox={};vm.createContext(sandbox);vm.runInContext(source.replace(/export /g,'')+';this.parser=createNodeParser();',sandbox);
+  const {readFile}=await import('node:fs/promises');const source=await readFile(new URL('../../src/features/resource-parser/nodes.mjs',import.meta.url),'utf8'),comments=await readFile(new URL('../../src/features/resource-parser/comments.mjs',import.meta.url),'utf8');
+  const sandbox={};vm.createContext(sandbox);vm.runInContext(comments.replace(/export /g,'')+'\n'+source.replace("import { stripComment } from './comments.mjs';\n",'').replace(/export /g,'')+';this.parser=createNodeParser();',sandbox);
   assert.match(sandbox.parser.parseNodes('ss://'+encode('aes-128-gcm:test-password')+'@example.com:443#SS'),/^shadowsocks=/);
   for(const forbidden of ['Buffer','URL','atob','TextDecoder','fetch','eval('])assert.equal(source.includes(forbidden),false,forbidden);
 });
@@ -176,7 +176,7 @@ test('red team: WSS Host and SNI defaults must both remain unchanged',()=>{
   assert.throws(()=>parse({outbounds:[{...base,transport:{...base.transport,headers:{Host:'front.example'}}}]}));
   assert.throws(()=>parse({outbounds:[{...base,tls:{enabled:true,server_name:'tls.example'}}]}));
   const same=parse({outbounds:[{...base,transport:{...base.transport,headers:{Host:'example.com'}}}]});assert.equal(fields(same.trim())['obfs-host'],'example.com');
-  assert.throws(()=>parse({proxies:[{type:'vless',name:'Clash',server:'example.com',port:443,uuid,tls:true,network:'ws','ws-opts':{headers:{Host:'front.example'}}}]}));
+  const clash=parse({proxies:[{type:'vless',name:'Clash',server:'example.com',port:443,uuid,tls:true,network:'ws','ws-opts':{headers:{Host:'front.example'}}}]});assert.equal(fields(clash.trim())['obfs-host'],'front.example');
 });
 
 test('red team: conflicting aliases and VLESS-only incompatibilities are errors',()=>{

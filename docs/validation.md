@@ -1,5 +1,33 @@
 # 完整配置验证记录
 
+## 2026-11-01：QX 资源解析器审计与常用参数完善
+
+修复本轮九项审计问题，保持原子转换，不用筛选掩盖不支持的来源语义。实现及参数表见 [功能说明](features.md#资源解析器与正文替换)，来源、权限和未实现项见 [机器清单](../metadata/resource-parsers.json)。
+
+| 审计问题 | 修复与验证 |
+| --- | --- |
+| 条件/执行指令被当注释丢弃 | 节点、分流和重写拒绝 include、requirement、system 与平台限定指令，包括其他配置节内的指令；普通注释与引号边界独立处理。 |
+| sing-box UoT 协议及缺省值 | true 对应 QX sp.v2，对象 omitted enabled 保持关闭；未知 enabled/version 错误路径保留。 |
+| 旧全文 Base64 SS 密码二次解码 | 保留字面百分号，区分原始 URI userinfo 与 Base64 编码层次；包含真实认证正负控。 |
+| Clash VMess/VLESS WSS Host/SNI/ALPN | 按固定源实现使用 Host 补缺省 SNI、HTTP/1.1 ALPN；无法保留的分离名称及 WS+Reality 组合拒绝，其他源/TCP 的既有语义保留。 |
+| Surge // 行内注释进入策略名 | 在引号外按边界裁注释；不把普通策略注释带入 QX。 |
+| 未锚定 URL 重写被识别为节点 | 正确识别 URL rewrite 行；保留显式类型优先。 |
+| [hH] 开头的正则被送入 YAML | 识别重写语法，显式 rewrite 不先解析 YAML。 |
+| 印尼/Indiana 误标印度旗 | 地名优先最长匹配，英文词界校验；未知地名不假装为出口定位。 |
+| 大写 TAG 伪节点信息漏读 | 大小写均提取受限用量/有效日期，通知仍不含凭据、URL 或任意标签。 |
+
+常用参数只有一套直接写法：in/out 的 OR/AND、转义和大小写，分流/重写正文筛选与独立 hostname 筛选，顺序字面 rename、sort/type 常用别名，本地文件首行参数与显式片段优先级均已实现；没有兼容模式开关。用户原 `#info=1&out=套餐+重置&emoji=2` 保留。合法 GEOIP 类别需要所用数据库确实包含相应数据；不等价内置策略默认报错，只有显式 policy 覆盖后放行。reg/regout、sfilter/srename、任意代码和连接覆盖参数仍明确不支持。
+
+新增39项回归，故障切片先记录旧实现失败，再验证修复结果。独立红方补出并关闭节点名称含 url、重写目标 fragment 误抢类型、节点指令漏校验与原生普通注释截断凭据等问题，最终28个独立源码/bundle探针及8项定向复验通过；隔离重引入 SS 密码二次解码、UoT 缺省开启、提前过滤坏规则三种变异，全部被测试检出。普通原生 password/username/tag 中 //、#、; 及 URI fragment 保留，不能静默改凭据。
+
+独立蓝方在真实 Apple JavaScriptCore 中执行最终生成脚本：183个合成资源案例与17个从生成 bundle 独立抽取的 helper 案例，共200/200通过。每个资源均只调用一次 $done，最终求值为同一结果对象；网络、存储、eval/Function 探针未触发，5个负控确认探针有效。首轮3个测试预期过严已保留记录并修正为语义断言，没有修改产品代码掩盖结果。
+
+完整 `npm test` 共688项：680通过、0失败、8项原生 opt-in 跳过。`npm run test:native` 另实际通过 Darwin/arm64 的328个案例，包括两种最终 QX bundle 生成的 SS 字段接入本地原生 sing-box，完成认证并取得 HTTP 200；重现旧解码得到的错密码被拒绝且目标请求数不增加。其余既有原生路由、DNS、动态 GeoIP/ASN、订阅 TLS 和更新流程全部通过。测试只使用 127.0.0.1 合成服务，不更改系统代理或 TUN；该认证证明不能冒充 QX GUI 导入。
+
+`npm run check` 验证八客户端1137个产物无漂移及语义、策略引用、来源和哈希。冻结输入 `da95fc6b4a2b35738b3be1bde6bbd4c76e36347d0f81d6e13d187d9b8d7b0daf`，296个输入文件；QX parser SHA-256 `75faf8763204dc72bb6a75bb0ead7b7b74055c00827226dd79cdbdafc4aec57d`。除构建身份清单外，仅 QX 解析器成品变化；GeoIP、主配置、片段、规则及其他七客户端成品逐字节不变。普通 main URL 不变，不添加版本参数或固定提交。
+
+本轮未读取、启动或修改用户本地 QX、配置、缓存、节点、真实订阅及连接状态。QX App 实际导入仍未运行；公开 main 字节与 Linux CI 按推送后的实际提交单独核验。原有 main 用户按 App 正常脚本资源更新使用，不要求命令修改缓存，也不承诺 GitHub 推送立即清除客户端缓存。
+
 ## 2026-11-01：既有 QX 订阅 info/emoji 参数兼容
 
 用户报告多个订阅出现 `Resource parser options: invalid parameters`，随后提供不含订阅凭据的准确 fragment：`#info=1&out=套餐+重置&emoji=2`。旧版严格白名单只支持 out，缺少 info 与 emoji，导致进入节点转换前整份失败。已用合成订阅和真实旧产物复现同一错误；没有读取、请求或保存用户订阅内容。

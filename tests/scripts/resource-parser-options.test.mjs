@@ -1,7 +1,7 @@
 import assert from 'node:assert/strict';
 import { test } from 'node:test';
 import vm from 'node:vm';
-import { parseOptions, applyNodeOptions } from '../../src/features/resource-parser/options.mjs';
+import { parseOptions, applyNodeOptions, createKeywordMatcher } from '../../src/features/resource-parser/options.mjs';
 import { installParserHelper } from '../../src/features/resource-parser/helper.mjs';
 import { createNodeParser } from '../../src/features/resource-parser/nodes.mjs';
 import { parseRules } from '../../src/features/resource-parser/rules.mjs';
@@ -76,7 +76,7 @@ test('unknown, repeated, decoded duplicate, malformed, executable and sensitive 
   for (const value of [null, undefined, {}, 'x'.repeat(65537)]) fixedError(() => parseOptions(value));
 });
 
-test('rename accepts only literal JSON string pairs, including deletion', () => {
+test('JSON rename accepts only literal string pairs, including deletion', () => {
   const pairs = [['[HK].*', '香港'], ['Trial', ''], ['$&', '$1']];
   assert.deepEqual(parseOptions(link('rename=' + encodeURIComponent(JSON.stringify(pairs)))).rename, pairs);
   for (const value of ['old@new', '{}', 'null', '[["","new"]]', '[[1,"new"]]', '[["a",null]]', '[["a","b","c"]]', '[["a","bad,tag"]]', '[["a","bad\\nname"]]']) fixedError(() => parseOptions(link('rename=' + encodeURIComponent(value))));
@@ -98,7 +98,7 @@ test('literal filtering precedes sequential rename, prefixes, suffixes and deter
 });
 
 test('literal terms and replacement metacharacters are never executed or treated as regex', () => {
-  assert.equal(applyNodeOptions(content('A.*B', 'AxB'), { in: ['.*'] }), content('A.*B'));
+  assert.equal(applyNodeOptions(content('A.*B', 'AxB'), { in: ['\\.*'] }), content('A.*B'));
   assert.equal(applyNodeOptions(content('A.*B.*'), { rename: [['.*', '$&']] }), content('A$&B$&'));
   assert.equal(applyNodeOptions(content('AAA'), { rename: [['A', 'B'], ['BB', 'C']] }), content('CB'));
   const source = content('globalThis.executed=true');
@@ -140,9 +140,10 @@ test('empty, invalid and duplicate names or fully filtered subscriptions fail at
   for (const call of invalid) assert.throws(call, error => error.message === 'Node options failed: invalid node names or parameters');
 });
 
-test('all exported runtime functions execute after extraction without module or host globals', () => {
-  const options = clean(vm.runInNewContext('(' + parseOptions.toString() + ')(link)', { link: link('in=HK&prefix=%5B&suffix=%5D'), URL: undefined, URLSearchParams: undefined }));
-  assert.equal(vm.runInNewContext('(' + applyNodeOptions.toString() + ')(content,options)', { content: content('HK', 'US'), options }), content('[HK]'));
+test('runtime functions and the shared matcher execute without module or host globals', () => {
+  const matcher = '(' + createKeywordMatcher.toString() + ')';
+  const options = clean(vm.runInNewContext('(' + parseOptions.toString() + ')(link)', { link: link('in=HK&prefix=%5B&suffix=%5D'), createKeywordMatcher: vm.runInNewContext(matcher), URL: undefined, URLSearchParams: undefined }));
+  assert.equal(vm.runInNewContext('(' + applyNodeOptions.toString() + ')(content,options)', { content: content('HK', 'US'), options, createKeywordMatcher: vm.runInNewContext(matcher) }), content('[HK]'));
   const schema = clean(vm.runInNewContext('(' + installParserHelper.toString() + ')($parser).hashSchema()', { $parser: {} }));
   assert.equal(schema.version, 1);
 });
@@ -151,7 +152,7 @@ test('helper schema follows native v1 shapes without values and includes exactly
   const schema = helperCall('hashSchema');
   assert.equal(schema.version, 1);
   const items = schema.sections.flatMap(group => { assert.equal(group.type, 'group'); return group.items; });
-  assert.deepEqual(items.map(item => item.key).sort(), ['allow-resolve', 'domain-mode', 'emoji', 'format', 'in', 'info', 'out', 'policy', 'prefix', 'rename', 'script-compat', 'sort', 'suffix', 'type']);
+  assert.deepEqual(items.map(item => item.key).sort(), ['allow-resolve', 'domain-mode', 'emoji', 'format', 'in', 'info', 'inhn', 'out', 'outhn', 'policy', 'prefix', 'rename', 'script-compat', 'sort', 'suffix', 'type']);
   for (const item of items) {
     assert.equal(Object.hasOwn(item, 'value'), false);
     assert.ok(['select', 'text', 'tags', 'switch'].includes(item.type));

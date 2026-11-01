@@ -2,7 +2,7 @@
   "version": 1,
   "builder": "netatlas@0.1.0",
   "input": {
-    "sha256": "4ec40519a21ea51a2bd8ea655b42912ddd9ebaf72845c0757cf7ec2147553123",
+    "sha256": "da95fc6b4a2b35738b3be1bde6bbd4c76e36347d0f81d6e13d187d9b8d7b0daf",
     "files": [
       {
         "path": "LICENSE",
@@ -58,7 +58,7 @@
       },
       {
         "path": "metadata/resource-parsers.json",
-        "sha256": "a7315f825459b00a4505b0d174903bd49706580a79eac02865e510fb72ea7b08"
+        "sha256": "1420b0e3ce733db3ef11d2b0f3753ae8d82fb6633e4fd3aa2ef6d96b1df8aef8"
       },
       {
         "path": "metadata/routing.json",
@@ -153,8 +153,12 @@
         "sha256": "85311fcf996fbaf7279daba3ec4c3cff31d6035d333ae6b3c939d86039d16357"
       },
       {
+        "path": "src/features/resource-parser/comments.mjs",
+        "sha256": "1b5a0767085210e9ae4cba03817c12de1103dd9b6439ec104b7eda4403034427"
+      },
+      {
         "path": "src/features/resource-parser/core.mjs",
-        "sha256": "d4ff08d50c9337230c44b08b542e49e180b667d56d87d0430510de17a1cd8ca1"
+        "sha256": "e8dba546b6c0038945477fde3db3754169f6d89aa547d45237259b411f3a7463"
       },
       {
         "path": "src/features/resource-parser/entry.mjs",
@@ -162,27 +166,27 @@
       },
       {
         "path": "src/features/resource-parser/helper.mjs",
-        "sha256": "745173a467e3e904b9e2413724681f96fc6e0c1ca74b815223e9d5aa429810f7"
+        "sha256": "9f1cf959434508625e5b80777dbcfe5cfb9c50e539629195726a237fb917e596"
       },
       {
         "path": "src/features/resource-parser/nodes.mjs",
-        "sha256": "daf65bcfb199b43877d3d7b310059ca0467d2b0f478073d7259df029013de181"
+        "sha256": "ac39e4557d77e2942d38c9ff61bc91a42b56d021656e602eb199934c1162d039"
       },
       {
         "path": "src/features/resource-parser/options.mjs",
-        "sha256": "6d9e5fca8e436095fa44bbd42c4846f144737bd9df9ed2dd48e4ee340398d4e4"
+        "sha256": "afb5fdb8ebdc967eac9c5c1720d32ecc5118b5283bd1991751cbc31e4a17ba8e"
       },
       {
         "path": "src/features/resource-parser/rewrites.mjs",
-        "sha256": "d0d68b51ae57f4a2f0c037e163063ec76cacc0e4cd5a78c595028b099c9fdaa9"
+        "sha256": "236ebd27b906de40d4e3ce07f05415c1ee28a94ab8365265ca76900dddd37337"
       },
       {
         "path": "src/features/resource-parser/rules.mjs",
-        "sha256": "b262c1613581a3faa232d1bf011e9b359e879239aba03498c34083a00d8d5c2e"
+        "sha256": "7393ca4ce52bf512273c374a65218ac88f2a3cd5efb764d17d2acb92998b4c2c"
       },
       {
         "path": "src/features/resource-parser/subscription-info.mjs",
-        "sha256": "18a47ad8a42d766e38931aee997915ce1210a70a03badd14cd7f64d3488721ee"
+        "sha256": "6b9641bb1308eec7aa374cd724d8bf867e77e22f349b667b9c335b3ca6d6132b"
       },
       {
         "path": "src/features/resource-parser/vendor/LICENSE-yaml",
@@ -1146,7 +1150,7 @@
       },
       {
         "path": "tools/lib/subscription-integrity-flow.mjs",
-        "sha256": "427f73a82a6f33b8270641aa5d164bb28ad99cbe99127b9ea2a1dde0ca745e92"
+        "sha256": "ce986bb2162eefd53e95c7faf600af90421773eb4caf96834b5d8beb08c203d4"
       },
       {
         "path": "tools/lib/subscription-tls-flow.mjs",
@@ -1191,7 +1195,7 @@
       "id": "quantumultX",
       "name": "Quantumult X",
       "manifest": "quantumultX/manifest.json",
-      "sha256": "bb6550d206782c2c84073674447fd83383ddca9faea039439d93848f7cc9a5f6",
+      "sha256": "a3249924488964ca15329ed762168a67035e2c5b072f8fbbe76ef42ede4b781e",
       "rulesets": 118,
       "entries": 136944,
       "defaultRuleSets": 115,
@@ -1201,7 +1205,7 @@
       "id": "surge",
       "name": "Surge",
       "manifest": "surge/manifest.json",
-      "sha256": "c27de0d6c3777a0ad37856aec62eb6c355e5aaf2cd50437af76f713f8b23fe45",
+      "sha256": "739583794c93ccc85d3659541081cb7972bd3b62872b2135344dd554cdf998bd",
       "rulesets": 118,
       "entries": 136944,
       "defaultRuleSets": 115,
@@ -1211,7 +1215,7 @@
       "id": "loon",
       "name": "Loon",
       "manifest": "loon/manifest.json",
-      "sha256": "c0cfc388c83d6d77e0ae22aaa6569f6096293bcab8f1d023261fdb29e0c9e610",
+      "sha256": "5c3881579f6de1095eb054912767a566777f6d89c6db157726aa4ed9b6822c05",
       "rulesets": 118,
       "entries": 136944,
       "defaultRuleSets": 115,
@@ -1221,7 +1225,7 @@
       "id": "shadowrocket",
       "name": "Shadowrocket",
       "manifest": "shadowrocket/manifest.json",
-      "sha256": "95cce28fe73f12a1bd03697970dcda0686eec30a857bad7f3f4b2b715e4bfc78",
+      "sha256": "07d67ac0b794536d9eb73a15214122ff596a5d269c405aac0efcf19ad1bb9a5f",
       "rulesets": 118,
       "entries": 136944,
       "defaultRuleSets": 115,
@@ -1231,7 +1235,7 @@
       "id": "egern",
       "name": "Egern",
       "manifest": "egern/manifest.json",
-      "sha256": "1ffe834173866e9b49716e54c55eafc4314ce3abee3b96c3ad0bdb76a4427291",
+      "sha256": "8029c5d5a7ad48a1562e61018a0bfaf5c3f78a04fc2d9e063511b7536b1a62eb",
       "rulesets": 118,
       "entries": 136944,
       "defaultRuleSets": 115,
@@ -1241,7 +1245,7 @@
       "id": "stash",
       "name": "Stash",
       "manifest": "stash/manifest.json",
-      "sha256": "22634395fd091bdfd87c9de0409d981c2bdeae967dcd25744e46befdd4883e0b",
+      "sha256": "67a0cb81ede9a2e1b1c47c8cd606935132f360ba9ed63ca9869fafc65bd91263",
       "rulesets": 118,
       "entries": 136944,
       "defaultRuleSets": 115,
@@ -1251,7 +1255,7 @@
       "id": "mihomo",
       "name": "Mihomo",
       "manifest": "mihomo/manifest.json",
-      "sha256": "12dc1ca4d2eaee9e1772d00034a1a26702cf61b2082f701b9331e1c887ba12d9",
+      "sha256": "91bb5745fabd4ec637e7472c085ef7ba1ceb504836f1f318dd1b5e14d0e4ee71",
       "rulesets": 118,
       "entries": 136944,
       "defaultRuleSets": 115,
@@ -1261,12 +1265,12 @@
       "id": "singBox",
       "name": "sing-box",
       "manifest": "singBox/manifest.json",
-      "sha256": "e241cbbd04b6bdb4aea4b21f52dc391bb6b43f64952eb8c8962eb6e5cd175088",
+      "sha256": "d38d2e70abc92036765cc0006d03b160891ff341c0eb66bde1d5fcc97ed9c7d6",
       "rulesets": 118,
       "entries": 136944,
       "defaultRuleSets": 115,
       "defaultEntries": 29153
     }
   ],
-  "contentSha256": "668faed58ced07f0052ba5ac904ecfeb6f7c768d4998b837ac4e3cce57f5436d"
+  "contentSha256": "0284352d9892856cc3ce25215a835ed1ec049cf9d3e2079022a86528eca50612"
 }
