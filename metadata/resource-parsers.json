@@ -45,7 +45,7 @@
         ],
         "helperUiMinimumBuild": 918,
         "helperProtocol": "https://github.com/crossutility/Quantumult-X/blob/97fdae00a91f69e69d84898c686aa94a112dd4bd/parser-helper-protocol.md",
-        "options": "One declarative syntax: case-insensitive keyword OR/AND for node names and validated rule/rewrite rows; separate MITM hostname filters, bounded sequential literal renaming, common sort/type aliases; local first-line options only for local paths or file: links, with explicit fragments winning. No compatibility-mode switch.",
+        "options": "Resource-specific literal behavior: node names use case-insensitive OR/AND; rule out matches case-sensitive source bodies before policy replacement and in matches converted rows; rewrites use case-insensitive literal rows and MITM hostnames use case-sensitive literal terms. Plus separates alternatives, dots in rules/rewrites/hostnames are literal. No compatibility-mode switch.",
         "diagnostics": "Rejected fields identify a fixed source-format context and a registered public schema name only. Arbitrary unknown key names and all source values are redacted; no subscription URL, credentials or node label are included.",
         "nativeClientPreferences": {
           "sourceOptions": [
@@ -77,6 +77,19 @@
           "behavior": "A true hint is satisfied by the documented native QX Reality handshake. A fixed notice describes the capability, not the negotiated group. No extra native QX field or source value is emitted.",
           "rejected": "False, zero, empty, non-scalar or invalid values; non-Reality or misplaced fields; native QX, sing-box and explicit SIP008 including missing-id paths. pqv and certificate/signature settings remain strict.",
           "requires": "A QX version implementing the documented native iOS26 Reality handshake with X25519MLKEM768 support."
+        },
+        "resourceLimits": {
+          "unit": "UTF-16 code units; normalized physical lines and unfiltered emitted rows are separately bounded",
+          "plainRules": {
+            "characters": 8388608,
+            "lines": 250000
+          },
+          "otherResources": {
+            "characters": 2097152,
+            "lines": 20000
+          },
+          "nodes": 2000,
+          "structuredDocuments": "Existing YAML/JSON depth, value-node and alias budgets remain unchanged; large plain-rule allowance does not apply to structured or encoded input."
         }
       },
       "permissions": {

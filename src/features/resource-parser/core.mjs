@@ -7,7 +7,7 @@ import { parseYaml } from './yaml.mjs';
 import { parseOptions, applyNodeOptions } from './options.mjs';
 import { subscriptionNotification } from './subscription-info.mjs';
 
-const MAX_TEXT = 2 * 1024 * 1024;
+import { MAX_TEXT, MAX_LINES, MAX_RULE_TEXT, MAX_RULE_LINES } from './limits.mjs';
 const fail = message => { throw new Error('Resource parser: ' + message); };
 const own = (value,key) => Object.prototype.hasOwnProperty.call(value,key);
 const nodeParser = createNodeParser({parseYaml});
@@ -51,7 +51,7 @@ function validateOptions(type, options) {
 }
 
 function convertResource(resource) {
-  if (!resource || typeof resource.content !== 'string' || resource.content.length > MAX_TEXT) fail('invalid or oversized resource');
+  if (!resource || typeof resource.content !== 'string' || resource.content.length > MAX_RULE_TEXT) fail('invalid or oversized resource');
   let link = resource.link ?? '';
   // Local files historically carry options in a first-line #key=value comment.
   // Explicit path/URL fragments win; remote content cannot enable options.
@@ -61,17 +61,30 @@ function convertResource(resource) {
   }
   const options=parseOptions(link);
   let text=resource.content.replace(/^\uFEFF/,'').replace(/\r\n?/g,'\n').trim();
-  if (!text || /[\x00\u2028\u2029]/.test(text) || text.split('\n').length > 20000) fail('empty, invalid or oversized resource');
-  if (looksLikeEncodedSubscription(text)) text=decodeBase64Text(text).trim();
-  if (text.length > MAX_TEXT) fail('decoded resource limit exceeded');
+  if (!text || /[\x00\u2028\u2029]/.test(text) || text.split('\n').length > MAX_RULE_LINES) fail('empty, invalid or oversized resource');
+  // Reject oversized Base64-shaped input before the decoder allocates its copy.
+  if (text.length > MAX_TEXT && /^[A-Za-z0-9+/_=\s-]+$/.test(text)) fail('encoded resource limit exceeded');
+  const encoded = looksLikeEncodedSubscription(text);
+  if (encoded) {
+    if (resource.content.length > MAX_TEXT) fail('encoded resource limit exceeded');
+    text=decodeBase64Text(text).trim();
+  }
+  if (text.length > MAX_RULE_TEXT || /[\x00\u2028\u2029]/.test(text)) fail('decoded resource limit exceeded');
   // Some hosts expose a type; unknown host values are not guessed from numbers.
   const hostType=['server','filter','rewrite'].includes(resource.type) ? resource.type : null;
   const requestedType=options.type === 'auto' ? hostType : options.type;
   let data;
   // A leading regex character class is valid rewrite syntax, not a YAML array.
   const structured=/^[{[]/.test(text) && !/^\[[a-z_ ]+\]\s*(?:\n|$)/i.test(text) && !(text.startsWith('[') && isRewriteLine(text.split('\n')[0]));
-  if (requestedType !== 'rewrite' && (structured || /^(?:proxies|outbounds|servers|nodes|payload)\s*:/m.test(text))) data=parseYaml(text);
+  const document = requestedType !== 'rewrite' && (structured || /^(?:proxies|outbounds|servers|nodes|payload)\s*:/m.test(text));
+  const lines = text.split('\n').length;
+  if ((document || encoded || requestedType === 'server' || requestedType === 'rewrite') && (resource.content.length > MAX_TEXT || text.length > MAX_TEXT || lines > MAX_LINES)) fail('resource limit exceeded');
+  if (document) data=parseYaml(text);
   const type=requestedType ?? detect(text,data);
+  const largeRules = type === 'filter' && !document && !encoded;
+  const textLimit = largeRules ? MAX_RULE_TEXT : MAX_TEXT;
+  const lineLimit = largeRules ? MAX_RULE_LINES : MAX_LINES;
+  if (resource.content.length > textLimit || text.length > textLimit || lines > lineLimit) fail('resource limit exceeded');
   validateOptions(type,options);
   let content, notice = null;
   if (type === 'server') {
@@ -89,7 +102,7 @@ function convertResource(resource) {
   }
   else if (type === 'filter') content=parseRules(text,options,{parseYaml});
   else content=parseRewrites(text,options,{parseYaml});
-  if (typeof content !== 'string' || !content.trim() || content.length > MAX_TEXT || content.split('\n').length > 20002) fail('invalid or oversized output');
+  if (typeof content !== 'string' || !content.trim() || content.length > textLimit || content.trimEnd().split('\n').length > lineLimit) fail('invalid or oversized output');
   return { content, notice };
 }
 

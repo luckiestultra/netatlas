@@ -17,8 +17,8 @@ function convert(content, hash, type) {
   return result.content;
 }
 
-test('the same keyword options filter validated rule and rewrite rows without mode switches', () => {
-  assert.equal(convert('DOMAIN,ads.example,REJECT\nDOMAIN,api.example,DIRECT', 'out=ADS', 'filter'), 'host,api.example,direct\n');
+test('literal keyword options filter validated rule and rewrite rows without mode switches', () => {
+  assert.equal(convert('DOMAIN,ads.example,REJECT\nDOMAIN,api.example,DIRECT', 'out=ads', 'filter'), 'host,api.example,direct\n');
   assert.equal(convert('DOMAIN,ads.example,REJECT\nDOMAIN,api.example,DIRECT', 'in=api.example', 'filter'), 'host,api.example,direct\n');
   const rewrites = '^https://ads.example/ url reject\n^https://api.example/ url reject\nhostname = ads.example,api.example';
   assert.equal(convert(rewrites, 'out=ads', 'rewrite'), '^https://api.example/ url reject\nhostname = ads.example, api.example\n');

@@ -22,7 +22,7 @@ function helper(method, argument) {
 }
 const flat = ui => Object.fromEntries(ui.sections.flatMap(group => group.items.map(item => [item.key, item.value])));
 
-test('keyword filtering has one bounded OR/AND grammar with escaped literal dots', () => {
+test('node keyword filtering has bounded OR/AND grammar with escaped literal dots', () => {
   assert.equal(applyNodeOptions(nodes('香港 IEPL 01', '香港 BGP 02', '日本03'), parseOptions(link('in=香港.iepl+日本'))), nodes('香港 IEPL 01', '日本03'));
   assert.equal(applyNodeOptions(nodes('香港 IEPL 01', '香港 BGP 02', '日本03'), parseOptions(link('out=香港.iepl'))), nodes('香港 BGP 02', '日本03'));
   assert.equal(applyNodeOptions(nodes('HK 0.2倍率', 'HK 1倍率'), parseOptions(link('out=0%5C.2'))), nodes('HK 1倍率'));
@@ -31,7 +31,7 @@ test('keyword filtering has one bounded OR/AND grammar with escaped literal dots
 });
 
 test('keyword grammar rejects empty AND operands and bounds aggregate work', () => {
-  for (const hash of ['in=A..B', 'out=.A', 'in=A.', 'in=' + Array(129).fill('A').join('.')]) assert.throws(() => parseOptions(link(hash)), /Resource parser options: invalid parameters/);
+  for (const hash of ['in=A..B', 'out=.A', 'in=A.', 'in=' + Array(129).fill('A').join('.')]) assert.throws(() => applyNodeOptions(nodes('A'), parseOptions(link(hash))), /Node options failed/);
   assert.throws(() => applyNodeOptions(nodes('A'), { in: ['A..B'] }), /Node options failed/);
 });
 
@@ -71,7 +71,7 @@ test('helper round trips common aliases, operators and delimiter-safe rename exp
 });
 
 test('helper does not turn invalid option values into valid success values', () => {
-  for (const hash of ['type=nodes&type=rule', 'sort=x', 'in=A..B', 'rename=A@B@C', 'prefix=%0ASYNTHETIC_SECRET']) {
+  for (const hash of ['type=nodes&type=rule', 'sort=x', 'in=A++B', 'rename=A@B@C', 'prefix=%0ASYNTHETIC_SECRET']) {
     const ui = helper('hashToUI', hash); const saved = helper('uiToHash', { ...flat(ui), __unknown: ui.unknown }); assert.throws(() => parseOptions(link(saved)), /invalid parameters/);
   }
 });

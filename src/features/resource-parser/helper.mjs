@@ -12,10 +12,10 @@ export function installParserHelper(parser) {
         { type: 'text', key: 'policy', label: '覆盖规则策略', description: '留空保留来源策略；仅对规则生效。' },
       ] },
       { type: 'group', title: '筛选与名称', items: [
-        { type: 'tags', key: 'in', label: '保留关键字', description: '节点匹配名称，分流和重写匹配正文。大小写不敏感；+ 分隔任意项，. 连接同时满足的词，\\. 表示字面点。' },
-        { type: 'tags', key: 'out', label: '排除关键字', description: '节点匹配名称，分流和重写匹配正文。大小写不敏感；+ 分隔任意项，. 连接同时满足的词，\\. 表示字面点。' },
-        { type: 'tags', key: 'inhn', label: '保留重写主机名', description: '与名称筛选使用相同的 +、.、\\. 写法。' },
-        { type: 'tags', key: 'outhn', label: '排除重写主机名', description: '与名称筛选使用相同的 +、.、\\. 写法。' },
+        { type: 'tags', key: 'in', label: '保留关键字', description: '以 + 分隔任意项。节点名称不区分大小写，. 表示同时满足；分流正文区分大小写，重写正文不区分大小写，正文中的点均为字面字符。' },
+        { type: 'tags', key: 'out', label: '排除关键字', description: '以 + 分隔任意项。节点名称不区分大小写，. 表示同时满足；分流正文区分大小写，重写正文不区分大小写，正文中的点均为字面字符。' },
+        { type: 'tags', key: 'inhn', label: '保留重写主机名', description: '以 + 分隔任意项，区分大小写，点为字面字符。' },
+        { type: 'tags', key: 'outhn', label: '排除重写主机名', description: '以 + 分隔任意项，区分大小写，点为字面字符。' },
         { type: 'text', key: 'prefix', label: '名称前缀' },
         { type: 'text', key: 'suffix', label: '名称后缀' },
         select('sort', '名称排序', ['none', 'name', 'name-desc']),
@@ -37,19 +37,7 @@ export function installParserHelper(parser) {
     const fail = () => { throw new Error('Parser helper: invalid parameters'); };
     if (typeof hash !== 'string' || hash.length > 32768) fail();
     const validTerms = terms => {
-      let count = 0;
-      if (terms.length > 128) return false;
-      for (const term of terms) {
-        if (!term || term.length > 512 || /[\x00-\x1f\x7f\u2028\u2029]/.test(term)) return false;
-        let size = 0;
-        for (let index = 0; index < term.length; index++) {
-          if (term[index] === '\\' && term[index + 1] === '.') { size++; index++; }
-          else if (term[index] === '.') { if (!size || ++count > 128) return false; size = 0; }
-          else size++;
-        }
-        if (!size || ++count > 128) return false;
-      }
-      return true;
+      return terms.length <= 128 && terms.every(term => typeof term === 'string' && term.length > 0 && term.length <= 512 && !/[\x00-\x1f\x7f\u2028\u2029]/.test(term));
     };
     const schema = $parser.hashSchema();
     const known = Object.create(null), counts = Object.create(null), values = Object.create(null), unknown = [];
@@ -103,19 +91,7 @@ export function installParserHelper(parser) {
     const fail = () => { throw new Error('Parser helper: invalid parameters'); };
     if (!values || typeof values !== 'object' || Array.isArray(values)) fail();
     const validTerms = terms => {
-      let count = 0;
-      if (terms.length > 128) return false;
-      for (const term of terms) {
-        if (!term || term.length > 512 || /[\x00-\x1f\x7f\u2028\u2029]/.test(term)) return false;
-        let size = 0;
-        for (let index = 0; index < term.length; index++) {
-          if (term[index] === '\\' && term[index + 1] === '.') { size++; index++; }
-          else if (term[index] === '.') { if (!size || ++count > 128) return false; size = 0; }
-          else size++;
-        }
-        if (!size || ++count > 128) return false;
-      }
-      return true;
+      return terms.length <= 128 && terms.every(term => typeof term === 'string' && term.length > 0 && term.length <= 512 && !/[\x00-\x1f\x7f\u2028\u2029]/.test(term));
     };
     const schema = $parser.hashSchema(), known = Object.create(null), parts = [];
     for (const group of schema.sections) for (const item of group.items) known[item.key] = item;

@@ -73,7 +73,7 @@ Speedtest广告只提供独立HTTP及HTTPS重写，保留源主机名正则、�
 
 ### 通用参数与转换校验（2026-11-01）
 
-`#info=1&out=套餐+重置&emoji=2` 必须成功转换支持的节点。只提供一套常用语法，不增加兼容模式开关：in/out/inhn/outhn 大小写不敏感、`+` OR、未转义 `.` AND、`\.` 字面点，`+` 与 rename 的 `@` 在百分号解码前拆分，点号在解码后判断，字面点必须写 `\.`；in/out 用于节点名称或转换后规则行，hostname 参数只用于重写。先验证全部来源再过滤，不能隐藏未知协议、指令、证书或无效规则；全部过滤为空必须失败。prefix/suffix/rename/sort/info/emoji 保持节点专用。
+`#info=1&out=套餐+重置&emoji=2` 必须成功转换支持的节点。不增加兼容模式开关，按来源原有资源语义处理：`+` OR；节点 in/out 不区分大小写、未转义 `.` AND、`\.` 字面点。分流与重写 in/out、hostname 的 inhn/outhn 都将点按字面匹配；分流和 hostname 区分大小写，重写正文不区分大小写。分流 out 匹配策略覆盖前的源行正文，in 匹配转换后正文；没有文本源行的 headless 条件用生成的原生行。`+` 与 rename 的 `@` 在百分号解码前拆分。hostname 参数只用于重写。先验证全部来源再过滤，不能隐藏未知协议、指令、证书或无效规则；全部过滤为空必须失败。prefix/suffix/rename/sort/info/emoji 保持节点专用。
 
 支持 sort=1/-1、type 的 nodes/list/rule/module/domain-set 常用别名，以及顺序字面 rename 的替换、前后缀和删除；不执行正则或源代码。每步改名受长度限制，重名整份拒绝。helper 可独立抽取，接受上述写法并保存为规范选项；保留未知参数的错误，不暗中丢弃。只对本地路径/file:来源识别第一行参数，显式路径片段优先，远程内容不能启用参数。
 
@@ -106,3 +106,9 @@ GEOIP 接受合法自定义类别；实际库中是否有对应类别单独说�
 只在generic URI security=reality和Clash VMess/VLESS nested reality-opts且TLS开启时接收true能力提示；URI只允许字符串true/1，结构化对象可用true/1/"true"/"1"。false/0/空/无效类型或值均明确拒绝，非Reality、顶层、native QX、显式sing-box、显式SIP008 v1（含缺id+Clash-like VLESS路径）仍拒绝。SIP008缺id原有无hint行为不因本项清理。
 
 该真值由当前QX官方原生Reality握手的X25519MLKEM768 supported-group/key-share兑现，不是任意未知字段忽略，也不等于已协商选中算法；需要具备该能力的QX版本。不得放宽pqv/签名/证书pin、pubkey/sid/UUID/flow、真实path或修改现有ALPN/TFO/TLS验证。只在副本处理，固定enum metadata在整批成功后发布；core在fp/spx说明之后加入固定原生能力注释，不含源值。真假值/Reality前提/SIP008边界/隐私/原子性均须回归，且前提与正值guard要有变异负控。
+
+### 大型纯文本分流与原始筛选语义（2026-11-02）
+
+公开 anti-AD 的 QX 原文必须通过完整脚本转换，并使 `#out=mycleanmymac.com+wxs.qq.com+mcs.zijieapi.com` 只排除这些完整字面子串；保留 wxsnsad.tc.qq.com、wxsnsdy.tc.qq.com、wxsnsdy.video.qq.com，不把域名中的点改成 AND。输入100k量级与源码/最终bundle均须覆盖，不以缩小后的夹具替代真实公开文件复放。
+
+大型预算只给纯文本分流：输入/未过滤输出各8 Mi UTF-16码元、250000行/条。节点、重写、Base64和结构化文档仍为2 Mi/20000行，节点2000、YAML深度/节点/alias原限不变。已登记正则的展开也在emit时累计行和字符上限，`out` 不能绕过预算。整份校验后再发布一次结果，错误不含源值。功能差异必须在[原始解析器对照](../resource-parser-comparison.md)中明确记录，测试通过不得写成所有KOP选项均实现。

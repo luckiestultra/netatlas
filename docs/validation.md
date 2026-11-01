@@ -1,5 +1,19 @@
 # 完整配置验证记录
 
+## 2026-11-02：完整 anti-AD 资源、原始筛选语义与功能对照
+
+对照原始 KOP 固定源码，完成[41类功能矩阵](resource-parser-comparison.md)与53组同输入Apple JavaScriptCore审计。结论不是完整替代：SSD/部分旧URI、regex/regout、排序扩展、旧numeric suffix/命名占位符、部分规则元数据与重写DSL仍有明确缺口或语义差异。没有把脚本执行、证书导入或丢失安全/DNS语义当默认必须支持。
+
+用户给出的公开 anti-AD QX 原文为101,518条规则、3,868,444字节，SHA-256 `a24d2a010cc6d6e777ce4caef6f97bd01b593adc2fe051b1b28a011c9f4b4be9`。精确 `#out=mycleanmymac.com+wxs.qq.com+mcs.zijieapi.com` 在旧KOP可用，旧NetAtlas受2Mi/20k限额阻塞；缩小样例另证实把域名点号当node AND造成近似误删。修复只给纯文本规则8Mi UTF-16码元/250000行预算，未过滤输出在emit阶段累计行数与字符数；结构化、编码、节点与重写保留原小预算，未知行仍完整验证。
+
+筛选按原实现分别处理：节点名称CI+点AND；规则out为覆盖策略前源正文的CS字面匹配、in匹配转换后正文；rewrite为CI字面，hostname为保留拼写的CS字面。所有关键词仍以+为OR，不加模式开关。带外层双引号的HTTP pattern在native emit中去壳；保留内部转义、非HTTP字面词与被转义的末引号，也保留来源^锚点，不复制KOP过宽的引号/锚点改写。
+
+新增12项稳定回归，原限额/语义及引号边界分别先有真实RED，再修为GREEN。独立红方40项大资源边界、7项实际bundle引号/可移植正则匹配检查通过；两项变异（out移至policy后、去掉未过滤字符budget）均被现有回归捕获，发现的两处引号边界Required已关闭。最终完整 `npm test` 735项：727通过、0失败、8项原生opt-in跳过；`npm run check`验证8客户端1137产物无漂移、语义/引用/来源/哈希有效。首轮全套检查中途补修触发“Build inputs changed during rendering”，该轮作废，最终结果来自源码冻结后的完整重跑。
+
+最终发布bundle的Apple JavaScriptCore基线377/377（342资源、17独立抽取helper、18模块契约），case ID全部保留；10项预期随已核实的资源类型语义更新，不降低隐私/原子性/$done断言。另22组同输入比较或固定gold全部符合合同：17组活动行一致，5组明确记录KOP删锚点/过宽去引号的差异。完整公开原文在两个解析器中都输出101,515条活动规则，双向差集为空、顺序相同，三个目标各删一条、三个实际近似域名全保留；不是只用小夹具验证。NetAtlas始终一次$done且最终返回同一对象，host API违规为0；KOP两次相同content回调单独记录，未伪称相同完成契约。
+
+冻结输入 `76f9cb73f581325cf0a7dddd6da133d5d0b62b37941e5fdceb4ceeccd968625f`（297文件），QX解析器SHA-256 `40b3be1a8a515fddf9107256b99b00a6339d94e59020670b968453557b3d8d8c`。除清单摘要外仅QX解析器成品变化；GeoIP字节、节点配置、规则负载和其他客户端成品保持。本轮未操作本地QX、未请求私人订阅，也未宣称App原生导入或真实远端流量通过。普通main链接不变；公开字节和对应提交Linux CI在推送后另核验。
+
 ## 2026-11-02：实际失败源中的 Reality ML-KEM 字段
 
 用户授权只读查看当前订阅错误后，界面显示四条资源为 `unsupported field in URI options: [unrecognized name]`。随后用户明确允许只读请求其中一条原有订阅一次。该请求保持 TLS 证书验证、不跟随重定向，返回 HTTP 200；原文只在进程内存处理，不输出或落盘节点、地址、UUID、密码、密钥、令牌，公开回归中没有私源内容。

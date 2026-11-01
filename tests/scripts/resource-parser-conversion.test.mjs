@@ -64,8 +64,8 @@ test('domain-set modes and sing-box leading dots preserve the source root bounda
 });
 
 test('conversion bounds apply to complete emitted resources', () => {
-  const lines = Array(20000).fill('DOMAIN,example.com,proxy').join('\n');
-  assert.equal(parseRules(lines).trim().split('\n').length, 20000);
+  const lines = Array(250000).fill('DOMAIN,example.com,proxy').join('\n');
+  assert.equal(parseRules(lines).trim().split('\n').length, 250000);
   assert.throws(() => parseRules(lines + '\nDOMAIN,example.net,proxy'), /limit/i);
   assert.throws(() => parseRules(lines, { policy: 'Other' }), /limit/i);
   assert.throws(() => parseRewrites(Array(20001).fill('^https://example.com/ url reject').join('\n')), /limit/i);

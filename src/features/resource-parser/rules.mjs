@@ -1,9 +1,9 @@
-import { createKeywordMatcher } from './options.mjs';
+import { createTextMatcher } from './options.mjs';
 import { stripComment } from './comments.mjs';
 // Original NetAtlas converter. Only documented QX conditions are emitted.
 // QX: https://github.com/crossutility/Quantumult-X/blob/master/sample.conf
 // Headless OR/AND semantics: https://sing-box.sagernet.org/configuration/rule-set/headless-rule/
-const MAX_LINES = 20000;
+import { MAX_TEXT, MAX_LINES, MAX_RULE_TEXT, MAX_RULE_LINES } from './limits.mjs';
 const TYPES = {
   DOMAIN: 'host', HOST: 'host', 'DOMAIN-SUFFIX': 'host-suffix', 'HOST-SUFFIX': 'host-suffix',
   'DOMAIN-KEYWORD': 'host-keyword', 'HOST-KEYWORD': 'host-keyword', 'DOMAIN-WILDCARD': 'host-wildcard', 'HOST-WILDCARD': 'host-wildcard',
@@ -81,11 +81,27 @@ export function parseRules(text, options = {}, utils = {}) {
   const format = options.sourceFormat ?? 'auto';
   if (!['auto', 'classical', 'qx', 'domain-set', 'clash', 'sing-box'].includes(format)) fail('unknown source format');
   if (options.domainSetMode !== undefined && !['exact', 'suffix'].includes(options.domainSetMode)) fail('unknown domain-set mode');
+  if (text.length > MAX_RULE_TEXT) fail('input limit exceeded');
+  const trimmed = text.trim();
+  const structured = format === 'sing-box' || format === 'clash' || format === 'auto' && (trimmed.startsWith('{') || /^(?:#.*\n|\s)*payload\s*:/m.test(trimmed));
+  const textLimit = structured ? MAX_TEXT : MAX_RULE_TEXT;
+  const lineLimit = structured ? MAX_LINES : MAX_RULE_LINES;
+  if (text.length > textLimit || text.trimEnd().split(/\r\n?|\n/).length > lineLimit) fail('input limit exceeded');
   const replacement = own(options, 'policy') ? policy(options.policy) : null;
-  const output = [];
+  const include = options.in ?? [], exclude = options.out ?? [];
+  const keep = createTextMatcher(include, true), remove = createTextMatcher(exclude, true);
+  const output = [], excluded = [];
+  let sourceRow = null, outputSize = 0;
   let finalSeen = false;
   let resolveWarning = false;
-  const emit = line => { if (output.length >= MAX_LINES) fail('output limit exceeded'); output.push(line); };
+  const emit = line => {
+    outputSize += line.length + 1;
+    if (output.length >= lineLimit || outputSize > textLimit) fail('output limit exceeded');
+    output.push(line);
+    // KOP out matches the source body before policy replacement; in matches
+    // converted text. Headless conditions without source rows use native text.
+    excluded.push(remove(sourceRow ?? line));
+  };
   function add(type, value, sourcePolicy, extras = []) {
     if (finalSeen) fail('condition follows final');
     const native = TYPES[type.toUpperCase()];
@@ -128,6 +144,7 @@ export function parseRules(text, options = {}, utils = {}) {
     emit([native, value, selected, ...flags].join(','));
   }
   function classical(line) {
+    sourceRow = line;
     const parts = line.split(',').map(part => part.trim());
     const type = parts.shift();
     if (['FINAL', 'MATCH'].includes(type.toUpperCase())) {
@@ -142,6 +159,7 @@ export function parseRules(text, options = {}, utils = {}) {
     add(type, value, selected, parts);
   }
   function domainLine(value, clash = false) {
+    sourceRow = value;
     if (typeof value !== 'string' || !value) fail('invalid domain-set row');
     if (/[*?]/.test(value)) fail(clash ? 'Clash single-label wildcards cannot be preserved by QX cross-dot globs' : 'wildcards are not part of the documented DOMAIN-SET format');
     if (value.startsWith('+.')) {
@@ -186,7 +204,6 @@ export function parseRules(text, options = {}, utils = {}) {
     }
     if (!count) fail('empty headless condition');
   }
-  const trimmed = text.trim();
   if (!trimmed) fail('empty resource');
   if (format === 'sing-box' || (format === 'auto' && trimmed.startsWith('{'))) {
     let data;
@@ -221,13 +238,13 @@ export function parseRules(text, options = {}, utils = {}) {
       else fail('bare domain needs explicit domain-set format');
     }
   }
-  const include = options.in ?? [], exclude = options.out ?? [];
-  const keep = createKeywordMatcher(include), remove = createKeywordMatcher(exclude);
-  const selected = output.filter(line => (!include.length || keep(line)) && !remove(line));
+  const selected = output.filter((line, index) => (!include.length || keep(line)) && !excluded[index]);
   if (!selected.length) fail('empty resource after filtering');
   const warnings = [];
   if (replacement !== null) warnings.push('# NetAtlas: explicit policy override replaces every source policy.');
   if (resolveWarning) warnings.push('# NetAtlas: explicit allow-resolve removes no-resolve; DNS lookup behavior changes.');
-  if (warnings.length + selected.length > MAX_LINES) fail('output limit exceeded');
-  return [...warnings, ...selected].join('\n') + '\n';
+  if (warnings.length + selected.length > lineLimit) fail('output limit exceeded');
+  const content = [...warnings, ...selected].join('\n') + '\n';
+  if (content.length > textLimit) fail('output limit exceeded');
+  return content;
 }

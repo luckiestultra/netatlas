@@ -163,7 +163,7 @@ Reality 的 `support-x25519mlkem768=true` 与这三个偏好分别处理。[3x-u
 
 这三个偏好属于节点内容，不是订阅链接 `#` 后的新参数。真实 WS path、Reality 公钥/short-id、UUID、flow、地址和证书校验仍按原逻辑处理；Clash `fingerprint` 等证书 pin、sing-box utls、未知参数与不支持传输仍报错。原生 QX 行不新增 fp 字段。固定注释在整批校验和名称转换成功后添加，info/out/emoji 不被这些说明干扰。
 
-链接哈希提供一套声明式选项：关键词使用下面的 OR/AND 规则，名称替换为字面操作，不支持 eval 或任意自定义解析脚本。示例以文档保留域名表示，请换成自己的资源URL：
+链接哈希提供声明式选项：关键词按资源类型使用下面的字面规则，名称替换为字面操作，不支持 eval 或任意自定义解析脚本。示例以文档保留域名表示，请换成自己的资源URL：
 
 ```text
 https://example.com/subscription#type=server&in=香港+日本&out=到期&prefix=自用-&sort=name
@@ -178,15 +178,15 @@ https://example.com/rules#type=filter&policy=Proxy
 
 | 参数 | 行为与示例 |
 | --- | --- |
-| `in/out` | 包含/排除关键词，大小写不敏感；`+` 表示任一项、`.` 表示同时包含。例如 `in=香港.IEPL+日本`。字面点写 `\.`，字面加号写 `%2B`。节点匹配名称；分流和重写匹配转换后的规则行。先校验整份来源，再筛选；不能用排除条件藏住无效规则。 |
-| `inhn/outhn` | 仅重写资源的 MITM 主机筛选，语法同上；规则 `in/out` 不会隐式删除主机。 |
+| `in/out` | `+` 分隔任意项，字面加号写 `%2B`。节点匹配名称，不区分大小写；`.` 表示同时包含、`\.` 为字面点。分流和重写中的点均为字面字符，无需转义域名：分流区分大小写，`out` 匹配源行正文（覆盖策略前）、`in` 匹配转换后正文；重写不区分大小写，匹配转换后正文。先校验整份来源再筛选，不能藏住无效规则。 |
+| `inhn/outhn` | 仅重写资源的 MITM 主机筛选，区分大小写，`+` 为任意项、点为字面字符，保留主机名拼写；规则 `in/out` 不会隐式删除主机。 |
 | `prefix/suffix` | 节点名称前后缀。 |
 | `rename` | 顺序字面替换 `旧名@新名+旧名2@新名2`；`前缀@`、`@后缀` 添加前后缀，`词1.词2☠️` 删除这些词。编码 `%40/%2B` 保留字面 `@/+`；仍支持编码的 JSON 替换配对 `[["香港","HK"]]`。替换区分大小写，不执行正则或代码。 |
 | `sort` | `none/name/name-desc`；`1/-1` 分别等于名称升序/降序。 |
 | `type` | 规范值 `auto/server/filter/rewrite`；也接受 `nodes/list → server`、`rule → filter`、`module → rewrite`、`domain-set → filter + DOMAIN-SET exact`。显式类型优先于自动识别，冲突参数报错。 |
 | `policy` | 显式覆盖全部源策略，输出注释提示；不等价的 Surge 内置策略默认拒绝，不能当作未声明策略组输出。 |
 
-`GEOIP` 可保留 `PRIVATE/CLOUDFLARE` 等合法数据库类别，但实际匹配依赖用户所用 MMDB 中存在这些类别；不把无对应数据的库称为完整支持，`IP-ASN` 仍独立处理。本地路径或 `file:` 资源可在第一行写 `#out=套餐+重置`，路径自身的 `#` 参数优先；远程内容中的第一行注释不会启用参数。名称最多 512 字符、关键词最多 128 个子条件、改名最多 100 步；参数内保留字符需 URL 编码，未知、重复或无效值报错。
+`GEOIP` 可保留 `PRIVATE/CLOUDFLARE` 等合法数据库类别，但实际匹配依赖用户所用 MMDB 中存在这些类别；不把无对应数据的库称为完整支持，`IP-ASN` 仍独立处理。本地路径或 `file:` 资源可在第一行写 `#out=套餐+重置`，路径自身的 `#` 参数优先；远程内容中的第一行注释不会启用参数。名称最多 512 字符、关键词最多 128 项（节点的 AND 子条件也计入）、改名最多 100 步；参数内保留字符需 URL 编码，未知、重复或无效值报错。
 
 兼容这组既有订阅参数，无须修改订阅地址：`#info=1&out=套餐+重置&emoji=2`。`out` 排除名称含“套餐”或“重置”的节点；`info=1` 在成功转换后，根据原生 `$resource.info` 的已有用量发送一次本地通知，没有该信息时可从过滤前的流量/到期伪节点提取纯数字与有效日期。不输出订阅地址、凭据或任意标签文字；未提供数据就不伪造，通知 API 缺失/抛错不影响节点转换。`info=0` 或不设置均不通知。该选项不联网，不修改通知设置。
 
@@ -194,7 +194,7 @@ https://example.com/rules#type=filter&policy=Proxy
 
 有两个选项会改变转换前提，默认均不启用：`allow-resolve=1`明确允许移除源`no-resolve`，可能增加DNS查询，输出会警告行为变化；`script-compat=qx`只是使用者声明所引用的Surge/Loon脚本本体已经支持QX，不翻译JavaScript API，不忽略timeout、argument、binary-body或max-size等无法保留的设置。QX原生HTTPS脚本引用可以保留，解析器不下载或执行脚本；之后QX运行该重写脚本是另一项操作。跨宿主`reject`不能仅因名称相同就等同于QX的HTTP 404。 影响执行条件的 `#!include/requirement/system` 与平台限定指令，在节点、分流、重写中整份拒绝，不作为普通注释丢弃；Surge 普通行内注释按引号边界处理。URL 正则可以不以 `^` 开头，也可用 `[hH]` 开头，明确的 `type` 仍优先。
 
-QX 资源宿主使用 identity `$done` 并消费整段脚本的最终求值；生成脚本必须返回同一 `{content}` 或 `{error}` 对象。回归同时检查回调次数与最终对象，并覆盖 helper 单独加载。字段拒绝会标出来源格式和已登记的公共字段名，例如 `unsupported field in sing-box TLS: utls`；未知字段名与所有字段值不回显，避免泄露凭据。任何一行失败都只返回一次错误，不发布前半份结果；更新失败后的缓存和提示由QX处理，本实现不承诺宿主保留旧内容。资源限额为输入/输出各2 Mi字符、2000节点或20000规则/重写行；YAML最大32层、100000个值节点与20个alias，并拒绝循环、重复键和自定义tag。VM测试执行实际生成bundle与helper协议，尚未在原生QX导入运行。详细接口、来源和边界见[解析器登记](../metadata/resource-parsers.json)、[功能规格](specs/features.md)。
+QX 资源宿主使用 identity `$done` 并消费整段脚本的最终求值；生成脚本必须返回同一 `{content}` 或 `{error}` 对象。回归同时检查回调次数与最终对象，并覆盖 helper 单独加载。字段拒绝会标出来源格式和已登记的公共字段名，例如 `unsupported field in sing-box TLS: utls`；未知字段名与所有字段值不回显，避免泄露凭据。任何一行失败都只返回一次错误，不发布前半份结果；更新失败后的缓存和提示由QX处理，本实现不承诺宿主保留旧内容。纯文本分流限额为输入/输出各8 Mi个UTF-16码元、250000行/条；先限制完整转换的行数与字符数再筛选。节点、重写、Base64与结构化文档保留2 Mi码元/20000行，节点最多2000个；YAML最大32层、100000个值节点与20个alias，并拒绝循环、重复键和自定义tag。VM测试执行实际生成bundle与helper协议，尚未在原生QX导入运行。与原始 KOP 的逐项功能差异和实际大资源对照见[功能对照](resource-parser-comparison.md)。详细接口、来源和边界见[解析器登记](../metadata/resource-parsers.json)、[功能规格](specs/features.md)。
 
 Loon仍链接固定AGPL Sub-Store解析器，`fragments/resource-parser.conf`合并到`[General]`，并在选定的`[Remote Proxy]`订阅上设置`parser-enabled=true`。它是外部工具入口，可能重新获取资源并按宿主权限访问缓存；本仓库没有把它替换成QX实现或宣称离线隔离。来源、哈希与对应完整AGPL源码均保留。其他六客户端没有虚构的同名解析器字段。
 

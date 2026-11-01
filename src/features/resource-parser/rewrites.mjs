@@ -1,4 +1,4 @@
-import { createKeywordMatcher } from './options.mjs';
+import { createTextMatcher } from './options.mjs';
 import { stripComment } from './comments.mjs';
 // Original NetAtlas conversion; scripts are referenced, never loaded/executed.
 // https://github.com/crossutility/Quantumult-X/blob/master/sample.conf
@@ -21,6 +21,14 @@ function httpsReference(value) {
 }
 
 function pattern(value) {
+  // Some QX lists wrap an HTTP regex in quotes. These are delimiters,
+  // while quotes inside the regex (or non-HTTP matchers) remain literal.
+  if (typeof value === 'string' && value.startsWith('"') && value.endsWith('"')) {
+    let backslashes = 0;
+    for (let index = value.length - 2; index >= 0 && value[index] === '\\'; index--) backslashes++;
+    const unquoted = value.slice(1, -1).trim();
+    if (backslashes % 2 === 0 && /^\^?https?\??:/i.test(unquoted)) value = unquoted;
+  }
   if (typeof value !== 'string' || !value || /[\s\x00-\x1f]/.test(value) || value.length > 8192) fail('invalid URL pattern');
   // QX and upstream clients use different regex engines. Do not reinterpret
   // patterns or force them through JavaScript RegExp while only rearranging.
@@ -35,8 +43,8 @@ function target(value) {
 function hostnames(value) {
   value = value.replace(/^%APPEND%\s*/i, '');
   if (!value || value.includes('%')) fail('unsupported MITM hostname operation');
-  const names = value.split(',').map(name => name.trim().toLowerCase());
-  if (names.length > 5000 || names.some(name => !name || name.length > 253 || name.split('.').some(label => !label || label.length > 63 || !/^[a-z0-9*?_-]+$/.test(label)))) fail('invalid MITM hostname');
+  const names = value.split(',').map(name => name.trim());
+  if (names.length > 5000 || names.some(name => !name || name.length > 253 || name.split('.').some(label => !label || label.length > 63 || !/^[a-z0-9*?_-]+$/i.test(label)))) fail('invalid MITM hostname');
   return names;
 }
 
@@ -88,9 +96,9 @@ export function parseRewrites(text, options = {}, utils = {}) {
   function native(line) {
     const match = /^(\S+)(?:\s+(.+?))?\s+(url|url-and-header)\s+(\S+)(?:\s+(.+))?$/.exec(line);
     if (!match) fail('unsupported native rewrite');
-    const [, expression, headers, mode, action, argument] = match;
+    const [, sourceExpression, headers, mode, action, argument] = match;
+    const expression = pattern(sourceExpression);
     if ((mode === 'url' && headers !== undefined) || (mode === 'url-and-header' && !headers)) fail('invalid native matcher mode');
-    pattern(expression);
     if (action === '302' || action === '307') {
       if (!argument) fail('missing redirect target');
       target(argument);
@@ -168,12 +176,12 @@ export function parseRewrites(text, options = {}, utils = {}) {
     else native(line);
   }
   const include = options.in ?? [], exclude = options.out ?? [];
-  const keep = createKeywordMatcher(include), remove = createKeywordMatcher(exclude);
+  const keep = createTextMatcher(include), remove = createTextMatcher(exclude);
   const ruleCount = output.length;
   output = output.filter(line => (!include.length || keep(line)) && !remove(line));
   if (ruleCount && !output.length && (include.length || exclude.length)) fail('empty resource after filtering');
   const includeHosts = options.inhn ?? [], excludeHosts = options.outhn ?? [];
-  const keepHost = createKeywordMatcher(includeHosts), removeHost = createKeywordMatcher(excludeHosts);
+  const keepHost = createTextMatcher(includeHosts, true), removeHost = createTextMatcher(excludeHosts, true);
   hosts = hosts.filter(name => (!includeHosts.length || keepHost(name)) && !removeHost(name));
   if (!output.length && !hosts.length) fail('empty resource');
   if (hosts.length) emit('hostname = ' + [...new Set(hosts)].join(', '));

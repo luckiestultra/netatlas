@@ -24,6 +24,21 @@ export function createKeywordMatcher(terms) {
   };
 }
 
+// Rules and rewrites use literal terms, not the node-name dot/AND grammar.
+export function createTextMatcher(terms, caseSensitive = false) {
+  const fail = () => { throw new Error('Resource parser options: invalid parameters'); };
+  if (!Array.isArray(terms) || terms.length > 128) fail();
+  const values = terms.map(term => {
+    if (typeof term !== 'string' || !term || term.length > 512 || /[\x00-\x1f\x7f\u2028\u2029]/.test(term)) fail();
+    return caseSensitive ? term : term.toUpperCase();
+  });
+  return value => {
+    if (typeof value !== 'string') fail();
+    const text = caseSensitive ? value : value.toUpperCase();
+    return values.some(term => text.includes(term));
+  };
+}
+
 export function parseOptions(link) {
   const fail = () => { throw new Error('Resource parser options: invalid parameters'); };
   const decode = value => { try { return decodeURIComponent(value); } catch { return fail(); } };
@@ -50,7 +65,7 @@ export function parseOptions(link) {
     if (['in', 'out', 'inhn', 'outhn'].includes(key)) {
       const terms = raw === '' ? [] : raw.split('+').map(decode);
       if (terms.length > 128 || terms.some(term => !term || !safeText(term))) fail();
-      createKeywordMatcher(terms);
+      createTextMatcher(terms);
       result[key] = terms;
       continue;
     }

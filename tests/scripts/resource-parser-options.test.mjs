@@ -1,7 +1,7 @@
 import assert from 'node:assert/strict';
 import { test } from 'node:test';
 import vm from 'node:vm';
-import { parseOptions, applyNodeOptions, createKeywordMatcher } from '../../src/features/resource-parser/options.mjs';
+import { parseOptions, applyNodeOptions, createKeywordMatcher, createTextMatcher } from '../../src/features/resource-parser/options.mjs';
 import { installParserHelper } from '../../src/features/resource-parser/helper.mjs';
 import { createNodeParser } from '../../src/features/resource-parser/nodes.mjs';
 import { parseRules } from '../../src/features/resource-parser/rules.mjs';
@@ -142,7 +142,7 @@ test('empty, invalid and duplicate names or fully filtered subscriptions fail at
 
 test('runtime functions and the shared matcher execute without module or host globals', () => {
   const matcher = '(' + createKeywordMatcher.toString() + ')';
-  const options = clean(vm.runInNewContext('(' + parseOptions.toString() + ')(link)', { link: link('in=HK&prefix=%5B&suffix=%5D'), createKeywordMatcher: vm.runInNewContext(matcher), URL: undefined, URLSearchParams: undefined }));
+  const options = clean(vm.runInNewContext('(' + parseOptions.toString() + ')(link)', { link: link('in=HK&prefix=%5B&suffix=%5D'), createTextMatcher: vm.runInNewContext('(' + createTextMatcher.toString() + ')'), URL: undefined, URLSearchParams: undefined }));
   assert.equal(vm.runInNewContext('(' + applyNodeOptions.toString() + ')(content,options)', { content: content('HK', 'US'), options, createKeywordMatcher: vm.runInNewContext(matcher) }), content('[HK]'));
   const schema = clean(vm.runInNewContext('(' + installParserHelper.toString() + ')($parser).hashSchema()', { $parser: {} }));
   assert.equal(schema.version, 1);
