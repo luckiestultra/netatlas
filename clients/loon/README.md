@@ -99,7 +99,6 @@ rules/ 按具体应用或服务 ID 平铺，可单独订阅；QX 资源的 force
 | [tidal](rules/tidal.list) | 3 | MIT |
 | [tiktok](rules/tiktok.list) | 40 | MIT |
 | [twitch](rules/twitch.list) | 35 | MIT |
-| [twitter](rules/twitter.list) | 24 | MIT |
 | [vercel](rules/vercel.list) | 27 | MIT |
 | [viu-portable](rules/viu-portable.list) | 6 | MIT |
 | [wechat](rules/wechat.list) | 5 | MIT |
@@ -118,6 +117,7 @@ rules/ 按具体应用或服务 ID 平铺，可单独订阅；QX 资源的 force
 | [hbo](rules/hbo.list) | 65 | MIT |
 | [steam](rules/steam.list) | 61 | MIT |
 | [quora](rules/quora.list) | 6 | MIT |
+| [twitter](rules/twitter.list) | 24 | MIT |
 | [tvb](rules/tvb.list) | 14 | MIT |
 | [disney](rules/disney.list) | 236 | MIT |
 | [china-media](rules/china-media.list) | 297 | MIT |

@@ -16,6 +16,7 @@ const execute = promisify(execFile);
 const pause = ms => new Promise(resolve => setTimeout(resolve, ms));
 const password = 'synthetic-subscription-tls-password';
 const alpn = 'netatlas-fixture/1';
+const vlessUuid = '7c9a3d20-44b0-493e-90d2-9b219674d04c';
 const digest = bytes => createHash('sha256').update(bytes).digest('hex');
 
 async function listen(server) {
@@ -61,6 +62,48 @@ function request(port) {
   });
 }
 
+// Minimal fixture-only WebSocket/VLESS responder: authenticate the synthetic
+// UUID and return an HTTP response inside a real server WebSocket frame.
+function websocketVless(socket, evidence) {
+  let buffer = Buffer.alloc(0), payload = Buffer.alloc(0), upgraded = false;
+  socket.on('data', chunk => {
+    buffer = Buffer.concat([buffer, chunk]);
+    if (!upgraded) {
+      const boundary = buffer.indexOf('\r\n\r\n');
+      if (boundary < 0) return;
+      const header = buffer.subarray(0, boundary).toString();
+      const key = /^sec-websocket-key:\s*(.+)$/im.exec(header)?.[1].trim();
+      if (!key || !header.startsWith('GET /secured ') || !/^host:\s*localhost(?::\d+)?$/im.test(header)) return socket.destroy();
+      const accept = createHash('sha1').update(key + '258EAFA5-E914-47DA-95CA-C5AB0DC85B11').digest('base64');
+      socket.write('HTTP/1.1 101 Switching Protocols\r\nUpgrade: websocket\r\nConnection: Upgrade\r\nSec-WebSocket-Accept: ' + accept + '\r\n\r\n');
+      upgraded = true; buffer = buffer.subarray(boundary + 4);
+    }
+    while (buffer.length >= 2) {
+      let size = buffer[1] & 127, offset = 2;
+      if (size === 127) return socket.destroy();
+      if (size === 126) { if (buffer.length < 4) return; size = buffer.readUInt16BE(2); offset = 4; }
+      if (!(buffer[1] & 128)) return socket.destroy();
+      if (buffer.length < offset + 4 + size) return;
+      const mask = buffer.subarray(offset, offset + 4), frame = Buffer.from(buffer.subarray(offset + 4, offset + 4 + size));
+      for (let index = 0; index < frame.length; index++) frame[index] ^= mask[index % 4];
+      buffer = buffer.subarray(offset + 4 + size); payload = Buffer.concat([payload, frame]);
+      if (payload.length > 16384) return socket.destroy();
+      if (payload.length < 18) continue;
+      evidence.authenticated = payload[0] === 0 && payload.subarray(1, 17).equals(Buffer.from(vlessUuid.replaceAll('-', ''), 'hex'));
+      if (!evidence.authenticated) return socket.destroy();
+      const text = payload.toString(), start = text.indexOf('GET ');
+      if (start >= 0 && text.slice(start).includes('\r\n\r\n')) {
+        evidence.http = true;
+        const body = 'WS-TLS-OK';
+        const response = Buffer.concat([Buffer.from([0, 0]), Buffer.from(`HTTP/1.1 200 OK\r\nContent-Length: ${body.length}\r\nConnection: close\r\n\r\n${body}`)]);
+        assert.ok(response.length < 126);
+        socket.end(Buffer.concat([Buffer.from([0x82, response.length]), response]));
+        return;
+      }
+    }
+  });
+}
+
 // Explicit opt-in regression: two fixed native engines, synthetic TLS trust only,
 // loopback subscription / proxy / requested destination, no TUN or system proxy.
 export async function testSubscriptionTlsWorkflow({ root, binaries }) {
@@ -81,10 +124,11 @@ export async function testSubscriptionTlsWorkflow({ root, binaries }) {
     return server;
   };
   const endpoint = async kind => {
-    const server = track(tls.createServer({ key, cert, ...(kind === 'trojan' ? { ALPNProtocols: [alpn] } : {}) }, socket => {
-      const evidence = { kind, alpn: socket.alpnProtocol, authenticated: false, http: false };
+    const server = track(tls.createServer({ key, cert, ...(kind === 'trojan' ? { ALPNProtocols: [alpn] } : kind === 'vless-ws' ? { ALPNProtocols: ['http/1.1'] } : {}) }, socket => {
+      const evidence = { kind, alpn: socket.alpnProtocol, servername: socket.servername, authenticated: false, http: false };
       observations.push(evidence);
       if (kind === 'trojan' && socket.alpnProtocol !== alpn) return socket.destroy();
+      if (kind === 'vless-ws') return websocketVless(socket, evidence);
       let buffer = Buffer.alloc(0), connected = false;
       socket.on('data', chunk => {
         buffer = Buffer.concat([buffer, chunk]);
@@ -194,6 +238,30 @@ export async function testSubscriptionTlsWorkflow({ root, binaries }) {
     assert.notEqual(missing.result.status, 200); assert.ok(missing.observations.some(item => item.alpn !== alpn)); assert.ok(missing.observations.every(item => !item.http));
     cases.push({ id: 'negative-control-missing-alpn', rejectedWithoutRequiredAlpn: true });
     assert.ok((await readFile(outputFile)).equals(publishedBytes));
+    const websocketPort = await endpoint('vless-ws');
+    const websocket = { name: 'TLS-Node', type: 'vless', server: '127.0.0.1', port: websocketPort, uuid: vlessUuid,
+      tls: true, network: 'ws', sni: 'ignored.example.test', alpn: ['h2'], 'ws-opts': { path: '/secured', headers: { Host: 'localhost' } } };
+    const sourceWs = await mihomo(websocket, 'source-vless-wss');
+    assert.equal(sourceWs.result.body, 'WS-TLS-OK');
+    assert.ok(sourceWs.observations.some(item => item.servername === 'localhost' && item.alpn === 'http/1.1' && item.authenticated && item.http));
+    cases.push({ id: 'source-vless-wss', negotiatedAlpn: 'http/1.1', servername: 'localhost', actualTlsWebSocketHttp: 'passed' });
+    sources.set('/nodes', JSON.stringify({ proxies: [websocket] }));
+    await createPrivateProfile(args);
+    const wsPublishedBytes = await readFile(outputFile), wsConfig = JSON.parse(wsPublishedBytes);
+    wsConfig.outbounds.find(node => node.tag === 'TLS-Node').tls.certificate = [certText];
+    const importedWs = await run('singBox', 'imported-vless-wss', wsConfig, mixed);
+    assert.equal(importedWs.result.body, 'WS-TLS-OK');
+    assert.ok(importedWs.observations.some(item => item.servername === 'localhost' && item.alpn === 'http/1.1' && item.authenticated && item.http));
+    cases.push({ id: 'imported-vless-wss', negotiatedAlpn: 'http/1.1', servername: 'localhost', actualTlsWebSocketHttp: 'passed' });
+    for (const field of ['server_name', 'alpn']) {
+      const mutated = structuredClone(wsConfig), node = mutated.outbounds.find(node => node.tag === 'TLS-Node');
+      node.tls[field] = field === 'server_name' ? '127.0.0.1' : ['h2'];
+      const negativeWs = await run('singBox', 'negative-wss-' + field, mutated, mixed);
+      assert.notEqual(negativeWs.result.status, 200);
+      assert.ok(negativeWs.observations.every(item => !item.http));
+      cases.push({ id: 'negative-wss-' + field, rejectedWrongTlsSetting: true });
+    }
+    assert.ok((await readFile(outputFile)).equals(wsPublishedBytes));
     const report = { status: 'passed', cases, certificateTrust: 'same synthetic certificate, per-process fixture configuration only', targets: 'loopback only; no TUN, system proxy, app configuration or system trust changes', directory, report: path.join(directory, 'verification.json') };
     await writeFile(report.report, JSON.stringify(report, null, 2));
     return report;

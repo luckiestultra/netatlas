@@ -3752,54 +3752,6 @@ dns:
       - https://1.1.1.1/dns-query
     dykkng5hnh52u.cloudfront.net:
       - https://1.1.1.1/dns-query
-    +.ads-twitter.com:
-      - https://1.1.1.1/dns-query
-    +.cms-twdigitalassets.com:
-      - https://1.1.1.1/dns-query
-    +.periscope.tv:
-      - https://1.1.1.1/dns-query
-    +.pscp.tv:
-      - https://1.1.1.1/dns-query
-    +.t.co:
-      - https://1.1.1.1/dns-query
-    +.tellapart.com:
-      - https://1.1.1.1/dns-query
-    +.tweetdeck.com:
-      - https://1.1.1.1/dns-query
-    +.twimg.com:
-      - https://1.1.1.1/dns-query
-    +.twitpic.com:
-      - https://1.1.1.1/dns-query
-    +.twitter.biz:
-      - https://1.1.1.1/dns-query
-    +.twitter.com:
-      - https://1.1.1.1/dns-query
-    +.twitter.jp:
-      - https://1.1.1.1/dns-query
-    +.twitter.map.fastly.net:
-      - https://1.1.1.1/dns-query
-    +.twittercommunity.com:
-      - https://1.1.1.1/dns-query
-    +.twitterflightschool.com:
-      - https://1.1.1.1/dns-query
-    +.twitterinc.com:
-      - https://1.1.1.1/dns-query
-    +.twitteroauth.com:
-      - https://1.1.1.1/dns-query
-    +.twitterstat.us:
-      - https://1.1.1.1/dns-query
-    +.twtrdns.net:
-      - https://1.1.1.1/dns-query
-    +.twttr.com:
-      - https://1.1.1.1/dns-query
-    +.twttr.net:
-      - https://1.1.1.1/dns-query
-    +.twvid.com:
-      - https://1.1.1.1/dns-query
-    +.vine.co:
-      - https://1.1.1.1/dns-query
-    +.x.com:
-      - https://1.1.1.1/dns-query
     +.ai-sdk.dev:
       - https://1.1.1.1/dns-query
     +.err.sh:
@@ -5137,6 +5089,54 @@ dns:
     +.quoracdn.net:
       - https://1.1.1.1/dns-query
     www.quora.com.cdn.cloudflare.net:
+      - https://1.1.1.1/dns-query
+    +.ads-twitter.com:
+      - https://1.1.1.1/dns-query
+    +.cms-twdigitalassets.com:
+      - https://1.1.1.1/dns-query
+    +.periscope.tv:
+      - https://1.1.1.1/dns-query
+    +.pscp.tv:
+      - https://1.1.1.1/dns-query
+    +.t.co:
+      - https://1.1.1.1/dns-query
+    +.tellapart.com:
+      - https://1.1.1.1/dns-query
+    +.tweetdeck.com:
+      - https://1.1.1.1/dns-query
+    +.twimg.com:
+      - https://1.1.1.1/dns-query
+    +.twitpic.com:
+      - https://1.1.1.1/dns-query
+    +.twitter.biz:
+      - https://1.1.1.1/dns-query
+    +.twitter.com:
+      - https://1.1.1.1/dns-query
+    +.twitter.jp:
+      - https://1.1.1.1/dns-query
+    +.twitter.map.fastly.net:
+      - https://1.1.1.1/dns-query
+    +.twittercommunity.com:
+      - https://1.1.1.1/dns-query
+    +.twitterflightschool.com:
+      - https://1.1.1.1/dns-query
+    +.twitterinc.com:
+      - https://1.1.1.1/dns-query
+    +.twitteroauth.com:
+      - https://1.1.1.1/dns-query
+    +.twitterstat.us:
+      - https://1.1.1.1/dns-query
+    +.twtrdns.net:
+      - https://1.1.1.1/dns-query
+    +.twttr.com:
+      - https://1.1.1.1/dns-query
+    +.twttr.net:
+      - https://1.1.1.1/dns-query
+    +.twvid.com:
+      - https://1.1.1.1/dns-query
+    +.vine.co:
+      - https://1.1.1.1/dns-query
+    +.x.com:
       - https://1.1.1.1/dns-query
     +.bigbigchannel.com.hk:
       - https://1.1.1.1/dns-query
@@ -29479,11 +29479,6 @@ proxy-groups:
     proxies:
       - Proxy
       - DIRECT
-  - name: twitter
-    type: select
-    proxies:
-      - Proxy
-      - DIRECT
   - name: vercel
     type: select
     proxies:
@@ -29570,6 +29565,11 @@ proxy-groups:
       - Proxy
       - DIRECT
   - name: quora
+    type: select
+    proxies:
+      - Proxy
+      - DIRECT
+  - name: twitter
     type: select
     proxies:
       - Proxy
@@ -32465,30 +32465,6 @@ rules:
   - DOMAIN,dqrpb9wgowsf5.cloudfront.net,twitch
   - DOMAIN,ds0h3roq6wcgc.cloudfront.net,twitch
   - DOMAIN,dykkng5hnh52u.cloudfront.net,twitch
-  - DOMAIN-SUFFIX,ads-twitter.com,twitter
-  - DOMAIN-SUFFIX,cms-twdigitalassets.com,twitter
-  - DOMAIN-SUFFIX,periscope.tv,twitter
-  - DOMAIN-SUFFIX,pscp.tv,twitter
-  - DOMAIN-SUFFIX,t.co,twitter
-  - DOMAIN-SUFFIX,tellapart.com,twitter
-  - DOMAIN-SUFFIX,tweetdeck.com,twitter
-  - DOMAIN-SUFFIX,twimg.com,twitter
-  - DOMAIN-SUFFIX,twitpic.com,twitter
-  - DOMAIN-SUFFIX,twitter.biz,twitter
-  - DOMAIN-SUFFIX,twitter.com,twitter
-  - DOMAIN-SUFFIX,twitter.jp,twitter
-  - DOMAIN-SUFFIX,twitter.map.fastly.net,twitter
-  - DOMAIN-SUFFIX,twittercommunity.com,twitter
-  - DOMAIN-SUFFIX,twitterflightschool.com,twitter
-  - DOMAIN-SUFFIX,twitterinc.com,twitter
-  - DOMAIN-SUFFIX,twitteroauth.com,twitter
-  - DOMAIN-SUFFIX,twitterstat.us,twitter
-  - DOMAIN-SUFFIX,twtrdns.net,twitter
-  - DOMAIN-SUFFIX,twttr.com,twitter
-  - DOMAIN-SUFFIX,twttr.net,twitter
-  - DOMAIN-SUFFIX,twvid.com,twitter
-  - DOMAIN-SUFFIX,vine.co,twitter
-  - DOMAIN-SUFFIX,x.com,twitter
   - DOMAIN-SUFFIX,ai-sdk.dev,vercel
   - DOMAIN-SUFFIX,err.sh,vercel
   - DOMAIN-SUFFIX,hyper.is,vercel
@@ -33181,6 +33157,30 @@ rules:
   - DOMAIN-SUFFIX,quora.com,quora
   - DOMAIN-SUFFIX,quoracdn.net,quora
   - DOMAIN,www.quora.com.cdn.cloudflare.net,quora
+  - DOMAIN-SUFFIX,ads-twitter.com,twitter
+  - DOMAIN-SUFFIX,cms-twdigitalassets.com,twitter
+  - DOMAIN-SUFFIX,periscope.tv,twitter
+  - DOMAIN-SUFFIX,pscp.tv,twitter
+  - DOMAIN-SUFFIX,t.co,twitter
+  - DOMAIN-SUFFIX,tellapart.com,twitter
+  - DOMAIN-SUFFIX,tweetdeck.com,twitter
+  - DOMAIN-SUFFIX,twimg.com,twitter
+  - DOMAIN-SUFFIX,twitpic.com,twitter
+  - DOMAIN-SUFFIX,twitter.biz,twitter
+  - DOMAIN-SUFFIX,twitter.com,twitter
+  - DOMAIN-SUFFIX,twitter.jp,twitter
+  - DOMAIN-SUFFIX,twitter.map.fastly.net,twitter
+  - DOMAIN-SUFFIX,twittercommunity.com,twitter
+  - DOMAIN-SUFFIX,twitterflightschool.com,twitter
+  - DOMAIN-SUFFIX,twitterinc.com,twitter
+  - DOMAIN-SUFFIX,twitteroauth.com,twitter
+  - DOMAIN-SUFFIX,twitterstat.us,twitter
+  - DOMAIN-SUFFIX,twtrdns.net,twitter
+  - DOMAIN-SUFFIX,twttr.com,twitter
+  - DOMAIN-SUFFIX,twttr.net,twitter
+  - DOMAIN-SUFFIX,twvid.com,twitter
+  - DOMAIN-SUFFIX,vine.co,twitter
+  - DOMAIN-SUFFIX,x.com,twitter
   - DOMAIN-SUFFIX,bigbigchannel.com.hk,tvb
   - DOMAIN-SUFFIX,bigbigshop.com,tvb
   - DOMAIN-SUFFIX,encoretvb.com,tvb

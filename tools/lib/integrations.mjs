@@ -57,7 +57,7 @@ export function inspectIntegrationInstaller(client, content) {
     hosts = value.http?.mitm;
   } else {
     scriptUrls = [...content.matchAll(/script-path=([^,\s]+)/g)].map(match => match[1]);
-    scriptUrls.push(...[...content.matchAll(/script\("([^"\n]+)"\)/g)].map(match => match[1]));
+    scriptUrls.push(...[...content.matchAll(/script\("([^"\n]+)"(?:,\s*"")?\)/g)].map(match => match[1]));
     if (client === 'quantumultX') scriptUrls.push(...[...content.matchAll(/^\S+ url script-[a-z-]+ (\S+)$/gm)].map(match => match[1]));
     hosts = /^hostname\s*=\s*(.+)$/m.exec(content)?.[1].replace(/%(?:APPEND|INSERT)%\s*/g, '').split(',').map(host => host.trim());
   }
@@ -122,6 +122,20 @@ export function renderIntegrations(client, { baseUrl } = {}) {
   return catalog.integrations.map(item => {
     const adapter = item.clients[client];
     const source = base + '/src/vendor/integrations/' + item.id + '/';
+    let content = checkedFile(adapter.installer);
+    // Loon Script v2 injects null when the second argument is omitted, but these
+    // pinned upstream entries call $argument.split() whenever it is defined.
+    // Adapt only the emitted wrapper; retain the archived source bytes/hashes.
+    // https://nsloon.app/docs/Script/script_v2/#argument-参数
+    if (client === 'loon' && item.id === 'script-hub') {
+      for (const id of ['script-hub-rewrite-parser', 'script-hub-rule-parser', 'script-hub-script-converter']) {
+        const dependency = catalog.remoteDependencies.find(entry => entry.id === id);
+        const invocation = 'script("' + dependency.url + '")';
+        if (content.split(invocation).length !== 2) throw new Error('Unexpected Loon ScriptHub entry invocation');
+        content = content.replace(invocation, 'script("' + dependency.url + '", "")');
+      }
+      content = '# Changed by NetAtlas on 2026-11-02: pass an explicit empty string to the three Script v2 conversion entries.\n' + content;
+    }
     const notice = [
       '# SPDX-License-Identifier: ' + item.license,
       '# Adapted from ' + item.repository + '; authors: ' + item.authors + '.',
@@ -135,6 +149,6 @@ export function renderIntegrations(client, { baseUrl } = {}) {
       '# Requires an existing trusted user CA for HTTPS; no CA or automatic task is supplied.',
       '# Remote scripts can access host storage and user-selected URLs/scripts. Pin scope and permissions: ' + source + 'README.md',
     ].join('\n') + '\n\n';
-    return { path: adapter.artifacts[0], content: notice + checkedFile(adapter.installer).trimEnd() + '\n' };
+    return { path: adapter.artifacts[0], content: notice + content.trimEnd() + '\n' };
   });
 }

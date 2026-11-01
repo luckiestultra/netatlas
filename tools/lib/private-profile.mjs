@@ -46,6 +46,7 @@ function transport(type,host,pathValue){
  if(!type||type==='tcp')return undefined;
  if(type==='ws'){
   const headers=typeof host==='string'?{Host:host}:host??{};
+  if(Object.keys(headers).filter(name=>name.toLowerCase()==='host').length>1)fail('Ambiguous duplicate WebSocket Host headers');
   for(const [key,value] of Object.entries(headers))if(!/^[!#$%&'*+.^_`|~0-9A-Za-z-]+$/.test(key)||typeof value!=='string'||/[\r\n]/.test(value))fail('Invalid WebSocket subscription headers');
   return {type:'ws',path:pathValue||'/',...(Object.keys(headers).length?{headers:structuredClone(headers)}:{})};
  }
@@ -96,12 +97,21 @@ function clashNode(item){
  // Mihomo fingerprint pins SHA256(cert.Raw); sing-box 1.14's SPKI pin hashes different bytes.
  // https://github.com/MetaCubeX/mihomo/blob/v1.19.33/component/ca/fingerprint.go
  if(item.fingerprint!==undefined&&item.fingerprint!=='')fail('Clash certificate fingerprint pins require native sing-box outbounds with an explicitly chosen TLS constraint');
+ if(['vmess','vless'].includes(type)&&item.network==='ws'&&item['reality-opts'])fail('Clash WebSocket ignores Reality; provide explicit native sing-box outbounds instead');
  const alpn=subscriptionAlpn(item.alpn);
  const tls=item.tls||['trojan','hysteria2','tuic','anytls'].includes(type)||item['reality-opts']?{enabled:true,server_name:item.servername||item.sni||item.server,...(item['client-fingerprint']?{utls:{enabled:true,fingerprint:item['client-fingerprint']}}:{}),...(item['reality-opts']?{reality:{enabled:true,public_key:item['reality-opts']['public-key'],short_id:item['reality-opts']['short-id']||''}}:{})}:undefined;
  if(alpn?.length&&!tls)fail('Subscription ALPN requires TLS');
  if(tls&&alpn!==undefined)tls.alpn=alpn;
  const trans=item.network&&item.network!=='tcp'?transport(item.network,item['ws-opts']?.headers,item['ws-opts']?.path||item['grpc-opts']?.['grpc-service-name']):undefined;
  if(trans?.type==='ws'){
+  if(tls&&['vmess','vless'].includes(type)){
+   // Mihomo 1.19.33 uses WS Host as fallback SNI and always negotiates HTTP/1.1.
+   // https://github.com/MetaCubeX/mihomo/blob/v1.19.33/adapter/outbound/vless.go#L179
+   // https://github.com/MetaCubeX/mihomo/blob/v1.19.33/adapter/outbound/vmess.go#L199
+   const host=Object.entries(trans.headers??{}).find(([name])=>name.toLowerCase()==='host')?.[1];
+   tls.server_name=item.servername||host||item.server;
+   tls.alpn=['http/1.1'];
+  }
   if(item['ws-opts']?.['max-early-data']!==undefined){const size=item['ws-opts']['max-early-data'];if(!Number.isSafeInteger(size)||size<0)fail('Invalid WebSocket early data size');trans.max_early_data=size;}
   if(item['ws-opts']?.['early-data-header-name']!==undefined){const key=item['ws-opts']['early-data-header-name'];if(typeof key!=='string'||/[\r\n]/.test(key))fail('Invalid WebSocket early data header');trans.early_data_header_name=key;}
  }

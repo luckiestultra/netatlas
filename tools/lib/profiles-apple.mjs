@@ -187,6 +187,11 @@ encrypted-dns-follow-outbound-mode = false
 encrypted-dns-skip-cert-verification = false
 udp-policy-not-supported-behaviour = REJECT
 
+[Host]
+# Global encrypted DNS bypasses dns-server=system; keep local names on local DNS.
+# https://manual.nssurge.com/dns/local-dns-mapping.html
+${['localhost', 'local', 'home.arpa', 'lan'].flatMap(domain => [domain, `*.${domain}`]).map(domain => `${domain} = server:${dns.local.join(',')}`).join('\n')}
+
 [Proxy]
 ${nodes.map(node => node.line).join('\n') || '# Native nodes added here are included by Proxy automatically.'}
 

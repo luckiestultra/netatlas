@@ -20,7 +20,7 @@ function handlers(client, content) {
     let match;
     if (client === 'quantumultX') match = /^(\S+) url script-[a-z-]+ (\S+)$/.exec(line);
     else if (client === 'loon') {
-      const current = /^request if \$\{url\} ~= \/(.+)\/([ims]*) then script\("([^"\n]+)"\)/.exec(line);
+      const current = /^request if \$\{url\} ~= \/(.+)\/([ims]*) then script\("([^"\n]+)"(?:,\s*"")?\)/.exec(line);
       if (current) { result.push({ pattern: current[1], flags: current[2], url: current[3] }); continue; }
       match = /^http-request (\S+) script-path=([^,\s]+)/.exec(line);
     }

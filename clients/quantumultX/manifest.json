@@ -2,7 +2,7 @@
   "version": 1,
   "client": "quantumultX",
   "builder": "netatlas@0.1.0",
-  "inputSha256": "76f9cb73f581325cf0a7dddd6da133d5d0b62b37941e5fdceb4ceeccd968625f",
+  "inputSha256": "8ba9a38455508d756299f4aaa7715bc6ea6421d9b3a2eb0c5412273ccb554197",
   "baseUrl": "https://raw.githubusercontent.com/luckiestultra/netatlas/main",
   "targetVersion": null,
   "counts": {
@@ -10646,7 +10646,7 @@
     },
     {
       "path": "profiles/default.conf",
-      "sha256": "6cb3bb51b326fc61fded8dcb28c489f207669189f02a049ef86d49d167ec391c",
+      "sha256": "5cd13a361e9db4e3ad720d540aaa0912a2b130638e5b4b30dc6e542c51e1502c",
       "bytes": 28593
     },
     {
@@ -10656,12 +10656,12 @@
     },
     {
       "path": "profiles/standalone.conf",
-      "sha256": "864a81f4df4a5036571b13e6638cc455b11533c823b3f0259a5096d8e528832b",
+      "sha256": "a0a9d9e8d21d52974a6ba4fae9fdee0ac816376daff5cdbb02446070ff804819",
       "bytes": 1156857
     },
     {
       "path": "README.md",
-      "sha256": "021cdc47fafb39c253bdc81107acfb4258ca7ccdca14338d8a310be7844c98d4",
+      "sha256": "befb72d0f7259b1ca3166481f004a2ce24833f386f13684f79d2261d55f4a0c4",
       "bytes": 12982
     },
     {

@@ -360,10 +360,6 @@ dns:
         value: remote
         update_interval: 86400
     - proxy_rule_set:
-        match: https://raw.githubusercontent.com/luckiestultra/netatlas/main/clients/egern/rules/twitter.yaml
-        value: remote
-        update_interval: 86400
-    - proxy_rule_set:
         match: https://raw.githubusercontent.com/luckiestultra/netatlas/main/clients/egern/rules/vercel.yaml
         value: remote
         update_interval: 86400
@@ -437,6 +433,10 @@ dns:
         update_interval: 86400
     - proxy_rule_set:
         match: https://raw.githubusercontent.com/luckiestultra/netatlas/main/clients/egern/rules/quora.yaml
+        value: remote
+        update_interval: 86400
+    - proxy_rule_set:
+        match: https://raw.githubusercontent.com/luckiestultra/netatlas/main/clients/egern/rules/twitter.yaml
         value: remote
         update_interval: 86400
     - proxy_rule_set:
@@ -1098,10 +1098,6 @@ rules:
       policy: 国外媒体
       update_interval: 86400
   - rule_set:
-      match: https://raw.githubusercontent.com/luckiestultra/netatlas/main/clients/egern/rules/twitter.yaml
-      policy: 即时通讯
-      update_interval: 86400
-  - rule_set:
       match: https://raw.githubusercontent.com/luckiestultra/netatlas/main/clients/egern/rules/vercel.yaml
       policy: 开发服务
       update_interval: 86400
@@ -1176,6 +1172,10 @@ rules:
   - rule_set:
       match: https://raw.githubusercontent.com/luckiestultra/netatlas/main/clients/egern/rules/quora.yaml
       policy: 国外网站
+      update_interval: 86400
+  - rule_set:
+      match: https://raw.githubusercontent.com/luckiestultra/netatlas/main/clients/egern/rules/twitter.yaml
+      policy: 即时通讯
       update_interval: 86400
   - rule_set:
       match: https://raw.githubusercontent.com/luckiestultra/netatlas/main/clients/egern/rules/tvb.yaml

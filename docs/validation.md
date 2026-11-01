@@ -1,5 +1,17 @@
 # 完整配置验证记录
 
+## 2026-11-02：四项跨客户端缺陷与真实回归
+
+上一提交 `954e919` 的完整离线与Linux CI均绿，但独立跨客户端复核仍确认四项缺陷：[完整审计及边界](cross-client-audit.md)。本轮修复sing-box本地物化Clash VMess/VLESS WSS时的SNI/ALPN源语义、Surge全局加密DNS下的LAN本地解析、Loon ScriptHub三个Script v2入口的null参数，以及八客户端Grok子域被Twitter父域抢先匹配。未把未证实的Egern/Loon DNS疑点算成故障或贸然更改。
+
+每项先保留RED再实现。WSS以Mihomo 1.19.33固定源码和实际源HTTP成功为对照，原转换后sing-box因TLS失败，改后相同TLS/WS/HTTP流程通过；独立红审又实际复现大小写重复Host及源未使用sni别名的问题，补RED后拒绝歧义并保持原生servername→Host回落。两个单字段负控（错误SNI/错误ALPN）均无法HTTP成功。该responder是合成VLESS认证前缀与HTTP夹具，不宣称完整协议合规。
+
+Surge五项本地DNS新增回归原先全失败；修复default/standalone/private输出后，按官方Host DNS映射执行语义独立复核通过，不等于Surge App实测。Loon三个固定完整上游JS按省参数null宿主契约立即失败，从实际成品DSL读取显式空字符串后三入口各成功一次完成；两个独立代理重算全文件哈希、执行完整字节，并确认18个安装器只有这一包发生限定变化，脚本URL/MITM/源模板及登记哈希不变。Grok的完整catalog八端两种渲染先失败；两真实核心在不同策略选择、HTTP/SOCKS及连接计数下先证实误走Twitter直连，修复后新增60个流量案例全部通过。
+
+冻结后完整 `npm test` 757项：749通过、0失败、8项原生opt-in跳过；另 `npm run test:native` 实际执行固定Mihomo 1.19.33与sing-box 1.14.4，共392项通过（基础路由272、数据库8、可选规则16、private流程32、managed流程40、TLS11、解析器插件3、订阅图10）。原生流程不启用TUN或系统代理，测试服务、订阅、代理与DNS均为合成回环，域名及非回环地址使用受控fixture；证书信任只加在隔离运行副本，没有写系统证书。
+
+`npm run check`通过八客户端1137产物的一致性、分流语义、策略引用、来源与哈希验证。冻结输入SHA-256 `8ba9a38455508d756299f4aaa7715bc6ea6421d9b3a2eb0c5412273ccb554197`（297文件）。成品变化限于共享服务顺序导致的八端profiles/README、Surge Host映射、Loon ScriptHub包装及清单；规则负载与源许可未改变。QX资源解析器仍为 `40b3be1a8a515fddf9107256b99b00a6339d94e59020670b968453557b3d8d8c`，GeoIP仍为 `3388a934e49ac807ad0d9f981e0c40e1377435d4268397f31aca460298800aad`。本轮没有访问私人订阅、没有读取/修改任何用户客户端配置、缓存、节点、连接或系统代理；六GUI原生导入与真实远端服务验证保持未执行。
+
 ## 2026-11-02：完整 anti-AD 资源、原始筛选语义与功能对照
 
 对照原始 KOP 固定源码，完成[41类功能矩阵](resource-parser-comparison.md)与53组同输入Apple JavaScriptCore审计。结论不是完整替代：SSD/部分旧URI、regex/regout、排序扩展、旧numeric suffix/命名占位符、部分规则元数据与重写DSL仍有明确缺口或语义差异。没有把脚本执行、证书导入或丢失安全/DNS语义当默认必须支持。

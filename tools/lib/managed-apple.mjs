@@ -40,6 +40,7 @@ function base(client, model, options) {
   const nodes = proxy.split('\n').filter(line => line && !line.startsWith('#'));
   return {
     general: section(text, 'General'),
+    host: section(text, 'Host'),
     proxy: nodes.join('\n') || '# Add native nodes here, or use the app subscription entry below.',
     nodeNames: nodes.map(line => line.split('=')[0].trim()),
     subscriptions: (options.subscriptions ?? []).map((source, index) => ({
@@ -65,7 +66,7 @@ function optionalSections(rewrite) {
 }
 
 export function surge(model, options = {}) {
-  const { general, proxy, nodeNames, subscriptions } = base('surge', model, options);
+  const { general, host, proxy, nodeNames, subscriptions } = base('surge', model, options);
   const sources = subscriptions.map(source => source.name);
   const groups = model.groups.map(group => {
     const choices = members(group, model, nodeNames, options, sources);
@@ -80,6 +81,9 @@ export function surge(model, options = {}) {
   return `${header('Surge', 'Import this profile; add your subscription as a policy-path group, then select it in 节点选择.')}
 [General]
 ${general}
+
+[Host]
+${host}
 
 [Proxy]
 ${proxy}

@@ -6,6 +6,7 @@ import { managedModel } from '../../tools/lib/managed-profiles.mjs';
 import { matchesEntry } from '../../tools/lib/rules.mjs';
 import { profileRoutingResources } from '../../tools/lib/routing-extensions.mjs';
 import { matchesRegexCondition } from '../../tools/lib/regex-routing.mjs';
+import { clientIds } from '../../tools/lib/clients.mjs';
 const root=resolve(import.meta.dirname,'../..');
 test('expanded service policies retain domestic/media routes and child-before-corporate/media parents',async()=>{
   const {rulesets}=await loadCatalog(root);
@@ -22,4 +23,17 @@ test('expanded service policies retain domestic/media routes and child-before-co
   const order=id=>model.rules.findIndex(rule=>rule.id===id);
   for(const [child,parent] of [['hulu-jp','hulu'],['hbo-asia','hbo'],['steam-cn','steam'],['alipay','alibaba'],['quark','alibaba'],['tiktok','bytedance'],['icloud','apple'],['onedrive','microsoft'],['hulu','disney'],['mytvsuper','tvb'],['disney','global-media'],['hmt-media','global-media'],['global-media','china']])if(order(child)>=0)assert.ok(order(child)<order(parent),child+' before '+parent);
   assert.equal(model.groups.find(group=>group.name==='国内媒体').choices[0],'DIRECT');
+});
+
+for (const client of clientIds) test(`${client}: Grok retains the AI policy before the Twitter parent domain`, async () => {
+  const { rulesets } = await loadCatalog(root);
+  const model = managedModel(client, { rulesets });
+  const byId = new Map([...rulesets, ...profileRoutingResources(client, rulesets)].map(rule => [rule.id, rule]));
+  const policyForHost = host => model.rules.find(rule => byId.get(rule.id).entries.some(entry =>
+    entry.type.startsWith('domain') && (['domain-regex', 'domain-wildcard'].includes(entry.type)
+      ? matchesRegexCondition(entry, host) : matchesEntry(entry, { host }))
+  ))?.policy;
+  for (const host of ['grok.com', 'grok.x.com', 'cdn.grok.x.com']) assert.equal(policyForHost(host), 'AI服务', host);
+  for (const host of ['x.com', 'www.x.com', 'notgrok.x.com']) assert.equal(policyForHost(host), '即时通讯', host);
+  assert.equal(policyForHost('grok.x.com.invalid'), undefined);
 });

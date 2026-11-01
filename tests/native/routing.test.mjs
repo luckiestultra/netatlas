@@ -37,7 +37,10 @@ test('both real kernels enforce suffix boundaries and canonical parent/child pol
   assert.equal(result.cases.filter(item=>item.behavior==='unbreak-suffix-root').length,12);
   assert.equal(result.cases.filter(item=>item.behavior==='unbreak-suffix-child').length,12);
   assert.equal(result.cases.filter(item=>item.behavior==='unbreak-keyword').length,12);
-  assert.deepEqual(result.serviceRulesets.map(item=>item.id).sort(), ['apple','apple-tvplus','github','github-copilot','netflix','npmjs','openai','unbreak']);
+  assert.deepEqual(result.serviceRulesets.map(item=>item.id).sort(), ['apple','apple-tvplus','github','github-copilot','netflix','npmjs','openai','twitter','unbreak','xai']);
+  for (const behavior of ['grok-service-proxy', 'grok-service-before-twitter', 'grok-child-before-twitter', 'twitter-parent-direct', 'grok-near-miss-twitter']) {
+    assert.equal(result.cases.filter(item => item.behavior === behavior).length, 12, behavior);
+  }
   for (const client of ['mihomo', 'singBox']) {
     for (const protocol of ['http', 'socks5']) {
       for (const behavior of ['explicit-direct', 'explicit-reject', 'fallback-reject', 'fallback-direct', 'suffix-root-reject', 'suffix-child-reject', 'suffix-similar-fallback', 'suffix-tail-fallback', 'fallback-proxy', 'apple-tv-domain-proxy', 'apple-tv-child-proxy', 'apple-tv-exact-proxy', 'copilot-exact-proxy', 'npm-service-proxy', 'apple-parent-direct', 'github-parent-direct', 'apple-tv-exact-child-parent', 'copilot-exact-child-parent']) {

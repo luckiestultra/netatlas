@@ -11,7 +11,9 @@ test('subscription TLS constraints survive publication or reject before replacin
   const root = path.resolve(import.meta.dirname, '../..');
   const report = await testSubscriptionTlsWorkflow({ root, binaries: { mihomo: path.join(root, '.cache/bin/mihomo'), singBox: path.join(root, '.cache/bin/sing-box') } });
   assert.equal(report.status, 'passed');
-  assert.equal(report.cases.length, 7);
+  assert.equal(report.cases.length, 11);
+  assert.ok(report.cases.some(item => item.id === 'imported-vless-wss' && item.actualTlsWebSocketHttp === 'passed'));
+  for (const field of ['server_name', 'alpn']) assert.ok(report.cases.some(item => item.id === 'negative-wss-' + field && item.rejectedWrongTlsSetting));
   assert.ok(report.cases.some(item => item.id === 'pin-import' && item.preservedLastGoodProfile && item.rejectedBeforePublication));
   assert.ok(report.cases.some(item => item.id === 'imported-trojan-alpn' && item.actualTlsHttp === 'passed'));
   assert.ok(report.cases.some(item => item.id === 'negative-control-missing-alpn' && item.rejectedWithoutRequiredAlpn));

@@ -10,6 +10,7 @@
 # Requires an existing trusted user CA for HTTPS; no CA or automatic task is supplied.
 # Remote scripts can access host storage and user-selected URLs/scripts. Pin scope and permissions: https://raw.githubusercontent.com/luckiestultra/netatlas/main/src/vendor/integrations/script-hub/README.md
 
+# Changed by NetAtlas on 2026-11-02: pass an explicit empty string to the three Script v2 conversion entries.
 #!name=Script Hub: 重写 & 规则集转换
 #!loon_version=3.5.1(983)
 #!desc=https://script.hub
@@ -24,11 +25,11 @@
 [Script]
 request if ${url} ~= /^https?:\/\/script\.hub\/($|edit\/|reload)/i then script("https://raw.githubusercontent.com/Script-Hub-Org/Script-Hub/502cf03f7db2e077d96c07c2cb151a8f0b152a80/script-hub.js") with tag="Script Hub: 前端", timeout=300
 
-request if ${url} ~= /^https?:\/\/script\.hub\/file\/_start_\/(?![\s\S]*\/_end_(?=\/)[\s\S]*\/_end_\/)(?:(?!file\/_start_\/)[^\s#])+\/_end_\/[^\/?&#\s]+\?(?:(?!type=)[A-Za-z0-9_.~-]+=(?:[^%&#?\s]|%[A-Fa-f0-9][A-Fa-f0-9])*&)*type=(?:qx-rewrite|surge-module|loon-plugin|all-module)(?:&(?!type=)[A-Za-z0-9_.~-]+=(?:[^%&#?\s]|%[A-Fa-f0-9][A-Fa-f0-9])*)*(?![\s\S])/ then script("https://raw.githubusercontent.com/Script-Hub-Org/Script-Hub/502cf03f7db2e077d96c07c2cb151a8f0b152a80/Rewrite-Parser.js") with tag="Script Hub: 重写转换", timeout=300
+request if ${url} ~= /^https?:\/\/script\.hub\/file\/_start_\/(?![\s\S]*\/_end_(?=\/)[\s\S]*\/_end_\/)(?:(?!file\/_start_\/)[^\s#])+\/_end_\/[^\/?&#\s]+\?(?:(?!type=)[A-Za-z0-9_.~-]+=(?:[^%&#?\s]|%[A-Fa-f0-9][A-Fa-f0-9])*&)*type=(?:qx-rewrite|surge-module|loon-plugin|all-module)(?:&(?!type=)[A-Za-z0-9_.~-]+=(?:[^%&#?\s]|%[A-Fa-f0-9][A-Fa-f0-9])*)*(?![\s\S])/ then script("https://raw.githubusercontent.com/Script-Hub-Org/Script-Hub/502cf03f7db2e077d96c07c2cb151a8f0b152a80/Rewrite-Parser.js", "") with tag="Script Hub: 重写转换", timeout=300
 
-request if ${url} ~= /^https?:\/\/script\.hub\/file\/_start_\/(?![\s\S]*\/_end_(?=\/)[\s\S]*\/_end_\/)(?:(?!file\/_start_\/)[^\s#])+\/_end_\/[^\/?&#\s]+\?(?:(?!type=)[A-Za-z0-9_.~-]+=(?:[^%&#?\s]|%[A-Fa-f0-9][A-Fa-f0-9])*&)*type=rule-set(?:&(?!type=)[A-Za-z0-9_.~-]+=(?:[^%&#?\s]|%[A-Fa-f0-9][A-Fa-f0-9])*)*(?![\s\S])/ then script("https://raw.githubusercontent.com/Script-Hub-Org/Script-Hub/502cf03f7db2e077d96c07c2cb151a8f0b152a80/rule-parser.js") with tag="Script Hub: 规则集转换", timeout=300
+request if ${url} ~= /^https?:\/\/script\.hub\/file\/_start_\/(?![\s\S]*\/_end_(?=\/)[\s\S]*\/_end_\/)(?:(?!file\/_start_\/)[^\s#])+\/_end_\/[^\/?&#\s]+\?(?:(?!type=)[A-Za-z0-9_.~-]+=(?:[^%&#?\s]|%[A-Fa-f0-9][A-Fa-f0-9])*&)*type=rule-set(?:&(?!type=)[A-Za-z0-9_.~-]+=(?:[^%&#?\s]|%[A-Fa-f0-9][A-Fa-f0-9])*)*(?![\s\S])/ then script("https://raw.githubusercontent.com/Script-Hub-Org/Script-Hub/502cf03f7db2e077d96c07c2cb151a8f0b152a80/rule-parser.js", "") with tag="Script Hub: 规则集转换", timeout=300
 
-request if ${url} ~= /^https?:\/\/script\.hub\/convert\//i then script("https://raw.githubusercontent.com/Script-Hub-Org/Script-Hub/502cf03f7db2e077d96c07c2cb151a8f0b152a80/script-converter.js") with tag="Script Hub: 脚本转换", timeout=300
+request if ${url} ~= /^https?:\/\/script\.hub\/convert\//i then script("https://raw.githubusercontent.com/Script-Hub-Org/Script-Hub/502cf03f7db2e077d96c07c2cb151a8f0b152a80/script-converter.js", "") with tag="Script Hub: 脚本转换", timeout=300
 
 [MITM]
 hostname = script.hub

@@ -31,6 +31,7 @@ const fixtureHosts = new Set([
   'tv.apple.com', 'cdn.tv.apple.com', 'hls.itunes.apple.com', 'sub.hls.itunes.apple.com',
   'copilot-proxy.githubusercontent.com', 'sub.copilot-proxy.githubusercontent.com',
   'registry.npmjs.org', 'www.apple.com', 'api.github.com',
+  'grok.com', 'grok.x.com', 'cdn.grok.x.com', 'x.com', 'notgrok.x.com',
   'prefix-nativekw-suffix.netatlas.test', 'prefix-nativek-suffix.netatlas.test',
   'chatgpt-async-webps-prod-a-1.webpubsub.azure.com', 'evil.chatgpt-async-webps-prod-a-1.webpubsub.azure.com',
   'apiproxy-device-prod-nlb-a.amazonaws.com', 'xapiproxy-device-prod-nlb-a.amazonaws.com',
@@ -492,7 +493,7 @@ async function stop(child) {
 export async function testLocalRouting({ root, binaries, onProgress = () => {} }) {
   const directory = await cacheDirectory(root, 'routing-');
   const currentCatalog = await catalog(root);
-  const serviceRulesets = ['apple', 'apple-tvplus', 'github', 'github-copilot', 'npmjs', 'netflix', 'openai', 'unbreak'].map(id => {
+  const serviceRulesets = ['apple', 'apple-tvplus', 'github', 'github-copilot', 'npmjs', 'netflix', 'openai', 'unbreak', 'twitter', 'xai'].map(id => {
     const ruleset = currentCatalog.find(item => item.id === id);
     assert.ok(ruleset, `Missing canonical service ruleset for native parent/child routing: ${id}`);
     return ruleset;
@@ -527,12 +528,12 @@ export async function testLocalRouting({ root, binaries, onProgress = () => {} }
         if (id === 'mihomo') {
           config['mixed-port'] = proxyPort;
           config.dns = { enable: true, ipv6: false, 'enhanced-mode': 'redir-host', nameserver: [`udp://127.0.0.1:${dns.port}`], 'default-nameserver': [`127.0.0.1:${dns.port}`] };
-          for (const name of ['apple', 'github', 'openai', 'netflix']) config['proxy-groups'].find(group => group.name === name).proxies = ['DIRECT', 'Proxy'];
+          for (const name of ['apple', 'github', 'openai', 'netflix', 'twitter']) config['proxy-groups'].find(group => group.name === name).proxies = ['DIRECT', 'Proxy'];
         } else {
           config.inbounds[0].listen_port = proxyPort;
           config.dns = { servers: [{ type: 'udp', tag: 'fixture-dns', server: '127.0.0.1', server_port: dns.port }], final: 'fixture-dns' };
           config.route.default_domain_resolver = 'fixture-dns';
-          for (const tag of ['apple', 'github', 'openai', 'netflix']) config.outbounds.find(outbound => outbound.tag === tag).default = 'DIRECT';
+          for (const tag of ['apple', 'github', 'openai', 'netflix', 'twitter']) config.outbounds.find(outbound => outbound.tag === tag).default = 'DIRECT';
         }
         const configPath = path.join(directory, `${id}-${selection}.${id === 'mihomo' ? 'yaml' : 'json'}`);
         await writeFile(configPath, id === 'mihomo' ? stringifyYaml(config) : `${JSON.stringify(config, null, 2)}\n`);
@@ -566,6 +567,13 @@ export async function testLocalRouting({ root, binaries, onProgress = () => {} }
                 ['www.apple.com', true, 'apple-parent-direct', false], ['api.github.com', true, 'github-parent-direct', false],
                 ['sub.hls.itunes.apple.com', true, 'apple-tv-exact-child-parent', false],
                 ['sub.copilot-proxy.githubusercontent.com', true, 'copilot-exact-child-parent', false]];
+          targets.push(
+            ['grok.com', selection !== 'REJECT', 'grok-service-proxy', selection === 'FixtureProxy'],
+            ['grok.x.com', selection !== 'REJECT', 'grok-service-before-twitter', selection === 'FixtureProxy'],
+            ['cdn.grok.x.com', selection !== 'REJECT', 'grok-child-before-twitter', selection === 'FixtureProxy'],
+            ['x.com', true, 'twitter-parent-direct', false],
+            ['notgrok.x.com', true, 'grok-near-miss-twitter', false],
+          );
           targets.push(['prefix-nativekw-suffix.netatlas.test',false,'keyword-substring-reject',false]);
           targets.push(['prefix-nativek-suffix.netatlas.test',selection!=='REJECT','keyword-near-miss-fallback',selection==='FixtureProxy']);
           targets.push(

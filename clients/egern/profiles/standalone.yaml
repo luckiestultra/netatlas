@@ -8389,78 +8389,6 @@ dns:
         match: dykkng5hnh52u.cloudfront.net
         value: remote
     - domain_suffix:
-        match: ads-twitter.com
-        value: remote
-    - domain_suffix:
-        match: cms-twdigitalassets.com
-        value: remote
-    - domain_suffix:
-        match: periscope.tv
-        value: remote
-    - domain_suffix:
-        match: pscp.tv
-        value: remote
-    - domain_suffix:
-        match: t.co
-        value: remote
-    - domain_suffix:
-        match: tellapart.com
-        value: remote
-    - domain_suffix:
-        match: tweetdeck.com
-        value: remote
-    - domain_suffix:
-        match: twimg.com
-        value: remote
-    - domain_suffix:
-        match: twitpic.com
-        value: remote
-    - domain_suffix:
-        match: twitter.biz
-        value: remote
-    - domain_suffix:
-        match: twitter.com
-        value: remote
-    - domain_suffix:
-        match: twitter.jp
-        value: remote
-    - domain_suffix:
-        match: twitter.map.fastly.net
-        value: remote
-    - domain_suffix:
-        match: twittercommunity.com
-        value: remote
-    - domain_suffix:
-        match: twitterflightschool.com
-        value: remote
-    - domain_suffix:
-        match: twitterinc.com
-        value: remote
-    - domain_suffix:
-        match: twitteroauth.com
-        value: remote
-    - domain_suffix:
-        match: twitterstat.us
-        value: remote
-    - domain_suffix:
-        match: twtrdns.net
-        value: remote
-    - domain_suffix:
-        match: twttr.com
-        value: remote
-    - domain_suffix:
-        match: twttr.net
-        value: remote
-    - domain_suffix:
-        match: twvid.com
-        value: remote
-    - domain_suffix:
-        match: vine.co
-        value: remote
-    - domain_suffix:
-        match: x.com
-        value: remote
-    - domain_suffix:
         match: ai-sdk.dev
         value: remote
     - domain_suffix:
@@ -10535,6 +10463,78 @@ dns:
         value: remote
     - domain:
         match: www.quora.com.cdn.cloudflare.net
+        value: remote
+    - domain_suffix:
+        match: ads-twitter.com
+        value: remote
+    - domain_suffix:
+        match: cms-twdigitalassets.com
+        value: remote
+    - domain_suffix:
+        match: periscope.tv
+        value: remote
+    - domain_suffix:
+        match: pscp.tv
+        value: remote
+    - domain_suffix:
+        match: t.co
+        value: remote
+    - domain_suffix:
+        match: tellapart.com
+        value: remote
+    - domain_suffix:
+        match: tweetdeck.com
+        value: remote
+    - domain_suffix:
+        match: twimg.com
+        value: remote
+    - domain_suffix:
+        match: twitpic.com
+        value: remote
+    - domain_suffix:
+        match: twitter.biz
+        value: remote
+    - domain_suffix:
+        match: twitter.com
+        value: remote
+    - domain_suffix:
+        match: twitter.jp
+        value: remote
+    - domain_suffix:
+        match: twitter.map.fastly.net
+        value: remote
+    - domain_suffix:
+        match: twittercommunity.com
+        value: remote
+    - domain_suffix:
+        match: twitterflightschool.com
+        value: remote
+    - domain_suffix:
+        match: twitterinc.com
+        value: remote
+    - domain_suffix:
+        match: twitteroauth.com
+        value: remote
+    - domain_suffix:
+        match: twitterstat.us
+        value: remote
+    - domain_suffix:
+        match: twtrdns.net
+        value: remote
+    - domain_suffix:
+        match: twttr.com
+        value: remote
+    - domain_suffix:
+        match: twttr.net
+        value: remote
+    - domain_suffix:
+        match: twvid.com
+        value: remote
+    - domain_suffix:
+        match: vine.co
+        value: remote
+    - domain_suffix:
+        match: x.com
         value: remote
     - domain_suffix:
         match: bigbigchannel.com.hk
@@ -58911,11 +58911,6 @@ policy_groups:
         - Proxy
         - DIRECT
   - select:
-      name: twitter
-      policies:
-        - Proxy
-        - DIRECT
-  - select:
       name: vercel
       policies:
         - Proxy
@@ -59002,6 +58997,11 @@ policy_groups:
         - DIRECT
   - select:
       name: quora
+      policies:
+        - Proxy
+        - DIRECT
+  - select:
+      name: twitter
       policies:
         - Proxy
         - DIRECT
@@ -67559,78 +67559,6 @@ rules:
       match: dykkng5hnh52u.cloudfront.net
       policy: twitch
   - domain_suffix:
-      match: ads-twitter.com
-      policy: twitter
-  - domain_suffix:
-      match: cms-twdigitalassets.com
-      policy: twitter
-  - domain_suffix:
-      match: periscope.tv
-      policy: twitter
-  - domain_suffix:
-      match: pscp.tv
-      policy: twitter
-  - domain_suffix:
-      match: t.co
-      policy: twitter
-  - domain_suffix:
-      match: tellapart.com
-      policy: twitter
-  - domain_suffix:
-      match: tweetdeck.com
-      policy: twitter
-  - domain_suffix:
-      match: twimg.com
-      policy: twitter
-  - domain_suffix:
-      match: twitpic.com
-      policy: twitter
-  - domain_suffix:
-      match: twitter.biz
-      policy: twitter
-  - domain_suffix:
-      match: twitter.com
-      policy: twitter
-  - domain_suffix:
-      match: twitter.jp
-      policy: twitter
-  - domain_suffix:
-      match: twitter.map.fastly.net
-      policy: twitter
-  - domain_suffix:
-      match: twittercommunity.com
-      policy: twitter
-  - domain_suffix:
-      match: twitterflightschool.com
-      policy: twitter
-  - domain_suffix:
-      match: twitterinc.com
-      policy: twitter
-  - domain_suffix:
-      match: twitteroauth.com
-      policy: twitter
-  - domain_suffix:
-      match: twitterstat.us
-      policy: twitter
-  - domain_suffix:
-      match: twtrdns.net
-      policy: twitter
-  - domain_suffix:
-      match: twttr.com
-      policy: twitter
-  - domain_suffix:
-      match: twttr.net
-      policy: twitter
-  - domain_suffix:
-      match: twvid.com
-      policy: twitter
-  - domain_suffix:
-      match: vine.co
-      policy: twitter
-  - domain_suffix:
-      match: x.com
-      policy: twitter
-  - domain_suffix:
       match: ai-sdk.dev
       policy: vercel
   - domain_suffix:
@@ -69706,6 +69634,78 @@ rules:
   - domain:
       match: www.quora.com.cdn.cloudflare.net
       policy: quora
+  - domain_suffix:
+      match: ads-twitter.com
+      policy: twitter
+  - domain_suffix:
+      match: cms-twdigitalassets.com
+      policy: twitter
+  - domain_suffix:
+      match: periscope.tv
+      policy: twitter
+  - domain_suffix:
+      match: pscp.tv
+      policy: twitter
+  - domain_suffix:
+      match: t.co
+      policy: twitter
+  - domain_suffix:
+      match: tellapart.com
+      policy: twitter
+  - domain_suffix:
+      match: tweetdeck.com
+      policy: twitter
+  - domain_suffix:
+      match: twimg.com
+      policy: twitter
+  - domain_suffix:
+      match: twitpic.com
+      policy: twitter
+  - domain_suffix:
+      match: twitter.biz
+      policy: twitter
+  - domain_suffix:
+      match: twitter.com
+      policy: twitter
+  - domain_suffix:
+      match: twitter.jp
+      policy: twitter
+  - domain_suffix:
+      match: twitter.map.fastly.net
+      policy: twitter
+  - domain_suffix:
+      match: twittercommunity.com
+      policy: twitter
+  - domain_suffix:
+      match: twitterflightschool.com
+      policy: twitter
+  - domain_suffix:
+      match: twitterinc.com
+      policy: twitter
+  - domain_suffix:
+      match: twitteroauth.com
+      policy: twitter
+  - domain_suffix:
+      match: twitterstat.us
+      policy: twitter
+  - domain_suffix:
+      match: twtrdns.net
+      policy: twitter
+  - domain_suffix:
+      match: twttr.com
+      policy: twitter
+  - domain_suffix:
+      match: twttr.net
+      policy: twitter
+  - domain_suffix:
+      match: twvid.com
+      policy: twitter
+  - domain_suffix:
+      match: vine.co
+      policy: twitter
+  - domain_suffix:
+      match: x.com
+      policy: twitter
   - domain_suffix:
       match: bigbigchannel.com.hk
       policy: tvb

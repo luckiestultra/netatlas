@@ -3331,30 +3331,6 @@
       },
       {
         "domain_suffix": [
-          "ads-twitter.com",
-          "cms-twdigitalassets.com",
-          "periscope.tv",
-          "pscp.tv",
-          "t.co",
-          "tellapart.com",
-          "tweetdeck.com",
-          "twimg.com",
-          "twitpic.com",
-          "twitter.biz",
-          "twitter.com",
-          "twitter.jp",
-          "twitter.map.fastly.net",
-          "twittercommunity.com",
-          "twitterflightschool.com",
-          "twitterinc.com",
-          "twitteroauth.com",
-          "twitterstat.us",
-          "twtrdns.net",
-          "twttr.com",
-          "twttr.net",
-          "twvid.com",
-          "vine.co",
-          "x.com",
           "ai-sdk.dev",
           "err.sh",
           "hyper.is",
@@ -4161,6 +4137,30 @@
       },
       {
         "domain_suffix": [
+          "ads-twitter.com",
+          "cms-twdigitalassets.com",
+          "periscope.tv",
+          "pscp.tv",
+          "t.co",
+          "tellapart.com",
+          "tweetdeck.com",
+          "twimg.com",
+          "twitpic.com",
+          "twitter.biz",
+          "twitter.com",
+          "twitter.jp",
+          "twitter.map.fastly.net",
+          "twittercommunity.com",
+          "twitterflightschool.com",
+          "twitterinc.com",
+          "twitteroauth.com",
+          "twitterstat.us",
+          "twtrdns.net",
+          "twttr.com",
+          "twttr.net",
+          "twvid.com",
+          "vine.co",
+          "x.com",
           "bigbigchannel.com.hk",
           "bigbigshop.com",
           "encoretvb.com",
@@ -21054,15 +21054,6 @@
     },
     {
       "type": "selector",
-      "tag": "twitter",
-      "outbounds": [
-        "Proxy",
-        "DIRECT"
-      ],
-      "default": "Proxy"
-    },
-    {
-      "type": "selector",
       "tag": "vercel",
       "outbounds": [
         "Proxy",
@@ -21217,6 +21208,15 @@
     {
       "type": "selector",
       "tag": "quora",
+      "outbounds": [
+        "Proxy",
+        "DIRECT"
+      ],
+      "default": "Proxy"
+    },
+    {
+      "type": "selector",
+      "tag": "twitter",
       "outbounds": [
         "Proxy",
         "DIRECT"
@@ -40167,174 +40167,6 @@
       },
       {
         "domain_suffix": [
-          "ads-twitter.com"
-        ],
-        "action": "route",
-        "outbound": "twitter"
-      },
-      {
-        "domain_suffix": [
-          "cms-twdigitalassets.com"
-        ],
-        "action": "route",
-        "outbound": "twitter"
-      },
-      {
-        "domain_suffix": [
-          "periscope.tv"
-        ],
-        "action": "route",
-        "outbound": "twitter"
-      },
-      {
-        "domain_suffix": [
-          "pscp.tv"
-        ],
-        "action": "route",
-        "outbound": "twitter"
-      },
-      {
-        "domain_suffix": [
-          "t.co"
-        ],
-        "action": "route",
-        "outbound": "twitter"
-      },
-      {
-        "domain_suffix": [
-          "tellapart.com"
-        ],
-        "action": "route",
-        "outbound": "twitter"
-      },
-      {
-        "domain_suffix": [
-          "tweetdeck.com"
-        ],
-        "action": "route",
-        "outbound": "twitter"
-      },
-      {
-        "domain_suffix": [
-          "twimg.com"
-        ],
-        "action": "route",
-        "outbound": "twitter"
-      },
-      {
-        "domain_suffix": [
-          "twitpic.com"
-        ],
-        "action": "route",
-        "outbound": "twitter"
-      },
-      {
-        "domain_suffix": [
-          "twitter.biz"
-        ],
-        "action": "route",
-        "outbound": "twitter"
-      },
-      {
-        "domain_suffix": [
-          "twitter.com"
-        ],
-        "action": "route",
-        "outbound": "twitter"
-      },
-      {
-        "domain_suffix": [
-          "twitter.jp"
-        ],
-        "action": "route",
-        "outbound": "twitter"
-      },
-      {
-        "domain_suffix": [
-          "twitter.map.fastly.net"
-        ],
-        "action": "route",
-        "outbound": "twitter"
-      },
-      {
-        "domain_suffix": [
-          "twittercommunity.com"
-        ],
-        "action": "route",
-        "outbound": "twitter"
-      },
-      {
-        "domain_suffix": [
-          "twitterflightschool.com"
-        ],
-        "action": "route",
-        "outbound": "twitter"
-      },
-      {
-        "domain_suffix": [
-          "twitterinc.com"
-        ],
-        "action": "route",
-        "outbound": "twitter"
-      },
-      {
-        "domain_suffix": [
-          "twitteroauth.com"
-        ],
-        "action": "route",
-        "outbound": "twitter"
-      },
-      {
-        "domain_suffix": [
-          "twitterstat.us"
-        ],
-        "action": "route",
-        "outbound": "twitter"
-      },
-      {
-        "domain_suffix": [
-          "twtrdns.net"
-        ],
-        "action": "route",
-        "outbound": "twitter"
-      },
-      {
-        "domain_suffix": [
-          "twttr.com"
-        ],
-        "action": "route",
-        "outbound": "twitter"
-      },
-      {
-        "domain_suffix": [
-          "twttr.net"
-        ],
-        "action": "route",
-        "outbound": "twitter"
-      },
-      {
-        "domain_suffix": [
-          "twvid.com"
-        ],
-        "action": "route",
-        "outbound": "twitter"
-      },
-      {
-        "domain_suffix": [
-          "vine.co"
-        ],
-        "action": "route",
-        "outbound": "twitter"
-      },
-      {
-        "domain_suffix": [
-          "x.com"
-        ],
-        "action": "route",
-        "outbound": "twitter"
-      },
-      {
-        "domain_suffix": [
           "ai-sdk.dev"
         ],
         "action": "route",
@@ -45176,6 +45008,174 @@
         ],
         "action": "route",
         "outbound": "quora"
+      },
+      {
+        "domain_suffix": [
+          "ads-twitter.com"
+        ],
+        "action": "route",
+        "outbound": "twitter"
+      },
+      {
+        "domain_suffix": [
+          "cms-twdigitalassets.com"
+        ],
+        "action": "route",
+        "outbound": "twitter"
+      },
+      {
+        "domain_suffix": [
+          "periscope.tv"
+        ],
+        "action": "route",
+        "outbound": "twitter"
+      },
+      {
+        "domain_suffix": [
+          "pscp.tv"
+        ],
+        "action": "route",
+        "outbound": "twitter"
+      },
+      {
+        "domain_suffix": [
+          "t.co"
+        ],
+        "action": "route",
+        "outbound": "twitter"
+      },
+      {
+        "domain_suffix": [
+          "tellapart.com"
+        ],
+        "action": "route",
+        "outbound": "twitter"
+      },
+      {
+        "domain_suffix": [
+          "tweetdeck.com"
+        ],
+        "action": "route",
+        "outbound": "twitter"
+      },
+      {
+        "domain_suffix": [
+          "twimg.com"
+        ],
+        "action": "route",
+        "outbound": "twitter"
+      },
+      {
+        "domain_suffix": [
+          "twitpic.com"
+        ],
+        "action": "route",
+        "outbound": "twitter"
+      },
+      {
+        "domain_suffix": [
+          "twitter.biz"
+        ],
+        "action": "route",
+        "outbound": "twitter"
+      },
+      {
+        "domain_suffix": [
+          "twitter.com"
+        ],
+        "action": "route",
+        "outbound": "twitter"
+      },
+      {
+        "domain_suffix": [
+          "twitter.jp"
+        ],
+        "action": "route",
+        "outbound": "twitter"
+      },
+      {
+        "domain_suffix": [
+          "twitter.map.fastly.net"
+        ],
+        "action": "route",
+        "outbound": "twitter"
+      },
+      {
+        "domain_suffix": [
+          "twittercommunity.com"
+        ],
+        "action": "route",
+        "outbound": "twitter"
+      },
+      {
+        "domain_suffix": [
+          "twitterflightschool.com"
+        ],
+        "action": "route",
+        "outbound": "twitter"
+      },
+      {
+        "domain_suffix": [
+          "twitterinc.com"
+        ],
+        "action": "route",
+        "outbound": "twitter"
+      },
+      {
+        "domain_suffix": [
+          "twitteroauth.com"
+        ],
+        "action": "route",
+        "outbound": "twitter"
+      },
+      {
+        "domain_suffix": [
+          "twitterstat.us"
+        ],
+        "action": "route",
+        "outbound": "twitter"
+      },
+      {
+        "domain_suffix": [
+          "twtrdns.net"
+        ],
+        "action": "route",
+        "outbound": "twitter"
+      },
+      {
+        "domain_suffix": [
+          "twttr.com"
+        ],
+        "action": "route",
+        "outbound": "twitter"
+      },
+      {
+        "domain_suffix": [
+          "twttr.net"
+        ],
+        "action": "route",
+        "outbound": "twitter"
+      },
+      {
+        "domain_suffix": [
+          "twvid.com"
+        ],
+        "action": "route",
+        "outbound": "twitter"
+      },
+      {
+        "domain_suffix": [
+          "vine.co"
+        ],
+        "action": "route",
+        "outbound": "twitter"
+      },
+      {
+        "domain_suffix": [
+          "x.com"
+        ],
+        "action": "route",
+        "outbound": "twitter"
       },
       {
         "domain_suffix": [

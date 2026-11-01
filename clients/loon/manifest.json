@@ -2,7 +2,7 @@
   "version": 1,
   "client": "loon",
   "builder": "netatlas@0.1.0",
-  "inputSha256": "76f9cb73f581325cf0a7dddd6da133d5d0b62b37941e5fdceb4ceeccd968625f",
+  "inputSha256": "8ba9a38455508d756299f4aaa7715bc6ea6421d9b3a2eb0c5412273ccb554197",
   "baseUrl": "https://raw.githubusercontent.com/luckiestultra/netatlas/main",
   "targetVersion": null,
   "counts": {
@@ -4735,8 +4735,8 @@
     },
     {
       "path": "modules/script-hub.plugin",
-      "sha256": "30e9607f6886ea8f0f4061b345a2a49744648e3bdc9475e4fe5e169428d72bbc",
-      "bytes": 3159
+      "sha256": "9d7539f0e149c22f695fdf76da353b667ef1dbda9931eb6c94e4cb7da620c2a0",
+      "bytes": 3281
     },
     {
       "path": "modules/sub-store.plugin",
@@ -4745,7 +4745,7 @@
     },
     {
       "path": "profiles/default.conf",
-      "sha256": "cb5a971f3750e6a7feb9bffa83bc9be26e5b58013f5f6440d749f4eb6a4e8156",
+      "sha256": "590f64ba6061fd204a24f0c8dc084aad7a134137956a6b8ec31bd03e49b1934a",
       "bytes": 22360
     },
     {
@@ -4755,12 +4755,12 @@
     },
     {
       "path": "profiles/standalone.conf",
-      "sha256": "31dc18e9923253c9ab41ef721ee5d297a07acb6c8b8dac0699f12c9b0eb6a9c4",
+      "sha256": "bede20485268a1225d2071eeb004231cbd9498b57c398c107c7df5a46c2a2c0f",
       "bytes": 1129902
     },
     {
       "path": "README.md",
-      "sha256": "386f40ec29bf1ccbe55982daf1d10494891cd2b951c2fe68be71cfb16cf27ae2",
+      "sha256": "e3b29fcdb6f40780fd417016fd800b0b078ef34c5b2bb6434c639194c79f358d",
       "bytes": 12006
     },
     {

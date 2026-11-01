@@ -92,6 +92,8 @@ CN 域名来自已有 MIT 固定 DLC 的 cn 完整 include 闭包，保留3条�
 
 ## 外部脚本工具
 
+[Loon参数回归夹具](tests/scripts/integrations-loon-argument.test.mjs)包含三个固定ScriptHub源文件的短初始化摘录，该文件以GPL-3.0-only标注，并保留完整源码URL、行号与SHA-256；不以根MIT许可替代。
+
 BoxJS和ScriptHub的安装包采用GPL-3.0-only，Sub-Store采用AGPL-3.0-only；完整许可证、作者、官方原包、改版包与对应源码入口见[src/vendor/integrations](src/vendor/integrations)。本仓库发布小安装资源，入口脚本仍从上游获取，没有将大型bundle重新分发或改标MIT。Sub-Store的发布bundle提交与对应源码tag分开登记，不把当前README提交当成其构建来源。前端/CDN及生成资源的全部依赖闭包未宣称锁定。
 
 QX资源解析器由NetAtlas依据原生公开接口独立实现，转换器和宿主适配采用本项目MIT许可，没有复制KOP-XIAO解析器源码。浏览器成品内联yaml 2.9.1（ISC，Copyright Eemeli Aro），完整许可保存在[src/features/resource-parser/vendor/LICENSE-yaml](src/features/resource-parser/vendor/LICENSE-yaml)，也写入生成脚本头部；构建依赖和版本在package-lock.json锁定。URL、协议字段和官方helper协议的独立适配不表示第三方项目为本实现背书。

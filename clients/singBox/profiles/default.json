@@ -606,13 +606,6 @@
       },
       {
         "rule_set": [
-          "twitter"
-        ],
-        "action": "route",
-        "server": "remote"
-      },
-      {
-        "rule_set": [
           "vercel"
         ],
         "action": "route",
@@ -740,6 +733,13 @@
       {
         "rule_set": [
           "quora"
+        ],
+        "action": "route",
+        "server": "remote"
+      },
+      {
+        "rule_set": [
+          "twitter"
         ],
         "action": "route",
         "server": "remote"
@@ -1884,14 +1884,6 @@
       },
       {
         "type": "remote",
-        "tag": "twitter",
-        "format": "source",
-        "url": "https://raw.githubusercontent.com/luckiestultra/netatlas/main/clients/singBox/rules/twitter.json",
-        "http_client": "netatlas-resources",
-        "update_interval": "1d"
-      },
-      {
-        "type": "remote",
         "tag": "vercel",
         "format": "source",
         "url": "https://raw.githubusercontent.com/luckiestultra/netatlas/main/clients/singBox/rules/vercel.json",
@@ -2039,6 +2031,14 @@
         "tag": "quora",
         "format": "source",
         "url": "https://raw.githubusercontent.com/luckiestultra/netatlas/main/clients/singBox/rules/quora.json",
+        "http_client": "netatlas-resources",
+        "update_interval": "1d"
+      },
+      {
+        "type": "remote",
+        "tag": "twitter",
+        "format": "source",
+        "url": "https://raw.githubusercontent.com/luckiestultra/netatlas/main/clients/singBox/rules/twitter.json",
         "http_client": "netatlas-resources",
         "update_interval": "1d"
       },
@@ -2827,13 +2827,6 @@
       },
       {
         "rule_set": [
-          "twitter"
-        ],
-        "action": "route",
-        "outbound": "即时通讯"
-      },
-      {
-        "rule_set": [
           "vercel"
         ],
         "action": "route",
@@ -2964,6 +2957,13 @@
         ],
         "action": "route",
         "outbound": "国外网站"
+      },
+      {
+        "rule_set": [
+          "twitter"
+        ],
+        "action": "route",
+        "outbound": "即时通讯"
       },
       {
         "rule_set": [

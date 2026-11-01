@@ -177,8 +177,6 @@ dns:
       - https://1.1.1.1/dns-query
     rule-set:twitch:
       - https://1.1.1.1/dns-query
-    rule-set:twitter:
-      - https://1.1.1.1/dns-query
     rule-set:vercel:
       - https://1.1.1.1/dns-query
     rule-set:viu-portable-regex:
@@ -216,6 +214,8 @@ dns:
     rule-set:steam:
       - https://1.1.1.1/dns-query
     rule-set:quora:
+      - https://1.1.1.1/dns-query
+    rule-set:twitter:
       - https://1.1.1.1/dns-query
     rule-set:tvb:
       - https://1.1.1.1/dns-query
@@ -584,7 +584,6 @@ rules:
   - RULE-SET,tidal,国外媒体
   - RULE-SET,tiktok,国外媒体
   - RULE-SET,twitch,国外媒体
-  - RULE-SET,twitter,即时通讯
   - RULE-SET,vercel,开发服务
   - RULE-SET,viu-portable-regex,国外媒体
   - RULE-SET,viu-portable,国外媒体
@@ -604,6 +603,7 @@ rules:
   - RULE-SET,hbo,国外媒体
   - RULE-SET,steam,游戏平台
   - RULE-SET,quora,国外网站
+  - RULE-SET,twitter,即时通讯
   - RULE-SET,tvb,国外媒体
   - RULE-SET,disney,国外媒体
   - RULE-SET,china-media,国内媒体
@@ -1123,12 +1123,6 @@ rule-providers:
     url: https://raw.githubusercontent.com/luckiestultra/netatlas/main/clients/stash/rules/twitch.yaml
     path: ./rules/netatlas-twitch.yaml
     interval: 86400
-  twitter:
-    behavior: classical
-    format: yaml
-    url: https://raw.githubusercontent.com/luckiestultra/netatlas/main/clients/stash/rules/twitter.yaml
-    path: ./rules/netatlas-twitter.yaml
-    interval: 86400
   vercel:
     behavior: classical
     format: yaml
@@ -1242,6 +1236,12 @@ rule-providers:
     format: yaml
     url: https://raw.githubusercontent.com/luckiestultra/netatlas/main/clients/stash/rules/quora.yaml
     path: ./rules/netatlas-quora.yaml
+    interval: 86400
+  twitter:
+    behavior: classical
+    format: yaml
+    url: https://raw.githubusercontent.com/luckiestultra/netatlas/main/clients/stash/rules/twitter.yaml
+    path: ./rules/netatlas-twitter.yaml
     interval: 86400
   tvb:
     behavior: classical

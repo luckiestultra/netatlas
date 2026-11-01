@@ -2,7 +2,7 @@
   "version": 1,
   "builder": "netatlas@0.1.0",
   "input": {
-    "sha256": "76f9cb73f581325cf0a7dddd6da133d5d0b62b37941e5fdceb4ceeccd968625f",
+    "sha256": "8ba9a38455508d756299f4aaa7715bc6ea6421d9b3a2eb0c5412273ccb554197",
     "files": [
       {
         "path": "LICENSE",
@@ -10,7 +10,7 @@
       },
       {
         "path": "THIRD_PARTY_NOTICES.md",
-        "sha256": "8bbff67faf7f51bb418daa7a740ba96ac9b0aa40db8cf07871e863c5c7ebd60d"
+        "sha256": "b47dff161306841e376307cf62eac80d5d7380af189cb7518fdc171b424877e2"
       },
       {
         "path": "metadata/clients.json",
@@ -62,7 +62,7 @@
       },
       {
         "path": "metadata/routing.json",
-        "sha256": "e64cc1a63bf6a139ce04c879f42dc7798a0d4a76880b19898b608f0e33c0917a"
+        "sha256": "3e62004668a35803080a23a99f8dcbb5ca9f9a9fdf506b975a798c2cba4d3a00"
       },
       {
         "path": "metadata/upstreams.json",
@@ -1050,11 +1050,11 @@
       },
       {
         "path": "tools/lib/integrations.mjs",
-        "sha256": "52dddce0d44bf7c5781132a20184a5608968124d52cd13b85d4a4554a7a50713"
+        "sha256": "33d40dca58954ce1389c23c3790c73ad1cb7b1028d83d25e2750739538d2b1f8"
       },
       {
         "path": "tools/lib/managed-apple.mjs",
-        "sha256": "643acb9d441a742a6af5d5e00387f4bafb91857e60acd3adeff393d5da2d9fa3"
+        "sha256": "319e6533d36a8a0eea4e5afcec0fc2fea09f8a05ca17751beb73d36282980c70"
       },
       {
         "path": "tools/lib/managed-native.mjs",
@@ -1082,7 +1082,7 @@
       },
       {
         "path": "tools/lib/native.mjs",
-        "sha256": "22513c8368d5f253e7de8907d799a26013a8a7c2589b6c0646d128fc9fae97a1"
+        "sha256": "8c7fcc0087ef85f4fcb37ceaa2944b5f41a915a0f706540f9c01220799f5af7d"
       },
       {
         "path": "tools/lib/policies.mjs",
@@ -1090,7 +1090,7 @@
       },
       {
         "path": "tools/lib/private-profile.mjs",
-        "sha256": "a6f3a7142bf88c253eaaf05848ca729f0898a233073d542c82f85bc886ab510b"
+        "sha256": "17096b594788fe424d835475d646c5e888226eb3bcea63ef908a477f8f6a8122"
       },
       {
         "path": "tools/lib/profile-workflow.mjs",
@@ -1098,7 +1098,7 @@
       },
       {
         "path": "tools/lib/profiles-apple.mjs",
-        "sha256": "d7bbbbcde3bd4f574a894fc82e9c7131477c83c790f39560b0889fb390fcd6d4"
+        "sha256": "df50fb489e60838fec536fe7b5dafc2550904e805f7d2da23dc27d9e35e53c33"
       },
       {
         "path": "tools/lib/profiles-native.mjs",
@@ -1158,7 +1158,7 @@
       },
       {
         "path": "tools/lib/subscription-tls-flow.mjs",
-        "sha256": "c7a3a7e890c844010fb8ec897448d3b6bda42e66fc0d1b94c5fc2a2ad270e7ec"
+        "sha256": "8df18989c13dd8c282f19b22f0f9d20db2459197d64c94721e5f18d26981a107"
       },
       {
         "path": "tools/lib/sync-lock.mjs",
@@ -1199,7 +1199,7 @@
       "id": "quantumultX",
       "name": "Quantumult X",
       "manifest": "quantumultX/manifest.json",
-      "sha256": "b8a1b0641a99f4e2b4e8589d65923903c2d74718a5dfddcc1f9bc338c4ceec05",
+      "sha256": "ec26259c14490771c5e7bb6bb6619c5f2424e760127cee20a3d225f759d55736",
       "rulesets": 118,
       "entries": 136944,
       "defaultRuleSets": 115,
@@ -1209,7 +1209,7 @@
       "id": "surge",
       "name": "Surge",
       "manifest": "surge/manifest.json",
-      "sha256": "3e4fb6af0528cceedac1b4ba0d96b87d52a562850a9f23c3934ee3419fe7da03",
+      "sha256": "ec469aa316517e53920dbd9d366bb60af722750f704df40251f2b53a2ac0f74a",
       "rulesets": 118,
       "entries": 136944,
       "defaultRuleSets": 115,
@@ -1219,7 +1219,7 @@
       "id": "loon",
       "name": "Loon",
       "manifest": "loon/manifest.json",
-      "sha256": "aab2c8eee930d153c53e869124a46229259b43fdda651c1a6f8ad9867a91883f",
+      "sha256": "2a43e2e3563be2a0012cdd76cbf51b3be11cdd1abb533691c75b2264692a2e4f",
       "rulesets": 118,
       "entries": 136944,
       "defaultRuleSets": 115,
@@ -1229,7 +1229,7 @@
       "id": "shadowrocket",
       "name": "Shadowrocket",
       "manifest": "shadowrocket/manifest.json",
-      "sha256": "ce5e8c131cc6ff0ee339e5f01c9d471a066274def71011b7f2ec35ae4d010b9b",
+      "sha256": "b01492de6c33f997ee36476a98664d6dad576244fe62408d7a702145f69be2ee",
       "rulesets": 118,
       "entries": 136944,
       "defaultRuleSets": 115,
@@ -1239,7 +1239,7 @@
       "id": "egern",
       "name": "Egern",
       "manifest": "egern/manifest.json",
-      "sha256": "7ca114fc35c83b0ca5a2dd287002ea392adc5c88b4535e15c412a20346f6d8b1",
+      "sha256": "3d3a802dcaffbfccccb6fbbb20c65e96cf6860523c22621c1fa3a87feeb18a17",
       "rulesets": 118,
       "entries": 136944,
       "defaultRuleSets": 115,
@@ -1249,7 +1249,7 @@
       "id": "stash",
       "name": "Stash",
       "manifest": "stash/manifest.json",
-      "sha256": "93e95748a35c33106a3ae02eee2f9e723b563c7b23755df35f181e1a75cbdba9",
+      "sha256": "155985745a44b8ece5884bdaefe3cf4a5837b7796de88fcfb55aefa742e77eab",
       "rulesets": 118,
       "entries": 136944,
       "defaultRuleSets": 115,
@@ -1259,7 +1259,7 @@
       "id": "mihomo",
       "name": "Mihomo",
       "manifest": "mihomo/manifest.json",
-      "sha256": "9d8333b1bc9449c65726f7eb6e52248b2eadf78dca238d11c776ab9def8361e4",
+      "sha256": "bad3e0c1a9771bb3f01cac80b9e80cafcb86f4131b2794fa0f89d870ccd2178c",
       "rulesets": 118,
       "entries": 136944,
       "defaultRuleSets": 115,
@@ -1269,12 +1269,12 @@
       "id": "singBox",
       "name": "sing-box",
       "manifest": "singBox/manifest.json",
-      "sha256": "14db9fdcc478fb240b57be77e95e8993dd884da46388341d6590e0f4f6982822",
+      "sha256": "3f7775d0fd026215982a426e36f2f8ae43e5ae69dcc28e3f043fbab3185a9de7",
       "rulesets": 118,
       "entries": 136944,
       "defaultRuleSets": 115,
       "defaultEntries": 29153
     }
   ],
-  "contentSha256": "c7440dd82bce908a65d7c8f737df3b467b1d4b4757326581f6a6bf4765b37fa6"
+  "contentSha256": "d9b06e69bbc1bd5825f56d65adef769154b7369092112b53fcc59413cadc1d45"
 }
