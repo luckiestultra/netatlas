@@ -35,7 +35,7 @@ rules/ 按具体应用或服务 ID 平铺，可单独订阅；QX 资源的 force
 | [baidu](rules/baidu.json) | 132 | MIT |
 | [bilibili](rules/bilibili.json) | 53 | MIT |
 | [blizzard](rules/blizzard.json) | 25 | MIT |
-| [bybit](rules/bybit.json) | 16 | MIT |
+| [bybit](rules/bybit.json) | 22 | MIT |
 | [claude](rules/claude.json) | 19 | MIT |
 | [coolapk](rules/coolapk.json) | 3 | MIT |
 | [cursor](rules/cursor.json) | 5 | MIT |

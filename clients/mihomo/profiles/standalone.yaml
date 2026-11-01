@@ -757,11 +757,23 @@ dns:
       - https://1.1.1.1/dns-query#Proxy
     +.bybit-global.com:
       - https://1.1.1.1/dns-query#Proxy
+    +.bybit.ae:
+      - https://1.1.1.1/dns-query#Proxy
     +.bybit.biz:
       - https://1.1.1.1/dns-query#Proxy
     +.bybit.cloud:
       - https://1.1.1.1/dns-query#Proxy
     +.bybit.com:
+      - https://1.1.1.1/dns-query#Proxy
+    +.bybit.eu:
+      - https://1.1.1.1/dns-query#Proxy
+    +.bybit.id:
+      - https://1.1.1.1/dns-query#Proxy
+    +.bybit.kz:
+      - https://1.1.1.1/dns-query#Proxy
+    +.bybit.tr:
+      - https://1.1.1.1/dns-query#Proxy
+    +.bybitgeorgia.ge:
       - https://1.1.1.1/dns-query#Proxy
     +.bybitglobal.com:
       - https://1.1.1.1/dns-query#Proxy
@@ -30986,9 +30998,15 @@ rules:
   - DOMAIN-SUFFIX,byapps.net,Bybit
   - DOMAIN-SUFFIX,bybdc6.com,Bybit
   - DOMAIN-SUFFIX,bybit-global.com,Bybit
+  - DOMAIN-SUFFIX,bybit.ae,Bybit
   - DOMAIN-SUFFIX,bybit.biz,Bybit
   - DOMAIN-SUFFIX,bybit.cloud,Bybit
   - DOMAIN-SUFFIX,bybit.com,Bybit
+  - DOMAIN-SUFFIX,bybit.eu,Bybit
+  - DOMAIN-SUFFIX,bybit.id,Bybit
+  - DOMAIN-SUFFIX,bybit.kz,Bybit
+  - DOMAIN-SUFFIX,bybit.tr,Bybit
+  - DOMAIN-SUFFIX,bybitgeorgia.ge,Bybit
   - DOMAIN-SUFFIX,bybitglobal.com,Bybit
   - DOMAIN-SUFFIX,bycbe.com,Bybit
   - DOMAIN-SUFFIX,bycsi.com,Bybit

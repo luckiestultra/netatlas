@@ -1464,9 +1464,15 @@
           "byapps.net",
           "bybdc6.com",
           "bybit-global.com",
+          "bybit.ae",
           "bybit.biz",
           "bybit.cloud",
           "bybit.com",
+          "bybit.eu",
+          "bybit.id",
+          "bybit.kz",
+          "bybit.tr",
+          "bybitgeorgia.ge",
           "bybitglobal.com",
           "bycbe.com",
           "bycsi.com",
@@ -29529,6 +29535,13 @@
       },
       {
         "domain_suffix": [
+          "bybit.ae"
+        ],
+        "action": "route",
+        "outbound": "Bybit"
+      },
+      {
+        "domain_suffix": [
           "bybit.biz"
         ],
         "action": "route",
@@ -29544,6 +29557,41 @@
       {
         "domain_suffix": [
           "bybit.com"
+        ],
+        "action": "route",
+        "outbound": "Bybit"
+      },
+      {
+        "domain_suffix": [
+          "bybit.eu"
+        ],
+        "action": "route",
+        "outbound": "Bybit"
+      },
+      {
+        "domain_suffix": [
+          "bybit.id"
+        ],
+        "action": "route",
+        "outbound": "Bybit"
+      },
+      {
+        "domain_suffix": [
+          "bybit.kz"
+        ],
+        "action": "route",
+        "outbound": "Bybit"
+      },
+      {
+        "domain_suffix": [
+          "bybit.tr"
+        ],
+        "action": "route",
+        "outbound": "Bybit"
+      },
+      {
+        "domain_suffix": [
+          "bybitgeorgia.ge"
         ],
         "action": "route",
         "outbound": "Bybit"

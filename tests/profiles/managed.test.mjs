@@ -17,7 +17,7 @@ for (const client of clients) {
     assert.equal(profile.path, `profiles/default.${client.profileExtension}`);
     const result = validateManagedProfile(client.id, profile.content, rulesets);
     assert.equal(result.resources, resourceCounts[client.id]);
-    assert.equal(result.entries, 29_169);
+    assert.equal(result.entries, 29_175);
     assert.doesNotMatch(profile.content, /Matrix|npm run|private input|your-service-provider/);
     assert.ok(profile.content.includes('日本节点'));
     assert.ok(profile.content.includes('自动选择'));

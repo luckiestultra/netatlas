@@ -35,7 +35,7 @@ rules/ 按具体应用或服务 ID 平铺，可单独订阅；QX 资源的 force
 | [baidu](rules/baidu.yaml) | 132 | MIT |
 | [bilibili](rules/bilibili.yaml) | 53 | MIT |
 | [blizzard](rules/blizzard.yaml) | 25 | MIT |
-| [bybit](rules/bybit.yaml) | 16 | MIT |
+| [bybit](rules/bybit.yaml) | 22 | MIT |
 | [claude](rules/claude.yaml) | 19 | MIT |
 | [coolapk](rules/coolapk.yaml) | 3 | MIT |
 | [cursor](rules/cursor.yaml) | 5 | MIT |

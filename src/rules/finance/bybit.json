@@ -25,6 +25,10 @@
     },
     {
       "type": "domain-suffix",
+      "value": "bybit.ae"
+    },
+    {
+      "type": "domain-suffix",
       "value": "bybit.biz"
     },
     {
@@ -34,6 +38,26 @@
     {
       "type": "domain-suffix",
       "value": "bybit.com"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "bybit.eu"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "bybit.id"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "bybit.kz"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "bybit.tr"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "bybitgeorgia.ge"
     },
     {
       "type": "domain-suffix",

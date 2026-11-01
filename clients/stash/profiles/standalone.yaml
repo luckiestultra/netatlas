@@ -752,11 +752,23 @@ dns:
       - https://1.1.1.1/dns-query
     +.bybit-global.com:
       - https://1.1.1.1/dns-query
+    +.bybit.ae:
+      - https://1.1.1.1/dns-query
     +.bybit.biz:
       - https://1.1.1.1/dns-query
     +.bybit.cloud:
       - https://1.1.1.1/dns-query
     +.bybit.com:
+      - https://1.1.1.1/dns-query
+    +.bybit.eu:
+      - https://1.1.1.1/dns-query
+    +.bybit.id:
+      - https://1.1.1.1/dns-query
+    +.bybit.kz:
+      - https://1.1.1.1/dns-query
+    +.bybit.tr:
+      - https://1.1.1.1/dns-query
+    +.bybitgeorgia.ge:
       - https://1.1.1.1/dns-query
     +.bybitglobal.com:
       - https://1.1.1.1/dns-query
@@ -30977,9 +30989,15 @@ rules:
   - DOMAIN-SUFFIX,byapps.net,Bybit
   - DOMAIN-SUFFIX,bybdc6.com,Bybit
   - DOMAIN-SUFFIX,bybit-global.com,Bybit
+  - DOMAIN-SUFFIX,bybit.ae,Bybit
   - DOMAIN-SUFFIX,bybit.biz,Bybit
   - DOMAIN-SUFFIX,bybit.cloud,Bybit
   - DOMAIN-SUFFIX,bybit.com,Bybit
+  - DOMAIN-SUFFIX,bybit.eu,Bybit
+  - DOMAIN-SUFFIX,bybit.id,Bybit
+  - DOMAIN-SUFFIX,bybit.kz,Bybit
+  - DOMAIN-SUFFIX,bybit.tr,Bybit
+  - DOMAIN-SUFFIX,bybitgeorgia.ge,Bybit
   - DOMAIN-SUFFIX,bybitglobal.com,Bybit
   - DOMAIN-SUFFIX,bycbe.com,Bybit
   - DOMAIN-SUFFIX,bycsi.com,Bybit

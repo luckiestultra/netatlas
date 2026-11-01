@@ -10047,18 +10047,21 @@
         "type": "local",
         "license": "MIT",
         "references": [
-          "https://github.com/luckiestultra/netatlas/blob/main/docs/rules/bybit.md"
+          "https://github.com/luckiestultra/netatlas/blob/main/docs/rules/bybit.md",
+          "https://bybit-exchange.github.io/docs/v5/guide#authentication",
+          "https://bybit-exchange.github.io/docs/v5/ws/connect#websocket-endpoints",
+          "https://github.com/bybit-exchange/docs/blob/b255af1fd226d187231499b23ce62b110e5a4989/docs/v5/guide.mdx"
         ],
-        "description": "Exactly the 16 routing conditions supplied by the repository owner on 2026-11-02: 14 suffixes and 2 exact hosts; no inferred or downloaded additions.",
-        "author": "NetAtlas owner-provided selection",
+        "description": "Owner-provided 14 suffixes and 2 exact hosts, plus six dedicated regional Bybit suffixes verified against official REST/WebSocket documentation on 2026-11-02. Partner-brand and institution-specific endpoints are documented separately, not widened into default parent-domain rules.",
+        "author": "NetAtlas contributors; owner-provided base and official regional endpoint facts",
         "updatedAt": "2026-11-02"
       },
       "files": [],
       "appliedExclusions": [],
       "attributeFiltered": 0,
-      "selection": "owner-supplied 16 conditions; exact-host boundaries preserved",
-      "outputSha256": "22003026f68fda11ccc845eeb6b1f897d6fd569ac8cc1a1d58f167a75fd05b6f",
-      "entryCount": 16,
+      "selection": "owner base 16 plus six documented dedicated regional suffixes; 20 suffixes and 2 exact hosts",
+      "outputSha256": "dc2ee1636a9c24bfedb7b14f5d1f567f43982904e5c6eaba43b7defe509ecc96",
+      "entryCount": 22,
       "updatedAt": "2026-11-02"
     }
   ]

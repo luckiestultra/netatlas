@@ -2,14 +2,14 @@
   "version": 1,
   "client": "egern",
   "builder": "netatlas@0.1.0",
-  "inputSha256": "aa82644cb13c986ecd98e655293c3b914a1ccb3be65c278331f50575ae0e07ed",
+  "inputSha256": "65efae71b64c1c1568ba0cb6e3baf4572ef585dd15b617128c13704167a1208e",
   "baseUrl": "https://raw.githubusercontent.com/luckiestultra/netatlas/main",
   "targetVersion": null,
   "counts": {
     "defaultRuleSets": 116,
-    "defaultEntries": 29169,
+    "defaultEntries": 29175,
     "optionalRuleSets": 3,
-    "totalEntries": 136960
+    "totalEntries": 136966
   },
   "routingExtensions": {
     "native": {
@@ -4164,17 +4164,20 @@
           "type": "local",
           "license": "MIT",
           "references": [
-            "https://github.com/luckiestultra/netatlas/blob/main/docs/rules/bybit.md"
+            "https://github.com/luckiestultra/netatlas/blob/main/docs/rules/bybit.md",
+            "https://bybit-exchange.github.io/docs/v5/guide#authentication",
+            "https://bybit-exchange.github.io/docs/v5/ws/connect#websocket-endpoints",
+            "https://github.com/bybit-exchange/docs/blob/b255af1fd226d187231499b23ce62b110e5a4989/docs/v5/guide.mdx"
           ],
-          "description": "Exactly the 16 routing conditions supplied by the repository owner on 2026-11-02: 14 suffixes and 2 exact hosts; no inferred or downloaded additions.",
-          "author": "NetAtlas owner-provided selection",
+          "description": "Owner-provided 14 suffixes and 2 exact hosts, plus six dedicated regional Bybit suffixes verified against official REST/WebSocket documentation on 2026-11-02. Partner-brand and institution-specific endpoints are documented separately, not widened into default parent-domain rules.",
+          "author": "NetAtlas contributors; owner-provided base and official regional endpoint facts",
           "updatedAt": "2026-11-02"
         },
         "license": "MIT",
-        "sha256": "22003026f68fda11ccc845eeb6b1f897d6fd569ac8cc1a1d58f167a75fd05b6f",
-        "entries": 16,
+        "sha256": "dc2ee1636a9c24bfedb7b14f5d1f567f43982904e5c6eaba43b7defe509ecc96",
+        "entries": 22,
         "updatedAt": "2026-11-02",
-        "projection": "owner-supplied 16 conditions; exact-host boundaries preserved",
+        "projection": "owner base 16 plus six documented dedicated regional suffixes; 20 suffixes and 2 exact hosts",
         "excludedExpressions": []
       }
     ],
@@ -4253,7 +4256,7 @@
       },
       {
         "path": "src/rules/finance/bybit.json",
-        "sha256": "22003026f68fda11ccc845eeb6b1f897d6fd569ac8cc1a1d58f167a75fd05b6f"
+        "sha256": "dc2ee1636a9c24bfedb7b14f5d1f567f43982904e5c6eaba43b7defe509ecc96"
       },
       {
         "path": "src/rules/gaming/blizzard.json",
@@ -4695,12 +4698,12 @@
     },
     {
       "path": "profiles/standalone.yaml",
-      "sha256": "b7861a0ce3add99c1a9c0ac2a93566385e2def5e3799c59baa4ce53c4df2c19b",
-      "bytes": 3675814
+      "sha256": "1dedde4e3f6c1005dd07eed981763bcaad89e7d0bd75ef6860966bc5e69af291",
+      "bytes": 3676596
     },
     {
       "path": "README.md",
-      "sha256": "901a27ee30fdc377c8db67e70f85ddbcd46d3dcce9a2f370b4f200a96642ceef",
+      "sha256": "f4c5578d14a5241dec81ddd59c360b295131e0ca854b5277e3e0046dd32f96d6",
       "bytes": 12276
     },
     {
@@ -4825,8 +4828,8 @@
     },
     {
       "path": "rules/bybit.yaml",
-      "sha256": "c1cc6616971c9d4c168c634a9662168bd5157069968a1477b3678f9d2a7f3d5a",
-      "bytes": 315
+      "sha256": "9f06761965ee767f7571821100cc14a9a0a8f616a0409b4ec5f0deadc93cc113",
+      "bytes": 400
     },
     {
       "path": "rules/bytedance.yaml",

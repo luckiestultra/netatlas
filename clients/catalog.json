@@ -2,7 +2,7 @@
   "version": 1,
   "builder": "netatlas@0.1.0",
   "input": {
-    "sha256": "aa82644cb13c986ecd98e655293c3b914a1ccb3be65c278331f50575ae0e07ed",
+    "sha256": "65efae71b64c1c1568ba0cb6e3baf4572ef585dd15b617128c13704167a1208e",
     "files": [
       {
         "path": "LICENSE",
@@ -66,7 +66,7 @@
       },
       {
         "path": "metadata/upstreams.json",
-        "sha256": "75c2941417131e2ef044b9f4e476c751ac158fbf40a58d95cb99f3618c40af64"
+        "sha256": "04dabfca0684bd71e0408b464ea864e0f46f35c2a61ed3a0930b823838d691b4"
       },
       {
         "path": "package-lock.json",
@@ -290,7 +290,7 @@
       },
       {
         "path": "src/rules/finance/bybit.json",
-        "sha256": "22003026f68fda11ccc845eeb6b1f897d6fd569ac8cc1a1d58f167a75fd05b6f"
+        "sha256": "dc2ee1636a9c24bfedb7b14f5d1f567f43982904e5c6eaba43b7defe509ecc96"
       },
       {
         "path": "src/rules/gaming/blizzard.json",
@@ -1203,82 +1203,82 @@
       "id": "quantumultX",
       "name": "Quantumult X",
       "manifest": "quantumultX/manifest.json",
-      "sha256": "1053146e9e56d0571efc5b6ad393103dcaeedb607cacb537e6dd6bc91ff604cd",
+      "sha256": "a89fee39878fec3848e4c37434446ec8f9689360607872b97a715f25947174e3",
       "rulesets": 119,
-      "entries": 136960,
+      "entries": 136966,
       "defaultRuleSets": 116,
-      "defaultEntries": 29169
+      "defaultEntries": 29175
     },
     {
       "id": "surge",
       "name": "Surge",
       "manifest": "surge/manifest.json",
-      "sha256": "8010ba5681710b27ee398780104d69f3d578f96b31dad662716ec6bcdfcc7a90",
+      "sha256": "664718883360a96bc6ee8379e4843fc6c9eb54fdee56256e4f58570085d713d3",
       "rulesets": 119,
-      "entries": 136960,
+      "entries": 136966,
       "defaultRuleSets": 116,
-      "defaultEntries": 29169
+      "defaultEntries": 29175
     },
     {
       "id": "loon",
       "name": "Loon",
       "manifest": "loon/manifest.json",
-      "sha256": "2b9173dfef6e3e39220c7efb5b0bd72dee3ff1ab5e03e847b4990e60f24953ae",
+      "sha256": "dd6c1f95cab6b4e2bc0faecc35d64dd991c3d631de8f81bb3260aa0eb0a17893",
       "rulesets": 119,
-      "entries": 136960,
+      "entries": 136966,
       "defaultRuleSets": 116,
-      "defaultEntries": 29169
+      "defaultEntries": 29175
     },
     {
       "id": "shadowrocket",
       "name": "Shadowrocket",
       "manifest": "shadowrocket/manifest.json",
-      "sha256": "d157efe44f5aadbbbedc3aa2e1a2ae8caf79731b8e486a5f4526ff9873bae996",
+      "sha256": "751085296c5610299c2592c8409745591c3148237c0e366150c059d0870ef2e9",
       "rulesets": 119,
-      "entries": 136960,
+      "entries": 136966,
       "defaultRuleSets": 116,
-      "defaultEntries": 29169
+      "defaultEntries": 29175
     },
     {
       "id": "egern",
       "name": "Egern",
       "manifest": "egern/manifest.json",
-      "sha256": "82dd3df4030bd9a5fdf4fab1058dd299e516b81351d4b9618fb6a6304b51e93a",
+      "sha256": "0cad0af94576ad090f122b876deb2038920368bff229d8f52454481a0f3bd61d",
       "rulesets": 119,
-      "entries": 136960,
+      "entries": 136966,
       "defaultRuleSets": 116,
-      "defaultEntries": 29169
+      "defaultEntries": 29175
     },
     {
       "id": "stash",
       "name": "Stash",
       "manifest": "stash/manifest.json",
-      "sha256": "392e3ed77c5c999059fea1bbbc26c7d423d93445a629f63b87219afcfc794178",
+      "sha256": "6e7d1730f5e2acabaac9a436c807f0ec59bb2d0578edf8650551a3dd5a2c8b69",
       "rulesets": 119,
-      "entries": 136960,
+      "entries": 136966,
       "defaultRuleSets": 116,
-      "defaultEntries": 29169
+      "defaultEntries": 29175
     },
     {
       "id": "mihomo",
       "name": "Mihomo",
       "manifest": "mihomo/manifest.json",
-      "sha256": "930529dd6246308ff977ffd15ab6c590df1f3bed7b52e59bdbe32de421c6e7cf",
+      "sha256": "794d5e8e3239f596874aeb2f21885342779a9b041da308b7debe0a07826edbed",
       "rulesets": 119,
-      "entries": 136960,
+      "entries": 136966,
       "defaultRuleSets": 116,
-      "defaultEntries": 29169
+      "defaultEntries": 29175
     },
     {
       "id": "singBox",
       "name": "sing-box",
       "manifest": "singBox/manifest.json",
-      "sha256": "d75363c04f2a0a318d6a0c9b12626a3761b63297f851558701171ad111be6069",
+      "sha256": "7d1b0e6994ba5a51f22f8308f9fccb295f85a8df57a1dd8351cb6a63b81fd1a4",
       "rulesets": 119,
-      "entries": 136960,
+      "entries": 136966,
       "defaultRuleSets": 116,
-      "defaultEntries": 29169
+      "defaultEntries": 29175
     }
   ],
-  "contentSha256": "b6d5b7e225f3468f05db37e57792b053cb4bca7d8de60851fb20447301a30dec"
+  "contentSha256": "57c8130fd5e2d08755ce2e3d2e92bfaf532d5c3007e80960269bff826382deea"
 }

@@ -3868,6 +3868,9 @@ dns:
         match: bybit-global.com
         value: remote
     - domain_suffix:
+        match: bybit.ae
+        value: remote
+    - domain_suffix:
         match: bybit.biz
         value: remote
     - domain_suffix:
@@ -3875,6 +3878,21 @@ dns:
         value: remote
     - domain_suffix:
         match: bybit.com
+        value: remote
+    - domain_suffix:
+        match: bybit.eu
+        value: remote
+    - domain_suffix:
+        match: bybit.id
+        value: remote
+    - domain_suffix:
+        match: bybit.kz
+        value: remote
+    - domain_suffix:
+        match: bybit.tr
+        value: remote
+    - domain_suffix:
+        match: bybitgeorgia.ge
         value: remote
     - domain_suffix:
         match: bybitglobal.com
@@ -63019,6 +63037,9 @@ rules:
       match: bybit-global.com
       policy: Bybit
   - domain_suffix:
+      match: bybit.ae
+      policy: Bybit
+  - domain_suffix:
       match: bybit.biz
       policy: Bybit
   - domain_suffix:
@@ -63026,6 +63047,21 @@ rules:
       policy: Bybit
   - domain_suffix:
       match: bybit.com
+      policy: Bybit
+  - domain_suffix:
+      match: bybit.eu
+      policy: Bybit
+  - domain_suffix:
+      match: bybit.id
+      policy: Bybit
+  - domain_suffix:
+      match: bybit.kz
+      policy: Bybit
+  - domain_suffix:
+      match: bybit.tr
+      policy: Bybit
+  - domain_suffix:
+      match: bybitgeorgia.ge
       policy: Bybit
   - domain_suffix:
       match: bybitglobal.com
