@@ -24,7 +24,7 @@ HTTPS-upgrade 为固定 GPL-2.0 原文的六主机投影，保留 path/query，�
 
 共享纯核心 src/features/geoip/core.mjs 支持 ipwho.is、IPinfo legacy/Lite、ipwho.de、ip-api 响应格式。外部字段必须校验类型；空 ASN、空组织、无城市、无数据、错误 JSON、API 错误状态、限流和传输超时不得导致未完成回调。
 
-结果保留来源给出的地理信息，不推断物理机房，不硬编码某国或某个用户 IP，不填入虚构城市或运营商。QX显示按源国家代码使用固定Unicode CLDR 48中文国家/地区名称，原始provider字段不改；正常 title 仅显示国旗、国家和实际地区/城市，不重复 IP；subtitle、ip、description 保留完整源 IP。第二行压缩组织名以优先保留 ASN/IP，长 IPv6 可独占第二行；完整字段保留在 description 中，不据此声称原生卡片会显示这些字段。地区短名和去重仅作用于显示，蓝色星标由 QX 原生决定。CLDR数据采用Unicode-3.0许可，固定版本、原文哈希与完整许可分别保留在localization目录；生成脚本带完整Unicode许可。收到响应、定位成功和网络整体正常是不同事实。VM验证不等于原生QX界面截图或设备实测。
+结果保留来源给出的地理信息，不推断物理机房，不硬编码某国或某个用户 IP，不填入虚构城市或运营商。QX显示按源国家代码使用固定Unicode CLDR 48中文国家/地区名称，原始provider字段不改；正常 title 仅显示国旗、国家和实际地区/城市，不重复 IP；subtitle、ip、description 保留完整源 IP。第二行仅保留 ASN/IP，组织名留在 description，长 IPv6 可独占第二行；完整字段保留在 description 中，不据此声称原生卡片会显示这些字段。地区短名和去重仅作用于显示，蓝色星标由 QX 原生决定。CLDR数据采用Unicode-3.0许可，固定版本、原文哈希与完整许可分别保留在localization目录；生成脚本带完整Unicode许可。收到响应、定位成功和网络整体正常是不同事实。VM验证不等于原生QX界面截图或设备实测。
 
 QX 原生适配器只解析 $response，不再联网或更改节点。默认 HTTP 查询使用 ipwho.is 的 lang=zh-CN 响应，保留省州、城市、时区、连接 ASN 和组织；只有布尔 success=true 才接受成功数据。输出保留完整 IP，缺失字段不推断，不在脚本里自动轮询或切换来源。生成的 fragments/geoip.conf 是 [general] 合并片段，不是重写订阅；它的脚本 URL 只有对应文件推送到公开提交后才能使用。 QX 主配置与片段统一引用普通 `main/.../geoip.js`，不附加版本摘要、短版本号、时间戳或片段参数。脚本更新由 QX 资源刷新处理，成功下载后才能在后续定位检查中使用新代码；仓库推送不强制清空客户端已有缓存。
 
@@ -84,3 +84,9 @@ info 只在成功后用已有 header 或过滤前伪节点的受限数字/日期
 GEOIP 接受合法自定义类别；实际库中是否有对应类别单独说明，不拿替代集合算完整。Surge 无等价的内置策略默认报错，显式 policy 覆盖后才允许。未实现的 reg/regout、sfilter/srename 及连接覆盖选项仍报错。
 
 新行为须有失败先行回归，完整 bundle 与源码都验证成功及失败、单次 $done 和最终 identity；对转换后的合成 SS 密码使用本地回环原生认证，错密码须被拒绝。不碰用户本地 QX、真实订阅和系统代理。Apple JavaScriptCore 与原生 sing-box/mihomo 结果不能冒充 QX GUI 导入或八端设备实测。
+
+### 字段诊断与旧实现对照（2026-11-02）
+
+未知字段的拒绝必须提供固定格式上下文；仅允许登记过的公共schema字段名进入错误，任意其他key统一显示 `[unrecognized name]`，不回显值、地址、凭据、订阅URL或标签。来源条件和正常转换结果不因诊断变化而改变。应以同一原生VLESS结构和真实用户fragment证明可接受的输入继续可用，并覆盖完整bundle的原子错误/单次完成/最终identity与隐私负控。
+
+旧KOP采取已知字段提取：fp/spx/client-fingerprint会在转换中被省去，当前严格实现仍拒绝这些参数。两者用同一合成输入对照，不将可转换等同于所有连接行为等价，也不据候选字段认定用户实际故障原因。QX Reality采用固定原生Safari指纹，不能宣称Chrome指纹被保留。用户提供的QX原生字段结构可成功转换，无法据此推导失败订阅这次下载的原始内容。

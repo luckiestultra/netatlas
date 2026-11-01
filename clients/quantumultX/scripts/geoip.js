@@ -276,20 +276,11 @@ var AtlasGeoIP = (function createGeoIP() {
     return values.join(' ');
   }
   function networkLine(result) {
-    var parts = result.asn ? [result.asn] : [];
-    var base = parts.concat([result.ip]).join(' · ');
-    // Preserve the complete address; long IPv6 gets the second line to itself.
-    if (base.length > 36) return result.ip;
-    var available = 36 - base.length - 3;
-    if (result.organization && available >= 6) {
-      var organization = result.organization;
-      if (organization.length > available) {
-        organization = organization.slice(0, available - 1).replace(/[\ud800-\udbff]$/, '').replace(/\s+$/, '') + '…';
-      }
-      parts.push(organization);
-    }
-    parts.push(result.ip);
-    return parts.join(' · ');
+    // QX clips by rendered pixel width, not character count. Keep carrier text
+    // in details so it cannot compete with the ASN and complete address.
+    var value = [result.asn, result.ip].filter(Boolean).join(' · ');
+    // Long IPv6 uses the line alone; QX still controls the native label width.
+    return value.length > 36 ? result.ip : value;
   }
   function details(result) {
     return lines([

@@ -1,5 +1,21 @@
 # 完整配置验证记录
 
+## 2026-11-02：旧脚本同输入对照、GeoIP 宽度与安全字段诊断
+
+用户截图显示 GeoIP 的副标题末尾 IP 被原生标签省略，四条订阅同时报 `Node conversion failed: unsupported field`。未请求截图订阅或真实 IP。用户提供的是转换后的原生 VLESS 行；用相同字段结构、合成地址/凭据及精确 `#info=1&out=套餐+重置&emoji=2` 参数验证，该结构在旧 KOP 和本仓库均成功，不能据此推断这次订阅下载的原始内容。
+
+对照原作者公开源码，在真实 Apple JavaScriptCore 执行 12 组旧/新解析器同输入测试（24次执行）：基础 VLESS URI、用户原生结构、套餐伪节点筛选两边均成功；URI 的 fp/spx、Clash client-fingerprint 在 KOP 中被省去，本仓库则按严格校验拒绝，能复现截图同文错误。KOP 对任意未知键和非 vision flow 也可能直接丢弃，不据此放宽全部连接字段。官方 QX [指纹说明](https://github.com/crossutility/Quantumult-X/blob/master/sample.conf#L162-L164) 表明 Reality 使用原生 Safari 指纹，不能将忽略 Chrome 偏好称为无损保留。线上 KOP 源 SHA-256 为 `1315ad57a31a2431a9fdf3d9fa0c892f7e91b9fa74f1c81bdaac04d521817b67`。这些是已复现的格式差异，实际订阅究竟是哪一个字段导致失败仍未取得证据；本次发布不改变字段接受策略。
+
+GeoIP 对照 [旧 IP-API.js](https://github.com/I-am-R-E/Functional-Store-Hub/blob/6ddebd526ed0a7598bd2def84452b76d85fcf1ba/GeoLocationChecker/QuantumultX/IP-API.js)，20个合成响应、两版本、两种完成模式共80次 JSC执行。旧运营商信息仅在 description，其副标题部分地名取自时区。此前本仓库把运营商插入36字符预算，字符数无法代表原生像素宽度；本次只显示 ASN 与完整 IP，组织保留详情，长 IPv6 独占行。源位置/ASN/IP数据和 Surge 输出保持不变，不借时区或节点名称猜城市。旧脚本 SHA-256 为 `42587f7139ae2c3b59fd83d2b8ec2e3898ab20d12bebadea70305e8e5b077d02`。
+
+字段诊断现在给出固定来源上下文与登记的公共字段名，例如 `unsupported field in URI options: fp`、`unsupported field in sing-box TLS: utls`；任意未知key只显示 `[unrecognized name]`，所有值、订阅URL、地址、UUID、密钥和标签均不回显。先记录8项新诊断回归的旧实现7失败/1原生正例通过，再修复；GeoIP新布局回归同样先在旧实现失败。正常转换、接受范围、严格拒绝与单次完成保持。
+
+最终完整 `npm test` 697项：689通过、0失败、8项原生 opt-in跳过；190项 GeoIP/解析器定向检查通过。独立红方对诊断做285组旧新差异检查，接受范围和有效输出不变，泄露原始key的隔离变异被2项隐私测试检出；GeoIP另有240个成功输入与10个错误输入的源数据/Surge/非subtitle输出相等，以及20个生成脚本身份测试。最终实际生成脚本在 Apple JavaScriptCore 中解析器228/228（211资源+17独立抽取helper）、GeoIP8/8通过；不冒充QX设备导入、真实订阅连接或原生像素测量。此次没有本机重跑内核流量套件，连接生成逻辑未改；Linux CI按推送提交另核验。
+
+`npm run check` 验证8客户端1137个产物无漂移，语义、引用、来源和哈希通过。冻结输入 `c702545c51dd9d4561b8cb7caeb622ed50fcab8f61b86812ac4c31627eee8ce1`（296个输入文件）。非清单成品仅 QX GeoIP、嵌入同一核心的 Surge GeoIP和 QX解析器变化，主配置/片段/规则及其余客户端内容不变。普通main链接不变，没有新参数开关、版本摘要、命令修改缓存或对用户QX的读写。
+
+产物 SHA-256：`clients/quantumultX/scripts/geoip.js` = `3388a934e49ac807ad0d9f981e0c40e1377435d4268397f31aca460298800aad`；`clients/quantumultX/scripts/resource-parser.js` = `8892c7fd2bfeaf64101e3fa75fa90a28cf072bc5f7c62eab43930431309f1c43`。
+
 ## 2026-11-01：QX 资源解析器审计与常用参数完善
 
 修复本轮九项审计问题，保持原子转换，不用筛选掩盖不支持的来源语义。实现及参数表见 [功能说明](features.md#资源解析器与正文替换)，来源、权限和未实现项见 [机器清单](../metadata/resource-parsers.json)。

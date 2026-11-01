@@ -19,7 +19,15 @@ function bool(value) {
   if(value===false||value===0||value==='0'||value==='false')return false;
   error('invalid boolean');
 }
-function keys(o, allowed) { for(const k of Object.keys(o))if(!allowed.includes(k))error('unsupported field'); }
+// Only registered public schema names can reach diagnostics; arbitrary keys and
+// all values may contain credentials. Context strings below are internal literals.
+const DIAGNOSTIC_FIELDS = new Set('fp spx fingerprint client-fingerprint utls ech mux multiplex packetEncoding packet-encoding certificate certificate_path certificate_public_key_sha256 certificates headers Host host path mode enabled server_name public_key short_id public-key short-id v ps add aid scy net allowInsecure encryption headerType peer pbk sid insecure udpport uot obfsparam protoparam group encrypt-method obfs-name tls-name ws ws-path ws-headers vmess-aead alterid'.split(' '));
+function keys(o, allowed, context='node options') {
+  for(const k of Object.keys(o))if(!(allowed instanceof Set?allowed.has(k):allowed.includes(k))){
+    const name=NATIVE_KEYS.has(k)||OBJECT_KEYS.includes(k)||DIAGNOSTIC_FIELDS.has(k)?k:'[unrecognized name]';
+    error('unsupported field in '+context+': '+name);
+  }
+}
 function aliases(o,groups){for(const group of groups)if(group.filter(key=>own(o,key)).length>1)error('duplicate alias options');}
 function strictJson(input){
   let result;try{result=JSON.parse(input);}catch{error('invalid JSON document');}
@@ -104,7 +112,7 @@ function tlsTransport(n,options={}) {
   const encrypted=security!=='none';if((n.type==='trojan'||n.type==='anytls')&&!encrypted)error('TLS required');
   if(n.type==='anytls'&&network!=='tcp')error('unsupported transport');
   if(network==='ws'&&!['vmess','vless','trojan'].includes(n.type))error('unsupported transport');
-  if(options.headers){keys(options.headers,['Host','host']);if(own(options.headers,'Host')&&own(options.headers,'host'))error('duplicate Host header');}
+  if(options.headers){keys(options.headers,['Host','host'],'WebSocket headers');if(own(options.headers,'Host')&&own(options.headers,'host'))error('duplicate Host header');}
   const headerHost=options.headers&&(options.headers.Host||options.headers.host);
   if(options.host!==undefined&&headerHost!==undefined)error('duplicate websocket Host options');
   const wsHost=options.host||headerHost;
@@ -139,9 +147,9 @@ function pluginParts(input) {
 }
 function ssPluginValues(n,name,values,clash=false) {
   if(name==='obfs-local'||name==='simple-obfs'){
-    keys(values,['obfs','obfs-host']);if(!['http','tls'].includes(values.obfs))error('unsupported plugin mode');put(n,'obfs',values.obfs);put(n,'obfs-host',values['obfs-host']);
+    keys(values,['obfs','obfs-host'],'SS plugin options');if(!['http','tls'].includes(values.obfs))error('unsupported plugin mode');put(n,'obfs',values.obfs);put(n,'obfs-host',values['obfs-host']);
   }else if(name==='v2ray-plugin'){
-    keys(values,['mode','tls','host','path','mux']);if(values.mode&&values.mode!=='websocket')error('unsupported plugin mode');if(values.mux===undefined||bool(values.mux))error('plugin multiplexing unsupported');
+    keys(values,['mode','tls','host','path','mux'],'SS plugin options');if(values.mode&&values.mode!=='websocket')error('unsupported plugin mode');if(values.mux===undefined||bool(values.mux))error('plugin multiplexing unsupported');
     const encrypted=values.tls!==undefined&&bool(values.tls);
     if(!clash&&values.tls!==undefined&&!encrypted)error('conflicting plugin TLS flag');
     // Clash/Mihomo's structured plugin defaults differ from SIP003 v2ray-plugin.
@@ -165,7 +173,7 @@ function ssPluginObject(n,plugin,options) {
   ssPluginValues(n,plugin==='obfs'?'obfs-local':plugin,values,true);
 }
 function parseSs(u) {
-  keys(u.query,['plugin','udp','tfo']);let authority=u.authority;
+  keys(u.query,['plugin','udp','tfo'],'SS URI');let authority=u.authority;
   // Legacy whole-Base64 credentials are already plaintext, unlike raw SIP002 userinfo.
   // https://shadowsocks.org/doc/configs.html
   const legacy=!authority.includes('@');if(legacy)authority=decodeBase64Text(authority);
@@ -175,7 +183,7 @@ function parseSs(u) {
 function parseSsr(u) {
   if(Object.keys(u.query).length)error('unsupported SSR URI');let body=decodeBase64Text(u.authority),p=body.indexOf('/?'),q=Object.create(null);
   if(p>=0){const options=body.slice(p+2);body=body.slice(0,p);for(const pair of options.split('&')){const at=pair.indexOf('=');if(at<1)error('invalid SSR option');const key=pair.slice(0,at);if(own(q,key))error('duplicate SSR option');q[key]=decode(pair.slice(at+1));}}
-  keys(q,['remarks','obfsparam','protoparam','group','udpport','uot']);if(q.udpport||q.uot)error('unsupported SSR transport');
+  keys(q,['remarks','obfsparam','protoparam','group','udpport','uot'],'SSR URI');if(q.udpport||q.uot)error('unsupported SSR transport');
   const m=/^(.*):(\d+):([^:]+):([^:]+):([^:]+):([^:]*)$/.exec(body);if(!m)error('invalid SSR node');
   const n=node('shadowsocks',{host:m[1],port:m[2]},q.remarks?decodeBase64Text(q.remarks):u.tag);put(n,'method',m[4]);put(n,'password',decodeBase64Text(m[6]));
   if(!['origin','auth_sha1_v4','auth_aes128_md5','auth_aes128_sha1','auth_chain_a','auth_chain_b'].includes(m[3]))error('unsupported SSR protocol');
@@ -185,7 +193,7 @@ function parseSsr(u) {
 }
 function parseVmess(u) {
   if(Object.keys(u.query).length)error('unsupported VMess URI');const o=strictJson(decodeBase64Text(u.authority));
-  keys(o,['v','ps','add','port','id','aid','scy','net','type','host','path','tls','sni','alpn','allowInsecure','skip-cert-verify']);
+  keys(o,['v','ps','add','port','id','aid','scy','net','type','host','path','tls','sni','alpn','allowInsecure','skip-cert-verify'],'VMess URI');
   aliases(o,[['allowInsecure','skip-cert-verify']]);
   if(o.v!==undefined&&String(o.v)!=='2')error('unsupported VMess version');if(o.net&&!['tcp','ws'].includes(o.net))error('unsupported transport');if(o.type&&!['none','http'].includes(o.type))error('unsupported TCP header');if(o.type==='http'&&o.net&&o.net!=='tcp')error('unsupported TCP header');
   const n=node('vmess',{host:o.add,port:o.port},o.ps||u.tag);put(n,'password',uuid(o.id));const method=o.scy||'auto';put(n,'method',method==='auto'?'chacha20-poly1305':method==='chacha20-ietf-poly1305'?'chacha20-poly1305':method);
@@ -194,7 +202,7 @@ function parseVmess(u) {
 }
 function parseGenericUri(u) {
   const type=({https:'http',socks:'socks5',socks5s:'socks5'})[u.scheme]||u.scheme;if(!TYPES.has(type))error('unsupported protocol');
-  keys(u.query,['encryption','security','type','headerType','host','path','sni','peer','pbk','sid','flow','alpn','allowInsecure','insecure','udp','tfo']);
+  keys(u.query,['encryption','security','type','headerType','host','path','sni','peer','pbk','sid','flow','alpn','allowInsecure','insecure','udp','tfo'],'URI options');
   aliases(u.query,[['sni','peer'],['allowInsecure','insecure']]);
   if(u.query.type&&!['tcp','ws'].includes(u.query.type))error('unsupported transport');
   if(u.query.headerType&&!['none','http'].includes(u.query.headerType))error('unsupported TCP header');if(u.query.headerType==='http'&&u.query.type&&u.query.type!=='tcp')error('unsupported TCP header');
@@ -212,15 +220,15 @@ function parseGenericUri(u) {
 }
 function fromUri(line) {const u=uri(line);return u.scheme==='ss'?parseSs(u):u.scheme==='ssr'?parseSsr(u):u.scheme==='vmess'?parseVmess(u):parseGenericUri(u);}
 const OBJECT_KEYS='name tag type server port server_port password username uuid cipher method remarks plugin plugin-opts plugin_opts udp udp-relay tfo fast-open tls servername sni skip-cert-verify network ws-opts flow reality-opts alpn alterId alter-id security version id transport tcp-fast-open udp_over_tcp protocol protocol-param obfs obfs-param'.split(' ');
-function fromObject(o) {
+function fromObject(o,context='node object') {
   if(!object(o))error('invalid node object');
   // SIP008 omits type; sing-box and Clash share their basic server fields.
   if(object(o.tls))return fromSingbox(o);
-  keys(o,OBJECT_KEYS);const type=({ss:'shadowsocks',ssr:'shadowsocks',https:'http',socks:'socks5'})[o.type]||o.type||(o.method?'shadowsocks':undefined);
+  keys(o,OBJECT_KEYS,context);const type=({ss:'shadowsocks',ssr:'shadowsocks',https:'http',socks:'socks5'})[o.type]||o.type||(o.method?'shadowsocks':undefined);
   aliases(o,[['name','tag','remarks'],['port','server_port'],['uuid','id'],['cipher','method','security'],['plugin-opts','plugin_opts'],['udp','udp-relay'],['tfo','fast-open','tcp-fast-open'],['servername','sni'],['alterId','alter-id']]);
   const common=['name','tag','type','server','port','server_port','remarks','udp','udp-relay','tfo','fast-open','tcp-fast-open','udp_over_tcp'];
   const protocolFields=type==='shadowsocks'?['cipher','method','password',...(o.type==='ssr'?['protocol','protocol-param','obfs','obfs-param']:['plugin','plugin-opts','plugin_opts'])]:['tls','servername','sni','skip-cert-verify','network','ws-opts','alpn',...(type==='vmess'?['uuid','id','cipher','security','alterId','alter-id','reality-opts']:type==='vless'?['uuid','id','flow','reality-opts']:['username','password'])];
-  keys(o,[...common,...protocolFields]);
+  keys(o,[...common,...protocolFields],context);
   const n=node(type,{host:o.server,port:o.port??o.server_port},o.name||o.tag||o.remarks);
   if(type==='shadowsocks'){
     put(n,'method',o.cipher||o.method);put(n,'password',o.password);
@@ -232,7 +240,7 @@ function fromObject(o) {
   }else{
     if(type==='vmess'||type==='vless'){put(n,'password',uuid(o.uuid||o.id));const method=o.cipher||o.security||'auto';put(n,'method',type==='vless'?'none':method==='auto'?'chacha20-poly1305':method==='chacha20-ietf-poly1305'?'chacha20-poly1305':method);if(+(o.alterId??o['alter-id']??0)!==0)error('legacy VMess alter ID unsupported');}
     else {put(n,'username',o.username);put(n,'password',o.password);}
-    const ws=o['ws-opts']||{};keys(ws,['path','headers']);if(o.network&&!['tcp','ws'].includes(o.network))error('unsupported transport');const reality=o['reality-opts'];if(reality)keys(reality,['public-key','short-id']);
+    const ws=o['ws-opts']||{};keys(ws,['path','headers'],context+' WebSocket');if(o.network&&!['tcp','ws'].includes(o.network))error('unsupported transport');const reality=o['reality-opts'];if(reality)keys(reality,['public-key','short-id'],context+' Reality');
     const enabled=o.tls===undefined?(type==='trojan'||type==='anytls'||o.type==='https'):bool(o.tls);
     if(o.type==='https'&&!enabled)error('TLS required by protocol');
     if(reality&&!enabled)error('Reality requires enabled TLS');
@@ -251,27 +259,27 @@ function fromObject(o) {
 }
 function fromSip008(o) {
   if(!object(o))error('invalid SIP008 server');
-  if(!own(o,'id'))return fromObject(o);
-  keys(o,['id','remarks','server','server_port','method','password','plugin','plugin_opts']);
+  if(!own(o,'id'))return fromObject(o,'SIP008 node');
+  keys(o,['id','remarks','server','server_port','method','password','plugin','plugin_opts'],'SIP008 node');
   // SIP008 id identifies updates. Only this envelope can remove it as metadata;
   // VMess and other formats still validate id as a protocol-specific field.
   uuid(o.id);
   const connection={...o};delete connection.id;
-  return fromObject(connection);
+  return fromObject(connection,'SIP008 node');
 }
 function fromSingbox(o) {
-  keys(o,['type','tag','server','server_port','method','password','uuid','security','alter_id','username','tls','transport','tcp_fast_open','udp_over_tcp','multiplex','flow','version']);
+  keys(o,['type','tag','server','server_port','method','password','uuid','security','alter_id','username','tls','transport','tcp_fast_open','udp_over_tcp','multiplex','flow','version'],'sing-box node');
   if(o.multiplex)error('multiplexing unsupported');
   if(o.tls!==undefined&&!object(o.tls))error('invalid TLS object');
-  const tls=o.tls||{};keys(tls,['enabled','server_name','insecure','alpn','reality']);if(tls.reality)keys(tls.reality,['enabled','public_key','short_id']);
+  const tls=o.tls||{};keys(tls,['enabled','server_name','insecure','alpn','reality'],'sing-box TLS');if(tls.reality)keys(tls.reality,['enabled','public_key','short_id'],'sing-box Reality');
   const tlsEnabled=bool(tls.enabled??false),realityEnabled=tls.reality?bool(tls.reality.enabled??false):false;
   if(realityEnabled&&!tlsEnabled)error('Reality requires enabled TLS');
-  const tr=o.transport||{};keys(tr,['type','path','headers']);const n=node(({shadowsocks:'shadowsocks',socks:'socks5'})[o.type]||o.type,{host:o.server,port:o.server_port},o.tag);
+  const tr=o.transport||{};keys(tr,['type','path','headers'],'sing-box transport');const n=node(({shadowsocks:'shadowsocks',socks:'socks5'})[o.type]||o.type,{host:o.server,port:o.server_port},o.tag);
   if(tr.type&&tr.type!=='ws')error('unsupported transport');
-  keys(o,['type','tag','server','server_port','tcp_fast_open','udp_over_tcp',...(n.type==='shadowsocks'?['method','password']:['tls','transport',...(n.type==='vless'?['uuid','flow']:n.type==='vmess'?['uuid','security','alter_id']:['username','password',...(n.type==='socks5'?['version']:[])])])]);
+  keys(o,['type','tag','server','server_port','tcp_fast_open','udp_over_tcp',...(n.type==='shadowsocks'?['method','password']:['tls','transport',...(n.type==='vless'?['uuid','flow']:n.type==='vmess'?['uuid','security','alter_id']:['username','password',...(n.type==='socks5'?['version']:[])])])],'sing-box node');
   if(o.version!==undefined&&(n.type!=='socks5'||String(o.version)!=='5'))error('unsupported SOCKS version');
   if(n.type==='shadowsocks'){
-    keys(o,['type','tag','server','server_port','method','password','tcp_fast_open','udp_over_tcp']);put(n,'method',o.method);put(n,'password',o.password);
+    keys(o,['type','tag','server','server_port','method','password','tcp_fast_open','udp_over_tcp'],'sing-box node');put(n,'method',o.method);put(n,'password',o.password);
   }else{
     if(n.type==='vless'||n.type==='vmess'){put(n,'password',uuid(o.uuid));put(n,'method',n.type==='vless'?'none':(o.security==='auto'||!o.security?'chacha20-poly1305':o.security));if(o.alter_id)error('legacy VMess alter ID unsupported');}else{put(n,'username',o.username);put(n,'password',o.password);}
     tlsTransport(n,{network:tr.type||'tcp',security:realityEnabled?'reality':tlsEnabled?'tls':'none',sni:tls.server_name,insecure:tls.insecure,alpn:tls.alpn,path:tr.path,headers:tr.headers,flow:o.flow,publicKey:tls.reality&&tls.reality.public_key,shortId:tls.reality&&tls.reality.short_id});
@@ -279,14 +287,14 @@ function fromSingbox(o) {
   putBool(n,'fast-open',o.tcp_fast_open);
   // sing-box's boolean shorthand uses SagerNet UoT v2; QX true is a different protocol.
   // https://sing-box.sagernet.org/configuration/shared/udp-over-tcp/
-  if(object(o.udp_over_tcp)){keys(o.udp_over_tcp,['enabled','version']);if(bool(o.udp_over_tcp.enabled??false)){const v=o.udp_over_tcp.version??2;if(![1,2].includes(v))error('unsupported UDP mode');put(n,'udp-over-tcp','sp.v'+v);}else put(n,'udp-over-tcp','false');}
+  if(object(o.udp_over_tcp)){keys(o.udp_over_tcp,['enabled','version'],'sing-box UoT');if(bool(o.udp_over_tcp.enabled??false)){const v=o.udp_over_tcp.version??2;if(![1,2].includes(v))error('unsupported UDP mode');put(n,'udp-over-tcp','sp.v'+v);}else put(n,'udp-over-tcp','false');}
   else if(o.udp_over_tcp!==undefined)put(n,'udp-over-tcp',bool(o.udp_over_tcp)?'sp.v2':'false');return n;
 }
 function fromProxy(line) {
   const p=line.indexOf('=');if(p<1)error('invalid proxy line');const name=line.slice(0,p).trim(),parts=csv(line.slice(p+1)),typeName=parts.shift().toLowerCase();
   const type=({ss:'shadowsocks',shadowsocks:'shadowsocks',shadowsocksr:'shadowsocks',https:'http',socks:'socks5','socks5-tls':'socks5'})[typeName]||typeName;
   const n=node(type,{host:parts.shift(),port:parts.shift()},name),pos=[];while(parts.length&&!parts[0].includes('='))pos.push(parts.shift());const o=assignment(parts);
-  keys(o,['udp-relay','udp','fast-open','tfo',...(type==='shadowsocks'?['encrypt-method','password',...(typeName==='shadowsocksr'?['obfs','obfs-param','protocol','protocol-param']:['obfs','obfs-host','obfs-name'])]:['username','password','tls','over-tls','sni','tls-name','skip-cert-verify','ws','ws-path','ws-headers','transport','path','host','tls13',...(type==='vmess'?['vmess-aead','aead','encrypt-method','alterid']:[])])]);
+  keys(o,['udp-relay','udp','fast-open','tfo',...(type==='shadowsocks'?['encrypt-method','password',...(typeName==='shadowsocksr'?['obfs','obfs-param','protocol','protocol-param']:['obfs','obfs-host','obfs-name'])]:['username','password','tls','over-tls','sni','tls-name','skip-cert-verify','ws','ws-path','ws-headers','transport','path','host','tls13',...(type==='vmess'?['vmess-aead','aead','encrypt-method','alterid']:[])])],'Surge/Loon node');
   aliases(o,[['udp-relay','udp'],['fast-open','tfo'],['tls','over-tls'],['sni','tls-name'],['ws','transport'],['path','ws-path'],['aead','vmess-aead'],['obfs','obfs-name']]);
   function credential(index,names){if(pos[index]!==undefined&&names.some(key=>own(o,key)))error('duplicate positional and named options');aliases(o,[names]);return pos[index]!==undefined?pos[index]:o[names.find(key=>own(o,key))];}
   if(type==='shadowsocks'){
@@ -313,7 +321,8 @@ function fromProxy(line) {
 }
 function validate(n,index) {
   const f=n.fields;
-  for(const k of Object.keys(f)){if(!NATIVE_KEYS.has(k))error('unsupported native field');text(f[k]);if(BOOL_KEYS.has(k)&&!['true','false'].includes(f[k]))error('invalid native boolean');}
+  keys(f,NATIVE_KEYS,'QX native');
+  for(const k of Object.keys(f)){text(f[k]);if(BOOL_KEYS.has(k)&&!['true','false'].includes(f[k]))error('invalid native boolean');}
   if(n.type==='shadowsocks'){if(!CIPHERS.has(f.method)||!f.password)error('unsupported cipher or credentials');}
   if(n.type==='vmess'||n.type==='vless'){uuid(f.password);if(n.type==='vless'&&f.method!=='none')error('unsupported VLESS method');if(n.type==='vmess'&&!['none','aes-128-gcm','chacha20-poly1305','chacha20-ietf-poly1305'].includes(f.method))error('unsupported VMess method');}
   if(['trojan','anytls'].includes(n.type)&&!f.password)error('missing password');
@@ -337,7 +346,7 @@ function validate(n,index) {
   const name=text(f.tag||n.name||n.type+'-'+(index+1));f.tag=name;return n;
 }
 function fromNative(line) {
-  const parts=csv(line),p=parts[0].indexOf('='),type=parts[0].slice(0,p).trim().toLowerCase();const n=node(type,endpoint(parts[0].slice(p+1).trim()));n.fields=assignment(parts.slice(1));for(const k of Object.keys(n.fields))if(!NATIVE_KEYS.has(k))error('unsupported native field');if(n.fields.tag)n.original=line;return n;
+  const parts=csv(line),p=parts[0].indexOf('='),type=parts[0].slice(0,p).trim().toLowerCase();const n=node(type,endpoint(parts[0].slice(p+1).trim()));n.fields=assignment(parts.slice(1));keys(n.fields,NATIVE_KEYS,'QX native');if(n.fields.tag)n.original=line;return n;
 }
 function lines(input) {
   const nativePattern=/^(?:shadowsocks|vmess|vless|trojan|http|socks5|anytls)\s*=\s*(?:\[[^\]]+\]|[^,:]+):\d+(?:\s*,|\s*$)/i,uriPattern=/^[a-z][a-z0-9+.-]*:\/\//i;
@@ -370,7 +379,7 @@ export function createNodeParser(utils={}) {
         const serversEnvelope=object(value)&&source===value.servers;
         if(serversEnvelope&&own(value,'version')&&value.version!==1)error('unsupported SIP008 version');
         const sip008=serversEnvelope&&value.version===1;
-        for(const item of source){const singbox=object(value)&&source===value.outbounds;if(object(item)&&['selector','urltest','direct','block','dns'].includes(item.type)&&singbox)continue;result.push(sip008?fromSip008(item):typeof item==='string'?fromUri(item):singbox?fromSingbox(item):fromObject(item));}
+        for(const item of source){const singbox=object(value)&&source===value.outbounds;if(object(item)&&['selector','urltest','direct','block','dns'].includes(item.type)&&singbox)continue;result.push(sip008?fromSip008(item):typeof item==='string'?fromUri(item):singbox?fromSingbox(item):fromObject(item,object(value)&&source===value.proxies?'Clash node':'node object'));}
       }
       if(!result.length||result.length>2000)error('empty or oversized subscription');const names=new Set();
       return result.map((n,i)=>{validate(n,i);if(names.has(n.fields.tag))error('duplicate node name');names.add(n.fields.tag);return n.original||n.type+'='+(n.host.includes(':')?'['+n.host+']':n.host)+':'+n.port+', '+Object.keys(n.fields).map(k=>k+'='+n.fields[k]).join(', ');}).join('\n')+'\n';

@@ -45,7 +45,8 @@
         ],
         "helperUiMinimumBuild": 918,
         "helperProtocol": "https://github.com/crossutility/Quantumult-X/blob/97fdae00a91f69e69d84898c686aa94a112dd4bd/parser-helper-protocol.md",
-        "options": "One declarative syntax: case-insensitive keyword OR/AND for node names and validated rule/rewrite rows; separate MITM hostname filters, bounded sequential literal renaming, common sort/type aliases; local first-line options only for local paths or file: links, with explicit fragments winning. No compatibility-mode switch."
+        "options": "One declarative syntax: case-insensitive keyword OR/AND for node names and validated rule/rewrite rows; separate MITM hostname filters, bounded sequential literal renaming, common sort/type aliases; local first-line options only for local paths or file: links, with explicit fragments winning. No compatibility-mode switch.",
+        "diagnostics": "Rejected fields identify a fixed source-format context and a registered public schema name only. Arbitrary unknown key names and all source values are redacted; no subscription URL, credentials or node label are included."
       },
       "permissions": {
         "subscriptionContents": true,

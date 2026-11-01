@@ -252,7 +252,7 @@ test('internal error displays use Chinese labels and messages while provider dia
   assert.match(formatQuantumultX(provider).description, /reserved range/);
 });
 
-test('ip-api empty AS data does not throw and ISP remains visible', () => {
+test('ip-api empty AS data does not throw and ISP remains in details', () => {
   const result = parseGeoResponse(response({
     status: 'success', query: '203.0.113.30', countryCode: 'FR',
     country: 'France', city: 'Lyon', as: '', isp: 'Example Transit', org: '',
@@ -261,7 +261,8 @@ test('ip-api empty AS data does not throw and ISP remains visible', () => {
   assert.equal(result.asn, '');
   assert.equal(result.country, 'France');
   assert.equal(result.organization, 'Example Transit');
-  assert.match(formatQuantumultX(result).subtitle, /Example Transit/);
+  assert.equal(formatQuantumultX(result).subtitle, result.ip);
+  assert.match(formatQuantumultX(result).description, /Example Transit/);
 });
 
 test('ip-api AS text supplies ASN and organization when provider fields are missing', () => {

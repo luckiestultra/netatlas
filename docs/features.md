@@ -19,7 +19,7 @@
 
 主配置 default.conf 已包含该 checker；其他既有配置可使用 geoip.conf 合并到 [general]。该片段**不是重写订阅，也不是完整配置**。它使用 http://ipwho.is/?lang=zh-CN，并引用本仓库生成的公开脚本地址。内置 geo_location_checker 仅支持 HTTP 查询源；脚本接收原生 $response，只调用一次 $done，不会再发请求或更改节点。内置定位宿主将 $done 定义为返回参数本身的函数，并消费整段脚本的最终求值结果；适配器的外层函数必须 return $done(...)，否则即使调用了 $done，宿主拿到的仍是 undefined。回归测试同时校验四字段对象和最终求值结果。
 
-QX 标题输出国旗、中文国家和实际地点，例如 `🇺🇸 美国 加州 洛杉矶` 或 `🇯🇵 日本 东京`；同名地区/城市去重，已登记的地区可用短名。第二行优先保留 ASN 和完整 IP，空间允许时显示组织名；较长组织名仅在此处省略，完整组织、省州、城市、时区均留在输出对象的 `description` 字段。长 IPv6 的第二行仅显示完整地址。36 字符的文本预算用于压缩元数据，不保证任意屏宽下原生标签都不省略。独立 `ip` 和 `description` 字段也保留完整 IP；不保证 QX 界面会展示 `description`。蓝色星标由 QX 根据连接入口与查询出口地址是否不同添加，脚本不人为补星。
+QX 标题输出国旗、中文国家和实际地点，例如 `🇺🇸 美国 加州 洛杉矶` 或 `🇯🇵 日本 东京`；同名地区/城市去重，已登记的地区可用短名。第二行仅显示 ASN 与完整 IP，不再插入运营商名称，避免名称字宽挤掉末尾地址；完整组织、省州、城市、时区仍保留在输出对象的 `description` 字段。长 IPv6 的第二行仅显示完整地址。QX 原生标签按像素宽度裁剪，脚本没有界面宽度信息，仍不能保证任意窄窗口或长 IPv6 都完整显示。独立 `ip` 和 `description` 字段也保留完整 IP；不保证 QX 界面会展示 `description`。蓝色星标由 QX 根据连接入口与查询出口地址是否不同添加，脚本不人为补星。
 
 常见城市/地区按已登记名称显示中文，未登记的地名及组织保持原文；不推断缺失地点。用户自行替换已确认的旧缓存后，截图已显示中文地点和完整 IP，证实先前返回值修复可用；此次紧凑布局尚未在 QX 界面验证。完整生成脚本的 VM/Apple JavaScriptCore 测试与原生界面实测分别记录。
 
@@ -186,7 +186,7 @@ https://example.com/rules#type=filter&policy=Proxy
 
 有两个选项会改变转换前提，默认均不启用：`allow-resolve=1`明确允许移除源`no-resolve`，可能增加DNS查询，输出会警告行为变化；`script-compat=qx`只是使用者声明所引用的Surge/Loon脚本本体已经支持QX，不翻译JavaScript API，不忽略timeout、argument、binary-body或max-size等无法保留的设置。QX原生HTTPS脚本引用可以保留，解析器不下载或执行脚本；之后QX运行该重写脚本是另一项操作。跨宿主`reject`不能仅因名称相同就等同于QX的HTTP 404。 影响执行条件的 `#!include/requirement/system` 与平台限定指令，在节点、分流、重写中整份拒绝，不作为普通注释丢弃；Surge 普通行内注释按引号边界处理。URL 正则可以不以 `^` 开头，也可用 `[hH]` 开头，明确的 `type` 仍优先。
 
-QX 资源宿主使用 identity `$done` 并消费整段脚本的最终求值；生成脚本必须返回同一 `{content}` 或 `{error}` 对象。回归同时检查回调次数与最终对象，并覆盖 helper 单独加载。任何一行失败都只返回一次错误，不发布前半份结果；更新失败后的缓存和提示由QX处理，本实现不承诺宿主保留旧内容。资源限额为输入/输出各2 Mi字符、2000节点或20000规则/重写行；YAML最大32层、100000个值节点与20个alias，并拒绝循环、重复键和自定义tag。VM测试执行实际生成bundle与helper协议，尚未在原生QX导入运行。详细接口、来源和边界见[解析器登记](../metadata/resource-parsers.json)、[功能规格](specs/features.md)。
+QX 资源宿主使用 identity `$done` 并消费整段脚本的最终求值；生成脚本必须返回同一 `{content}` 或 `{error}` 对象。回归同时检查回调次数与最终对象，并覆盖 helper 单独加载。字段拒绝会标出来源格式和已登记的公共字段名，例如 `unsupported field in URI options: fp`；未知字段名与所有字段值不回显，避免泄露凭据。任何一行失败都只返回一次错误，不发布前半份结果；更新失败后的缓存和提示由QX处理，本实现不承诺宿主保留旧内容。资源限额为输入/输出各2 Mi字符、2000节点或20000规则/重写行；YAML最大32层、100000个值节点与20个alias，并拒绝循环、重复键和自定义tag。VM测试执行实际生成bundle与helper协议，尚未在原生QX导入运行。详细接口、来源和边界见[解析器登记](../metadata/resource-parsers.json)、[功能规格](specs/features.md)。
 
 Loon仍链接固定AGPL Sub-Store解析器，`fragments/resource-parser.conf`合并到`[General]`，并在选定的`[Remote Proxy]`订阅上设置`parser-enabled=true`。它是外部工具入口，可能重新获取资源并按宿主权限访问缓存；本仓库没有把它替换成QX实现或宣称离线隔离。来源、哈希与对应完整AGPL源码均保留。其他六客户端没有虚构的同名解析器字段。
 
