@@ -36,7 +36,7 @@
         }
       },
       "validation": {
-        "unit": "node-test: nested ipwho.is and IPinfo Lite/legacy schemas, strict success states, CLDR labels, complete IP and timezone display.",
+        "unit": "node-test: nested ipwho.is and IPinfo Lite/legacy schemas, strict success states, CLDR labels, compact location title, full IP and unabridged details.",
         "hostContract": "node-vm: generated QX final evaluation object with identity $done and once-only completion; Surge callback/watchdog contract. Native GUI execution is separate.",
         "nativeApp": "not-run",
         "liveApi": "Run separately; public IP responses are never committed as fixtures."
@@ -64,7 +64,6 @@
         "licensePath": "src/features/geoip/localization/LICENSE-Unicode",
         "rawProviderFieldsUnchanged": true,
         "quantumultXIpFields": [
-          "title",
           "subtitle",
           "ip",
           "description"

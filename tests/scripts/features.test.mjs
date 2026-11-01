@@ -20,8 +20,8 @@ test('QX native response parser completes once and never performs another networ
   }, { timeout: 1000 });
   assert.equal(results.length, 1);
   assert.equal(results[0].ip, '192.0.2.10');
-  assert.match(results[0].title, /英国.*192\.0\.2\.10/);
-  assert.match(results[0].subtitle, /Oxford/);
+  assert.match(results[0].title, /英国.*Oxford/);
+  assert.ok(results[0].subtitle.endsWith('192.0.2.10'));
   assert.doesNotMatch(script, /\$task|\$prefs|\$persistentStore|\$surge/);
 });
 
@@ -62,7 +62,7 @@ test('QX built-in GeoIP returns the final evaluation object consumed by the nati
     assert.equal(result.ip, fixture.ip, fixture.name);
     assert.match(result.title, fixture.title, fixture.name);
     if (fixture.ip) {
-      assert.ok(result.title.includes(fixture.ip), fixture.name);
+      assert.ok(!result.title.includes(fixture.ip), fixture.name);
       assert.ok(result.subtitle.includes(fixture.ip), fixture.name);
     }
   }

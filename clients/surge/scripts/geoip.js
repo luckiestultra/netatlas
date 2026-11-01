@@ -264,10 +264,32 @@ var AtlasGeoIP = (function createGeoIP() {
   }
   function locality(result) {
     var country = countryName(result), values = [];
-    [translated(regions, result, result.region), translated(cities, result, result.city)].forEach(function (value) {
+    var region = translated(regions, result, result.region);
+    var city = translated(cities, result, result.city);
+    // Display aliases only; the normalized source and full details stay unchanged.
+    var shortRegions = { US: { '加利福尼亚州': '加州' }, JP: { '东京都': '东京', '大阪府': '大阪' } };
+    var aliases = shortRegions[result.countryCode];
+    if (aliases && Object.prototype.hasOwnProperty.call(aliases, region)) region = aliases[region];
+    [region, city].forEach(function (value) {
       if (value && value !== country && values.indexOf(value) === -1) values.push(value);
     });
     return values.join(' ');
+  }
+  function networkLine(result) {
+    var parts = result.asn ? [result.asn] : [];
+    var base = parts.concat([result.ip]).join(' · ');
+    // Preserve the complete address; long IPv6 gets the second line to itself.
+    if (base.length > 36) return result.ip;
+    var available = 36 - base.length - 3;
+    if (result.organization && available >= 6) {
+      var organization = result.organization;
+      if (organization.length > available) {
+        organization = organization.slice(0, available - 1).replace(/[\ud800-\udbff]$/, '').replace(/\s+$/, '') + '…';
+      }
+      parts.push(organization);
+    }
+    parts.push(result.ip);
+    return parts.join(' · ');
   }
   function details(result) {
     return lines([
@@ -283,13 +305,11 @@ var AtlasGeoIP = (function createGeoIP() {
     ]);
   }
   function formatQuantumultX(result) {
-    // Keep the header compact: country and full IP remain explicit even when
-    // the native card elides its subtitle. All reported locality stays below.
-    var place = countryName(result) || locality(result);
-    var heading = result.state === 'ok' ? lines([flag(result.countryCode), place]).replace('\n', ' ') : label(result.state);
+    var success = result.state === 'ok';
+    var heading = success ? lines([flag(result.countryCode), countryName(result), locality(result)]).replace(/\n/g, ' ') : label(result.state);
     return {
-      title: lines([heading, result.ip]).replace('\n', ' · '),
-      subtitle: result.state === 'ok' ? lines([result.ip, locality(result), result.timezone, result.asn, result.organization]).replace(/\n/g, ' · ') : lines([result.ip, result.message]).replace('\n', ' · '),
+      title: success ? heading : lines([heading, result.ip]).replace('\n', ' · '),
+      subtitle: success ? networkLine(result) : lines([result.ip, result.message]).replace('\n', ' · '),
       ip: result.ip, description: details(result),
     };
   }

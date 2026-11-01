@@ -2,7 +2,7 @@
   "version": 1,
   "builder": "netatlas@0.1.0",
   "input": {
-    "sha256": "84fda6a61c66d6043c16b4e9a7db3b60f73a128831490fd6cd783fab1886dee6",
+    "sha256": "4af3aa1dc02c3f56a134aff4e511964fd295b50d1116014ec840c91cf450dd68",
     "files": [
       {
         "path": "LICENSE",
@@ -22,7 +22,7 @@
       },
       {
         "path": "metadata/features.json",
-        "sha256": "30100a5ae384db291358aa0aa1d7ce1736f5599c4a2c4621da2235c47becf5e4"
+        "sha256": "39322502613281a93717b5a73e927fe11419a3e12d5cf47140ed78769c980646"
       },
       {
         "path": "metadata/https-upgrade.json",
@@ -82,7 +82,7 @@
       },
       {
         "path": "src/features/geoip/core.mjs",
-        "sha256": "c0dc86da6dd4be55a09cbb3a86db1a458752fd1fa2776a2c9ffff2d2b9af7881"
+        "sha256": "8d964f18e4d5aa67bed63f752258c1a40c6e9c0562ab26617fd204b2f62e6854"
       },
       {
         "path": "src/features/geoip/localization/LICENSE-Unicode",
@@ -1187,7 +1187,7 @@
       "id": "quantumultX",
       "name": "Quantumult X",
       "manifest": "quantumultX/manifest.json",
-      "sha256": "91bb6d9d3f160afb85ea6fd9f4f30e8f143f31880b6fafac20ef087da9c247dd",
+      "sha256": "a2d307105c28a53bc95b213182a41d07656754d83180810a467188ddbcf1233d",
       "rulesets": 118,
       "entries": 136944,
       "defaultRuleSets": 115,
@@ -1197,7 +1197,7 @@
       "id": "surge",
       "name": "Surge",
       "manifest": "surge/manifest.json",
-      "sha256": "faf9071655283acbe37aa12f40c07e5deadce8068a7d132a5eea59810024d3c9",
+      "sha256": "6d4efec0ae67cbb0d72c12aa95bad6d67d9184d7754368d063f2be4d6285801b",
       "rulesets": 118,
       "entries": 136944,
       "defaultRuleSets": 115,
@@ -1207,7 +1207,7 @@
       "id": "loon",
       "name": "Loon",
       "manifest": "loon/manifest.json",
-      "sha256": "fff37f8a32ed8bc853684e7547867e6e3f8c0a2fab93dd67035a9dd8a9b2182e",
+      "sha256": "6987719e0de609c143ae83f3cf7fa69aac48a785db4a030424099cbf6d7331ea",
       "rulesets": 118,
       "entries": 136944,
       "defaultRuleSets": 115,
@@ -1217,7 +1217,7 @@
       "id": "shadowrocket",
       "name": "Shadowrocket",
       "manifest": "shadowrocket/manifest.json",
-      "sha256": "7095894e6c0327e05b8b459d4b12113f0b1fac9ff1522e0ea987f8117ab47214",
+      "sha256": "ae29c9bdc2ae9f2657c5419d7cd262fd671265702dbd8af857e4f46f1906ddd4",
       "rulesets": 118,
       "entries": 136944,
       "defaultRuleSets": 115,
@@ -1227,7 +1227,7 @@
       "id": "egern",
       "name": "Egern",
       "manifest": "egern/manifest.json",
-      "sha256": "a79dd0c657062d87e4d3b003dd86c0e95f6c57ef3d4b7aba870b489ea2c2759f",
+      "sha256": "7bb33d5db416ad56be1eb6e759c531feb165d994990b6da11e8940489e37b276",
       "rulesets": 118,
       "entries": 136944,
       "defaultRuleSets": 115,
@@ -1237,7 +1237,7 @@
       "id": "stash",
       "name": "Stash",
       "manifest": "stash/manifest.json",
-      "sha256": "38113bc5e32344ac7d403daeaa72733e414263fe776371d75264f4621adf3afb",
+      "sha256": "626417d2be4579fb75a6db796682bedba99c74f244dd5cfd47323f6d96286313",
       "rulesets": 118,
       "entries": 136944,
       "defaultRuleSets": 115,
@@ -1247,7 +1247,7 @@
       "id": "mihomo",
       "name": "Mihomo",
       "manifest": "mihomo/manifest.json",
-      "sha256": "398c1ff84297998f8a94b3b93624502bfcd548b246ed5d6d072194f6ba9105d6",
+      "sha256": "81243d3b4e1d9da722acdcbc43b269e6b1e782345f4f4ec01f5a9feaa08fb46e",
       "rulesets": 118,
       "entries": 136944,
       "defaultRuleSets": 115,
@@ -1257,12 +1257,12 @@
       "id": "singBox",
       "name": "sing-box",
       "manifest": "singBox/manifest.json",
-      "sha256": "5d67a1dcf1cc20f7bdaaa907d7e5f39a71685158ce78e2313d4a33c9fb754b1e",
+      "sha256": "5702ca751e8fbb2a7a589649c13914b09542c58854e9d5142a93e728a5349137",
       "rulesets": 118,
       "entries": 136944,
       "defaultRuleSets": 115,
       "defaultEntries": 29153
     }
   ],
-  "contentSha256": "b4439975d93a1093859ac2c1d5a3eb8c431e908d03caa5f9b9895004a34fac77"
+  "contentSha256": "b4578eb79791c5f1adc23760ca9b7ea137fab1c1a0bcd8d5b60d155d2377c6f7"
 }

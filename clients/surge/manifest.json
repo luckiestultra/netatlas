@@ -2,7 +2,7 @@
   "version": 1,
   "client": "surge",
   "builder": "netatlas@0.1.0",
-  "inputSha256": "84fda6a61c66d6043c16b4e9a7db3b60f73a128831490fd6cd783fab1886dee6",
+  "inputSha256": "4af3aa1dc02c3f56a134aff4e511964fd295b50d1116014ec840c91cf450dd68",
   "baseUrl": "https://raw.githubusercontent.com/luckiestultra/netatlas/main",
   "targetVersion": null,
   "counts": {
@@ -5451,8 +5451,8 @@
     },
     {
       "path": "scripts/geoip.js",
-      "sha256": "9f0cb41c2f7ec67c14dc71eedc71967663c703a0edb73d84a72ab3cd9dd423c4",
-      "bytes": 22157
+      "sha256": "185a13250e697091a9ef61b59c5d8bc78dfa9c6a44f98275c0cabf8c897da824",
+      "bytes": 22993
     },
     {
       "path": "scripts/replace-body.js",

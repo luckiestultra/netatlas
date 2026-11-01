@@ -42,9 +42,9 @@ test('the actual QX adapter runs standalone with no Intl, imports or network acc
     }, { timeout: 1000 });
     assert.equal(results.length, 1);
     assert.match(results[0].title, /🇺🇸 美国/);
-    assert.ok(results[0].title.includes(address));
+    assert.ok(!results[0].title.includes(address));
     assert.equal(results[0].ip, address);
-    assert.ok(results[0].subtitle.startsWith(address));
+    assert.ok(results[0].subtitle.endsWith(address));
     assert.ok(results[0].description.startsWith('IP: ' + address));
     assert.deepEqual(Object.keys(results[0]).sort(), ['description', 'ip', 'subtitle', 'title']);
   }
@@ -67,9 +67,10 @@ test('ipwho.is localized nested fields retain region, city, timezone and connect
   assert.equal(result.organization, 'Example Org');
   assert.equal(result.timezone, 'America/Los_Angeles');
   const card = formatQuantumultX(result);
-  assert.match(card.title, /美国.*203\.0\.113\.86/);
-  assert.ok(card.subtitle.startsWith('203.0.113.86'));
-  assert.match(card.subtitle, /加利福尼亚州.*洛杉矶.*America\/Los_Angeles.*AS64500/);
+  assert.equal(card.title, '🇺🇸 美国 加州 洛杉矶');
+  assert.ok(card.subtitle.endsWith('203.0.113.86'));
+  assert.match(card.subtitle, /AS64500/);
+  assert.match(card.description, /时区: America\/Los_Angeles/);
 });
 
 test('ipwho.is errors, missing fields and malformed nested data never imply success', () => {
@@ -157,8 +158,8 @@ test('IPinfo normalization preserves the returned location and separates ASN fro
   assert.equal(result.city, 'Oxford');
   assert.equal(result.asn, 'AS64500');
   assert.equal(result.organization, 'Example Network');
-  assert.match(formatQuantumultX(result).title, /🇬🇧.*英国.*192\.0\.2\.10/);
-  assert.match(formatQuantumultX(result).subtitle, /Oxford/);
+  assert.match(formatQuantumultX(result).title, /🇬🇧.*英国.*英格兰.*Oxford/);
+  assert.match(formatQuantumultX(result).title, /Oxford/);
 });
 
 test('ipwho.de response keeps missing city or ASN empty without inventing replacements', () => {
@@ -175,20 +176,21 @@ test('ipwho.de response keeps missing city or ASN empty without inventing replac
   assert.doesNotMatch(JSON.stringify(formatQuantumultX(result)), /undefined|null|高谭|Cross-GFW/);
 });
 
-test('the screenshot-shaped ipwho.de payload displays a Chinese country and complete IP on every QX text surface', () => {
+test('the screenshot-shaped ipwho.de payload keeps a compact Chinese title and full IP in the second line', () => {
   const result = parseGeoResponse(response({
     ip: '203.0.113.80', country_code: 'US', country_name: 'United States',
     city_name: null, asn: null, as_desc: 'HARA PARTNERS SYSTEMS LLC',
   }));
   const card = formatQuantumultX(result);
   assert.match(card.title, /🇺🇸.*美国/);
-  assert.ok(card.title.includes('203.0.113.80'));
-  assert.ok(card.subtitle.startsWith('203.0.113.80'));
+  assert.ok(!card.title.includes('203.0.113.80'));
+  assert.ok(card.subtitle.endsWith('203.0.113.80'));
   assert.ok(card.description.startsWith('IP: 203.0.113.80'));
   assert.equal(card.ip, '203.0.113.80');
   assert.equal(result.city, '');
   assert.equal(result.asn, '');
-  assert.ok(card.subtitle.includes('HARA PARTNERS SYSTEMS LLC'));
+  assert.ok(card.description.includes('HARA PARTNERS SYSTEMS LLC'));
+  assert.ok(card.subtitle.length <= 36);
   assert.doesNotMatch(card.title, /United States|加州|洛杉矶/);
 });
 
@@ -199,8 +201,8 @@ test('QX location retains country, reported region and reported city with Chines
     as: 'AS64500 Example Carrier',
   }));
   const card = formatQuantumultX(result);
-  assert.match(card.title, /美国.*203\.0\.113\.81/);
-  assert.match(card.subtitle, /203\.0\.113\.81.*加利福尼亚州.*洛杉矶/);
+  assert.equal(card.title, '🇺🇸 美国 加州 洛杉矶');
+  assert.ok(card.subtitle.endsWith('203.0.113.81'));
   assert.match(card.description, /国家\/地区: 美国/);
   assert.match(card.description, /州\/省: 加利福尼亚州/);
   assert.match(card.description, /城市: 洛杉矶/);
@@ -215,10 +217,10 @@ test('unknown cities retain source spelling and missing regions are never inferr
   }));
   const card = formatQuantumultX(result);
   assert.match(card.title, /新西兰/);
-  assert.match(card.subtitle, /Fictionvale/);
+  assert.match(card.title, /Fictionvale/);
   assert.equal(result.region, '');
   const la = parseGeoResponse(response({ ip: '203.0.113.83', country_code: 'US', country_name: 'United States', city_name: 'Los Angeles' }));
-  assert.match(formatQuantumultX(la).subtitle, /洛杉矶/);
+  assert.match(formatQuantumultX(la).title, /洛杉矶/);
   assert.doesNotMatch(JSON.stringify(formatQuantumultX(la)), /加利福尼亚|加州/);
 });
 

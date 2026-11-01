@@ -24,7 +24,7 @@ HTTPS-upgrade 为固定 GPL-2.0 原文的六主机投影，保留 path/query，�
 
 共享纯核心 src/features/geoip/core.mjs 支持 ipwho.is、IPinfo legacy/Lite、ipwho.de、ip-api 响应格式。外部字段必须校验类型；空 ASN、空组织、无城市、无数据、错误 JSON、API 错误状态、限流和传输超时不得导致未完成回调。
 
-结果保留来源给出的地理信息，不推断物理机房，不硬编码某国或某个用户 IP，不填入虚构城市或运营商。QX显示按源国家代码使用固定Unicode CLDR 48中文国家/地区名称，原始provider字段不改；title、subtitle、ip、description均保留完整源IP。CLDR数据采用Unicode-3.0许可，固定版本、原文哈希与完整许可分别保留在localization目录；生成脚本带完整Unicode许可。收到响应、定位成功和网络整体正常是不同事实。VM验证不等于原生QX界面截图或设备实测。
+结果保留来源给出的地理信息，不推断物理机房，不硬编码某国或某个用户 IP，不填入虚构城市或运营商。QX显示按源国家代码使用固定Unicode CLDR 48中文国家/地区名称，原始provider字段不改；正常 title 仅显示国旗、国家和实际地区/城市，不重复 IP；subtitle、ip、description 保留完整源 IP。第二行压缩组织名以优先保留 ASN/IP，长 IPv6 可独占第二行；完整字段保留在 description 中，不据此声称原生卡片会显示这些字段。地区短名和去重仅作用于显示，蓝色星标由 QX 原生决定。CLDR数据采用Unicode-3.0许可，固定版本、原文哈希与完整许可分别保留在localization目录；生成脚本带完整Unicode许可。收到响应、定位成功和网络整体正常是不同事实。VM验证不等于原生QX界面截图或设备实测。
 
 QX 原生适配器只解析 $response，不再联网或更改节点。默认 HTTP 查询使用 ipwho.is 的 lang=zh-CN 响应，保留省州、城市、时区、连接 ASN 和组织；只有布尔 success=true 才接受成功数据。输出保留完整 IP，缺失字段不推断，不在脚本里自动轮询或切换来源。生成的 fragments/geoip.conf 是 [general] 合并片段，不是重写订阅；它的脚本 URL 只有对应文件推送到公开提交后才能使用。 QX 主配置与片段统一引用普通 `main/.../geoip.js`，不附加版本摘要、短版本号、时间戳或片段参数。脚本更新由 QX 资源刷新处理，成功下载后才能在后续定位检查中使用新代码；仓库推送不强制清空客户端已有缓存。
 
