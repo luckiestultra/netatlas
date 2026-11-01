@@ -28,6 +28,18 @@ function keys(o, allowed, context='node options') {
     error('unsupported field in '+context+': '+name);
   }
 }
+// These source-only client preferences have no native QX field. Values are
+// bounded and discarded on a copy; only fixed names become internal metadata.
+const NATIVE_PREFERENCES = { fp: 128, spx: 2048, 'client-fingerprint': 128 };
+function nativePreferences(input, fields) {
+  const source={...input},adaptations=[];
+  for(const key of fields)if(own(source,key)){
+    const value=source[key];
+    if(typeof value!=='string'||value.length>NATIVE_PREFERENCES[key]||/[\x00-\x1f\x7f-\x9f\u2028\u2029]/.test(value))error('invalid QX native preference: '+key);
+    delete source[key];adaptations.push(key);
+  }
+  return {source,adaptations};
+}
 function aliases(o,groups){for(const group of groups)if(group.filter(key=>own(o,key)).length>1)error('duplicate alias options');}
 function strictJson(input){
   let result;try{result=JSON.parse(input);}catch{error('invalid JSON document');}
@@ -192,16 +204,17 @@ function parseSsr(u) {
   if(m[5]!=='plain')put(n,'obfs',m[5]);if(q.obfsparam)put(n,'obfs-host',decodeBase64Text(q.obfsparam));return n;
 }
 function parseVmess(u) {
-  if(Object.keys(u.query).length)error('unsupported VMess URI');const o=strictJson(decodeBase64Text(u.authority));
+  if(Object.keys(u.query).length)error('unsupported VMess URI');const preferences=nativePreferences(strictJson(decodeBase64Text(u.authority)),['fp']),o=preferences.source;
   keys(o,['v','ps','add','port','id','aid','scy','net','type','host','path','tls','sni','alpn','allowInsecure','skip-cert-verify'],'VMess URI');
   aliases(o,[['allowInsecure','skip-cert-verify']]);
   if(o.v!==undefined&&String(o.v)!=='2')error('unsupported VMess version');if(o.net&&!['tcp','ws'].includes(o.net))error('unsupported transport');if(o.type&&!['none','http'].includes(o.type))error('unsupported TCP header');if(o.type==='http'&&o.net&&o.net!=='tcp')error('unsupported TCP header');
   const n=node('vmess',{host:o.add,port:o.port},o.ps||u.tag);put(n,'password',uuid(o.id));const method=o.scy||'auto';put(n,'method',method==='auto'?'chacha20-poly1305':method==='chacha20-ietf-poly1305'?'chacha20-poly1305':method);
   if(o.aid!==undefined){if(!/^\d+$/.test(String(o.aid)))error('invalid alter ID');if(+o.aid!==0)error('legacy VMess alter ID unsupported');}
-  tlsTransport(n,{network:o.type==='http'?'http':o.net||'tcp',security:o.tls==='tls'?'tls':o.tls?o.tls:'none',host:o.host,path:o.path,sni:o.sni,alpn:o.alpn,insecure:o.allowInsecure??o['skip-cert-verify']});return n;
+  tlsTransport(n,{network:o.type==='http'?'http':o.net||'tcp',security:o.tls==='tls'?'tls':o.tls?o.tls:'none',host:o.host,path:o.path,sni:o.sni,alpn:o.alpn,insecure:o.allowInsecure??o['skip-cert-verify']});n.adaptations=preferences.adaptations;return n;
 }
 function parseGenericUri(u) {
   const type=({https:'http',socks:'socks5',socks5s:'socks5'})[u.scheme]||u.scheme;if(!TYPES.has(type))error('unsupported protocol');
+  const preferences=nativePreferences(u.query,['fp','spx']);u={...u,query:preferences.source};
   keys(u.query,['encryption','security','type','headerType','host','path','sni','peer','pbk','sid','flow','alpn','allowInsecure','insecure','udp','tfo'],'URI options');
   aliases(u.query,[['sni','peer'],['allowInsecure','insecure']]);
   if(u.query.type&&!['tcp','ws'].includes(u.query.type))error('unsupported transport');
@@ -216,7 +229,7 @@ function parseGenericUri(u) {
   const defaultTls=['trojan','anytls','https','socks5s'].includes(u.scheme);
   if(defaultTls&&u.query.security==='none')error('TLS required by URI scheme');
   tlsTransport(n,{network:u.query.headerType==='http'?'http':u.query.type||'tcp',security:u.query.security||(defaultTls?'tls':'none'),host:u.query.host,path:u.query.path,sni:u.query.sni||u.query.peer,publicKey:u.query.pbk,shortId:u.query.sid,flow:u.query.flow,alpn:u.query.alpn,insecure:u.query.allowInsecure??u.query.insecure});
-  putBool(n,'udp-relay',u.query.udp);putBool(n,'fast-open',u.query.tfo);return n;
+  putBool(n,'udp-relay',u.query.udp);putBool(n,'fast-open',u.query.tfo);n.adaptations=preferences.adaptations;return n;
 }
 function fromUri(line) {const u=uri(line);return u.scheme==='ss'?parseSs(u):u.scheme==='ssr'?parseSsr(u):u.scheme==='vmess'?parseVmess(u):parseGenericUri(u);}
 const OBJECT_KEYS='name tag type server port server_port password username uuid cipher method remarks plugin plugin-opts plugin_opts udp udp-relay tfo fast-open tls servername sni skip-cert-verify network ws-opts flow reality-opts alpn alterId alter-id security version id transport tcp-fast-open udp_over_tcp protocol protocol-param obfs obfs-param'.split(' ');
@@ -224,6 +237,7 @@ function fromObject(o,context='node object') {
   if(!object(o))error('invalid node object');
   // SIP008 omits type; sing-box and Clash share their basic server fields.
   if(object(o.tls))return fromSingbox(o);
+  const preferences=context==='SIP008 node'?{source:o,adaptations:[]}:nativePreferences(o,['client-fingerprint']);o=preferences.source;
   keys(o,OBJECT_KEYS,context);const type=({ss:'shadowsocks',ssr:'shadowsocks',https:'http',socks:'socks5'})[o.type]||o.type||(o.method?'shadowsocks':undefined);
   aliases(o,[['name','tag','remarks'],['port','server_port'],['uuid','id'],['cipher','method','security'],['plugin-opts','plugin_opts'],['udp','udp-relay'],['tfo','fast-open','tcp-fast-open'],['servername','sni'],['alterId','alter-id']]);
   const common=['name','tag','type','server','port','server_port','remarks','udp','udp-relay','tfo','fast-open','tcp-fast-open','udp_over_tcp'];
@@ -255,7 +269,7 @@ function fromObject(o,context='node object') {
     tlsTransport(n,{network:o.network||'tcp',security:reality?'reality':enabled?'tls':'none',sni,headers:ws.headers,path:ws.path,flow:o.flow,alpn:protocols,insecure:o['skip-cert-verify'],publicKey:reality&&reality['public-key'],shortId:reality&&reality['short-id']});
     for(const k of ['plugin','plugin_opts','plugin-opts','method'])if(own(o,k))error('unsupported protocol field');
   }
-  putBool(n,'udp-relay',o.udp??o['udp-relay']);putBool(n,'fast-open',o.tfo??o['fast-open']??o['tcp-fast-open']);if(o.udp_over_tcp!==undefined)putBool(n,'udp-over-tcp',o.udp_over_tcp);return n;
+  putBool(n,'udp-relay',o.udp??o['udp-relay']);putBool(n,'fast-open',o.tfo??o['fast-open']??o['tcp-fast-open']);if(o.udp_over_tcp!==undefined)putBool(n,'udp-over-tcp',o.udp_over_tcp);n.adaptations=preferences.adaptations;return n;
 }
 function fromSip008(o) {
   if(!object(o))error('invalid SIP008 server');
@@ -382,7 +396,10 @@ export function createNodeParser(utils={}) {
         for(const item of source){const singbox=object(value)&&source===value.outbounds;if(object(item)&&['selector','urltest','direct','block','dns'].includes(item.type)&&singbox)continue;result.push(sip008?fromSip008(item):typeof item==='string'?fromUri(item):singbox?fromSingbox(item):fromObject(item,object(value)&&source===value.proxies?'Clash node':'node object'));}
       }
       if(!result.length||result.length>2000)error('empty or oversized subscription');const names=new Set();
-      return result.map((n,i)=>{validate(n,i);if(names.has(n.fields.tag))error('duplicate node name');names.add(n.fields.tag);return n.original||n.type+'='+(n.host.includes(':')?'['+n.host+']':n.host)+':'+n.port+', '+Object.keys(n.fields).map(k=>k+'='+n.fields[k]).join(', ');}).join('\n')+'\n';
+      const output=result.map((n,i)=>{validate(n,i);if(names.has(n.fields.tag))error('duplicate node name');names.add(n.fields.tag);return n.original||n.type+'='+(n.host.includes(':')?'['+n.host+']':n.host)+':'+n.port+', '+Object.keys(n.fields).map(k=>k+'='+n.fields[k]).join(', ');}).join('\n')+'\n';
+      // Publish metadata only after the complete subscription has validated.
+      if(options&&options.adaptations instanceof Set)for(const n of result)for(const key of n.adaptations||[])if(own(NATIVE_PREFERENCES,key))options.adaptations.add(key);
+      return output;
     }catch(e){if(e instanceof Error&&e.message.startsWith('Node conversion failed: '))throw e;error('invalid node resource');}
   }
   return {parseNodes,decodeBase64Text,looksLikeEncodedSubscription};

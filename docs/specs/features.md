@@ -89,4 +89,12 @@ GEOIP 接受合法自定义类别；实际库中是否有对应类别单独说�
 
 未知字段的拒绝必须提供固定格式上下文；仅允许登记过的公共schema字段名进入错误，任意其他key统一显示 `[unrecognized name]`，不回显值、地址、凭据、订阅URL或标签。来源条件和正常转换结果不因诊断变化而改变。应以同一原生VLESS结构和真实用户fragment证明可接受的输入继续可用，并覆盖完整bundle的原子错误/单次完成/最终identity与隐私负控。
 
-旧KOP采取已知字段提取：fp/spx/client-fingerprint会在转换中被省去，当前严格实现仍拒绝这些参数。两者用同一合成输入对照，不将可转换等同于所有连接行为等价，也不据候选字段认定用户实际故障原因。QX Reality采用固定原生Safari指纹，不能宣称Chrome指纹被保留。用户提供的QX原生字段结构可成功转换，无法据此推导失败订阅这次下载的原始内容。
+旧KOP采取已知字段提取：fp/spx/client-fingerprint会在转换中被省去，c83ee50 及之前的严格实现会拒绝这些参数，后续原生偏好适配见下节。两者用同一合成输入对照，不将可转换等同于所有连接行为等价，也不据候选字段认定用户实际故障原因。QX Reality采用固定原生Safari指纹，不能宣称Chrome指纹被保留。用户提供的QX原生字段结构可成功转换，无法据此推导失败订阅这次下载的原始内容。
+
+### QX 原生客户端偏好（2026-11-02）
+
+用户要求选择简单可用的做法后，只有 VLESS/Trojan/HTTP(S)/SOCKS/AnyTLS URI fp/spx、VMess JSON fp 和 Clash 样式 node object 的 client-fingerprint 自动按 QX 原生行为适配；不新增兼容开关。Clash样式对象可来自proxies、数组/nodes/legacy servers，SS/SSR URI、显式SIP008 v1（含无id情形）、sing-box outbounds/object TLS和原生QX行保持严格。仅有界字符串可被移除（fp/client-fingerprint<=128，spx<=2048；可空但C0/C1/分隔控制字符拒绝），不读取或执行字段值。
+
+移除只发生在副本上；中间节点保留固定enum metadata，所有节点和重名校验完成后才汇总到内部Set。core在源验证和名称变换/筛选成功后输出固定注释说明差异，不回显源值，不将Chrome声称为已保留；失败只error，不发布metadata或成功通知。连接和安全字段不得因这三项放宽：Clash fingerprint/cert/pin、sing-box utls、真实path/host、地址/UUID/pbk/sid/flow、TLS校验及其它未知字段仍按既有规则处理。源对象不得变化。
+
+以同输入旧KOP对照和新原生偏好回归证明成功字段等于删除这三项后的既有NetAtlas转换结果；原始用户订阅未访问，不能声称这已证实其实际故障原因。新边界必须有控制字符及SIP008 guard变异负控。

@@ -42,18 +42,18 @@ test('the supplied native VLESS field structure succeeds with the exact user has
 });
 
 test('known URI candidate fields identify the format and field while remaining rejected', () => {
-  for (const field of ['fp', 'spx', 'fingerprint', 'packetEncoding']) {
+  for (const field of ['fingerprint', 'packetEncoding']) {
     rejects(uri + '&' + field + '=PRIVATE_FIELD_VALUE#日本01', 'Node conversion failed: unsupported field in URI options: ' + field, ['PRIVATE_FIELD_VALUE']);
   }
 });
 
-test('VMess JSON names a fixed public field without exposing its value', () => {
-  const content = { v: '2', ps: 'Private resource label', add: 'example.test', port: 443, id: uuid, net: 'tcp', tls: 'tls', fp: 'PRIVATE_FIELD_VALUE' };
-  rejects('vmess://' + Buffer.from(JSON.stringify(content)).toString('base64url'), 'Node conversion failed: unsupported field in VMess URI: fp', ['PRIVATE_FIELD_VALUE']);
+test('VMess JSON names an unsupported public field without exposing its value', () => {
+  const content = { v: '2', ps: 'Private resource label', add: 'example.test', port: 443, id: uuid, net: 'tcp', tls: 'tls', fingerprint: 'PRIVATE_FIELD_VALUE' };
+  rejects('vmess://' + Buffer.from(JSON.stringify(content)).toString('base64url'), 'Node conversion failed: unsupported field in VMess URI: fingerprint', ['PRIVATE_FIELD_VALUE']);
 });
 
 test('Clash diagnostics distinguish a known field from arbitrary secret-like keys', () => {
-  rejects({ proxies: [{ ...clash, 'client-fingerprint': 'PRIVATE_FIELD_VALUE' }] }, 'Node conversion failed: unsupported field in Clash node: client-fingerprint', ['PRIVATE_FIELD_VALUE']);
+  rejects({ proxies: [{ ...clash, fingerprint: 'PRIVATE_FIELD_VALUE' }] }, 'Node conversion failed: unsupported field in Clash node: fingerprint', ['PRIVATE_FIELD_VALUE']);
   for (const unknown of ['PRIVATE_KEY_NAME_1234567890', '秘密令牌字段', 'fp_PRIVATE_KEY_NAME']) {
     rejects({ proxies: [{ ...clash, [unknown]: 'PRIVATE_FIELD_VALUE' }] }, 'Node conversion failed: unsupported field in Clash node: [unrecognized name]', [unknown, 'PRIVATE_FIELD_VALUE']);
   }
@@ -75,5 +75,5 @@ test('existing schema field names remain readable when misplaced in another prot
 });
 
 test('diagnostic errors remain atomic even when node filters would discard the bad node', () => {
-  rejects(native + '\n' + uri + '&fp=PRIVATE_FIELD_VALUE#套餐', 'Node conversion failed: unsupported field in URI options: fp', ['PRIVATE_FIELD_VALUE']);
+  rejects(native + '\n' + uri + '&fingerprint=PRIVATE_FIELD_VALUE#套餐', 'Node conversion failed: unsupported field in URI options: fingerprint', ['PRIVATE_FIELD_VALUE']);
 });

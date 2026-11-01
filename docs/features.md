@@ -153,7 +153,11 @@ QX现在使用本仓库独立实现的`scripts/resource-parser.js`，不再引�
 
 SIP008 的 `version: 1 + servers` 中，服务器 UUID `id` 是更新标识，不是密码；解析器在该格式作用域校验并移除元数据后转换连接。VMess/VLESS 的 `id` 仍按协议凭据处理，其他格式不会随意忽略同名字段。既有不带 `id` 的服务器格式继续支持；未知连接字段或不支持版本仍整份失败。[官方 SIP008 规范](https://shadowsocks.org/doc/sip008.html)。
 
-节点转换不把QX未支持的Hysteria2、TUIC、gRPC、XHTTP或HTTP/2映射成其他协议；任意指纹和无法同时保留的WS Host/TLS SNI也会报错。旧VMess alterId大于0不转换。v2ray-plugin需要显式关闭 mux（字符串 `mux=0`，结构化 `mux: false`），SIP003 字符串中的 TLS flag 与 `false` 等矛盾值拒绝；Clash 结构化 `plugin-opts` 按字段类型直接处理，布尔 `tls: false` 保持关闭，path 中的分号和反斜杠保留字面值。Clash v2ray-plugin 缺省 Host 按 [Mihomo 1.19.33](https://github.com/MetaCubeX/mihomo/blob/v1.19.33/adapter/outbound/shadowsocks.go#L333) 为 `bing.com`，与 SIP003 的默认值分别处理；Surge与Loon的VMess握手默认值也分别处理。源显式关闭证书验证时保留该选择，不擅自改变；冲突别名和重复JSON键整份拒绝。 Legacy 全文 Base64 SS 密码不重复百分号解码；sing-box `udp_over_tcp: true` 使用 QX `sp.v2`，对象省略 `enabled` 保持关闭。Clash VMess/VLESS WSS 按源实现使用 Host 作为缺省 SNI 并固定 HTTP/1.1，无法保留的 Host/SNI 组合报错；WS 同时带 Reality 的源组合也报错，避免把源传输未启用的 Reality 误启用。原生节点凭据与名称不被普通注释裁剪。
+节点转换不把QX未支持的Hysteria2、TUIC、gRPC、XHTTP或HTTP/2映射成其他协议；证书 pin 和无法同时保留的WS Host/TLS SNI也会报错。旧VMess alterId大于0不转换。v2ray-plugin需要显式关闭 mux（字符串 `mux=0`，结构化 `mux: false`），SIP003 字符串中的 TLS flag 与 `false` 等矛盾值拒绝；Clash 结构化 `plugin-opts` 按字段类型直接处理，布尔 `tls: false` 保持关闭，path 中的分号和反斜杠保留字面值。Clash v2ray-plugin 缺省 Host 按 [Mihomo 1.19.33](https://github.com/MetaCubeX/mihomo/blob/v1.19.33/adapter/outbound/shadowsocks.go#L333) 为 `bing.com`，与 SIP003 的默认值分别处理；Surge与Loon的VMess握手默认值也分别处理。源显式关闭证书验证时保留该选择，不擅自改变；冲突别名和重复JSON键整份拒绝。 Legacy 全文 Base64 SS 密码不重复百分号解码；sing-box `udp_over_tcp: true` 使用 QX `sp.v2`，对象省略 `enabled` 保持关闭。Clash VMess/VLESS WSS 按源实现使用 Host 作为缺省 SNI 并固定 HTTP/1.1，无法保留的 Host/SNI 组合报错；WS 同时带 Reality 的源组合也报错，避免把源传输未启用的 Reality 误启用。原生节点凭据与名称不被普通注释裁剪。
+
+源节点的三个客户端偏好按 QX 原生方式自动处理，不增加模式开关：VLESS/Trojan/HTTP(S)/SOCKS/AnyTLS URI 的 `fp/spx`、VMess JSON 的 `fp`，以及 Clash 样式节点对象的 `client-fingerprint` 不写入 QX 连接字段。该对象格式也可位于裸数组、nodes 或旧式 servers 中；SS/SSR URI、显式 SIP008 v1 与 sing-box 仍严格校验，不套用这项处理。仅接受有界字符串（指纹偏好128字符、spx 2048字符），非字符串、控制字符及超长值报错。成功资源会带固定注释说明实际使用 QX 原生指纹、忽略 spx，不回显源值；这与旧 KOP 的常见订阅处理一致，不宣称保留 Chrome 指纹。QX Reality 的原生指纹见 [官方说明](https://github.com/crossutility/Quantumult-X/blob/master/sample.conf#L162-L164)。
+
+这三个偏好属于节点内容，不是订阅链接 `#` 后的新参数。真实 WS path、Reality 公钥/short-id、UUID、flow、地址和证书校验仍按原逻辑处理；Clash `fingerprint` 等证书 pin、sing-box utls、未知参数与不支持传输仍报错。原生 QX 行不新增 fp 字段。固定注释在整批校验和名称转换成功后添加，info/out/emoji 不被这些说明干扰。
 
 链接哈希提供一套声明式选项：关键词使用下面的 OR/AND 规则，名称替换为字面操作，不支持 eval 或任意自定义解析脚本。示例以文档保留域名表示，请换成自己的资源URL：
 
@@ -186,7 +190,7 @@ https://example.com/rules#type=filter&policy=Proxy
 
 有两个选项会改变转换前提，默认均不启用：`allow-resolve=1`明确允许移除源`no-resolve`，可能增加DNS查询，输出会警告行为变化；`script-compat=qx`只是使用者声明所引用的Surge/Loon脚本本体已经支持QX，不翻译JavaScript API，不忽略timeout、argument、binary-body或max-size等无法保留的设置。QX原生HTTPS脚本引用可以保留，解析器不下载或执行脚本；之后QX运行该重写脚本是另一项操作。跨宿主`reject`不能仅因名称相同就等同于QX的HTTP 404。 影响执行条件的 `#!include/requirement/system` 与平台限定指令，在节点、分流、重写中整份拒绝，不作为普通注释丢弃；Surge 普通行内注释按引号边界处理。URL 正则可以不以 `^` 开头，也可用 `[hH]` 开头，明确的 `type` 仍优先。
 
-QX 资源宿主使用 identity `$done` 并消费整段脚本的最终求值；生成脚本必须返回同一 `{content}` 或 `{error}` 对象。回归同时检查回调次数与最终对象，并覆盖 helper 单独加载。字段拒绝会标出来源格式和已登记的公共字段名，例如 `unsupported field in URI options: fp`；未知字段名与所有字段值不回显，避免泄露凭据。任何一行失败都只返回一次错误，不发布前半份结果；更新失败后的缓存和提示由QX处理，本实现不承诺宿主保留旧内容。资源限额为输入/输出各2 Mi字符、2000节点或20000规则/重写行；YAML最大32层、100000个值节点与20个alias，并拒绝循环、重复键和自定义tag。VM测试执行实际生成bundle与helper协议，尚未在原生QX导入运行。详细接口、来源和边界见[解析器登记](../metadata/resource-parsers.json)、[功能规格](specs/features.md)。
+QX 资源宿主使用 identity `$done` 并消费整段脚本的最终求值；生成脚本必须返回同一 `{content}` 或 `{error}` 对象。回归同时检查回调次数与最终对象，并覆盖 helper 单独加载。字段拒绝会标出来源格式和已登记的公共字段名，例如 `unsupported field in sing-box TLS: utls`；未知字段名与所有字段值不回显，避免泄露凭据。任何一行失败都只返回一次错误，不发布前半份结果；更新失败后的缓存和提示由QX处理，本实现不承诺宿主保留旧内容。资源限额为输入/输出各2 Mi字符、2000节点或20000规则/重写行；YAML最大32层、100000个值节点与20个alias，并拒绝循环、重复键和自定义tag。VM测试执行实际生成bundle与helper协议，尚未在原生QX导入运行。详细接口、来源和边界见[解析器登记](../metadata/resource-parsers.json)、[功能规格](specs/features.md)。
 
 Loon仍链接固定AGPL Sub-Store解析器，`fragments/resource-parser.conf`合并到`[General]`，并在选定的`[Remote Proxy]`订阅上设置`parser-enabled=true`。它是外部工具入口，可能重新获取资源并按宿主权限访问缓存；本仓库没有把它替换成QX实现或宣称离线隔离。来源、哈希与对应完整AGPL源码均保留。其他六客户端没有虚构的同名解析器字段。
 

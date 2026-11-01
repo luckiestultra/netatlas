@@ -75,8 +75,15 @@ function convertResource(resource) {
   validateOptions(type,options);
   let content, notice = null;
   if (type === 'server') {
-    const nativeNodes = nodeParser.parseNodes(data ?? text);
+    const adaptations = new Set();
+    const nativeNodes = nodeParser.parseNodes(data ?? text, { adaptations });
     content = applyNodeOptions(nativeNodes,options);
+    // Fixed notices contain no source values and bypass name filtering only
+    // after the complete source and all node transformations have succeeded.
+    const notes = [];
+    if (adaptations.has('fp') || adaptations.has('client-fingerprint')) notes.push('# NetAtlas: QX uses its native TLS fingerprint; source fp/client-fingerprint preferences are not preserved.');
+    if (adaptations.has('spx')) notes.push('# NetAtlas: QX has no Reality spider-path setting; source spx is omitted.');
+    if (notes.length) content = notes.join('\n') + '\n' + content;
     if (options.info) notice = subscriptionNotification(resource,nativeNodes);
   }
   else if (type === 'filter') content=parseRules(text,options,{parseYaml});
