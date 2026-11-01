@@ -1,0 +1,15 @@
+# SPDX-License-Identifier: MIT
+# NetAtlas optional app exceptions selected from public hostnames.
+# Keep the native row order and each direct/reject action; import without a global policy override.
+# This resource is not loaded by default profiles. Native application import has not been tested.
+host,wxapp.tc.qq.com,direct
+host-suffix,weixin.qq.com,direct
+host-suffix,mon.zijieapi.com,direct
+host-suffix,zijieapi.com,direct
+host-suffix,mp.toutiao.com,direct
+host-suffix,bytedance.com,direct
+host-suffix,bytegoofy.com,direct
+host,mobads.baidu.com,reject
+host-suffix,toutiao-hl.fqnovel.com,reject
+host-suffix,misc-lq.fqnovel.com,reject
+host-suffix,core-lq.ecombdapi.com,reject

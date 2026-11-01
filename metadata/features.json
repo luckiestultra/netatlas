@@ -834,6 +834,145 @@
         "https://github.com/crossutility/Quantumult-X/blob/af6fb594233ec4a3ec6d4ccb3601e9c36b75ea2d/rewrite.md",
         "https://github.com/v2fly/domain-list-community/tree/1daade8c4bb957d21d1f5c09c2b050d699e8e96c/data"
       ]
+    },
+    {
+      "id": "app-exceptions",
+      "description": "Optional native QX app exceptions with ordered per-rule direct/reject actions; manual import only.",
+      "defaultEnabled": false,
+      "license": "MIT",
+      "clients": {
+        "quantumultX": {
+          "artifacts": [
+            "rules/app-exceptions.list"
+          ],
+          "kind": "optional-filter-resource",
+          "nativeApp": "not-run"
+        }
+      },
+      "validation": {
+        "unit": "Ordered native rows, direct/reject actions, exact/suffix boundaries and opt-in isolation; source migration is reviewed separately.",
+        "nativeApp": "not-run"
+      },
+      "sources": [
+        "https://github.com/crossutility/Quantumult-X/blob/af6fb594233ec4a3ec6d4ccb3601e9c36b75ea2d/sample.conf",
+        "https://github.com/luckiestultra/netatlas/blob/main/docs/quantumultX-remote-layout.md"
+      ]
+    },
+    {
+      "id": "wps-account",
+      "description": "Optional native QX WPS account response-script declaration; keeps the supplied upstream URL and requires separate native compatibility review.",
+      "defaultEnabled": false,
+      "license": "MIT (resource declaration only; referenced upstream JavaScript is not redistributed or relicensed)",
+      "upstream": {
+        "url": "https://raw.githubusercontent.com/NobyDa/Script/master/Surge/JS/Wps.js",
+        "externalOnly": true,
+        "bundleRedistributed": false,
+        "license": "Not asserted by NetAtlas; the referenced upstream JavaScript retains its own terms.",
+        "verification": "Reference only; no upstream JavaScript body copied, executed or bundled."
+      },
+      "clients": {
+        "quantumultX": {
+          "artifacts": [
+            "rewrites/wps-account.snippet"
+          ],
+          "kind": "rewrite-resource",
+          "nativeApp": "not-run"
+        }
+      },
+      "validation": {
+        "unit": "Exact native declaration and upstream reference, URL pattern cases, absence of additional MITM/certificate/task declarations and opt-in isolation.",
+        "nativeApp": "not-run"
+      },
+      "sources": [
+        "https://github.com/crossutility/Quantumult-X/blob/af6fb594233ec4a3ec6d4ccb3601e9c36b75ea2d/rewrite.md",
+        "https://raw.githubusercontent.com/NobyDa/Script/master/Surge/JS/Wps.js"
+      ]
+    },
+    {
+      "defaultEnabled": false,
+      "license": "Apache-2.0 AND BSD-3-Clause AND CC0-1.0",
+      "sourceRegistry": "src/features/youtube-enhance/provenance.json",
+      "upstream": {
+        "repository": "Maasea/sgmodule",
+        "commit": "65075cdb388fc5e3094afd7e7314c67b243f3525",
+        "tree": "922245ec4d480e68a69e6a05b63f84d97f5eb219",
+        "dependenciesFullyLocked": false
+      },
+      "validation": {
+        "unit": "Isolated Node VM and JavaScriptCore synthetic completion/privacy fixtures, original patterns/default options, pinned source/license hashes and optional-resource isolation.",
+        "nativeApp": "not-run",
+        "playback": "not-run; no YouTube or Worker business request performed"
+      },
+      "sources": [
+        "https://github.com/Maasea/sgmodule/tree/65075cdb388fc5e3094afd7e7314c67b243f3525",
+        "https://github.com/crossutility/Quantumult-X/blob/af6fb594233ec4a3ec6d4ccb3601e9c36b75ea2d/sample-bytes-rewrite.js"
+      ],
+      "id": "youtube-enhance",
+      "description": "Optional QX binary response/log_event adaptation without initplayback interception or third-party Worker redirection; not a complete playback-equivalence claim.",
+      "clients": {
+        "quantumultX": {
+          "artifacts": [
+            "scripts/youtube-request.js",
+            "scripts/youtube-response.js",
+            "rewrites/youtube-enhance.snippet"
+          ],
+          "kind": "rewrite-resource",
+          "nativeApp": "not-run"
+        }
+      },
+      "permissions": {
+        "storage": "Retains upstream YouTubeConfig and YouTubeAdvertiseInfo in host script storage.",
+        "thirdPartyWorkerRedirect": false,
+        "automaticTasks": false,
+        "certificatePayload": false
+      },
+      "requiresMitmForHttps": [
+        "youtubei.googleapis.com"
+      ]
+    },
+    {
+      "defaultEnabled": false,
+      "license": "Apache-2.0 AND BSD-3-Clause AND CC0-1.0",
+      "sourceRegistry": "src/features/youtube-enhance/provenance.json",
+      "upstream": {
+        "repository": "Maasea/sgmodule",
+        "commit": "65075cdb388fc5e3094afd7e7314c67b243f3525",
+        "tree": "922245ec4d480e68a69e6a05b63f84d97f5eb219",
+        "dependenciesFullyLocked": false
+      },
+      "validation": {
+        "unit": "Isolated Node VM and JavaScriptCore synthetic completion/privacy fixtures, original patterns/default options, pinned source/license hashes and optional-resource isolation.",
+        "nativeApp": "not-run",
+        "playback": "not-run; no YouTube or Worker business request performed"
+      },
+      "sources": [
+        "https://github.com/Maasea/sgmodule/tree/65075cdb388fc5e3094afd7e7314c67b243f3525",
+        "https://github.com/crossutility/Quantumult-X/blob/af6fb594233ec4a3ec6d4ccb3601e9c36b75ea2d/sample-bytes-rewrite.js"
+      ],
+      "id": "youtube-enhance-worker",
+      "description": "Separate disabled-by-default Worker opt-in; sends runtime onesie clientKey and original playback target URL to the upstream third-party Worker.",
+      "requiresFeature": "youtube-enhance",
+      "clients": {
+        "quantumultX": {
+          "artifacts": [
+            "scripts/youtube-request-worker.js",
+            "rewrites/youtube-enhance-worker.snippet"
+          ],
+          "kind": "explicit-worker-opt-in-rewrite-resource",
+          "nativeApp": "not-run"
+        }
+      },
+      "permissions": {
+        "storage": "Reads/writes upstream YouTubeConfig cached keys.",
+        "thirdPartyWorkerRedirect": true,
+        "workerUrl": "https://init-stream.maasea.workers.dev/",
+        "externalData": "Runtime onesie clientKey, original playback target URL and default options. Not restricted to advertising requests.",
+        "automaticTasks": false,
+        "certificatePayload": false
+      },
+      "requiresMitmForHttps": [
+        "*.googlevideo.com"
+      ]
     }
   ],
   "unimplementedScriptAdapters": {

@@ -1,0 +1,9 @@
+# SPDX-License-Identifier: Apache-2.0
+# Adapted from Maasea/sgmodule@65075cdb388fc5e3094afd7e7314c67b243f3525.
+# Optional; native QX import/playback has not been tested. No CA is supplied.
+# Source, licenses, changes and limitations: https://raw.githubusercontent.com/luckiestultra/netatlas/main/src/features/youtube-enhance/NOTICE.md
+# Response/log_event only. No initplayback interception or third-party Worker redirect.
+^https:\/\/youtubei\.googleapis\.com\/(youtubei\/v1\/(browse|next|player|search|reel\/reel_watch_sequence|guide|account\/get_setting|get_watch|log_event|config))(\?(.*))?$ url script-response-body https://raw.githubusercontent.com/luckiestultra/netatlas/main/clients/quantumultX/scripts/youtube-response.js
+^https:\/\/youtubei\.googleapis\.com\/youtubei\/v1\/log_event url script-request-body https://raw.githubusercontent.com/luckiestultra/netatlas/main/clients/quantumultX/scripts/youtube-request.js
+
+hostname = youtubei.googleapis.com

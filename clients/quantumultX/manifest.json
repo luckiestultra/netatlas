@@ -2,7 +2,7 @@
   "version": 1,
   "client": "quantumultX",
   "builder": "netatlas@0.1.0",
-  "inputSha256": "65efae71b64c1c1568ba0cb6e3baf4572ef585dd15b617128c13704167a1208e",
+  "inputSha256": "295f20f1ee58fad7f385fbb552ace3aad419b5199052a8ace71bb232d3056e2c",
   "baseUrl": "https://raw.githubusercontent.com/luckiestultra/netatlas/main",
   "targetVersion": null,
   "counts": {
@@ -6638,6 +6638,81 @@
       },
       "upstream": null,
       "sourceRegistry": "metadata/qx-compat.json"
+    },
+    {
+      "id": "app-exceptions",
+      "defaultEnabled": false,
+      "license": "MIT",
+      "adapter": {
+        "artifacts": [
+          "rules/app-exceptions.list"
+        ],
+        "kind": "optional-filter-resource",
+        "nativeApp": "not-run"
+      },
+      "upstream": null,
+      "sourceRegistry": null
+    },
+    {
+      "id": "wps-account",
+      "defaultEnabled": false,
+      "license": "MIT (resource declaration only; referenced upstream JavaScript is not redistributed or relicensed)",
+      "adapter": {
+        "artifacts": [
+          "rewrites/wps-account.snippet"
+        ],
+        "kind": "rewrite-resource",
+        "nativeApp": "not-run"
+      },
+      "upstream": {
+        "url": "https://raw.githubusercontent.com/NobyDa/Script/master/Surge/JS/Wps.js",
+        "externalOnly": true,
+        "bundleRedistributed": false,
+        "license": "Not asserted by NetAtlas; the referenced upstream JavaScript retains its own terms.",
+        "verification": "Reference only; no upstream JavaScript body copied, executed or bundled."
+      },
+      "sourceRegistry": null
+    },
+    {
+      "id": "youtube-enhance",
+      "defaultEnabled": false,
+      "license": "Apache-2.0 AND BSD-3-Clause AND CC0-1.0",
+      "adapter": {
+        "artifacts": [
+          "scripts/youtube-request.js",
+          "scripts/youtube-response.js",
+          "rewrites/youtube-enhance.snippet"
+        ],
+        "kind": "rewrite-resource",
+        "nativeApp": "not-run"
+      },
+      "upstream": {
+        "repository": "Maasea/sgmodule",
+        "commit": "65075cdb388fc5e3094afd7e7314c67b243f3525",
+        "tree": "922245ec4d480e68a69e6a05b63f84d97f5eb219",
+        "dependenciesFullyLocked": false
+      },
+      "sourceRegistry": "src/features/youtube-enhance/provenance.json"
+    },
+    {
+      "id": "youtube-enhance-worker",
+      "defaultEnabled": false,
+      "license": "Apache-2.0 AND BSD-3-Clause AND CC0-1.0",
+      "adapter": {
+        "artifacts": [
+          "scripts/youtube-request-worker.js",
+          "rewrites/youtube-enhance-worker.snippet"
+        ],
+        "kind": "explicit-worker-opt-in-rewrite-resource",
+        "nativeApp": "not-run"
+      },
+      "upstream": {
+        "repository": "Maasea/sgmodule",
+        "commit": "65075cdb388fc5e3094afd7e7314c67b243f3525",
+        "tree": "922245ec4d480e68a69e6a05b63f84d97f5eb219",
+        "dependenciesFullyLocked": false
+      },
+      "sourceRegistry": "src/features/youtube-enhance/provenance.json"
     }
   ],
   "sources": {
@@ -10689,8 +10764,8 @@
     },
     {
       "path": "README.md",
-      "sha256": "b596eef94a8c595d89cc0b2d9890449e2827715cccb64ab22ede34e6d25c3052",
-      "bytes": 13023
+      "sha256": "d1e254ea770e5220a6a22cfe8d24822034dcd44188d16fcb61c8f3c0f4d4cd3a",
+      "bytes": 13684
     },
     {
       "path": "rewrites/biliintl-region.snippet",
@@ -10726,6 +10801,21 @@
       "path": "rewrites/speedtest-ads-https.snippet",
       "sha256": "9d3200ba5306e6fc0009f6657e955d81cc4e84f6c96460419ce66b95e3fb4051",
       "bytes": 1265
+    },
+    {
+      "path": "rewrites/wps-account.snippet",
+      "sha256": "81e9044c4198f121b77d0cc83a09c9948de271bb5c20e2ec5d1edbdadacf849c",
+      "bytes": 419
+    },
+    {
+      "path": "rewrites/youtube-enhance-worker.snippet",
+      "sha256": "650efa91dea4d12a5707267a571496f5bbfa13210a14b7df0703b8feea833cb7",
+      "bytes": 866
+    },
+    {
+      "path": "rewrites/youtube-enhance.snippet",
+      "sha256": "11fe09a47d1c74ea6e3975b72214fbd58fd968743e7631b85bbd7ac07a98e714",
+      "bytes": 961
     },
     {
       "path": "rules/abc.list",
@@ -10791,6 +10881,11 @@
       "path": "rules/anti-ad.list",
       "sha256": "46d03dbcbca83f5cf6387bb0c5cdd3f909eaed61d522b8e3be7df03a45c6805e",
       "bytes": 3836142
+    },
+    {
+      "path": "rules/app-exceptions.list",
+      "sha256": "6d6e1fe660bf826f26e947baa2057d809a0ba84e96417d5b0744f55b7633668c",
+      "bytes": 676
     },
     {
       "path": "rules/apple-tvplus.list",
@@ -11371,6 +11466,21 @@
       "path": "scripts/resource-parser.js",
       "sha256": "40b3be1a8a515fddf9107256b99b00a6339d94e59020670b968453557b3d8d8c",
       "bytes": 166961
+    },
+    {
+      "path": "scripts/youtube-request-worker.js",
+      "sha256": "7b9011d312dbfdde91866ccbac353b13a0452fc915c26e5690df421f7de6da63",
+      "bytes": 80847
+    },
+    {
+      "path": "scripts/youtube-request.js",
+      "sha256": "0c01d862073f40f893fb2ed77e3e9c394b12d08696614ab0cc80c4ef671a7a72",
+      "bytes": 80878
+    },
+    {
+      "path": "scripts/youtube-response.js",
+      "sha256": "8fdae501c2609e37c04260e82d5739f373b82e07a658b9a0617662ee04628d54",
+      "bytes": 169674
     }
   ]
 }

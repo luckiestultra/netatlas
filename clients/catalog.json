@@ -2,7 +2,7 @@
   "version": 1,
   "builder": "netatlas@0.1.0",
   "input": {
-    "sha256": "65efae71b64c1c1568ba0cb6e3baf4572ef585dd15b617128c13704167a1208e",
+    "sha256": "295f20f1ee58fad7f385fbb552ace3aad419b5199052a8ace71bb232d3056e2c",
     "files": [
       {
         "path": "LICENSE",
@@ -10,7 +10,7 @@
       },
       {
         "path": "THIRD_PARTY_NOTICES.md",
-        "sha256": "b47dff161306841e376307cf62eac80d5d7380af189cb7518fdc171b424877e2"
+        "sha256": "f266c356c903df10baff79739bee34d48bd426d25c8693764ed57484523d22e9"
       },
       {
         "path": "metadata/clients.json",
@@ -22,7 +22,7 @@
       },
       {
         "path": "metadata/features.json",
-        "sha256": "39322502613281a93717b5a73e927fe11419a3e12d5cf47140ed78769c980646"
+        "sha256": "52691b8d4ff38ca30c70e87a9f1edd5c0b46eee71139b5e67b1131c00d2c706e"
       },
       {
         "path": "metadata/https-upgrade.json",
@@ -75,6 +75,10 @@
       {
         "path": "package.json",
         "sha256": "3171931dce590f2ce334dbfdd97d633fb3c2ed8319f96404bc54913bc9e8757f"
+      },
+      {
+        "path": "src/features/app-exceptions/quantumultX.list",
+        "sha256": "6d6e1fe660bf826f26e947baa2057d809a0ba84e96417d5b0744f55b7633668c"
       },
       {
         "path": "src/features/body-replacement/core.mjs",
@@ -211,6 +215,50 @@
       {
         "path": "src/features/search-redirect/surge.sgmodule",
         "sha256": "42b142986c354a55f09557b73180f34c9fd14393d51a8a3ee199bdf71b5d7bd8"
+      },
+      {
+        "path": "src/features/wps-account/quantumultX.snippet",
+        "sha256": "81e9044c4198f121b77d0cc83a09c9948de271bb5c20e2ec5d1edbdadacf849c"
+      },
+      {
+        "path": "src/features/youtube-enhance/LICENSE",
+        "sha256": "c71d239df91726fc519c6eb72d318ec65820627232b2f796219e87dcf35d0ab4"
+      },
+      {
+        "path": "src/features/youtube-enhance/NOTICE.md",
+        "sha256": "9fef2444f7f7d61cbfe1a50fc7c3be7e9f1383b63e21a5a35228d42f92b6c5b7"
+      },
+      {
+        "path": "src/features/youtube-enhance/licenses/polyfill-CC0-1.0.txt",
+        "sha256": "7179683e8000e6bdc9bbc60d85edf0a4ac8e76f951857f54fcb775d5886f1309"
+      },
+      {
+        "path": "src/features/youtube-enhance/licenses/protobuf-daniel-wirtz-BSD-3-Clause.txt",
+        "sha256": "1033ec013241782ef9264400da6635b26b7a14674d9601c6c767be84ad778af4"
+      },
+      {
+        "path": "src/features/youtube-enhance/licenses/protobuf-google-BSD-3-Clause.txt",
+        "sha256": "182a1bc8985a586e8e0ca3b5a3af1ff3c28bd3475833a07f50b42b53dd7ac889"
+      },
+      {
+        "path": "src/features/youtube-enhance/licenses/protobuf-ts-Apache-2.0.txt",
+        "sha256": "5e3400b93bbb099e83e52bab885e7441750673c21f97988ca3f1240639b63283"
+      },
+      {
+        "path": "src/features/youtube-enhance/provenance.json",
+        "sha256": "c1401b66b35a5d010a627ec72cc405b12556870fb6d1504801dec611a4b6224e"
+      },
+      {
+        "path": "src/features/youtube-enhance/upstream/YouTube.Enhance.sgmodule",
+        "sha256": "9c7464733c54417da36aff09482d1287cee5ecd531ad856842912704b5b3f64d"
+      },
+      {
+        "path": "src/features/youtube-enhance/upstream/youtube.request.js",
+        "sha256": "3ecca15e06e76a31720092c581180f648ef2c45e494644941ba985c878efbb26"
+      },
+      {
+        "path": "src/features/youtube-enhance/upstream/youtube.response.js",
+        "sha256": "f98483d5f5017514f82502253c0db5ce2d4ffb7839887aa2cadc22666f5a7f12"
       },
       {
         "path": "src/native-rules/china-asn.json",
@@ -1042,7 +1090,7 @@
       },
       {
         "path": "tools/lib/features.mjs",
-        "sha256": "137f4d0b1177aaa958c9144a4c96334385fec2a3edb6b290ea188f549652e109"
+        "sha256": "53e42614860fc569fe2fa1c69cd6ab3bc55b8624d8b85a03914cf47394c14eeb"
       },
       {
         "path": "tools/lib/geoip.mjs",
@@ -1177,6 +1225,10 @@
         "sha256": "720b72999279b4c90ec87847479f538c804780f3ffb94ba4a379f4e8964efb4b"
       },
       {
+        "path": "tools/lib/youtube-enhance.mjs",
+        "sha256": "97ccca6ea6b7e1a4262bfe26d87a90c6ee09c3391c7d3ba6d2c23988529d5bf1"
+      },
+      {
         "path": "tools/live.mjs",
         "sha256": "70b47b470cff49e11b4c9fe4deb4caada938136b97fa6a9613d080d4d867b3c9"
       },
@@ -1203,7 +1255,7 @@
       "id": "quantumultX",
       "name": "Quantumult X",
       "manifest": "quantumultX/manifest.json",
-      "sha256": "a89fee39878fec3848e4c37434446ec8f9689360607872b97a715f25947174e3",
+      "sha256": "a01947d04d3c0371d094d8e5d64e7525177f4ace37b14f4adfdeca9b093df5d7",
       "rulesets": 119,
       "entries": 136966,
       "defaultRuleSets": 116,
@@ -1213,7 +1265,7 @@
       "id": "surge",
       "name": "Surge",
       "manifest": "surge/manifest.json",
-      "sha256": "664718883360a96bc6ee8379e4843fc6c9eb54fdee56256e4f58570085d713d3",
+      "sha256": "2b26c7980d81ed07061132528ec84fc1d292cce3c27729d74bb7cf63cd896e8b",
       "rulesets": 119,
       "entries": 136966,
       "defaultRuleSets": 116,
@@ -1223,7 +1275,7 @@
       "id": "loon",
       "name": "Loon",
       "manifest": "loon/manifest.json",
-      "sha256": "dd6c1f95cab6b4e2bc0faecc35d64dd991c3d631de8f81bb3260aa0eb0a17893",
+      "sha256": "b70475def8215fc41f0f5617b0a9c749e3d69f60ae2d8cd4a0a6745e4c69e9c7",
       "rulesets": 119,
       "entries": 136966,
       "defaultRuleSets": 116,
@@ -1233,7 +1285,7 @@
       "id": "shadowrocket",
       "name": "Shadowrocket",
       "manifest": "shadowrocket/manifest.json",
-      "sha256": "751085296c5610299c2592c8409745591c3148237c0e366150c059d0870ef2e9",
+      "sha256": "fbf551bc7b9fb61fcfd9270e95586a6314d04eb455de692b67a10afde2f2a1a2",
       "rulesets": 119,
       "entries": 136966,
       "defaultRuleSets": 116,
@@ -1243,7 +1295,7 @@
       "id": "egern",
       "name": "Egern",
       "manifest": "egern/manifest.json",
-      "sha256": "0cad0af94576ad090f122b876deb2038920368bff229d8f52454481a0f3bd61d",
+      "sha256": "f4cc79dceb3d415b4e42ef8e85d30d44011fe8f4ce01d40ff7b3a0e6f16a4e97",
       "rulesets": 119,
       "entries": 136966,
       "defaultRuleSets": 116,
@@ -1253,7 +1305,7 @@
       "id": "stash",
       "name": "Stash",
       "manifest": "stash/manifest.json",
-      "sha256": "6e7d1730f5e2acabaac9a436c807f0ec59bb2d0578edf8650551a3dd5a2c8b69",
+      "sha256": "3dcb1cf79c76e1981defa83ac473922ad3823b0cac29ed3b0df130e3ee5f2d4d",
       "rulesets": 119,
       "entries": 136966,
       "defaultRuleSets": 116,
@@ -1263,7 +1315,7 @@
       "id": "mihomo",
       "name": "Mihomo",
       "manifest": "mihomo/manifest.json",
-      "sha256": "794d5e8e3239f596874aeb2f21885342779a9b041da308b7debe0a07826edbed",
+      "sha256": "5e02e1a3447a57becfbe751833b7a9941278fef94e55238a507ed5e31e0a46de",
       "rulesets": 119,
       "entries": 136966,
       "defaultRuleSets": 116,
@@ -1273,12 +1325,12 @@
       "id": "singBox",
       "name": "sing-box",
       "manifest": "singBox/manifest.json",
-      "sha256": "7d1b0e6994ba5a51f22f8308f9fccb295f85a8df57a1dd8351cb6a63b81fd1a4",
+      "sha256": "79d913f64056f5087ddc5433204083170eba45c995b910b5c8549371a804218a",
       "rulesets": 119,
       "entries": 136966,
       "defaultRuleSets": 116,
       "defaultEntries": 29175
     }
   ],
-  "contentSha256": "57c8130fd5e2d08755ce2e3d2e92bfaf532d5c3007e80960269bff826382deea"
+  "contentSha256": "e57ec2f69efea80f37a189c9145660afdda6d63dbc3a4c90dbab9de89a2045ed"
 }

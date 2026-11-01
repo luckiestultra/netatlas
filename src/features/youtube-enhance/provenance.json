@@ -1,0 +1,119 @@
+{
+  "version": 1,
+  "repository": "Maasea/sgmodule",
+  "author": "Maasea",
+  "commit": "65075cdb388fc5e3094afd7e7314c67b243f3525",
+  "tree": "922245ec4d480e68a69e6a05b63f84d97f5eb219",
+  "license": "Apache-2.0 AND BSD-3-Clause AND CC0-1.0",
+  "dependenciesFullyLocked": false,
+  "dependencyBoundary": "Pinned author bundles and identified component license sources only; exact protobuf npm version and complete upstream build closure were not recovered.",
+  "dependencies": [
+    {
+      "name": "protobuf-ts runtime",
+      "author": "Timo Stamm",
+      "license": "Apache-2.0 AND BSD-3-Clause",
+      "licenseEvidenceCommit": "657e64e80009e503e94f608fda423fbcbf4fb5a7",
+      "licenseEvidenceIsRecoveredBundleVersion": false,
+      "notes": "Includes Google varint code; retain Daniel Wirtz BSD terms for the package even though its separate UTF-8 implementation was not identified in these bundles."
+    },
+    {
+      "name": "FastestSmallestTextEncoderDecoder",
+      "author": "AnonyCo",
+      "license": "CC0-1.0",
+      "licenseEvidenceCommit": "f04c88cf11024672e4d3e3dd59b9530b50eefbed",
+      "notes": "Complete polyfill function tokens correspond after whitespace, alpha-variable and outer global-selection normalization."
+    }
+  ],
+  "defaultOptions": {
+    "captionLang": "off",
+    "blockUpload": true,
+    "blockImmersive": true,
+    "blockShorts": false,
+    "debug": false
+  },
+  "worker": {
+    "url": "https://init-stream.maasea.workers.dev/",
+    "defaultEnabled": false,
+    "data": "Runtime onesie clientKey and original playback target URL plus options; separate explicit opt-in only."
+  },
+  "files": [
+    {
+      "path": "upstream/youtube.request.js",
+      "sourceUrl": "https://raw.githubusercontent.com/Maasea/sgmodule/65075cdb388fc5e3094afd7e7314c67b243f3525/Script/Youtube/youtube.request.js",
+      "gitBlob": "f0e2a9b9b823f2f289a00446c2876a5097bc6a63",
+      "bytes": 44024,
+      "sha256": "3ecca15e06e76a31720092c581180f648ef2c45e494644941ba985c878efbb26"
+    },
+    {
+      "path": "upstream/youtube.response.js",
+      "sourceUrl": "https://raw.githubusercontent.com/Maasea/sgmodule/65075cdb388fc5e3094afd7e7314c67b243f3525/Script/Youtube/youtube.response.js",
+      "gitBlob": "becad8eaa6094c189ea8db6d644de68ac2d66f61",
+      "bytes": 132973,
+      "sha256": "f98483d5f5017514f82502253c0db5ce2d4ffb7839887aa2cadc22666f5a7f12"
+    },
+    {
+      "path": "upstream/YouTube.Enhance.sgmodule",
+      "sourceUrl": "https://raw.githubusercontent.com/Maasea/sgmodule/65075cdb388fc5e3094afd7e7314c67b243f3525/YouTube.Enhance.sgmodule",
+      "gitBlob": "dc3073bf09adcaae999b6e9612fad761a0bfc926",
+      "bytes": 1665,
+      "sha256": "9c7464733c54417da36aff09482d1287cee5ecd531ad856842912704b5b3f64d"
+    }
+  ],
+  "licenses": [
+    {
+      "path": "LICENSE",
+      "bytes": 11357,
+      "sha256": "c71d239df91726fc519c6eb72d318ec65820627232b2f796219e87dcf35d0ab4",
+      "sourceUrl": "https://github.com/Maasea/sgmodule/blob/65075cdb388fc5e3094afd7e7314c67b243f3525/LICENSE",
+      "sourceCommit": "65075cdb388fc5e3094afd7e7314c67b243f3525",
+      "sourcePath": "LICENSE",
+      "sourceGitBlob": "261eeb9e9f8b2b4b0d119366dda99c6fd7d35c64",
+      "originalSourceSha256": "c71d239df91726fc519c6eb72d318ec65820627232b2f796219e87dcf35d0ab4",
+      "extraction": "Complete unmodified upstream license."
+    },
+    {
+      "path": "licenses/protobuf-ts-Apache-2.0.txt",
+      "bytes": 10140,
+      "sha256": "5e3400b93bbb099e83e52bab885e7441750673c21f97988ca3f1240639b63283",
+      "sourceUrl": "https://github.com/timostamm/protobuf-ts/blob/657e64e80009e503e94f608fda423fbcbf4fb5a7/packages/runtime/LICENSE",
+      "sourceCommit": "657e64e80009e503e94f608fda423fbcbf4fb5a7",
+      "sourcePath": "packages/runtime/LICENSE",
+      "sourceGitBlob": "298f0e2665e512a7d5053faf2ce4793c281efe6a",
+      "originalSourceSha256": "5e3400b93bbb099e83e52bab885e7441750673c21f97988ca3f1240639b63283",
+      "extraction": "Complete unmodified upstream license."
+    },
+    {
+      "path": "licenses/polyfill-CC0-1.0.txt",
+      "bytes": 7049,
+      "sha256": "7179683e8000e6bdc9bbc60d85edf0a4ac8e76f951857f54fcb775d5886f1309",
+      "sourceUrl": "https://github.com/anonyco/FastestSmallestTextEncoderDecoder/blob/f04c88cf11024672e4d3e3dd59b9530b50eefbed/LICENSE",
+      "sourceCommit": "f04c88cf11024672e4d3e3dd59b9530b50eefbed",
+      "sourcePath": "LICENSE",
+      "sourceGitBlob": "6ca207ef004cb69d03041e7e5c288a2be4968045",
+      "originalSourceSha256": "7179683e8000e6bdc9bbc60d85edf0a4ac8e76f951857f54fcb775d5886f1309",
+      "extraction": "Complete unmodified upstream license."
+    },
+    {
+      "path": "licenses/protobuf-google-BSD-3-Clause.txt",
+      "bytes": 1720,
+      "sha256": "182a1bc8985a586e8e0ca3b5a3af1ff3c28bd3475833a07f50b42b53dd7ac889",
+      "sourceUrl": "https://github.com/timostamm/protobuf-ts/blob/657e64e80009e503e94f608fda423fbcbf4fb5a7/packages/runtime/src/goog-varint.ts",
+      "sourceCommit": "657e64e80009e503e94f608fda423fbcbf4fb5a7",
+      "sourcePath": "packages/runtime/src/goog-varint.ts",
+      "sourceGitBlob": "3d57be465f166da839da6b30d1d59ef235b42b18",
+      "originalSourceSha256": "c67ddb1a02658ac0cf55a0d02234a84dec5cfe705696291a534fecf90f646b80",
+      "extraction": "Complete leading copyright/license comment with // prefixes removed; no function body."
+    },
+    {
+      "path": "licenses/protobuf-daniel-wirtz-BSD-3-Clause.txt",
+      "bytes": 1479,
+      "sha256": "1033ec013241782ef9264400da6635b26b7a14674d9601c6c767be84ad778af4",
+      "sourceUrl": "https://github.com/timostamm/protobuf-ts/blob/657e64e80009e503e94f608fda423fbcbf4fb5a7/packages/runtime/src/protobufjs-utf8.ts",
+      "sourceCommit": "657e64e80009e503e94f608fda423fbcbf4fb5a7",
+      "sourcePath": "packages/runtime/src/protobufjs-utf8.ts",
+      "sourceGitBlob": "070852e672a1c7071eb01c9b28d3b0bc8741b40b",
+      "originalSourceSha256": "e0438ea743f5a23fd20fd98872f82450e8cdfaa1ed29ad9f38fc134acc280ab3",
+      "extraction": "Complete leading copyright/license comment with // prefixes removed; no function body."
+    }
+  ]
+}

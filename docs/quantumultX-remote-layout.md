@@ -41,6 +41,27 @@ force-policy应指向原有策略组，不应改成该组当前选中的某个�
 
 本仓库openai/netease-music等文件内策略使用规范服务ID；已有配置若使用OpenAI/NetEaseMusic等不同组名，应在引用层显式映射，不能仅换URL。合并包含direct和reject等多种策略的自定义资源时，不设置全局force-policy，保留每条动作。
 
+## 可选原生资源
+
+下面都是按需合并的资源，不会自动接入公共default/standalone配置，也不是完整私人配置。
+
+```ini
+# 合并到现有[filter_remote]。每条规则自带direct/reject，不能加全局force-policy。
+https://raw.githubusercontent.com/luckiestultra/netatlas/main/clients/quantumultX/rules/app-exceptions.list, tag=app-exceptions, update-interval=172800, opt-parser=false, enabled=true
+
+# 合并到现有[rewrite_remote]；先检查已有MITM范围和与本地声明的优先级。
+https://raw.githubusercontent.com/luckiestultra/netatlas/main/clients/quantumultX/rewrites/wps-account.snippet, tag=wps-account, update-interval=172800, opt-parser=false, enabled=true
+https://raw.githubusercontent.com/luckiestultra/netatlas/main/clients/quantumultX/rewrites/youtube-enhance.snippet, tag=youtube-enhance, update-interval=172800, opt-parser=false, enabled=true
+```
+
+- `app-exceptions.list`保留11条公开主机条件、原顺序及7条direct/4条reject。适合明确需要这些例外的配置；不因域名公开就自动加入每个用户的配置。
+- `wps-account.snippet`仅保存一条响应脚本声明，仍引用原作者JS；没有复制、重新授权其JS，也不提供hostname、证书或任务。原来本地声明移到远程可能改变优先级，需要单独审阅。
+- `youtube-enhance.snippet`使用固定Apache-2.0上游版本的自有QX适配，默认仅接入YouTube API响应和log_event请求。主资源不接入initplayback Worker流程；不宣称完整复现上游模块全部功能，播放、画中画、字幕等原生效果仍需实测。
+
+独立的`youtube-enhance-worker.snippet`是额外选用资源。其来源逻辑会把运行时协议clientKey和原播放target URL交给第三方Worker；它不是账户Cookie，但也不应当作无数据外发的功能。默认不加载该资源，使用前应阅读其许可、来源与数据流说明；主资源不会因缓存存在就自动启用该路径。
+
+第三方JS文件有时同时含安装说明和可执行正文，不能把整份JS直接当作原生重写资源。没有适用再发布授权的正文继续引用上游；触发声明可单独保存在本地私人配置。不能为减少红字而执行下载内容、丢弃不支持的条件、自动添加任务、调试hostname或证书。
+
 ## 可审阅迁移顺序
 
 1. 先取得原始纯文本配置并在本地备份；富文本编辑器的可访问性摘要不是可无损写回的源文件。记录启停、顺序、inserted-resource、原策略组与选择。

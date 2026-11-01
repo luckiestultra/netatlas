@@ -1,0 +1,10 @@
+# SPDX-License-Identifier: Apache-2.0
+# Adapted from Maasea/sgmodule@65075cdb388fc5e3094afd7e7314c67b243f3525.
+# Optional; native QX import/playback has not been tested. No CA is supplied.
+# Source, licenses, changes and limitations: https://raw.githubusercontent.com/luckiestultra/netatlas/main/src/features/youtube-enhance/NOTICE.md
+# DISABLED BY DEFAULT: separate manual opt-in; requires youtube-enhance.
+# Sends the runtime onesie clientKey and original playback target URL to https://init-stream.maasea.workers.dev/.
+# Matching cached keys redirect to that Worker; missing/mismatched keys return an empty response as upstream does.
+^https?:\/\/[\w-]+\.googlevideo\.com\/initplayback.+&ack.* url script-request-body https://raw.githubusercontent.com/luckiestultra/netatlas/main/clients/quantumultX/scripts/youtube-request-worker.js
+
+hostname = *.googlevideo.com

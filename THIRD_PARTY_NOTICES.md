@@ -115,3 +115,9 @@ GeoIP与ASN数据库由各客户端自身下载和更新，本仓库没有重新
 ## QX 可选兼容补充
 
 QX兼容分流与HTTP/HTTPS重写是本项目MIT适配，依据已归档的同一MIT DLC正则表达式和QX公开语法独立实现。扩大范围的通配与仅HTTP(S)的重写不计为源域名正则完整恢复；源表达式及额外匹配例子在metadata/qx-compat.json登记。没有复制第三方未许可配置、脚本或证书，也未重新分发CA或私有数据。
+
+## YouTube Enhance QX adaptation
+
+Pinned Maasea YouTube bundles, the original module and the minimal QX adaptation retain Apache-2.0, embedded protobuf-ts Apache/BSD-3-Clause and AnonyCo text polyfill CC0-1.0 terms. Complete source, licenses, hashes, authors and changes are in [the feature notice](src/features/youtube-enhance/NOTICE.md) and [provenance](src/features/youtube-enhance/provenance.json). The exact protobuf npm/build dependency closure was not recovered. No code from unmerged PR #105 is used.
+
+The primary optional resource does not intercept initplayback or redirect QX to a third-party Worker. A separate Worker resource is disabled by default and explicitly exposes runtime onesie clientKey and the original playback target URL to the upstream Worker; it is not required by the primary resource and is not limited to advertisements. Neither resource is automatically enabled in public profiles. Node VM/JavaScriptCore tests use synthetic fixtures; native QX playback, PIP, background play, ad removal and subtitle behavior remain not-run.
