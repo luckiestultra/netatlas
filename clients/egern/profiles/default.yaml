@@ -100,6 +100,10 @@ dns:
         value: remote
         update_interval: 86400
     - proxy_rule_set:
+        match: https://raw.githubusercontent.com/luckiestultra/netatlas/main/clients/egern/rules/bybit.yaml
+        value: remote
+        update_interval: 86400
+    - proxy_rule_set:
         match: https://raw.githubusercontent.com/luckiestultra/netatlas/main/clients/egern/rules/claude.yaml
         value: remote
         update_interval: 86400
@@ -685,6 +689,18 @@ policy_groups:
         - 新加坡节点
         - 美国节点
   - select:
+      name: Bybit
+      policies:
+        - 节点选择
+        - 自动选择
+        - DIRECT
+        - 香港节点
+        - 台湾节点
+        - 日本节点
+        - 韩国节点
+        - 新加坡节点
+        - 美国节点
+  - select:
       name: 国外网站
       policies:
         - 节点选择
@@ -836,6 +852,10 @@ rules:
   - rule_set:
       match: https://raw.githubusercontent.com/luckiestultra/netatlas/main/clients/egern/rules/blizzard.yaml
       policy: 游戏平台
+      update_interval: 86400
+  - rule_set:
+      match: https://raw.githubusercontent.com/luckiestultra/netatlas/main/clients/egern/rules/bybit.yaml
+      policy: Bybit
       update_interval: 86400
   - rule_set:
       match: https://raw.githubusercontent.com/luckiestultra/netatlas/main/clients/egern/rules/claude.yaml

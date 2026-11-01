@@ -6,7 +6,7 @@
 
 导入主配置，在 proxy-providers 添加自己的 Stash 原生订阅，将 provider 名称填入节点选择、自动选择和地区组的 use；也可直接添加 proxies。选择实际节点；当前公开文件没有活动假订阅。
 
-首次使用需由客户端下载远程规则。主配置引用本客户端的 127 份规则资源（115 份公共规则、12 份原生条件补充），更新由客户端处理；主配置升级与规则刷新是两件事。没有私人节点，配置不会凭空提供代理服务。除 QX/SR 使用 App 内置节点选择外，无节点时节点选择保持 REJECT，导入后核对实际选择。
+首次使用需由客户端下载远程规则。主配置引用本客户端的 128 份规则资源（116 份公共规则、12 份原生条件补充），更新由客户端处理；主配置升级与规则刷新是两件事。没有私人节点，配置不会凭空提供代理服务。除 QX/SR 使用 App 内置节点选择外，无节点时节点选择保持 REJECT，导入后核对实际选择。
 
 AI、苹果、谷歌、微软、开发、通讯、游戏、媒体与最终兜底可独立选策略；支持手选、自动选择及六地区测速组。地区名来自节点标签，不是 IP 定位结论；没有匹配节点时不要选择该组，不承诺空组自动回退。苹果服务初始直连，其余业务默认走节点选择。
 
@@ -35,6 +35,7 @@ rules/ 按具体应用或服务 ID 平铺，可单独订阅；QX 资源的 force
 | [baidu](rules/baidu.yaml) | 132 | MIT |
 | [bilibili](rules/bilibili.yaml) | 53 | MIT |
 | [blizzard](rules/blizzard.yaml) | 25 | MIT |
+| [bybit](rules/bybit.yaml) | 16 | MIT |
 | [claude](rules/claude.yaml) | 19 | MIT |
 | [coolapk](rules/coolapk.yaml) | 3 | MIT |
 | [cursor](rules/cursor.yaml) | 5 | MIT |

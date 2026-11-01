@@ -163,6 +163,12 @@
       ]
     },
     {
+      "name": "Bybit",
+      "rules": [
+        "bybit"
+      ]
+    },
+    {
       "name": "国外网站",
       "rules": [
         "speedtest"

@@ -52,6 +52,8 @@ dns:
       - https://223.5.5.5/dns-query#DIRECT
     rule-set:blizzard:
       - https://1.1.1.1/dns-query#节点选择
+    rule-set:bybit:
+      - https://1.1.1.1/dns-query#节点选择
     rule-set:claude:
       - https://1.1.1.1/dns-query#节点选择
     rule-set:coolapk:
@@ -426,6 +428,18 @@ proxy-groups:
       - 韩国节点
       - 新加坡节点
       - 美国节点
+  - name: Bybit
+    type: select
+    proxies:
+      - 节点选择
+      - 自动选择
+      - DIRECT
+      - 香港节点
+      - 台湾节点
+      - 日本节点
+      - 韩国节点
+      - 新加坡节点
+      - 美国节点
   - name: 国外网站
     type: select
     proxies:
@@ -528,6 +542,7 @@ rules:
   - RULE-SET,baidu,国内服务
   - RULE-SET,bilibili,国内媒体
   - RULE-SET,blizzard,游戏平台
+  - RULE-SET,bybit,Bybit
   - RULE-SET,claude,AI服务
   - RULE-SET,coolapk,国内服务
   - RULE-SET,cursor,AI服务
@@ -786,6 +801,14 @@ rule-providers:
     format: yaml
     url: https://raw.githubusercontent.com/luckiestultra/netatlas/main/clients/mihomo/rules/blizzard.yaml
     path: ./rules/netatlas-blizzard.yaml
+    interval: 86400
+  bybit:
+    type: http
+    proxy: DIRECT
+    behavior: classical
+    format: yaml
+    url: https://raw.githubusercontent.com/luckiestultra/netatlas/main/clients/mihomo/rules/bybit.yaml
+    path: ./rules/netatlas-bybit.yaml
     interval: 86400
   claude:
     type: http

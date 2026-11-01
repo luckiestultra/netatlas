@@ -10039,6 +10039,27 @@
       "outputSha256": "d0f902ac099e1ecd4daa1c047c365ad1e24a1403fade7be447f80d75fc8a3a7e",
       "entryCount": 3,
       "updatedAt": "2026-10-31T00:00:00Z"
+    },
+    {
+      "id": "bybit",
+      "category": "finance",
+      "source": {
+        "type": "local",
+        "license": "MIT",
+        "references": [
+          "https://github.com/luckiestultra/netatlas/blob/main/docs/rules/bybit.md"
+        ],
+        "description": "Exactly the 16 routing conditions supplied by the repository owner on 2026-11-02: 14 suffixes and 2 exact hosts; no inferred or downloaded additions.",
+        "author": "NetAtlas owner-provided selection",
+        "updatedAt": "2026-11-02"
+      },
+      "files": [],
+      "appliedExclusions": [],
+      "attributeFiltered": 0,
+      "selection": "owner-supplied 16 conditions; exact-host boundaries preserved",
+      "outputSha256": "22003026f68fda11ccc845eeb6b1f897d6fd569ac8cc1a1d58f167a75fd05b6f",
+      "entryCount": 16,
+      "updatedAt": "2026-11-02"
     }
   ]
 }

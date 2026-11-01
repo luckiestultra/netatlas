@@ -8,7 +8,7 @@ import { clients } from '../../tools/lib/clients.mjs';
 
 const root = resolve(import.meta.dirname, '../..');
 const { rulesets } = await loadCatalog(root);
-const resourceCounts={quantumultX:121,surge:123,loon:123,shadowrocket:121,egern:127,stash:127,mihomo:127,singBox:125};
+const resourceCounts={quantumultX:122,surge:124,loon:124,shadowrocket:122,egern:128,stash:128,mihomo:128,singBox:126};
 
 for (const client of clients) {
   test(`${client.id}: App default is compact and subscribes to the complete ordered rule catalog`, () => {
@@ -17,7 +17,7 @@ for (const client of clients) {
     assert.equal(profile.path, `profiles/default.${client.profileExtension}`);
     const result = validateManagedProfile(client.id, profile.content, rulesets);
     assert.equal(result.resources, resourceCounts[client.id]);
-    assert.equal(result.entries, 29_153);
+    assert.equal(result.entries, 29_169);
     assert.doesNotMatch(profile.content, /Matrix|npm run|private input|your-service-provider/);
     assert.ok(profile.content.includes('日本节点'));
     assert.ok(profile.content.includes('自动选择'));

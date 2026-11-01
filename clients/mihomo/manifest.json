@@ -2,14 +2,14 @@
   "version": 1,
   "client": "mihomo",
   "builder": "netatlas@0.1.0",
-  "inputSha256": "8ba9a38455508d756299f4aaa7715bc6ea6421d9b3a2eb0c5412273ccb554197",
+  "inputSha256": "aa82644cb13c986ecd98e655293c3b914a1ccb3be65c278331f50575ae0e07ed",
   "baseUrl": "https://raw.githubusercontent.com/luckiestultra/netatlas/main",
   "targetVersion": "1.19.33",
   "counts": {
-    "defaultRuleSets": 115,
-    "defaultEntries": 29153,
+    "defaultRuleSets": 116,
+    "defaultEntries": 29169,
     "optionalRuleSets": 3,
-    "totalEntries": 136944
+    "totalEntries": 136960
   },
   "routingExtensions": {
     "native": {
@@ -4042,6 +4042,27 @@
         "updatedAt": "2026-10-31T00:00:00Z",
         "projection": "three exact first-party connectivity-probe hosts; no suffix matching",
         "excludedExpressions": []
+      },
+      {
+        "id": "bybit",
+        "tag": "finance",
+        "defaultProfile": true,
+        "source": {
+          "type": "local",
+          "license": "MIT",
+          "references": [
+            "https://github.com/luckiestultra/netatlas/blob/main/docs/rules/bybit.md"
+          ],
+          "description": "Exactly the 16 routing conditions supplied by the repository owner on 2026-11-02: 14 suffixes and 2 exact hosts; no inferred or downloaded additions.",
+          "author": "NetAtlas owner-provided selection",
+          "updatedAt": "2026-11-02"
+        },
+        "license": "MIT",
+        "sha256": "22003026f68fda11ccc845eeb6b1f897d6fd569ac8cc1a1d58f167a75fd05b6f",
+        "entries": 16,
+        "updatedAt": "2026-11-02",
+        "projection": "owner-supplied 16 conditions; exact-host boundaries preserved",
+        "excludedExpressions": []
       }
     ],
     "inputs": [
@@ -4116,6 +4137,10 @@
       {
         "path": "src/rules/development/vercel.json",
         "sha256": "8018ebcf88cbfca3914abe8399d74b2142f7332a58d2d9bdd340ee8cefc4462d"
+      },
+      {
+        "path": "src/rules/finance/bybit.json",
+        "sha256": "22003026f68fda11ccc845eeb6b1f897d6fd569ac8cc1a1d58f167a75fd05b6f"
       },
       {
         "path": "src/rules/gaming/blizzard.json",
@@ -4532,8 +4557,8 @@
     },
     {
       "path": "profiles/default.yaml",
-      "sha256": "c11243cff6b7561e5eb6bcaacc0edc7f674e2a4a9751829c0d8709743e256ad3",
-      "bytes": 51336
+      "sha256": "8386a07fea0ce79f76523ca40a38ba1147881e98b62d184d4ed25a4e6d0bc718",
+      "bytes": 51904
     },
     {
       "path": "profiles/input.example.json",
@@ -4542,13 +4567,13 @@
     },
     {
       "path": "profiles/standalone.yaml",
-      "sha256": "e723a19b07cac477d458da95e35c8e9474cf6170be716a051a7a667f987324af",
-      "bytes": 2200336
+      "sha256": "ad5e35f4763160f1d32fb81b2c5c9ca6bc41ca93a59aad3784968bca761faec5",
+      "bytes": 2201935
     },
     {
       "path": "README.md",
-      "sha256": "497c8c2745927af9bb69bc4eb9e28ecd64dd05c46e7820e2f7e980aa34b02022",
-      "bytes": 11648
+      "sha256": "00d42ccbdd07ab22b2a8f929f47ca4f08229e9d167c9d60d7074ad5a2a682ded",
+      "bytes": 11689
     },
     {
       "path": "rules/abc.yaml",
@@ -4649,6 +4674,11 @@
       "path": "rules/blizzard.yaml",
       "sha256": "92fcb2cc31e866e5ce0d0c9e2a52b4e6b931cd1cb95929c24c886a83bc697af2",
       "bytes": 890
+    },
+    {
+      "path": "rules/bybit.yaml",
+      "sha256": "99e9c444dc619cf8edd4117b89412b29bac38e11929dcd029ae9d7ddcb1fa9d1",
+      "bytes": 486
     },
     {
       "path": "rules/bytedance.yaml",

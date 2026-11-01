@@ -3853,6 +3853,54 @@ dns:
         match: bnetshopus.akamaized.net
         value: remote
     - domain_suffix:
+        match: byabcde.com
+        value: remote
+    - domain_suffix:
+        match: byapis.com
+        value: remote
+    - domain_suffix:
+        match: byapps.net
+        value: remote
+    - domain_suffix:
+        match: bybdc6.com
+        value: remote
+    - domain_suffix:
+        match: bybit-global.com
+        value: remote
+    - domain_suffix:
+        match: bybit.biz
+        value: remote
+    - domain_suffix:
+        match: bybit.cloud
+        value: remote
+    - domain_suffix:
+        match: bybit.com
+        value: remote
+    - domain_suffix:
+        match: bybitglobal.com
+        value: remote
+    - domain_suffix:
+        match: bycbe.com
+        value: remote
+    - domain_suffix:
+        match: bycsi.com
+        value: remote
+    - domain_suffix:
+        match: byd3c3.com
+        value: remote
+    - domain_suffix:
+        match: bymj.io
+        value: remote
+    - domain_suffix:
+        match: bytick.com
+        value: remote
+    - domain:
+        match: bybit-exchange.github.io
+        value: remote
+    - domain:
+        match: bybit.ada.support
+        value: remote
+    - domain_suffix:
         match: ant.dev
         value: remote
     - domain_suffix:
@@ -58601,6 +58649,11 @@ policy_groups:
         - Proxy
         - DIRECT
   - select:
+      name: Bybit
+      policies:
+        - Proxy
+        - DIRECT
+  - select:
       name: claude
       policies:
         - Proxy
@@ -62950,6 +63003,54 @@ rules:
   - domain:
       match: bnetshopus.akamaized.net
       policy: blizzard
+  - domain_suffix:
+      match: byabcde.com
+      policy: Bybit
+  - domain_suffix:
+      match: byapis.com
+      policy: Bybit
+  - domain_suffix:
+      match: byapps.net
+      policy: Bybit
+  - domain_suffix:
+      match: bybdc6.com
+      policy: Bybit
+  - domain_suffix:
+      match: bybit-global.com
+      policy: Bybit
+  - domain_suffix:
+      match: bybit.biz
+      policy: Bybit
+  - domain_suffix:
+      match: bybit.cloud
+      policy: Bybit
+  - domain_suffix:
+      match: bybit.com
+      policy: Bybit
+  - domain_suffix:
+      match: bybitglobal.com
+      policy: Bybit
+  - domain_suffix:
+      match: bycbe.com
+      policy: Bybit
+  - domain_suffix:
+      match: bycsi.com
+      policy: Bybit
+  - domain_suffix:
+      match: byd3c3.com
+      policy: Bybit
+  - domain_suffix:
+      match: bymj.io
+      policy: Bybit
+  - domain_suffix:
+      match: bytick.com
+      policy: Bybit
+  - domain:
+      match: bybit-exchange.github.io
+      policy: Bybit
+  - domain:
+      match: bybit.ada.support
+      policy: Bybit
   - domain_suffix:
       match: ant.dev
       policy: claude

@@ -1,0 +1,71 @@
+{
+  "version": 1,
+  "id": "bybit",
+  "category": "finance",
+  "entries": [
+    {
+      "type": "domain-suffix",
+      "value": "byabcde.com"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "byapis.com"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "byapps.net"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "bybdc6.com"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "bybit-global.com"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "bybit.biz"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "bybit.cloud"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "bybit.com"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "bybitglobal.com"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "bycbe.com"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "bycsi.com"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "byd3c3.com"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "bymj.io"
+    },
+    {
+      "type": "domain-suffix",
+      "value": "bytick.com"
+    },
+    {
+      "type": "domain",
+      "value": "bybit-exchange.github.io"
+    },
+    {
+      "type": "domain",
+      "value": "bybit.ada.support"
+    }
+  ]
+}

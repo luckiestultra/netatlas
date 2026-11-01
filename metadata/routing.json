@@ -7,7 +7,8 @@
     "anti-ad": "REJECT",
     "china-ipv4": "DIRECT",
     "china-ipv6": "DIRECT",
-    "connectivity-probes": "DIRECT"
+    "connectivity-probes": "DIRECT",
+    "bybit": "Bybit"
   },
   "initialSelection": {
     "apple": "DIRECT",

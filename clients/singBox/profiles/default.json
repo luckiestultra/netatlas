@@ -151,6 +151,13 @@
       },
       {
         "rule_set": [
+          "bybit"
+        ],
+        "action": "route",
+        "server": "remote"
+      },
+      {
+        "rule_set": [
           "claude"
         ],
         "action": "route",
@@ -1131,6 +1138,22 @@
     },
     {
       "type": "selector",
+      "tag": "Bybit",
+      "outbounds": [
+        "节点选择",
+        "自动选择",
+        "DIRECT",
+        "香港节点",
+        "台湾节点",
+        "日本节点",
+        "韩国节点",
+        "新加坡节点",
+        "美国节点"
+      ],
+      "default": "节点选择"
+    },
+    {
+      "type": "selector",
       "tag": "国外网站",
       "outbounds": [
         "节点选择",
@@ -1359,6 +1382,14 @@
         "tag": "blizzard",
         "format": "source",
         "url": "https://raw.githubusercontent.com/luckiestultra/netatlas/main/clients/singBox/rules/blizzard.json",
+        "http_client": "netatlas-resources",
+        "update_interval": "1d"
+      },
+      {
+        "type": "remote",
+        "tag": "bybit",
+        "format": "source",
+        "url": "https://raw.githubusercontent.com/luckiestultra/netatlas/main/clients/singBox/rules/bybit.json",
         "http_client": "netatlas-resources",
         "update_interval": "1d"
       },
@@ -2369,6 +2400,13 @@
         ],
         "action": "route",
         "outbound": "游戏平台"
+      },
+      {
+        "rule_set": [
+          "bybit"
+        ],
+        "action": "route",
+        "outbound": "Bybit"
       },
       {
         "rule_set": [

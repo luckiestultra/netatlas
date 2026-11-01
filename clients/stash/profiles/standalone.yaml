@@ -742,6 +742,38 @@ dns:
       - https://1.1.1.1/dns-query
     bnetshopus.akamaized.net:
       - https://1.1.1.1/dns-query
+    +.byabcde.com:
+      - https://1.1.1.1/dns-query
+    +.byapis.com:
+      - https://1.1.1.1/dns-query
+    +.byapps.net:
+      - https://1.1.1.1/dns-query
+    +.bybdc6.com:
+      - https://1.1.1.1/dns-query
+    +.bybit-global.com:
+      - https://1.1.1.1/dns-query
+    +.bybit.biz:
+      - https://1.1.1.1/dns-query
+    +.bybit.cloud:
+      - https://1.1.1.1/dns-query
+    +.bybit.com:
+      - https://1.1.1.1/dns-query
+    +.bybitglobal.com:
+      - https://1.1.1.1/dns-query
+    +.bycbe.com:
+      - https://1.1.1.1/dns-query
+    +.bycsi.com:
+      - https://1.1.1.1/dns-query
+    +.byd3c3.com:
+      - https://1.1.1.1/dns-query
+    +.bymj.io:
+      - https://1.1.1.1/dns-query
+    +.bytick.com:
+      - https://1.1.1.1/dns-query
+    bybit-exchange.github.io:
+      - https://1.1.1.1/dns-query
+    bybit.ada.support:
+      - https://1.1.1.1/dns-query
     +.ant.dev:
       - https://1.1.1.1/dns-query
     +.anthropic.com:
@@ -29169,6 +29201,11 @@ proxy-groups:
     proxies:
       - Proxy
       - DIRECT
+  - name: Bybit
+    type: select
+    proxies:
+      - Proxy
+      - DIRECT
   - name: claude
     type: select
     proxies:
@@ -30935,6 +30972,22 @@ rules:
   - DOMAIN,bnetcmsus-a.akamaihd.net,blizzard
   - DOMAIN,bnetproduct-a.akamaihd.net,blizzard
   - DOMAIN,bnetshopus.akamaized.net,blizzard
+  - DOMAIN-SUFFIX,byabcde.com,Bybit
+  - DOMAIN-SUFFIX,byapis.com,Bybit
+  - DOMAIN-SUFFIX,byapps.net,Bybit
+  - DOMAIN-SUFFIX,bybdc6.com,Bybit
+  - DOMAIN-SUFFIX,bybit-global.com,Bybit
+  - DOMAIN-SUFFIX,bybit.biz,Bybit
+  - DOMAIN-SUFFIX,bybit.cloud,Bybit
+  - DOMAIN-SUFFIX,bybit.com,Bybit
+  - DOMAIN-SUFFIX,bybitglobal.com,Bybit
+  - DOMAIN-SUFFIX,bycbe.com,Bybit
+  - DOMAIN-SUFFIX,bycsi.com,Bybit
+  - DOMAIN-SUFFIX,byd3c3.com,Bybit
+  - DOMAIN-SUFFIX,bymj.io,Bybit
+  - DOMAIN-SUFFIX,bytick.com,Bybit
+  - DOMAIN,bybit-exchange.github.io,Bybit
+  - DOMAIN,bybit.ada.support,Bybit
   - DOMAIN-SUFFIX,ant.dev,claude
   - DOMAIN-SUFFIX,anthropic.com,claude
   - DOMAIN-SUFFIX,anthropic.team,claude

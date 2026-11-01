@@ -1459,6 +1459,34 @@
       },
       {
         "domain_suffix": [
+          "byabcde.com",
+          "byapis.com",
+          "byapps.net",
+          "bybdc6.com",
+          "bybit-global.com",
+          "bybit.biz",
+          "bybit.cloud",
+          "bybit.com",
+          "bybitglobal.com",
+          "bycbe.com",
+          "bycsi.com",
+          "byd3c3.com",
+          "bymj.io",
+          "bytick.com"
+        ],
+        "action": "route",
+        "server": "remote"
+      },
+      {
+        "domain": [
+          "bybit-exchange.github.io",
+          "bybit.ada.support"
+        ],
+        "action": "route",
+        "server": "remote"
+      },
+      {
+        "domain_suffix": [
           "ant.dev",
           "anthropic.com",
           "anthropic.team",
@@ -20496,6 +20524,15 @@
     },
     {
       "type": "selector",
+      "tag": "Bybit",
+      "outbounds": [
+        "Proxy",
+        "DIRECT"
+      ],
+      "default": "Proxy"
+    },
+    {
+      "type": "selector",
       "tag": "claude",
       "outbounds": [
         "Proxy",
@@ -29454,6 +29491,118 @@
         ],
         "action": "route",
         "outbound": "blizzard"
+      },
+      {
+        "domain_suffix": [
+          "byabcde.com"
+        ],
+        "action": "route",
+        "outbound": "Bybit"
+      },
+      {
+        "domain_suffix": [
+          "byapis.com"
+        ],
+        "action": "route",
+        "outbound": "Bybit"
+      },
+      {
+        "domain_suffix": [
+          "byapps.net"
+        ],
+        "action": "route",
+        "outbound": "Bybit"
+      },
+      {
+        "domain_suffix": [
+          "bybdc6.com"
+        ],
+        "action": "route",
+        "outbound": "Bybit"
+      },
+      {
+        "domain_suffix": [
+          "bybit-global.com"
+        ],
+        "action": "route",
+        "outbound": "Bybit"
+      },
+      {
+        "domain_suffix": [
+          "bybit.biz"
+        ],
+        "action": "route",
+        "outbound": "Bybit"
+      },
+      {
+        "domain_suffix": [
+          "bybit.cloud"
+        ],
+        "action": "route",
+        "outbound": "Bybit"
+      },
+      {
+        "domain_suffix": [
+          "bybit.com"
+        ],
+        "action": "route",
+        "outbound": "Bybit"
+      },
+      {
+        "domain_suffix": [
+          "bybitglobal.com"
+        ],
+        "action": "route",
+        "outbound": "Bybit"
+      },
+      {
+        "domain_suffix": [
+          "bycbe.com"
+        ],
+        "action": "route",
+        "outbound": "Bybit"
+      },
+      {
+        "domain_suffix": [
+          "bycsi.com"
+        ],
+        "action": "route",
+        "outbound": "Bybit"
+      },
+      {
+        "domain_suffix": [
+          "byd3c3.com"
+        ],
+        "action": "route",
+        "outbound": "Bybit"
+      },
+      {
+        "domain_suffix": [
+          "bymj.io"
+        ],
+        "action": "route",
+        "outbound": "Bybit"
+      },
+      {
+        "domain_suffix": [
+          "bytick.com"
+        ],
+        "action": "route",
+        "outbound": "Bybit"
+      },
+      {
+        "domain": [
+          "bybit-exchange.github.io"
+        ],
+        "action": "route",
+        "outbound": "Bybit"
+      },
+      {
+        "domain": [
+          "bybit.ada.support"
+        ],
+        "action": "route",
+        "outbound": "Bybit"
       },
       {
         "domain_suffix": [

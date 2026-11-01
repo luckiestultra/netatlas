@@ -2,14 +2,14 @@
   "version": 1,
   "client": "loon",
   "builder": "netatlas@0.1.0",
-  "inputSha256": "8ba9a38455508d756299f4aaa7715bc6ea6421d9b3a2eb0c5412273ccb554197",
+  "inputSha256": "aa82644cb13c986ecd98e655293c3b914a1ccb3be65c278331f50575ae0e07ed",
   "baseUrl": "https://raw.githubusercontent.com/luckiestultra/netatlas/main",
   "targetVersion": null,
   "counts": {
-    "defaultRuleSets": 115,
-    "defaultEntries": 29153,
+    "defaultRuleSets": 116,
+    "defaultEntries": 29169,
     "optionalRuleSets": 3,
-    "totalEntries": 136944
+    "totalEntries": 136960
   },
   "routingExtensions": {
     "native": {
@@ -4235,6 +4235,27 @@
         "updatedAt": "2026-10-31T00:00:00Z",
         "projection": "three exact first-party connectivity-probe hosts; no suffix matching",
         "excludedExpressions": []
+      },
+      {
+        "id": "bybit",
+        "tag": "finance",
+        "defaultProfile": true,
+        "source": {
+          "type": "local",
+          "license": "MIT",
+          "references": [
+            "https://github.com/luckiestultra/netatlas/blob/main/docs/rules/bybit.md"
+          ],
+          "description": "Exactly the 16 routing conditions supplied by the repository owner on 2026-11-02: 14 suffixes and 2 exact hosts; no inferred or downloaded additions.",
+          "author": "NetAtlas owner-provided selection",
+          "updatedAt": "2026-11-02"
+        },
+        "license": "MIT",
+        "sha256": "22003026f68fda11ccc845eeb6b1f897d6fd569ac8cc1a1d58f167a75fd05b6f",
+        "entries": 16,
+        "updatedAt": "2026-11-02",
+        "projection": "owner-supplied 16 conditions; exact-host boundaries preserved",
+        "excludedExpressions": []
       }
     ],
     "inputs": [
@@ -4309,6 +4330,10 @@
       {
         "path": "src/rules/development/vercel.json",
         "sha256": "8018ebcf88cbfca3914abe8399d74b2142f7332a58d2d9bdd340ee8cefc4462d"
+      },
+      {
+        "path": "src/rules/finance/bybit.json",
+        "sha256": "22003026f68fda11ccc845eeb6b1f897d6fd569ac8cc1a1d58f167a75fd05b6f"
       },
       {
         "path": "src/rules/gaming/blizzard.json",
@@ -4745,8 +4770,8 @@
     },
     {
       "path": "profiles/default.conf",
-      "sha256": "590f64ba6061fd204a24f0c8dc084aad7a134137956a6b8ec31bd03e49b1934a",
-      "bytes": 22360
+      "sha256": "0eda4c0305ac407f199e1f3b385ee58c5310523ddb79114184238aab6c7553d2",
+      "bytes": 22629
     },
     {
       "path": "profiles/input.example.json",
@@ -4755,13 +4780,13 @@
     },
     {
       "path": "profiles/standalone.conf",
-      "sha256": "bede20485268a1225d2071eeb004231cbd9498b57c398c107c7df5a46c2a2c0f",
-      "bytes": 1129902
+      "sha256": "bbb48acced98be14ba8431118dff37fbac558527c6160be5dfd4e0ec910b0ce2",
+      "bytes": 1130441
     },
     {
       "path": "README.md",
-      "sha256": "e3b29fcdb6f40780fd417016fd800b0b078ef34c5b2bb6434c639194c79f358d",
-      "bytes": 12006
+      "sha256": "3883ff06a2a3d3bbdcd27e6bd51a7272db5db9a2a1d5c2ba6886a5070f24ece7",
+      "bytes": 12047
     },
     {
       "path": "rewrites/biliintl-region.plugin",
@@ -4882,6 +4907,11 @@
       "path": "rules/blizzard.list",
       "sha256": "a4387ae9708dab86962f33ebd35da51292dac2b41c91c2bd4e9c73a7d441f6b4",
       "bytes": 781
+    },
+    {
+      "path": "rules/bybit.list",
+      "sha256": "bc86cc66ee098eda2e6b54d4dbe3e88a1e0fda2fd2d16b153ce13c4dbe963f6e",
+      "bytes": 413
     },
     {
       "path": "rules/bytedance.list",

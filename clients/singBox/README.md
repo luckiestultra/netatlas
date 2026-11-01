@@ -6,7 +6,7 @@
 
 主配置面向 sing-box 1.14.4 核心。填入原生 outbounds，并将节点 tag 加入节点选择、自动选择和对应地区组的 outbounds，更新 selector.default。核心没有通用机场订阅 provider；支持订阅合并的前端需按其说明接入。需要本地转换时再使用下方高级工具，不向在线转换站上传秘密。
 
-首次使用需由客户端下载远程规则。主配置引用本客户端的 125 份规则资源（115 份公共规则、10 份原生条件补充），更新由客户端处理；主配置升级与规则刷新是两件事。没有私人节点，配置不会凭空提供代理服务。除 QX/SR 使用 App 内置节点选择外，无节点时节点选择保持 REJECT，导入后核对实际选择。
+首次使用需由客户端下载远程规则。主配置引用本客户端的 126 份规则资源（116 份公共规则、10 份原生条件补充），更新由客户端处理；主配置升级与规则刷新是两件事。没有私人节点，配置不会凭空提供代理服务。除 QX/SR 使用 App 内置节点选择外，无节点时节点选择保持 REJECT，导入后核对实际选择。
 
 AI、苹果、谷歌、微软、开发、通讯、游戏、媒体与最终兜底可独立选策略；支持手选、自动选择及六地区测速组。地区名来自节点标签，不是 IP 定位结论；没有匹配节点时不要选择该组，不承诺空组自动回退。苹果服务初始直连，其余业务默认走节点选择。
 
@@ -35,6 +35,7 @@ rules/ 按具体应用或服务 ID 平铺，可单独订阅；QX 资源的 force
 | [baidu](rules/baidu.json) | 132 | MIT |
 | [bilibili](rules/bilibili.json) | 53 | MIT |
 | [blizzard](rules/blizzard.json) | 25 | MIT |
+| [bybit](rules/bybit.json) | 16 | MIT |
 | [claude](rules/claude.json) | 19 | MIT |
 | [coolapk](rules/coolapk.json) | 3 | MIT |
 | [cursor](rules/cursor.json) | 5 | MIT |
