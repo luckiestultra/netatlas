@@ -70,8 +70,8 @@ test('real host bundle is deterministic, retains licenses and executes YAML conv
 test('bundle cache invalidates content changes and tracks newly imported inputs',async()=>{
   const temp=mkdtempSync(join(tmpdir(),'netatlas-bundle-test-'));
   try {
-    mkdirSync(join(temp,'tools/lib'),{recursive:true});mkdirSync(join(temp,'src/features/resource-parser/vendor'),{recursive:true});
-    for(const file of ['LICENSE','package.json','package-lock.json','tools/lib/resource-parser-bundle.mjs','src/features/resource-parser/vendor/LICENSE-yaml'])copyFileSync(new URL('../../'+file,import.meta.url),join(temp,file));
+    mkdirSync(join(temp,'tools/lib'),{recursive:true});mkdirSync(join(temp,'src/features/resource-parser/vendor'),{recursive:true});mkdirSync(join(temp,'src/features/youtube-enhance'),{recursive:true});
+    for(const file of ['LICENSE','package.json','package-lock.json','tools/lib/resource-parser-bundle.mjs','src/features/resource-parser/vendor/LICENSE-yaml','src/features/youtube-enhance/LICENSE'])copyFileSync(new URL('../../'+file,import.meta.url),join(temp,file));
     symlinkSync(new URL('../../node_modules',import.meta.url).pathname,join(temp,'node_modules'),'dir');
     const entry=join(temp,'src/features/resource-parser/entry.mjs'),input=join(temp,'src/features/resource-parser/input.mjs');
     writeFileSync(entry,"import {value} from './input.mjs';globalThis.marker=value;");writeFileSync(input,"export const value='first';");

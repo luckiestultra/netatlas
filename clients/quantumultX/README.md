@@ -172,6 +172,8 @@ Unbreak 是完整 50 条条件，保留精确域名/后缀/关键词语义；默
 | wps-account | [rewrites/wps-account.snippet](rewrites/wps-account.snippet)；rewrite-resource |
 | youtube-enhance | [scripts/youtube-request.js](scripts/youtube-request.js) · [scripts/youtube-response.js](scripts/youtube-response.js) · [rewrites/youtube-enhance.snippet](rewrites/youtube-enhance.snippet)；rewrite-resource |
 | youtube-enhance-worker | [scripts/youtube-request-worker.js](scripts/youtube-request-worker.js) · [rewrites/youtube-enhance-worker.snippet](rewrites/youtube-enhance-worker.snippet)；explicit-worker-opt-in-rewrite-resource |
+| qx-script-runtime | [scripts/compat-youtube-request.js](scripts/compat-youtube-request.js) · [scripts/compat-youtube-response.js](scripts/compat-youtube-response.js)；registered-static-script-runtime |
+| qx-rewrite-actions | [scripts/rewrite-actions.js](scripts/rewrite-actions.js)；declarative-rewrite-runtime |
 
 modules 保存脚本功能安装资源，rewrites 保存纯重写，fragments 需要手工合并。QX 的 modules/*.snippet 仍在 App 中按“重写资源”导入；Surge/SR 用各自模块入口，Loon 用插件，Egern 用模块，Stash 用覆写，不能混用相同扩展名推断兼容。
 

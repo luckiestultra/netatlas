@@ -133,7 +133,6 @@ test('node resources reject executable comment directives atomically through the
     '#!REQUIREMENT SYSTEM==\'macOS\'\n[Proxy]\n' + safe,
     '[Proxy]\n' + safe + '\n//!SYSTEM=mac',
     '[Proxy]\n' + safe + ' #!TVOS-ONLY',
-    'http=proxy.example:80, tag=Safe #!IOS-ONLY',
     '[General]\n#!MACOS-ONLY\n[Proxy]\n' + safe,
   ]) rejects(input, /unsupported executable directive/);
 });
@@ -177,6 +176,9 @@ test('native node fields and URI tags retain unquoted comment-like literal text'
   const surge = fields(convert('[Proxy]\nhttp = http, proxy.example, 80, username=user, password=literal # ordinary comment'));
   assert.equal(surge.tag, 'http'); assert.equal(surge.password, 'literal');
   for (const directive of ['#!IOS-ONLY', '//!SYSTEM=mac']) {
-    rejects('http=proxy.example:80, tag=Safe, password=literal ' + directive, /unsupported executable directive/);
+    const data = 'http=proxy.example:80, tag=Safe, password=literal ' + directive;
+    assert.equal(convert(data), data + '\n', 'native value tails are data, not executable comments');
+    rejects(directive + '\nhttp=proxy.example:80, tag=Safe', /unsupported executable directive/);
   }
+  assert.equal(fields(convert('http=proxy.example:80, tag=Safe #!IOS-ONLY')).tag, 'Safe #!IOS-ONLY');
 });

@@ -5,7 +5,7 @@
   "sourceRegistry": {
     "vendoredJavaScript": true,
     "independentQxImplementation": true,
-    "scope": "Original MIT NetAtlas QX implementation bundles the ISC-licensed yaml 2.9.1 browser dependency. Loon remains an external AGPL release recipe; no KOP-XIAO parser source is copied.",
+    "scope": "Original MIT NetAtlas QX conversion code bundles ISC-licensed yaml 2.9.1 and an Apache-2.0 static script registry. All notices and complete licenses are retained. Separate optional pinned Maasea runtime artifacts retain Apache-2.0/BSD-3-Clause/CC0-1.0. Loon remains an external AGPL release recipe; no KOP-XIAO parser source is copied.",
     "verification": "QX conversion/helper tests execute the generated browser bundle in a restricted VM. A separate four-public-source gate checks original URLs and complete source bytes without evaluating downloaded business JavaScript. Loon retains verified upstream GET bytes and non-executing syntax review. Native application imports are not run."
   },
   "clients": {
@@ -18,7 +18,7 @@
       "sourcePath": "src/features/resource-parser",
       "url": "https://raw.githubusercontent.com/luckiestultra/netatlas/main/clients/quantumultX/scripts/resource-parser.js",
       "implementationLicense": "MIT",
-      "license": "MIT AND ISC",
+      "license": "MIT AND ISC AND Apache-2.0",
       "dependencies": [
         {
           "name": "yaml",
@@ -37,7 +37,7 @@
       ],
       "sourceContract": {
         "input": "QX $resource object with content and optional link/type; unknown type values are not guessed from numbers.",
-        "completion": "Exactly one $done({content}) or $done({error}), and the complete script evaluates to that same result object; successful info=1 conversions may emit one optional local quota notice; no retry/download request.",
+        "completion": "Exactly one $done result and the same final evaluated object. Supported native results are content/error, opt-in numeric info, and one native user-agent retry with fallback content/error. Parser does not perform HTTP requests.",
         "supportedResourceTypes": [
           "server",
           "filter",
@@ -45,7 +45,7 @@
         ],
         "helperUiMinimumBuild": 918,
         "helperProtocol": "https://github.com/crossutility/Quantumult-X/blob/97fdae00a91f69e69d84898c686aa94a112dd4bd/parser-helper-protocol.md",
-        "options": "Resource-specific literal behavior: node names use case-insensitive OR/AND; rule out matches case-sensitive source bodies before policy replacement and in matches converted rows; rewrites use case-insensitive literal rows and MITM hostnames use case-sensitive literal terms. Plus separates alternatives, dots in rules/rewrites/hostnames are literal. No compatibility-mode switch.",
+        "options": "Resource-specific literal keyword selection, bounded Thompson-NFA regex/regout and declaration replacements, sequential naming/templates, ordering/duplicate controls, explicit native connection overrides, rule flags/policy/relay, rewrite destination selection, module arguments and opt-in local host utilities. Unknown or incompatible options fail atomically. No source JavaScript evaluation.",
         "diagnostics": "Rejected fields identify a fixed source-format context and a registered public schema name only. Arbitrary unknown key names and all source values are redacted; no subscription URL, credentials or node label are included.",
         "nativeClientPreferences": {
           "sourceOptions": [
@@ -89,7 +89,8 @@
             "lines": 20000
           },
           "nodes": 2000,
-          "structuredDocuments": "Existing YAML/JSON depth, value-node and alias budgets remain unchanged; large plain-rule allowance does not apply to structured or encoded input."
+          "structuredDocuments": "Existing YAML/JSON depth, value-node and alias budgets remain unchanged; large plain-rule allowance does not apply to structured or encoded input.",
+          "nameTransformWork": 4194304
         },
         "rewriteResources": {
           "mixedSnippetMinimumBuild": 844,
@@ -104,9 +105,71 @@
             },
             "budgetScope": "One whole resource, including all mixed rewrite/filter chunks. Other logical/IP/port conjunctions fail atomically."
           },
-          "foreignScriptDeclarations": "Common Surge/Loon HTTP declarations convert by default without an added fragment option; referenced JavaScript APIs are not translated. Source argument/max-size/timeout settings are not applied; binary scripts must implement QX bodyBytes. Fixed output comments expose these differences without echoing argument values.",
-          "urlRegexReject": "URL-REGEX REJECT converts to QX reject-200 response blocking with an explicit comment that connection-close semantics differ. Other URL routing policies fail."
-        }
+          "foreignScriptDeclarations": "Known, licensed, source-verified Maasea request/response sources compile to pinned static Surge-contract adapters. Module defaults and explicit JSON arguments, name, binary mode, byte limit and timeout are passed to the adapter. Unknown foreign sources with these parameters fail instead of dropping settings; parameter-free references retain an explicit unverified-API notice. script-compat=qx is a user declaration only.",
+          "urlRegexReject": "URL-REGEX REJECT converts to QX reject-200 response blocking with an explicit comment that connection-close semantics differ. Other URL routing policies fail.",
+          "declarativeActions": "Map Local inline text/tiny-gif/base64 responses preserve status/headers/bytes through a static script-echo-response adapter without upstream HTTP; JSON jq/del/replace and supported request/response header actions have effect tests.",
+          "scriptRuntime": {
+            "registry": "src/features/script-runtime/registry.mjs",
+            "sourceCommit": "65075cdb388fc5e3094afd7e7314c67b243f3525",
+            "workerDefault": false,
+            "apis": [
+              "request/response text and exact byte views",
+              "JSON-object $argument",
+              "Surge script metadata",
+              "HTTP callbacks via native QX fetch",
+              "source-path-scoped default storage key; explicit source keys retain names",
+              "supported notifications",
+              "once-only done and bounded timeout"
+            ],
+            "limitations": "No arbitrary source runtime rewriting, remote source eval, WebView, Surge control API or unregistered platform APIs. Byte limits run after native buffering; timers cannot preempt synchronous CPU; empty-body invocation remains native QX behavior. The pinned script runtime is a separate opt-in installed rewrite and can use host network/storage; the resource converter cannot."
+          }
+        },
+        "retryMinimumBuild": 921,
+        "nativeConnectionOverrides": {
+          "fields": [
+            "udp",
+            "tfo",
+            "uot",
+            "cert",
+            "csha",
+            "psha",
+            "alpn",
+            "aead",
+            "host",
+            "obfs",
+            "tsession",
+            "checkurl",
+            "tls13"
+          ],
+          "domainVerificationMinimumBuild": 938,
+          "domainVerification": "cert=FQDN, e.g. cert=verify.example, emits tls-verification=verify.example. It is a verification hostname, not the literal word domain.",
+          "limitations": "Ineffective or conflicting pins and transport overrides are rejected. tls13 is deprecated in current QX and does not disable TLS 1.3. uot=1 requests legacy Python UOT, not modern sp.v1/sp.v2. Reality ignores/rejects unsupported ALPN/session/TFO combinations."
+        },
+        "regularExpressions": {
+          "implementation": "Original bounded Thompson NFA; no backtracking or user eval. Literal atoms, character classes, anchors, word boundaries, alternation, captures and non-nullable repeated groups are supported. Lookarounds, backreferences and repeated nullable groups are rejected.",
+          "resourceStateWork": 2097152,
+          "replacement": "Standard string GetSubstitution tokens, including capture references, with shared work and output bounds. Literal rename patterns remain literal; templates expand only user-authored template positions, never source names/tags or captured source text."
+        },
+        "nodeFormats": [
+          "QX native",
+          "SS/SSR/VMess/VLESS/Trojan/HTTP/SOCKS5/AnyTLS URI",
+          "SSD",
+          "SIP008",
+          "Base64 subscriptions",
+          "Surge/Loon/Quantumult CSV",
+          "Shadowrocket legacy VMess and VLESS",
+          "Clash YAML",
+          "sing-box JSON"
+        ],
+        "ruleResources": {
+          "automaticBareList": "Mixed bare domains, IPv4/IPv6 and CIDRs; explicit DOMAIN-SET retains its exact/suffix format contract.",
+          "domainRegex": "Exact bounded finite positive domain-regex to glob compilation plus registered native mappings; no widening fallback.",
+          "notesMinimumBuild": 950,
+          "olderNotes": "Portable preceding comment; never emit unsupported leading-note syntax to older or unknown hosts.",
+          "disabledRules": "Source-disabled and hide=0 preview rows remain disabled; note text does not affect rule matching.",
+          "nativeFlags": "fcr and via are emitted only on supported non-FINAL native rules; unsupported FINAL flags fail rather than disappear."
+        },
+        "hostUtilities": "Explicit flow/info/cnt/dbg return only validated numeric data; ntf controls notices. UA asks native QX to retry once. profile masks select existing remote resources and QR recognizes a subscription URL, both producing a local confirmation action without fetching/importing automatically."
       },
       "permissions": {
         "subscriptionContents": true,
@@ -117,7 +180,7 @@
         "mitm": false,
         "sourceScriptReferenceExecution": false,
         "noNetworkNoEval": true,
-        "notifications": "Explicit info=1 only, after successful server conversion; numeric usage and expiry only, with no subscription URL, credentials or resource tag."
+        "notifications": "Explicit info/flow/cnt/dbg notices contain numeric data only; QR/profile provide a local user-confirmed add-resource action. No credentials, node labels or subscription URLs in notice text. ntf=0 disables notices."
       },
       "officialDocumentation": [
         "https://github.com/crossutility/Quantumult-X/blob/master/resource-parser.js",
@@ -143,10 +206,14 @@
         "https://github.com/MHSanaei/3x-ui/blob/1a5100ea166361cc2a01d8f245d616fb18baa0dd/internal/sub/service.go#L1243",
         "https://github.com/MHSanaei/3x-ui/pull/6712",
         "https://github.com/crossutility/Quantumult-X/blob/master/ios26-safari-fingerprint.txt",
-        "https://t.me/QuanXNews/294"
+        "https://t.me/QuanXNews/294",
+        "https://manual.nssurge.com/scripting/api.html",
+        "https://manual.nssurge.com/http/map-local.html",
+        "https://manual.nssurge.com/profile/module.html",
+        "https://t.me/s/QuanXNews?before=432"
       ],
-      "behavior": "Atomic offline conversion of supported node subscriptions, rules and rewrites to native QX text. Preserves SS password encoding layers, sing-box UoT defaults and verified Clash WSS Host/SNI/ALPN semantics. Supports leading JavaScript installation comments, modern mixed rewrite/filter resources, and exact bounded positive-domain AND intersections. Common Surge/Loon script declarations convert with fixed comments for unmapped options and untranslated script APIs. Bounded keyword filtering/renaming, common sort/type aliases, info=0/1 quota notices, emoji=0/1/2/-1 and official parser-helper UI are implemented. Declared fp/spx/client-fingerprint client preferences and true Reality ML-KEM capability hints use documented native QX behavior with fixed notices. Other unknown options remain errors; not a complete KOP option replacement. Referenced HTTPS scripts are emitted only, never fetched or executed.",
-      "limitations": "Unsupported protocols, transports, fields, unregistered domain regex, conjunctive headless conditions, logical predicates outside the bounded positive-domain AND subset, ambiguous domain formats, local scripts and certificate settings fail the complete resource. Declared client-preference/native Reality adaptations and documented rewrite declaration/URL-REGEX REJECT conversions have explicit differences. Clash VMess/VLESS WS+Reality cannot activate source-ignored Reality settings. GEOIP labels need matching categories in the selected database. reg/regout, sfilter/srename and connection-override options are not implemented. Explicit allow-resolve changes DNS semantics; optional script-compat=qx declares user-verified API compatibility but does not translate JavaScript or restore source arguments. Native QX import/device execution and referenced business-script behavior are not run.",
+      "behavior": "Atomic offline node/rule/rewrite conversion with the documented helper UI, strict format-aware native semantics and bounded transforms. Registered licensed scripts receive a static API/argument adapter; declarative JSON/header/echo actions are executed and effect-tested. Host import utilities are explicit and require native confirmation. Referenced business scripts are never fetched or executed by the parser.",
+      "limitations": "Unsupported protocols/transports/security fields, logical/IP/port conjunctions outside the exact positive-domain subset, unbounded or unsupported domain regex, arbitrary script evaluation, CA import, cron and unmapped script APIs fail explicitly. Unknown foreign source parameters are never silently omitted. GEOIP labels require matching database data. Native QX import/device behavior and third-party business-service behavior are not run; native buffering/CPU/empty-body limits remain.",
       "artifacts": [
         "scripts/resource-parser.js",
         "fragments/resource-parser.conf"
@@ -159,7 +226,15 @@
       "defaultEnabled": true,
       "externalOnly": false,
       "nativeApp": "not-run",
-      "verification": "Executed conversion/helper/VM tests, independent source-predicate comparisons and static browser bundle checks. npm run test:parser-upstreams separately fetches four full original public resources and replays only the generated converter with original URLs and SHA-256 snapshot checks; native device and business scripts are not executed."
+      "verification": "Generated converter/helper and statically compiled licensed runtime execute in restricted VM and Apple JavaScriptCore; loopback HTTP tests verify headers, status and exact text/binary body effects. Four complete original public resources retain URL/hash snapshot checks. Native QX application is not operated.",
+      "components": [
+        {
+          "name": "NetAtlas static script registry",
+          "sourcePath": "src/features/script-runtime/registry.mjs",
+          "license": "Apache-2.0",
+          "licensePath": "src/features/youtube-enhance/LICENSE"
+        }
+      ]
     },
     "loon": {
       "client": "loon",

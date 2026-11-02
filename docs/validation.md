@@ -371,3 +371,27 @@ npm run test:native
 红队补充的跨分段FINAL状态、未外包引号JSON参数和符号链接CLI入口均先复现失败，再修复转绿。另覆盖跨分段共享AND预算、空交集不能隐藏非法条件、未知/重复字段与禁止重定向等边界；完整源不是可执行夹具。四源下载门禁通过`npm run test:parser-upstreams`单独运行，不把滚动上游网络请求混入默认离线测试。
 
 最终`npm test`：801项、793通过、0失败，8项需要显式启用的原生测试跳过；`npm run check`通过八客户端/1,152产物的重建一致性与格式、策略、来源校验。外部脚本API、argument/max-size/timeout、二进制bodyBytes及URL-REGEX REJECT的响应方式差异仍按[能力对照](resource-parser-comparison.md)说明，不能将解析通过写成业务脚本等价或QX实机通过。未操作用户本地QX或私人订阅，未复制缺少整份再发布许可的KOP主实现。
+
+## 2026-11-03：解析器完整功能与静态脚本 API 验收
+
+本轮扩展[逐项对照](resource-parser-comparison.md)所列的常用节点格式、名称/排序/筛选、连接覆盖、规则转换、重写 DSL、模块参数和宿主功能；未把任意 JS 执行、未登记跨客户端 API 或原生不可表达的条件标成完成。未知来源携带无法应用的 argument/binary/max-size/timeout 设置时整份拒绝，不再只输出一条触发声明并丢失设置。
+
+新增的 `compat-youtube-request.js`、`compat-youtube-response.js` 静态编译已登记、固定提交与许可的 Maasea 源码；`rewrite-actions.js` 只执行静态响应和请求头动作。转换器本身仍不联网、不读写存储、不执行来源 JS。单独安装后的脚本运行权限、原生预缓冲/空正文/CPU 限制、Worker 默认关闭和未登记 API 边界分别登记在[解析器合同](../metadata/resource-parsers.json)。Apache-2.0、ISC、BSD、CC0 等许可不以根 MIT 替代。
+
+验证冻结的实际磁盘产物，而非只运行源码函数：
+
+| 检查 | 实际结果 |
+| --- | --- |
+| `npm test` | 913 项：904 通过、0 失败、9 条件跳过；8 项原生核心可选测试与1项公开原文缓存案例不混入默认离线验收 |
+| `npm run build` / `npm run check` | 8 客户端、119 规则集、1,155 产物；重复构建一致，规则语义、策略引用、来源与哈希校验通过 |
+| 蓝队 `NETATLAS_COMPLETION_USE_BUILT=1 NETATLAS_PUBLIC_RESOURCE_CACHE=… node --test tests/scripts/resource-parser-completion-flow.test.mjs` | 12/12 通过，0 跳过；四份完整来源 SHA 与登记一致，磁盘成品逐字等于构建器 |
+| 真实脚本效果 | 生成 parser → 含已解析模块参数的静态引用 → 固定 Maasea protobuf 程序，默认与覆写参数使实际字段列表不同；VM 与 Apple JavaScriptCore 均通过 |
+| 真实本机 HTTP / jq | loopback 上验证 503/201 状态码、头、精确文本与 `[0,1,2,255]` 二进制；请求/响应头实际变化、HTTP callback 字节切片、single-done；真实 jq 执行删除/替换/JQ 表达式 |
+| 独立红队 | 正式目标回归108通过；21项独立 host、3项真实 loopback、VM/JSC 实际产物流程通过；当前无开放 P1/P2 |
+| 四个原始公开 URL | 真实 GET 完整未改写输入，输入 SHA、输出计数、单次完成与禁止 I/O 合同全部通过；MGTV/知乎来源正文保持惰性，不执行或复制进仓库 |
+
+四源完整验收计数分别为：YouTube 3 rewrite/2 hostname；DragonRead 1 rewrite/65 filter；MGTV 3 rewrite/11 hostname；知乎5 rewrite/34 hostname。最终解析器 SHA-256：`004530a8aca87f323eb03ac27b71257daeac7e6b9bbe968fa307a132c7192def`。
+
+红队复现并关闭了：捕获/模板递归解释、字面 rename 标准替换符、重复组和零宽匹配优先级、全部 JS 换行字符的 dot 语义、整资源 NFA/名称工作预算、原生节点字面 `#!` 误判、说明/警告物理行漏算、replace 后中间体积放大、脚本名称与二进制别名、模块参数真实传递、默认存储作用域与 null 删除、cookie 默认和版本门槛、配额伪造等问题。新增失败夹具均先复现再修复。名称 JSC 回归的子进程上限由4秒调整为15秒以容纳整库并行负载，资源工作预算、一次完成和有效输出断言未放宽。
+
+本轮未读取私人订阅，未操作或修改用户本地 QX、缓存、节点、DNS 或连接。原生 QX App 导入、真实代理流量、第三方业务播放与任意脚本 API 兼容性仍为 **not-run**；不能用 VM、JSC、loopback 或静态格式通过替代这些结论。

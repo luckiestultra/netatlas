@@ -18,7 +18,7 @@ test('QX publishes an original browser parser and a matching native general sett
   assert.equal(parser.defaultEnabled, true);
   assert.equal(parser.externalOnly, false);
   assert.equal(parser.implementationLicense, 'MIT');
-  assert.equal(parser.license, 'MIT AND ISC');
+  assert.equal(parser.license, 'MIT AND ISC AND Apache-2.0');
   assert.equal(parser.nativeApp, 'not-run');
   assert.equal(existsSync(new URL('../../' + parser.entrySource, import.meta.url)), true);
   assert.ok(parser.sourceMarkers.includes('hashSchema'));
@@ -27,6 +27,7 @@ test('QX publishes an original browser parser and a matching native general sett
   assert.doesNotMatch([...files.values()].join('\n'), /KOP-XIAO|f0177f5ea2f62681ab2592a4ed54677dfbbc4b78/);
   assert.match(files.get('scripts/resource-parser.js'), /NetAtlas/);
   assert.match(files.get('scripts/resource-parser.js'), /ISC/);
+  assert.match(files.get('scripts/resource-parser.js'), /Apache License/);
   new vm.Script(files.get('scripts/resource-parser.js'));
 });
 
@@ -86,6 +87,7 @@ test('mixed registry rejects altered ownership, runtime permissions, host contra
     value => { value.clients.quantumultX.entrySource = '../../outside.mjs'; },
     value => { value.clients.quantumultX.implementationLicense = 'AGPL-3.0-only'; },
     value => { value.clients.quantumultX.dependencies[0].license = 'MIT'; },
+    value => { value.clients.quantumultX.components[0].license = 'MIT'; },
     value => { value.clients.quantumultX.defaultEnabled = false; },
     value => { value.clients.quantumultX.externalOnly = true; },
     value => { value.clients.quantumultX.permissions.network = true; },

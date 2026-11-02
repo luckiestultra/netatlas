@@ -51,7 +51,8 @@ test('legacy flags are name decoration only, with explicit add, device, remove a
 test('flag filtering, literal rename, prefix, sorting and duplicate protection remain atomic', () => {
   const hash = 'emoji=1&out=套餐+重置&rename=' + encodeURIComponent(JSON.stringify([['日本', '台湾']])) + '&sort=name';
   assert.equal(parseResource(resource(hash, { content: nodes('日本02', '日本01', '套餐') })).content, nodes('🇹🇼 台湾01', '🇹🇼 台湾02'));
-  assert.throws(() => applyNodeOptions(nodes('日本', '🇯🇵 日本'), parseOptions(address('emoji=1'))), /Node options failed/);
+  const renamed = applyNodeOptions(nodes('日本', '🇯🇵 日本'), parseOptions(address('emoji=1'))).trim().split('\n').map(row => row.split('tag=')[1]);
+  assert.equal(renamed.length, 2); assert.equal(new Set(renamed).size, 2); assert.equal(renamed[0], '🇯🇵 日本');
   assert.throws(() => parseResource(resource('out=台湾+套餐+重置&info=1&emoji=2')), /Node options failed/);
 });
 
@@ -94,7 +95,7 @@ test('failed subscriptions emit neither a quota notification nor partially conve
 });
 
 test('invalid legacy modes, duplicate and unknown options remain errors across resource types', () => {
-  for (const hash of ['info=2', 'info=true', 'emoji=3', 'emoji=true', 'info=1&info=0', 'emoji=1&%65moji=2', 'info=1&js=PRIVATE_FIXTURE', 'info=1&udp=1']) {
+  for (const hash of ['info=2', 'info=true', 'emoji=3', 'emoji=true', 'info=1&info=0', 'emoji=1&%65moji=2', 'info=1&js=PRIVATE_FIXTURE', 'info=1&udp=2']) {
     assert.throws(() => parseResource(resource(hash)), /Resource parser options: invalid parameters/);
   }
   for (const hash of ['info=1', 'emoji=2']) {

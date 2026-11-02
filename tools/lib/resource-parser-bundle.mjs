@@ -8,8 +8,9 @@ import { buildSync, version as esbuildVersion } from 'esbuild';
 const root=fileURLToPath(new URL('../../',import.meta.url));
 const entry='src/features/resource-parser/entry.mjs';
 const yamlLicense='src/features/resource-parser/vendor/LICENSE-yaml';
+const registryLicense='src/features/youtube-enhance/LICENSE';
 const versions={yaml:'2.9.1',esbuild:'0.28.2'};
-const controlFiles=['LICENSE',yamlLicense,'package.json','package-lock.json','node_modules/yaml/package.json','tools/lib/resource-parser-bundle.mjs'];
+const controlFiles=['LICENSE',yamlLicense,registryLicense,'package.json','package-lock.json','node_modules/yaml/package.json','tools/lib/resource-parser-bundle.mjs'];
 let cache;
 
 function inputHash(inputs){
@@ -23,7 +24,8 @@ function inputHash(inputs){
 function banner(){
   const mit=readFileSync(resolve(root,'LICENSE'),'utf8').trimEnd();
   const isc=readFileSync(resolve(root,yamlLicense),'utf8').trimEnd();
-  return '/*! NetAtlas Quantumult X resource parser\n'+mit+'\n\nThird-party dependency: yaml '+versions.yaml+' (ISC)\n'+isc+'\n*/';
+  const apache=readFileSync(resolve(root,registryLicense),'utf8').trimEnd();
+  return '/*! NetAtlas Quantumult X resource parser\n'+mit+'\n\nThird-party dependency: yaml '+versions.yaml+' (ISC)\n'+isc+'\n\nStatic script registry component: Apache-2.0\n'+apache+'\n*/';
 }
 
 // Cache only while every esbuild input has exactly the same contents. A source
@@ -41,7 +43,7 @@ export function bundleResourceParser(){
     legalComments:'inline',sourcemap:false,metafile:true,minify:true,
     banner:{js:banner()},
     // QX consumes the program's final value; an IIFE alone loses completion.
-    footer:{js:'typeof $resource !== "undefined" && typeof $done === "function" ? NetAtlasResourceParser.runResource($resource,$done,typeof $notify === "function" ? $notify : undefined) : undefined;'},
+    footer:{js:'typeof $resource !== "undefined" && typeof $done === "function" ? NetAtlasResourceParser.runResource($resource,$done,typeof $notify === "function" ? $notify : undefined,typeof $environment === "object" ? $environment : undefined) : undefined;'},
     logLevel:'silent',
   });
   if(result.outputFiles.length!==1)throw new Error('Unexpected resource-parser build output');

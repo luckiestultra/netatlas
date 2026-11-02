@@ -55,7 +55,7 @@ test('rename accepts sequential simple expressions and keeps encoded delimiters 
   assert.equal(run('rename=A%40B@C%2BD+@%40', nodes('A@B')).result.content, nodes('C+D@'));
   assert.equal(run('rename=0%5C.2.Trial☠️', nodes('HK 0.2 Trial')).result.content, nodes('HK'));
   assert.equal(run('rename=@', nodes('A@B')).result.content, nodes('AB'));
-  assert.equal(run('rename=' + encodeURIComponent(JSON.stringify([['A@B', 'C+D'], ['C', '$&']])), nodes('A@B')).result.content, nodes('$&+D'));
+  assert.equal(run('rename=' + encodeURIComponent(JSON.stringify([['A@B', 'C+D'], ['C', '$&']])), nodes('A@B')).result.content, nodes('C+D'));
 });
 
 test('rename expressions stay bounded and malformed actions are atomic fixed errors', () => {
@@ -71,7 +71,7 @@ test('helper round trips common aliases, operators and delimiter-safe rename exp
 });
 
 test('helper does not turn invalid option values into valid success values', () => {
-  for (const hash of ['type=nodes&type=rule', 'sort=x', 'in=A++B', 'rename=A@B@C', 'prefix=%0ASYNTHETIC_SECRET']) {
+  for (const hash of ['type=nodes&type=rule', 'sort=JP%3E', 'in=A++B', 'rename=A@B@C', 'prefix=%0ASYNTHETIC_SECRET']) {
     const ui = helper('hashToUI', hash); const saved = helper('uiToHash', { ...flat(ui), __unknown: ui.unknown }); assert.throws(() => parseOptions(link(saved)), /invalid parameters/);
   }
 });
@@ -110,6 +110,7 @@ test('helper accepts familiar aliases while showing one choice for each behavior
   const ui = helper('hashToUI', 'type=nodes&sort=1');
   assert.equal(flat(ui).type, 'server'); assert.equal(flat(ui).sort, 'name');
   const items = helper('hashSchema').sections.flatMap(group => group.items);
-  assert.deepEqual(items.find(item => item.key === 'sort').options.map(option => option.value), ['none', 'name', 'name-desc']);
+  assert.equal(items.find(item => item.key === 'sort').type, 'text');
+  assert.equal(parseOptions(link(helper('uiToHash', { sort: 'JP>HK' }))).sort, 'JP>HK');
   assert.deepEqual(parseOptions(link(helper('uiToHash', { type: 'nodes', sort: '-1' }))), parseOptions(link('type=server&sort=name-desc')));
 });

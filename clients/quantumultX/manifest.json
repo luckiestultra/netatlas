@@ -2,7 +2,7 @@
   "version": 1,
   "client": "quantumultX",
   "builder": "netatlas@0.1.0",
-  "inputSha256": "e15349154d1595c421597a3b4754452540afa33d83e61ad1a44c59152fb86d34",
+  "inputSha256": "882a59f84ee56b901373f875aceec1b7ac23bf31520baf91869cdb82c9b2a99d",
   "baseUrl": "https://raw.githubusercontent.com/luckiestultra/netatlas/main",
   "targetVersion": null,
   "counts": {
@@ -6605,7 +6605,7 @@
     {
       "id": "resource-parser",
       "defaultEnabled": true,
-      "license": "MIT AND ISC (QX original implementation and bundled yaml); Loon remote parser AGPL-3.0-only",
+      "license": "MIT AND ISC AND Apache-2.0 (QX conversion, yaml and static registry); Loon remote parser AGPL-3.0-only",
       "adapter": {
         "artifacts": [
           "scripts/resource-parser.js",
@@ -6713,6 +6713,35 @@
         "dependenciesFullyLocked": false
       },
       "sourceRegistry": "src/features/youtube-enhance/provenance.json"
+    },
+    {
+      "id": "qx-script-runtime",
+      "defaultEnabled": false,
+      "license": "Apache-2.0 AND BSD-3-Clause AND CC0-1.0",
+      "adapter": {
+        "artifacts": [
+          "scripts/compat-youtube-request.js",
+          "scripts/compat-youtube-response.js"
+        ],
+        "kind": "registered-static-script-runtime",
+        "nativeApp": "not-run"
+      },
+      "upstream": null,
+      "sourceRegistry": "src/features/script-runtime/registry.mjs"
+    },
+    {
+      "id": "qx-rewrite-actions",
+      "defaultEnabled": false,
+      "license": "MIT",
+      "adapter": {
+        "artifacts": [
+          "scripts/rewrite-actions.js"
+        ],
+        "kind": "declarative-rewrite-runtime",
+        "nativeApp": "not-run"
+      },
+      "upstream": null,
+      "sourceRegistry": null
     }
   ],
   "sources": {
@@ -10729,8 +10758,8 @@
     },
     {
       "path": "fragments/resource-parser.conf",
-      "sha256": "fcef6047f14dde68cad798cc9fa672161731924f7b292bebd6ed5d6889765a1e",
-      "bytes": 1393
+      "sha256": "7cdd14bb8447df041029294bd0f30889ed43db340e99427234eadff3c74f59c6",
+      "bytes": 1454
     },
     {
       "path": "modules/boxjs.snippet",
@@ -10764,8 +10793,8 @@
     },
     {
       "path": "README.md",
-      "sha256": "d1e254ea770e5220a6a22cfe8d24822034dcd44188d16fcb61c8f3c0f4d4cd3a",
-      "bytes": 13684
+      "sha256": "835e95e51608a3ccdada46d553e9069046508869ef75aed17d18c6f05b22a5be",
+      "bytes": 14002
     },
     {
       "path": "rewrites/biliintl-region.snippet",
@@ -11458,14 +11487,29 @@
       "bytes": 80
     },
     {
+      "path": "scripts/compat-youtube-request.js",
+      "sha256": "9c6d72c97e3e4297dbe9f6507d13b9fe64d70f2235c47f88720859e449f61be7",
+      "bytes": 95962
+    },
+    {
+      "path": "scripts/compat-youtube-response.js",
+      "sha256": "e49a9393cf68b91acb021906bcd281ff9765f66ed5b67e444c007b3e47a2f2cb",
+      "bytes": 184916
+    },
+    {
       "path": "scripts/geoip.js",
       "sha256": "3388a934e49ac807ad0d9f981e0c40e1377435d4268397f31aca460298800aad",
       "bytes": 22124
     },
     {
       "path": "scripts/resource-parser.js",
-      "sha256": "74c2a3fc33eba01c6e4699e46097c10fc251a9c693e16ff758a7017c7794ea26",
-      "bytes": 174297
+      "sha256": "004530a8aca87f323eb03ac27b71257daeac7e6b9bbe968fa307a132c7192def",
+      "bytes": 246019
+    },
+    {
+      "path": "scripts/rewrite-actions.js",
+      "sha256": "83a5cad311115bbdb81bb53c07d7174f8aaa620c408a2b34b6c2c90250519389",
+      "bytes": 7743
     },
     {
       "path": "scripts/youtube-request-worker.js",

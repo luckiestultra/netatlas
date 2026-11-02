@@ -1,6 +1,9 @@
-import { createTextMatcher } from './options.mjs';
+import { createTextMatcher, createDeclarationMatcher, createDeclarationReplacer } from './options.mjs';
+import { safePattern } from './safe-pattern.mjs';
 import { stripComment } from './comments.mjs';
 import { createDomainAndCompiler, parseDomainAnd } from './domain-and.mjs';
+import { domainRegexGlobs } from './domain-regex.mjs';
+import { splitRuleNote, withRuleNote, isPlainRuleToken } from './resource-metadata.mjs';
 // Original NetAtlas converter. Only documented QX conditions are emitted.
 // QX: https://github.com/crossutility/Quantumult-X/blob/master/sample.conf
 // Headless OR/AND semantics: https://sing-box.sagernet.org/configuration/rule-set/headless-rule/
@@ -74,7 +77,7 @@ function regexGlobs(expression) {
     for (const a of '0123456789') for (const b of second) for (const suffix of suffixes) result.push(`?*.${prefix}${a}${b}.${suffix}`);
     return result;
   }
-  fail('unsupported DOMAIN-REGEX; no lossless QX mapping is registered');
+  return domainRegexGlobs(expression);
 }
 
 export function parseRules(text, options = {}, utils = {}) {
@@ -84,32 +87,39 @@ export function parseRules(text, options = {}, utils = {}) {
   if (options.domainSetMode !== undefined && !['exact', 'suffix'].includes(options.domainSetMode)) fail('unknown domain-set mode');
   if (text.length > MAX_RULE_TEXT) fail('input limit exceeded');
   const trimmed = text.trim();
-  const structured = format === 'sing-box' || format === 'clash' || format === 'auto' && (trimmed.startsWith('{') || /^(?:#.*\n|\s)*payload\s*:/m.test(trimmed));
+  const structured = format === 'sing-box' || format === 'clash' || format === 'auto' && (trimmed.startsWith('{') && !trimmed.startsWith('{#') || /^(?:#.*\n|\s)*payload\s*:/m.test(trimmed));
   const textLimit = structured ? MAX_TEXT : MAX_RULE_TEXT;
   const lineLimit = structured ? MAX_LINES : MAX_RULE_LINES;
   if (text.length > textLimit || text.trimEnd().split(/\r\n?|\n/).length > lineLimit) fail('input limit exceeded');
   const replacement = own(options, 'policy') ? policy(options.policy) : null;
   const include = options.in ?? [], exclude = options.out ?? [];
   const keep = createTextMatcher(include, true), remove = createTextMatcher(exclude, true);
-  const output = [], excluded = [];
-  let sourceRow = null, outputSize = 0;
+  const output = [], excluded = [], metadata = [];
+  let sourceRow = null, outputSize = 0, outputRows = 0, sourceNote = '', sourceDisabled = false;
   let finalSeen = false;
   let resolveWarning = false;
   const domainAnd = typeof utils.domainAndCompiler === 'function' ? utils.domainAndCompiler : createDomainAndCompiler();
+  const regexBudget = utils.regexBudget ?? { remaining: 2097152 };
+  const declarationMatch = createDeclarationMatcher(options, regexBudget);
+  const replaceRow = createDeclarationReplacer(options, regexBudget);
+  const policies = (options.pset ?? []).map(([expression, selected]) => ({ expression: safePattern(expression, true, regexBudget), selected: policy(selected) }));
   const emit = line => {
-    outputSize += line.length + 1;
-    if (output.length >= lineLimit || outputSize > textLimit) fail('output limit exceeded');
+    outputSize += line.length + 1 + (sourceDisabled ? 1 : 0) + (sourceNote ? sourceNote.length + 9 : 0);
+    outputRows += sourceNote && !(utils.build >= 950) ? 2 : 1;
+    if (outputRows > lineLimit || outputSize > textLimit) fail('output limit exceeded');
     output.push(line);
+    metadata.push({ note: sourceNote, disabled: sourceDisabled });
     // KOP out matches the source body before policy replacement; in matches
     // converted text. Headless conditions without source rows use native text.
     excluded.push(remove(sourceRow ?? line));
   };
   function add(type, value, sourcePolicy, extras = []) {
-    if (finalSeen) fail('condition follows final');
+    if (finalSeen && !sourceDisabled) fail('condition follows final');
     const native = TYPES[type.toUpperCase()];
     if (!native && type.toUpperCase() !== 'DOMAIN-REGEX') fail('unsupported condition type');
     if (replacement === null && /^(?:REJECT-(?:TINYGIF|DROP|NO-DROP)|CELLULAR(?:-ONLY)?|HYBRID|NO-HYBRID)$/i.test(sourcePolicy ?? '')) fail('unsupported built-in policy; choose an explicit target policy');
-    const selected = replacement ?? policy(sourcePolicy ?? 'proxy');
+    let selected = replacement ?? policy(sourcePolicy ?? 'proxy');
+    for (const setting of policies) if (setting.expression.test(String(value ?? '')) || setting.expression.test(selected)) selected = setting.selected;
     const flags = [];
     for (const item of extras) {
       if (item === 'no-resolve') {
@@ -117,16 +127,16 @@ export function parseRules(text, options = {}, utils = {}) {
         if (options.allowResolve !== true) fail('no-resolve cannot be preserved by documented QX native rules');
         resolveWarning = true;
       } else if (['force-cellular', 'multi-interface', 'multi-interface-balance'].includes(item) && type === native) flags.push(item);
-      else if (/^via-interface=[a-zA-Z0-9._-]+$/.test(item) && type === native) flags.push(item);
+      else if (/^via-interface=(?:[a-zA-Z0-9._-]+|%TUN%)$/.test(item) && type === native) flags.push(item);
       else fail('unsupported condition option');
     }
     if (type.toUpperCase() === 'DOMAIN-REGEX') {
-      for (const glob of regexGlobs(value)) emit(`host-wildcard,${glob},${selected}`);
+      for (const glob of regexGlobs(value)) emit(`host-wildcard,${domain(glob, true)},${selected}`);
       return;
     }
     if (native === 'final') {
       if (value !== null || extras.length) fail('invalid final condition');
-      finalSeen = true;
+      if (!sourceDisabled) finalSeen = true;
       emit('final,' + selected);
       return;
     }
@@ -147,8 +157,24 @@ export function parseRules(text, options = {}, utils = {}) {
   }
   function classical(line) {
     sourceRow = line;
+    if (/^DOMAIN-REGEX\s*,/i.test(line)) {
+      const rest = line.slice(line.indexOf(',') + 1).trim();
+      let depth = 0, square = false, escaped = false, boundary = -1;
+      for (let index = 0; index < rest.length; index++) {
+        const character = rest[index];
+        if (escaped) { escaped = false; continue; }
+        if (character === '\\') { escaped = true; continue; }
+        if (character === '[') square = true;
+        else if (character === ']') square = false;
+        else if (!square && (character === '(' || character === '{')) depth++;
+        else if (!square && (character === ')' || character === '}')) depth--;
+        else if (!square && depth === 0 && character === ',') { boundary = index; break; }
+      }
+      add('DOMAIN-REGEX', boundary < 0 ? rest : rest.slice(0, boundary).trim(), boundary < 0 ? undefined : rest.slice(boundary + 1).trim());
+      return;
+    }
     if (/^AND\s*,/i.test(line)) {
-      if (finalSeen) fail('condition follows final');
+      if (finalSeen && !sourceDisabled) fail('condition follows final');
       const parsed = parseDomainAnd(line);
       if (replacement === null) {
         policy(parsed.policy);
@@ -217,7 +243,7 @@ export function parseRules(text, options = {}, utils = {}) {
     if (!count) fail('empty headless condition');
   }
   if (!trimmed) fail('empty resource');
-  if (format === 'sing-box' || (format === 'auto' && trimmed.startsWith('{'))) {
+  if (format === 'sing-box' || (format === 'auto' && trimmed.startsWith('{') && !trimmed.startsWith('{#'))) {
     let data;
     try { data = JSON.parse(trimmed); } catch { fail('invalid JSON'); }
     if (!record(data) || ![1, 2, 3].includes(data.version) || !Array.isArray(data.rules) || Object.keys(data).some(key => !['version', 'rules'].includes(key))) fail('unsupported headless document');
@@ -231,13 +257,14 @@ export function parseRules(text, options = {}, utils = {}) {
     for (const line of data.payload) {
       if (typeof line !== 'string') fail('invalid YAML payload row');
       if (line.includes(',')) classical(line);
-      else if (options.domainSetMode) domainLine(line, true);
-      else fail('domain payload requires explicit domain-set mode');
+      else domainLine(line, true);
     }
   } else {
     let section = null;
     for (let line of text.split(/\r?\n/)) {
       line = line.trim();
+      const decorated = splitRuleNote(line);
+      sourceNote = decorated.note; sourceDisabled = false; line = decorated.body;
       line = stripComment(line, fail);
       if (!line) continue;
       if (/^\[.*\]$/.test(line)) {
@@ -245,12 +272,49 @@ export function parseRules(text, options = {}, utils = {}) {
         if (section !== 'rule' && section !== 'filter_local') fail('unsupported configuration section');
         continue;
       }
+      if (/^-\s*[a-z]/i.test(line)) { sourceDisabled = true; line = line.replace(/^-\s*/, ''); }
+      sourceRow = line;
       if (format === 'domain-set') domainLine(line);
       else if (line.includes(',')) classical(line);
+      else if (format === 'auto') {
+        if (!isPlainRuleToken(line)) fail('invalid bare domain or IP list row');
+        if (line.includes(':')) add('ip6-cidr', line);
+        else if (line.includes('/') || /^[0-9.]+$/.test(line)) add('ip-cidr', line);
+        else if (/[*?]/.test(line)) add('host-wildcard', line);
+        else add('host-suffix', line.replace(/^\./, ''));
+      }
       else fail('bare domain needs explicit domain-set format');
     }
   }
-  const selected = output.filter((line, index) => (!include.length || keep(line)) && !excluded[index]);
+  const selected = [];
+  let selectedCharacters = 0, selectedRows = 0;
+  if (options.fcr !== undefined && !['1', '2', '3'].includes(options.fcr)) fail('invalid network interface selection');
+  const networkFlag = { '1': 'force-cellular', '2': 'multi-interface', '3': 'multi-interface-balance' }[options.fcr];
+  if (options.fcr !== undefined && !networkFlag) fail('invalid network interface selection');
+  if (options.via !== undefined && !/^(?:[a-zA-Z0-9._-]+|%TUN%)$/.test(options.via)) fail('invalid interface name');
+  for (let index = 0; index < output.length; index++) {
+    let line = output[index];
+    const kept = (!include.length || keep(line)) && !excluded[index] && declarationMatch(line);
+    if (!kept && options.hide !== false) continue;
+    if (line.startsWith('final,') && (networkFlag || options.via !== undefined)) fail('native FINAL interface overrides are not verified');
+    if (networkFlag && !line.split(',').includes(networkFlag)) line += ',' + networkFlag;
+    if (options.via !== undefined) {
+      if (/,(?:via-interface=)/.test(line)) fail('duplicate interface override');
+      line += ',via-interface=' + options.via;
+    }
+    if (options.replace?.length && !utils.transformed) {
+      line = replaceRow(line);
+      if (/[\r\n\x00-\x1f]/.test(line)) fail('invalid transformed rule');
+      line = parseRules(line, {}, { ...utils, transformed: true, allowEmpty: false }).trimEnd();
+      if (line.includes('\n')) fail('transformed rule expands into multiple rows');
+    }
+    if (metadata[index].disabled || !kept) line = '-' + line;
+    const rendered = withRuleNote(metadata[index].note, line, utils.build);
+    selectedCharacters += rendered.length + 1;
+    selectedRows += rendered.split('\n').length;
+    if (selectedCharacters > textLimit || selectedRows > lineLimit) fail('output limit exceeded');
+    selected.push(rendered);
+  }
   if (!selected.length) {
     if (utils.allowEmpty === true && output.length === 0) return '';
     fail('empty resource after filtering');
@@ -258,7 +322,7 @@ export function parseRules(text, options = {}, utils = {}) {
   const warnings = [];
   if (replacement !== null) warnings.push('# NetAtlas: explicit policy override replaces every source policy.');
   if (resolveWarning) warnings.push('# NetAtlas: explicit allow-resolve removes no-resolve; DNS lookup behavior changes.');
-  if (warnings.length + selected.length > lineLimit) fail('output limit exceeded');
+  if (selectedRows + warnings.length > lineLimit) fail('output limit exceeded');
   const content = [...warnings, ...selected].join('\n') + '\n';
   if (content.length > textLimit) fail('output limit exceeded');
   return content;

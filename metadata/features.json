@@ -764,7 +764,7 @@
       "id": "resource-parser",
       "description": "Original NetAtlas offline QX node/rule/rewrite resource parser and optional pinned external Loon parser recipe.",
       "defaultEnabled": false,
-      "license": "MIT AND ISC (QX original implementation and bundled yaml); Loon remote parser AGPL-3.0-only",
+      "license": "MIT AND ISC AND Apache-2.0 (QX conversion, yaml and static registry); Loon remote parser AGPL-3.0-only",
       "sourceRegistry": "metadata/resource-parsers.json",
       "clients": {
         "quantumultX": {
@@ -973,6 +973,56 @@
       },
       "requiresMitmForHttps": [
         "*.googlevideo.com"
+      ]
+    },
+    {
+      "id": "qx-script-runtime",
+      "description": "Explicit registered Maasea request/response scripts compiled with a static Surge API/argument adapter; no runtime source downloading or eval.",
+      "defaultEnabled": false,
+      "license": "Apache-2.0 AND BSD-3-Clause AND CC0-1.0",
+      "sourceRegistry": "src/features/script-runtime/registry.mjs",
+      "clients": {
+        "quantumultX": {
+          "artifacts": [
+            "scripts/compat-youtube-request.js",
+            "scripts/compat-youtube-response.js"
+          ],
+          "kind": "registered-static-script-runtime",
+          "nativeApp": "not-run"
+        }
+      },
+      "validation": {
+        "unit": "Pinned source/hash/license, actual protobuf argument effects, restricted VM/Apple JavaScriptCore, loopback HTTP, binary body, storage and completion regressions.",
+        "nativeApp": "not-run"
+      },
+      "sources": [
+        "https://manual.nssurge.com/scripting/api.html",
+        "https://github.com/crossutility/Quantumult-X/blob/master/sample-task.js",
+        "https://github.com/Maasea/sgmodule/tree/65075cdb388fc5e3094afd7e7314c67b243f3525"
+      ]
+    },
+    {
+      "id": "qx-rewrite-actions",
+      "description": "Static no-network/no-storage Map Local echo and request/response header adapter emitted only for explicit declarative source actions.",
+      "defaultEnabled": false,
+      "license": "MIT",
+      "clients": {
+        "quantumultX": {
+          "artifacts": [
+            "scripts/rewrite-actions.js"
+          ],
+          "kind": "declarative-rewrite-runtime",
+          "nativeApp": "not-run"
+        }
+      },
+      "validation": {
+        "unit": "Real loopback echo/status/headers/text/binary and bounded header-regex effects; source parsing does not execute script code.",
+        "nativeApp": "not-run"
+      },
+      "sources": [
+        "https://manual.nssurge.com/http/map-local.html",
+        "https://nsloon.app/en/docs/Rewrite/",
+        "https://github.com/crossutility/Quantumult-X/blob/master/sample-echo-response.js"
       ]
     }
   ],

@@ -96,7 +96,7 @@ CN 域名来自已有 MIT 固定 DLC 的 cn 完整 include 闭包，保留3条�
 
 BoxJS和ScriptHub的安装包采用GPL-3.0-only，Sub-Store采用AGPL-3.0-only；完整许可证、作者、官方原包、改版包与对应源码入口见[src/vendor/integrations](src/vendor/integrations)。本仓库发布小安装资源，入口脚本仍从上游获取，没有将大型bundle重新分发或改标MIT。Sub-Store的发布bundle提交与对应源码tag分开登记，不把当前README提交当成其构建来源。前端/CDN及生成资源的全部依赖闭包未宣称锁定。
 
-QX资源解析器由NetAtlas依据原生公开接口独立实现，转换器和宿主适配采用本项目MIT许可，没有复制KOP-XIAO解析器源码。浏览器成品内联yaml 2.9.1（ISC，Copyright Eemeli Aro），完整许可保存在[src/features/resource-parser/vendor/LICENSE-yaml](src/features/resource-parser/vendor/LICENSE-yaml)，也写入生成脚本头部；构建依赖和版本在package-lock.json锁定。URL、协议字段和官方helper协议的独立适配不表示第三方项目为本实现背书。
+QX资源解析器由NetAtlas依据原生公开接口独立实现，转换器核心采用本项目MIT许可，静态脚本登记文件保留其Apache-2.0许可，没有复制KOP-XIAO解析器源码。浏览器成品内联yaml 2.9.1（ISC，Copyright Eemeli Aro），完整许可保存在[src/features/resource-parser/vendor/LICENSE-yaml](src/features/resource-parser/vendor/LICENSE-yaml)，也写入生成脚本头部；构建依赖和版本在package-lock.json锁定。URL、协议字段和官方helper协议的独立适配不表示第三方项目为本实现背书。
 
 Loon解析器仍链接固定官方AGPL发布入口及对应完整源码，不复制或重新标注其bundle许可。原创quick-search和正文替换采用MIT。边界、原生宿主契约及Loon哈希见[解析器登记](metadata/resource-parsers.json)、[工具登记](metadata/integrations.json)。
 
@@ -121,3 +121,9 @@ QX兼容分流与HTTP/HTTPS重写是本项目MIT适配，依据已归档的同�
 Pinned Maasea YouTube bundles, the original module and the minimal QX adaptation retain Apache-2.0, embedded protobuf-ts Apache/BSD-3-Clause and AnonyCo text polyfill CC0-1.0 terms. Complete source, licenses, hashes, authors and changes are in [the feature notice](src/features/youtube-enhance/NOTICE.md) and [provenance](src/features/youtube-enhance/provenance.json). The exact protobuf npm/build dependency closure was not recovered. No code from unmerged PR #105 is used.
 
 The primary optional resource does not intercept initplayback or redirect QX to a third-party Worker. A separate Worker resource is disabled by default and explicitly exposes runtime onesie clientKey and the original playback target URL to the upstream Worker; it is not required by the primary resource and is not limited to advertisements. Neither resource is automatically enabled in public profiles. Node VM/JavaScriptCore tests use synthetic fixtures; native QX playback, PIP, background play, ad removal and subtitle behavior remain not-run.
+
+## 静态脚本 API 适配与声明式动作
+
+QX 解析器内联的 [静态登记表](src/features/script-runtime/registry.mjs) 保留 Apache-2.0 标识，生成解析器同时包含完整 Apache-2.0 许可。登记表不包含上游脚本正文。单独生成的 `compat-youtube-request.js` 与 `compat-youtube-response.js` 使用已登记固定版本的 Maasea 源码，保留 Apache-2.0、BSD-3-Clause、CC0-1.0 全文及 [NOTICE](src/features/youtube-enhance/NOTICE.md)，不改标为根 MIT。适配器显式桥接 Surge 契约并传递声明参数，不宣称任意跨宿主脚本自动兼容。
+
+`rewrite-actions.js` 为原创 MIT 静态声明式响应/请求头动作；不复制或执行来源 JavaScript。未取得明确许可的 KOP 核心、MGTV 与知乎商业脚本正文均未复制到仓库。

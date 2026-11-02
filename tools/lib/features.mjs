@@ -10,6 +10,8 @@ import { renderBodyReplacement } from './body-replacement.mjs';
 import { renderResourceParsers } from './resource-parsers.mjs';
 import { renderQxCompatibility } from './qx-compat.mjs';
 import { renderYouTubeEnhance } from './youtube-enhance.mjs';
+import { renderScriptRuntime } from './script-runtime.mjs';
+import { renderRewriteActions } from './rewrite-actions.mjs';
 
 const clientIds = new Set(['quantumultX', 'surge', 'loon', 'shadowrocket', 'egern', 'stash', 'mihomo', 'singBox']);
 const source = (path) => readFileSync(new URL('../../src/features/' + path, import.meta.url), 'utf8');
@@ -51,5 +53,5 @@ function renderBuiltinFeatures(client, { baseUrl } = {}) {
 }
 
 export function renderFeatures(client,options={}) {
-  return [...renderBuiltinFeatures(client,options),...renderAntiAd(client,options),...renderHttpsUpgrade(client,options),...renderQuickSearch(client,options),...renderRedirects(client,options),...renderBiliIntlRegion(client,options),...renderIntegrations(client,options),...renderBodyReplacement(client,options),...renderResourceParsers(client,options),...renderQxCompatibility(client,options),...renderYouTubeEnhance(client,options)];
+  return [...renderBuiltinFeatures(client,options),...renderAntiAd(client,options),...renderHttpsUpgrade(client,options),...renderQuickSearch(client,options),...renderRedirects(client,options),...renderBiliIntlRegion(client,options),...renderIntegrations(client,options),...renderBodyReplacement(client,options),...renderResourceParsers(client,options),...renderQxCompatibility(client,options),...renderYouTubeEnhance(client,options),...renderScriptRuntime(client,options),...renderRewriteActions(client,options)];
 }

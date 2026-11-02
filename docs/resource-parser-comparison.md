@@ -1,65 +1,83 @@
 # QX 资源解析器逐项对照与差异
 
-历史对照基线为 NetAtlas `fd60d6b81a9969fb81bf0c3134880de294d9f169`；KOP 公开源码 SHA-256 为 `1315ad57a31a2431a9fdf3d9fa0c892f7e91b9fa74f1c81bdaac04d521817b67`。2026-11-02 的41类功能、53组同输入 Apple JavaScriptCore 案例用于定位差异；下表已更新随后完成的JS安装注释、混合分流/重写与HTTP脚本声明转换。大资源限额、字面筛选和HTTP正则外层引号修复仍保留。旧源码行号只指历史基线/公开快照；新增行为以所列测试和当前源码为准。
+本页对照固定 [KOP 快照 `f0177f5e`](https://github.com/KOP-XIAO/QuantumultX/blob/f0177f5ea2f62681ab2592a4ed54677dfbbc4b78/Scripts/resource-parser.js)，其源码 SHA-256 为 `1315ad57a31a2431a9fdf3d9fa0c892f7e91b9fa74f1c81bdaac04d521817b67`。历史 NetAtlas 基线为 `fd60d6b81a9969fb81bf0c3134880de294d9f169`；早期 41 类功能、53 组 Apple JavaScriptCore 同输入案例用于发现差异。下表按本轮源码和回归重新登记，不再把已经补齐的 SSD、旧 URI、命名、规则和重写功能写成未实现。
 
-**结论：目前是覆盖常用场景的独立实现，不能称为 KOP 完整替代。** 正常参数仍有拒绝项和静默不同项；有意拒绝的可执行脚本、证书/宿主行为单独列出，不按默认必须支持计。节点对照只使用合成地址/凭据；规则另用用户给出的公开原文。本轮不请求私人订阅，也不操作本地QX或系统代理。
+NetAtlas 已补齐原表列出的常用格式与声明式参数，并保留可检查的原生边界。它是独立实现，不宣称任意 KOP 输入、JavaScript 扩展或其他客户端的脚本 API 都可等价运行。节点夹具使用合成地址和凭据；公开资源另做完整原文验收。本轮没有读取私人订阅、操作本地 QX 或修改系统代理。
 
-| 类别 | 功能 | 核实差异/状态 | 重要程度 | NetAtlas 证据 | KOP 证据与验证边界 |
-| --- | --- | --- | --- | --- | --- |
-| 节点格式 | QX原生/标准SS、SSR、VMess JSON、VLESS、Trojan、HTTP、SOCKS、AnyTLS及整体Base64 | 已覆盖主要格式 | 已实现 | nodes.mjs:4,114-247,377-419 | KOP:2646-2749,2819-3040；已有节点回归和此前12组JSC；不意味着所有来源字段均可无损处理 |
-| 节点格式 | Surge/Loon节点、Clash YAML、SIP008、sing-box JSON | 已覆盖主要格式 | 已实现 | nodes.mjs:249-349,392-419 | KOP:2819,4064-4395,4704-5010；我方还原生处理sing-box；KOP该格式不能笼统算覆盖 |
-| 节点字段 | fp/spx/client-fingerprint、Reality MLKEM true提示 | 已原生适配并说明 | 已实现 | nodes.mjs:34-54,227-288; core.mjs:79-88 | KOP:2635-2643,3242-3314,4966-5007；我方有受限值/来源及固定说明；KOP选择提取字段时忽略其它字段，不保证安全字段等价 |
-| 节点格式 | SSD URI | KOP可转，我方unsupported protocol | P2 常用兼容缺口 | nodes.mjs:4,247 | KOP:2693-2694,3428-3463；动态case node-ssd；不建议支持KOP对IPv6直接跳过的旧行为 |
-| 节点格式 | Shadowrocket VLESS base64 authority/remarks/obfs/tls别名 | KOP可转，我方拒绝remarks等 | P2 常用兼容缺口 | nodes.mjs:227-246 | KOP:3242-3314；动态case node-shadowrocket-vless |
-| 节点格式 | Shadowrocket VMess非JSON URI | KOP可转，我方unsupported VMess URI | P2 旧格式缺口 | nodes.mjs:218-225 | KOP:2906-2960；动态case node-shadowrocket-vmess；传输和AEAD默认仍需分别保持，不能泛化成所有旧VMess |
-| 节点格式 | Shadowrocket SOCKS/ssocks及HTTP Base64变体 | 源码有处理，我方不覆盖相同变体 | P3 待分格式验证 | nodes.mjs:227-246 | KOP:2680-2706,2840-2865,2964-3001；动态最小单行样例KOP有原样/异常输出，不能把返回content算正确支持；不列为已确认可直接修复 |
-| 节点字段 | tls-verification=证书域名 / cert=domain | KOP提供domain选项，我方bool-only并拒绝hash cert | P2 需先核对原生支持 | nodes.mjs:7,351-355; options.mjs:41-46 | KOP:32-34,614-615,658-676；KOP938+声明；native输入无cert覆盖时KOP可能改为false，不能据此声称无损；需官方接口依据后实施 |
-| 筛选 | node in/out：+OR、.AND、\.字面、大小写不敏感 | 双方主要行为一致 | 已实现 | options.mjs:createKeywordMatcher/applyNodeOptions | KOP:3114-3125；动态case node-dot-and |
-| 筛选 | rule/rewrite/hostname点号与大小写、source out顺序 | 原实现与fd60存在语义差异，本轮已修 | P1 本轮已修 | rules.mjs:parseRules; rewrites.mjs:parseRewrites | KOP:2226-2227,2272-2295,2320-2325,2348-2362；rules out对源正文CS、in对转换后正文CS；rewrite CI字面；hostname原拼写CS字面。53组当前工作树JSC已确认这些细分 |
-| 筛选 | regex / regout 对节点完整行及规则/重写/hostname正则筛选 | KOP支持，我方拒绝参数 | P2 常用漏项 | options.mjs:41-46 | KOP:597-598,2261-2264,2311-2314,3094-3109；动态node-regex/node-regout/rules-regex；这是声明式正则筛选，不能与sfilter源码执行混为一谈，实施需限复杂度/耗时 |
-| 命名 | rename字面替换、前后缀、☠️删除、JSON配对 | 主要支持 | 已实现 | options.mjs:88-125,228-242 | KOP:3805-3837；替换值中的JS $替换模板仍有差异，不能说完全相同 |
-| 命名 | suffix=1/-1（及0）协议类型标签 | KOP类型标签，我方当文本追加1/-1/0 | P2 静默语义错误 | options.mjs:85-87,228-242 | KOP:1013-1015,1413-1427；动态node-suffix-type/node-prefix-type；最小修法见后文 |
-| 命名 | rename中$type/$index/$emoji/$tag占位符 | KOP展开，我方按普通文本写入 | P2 静默语义错误 | options.mjs:88-125,228-242 | KOP:565,1432-1508；动态node-placeholder-type/index/tag；可先明确拒绝保留占位符防假成功，再按固定枚举逐项实现 |
-| 命名 | rrname、replace、delreg | KOP支持，我方拒绝参数 | P2/P3 未实现 | options.mjs:41-46 | KOP:596-610,995-1007,2608-2623,3794-3801；rrname/replace为正常名称处理；replace也能改连接字段，不能默认照搬任意覆盖 |
-| 命名 | ptn/npt/cap花样字符与大小写样式 | KOP支持，我方拒绝 | P3 外观功能未实现 | options.mjs:41-46 | KOP:628-630,1365-1410；动态node-ptn-npt/node-cap |
-| 排序 | sort=1/-1 / name/name-desc | 双方主要升降序可用 | 已实现 | options.mjs:126-128,246-247 | KOP:3713-3739；名称排序与emoji顺序仍不能笼统保证完全一致 |
-| 排序 | sort=0、sort=x、sort=JP>HK / sortx | KOP支持none/随机/优先分组，我方仅none/name/name-desc/1/-1 | P2 常用漏项 | options.mjs:126-128 | KOP:616-617,3713-3788；动态node-sort-0/keyword/random；0可无损映射none，关键词优先需独立规范 |
-| 名称冲突 | 重名自动编号 / del=1 | KOP重命名或删除；我方整份拒绝原始或最终重名 | P2 不同默认策略 | nodes.mjs:415-417; options.mjs:221-243 | KOP:1279-1341；动态node-duplicate-default/delete；不能悄悄丢节点或改策略引用，需清晰登记 |
-| 连接覆盖 | udp/tfo/uot/cert/csha/psha/alpn/aead/host/obfs/tsession/checkurl/tls13 | KOP提供hash覆盖，我方多数仅保留已支持源字段，不提供覆盖hash | P2 有意未实现覆盖 | options.mjs:41-46; nodes.mjs:NATIVE_KEYS | KOP:605-606,614-615,637-651,1568-1639；动态udp/tfo/checkurl；涉及真实连接与安全含义，不应默默照搬默认关闭证书或不等价UoT |
-| 流量通知 | info=1 header与受限流量伪节点 | 双方支持主要用途 | 已实现子集 | subscription-info.mjs:3-44 | KOP:1068-1106；我方不复制任意标签/URL进通知；KOPflow=手填流量和STATUS伪节点/返回info结构不完全同 |
-| 规则 | 大型antiAD文本配额与out=普通域名 | 旧20k/2Mi限制会拒绝；本轮已改为纯文本8Mi/250k | P1 本轮已修 | core.mjs:MAX_TEXT/convertResource; rules.mjs:MAX_LINES | KOP:Rule_Handle2335-2427无同等20k限制；真实公开原文已在隔离引擎复放；不能用缩小样本冒充完整 |
-| 规则 | 裸域名/IP/CIDR混合列表与Clash域名payload | KOP启发式默认suffix；我方要求显式domain-set/domain-mode，混合裸IP不直接识别 | P2 不同输入约定 | rules.mjs:domainLine,clash/headless branches | KOP:1218-1225,2506-2567；动态rules-bare-list；直接复刻suffix推断会改变语义，必须区分格式而非默认扩大匹配 |
-| 规则 | GEOIP/ASN、基础host/IP/UA/classical、DOMAIN-SET | 主要支持并校验 | 已实现 | rules.mjs:7-12,90-136 | KOP:Rule_Policy2430-2503；数据库类别实际取决于所用MMDB；不能算完整任意条件转换 |
-| 规则 | 有证明的域名条件AND合取 | 已支持明确域名条件子集的精确交集编译；其他逻辑谓词仍拒绝 | P1 本轮已修 | domain-and.mjs; resource-parser-domain-and.test.mjs | DragonRead真实21条AND精确编为39条host-wildcard；不展开为更宽后缀，不推广到端口/IP等任意AND |
-| 规则 | 简单任意DOMAIN-REGEX | KOP转换有限简单语法，我方仅登记的确切表达式 | P2 正则子集差异 | rules.mjs:61-76 | KOP:2454-2465；动态rules-simple-domain-regex；不要求复刻复杂regex到glob的近似，应先补有证明的锚定字面子集 |
-| 规则 | {# note #}行首说明 | KOP按宿主版本保留/剥除，我方失败 | P2 正常元数据缺口 | core.mjs:structured detection; rules.mjs:classical | KOP:1119-1142,1169,2431-2438；动态rules-notes；946时KOP剥注释后规则可用 |
-| 规则 | 禁用行 / hide=0 | KOP能输出或忽略禁用行，我方拒绝负号条件/hash hide | P2 常用预览/迁移缺口 | rules.mjs:classical; options.mjs:41-46 | KOP:2387,2409,2415；动态rules-hide/rules-disabled-native；必须保持禁用，不得恢复活动规则 |
-| 规则 | pset / replace / fcr / via / relay | KOP支持按条件改策略/文本/网络标记或节点转规则，我方hash拒绝 | P2 正常扩展未实现 | options.mjs:41-46; rules.mjs:extras handling | KOP:1518-1528,2416-2422,2572-2623；动态rules-pset/replace/network-flags；连接/接口改变必须显式使用，不能自动激活 |
-| 规则 | no-resolve/pre-matching/extended-matching及特殊REJECT策略 | KOP移除或折为reject；我方默认拒绝，allow-resolve/policy可显式声明变义 | 有意语义边界 | rules.mjs:95-106 | KOP:2446-2451；动态rules-no-resolve；不计为默认必须忽略的字段 |
-| 重写 | QX基础重写/302/307/四种静态reject体/HTTP脚本引用/jsonjq原生 | 主要支持 | 已实现子集 | rewrites.mjs:88-147 | KOP:2092-2203,3602-3707；KOP L2102/L3668-3669常删除行首^http的锚点，本实现保留来源锚点与内部pattern，不宣称转换后正则逐字相同；不能据此宣称整个Surge/Loon模块兼容 |
-| 重写 | JS正文前明确QX安装注释 | 静态提取前导注释中的rewrite_local/mitm，保留原声明与顺序；容忍单个hostname尾逗号 | P1 本轮已修 | rewrite-installation.mjs; resource-parser-rewrite-installation.test.mjs | 不执行JS、不扫描正文字符串/template；明确task/debug区不进入重写；未知安装字段、段、证书设置或坏行仍失败。业务脚本效果与hostname范围不由解析成功背书 |
-| 重写 | 成对引号包裹HTTP URL pattern | 旧实现保留引号；本轮去外层包装引号，保留内部转义与非HTTP字面词 | P2 本轮已修 | rewrites.mjs:pattern/native/foreignRewrite | KOP:3545-3570,3639,3699；动态rewrite-quoted-pattern及新增回归；不复制KOP对http_status等非scheme词的过宽处理；未作QX原生流量命中测试 |
-| 重写 | Loon JSON-JQ / JSON del / JSON replace DSL | KOP转原生jsonjq；我方仅收原生jsonjq动作 | P2 常用转换缺口 | rewrites.mjs:102-104,132-147 | KOP:1771-2090,3644-3652；动态rewrite-jq；这是数据变换DSL，不等于来源JS eval |
-| 重写 | Surge Map Local的简单内联静态正文 | KOP可转{}、[]、空文本/tiny-gif等；我方拒绝整个Map Local section | P2 常用转换缺口 | rewrites.mjs:153-155 | KOP:1640-1704,3635-3642；动态rewrite-map-local，{}→reject-dict；只应补可证明保留的静态子集 |
-| 重写 | 重写资源混合原生分流 | 已支持原生filter与rewrite混合，保持条目顺序和各自策略 | P1 本轮已修 | core.mjs:detect; rewrites.mjs:parseRewrites; resource-parser-mixed-modules.test.mjs | 宿主最低Quantumult X 1.5.2 build 844，见[官方发布记录](https://t.me/QuanXNews/294)；不是任意逻辑条件都可转；转换结果固定提示最低版本 |
-| 重写 | echo-response本地Data文件 | KOP有条件保留本地文件引用；我方拒绝该动作 | P2/P3 显式依赖边界 | rewrites.mjs:88-104 | KOP:3691-3697；动态rewrite-native-echo-local；不应把远程URL或内联正文错当本地文件，也不能自动部署文件 |
-| 重写 | header-replace / URL-REGEX / dst | URL-REGEX REJECT→reject-200已实现并披露变义；其他policy、header DSL与dst/hash仍未覆盖 | 已实现子集 / P2差异 | rewrites.mjs:parseRewrites/foreignRewrite; options.mjs | REJECT从connection-close变成HTTP响应阻断，固定comment说明；KOP:1722-1757,2148-2165。不能把这一项扩写成任意URL路由策略或header转换已支持 |
-| 重写 | Surge/Loon HTTP脚本声明与requires-body | 默认转换http-request/http-response，无需script-compat参数；requires-body支持true/false及1/0 | P1 本轮已修 | rewrites.mjs:foreignScript; resource-parser-mixed-modules.test.mjs | 只转换触发声明，不翻译JS API；输出固定comment说明。argument/max-size/timeout校验后不应用，binary脚本必须使用QX bodyBytes；不能把可返回content称为同功能运行验证 |
-| 执行边界 | 源脚本API、自定义参数、cron与CA | 不执行来源JS、不导入任务或证书；未知或不支持的条件/字段仍原子拒绝 | 有意边界 | rewrites.mjs:foreignScript/parseRewrites; rewrite-installation.mjs | script-compat=qx仍可记录用户声明但不是默认转换前提；固定comment披露未应用参数与API差异，未合并的适配或宿主行为不会自动带入 |
-| 宿主 | helper UI与类型aliases、local首行参数 | 我方支持规范参数子集；未知项保留但转换会报错 | 已实现子集 | helper.mjs:1-34; core.mjs:53-64; options.mjs:59-69 | KOP:115-510,561-565,1196-1217；完整KOP schema字段不等于我方已实现；不能只有UI选项没有运行语义 |
-| 宿主 | UA=1重试、扫码订阅引导、profile=111批量导入 | KOP支持host retry/URL Scheme通知；我方仅content/error | P2/P3 可选host功能 | core.mjs:completeResource; metadata/resource-parsers.json | KOP:535-552,811-832,948-977,1145-1164；动态node-user-agent-retry返回retry而非自行网络；此功能额外宿主行为需明确实现范围 |
-| 宿主 | cnt/dbg/ntf/flow/b64等诊断及返回格式选项 | KOP有多个提示/返回info选项；我方受控本地用量通知、纯native文本返回 | P3 不同接口 | options.mjs:41-46; subscription-info.mjs:3-44 | KOP:603-649,1030-1106；不应回显真实订阅、节点凭据或来源原文来追求所有debug功能 |
-| 执行扩展 | sfilter/srename Base64脚本 | KOP eval用户脚本；我方明确禁止 | 有意安全边界 | core.mjs:1-2; options.mjs:41-46 | KOP:3158-3177,3844-3860；不算默认必须支持，不能用任意JS执行填“完整” |
+| 类别 | 功能 | 当前实现与差异 | 主要证据 |
+| --- | --- | --- | --- |
+| 节点格式 | QX 原生、SS/SSR、VMess JSON、VLESS、Trojan、HTTP、SOCKS、AnyTLS、整体 Base64 | 已实现；逐字段验证，未知传输或不可表达的安全字段整份拒绝 | [节点转换](../src/features/resource-parser/nodes.mjs)、[节点回归](../tests/scripts/resource-parser-nodes.test.mjs)；KOP 2646–3040 |
+| 节点格式 | Surge/Loon、Clash YAML、SIP008、sing-box JSON | 已实现登记的字段和传输子集；sing-box UoT 版本独立映射，不把其他客户端的字段默认丢弃 | [节点转换](../src/features/resource-parser/nodes.mjs)、[原生偏好回归](../tests/scripts/resource-parser-native-preferences.test.mjs)；KOP 4064–5010 |
+| 节点格式 | SSD URI | 已实现默认值继承、逐服务器覆盖和 IPv6；每个展开节点都校验，插件及总量限制仍生效 | [扩展节点回归](../tests/scripts/resource-parser-extended-nodes.test.mjs)；KOP 3428–3463 |
+| 节点格式 | Shadowrocket VLESS、旧非 JSON VMess、Quantumult CSV VMess | 已支持 Base64 authority、命名及 TLS/WS/HTTP-header 别名；旧 VMess 保留自身 AEAD 默认，非零 alter ID、复用和不等价传输仍拒绝 | [扩展节点回归](../tests/scripts/resource-parser-extended-nodes.test.mjs)；KOP 2906–2960、3242–3314 |
+| 节点格式 | SOCKS/ssocks、HTTP(S) Base64 变体 | 已实现已验证的整个 authority/endpoint 形式；仅解码一次，保留字面凭据、IPv6、TLS 和名称 | [扩展节点回归](../tests/scripts/resource-parser-extended-nodes.test.mjs)；KOP 2840–2865、2964–3001 |
+| 节点字段 | fp/spx/client-fingerprint、Reality MLKEM true 提示 | 保留原生握手字段，并用固定说明登记 QX 原生指纹、缺失的 spider-path 和 MLKEM 提示；不宣称保留来源指纹选择 | [原生偏好回归](../tests/scripts/resource-parser-native-preferences.test.mjs)、[Reality 回归](../tests/scripts/resource-parser-reality-mlkem.test.mjs) |
+| 节点字段 | 证书校验域名 | 已支持原生 `tls-verification=example.com` 和显式 `cert=example.com`，独立于 SNI；要求 QX 1.7.0 build 938+。这里的 domain 是 FQDN 占位，不是字符串枚举 `domain` | [官方 build 938 公告](https://t.me/QuanXNews/415)、[扩展节点回归](../tests/scripts/resource-parser-extended-nodes.test.mjs) |
+| 筛选 | 节点 in/out | `+` 为 OR、未转义 `.` 为 AND、`\.` 为字面点，不区分大小写 | [关键字实现](../src/features/resource-parser/options.mjs)、[筛选回归](../tests/scripts/resource-parser-audit-options.test.mjs)；KOP 3114–3125 |
+| 筛选 | 规则、重写、hostname 的 in/out | 规则正文区分大小写，out 先匹配源正文、in 匹配转换后正文；重写正文不区分大小写；hostname 保留原拼写、区分大小写。三者的点均为字面点 | [字面筛选回归](../tests/scripts/resource-parser-literal-filter.test.mjs)；KOP 2226–2362 |
+| 筛选 | regex/regout | 已作用于节点完整声明、规则、重写及各 hostname；使用有预算的声明式 NFA 子集，不执行用户 JS | [正则实现](../src/features/resource-parser/safe-pattern.mjs)、[组量词与空匹配回归](../tests/scripts/resource-parser-regex-groups.test.mjs)；KOP 597–598、2261–2314、3094–3109 |
+| 命名 | rename、rrname、replace、delreg | 已实现顺序处理；rename/rrname 匹配字面文本，替换支持标准 `$` 替换标记；replace 可显式修改完整声明，但结果必须重新通过原生和安全字段验证；delreg 仅改名称 | [选项回归](../tests/scripts/resource-parser-extended-options.test.mjs)、[名称来源回归](../tests/scripts/resource-parser-name-literals.test.mjs)；KOP 995–1007、2608–2623、3794–3837 |
+| 命名 | 前后缀、删除、JSON 配对 | 普通文字、`前缀@`、`@后缀`、`字段☠️`、JSON 配对均已实现；原始 `+`/`@` 是操作符，字面字符编码为 `%2B`/`%40` | [选项实现](../src/features/resource-parser/options.mjs)、[Helper 回归](../tests/scripts/resource-parser-extended-helper.test.mjs) |
+| 命名 | numeric suffix 与占位符 | `suffix=1/-1/0` 分别追加/前置/不加协议标签；支持 `$type/$index/$emoji/$tag` 及登记样式。索引在排序后展开；源名称、资源 tag 和复制的捕获数据不会被递归解释为模板 | [名称实现](../src/features/resource-parser/name-options.mjs)、[名称来源回归](../tests/scripts/resource-parser-name-literals.test.mjs)；KOP 1413–1508 |
+| 命名 | emoji、ptn/npt/cap | 已支持名称旗帜、0–8 字符样式和大小写；只按名称识别地点，不查询 IP 地理位置。使用 Unicode 字母/数字映射，不复制旧表中 q/k、7/8 的笔误 | [名称实现](../src/features/resource-parser/name-options.mjs)、[选项回归](../tests/scripts/resource-parser-extended-options.test.mjs)；KOP 1365–1410 |
+| 排序 | none/name/name-desc、0/1/-1/x、关键词、sortx | 已支持保持、升降序、随机、`JP>HK`/`JP<HK` 分组及分组内排序；随机只保证条目集合保持，不保证与另一实现产生同一排列 | [选项回归](../tests/scripts/resource-parser-extended-options.test.mjs)；KOP 3713–3788 |
+| 名称冲突 | 自动编号、del=1 | 资源流程默认保留重名节点并编号；`del=1` 仅删除后续同名节点。先预留全部最终名称，避免编号抢占后续原名；直接低层 parseNodes 的严格默认合同不变 | [名称来源回归](../tests/scripts/resource-parser-name-literals.test.mjs)、[扩展节点回归](../tests/scripts/resource-parser-extended-nodes.test.mjs)；KOP 1279–1341 |
+| 连接覆盖 | udp/tfo/uot/cert/csha/psha/alpn/aead/host/obfs/tsession/checkurl/tls13 | 已实现显式 hash 覆盖；未选择时不改变连接默认值。字段适用性、指纹格式、引号布尔值和替换后的安全语义都校验；原生限制见下文 | [原生覆盖](../src/features/resource-parser/native-options.mjs)、[选项回归](../tests/scripts/resource-parser-extended-options.test.mjs)；KOP 605–651、1568–1639 |
+| 流量 | info、flow、STATUS、返回 info | 支持已有 header、受限伪节点、STATUS 和显式手填日期/流量；合法时返回 bytes_used/bytes_remaining/expire_date。缺失或坏用量不伪造为零，不回显来源正文 | [宿主选项](../src/features/resource-parser/host-options.mjs)、[宿主回归](../tests/scripts/resource-parser-host-options.test.mjs)；KOP 1030–1106 |
+| 规则 | 大型 anti-AD、普通域名 out | 纯文本规则限额 8 MiB/250,000 行；out 的域名点按字面匹配。结构化、Base64、节点和重写仍有各自较小限额；正则预算独立计算 | [大型规则回归](../tests/scripts/resource-parser-large-rules.test.mjs)、[限额](../src/features/resource-parser/limits.mjs) |
+| 规则 | 裸域名、IP/CIDR 混合列表、Clash payload | 已识别纯列表；裸域名默认 suffix，IP 使用对应地址规则。显式 domain-set 仍把裸域名当 exact；Clash `+.`、`.` 与通配边界分别处理 | [扩展规则回归](../tests/scripts/resource-parser-extended-rules.test.mjs)；KOP 1218–1225、2506–2567 |
+| 规则 | GEOIP/ASN、host/IP/UA/classical、DOMAIN-SET | 已实现登记条件并验证；具体 GEOIP 类别仍取决于所用数据库 | [规则实现](../src/features/resource-parser/rules.mjs)；KOP 2430–2503 |
+| 规则 | AND 与 DOMAIN-REGEX | AND 只对有证明的域名子集求精确交集；DOMAIN-REGEX 支持可精确编为有限 glob 的字面、分支、正字符集、有限量词和 `.*`/`.+` 子集，拒绝需近似扩大匹配的表达式 | [AND 回归](../tests/scripts/resource-parser-domain-and.test.mjs)、[扩展规则回归](../tests/scripts/resource-parser-extended-rules.test.mjs)、[精确编译](../src/features/resource-parser/domain-regex.mjs) |
+| 元数据 | `{# note #}`、禁用行、hide=0 | 说明不参与匹配/替换；build 950+ 保留原生行首说明，较旧或未知 build 输出普通注释。来源禁用项持续禁用；hide=0 把筛除项输出为禁用项，不重新激活 | [元数据实现](../src/features/resource-parser/resource-metadata.mjs)、[规则回归](../tests/scripts/resource-parser-extended-rules.test.mjs)、[重写回归](../tests/scripts/resource-parser-extended-rewrites.test.mjs) |
+| 规则覆盖 | policy/pset/replace/fcr/via/relay | 已实现；pset 区分大小写、分别匹配条件值和当前策略；网络标记须显式指定。relay 使用实际代理端点生成 host/IP 规则，不使用伪装域名；冲突与无意义的 FINAL 网络标记拒绝 | [扩展规则回归](../tests/scripts/resource-parser-extended-rules.test.mjs)、[宿主回归](../tests/scripts/resource-parser-host-options.test.mjs)；KOP 1518–1528、2416–2422、2572–2623 |
+| 规则边界 | no-resolve、特殊匹配和 REJECT 策略 | 不默认丢弃。不可表达的 no-resolve、pre/extended-matching 和特殊内建策略仍拒绝；allow-resolve/policy 只在用户显式选择时承认变义 | [规则实现](../src/features/resource-parser/rules.mjs)；KOP 2446–2451 |
+| 重写 | QX 原生、302/307、静态 reject、HTTP 脚本、jsonjq | 已支持登记动作，保留源 URL pattern 的锚点及内部转义，不重写为另一正则方言 | [重写实现](../src/features/resource-parser/rewrites.mjs)、[转换回归](../tests/scripts/resource-parser-conversion.test.mjs)；KOP 2092–2203、3602–3707 |
+| 重写 | JS 前导安装注释、外层 HTTP pattern 引号 | 仅静态读取明确安装段，不扫描 JS 正文字符串或执行脚本；外层包装引号与内部 pattern 分开处理 | [安装注释回归](../tests/scripts/resource-parser-rewrite-installation.test.mjs)、[字面回归](../tests/scripts/resource-parser-literal-filter.test.mjs) |
+| 重写 | Loon JSON JQ/del/replace、Surge JQ | 已编译到原生 jsonjq；删除路径和仅更新已存在字段按实际 JSON/jq 结果验证。未把该 DSL 当来源 JS 执行 | [动作转换](../src/features/resource-parser/rewrite-actions.mjs)、[实际 jq 回归](../tests/scripts/resource-parser-extended-rewrites.test.mjs)；KOP 1771–2090、3644–3652 |
+| 重写 | Map Local 内联响应 | 已通过固定 script-echo-response 动作适配器表达文本、Base64、tiny-gif、状态码和响应头；隔离运行验证实际返回内容，不用访问上游的正文替换冒充本地响应 | [动作转换](../src/features/resource-parser/rewrite-actions.mjs)、[实际动作回归](../tests/scripts/resource-parser-extended-rewrites.test.mjs)；KOP 1640–1704 |
+| 重写 | 本地 echo-response/Data 文件 | 已支持安全的现有 Data 文件名及默认响应设置，不自动上传或创建文件；目录穿越、远程 URL 冒充文件和不可表达的文件响应设置仍拒绝 | [重写回归](../tests/scripts/resource-parser-extended-rewrites.test.mjs)；KOP 3691–3697 |
+| 重写 | header add/del/replace/replace-regex | 已转固定动作适配器；对实际大小写不敏感 header map 运行测试。正则仍用共享预算和受限语法，失败不返回部分 header 结果 | [动作转换](../src/features/resource-parser/rewrite-actions.mjs)、[实际动作回归](../tests/scripts/resource-parser-extended-rewrites.test.mjs)；KOP 1722–1757 |
+| 重写 | 混合原生分流、URL-REGEX、dst | 可保持混合条目顺序；dst=filter/rewrite 显式提取对应内容。URL-REGEX 仅已登记的 REJECT 转 reject-200，固定说明 connection-close 与 HTTP 响应阻断不同；其他任意 URL 路由策略仍不宣称支持 | [混合回归](../tests/scripts/resource-parser-mixed-modules.test.mjs)、[扩展重写回归](../tests/scripts/resource-parser-extended-rewrites.test.mjs)；KOP 2148–2165 |
+| 模块参数 | `#!arguments` 与 hash arguments | 静态代入来源声明的 `{{{name}}}`；hash 接受有界标量 JSON 对象，未声明变量、嵌套对象和危险键拒绝，不执行配置文字 | [模块参数实现](../src/features/resource-parser/module-arguments.mjs)、[Helper 回归](../tests/scripts/resource-parser-extended-helper.test.mjs) |
+| HTTP 脚本 | Surge/Loon 声明、requires-body、参数与 API | 普通无额外设置的 HTTP 声明可转换，但不保证来源 JS API。已登记 Maasea YouTube 两个固定源码使用静态适配器处理 JSON argument、max-size、timeout 和 binary；其他带这些设置的来源原子拒绝，不静默丢参数 | [运行时登记](../src/features/script-runtime/registry.mjs)、[原生合同回归](../tests/scripts/script-runtime-native-contract.test.mjs)、[运行时回归](../tests/scripts/script-runtime.test.mjs) |
+| 宿主 | Helper UI、类型别名、本地首行参数 | 已实现全部登记参数的编辑、独立函数提取及语义往返；未知/无效原 hash 保留供用户检查，但不会因此被运行时接受。分组排序使用可编辑文本；无未选择项的默认覆盖 | [Helper](../src/features/resource-parser/helper.mjs)、[完整 Helper 回归](../tests/scripts/resource-parser-extended-helper.test.mjs)；KOP 115–510、561–565、1196–1217 |
+| 宿主 | UA=1、扫码订阅、profile | UA=1 返回一次 QX 原生 retry 指令，解析器不自行联网；订阅链接及显式 profile 通过本地 add-resource 通知引导用户确认，不自动导入配置 | [宿主选项](../src/features/resource-parser/host-options.mjs)、[宿主回归](../tests/scripts/resource-parser-host-options.test.mjs)；KOP 535–552、811–832、948–977、1145–1164 |
+| 宿主 | cnt/dbg/ntf/b64 | 已支持汇总统计、通知开关及显式 Base64 节点输出；debug 不回显订阅地址、节点名、正文或凭据 | [宿主回归](../tests/scripts/resource-parser-host-options.test.mjs)；KOP 603–649 |
+| 执行边界 | sfilter/srename、任意 JS/worker、cron、CA | 未执行来源或用户编码的脚本，不自动导入任务、证书、私钥，不给未登记脚本声称通用跨客户端 API 兼容 | [核心](../src/features/resource-parser/core.mjs)、[运行时登记](../src/features/script-runtime/registry.mjs)；KOP 3158–3177、3844–3860 |
 
-## 仍未实现与不同语义
+## 正则、命名和原生限制
 
-上述矩阵里的“未实现”“不同输入约定”和“静默语义错误”均保留为真实缺口，不能计为已完成。特别是旧 KOP 的 numeric suffix 和 rename 占位符，在目前 NetAtlas 中仍按字面名称处理；这不是本轮已修复内容。SSD、旧式 Shadowrocket URI、regex/regout、关键词优先排序、pset、规则说明/禁用行、Loon JSON DSL 与 Map Local 等需要各自的格式依据和同输入回归，不能仅把参数放进白名单。
+`regex/regout/delreg/replace` 的受限正则与 `DOMAIN-REGEX` 的 glob 编译是两个不同接口。前者支持字面字符、点、锚点、边界、字符集、捕获/非捕获组、分支、贪婪/非贪婪量词，以及组内容不能匹配空串的分组量词。`^`、`$`、`\b`、`a*` 等合法空匹配可以全局替换，每次空匹配后按一个 UTF-16 单位推进，与无 `u` 标记的 JavaScript 全局替换保持一致。回溯引用、环视、可空分组的重复和未登记的转义仍明确拒绝；空的正则参数也拒绝。
 
-本轮不改这些节点名称或连接覆盖语义，避免在修复广告分流时扩大变更；普通 suffix 字符串与原创 JSON 字面替换接口继续保持现有合同。任意脚本执行、证书/私钥导入、不等价的安全或DNS字段丢失，不作为补全默认行为。
+该匹配器不调用 eval，也不把整个来源正则交给可回溯的原生引擎。单个字符集使用有界单字符判断。每个表达式最多 512 个 UTF-16 单位、16 个捕获组、16 层分组、1,024 个编译状态；同一资源的筛选、替换、策略选择及排序共用 2,097,152 次状态处理预算。超额受控失败，合法但复杂或很长的正则任务也可能达到预算；这不缩减无正则大型规则的 8 MiB 输入配额，也不是跨设备耗时保证。
 
-若曾依照旧NetAtlas说明把分流或hostname筛选的域名点号写成 `ads\.example`，应改回字面 `ads.example`；节点名称筛选中的 `\.` 仍用于字面点。本轮不增加任何模式开关。
+名称中的 `$type/$index/$emoji/$tag` 只从用户插入的模板文字展开，源名称、资源 tag、`$&`/`$1` 等复制的源数据继续作为字面数据。`$$` 表示字面美元符。规则/重写的说明文字不参与正则与策略匹配。旧文档中的分流或 hostname 筛选 `ads\.example` 应改为字面 `ads.example`；节点名称 in/out 的 `\.` 仍表示字面点。
 
-当前仍未建立KOP整份解析器主代码的适用再发布许可；其中MIT/BSD版权头只能覆盖相应内嵌库，不能给主实现补授权。本次没有复制、换名或封装KOP主源码。参考公开接口行为并补齐常用输入，不等于已经移植其完整引擎；上表节点格式、参数与命名等未实现矩阵继续保留。
+连接覆盖依据 [QX 官方 sample.conf](https://github.com/crossutility/Quantumult-X/blob/master/sample.conf)，只有显式 hash 或显式 replace 才会改变字段：
+
+- `cert=example.com` 覆盖传统 X.509 证书校验域名，与 SNI 分开，要求 [build 938+](https://t.me/QuanXNews/415)；不接受字面 `cert=domain`。该字段不承诺改变 Reality 自身的认证方式。
+- `csha/psha` 不会偷偷开启证书校验；关闭校验、Reality 或优先级冲突导致新指纹无效时拒绝。quoted `"false"` 与未加引号的 false 含义一致。
+- `uot=1` 是旧 ShadowsocksR Python framing；`sp.v1`/`sp.v2` 分别显式选择协议版本，不把它们混为 true。SS2022 与旧 Python framing 的组合拒绝。
+- AEAD 只作用于 VMess；host/obfs 须满足已有传输约束。Reality 的显式 ALPN、session 设置及开启 TFO 请求拒绝，避免把无效覆盖报成成功。
+- `tls13` 已被 QX 废弃，不能关闭 TLS 1.3；显式 hash 输出带固定说明。它是旧字段保留，并非可生效的 TLS 版本控制。
+
+`DOMAIN-REGEX` 只编译可证明精确的域名语言：有限展开最多 2,048 个 glob；不可表达的无限重复字面、反向引用、否定断言或字符集不会近似放宽成后缀。任意 AND/OR/NOT、端口、IP 等混合逻辑也不在域名 AND 子集之内。
+
+## 脚本和宿主边界
+
+转换器只读取资源文本、静态安装声明及已声明模块变量，不下载或执行来源脚本。Map Local/header 动作输出固定的本仓库适配器引用；其状态码、响应头和正文行为已用隔离运行测试验证。文件响应仍依赖用户预先放在 QX Data 中的文件。
+
+跨客户端脚本 API 适配只覆盖[登记的 Maasea YouTube request/response 源码](../src/features/script-runtime/registry.mjs)，固定在 `65075cdb388fc5e3094afd7e7314c67b243f3525`，构建校验来源与许可。登记的源 URL 别名会转为固定本地构建的适配脚本，而不是运行时下载任意 JS。参数、存储、网络、binary body 和完成回调以各自回归合同为准；QX 的预缓冲、空正文与 CPU 限制不能被适配器消除。未登记脚本只可保留已能表达的触发声明；需要保留却无法表达的 argument/max-size/timeout/binary 设置整份拒绝，不把丢参数算兼容。
+
+混合 rewrite/filter 要求 [QX 1.5.2 build 844+](https://t.me/QuanXNews/294)；Helper 独立函数协议要求 1.5.6 build 918+；UA retry 要求 1.5.6 build 921+；行首原生说明使用 build 950+。这些版本条件不能互相替代。扫码订阅/profile 只生成本地待确认导入动作；UA 交给宿主执行一次重试，不由解析器网络请求。
+
+QX App 实际导入、业务脚本效果、播放、MITM 范围和真实流量命中仍为未运行。JavaScriptCore、native jq 或隔离适配器测试证明各自合同，不等于 App 原生流量验收。
+
+## 许可与对照方法
+
+当前没有建立 KOP 主实现的适用再发布许可；其内嵌库的 MIT/BSD 版权头不能覆盖主实现。本轮参考固定接口行为，使用独立代码和合成同输入测试，没有复制、换名、包装或运行时加载 KOP 主实现。具有单独许可并固定登记的 Maasea 静态适配源码是另一项来源，不能用来给 KOP 补授权。
+
+同输入对照只在接口与输入语义成立时比较：不把 KOP 原样返回未知内容当成功，不复制静默弱化证书、略过坏节点或扩大域名匹配的行为。未知字段、坏输入及不支持的原生条件仍原子失败；错误和通知不回显凭据。
 
 ## 本轮真实公开资源
 
@@ -77,7 +95,7 @@ https://raw.githubusercontent.com/privacy-protection-tools/anti-AD/master/anti-a
 
 | 原始公开来源 | 完整输入的原生输出合同 | 明确边界 |
 | --- | --- | --- |
-| [YouTube.Enhance.sgmodule](https://raw.githubusercontent.com/Maasea/sgmodule/refs/heads/master/YouTube.Enhance.sgmodule) | 3条HTTP脚本rewrite、2个hostname | 原JS URL保留；argument/max-size/timeout不应用及binary/QX bodyBytes要求由固定comment披露，未翻译脚本API |
+| [YouTube.Enhance.sgmodule](https://raw.githubusercontent.com/Maasea/sgmodule/refs/heads/master/YouTube.Enhance.sgmodule) | 3条HTTP脚本rewrite、2个hostname | 已登记脚本转固定 Maasea 静态适配器，保留经验证的 JSON argument/max-size/timeout/binary 合同；不外推到未登记来源或业务播放效果 |
 | [DragonRead_remove_ads.plugin](https://raw.githubusercontent.com/Moli-X/Tool/176029a3ed5ba84447b9c36af040c225eb170e82/Loon/Plugin/Kelee/DragonRead_remove_ads.plugin) | 21条域名AND精确编为39条wildcard，加26条原filter，共65条filter；另1条URL rewrite | URL-REGEX REJECT转为reject-200并固定说明HTTP响应阻断与connection-close不同；不宣称这一项语义等价 |
 | [mgtv.js](https://raw.githubusercontent.com/WeiGiegie/666/main/mgtv.js) | 安装注释中3条rewrite、11个唯一hostname | 只读取明确安装声明，JS正文不执行；原有宽hostname及业务行为不替用户背书 |
 | [zhbd.js](https://raw.githubusercontent.com/gjwj666/qx/main/zhbd.js) | 安装注释中5条rewrite、34个唯一hostname | 保留声明顺序、脚本URL与原mask，不执行正文或擅自收窄MITM范围 |
@@ -90,11 +108,11 @@ npm run test:parser-upstreams
 
 [验收工具](../tools/check-resource-parser-upstreams.mjs)从四个原URL真实GET完整输入，核对固定SHA-256，再运行磁盘上的`clients/quantumultX/scripts/resource-parser.js`成品；不是仅测试源码函数或缩小夹具。隔离环境禁止网络、存储和来源JS执行，检查只完成一次、最终求值对象与完成对象相同，以及原生输出与计数。来源hash变化、HTTP失败或旧成品不能满足合同都会失败，应审查来源/构建后重跑，不把失败写成已通过。
 
-混合分流/重写需要[Quantumult X 1.5.2 build 844或更新版本](https://t.me/QuanXNews/294)；helper UI的1.5.6 build 918要求是另一个接口，不能混用。原业务JS可能修改应用状态/凭据，原hostname也可能较宽；解析器忠实输出源声明，不承诺脚本API、业务效果、播放或原生流量命中。QX App实际导入与运行仍为not-run。
+混合分流/重写需要[Quantumult X 1.5.2 build 844或更新版本](https://t.me/QuanXNews/294)；helper UI的1.5.6 build 918要求是另一个接口，不能混用。原业务 JS 可能修改应用状态/凭据，原 hostname 也可能较宽；登记脚本仅具有自己的适配合同，不承诺通用脚本 API、业务效果、播放或原生流量命中。QX App 实际导入与运行仍为 not-run。
 
 ## 依据与复现
 
-- 原始参考为 [KOP固定源码](https://github.com/KOP-XIAO/QuantumultX/blob/f0177f5ea2f62681ab2592a4ed54677dfbbc4b78/Scripts/resource-parser.js)，SHA-256见页首；只参考接口行为，没有复制脚本实现。表中KOP行号均指此快照，NetAtlas旧行号指页首基线。
+- 原始参考为 [KOP固定源码](https://github.com/KOP-XIAO/QuantumultX/blob/f0177f5ea2f62681ab2592a4ed54677dfbbc4b78/Scripts/resource-parser.js)，SHA-256见页首；只参考接口行为，没有复制脚本实现。表中 KOP 行号均指此快照；NetAtlas 以当前函数和链接测试为准，不再引用已漂移的历史行号。
 - 常用筛选语义依据：[节点Scheck](https://github.com/KOP-XIAO/QuantumultX/blob/f0177f5ea2f62681ab2592a4ed54677dfbbc4b78/Scripts/resource-parser.js#L3114)、[分流Rule_Handle](https://github.com/KOP-XIAO/QuantumultX/blob/f0177f5ea2f62681ab2592a4ed54677dfbbc4b78/Scripts/resource-parser.js#L2335)、[重写Rcheck与hostname](https://github.com/KOP-XIAO/QuantumultX/blob/f0177f5ea2f62681ab2592a4ed54677dfbbc4b78/Scripts/resource-parser.js#L2272)。
 - 离线稳定回归：[大型规则](../tests/scripts/resource-parser-large-rules.test.mjs)、[字面筛选与引号边界](../tests/scripts/resource-parser-literal-filter.test.mjs)；真实公开文件在隔离Apple JavaScriptCore执行，离线CI不依赖会变化的公网数据。
-- 53组审计覆盖每类最小样例，不等于穷举全部输入；KOP偶有仅返回原文或异常内容，不能把存在content当正确转换。QX App原生导入和实际远端流量未在本轮执行。
+- 初始 53 组用于差异定位；本轮新增格式、参数、完整 Helper 往返、精确规则转换、声明式动作与组量词/空匹配/捕获来源回归。原生 RegExp 差分覆盖正常与病理输入，不能由有限案例推成完整 ECMAScript 正则或任意客户端兼容。QX App 导入和实际远端流量未在本轮执行。

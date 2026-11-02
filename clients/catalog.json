@@ -2,7 +2,7 @@
   "version": 1,
   "builder": "netatlas@0.1.0",
   "input": {
-    "sha256": "e15349154d1595c421597a3b4754452540afa33d83e61ad1a44c59152fb86d34",
+    "sha256": "882a59f84ee56b901373f875aceec1b7ac23bf31520baf91869cdb82c9b2a99d",
     "files": [
       {
         "path": "LICENSE",
@@ -10,7 +10,7 @@
       },
       {
         "path": "THIRD_PARTY_NOTICES.md",
-        "sha256": "f266c356c903df10baff79739bee34d48bd426d25c8693764ed57484523d22e9"
+        "sha256": "a62e8b792054369244fe31dffe2193c1badd2a8a95955df8845910430076e8d2"
       },
       {
         "path": "metadata/clients.json",
@@ -22,7 +22,7 @@
       },
       {
         "path": "metadata/features.json",
-        "sha256": "e5df19b0e99df4977acbdee339898839b6bd1d3785f001d1f40d904ec8682cb3"
+        "sha256": "68a8e5d294f68aec667aa964aa0431619eeca0d01000242928e59f972bc1d696"
       },
       {
         "path": "metadata/https-upgrade.json",
@@ -62,7 +62,7 @@
       },
       {
         "path": "metadata/resource-parsers.json",
-        "sha256": "b21820db6c2e74380324f8286463ff31abfa046ec63a35941e2814b11e5f40b5"
+        "sha256": "3f73aa7a3bafb6cfa67c86be5c5d66bd7b59141297baf9a8f6b23bf082df5a9b"
       },
       {
         "path": "metadata/routing.json",
@@ -166,11 +166,15 @@
       },
       {
         "path": "src/features/resource-parser/core.mjs",
-        "sha256": "2d67893def636a7ced49bf86ac9d5c66cb67be197a01fae861867083bea498b5"
+        "sha256": "7f350e56f64535ca98ee352f3747ac018a475cdeb4f536adfa373f7b4cab41e0"
       },
       {
         "path": "src/features/resource-parser/domain-and.mjs",
         "sha256": "68bab6e4f300c889f0cf9a98c2f20100bd53cd4d7e84b52e5ad3db7fddf1bd98"
+      },
+      {
+        "path": "src/features/resource-parser/domain-regex.mjs",
+        "sha256": "ff7b4660a32686db7b3d5429572a3eafd3d0019c1928c8296cc7ac2eae3ff3bb"
       },
       {
         "path": "src/features/resource-parser/entry.mjs",
@@ -178,19 +182,47 @@
       },
       {
         "path": "src/features/resource-parser/helper.mjs",
-        "sha256": "a645d57a27b118196728b8c0b197d97dd29082c1c3a69f97c68547aacbcdd839"
+        "sha256": "65af72bdc29d157aa581baf1ab1b655ba71a8f19e250acc66a714282ea10a089"
+      },
+      {
+        "path": "src/features/resource-parser/host-options.mjs",
+        "sha256": "78e1f89d469dfcbf19eadd216ca44cbd42994f5dc13fbbbb86e28e632a097a76"
       },
       {
         "path": "src/features/resource-parser/limits.mjs",
         "sha256": "c249411aba1bd987bc2e76d2e040145dcfaf8a06fb6e8ac8c3bc75517e2d36b8"
       },
       {
+        "path": "src/features/resource-parser/module-arguments.mjs",
+        "sha256": "db27b15c67b5a06867621a13736c1ae70f8bb57ad19453e463d7bad07badc0f2"
+      },
+      {
+        "path": "src/features/resource-parser/module-sections.mjs",
+        "sha256": "c5cb5db9d4f93e175f21490a0874c5657504bbb67e383b837f7c866a5d69d817"
+      },
+      {
+        "path": "src/features/resource-parser/name-options.mjs",
+        "sha256": "fed1cf45b7defb12291080d4b9ff47304254fb03d53a6d8fa2ce39f4c787dfca"
+      },
+      {
+        "path": "src/features/resource-parser/native-options.mjs",
+        "sha256": "4e9952c67eb05410335cf76be98e908c901a73d11f12f56e09fc3f84878745d8"
+      },
+      {
         "path": "src/features/resource-parser/nodes.mjs",
-        "sha256": "8725586f1ed1d8ee4968aeb00686f2689d88ef9bfd9b8e5f0fccc886be60b41b"
+        "sha256": "3e8d285ca1efc102732e20938b1f5e6ffe68c19ea83efb155de7d0fe13f20ed4"
       },
       {
         "path": "src/features/resource-parser/options.mjs",
-        "sha256": "8ce2034b2664582bae258f302ab928b25e7f22e053d30dffecc8ddcb2274a05b"
+        "sha256": "c435d87cb341843fbf7acc35088cafbe9f979c33ab73e8c879f26a2a01c08cde"
+      },
+      {
+        "path": "src/features/resource-parser/resource-metadata.mjs",
+        "sha256": "1ffaeda8be0bd905625f6efe8fed1ebbbe8c654a304f82880c6f983b8e73307d"
+      },
+      {
+        "path": "src/features/resource-parser/rewrite-actions.mjs",
+        "sha256": "4138340f04056e27509cc596bceff7221f2da99a633e9ab281ba4713fa6864a7"
       },
       {
         "path": "src/features/resource-parser/rewrite-installation.mjs",
@@ -198,11 +230,15 @@
       },
       {
         "path": "src/features/resource-parser/rewrites.mjs",
-        "sha256": "9946634808ac1c452c289ec68e678b96af38e7cf2c184a962eb48a6762a49ec0"
+        "sha256": "830d27a56d60e073369b59097d22dd41e1e989a0bd9316c01ff3e320ad635cb0"
       },
       {
         "path": "src/features/resource-parser/rules.mjs",
-        "sha256": "c8fa3062779e6cd5f6d92ea710b5eda8129ac95446d706a189f45ffc6ae6b1f2"
+        "sha256": "cf2de8592352265b8d1a9f2de1cf859da253ae4e7ec8c016c032c53959a81827"
+      },
+      {
+        "path": "src/features/resource-parser/safe-pattern.mjs",
+        "sha256": "3c912b80e545d35bf94d7b7d95e25da9f2691ae92944e2c35f7be151c17f8402"
       },
       {
         "path": "src/features/resource-parser/subscription-info.mjs",
@@ -219,6 +255,18 @@
       {
         "path": "src/features/resource-parser/yaml.mjs",
         "sha256": "dfe2ee23eb498aa698bf59d1f282e4662162ed5ac396d732899210d427bf9340"
+      },
+      {
+        "path": "src/features/rewrite-actions/main.mjs",
+        "sha256": "6f40c41a966e6abff70acea542cfec44bb97c4c8c82f5d1c3a367e15edd446d3"
+      },
+      {
+        "path": "src/features/script-runtime/registry.mjs",
+        "sha256": "144652350386cc6a3d1c562dc5b77d7d61d71d7153e5bcd994eeb7d928066a83"
+      },
+      {
+        "path": "src/features/script-runtime/runtime.mjs",
+        "sha256": "eccb0f44a7acca387c064fe4b37dabc05b94e210bd831194695cb60572537aa5"
       },
       {
         "path": "src/features/search-redirect/quantumultX.snippet",
@@ -1106,7 +1154,7 @@
       },
       {
         "path": "tools/lib/features.mjs",
-        "sha256": "53e42614860fc569fe2fa1c69cd6ab3bc55b8624d8b85a03914cf47394c14eeb"
+        "sha256": "ad628cb92426eaf2870ddf664aa6a997c87fe16ba9378be2438898baf8f88c67"
       },
       {
         "path": "tools/lib/geoip.mjs",
@@ -1198,7 +1246,7 @@
       },
       {
         "path": "tools/lib/resource-parser-bundle.mjs",
-        "sha256": "bf17a30eca345bc3a97977adc2f248e05daa8c0eb0aa9a51343afebd820ba5f1"
+        "sha256": "61f82d225da358bc9aeac59bf9a7b8d17d173208daad0afdca03c48ac3232505"
       },
       {
         "path": "tools/lib/resource-parser-plugin-flow.mjs",
@@ -1206,7 +1254,11 @@
       },
       {
         "path": "tools/lib/resource-parsers.mjs",
-        "sha256": "c87e46944d93c68fbdfde24f7db362eb3766d6c9bd96f99d83c3a50fb26457fc"
+        "sha256": "93ce5ec2bc4591c8aeff45be2aff32368dcd309eebfbac02965d6be61953d836"
+      },
+      {
+        "path": "tools/lib/rewrite-actions.mjs",
+        "sha256": "5b654332f08042619bf1399a5dbd5cb69c7f4b8ee38fac194ec9688cd7c140a5"
       },
       {
         "path": "tools/lib/routing-extensions.mjs",
@@ -1219,6 +1271,10 @@
       {
         "path": "tools/lib/rules.mjs",
         "sha256": "7a28b74dd4a39a87c870cb33d56cffd4acb5d1981070b269bc6f609f509121f9"
+      },
+      {
+        "path": "tools/lib/script-runtime.mjs",
+        "sha256": "b77f8db57f252f484513e7466f029704425db323b207aee75664d8067261e6fe"
       },
       {
         "path": "tools/lib/subscription-integrity-flow.mjs",
@@ -1271,7 +1327,7 @@
       "id": "quantumultX",
       "name": "Quantumult X",
       "manifest": "quantumultX/manifest.json",
-      "sha256": "dba87d18452266c0f69632fc6a15150d413cfd2d4b63da8f989db7432ad62cd4",
+      "sha256": "10121d26e50d16449faa89e0b3a361d9ea2824f0e3b358e2457344b37339a2ef",
       "rulesets": 119,
       "entries": 136966,
       "defaultRuleSets": 116,
@@ -1281,7 +1337,7 @@
       "id": "surge",
       "name": "Surge",
       "manifest": "surge/manifest.json",
-      "sha256": "32a5cf9338bf305df1ffaf0f524ef6e3576978cb8684910311a7bf2f9cc2e55d",
+      "sha256": "8332872c9623448e9f6737547a51cfceeb33da716a5c3515a219631e6ce7e635",
       "rulesets": 119,
       "entries": 136966,
       "defaultRuleSets": 116,
@@ -1291,7 +1347,7 @@
       "id": "loon",
       "name": "Loon",
       "manifest": "loon/manifest.json",
-      "sha256": "9a12e909a4392d76ae76019042a7a9cc8524e52822c0209872e9122795fcb929",
+      "sha256": "e2bb40d561823da6928790caa3db3d2c3008d52cfa6f38077e23ffd7009e1fcf",
       "rulesets": 119,
       "entries": 136966,
       "defaultRuleSets": 116,
@@ -1301,7 +1357,7 @@
       "id": "shadowrocket",
       "name": "Shadowrocket",
       "manifest": "shadowrocket/manifest.json",
-      "sha256": "5921f22e11a20fb2bbb50ee4cf6e3d78b255ff371f02e2ceb8f8d64490633c1e",
+      "sha256": "341d21da682aa04e52d64e740f43ee6158a869d26b474a6e3c48953322dd30f7",
       "rulesets": 119,
       "entries": 136966,
       "defaultRuleSets": 116,
@@ -1311,7 +1367,7 @@
       "id": "egern",
       "name": "Egern",
       "manifest": "egern/manifest.json",
-      "sha256": "3793a24f0b01856cb97c54e1a9d433bad06ed757dbe8941aac25cea0c4b9b468",
+      "sha256": "cf3bbd944b1d13dbca0ccaa64cd8108bd3a5cf6d1f535b6f823928e62fa872d5",
       "rulesets": 119,
       "entries": 136966,
       "defaultRuleSets": 116,
@@ -1321,7 +1377,7 @@
       "id": "stash",
       "name": "Stash",
       "manifest": "stash/manifest.json",
-      "sha256": "639af811ed02629024f7d3e78ce3b996a4e2d2c1fa2d2a5f6dfb851c34059c7f",
+      "sha256": "efaa7627a48ed4c4da3e566c2e86a7849fb82e8bdf1948b07323993770fd3fa4",
       "rulesets": 119,
       "entries": 136966,
       "defaultRuleSets": 116,
@@ -1331,7 +1387,7 @@
       "id": "mihomo",
       "name": "Mihomo",
       "manifest": "mihomo/manifest.json",
-      "sha256": "05ba2326d6e31331cfa3abbf487ed8b2f720308ea3d5453a912d99bcba45d6c8",
+      "sha256": "96e031b37856b1a36faa8a11205d1840bd8e556a22b79bd83f85a2d858995991",
       "rulesets": 119,
       "entries": 136966,
       "defaultRuleSets": 116,
@@ -1341,12 +1397,12 @@
       "id": "singBox",
       "name": "sing-box",
       "manifest": "singBox/manifest.json",
-      "sha256": "518033bea307e9d167fd82046203bf5570755dca841223bdf92287a53ea44b47",
+      "sha256": "89dc5470dd3467b2286373637340b7db9c3e65268387236c2da2041e874c3c93",
       "rulesets": 119,
       "entries": 136966,
       "defaultRuleSets": 116,
       "defaultEntries": 29175
     }
   ],
-  "contentSha256": "7fa15aff1eefef1fd305adbda41fe6abbe092055e0054bcfe54d588ec53a1551"
+  "contentSha256": "e163caa6a95a19e44be7f175ccd786ffb1a517f95460d8adafccd6bb3519070c"
 }

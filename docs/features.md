@@ -143,13 +143,13 @@ Mihomo、sing-box核心不执行这些GUI的HTTP重写/JS模块；需要转换�
 
 ## 资源解析器与正文替换
 
-QX现在使用本仓库独立实现的`scripts/resource-parser.js`，不再引用KOP-XIAO。已有配置把`fragments/resource-parser.conf`合并到`[general]`，替换已有`resource_parser_url`；它不是模块或重写订阅。本仓库QX配置已默认接入。解析器只处理QX交给它的资源文本，不下载订阅、不访问存储、不执行来源脚本、不改用户正在运行的QX配置。MIT原创代码与内联yaml 2.9.1的ISC许可均保留在生成脚本中。
+QX现在使用本仓库独立实现的`scripts/resource-parser.js`，不再引用KOP-XIAO。已有配置把`fragments/resource-parser.conf`合并到`[general]`，替换已有`resource_parser_url`；它不是模块或重写订阅。本仓库QX配置已默认接入。解析器只处理QX交给它的资源文本，不下载订阅、不访问存储、不执行来源脚本、不改用户正在运行的QX配置。MIT 原创转换代码、yaml 2.9.1 的 ISC 许可和静态登记表的 Apache-2.0 许可均保留在生成脚本中。已登记脚本另有带完整原许可的静态运行适配器，转换时不执行它们。
 
 | 资源 | 支持范围 | 严格边界 |
 | --- | --- | --- |
-| 节点订阅 | 原生QX行、受支持的SS/SSR/VMess/VLESS/Trojan/HTTP/SOCKS5/AnyTLS URI、Base64订阅、Surge/Loon节点、Clash YAML、sing-box JSON | 只转换已实现的TLS/WS/Reality等字段；未知协议、传输、mux、安全字段或冲突参数整份失败 |
-| 分流 | QX/classical域名、IP CIDR v4/v6、GEOIP、ASN、UA、FINAL；Surge DOMAIN-SET；Clash payload；sing-box headless地址OR条件 | 未登记正则、端口、进程、逻辑AND、附加条件和未知选项整份失败；不悄悄丢规则 |
-| 重写 | QX已实现原生动作；Surge/Loon 302/307；可等价Loon reject-200/img/dict/array；MITM主机；用户声明QX兼容的HTTP脚本引用 | 不导入CA、私钥、本地路径、cron或未知执行项；不同reject语义、无法保留的脚本字段与重写动作整份失败 |
+| 节点订阅 | 原生QX行、受支持的SS/SSR/VMess/VLESS/Trojan/HTTP/SOCKS5/AnyTLS URI、Base64/SSD订阅、Surge/Loon/Quantumult CSV、Shadowrocket旧式节点、Clash YAML、sing-box JSON | 只转换已实现的TLS/WS/Reality等字段；未知协议、传输、mux、安全字段或冲突参数整份失败 |
+| 分流 | QX/classical域名、IP CIDR v4/v6、GEOIP、ASN、UA、FINAL；Surge DOMAIN-SET；Clash payload；sing-box headless地址OR条件 | 精确有界正则编译与正向域名 AND 已实现；超出子集的正则、端口、进程、逻辑条件和未知选项整份失败 |
+| 重写 | QX已实现原生动作；Surge/Loon 302/307；可等价Loon reject-200/img/dict/array；MITM主机；JSON/header/Map Local；已登记脚本的静态 API/参数适配 | 不导入CA、私钥、本地路径、cron或未知执行项；不同 reject 语义、未知脚本带有无法应用的参数或未实现动作整份失败 |
 
 SIP008 的 `version: 1 + servers` 中，服务器 UUID `id` 是更新标识，不是密码；解析器在该格式作用域校验并移除元数据后转换连接。VMess/VLESS 的 `id` 仍按协议凭据处理，其他格式不会随意忽略同名字段。既有不带 `id` 的服务器格式继续支持；未知连接字段或不支持版本仍整份失败。[官方 SIP008 规范](https://shadowsocks.org/doc/sip008.html)。
 
@@ -163,7 +163,7 @@ Reality 的 `support-x25519mlkem768=true` 与这三个偏好分别处理。[3x-u
 
 这三个偏好属于节点内容，不是订阅链接 `#` 后的新参数。真实 WS path、Reality 公钥/short-id、UUID、flow、地址和证书校验仍按原逻辑处理；Clash `fingerprint` 等证书 pin、sing-box utls、未知参数与不支持传输仍报错。原生 QX 行不新增 fp 字段。固定注释在整批校验和名称转换成功后添加，info/out/emoji 不被这些说明干扰。
 
-链接哈希提供声明式选项：关键词按资源类型使用下面的字面规则，名称替换为字面操作，不支持 eval 或任意自定义解析脚本。示例以文档保留域名表示，请换成自己的资源URL：
+链接哈希提供声明式选项：关键词按资源类型使用下面的字面规则，名称查找为字面操作，替换支持标准 `$&/$$/$1` 等占位语义；正则使用有界 NFA，不支持 eval 或任意自定义解析脚本。示例以文档保留域名表示，请换成自己的资源URL：
 
 ```text
 https://example.com/subscription#type=server&in=香港+日本&out=到期&prefix=自用-&sort=name
@@ -172,7 +172,7 @@ https://example.com/clash-domains.yaml#type=filter&format=clash&domain-mode=exac
 https://example.com/rules#type=filter&policy=Proxy
 ```
 
-`type`可选`auto/server/filter/rewrite`；只在类型明确时才使用自动识别。`format`仅对分流有效，可选`auto/classical/qx/domain-set/clash/sing-box`。`domain-mode=exact/suffix`选择纯DOMAIN-SET裸域名的匹配方式，默认exact；Surge `.domain`始终包含根域。Clash域名payload必须显式exact：其`.domain`只匹配子域，`+.domain`包含根域；单标签`*`不能无损变成QX跨点通配，直接报错。sing-box裸domain_suffix含根域，带前导点时只匹配子域；地址字段之间为OR，其他条件不得扁平化。
+`type`可选`auto/server/filter/rewrite`；只在类型明确时才使用自动识别。`format`仅对分流有效，可选`auto/classical/qx/domain-set/clash/sing-box`。`domain-mode=exact/suffix`选择纯DOMAIN-SET裸域名的匹配方式，默认exact；Surge `.domain`始终包含根域。Clash域名payload自动识别，显式指定时要求 exact：其`.domain`只匹配子域，`+.domain`包含根域；单标签`*`不能无损变成QX跨点通配，直接报错。sing-box裸domain_suffix含根域，带前导点时只匹配子域；地址字段之间为OR，其他条件不得扁平化。
 
 常用参数直接使用下表，不需要切换模式。QX 1.5.6 build 918+ 可用原生 helper 编辑，界面保存为规范选项。
 
@@ -180,21 +180,27 @@ https://example.com/rules#type=filter&policy=Proxy
 | --- | --- |
 | `in/out` | `+` 分隔任意项，字面加号写 `%2B`。节点匹配名称，不区分大小写；`.` 表示同时包含、`\.` 为字面点。分流和重写中的点均为字面字符，无需转义域名：分流区分大小写，`out` 匹配源行正文（覆盖策略前）、`in` 匹配转换后正文；重写不区分大小写，匹配转换后正文。先校验整份来源再筛选，不能藏住无效规则。 |
 | `inhn/outhn` | 仅重写资源的 MITM 主机筛选，区分大小写，`+` 为任意项、点为字面字符，保留主机名拼写；规则 `in/out` 不会隐式删除主机。 |
-| `prefix/suffix` | 节点名称前后缀。 |
-| `rename` | 顺序字面替换 `旧名@新名+旧名2@新名2`；`前缀@`、`@后缀` 添加前后缀，`词1.词2☠️` 删除这些词。编码 `%40/%2B` 保留字面 `@/+`；仍支持编码的 JSON 替换配对 `[["香港","HK"]]`。替换区分大小写，不执行正则或代码。 |
-| `sort` | `none/name/name-desc`；`1/-1` 分别等于名称升序/降序。 |
+| `prefix/suffix` | 节点名称前后缀；`suffix=1/-1` 添加协议标签，`0` 关闭。 |
+| `rename` | 顺序字面替换 `旧名@新名+旧名2@新名2`；`前缀@`、`@后缀` 添加前后缀，`词1.词2☠️` 删除这些词。编码 `%40/%2B` 保留字面 `@/+`；仍支持编码的 JSON 替换配对 `[["香港","HK"]]`。查找区分大小写且为字面值；替换遵循标准字符串替换占位语义，不执行代码。`$type/$index/$emoji1/$tag` 等模板仅展开用户写入的模板位置，来源名称和标签中的同名字符保持字面值。 |
+| `sort` | `none/name/name-desc/random`；`0/1/-1/x` 为对应别名。`JP>HK` 等有界正则分组排序配合 `sortx`；排序后生成编号。 |
 | `type` | 规范值 `auto/server/filter/rewrite`；也接受 `nodes/list → server`、`rule → filter`、`module → rewrite`、`domain-set → filter + DOMAIN-SET exact`。显式类型优先于自动识别，冲突参数报错。 |
 | `policy` | 显式覆盖全部源策略，输出注释提示；不等价的 Surge 内置策略默认拒绝，不能当作未声明策略组输出。 |
+| `regex/regout/delreg/replace` | 声明筛选、名称删除和完整声明替换；NFA 支持捕获、分组、锚点、字符类和非空重复组，拒绝回溯引用、lookaround 和可空重复组。整份资源共享处理预算；替换后重新验证原生字段。 |
+| `rrname/ptn/npt/cap/del` | 前置改名、字形/数字样式、大小写；重复名称默认编号，`del=1` 只删除后续重名节点。 |
+| `udp/tfo/uot/cert/csha/psha/alpn/aead/host/obfs/tsession/checkurl/tls13` | 显式覆盖受支持的原生字段，冲突或无效安全设置拒绝。`cert=verify.example` 要求 build 938+；`tls13` 已被原生弃用，`uot=1` 是旧 Python 模式，应按服务端选择 `sp.v1/sp.v2`。 |
+| `pset/fcr/via/relay` | 分流策略映射和原生标志；relay 根据节点真实端点生成规则，不用伪装 SNI。FINAL 不支持的标志明确拒绝。 |
+| `dst/hide/arguments` | 模块选择 rewrite/filter、保留禁用预览、JSON 模块参数覆盖。`#!arguments` 默认值及三重大括号按声明替换，不执行来源代码。 |
+| `flow/cnt/dbg/ntf/b64/UA/profile` | 用量/数量、通知、Base64、原生一次 UA 重试和选定远程资源导入确认；不会自动拉取或导入私人资源。 |
 
 `GEOIP` 可保留 `PRIVATE/CLOUDFLARE` 等合法数据库类别，但实际匹配依赖用户所用 MMDB 中存在这些类别；不把无对应数据的库称为完整支持，`IP-ASN` 仍独立处理。本地路径或 `file:` 资源可在第一行写 `#out=套餐+重置`，路径自身的 `#` 参数优先；远程内容中的第一行注释不会启用参数。名称最多 512 字符、关键词最多 128 项（节点的 AND 子条件也计入）、改名最多 100 步；参数内保留字符需 URL 编码，未知、重复或无效值报错。
 
 兼容这组既有订阅参数，无须修改订阅地址：`#info=1&out=套餐+重置&emoji=2`。`out` 排除名称含“套餐”或“重置”的节点；`info=1` 在成功转换后，根据原生 `$resource.info` 的已有用量发送一次本地通知，没有该信息时可从过滤前的流量/到期伪节点提取纯数字与有效日期。不输出订阅地址、凭据或任意标签文字；未提供数据就不伪造，通知 API 缺失/抛错不影响节点转换。`info=0` 或不设置均不通知。该选项不联网，不修改通知设置。
 
-`emoji=1` 按节点名称添加地区旗，`emoji=2` 使用国行显示模式（台湾对应标记换为 🇨🇳），`emoji=-1` 删除地区旗，`emoji=0` 或不设置保持原样。名称转换之后再添加旗帜并检查重名；未知名称保留已有旗，没有既有旗才加 🏴‍☠️。地区名/城市名仅是名称修饰的有限词表，不能证明实际出口位置；不会影响 GeoIP 查询数据或 TLS 参数。此处参考 [KOP 参数行为](https://github.com/KOP-XIAO/QuantumultX/blob/master/Scripts/resource-parser.js)，实现为原创，不复制其脚本。已实现上表中的常用写法；未实现 `reg/regout`、`sfilter/srename`、任意执行脚本以及 UDP/TFO/证书等连接覆盖参数，未知参数仍明确报错，不宣称完整替换 KOP 的所有功能。
+`emoji=1` 按节点名称添加地区旗，`emoji=2` 使用国行显示模式（台湾对应标记换为 🇨🇳），`emoji=-1` 删除地区旗，`emoji=0` 或不设置保持原样。名称转换之后再添加旗帜并对重名编号或按显式 `del=1` 去重；未知名称保留已有旗，没有既有旗才加 🏴‍☠️。地区名/城市名仅是名称修饰的有限词表，不能证明实际出口位置；不会影响 GeoIP 查询数据或 TLS 参数。此处参考 [KOP 参数行为](https://github.com/KOP-XIAO/QuantumultX/blob/master/Scripts/resource-parser.js)，实现为原创，不复制其脚本。已实现的完整功能与差异见[逐项对照](resource-parser-comparison.md)。`sfilter/srename` 等任意执行来源代码仍拒绝，未知参数也不会静默忽略。
 
-有两个选项会改变转换前提，默认均不启用：`allow-resolve=1`明确允许移除源`no-resolve`，可能增加DNS查询，输出会警告行为变化；`script-compat=qx`只是使用者声明所引用的Surge/Loon脚本本体已经支持QX，不翻译JavaScript API，不忽略timeout、argument、binary-body或max-size等无法保留的设置。QX原生HTTPS脚本引用可以保留，解析器不下载或执行脚本；之后QX运行该重写脚本是另一项操作。跨宿主`reject`不能仅因名称相同就等同于QX的HTTP 404。 影响执行条件的 `#!include/requirement/system` 与平台限定指令，在节点、分流、重写中整份拒绝，不作为普通注释丢弃；Surge 普通行内注释按引号边界处理。URL 正则可以不以 `^` 开头，也可用 `[hH]` 开头，明确的 `type` 仍优先。
+有两个选项会改变转换前提，默认均不启用：`allow-resolve=1`明确允许移除源`no-resolve`，可能增加DNS查询，输出会警告行为变化；`script-compat=qx`只是使用者声明所引用的Surge/Loon脚本本体已经支持QX，不会给未知来源自动翻译 JavaScript API，也不忽略 timeout、argument、binary-body 或 max-size。已登记的 Maasea 固定源码使用静态 API 桥接，实际传递参数、字节正文、超时和大小限制；未知来源携带这些设置时明确拒绝。QX原生HTTPS脚本引用可以保留，解析器不下载或执行脚本；之后QX运行该重写脚本是另一项操作。跨宿主`reject`不能仅因名称相同就等同于QX的HTTP 404。 影响执行条件的 `#!include/requirement/system` 与平台限定指令，在节点、分流、重写中整份拒绝，不作为普通注释丢弃；Surge 普通行内注释按引号边界处理。URL 正则可以不以 `^` 开头，也可用 `[hH]` 开头，明确的 `type` 仍优先。
 
-QX 资源宿主使用 identity `$done` 并消费整段脚本的最终求值；生成脚本必须返回同一 `{content}` 或 `{error}` 对象。回归同时检查回调次数与最终对象，并覆盖 helper 单独加载。字段拒绝会标出来源格式和已登记的公共字段名，例如 `unsupported field in sing-box TLS: utls`；未知字段名与所有字段值不回显，避免泄露凭据。任何一行失败都只返回一次错误，不发布前半份结果；更新失败后的缓存和提示由QX处理，本实现不承诺宿主保留旧内容。纯文本分流限额为输入/输出各8 Mi个UTF-16码元、250000行/条；先限制完整转换的行数与字符数再筛选。节点、重写、Base64与结构化文档保留2 Mi码元/20000行，节点最多2000个；YAML最大32层、100000个值节点与20个alias，并拒绝循环、重复键和自定义tag。VM测试执行实际生成bundle与helper协议，尚未在原生QX导入运行。与原始 KOP 的逐项功能差异和实际大资源对照见[功能对照](resource-parser-comparison.md)。详细接口、来源和边界见[解析器登记](../metadata/resource-parsers.json)、[功能规格](specs/features.md)。
+QX 资源宿主使用 identity `$done` 并消费整段脚本的最终求值；生成脚本必须返回同一 `{content}` 或 `{error}` 对象。回归同时检查回调次数与最终对象，并覆盖 helper 单独加载。字段拒绝会标出来源格式和已登记的公共字段名，例如 `unsupported field in sing-box TLS: utls`；未知字段名与所有字段值不回显，避免泄露凭据。任何一行失败都只返回一次错误，不发布前半份结果；更新失败后的缓存和提示由QX处理，本实现不承诺宿主保留旧内容。纯文本分流限额为输入/输出各8 Mi个UTF-16码元、250000行/条；先限制完整转换的行数与字符数再筛选。节点、重写、Base64与结构化文档保留2 Mi码元/20000行，节点最多2000个；YAML最大32层、100000个值节点与20个alias，并拒绝循环、重复键和自定义tag。VM测试执行实际生成bundle与helper协议，尚未在原生QX导入运行。与原始 KOP 的逐项功能差异和实际大资源对照见[功能对照](resource-parser-comparison.md)。已登记运行适配器会作为用户安装的重写脚本运行，拥有对应网络/存储权限，与离线转换器分开。单元与 Apple JavaScriptCore、真实 loopback HTTP 验证覆盖状态码、头、正文/二进制、模块参数改变真实 protobuf 内容；这不等于真实 YouTube 服务或原生 QX 实测。QX 原生预缓冲、空正文调用与同步 CPU 终止限制仍保留，默认不启用 Worker。详细接口、来源和边界见[解析器登记](../metadata/resource-parsers.json)、[功能规格](specs/features.md)。
 
 Loon仍链接固定AGPL Sub-Store解析器，`fragments/resource-parser.conf`合并到`[General]`，并在选定的`[Remote Proxy]`订阅上设置`parser-enabled=true`。它是外部工具入口，可能重新获取资源并按宿主权限访问缓存；本仓库没有把它替换成QX实现或宣称离线隔离。来源、哈希与对应完整AGPL源码均保留。其他六客户端没有虚构的同名解析器字段。
 

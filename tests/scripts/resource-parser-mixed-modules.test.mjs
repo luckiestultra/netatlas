@@ -3,6 +3,8 @@ import assert from 'node:assert/strict';
 import { readFileSync } from 'node:fs';
 import { parseRewrites } from '../../src/features/resource-parser/rewrites.mjs';
 import { parseResource, completeResource } from '../../src/features/resource-parser/core.mjs';
+const registeredResponse = 'https://raw.githubusercontent.com/Maasea/sgmodule/master/Script/Youtube/youtube.response.js';
+const runtimeConfig = output => JSON.parse(decodeURIComponent(/compat-youtube-response\.js#na=([^\n]+)/.exec(output)[1]));
 
 test('original pinned YouTube module converts all three script declarations without adding URL options', () => {
   const content = readFileSync(new URL('../../src/features/youtube-enhance/upstream/YouTube.Enhance.sgmodule', import.meta.url), 'utf8');
@@ -12,7 +14,9 @@ test('original pinned YouTube module converts all three script declarations with
   assert.equal(rows.filter(line => line.includes(' url script-response-body ')).length, 1);
   assert.equal(rows.filter(line => line.includes(' url script-request-body ')).length, 2);
   assert.ok(rows.includes('hostname = *.googlevideo.com, youtubei.googleapis.com'));
-  assert.match(result, /^# .*argument.*max-size.*binary/im, 'unrepresented source settings must be visible, not silently called lossless');
+  assert.match(result, /^# .*registered script API\/arguments.*static Maasea adapter/im);
+  assert.match(result, /compat-youtube-response\.js#na=/);
+  assert.equal(runtimeConfig(result).binary, true);
   assert.ok(rows.every(line => !line.includes('{{{')));
 });
 
@@ -43,11 +47,13 @@ test('mixed rewrite container retains existing native filter order and every pol
 });
 
 test('script options accept documented source booleans and preserve regex quotes and nested JSON parsing', () => {
-  const input = '#!arguments=Caption:off\n[Script]\nname = type=http-response,pattern=^https://example\\.test/["\x27](a,b),requires-body=1,max-size=-1,binary-body-mode=1,timeout=20,script-path=https://example.test/body.js,argument="{"caption":"{{{Caption}}}","nested":{"a":true}}"';
+  const input = '#!arguments=Caption:off\n[Script]\nname = type=http-response,pattern=^https://example\\.test/["\x27](a,b),requires-body=1,max-size=-1,binary-body-mode=1,timeout=20,script-path=' + registeredResponse + ',argument="{"caption":"{{{Caption}}}","nested":{"a":true}}"';
   const output = parseRewrites(input);
-  assert.match(output, /\["\x27\]\(a,b\) url script-response-body https:\/\/example.test\/body.js/);
-  assert.match(output, /^# .*argument.*max-size.*binary/m);
-  assert.doesNotMatch(output, /Caption|"nested"/, 'do not echo potentially sensitive argument values in diagnostics');
+  assert.match(output, /\["\x27\]\(a,b\) url script-response-body .*compat-youtube-response\.js#na=/);
+  const config = runtimeConfig(output);
+  assert.deepEqual(JSON.parse(config.argument), { caption: 'off', nested: { a: true } });
+  assert.equal(config.timeout, 20); assert.equal(config.maxSize, -1); assert.equal(config.binary, true); assert.equal(config.name, 'name');
+  assert.doesNotMatch(output.split('\n').filter(line => line.startsWith('#')).join('\n'), /Caption|"nested"/, 'argument values belong to script configuration, never diagnostics');
 });
 
 test('unsupported logical predicates, routing URL actions and executable directives still fail atomically', () => {
@@ -100,12 +106,13 @@ test('mixed sections retain FINAL state across rewrites, including empty interse
 });
 
 test('unwrapped JSON argument strings do not change declaration bracket or field boundaries', () => {
-  const prefix = '[Script]\nfixture=type=http-response,pattern=^http://ads.example/,requires-body=true,script-path=https://example.test/a.js,argument=';
+  const prefix = '[Script]\nfixture=type=http-response,pattern=^http://ads.example/,requires-body=true,script-path=' + registeredResponse + ',argument=';
   for (const text of ['[', '(', '}', 'a, timeout=2', 'quote" and slash\\']) {
     const output = parseRewrites(prefix + JSON.stringify({ text, nested: { enabled: true } }) + ',timeout=20');
-    assert.match(output, /url script-response-body https:\/\/example.test\/a.js/);
-    assert.match(output, /^# .*argument.*timeout/m);
-    assert.doesNotMatch(output, /"nested"|"text"/);
+    assert.match(output, /url script-response-body .*compat-youtube-response\.js#na=/);
+    assert.deepEqual(JSON.parse(runtimeConfig(output).argument), { text, nested: { enabled: true } });
+    assert.equal(runtimeConfig(output).timeout, 20);
+    assert.doesNotMatch(output.split('\n').filter(line => line.startsWith('#')).join('\n'), /"nested"|"text"/);
   }
   assert.throws(() => parseRewrites(prefix + '{"text":"unterminated}'));
 });

@@ -16,7 +16,7 @@ test('rules handle Rule sections, explicit domain sets, and classical YAML paylo
   assert.equal(parseRules('example.com\n.example.net', { sourceFormat: 'domain-set' }), 'host,example.com,proxy\nhost-suffix,example.net,proxy\n');
   assert.throws(() => parseRules('*.example.org', { sourceFormat: 'domain-set' }), /wildcard/i);
   assert.equal(parseRules('payload:\n - DOMAIN,example.com\n - IP-CIDR,192.0.2.1/32', {}, utils), 'host,example.com,proxy\nip-cidr,192.0.2.1/32,proxy\n');
-  assert.throws(() => parseRules('example.com'), /domain|format/i);
+  assert.match(parseRules('example.com'), /^host-suffix,example\.com,proxy$/m);
   assert.throws(() => parseRules('[Rule]\nDOMAIN,example.com,Proxy\n[Script]\nsecret'), /section/i);
 });
 
@@ -42,7 +42,7 @@ test('registered regex conversions preserve nonempty prefixes and unknown regex 
   const expanded = parseRules(String.raw`DOMAIN-REGEX,.+\.awsdns-[0-9][0-9]\.(co\.uk|com|net|org)$,Proxy`);
   assert.equal(expanded.trim().split('\n').length, 400);
   assert.match(expanded, /host-wildcard,\?\*\.awsdns-99\.org,Proxy/);
-  for (const bad of ['DOMAIN-REGEX,^.*example.com$,Proxy', 'AND,((DOMAIN,example.com),(DST-PORT,443)),Proxy', 'DST-PORT,443,Proxy', 'PROCESS-NAME,secret,Proxy', 'DOMAIN,example.com,Proxy,unsupported']) assert.throws(() => parseRules(bad));
+  for (const bad of ['DOMAIN-REGEX,^(?=example)example.com$,Proxy', 'AND,((DOMAIN,example.com),(DST-PORT,443)),Proxy', 'DST-PORT,443,Proxy', 'PROCESS-NAME,secret,Proxy', 'DOMAIN,example.com,Proxy,unsupported']) assert.throws(() => parseRules(bad));
   for (const option of ['extended-matching', 'pre-matching']) assert.throws(() => parseRules('DOMAIN,example.com,' + option), /option/i);
 });
 
@@ -76,7 +76,7 @@ test('rewrites convert redirects and compatible reject bodies with MITM hostname
   assert.equal(parseRewrites('[Rewrite]\n^https://a.example/ reject-200\n^https://b.example/ 307 https://c.example/'), '^https://a.example/ url reject-200\n^https://b.example/ url 307 https://c.example/\n');
   assert.throws(() => parseRewrites('[Rewrite]\n^https://a.example/ reject'), /reject|semantic/i);
   assert.equal(parseRewrites('[URL Rewrite]\n^http://a.example/ https://b.example/ 302 // comment'), '^http://a.example/ url 302 https://b.example/\n');
-  assert.throws(() => parseRewrites('[URL Rewrite]\n^http://a.example/ http://{{{GATEWAY_ADDRESS}}}/ 302'), /placeholder/i);
+  assert.throws(() => parseRewrites('[URL Rewrite]\n^http://a.example/ http://{{{GATEWAY_ADDRESS}}}/ 302'), /unresolved module arguments/i);
 });
 
 test('native QX rewrites and HTTPS script references pass without executing or fetching', () => {
@@ -96,11 +96,10 @@ test('cross-host script declarations convert by default with visible API and sou
   assert.match(parseRewrites(source, { scriptCompatibility: 'qx' }), /url script-response-body https:\/\/example.com\/a.js/);
   assert.match(parseRewrites('[Script]\nhttp-request ^https://example.com/ script-path=https://example.com/a.js, requires-body=false, tag=Name', { scriptCompatibility: 'qx' }), /url script-request-header/);
   for (const field of ['timeout=20', 'argument=secret', 'max-size=100', 'binary-body-mode=true']) {
-    const converted = parseRewrites(source + ', ' + field, { scriptCompatibility: 'qx' });
-    assert.match(converted, /source argument\/max-size\/timeout settings are not applied/);
-    assert.doesNotMatch(converted, /secret/);
+    assert.throws(() => parseRewrites(source + ', ' + field, { scriptCompatibility: 'qx' }), error => /require a registered static adapter/.test(error.message) && !error.message.includes('secret'));
   }
-  for (const field of ['enable=false', 'unknown=secret', 'requires-body=maybe', 'binary-body-mode=maybe', 'max-size=NaN', 'timeout=Infinity']) assert.throws(() => parseRewrites(source + ', ' + field, { scriptCompatibility: 'qx' }));
+  assert.match(parseRewrites(source + ', enable=false'), /^\^https:\/\/example.com\/ - script-response-body/m);
+  for (const field of ['unknown=secret', 'requires-body=maybe', 'binary-body-mode=maybe', 'max-size=NaN', 'timeout=Infinity']) assert.throws(() => parseRewrites(source + ', ' + field, { scriptCompatibility: 'qx' }));
   assert.throws(() => parseRewrites('[Script]\nhttp-request ^https://example.com/ script-path=https://example.com/a.js, type=http-response', { scriptCompatibility: 'qx' }));
 });
 

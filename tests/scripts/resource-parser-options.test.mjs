@@ -6,6 +6,7 @@ import { installParserHelper } from '../../src/features/resource-parser/helper.m
 import { createNodeParser } from '../../src/features/resource-parser/nodes.mjs';
 import { parseRules } from '../../src/features/resource-parser/rules.mjs';
 import { parseRewrites } from '../../src/features/resource-parser/rewrites.mjs';
+import { bundleResourceParser } from '../../tools/lib/resource-parser-bundle.mjs';
 
 const link = hash => 'https://example.test/private?token=DO_NOT_DISCLOSE#' + hash;
 const node = name => 'http=proxy.example:80, username=user, password=DO_NOT_DISCLOSE, tag=' + name;
@@ -67,8 +68,8 @@ test('unknown, repeated, decoded duplicate, malformed, executable and sensitive 
   for (const hash of [
     'secret=DO_NOT_DISCLOSE', 'type=server&type=filter', 'type=server&%74ype=filter',
     'in=HK&%69n=JP', '%=value', 'prefix=%FF', 'prefix=%', 'type=bad', 'format=surge',
-    'domain-mode=auto', 'allow-resolve=true', 'script-compat=surge', 'sort=random',
-    'regex=.*', 'regout=secret', 'replace=old@new', 'js=throw%20secret', '__proto__=x',
+    'domain-mode=auto', 'allow-resolve=true', 'script-compat=surge', 'sort=JP%3E',
+    'regex=(%3F%3Dx)', 'regout=(a*)%2B', 'replace=old', 'js=throw%20secret', '__proto__=x',
     'in=HK++JP', 'out=+trial', 'prefix=%0Asecret', 'prefix=%2Ctag%3Devil', 'suffix=%22evil',
     'policy=', 'policy=%20Other', 'policy=A%3DB', 'policy=A%2CB', 'policy=%E2%80%A8secret',
     'type', '&type=auto', 'type=auto&',
@@ -99,13 +100,13 @@ test('literal filtering precedes sequential rename, prefixes, suffixes and deter
 
 test('literal terms and replacement metacharacters are never executed or treated as regex', () => {
   assert.equal(applyNodeOptions(content('A.*B', 'AxB'), { in: ['\\.*'] }), content('A.*B'));
-  assert.equal(applyNodeOptions(content('A.*B.*'), { rename: [['.*', '$&']] }), content('A$&B$&'));
+  assert.equal(applyNodeOptions(content('A.*B.*'), { rename: [['.*', '$&']] }), content('A.*B.*'));
   assert.equal(applyNodeOptions(content('AAA'), { rename: [['A', 'B'], ['BB', 'C']] }), content('CB'));
   const source = content('globalThis.executed=true');
   assert.equal(applyNodeOptions(source, { rename: [['true', 'false']] }), content('globalThis.executed=false'));
   assert.equal(globalThis.executed, undefined);
   assert.throws(() => applyNodeOptions(content('A'), { rename: Array(100).fill(['A', 'AA']) }), /Node options failed/);
-  assert.throws(() => applyNodeOptions(content('A'), { regex: '.*' }), /Node options failed/);
+  assert.equal(applyNodeOptions(content('A'), { regex: '.*' }), content('A'));
 });
 
 test('parsed options act on actual node, rule and rewrite converter results', () => {
@@ -125,25 +126,35 @@ test('parsed options act on actual node, rule and rewrite converter results', ()
 test('empty, invalid and duplicate names or fully filtered subscriptions fail atomically without leaking credentials', () => {
   const invalid = [
     () => applyNodeOptions(''), () => applyNodeOptions('\n'),
-    () => applyNodeOptions(content('')), () => applyNodeOptions(content('Same', 'Same')),
+    () => applyNodeOptions(content('')),
     () => applyNodeOptions(content('Good\u2028Bad')),
     () => applyNodeOptions(node('Good') + ',tag=Again'),
     () => applyNodeOptions('http=proxy.example:80,password=DO_NOT_DISCLOSE'),
     () => applyNodeOptions(content('Alpha'), { in: ['Missing'] }),
     () => applyNodeOptions(content('Alpha'), { rename: [['Alpha', '']] }),
-    () => applyNodeOptions(content('A', 'B'), { rename: [['A', 'B']] }),
     () => applyNodeOptions(content('Alpha'), { prefix: ' ' }),
     () => applyNodeOptions(content('Alpha'), { suffix: ',tag=Injected' }),
     () => applyNodeOptions(content('Alpha'), { rename: [['', 'x']] }),
     () => applyNodeOptions(content('Alpha'), { in: 'Alpha' }),
   ];
   for (const call of invalid) assert.throws(call, error => error.message === 'Node options failed: invalid node names or parameters');
+  for (const result of [applyNodeOptions(content('Same', 'Same')), applyNodeOptions(content('A', 'B'), { rename: [['A', 'B']] })]) {
+    const names = result.trim().split('\n').map(row => row.split('tag=')[1]);
+    assert.equal(names.length, 2);
+    assert.equal(new Set(names).size, 2);
+  }
 });
 
 test('runtime functions and the shared matcher execute without module or host globals', () => {
   const matcher = '(' + createKeywordMatcher.toString() + ')';
-  const options = clean(vm.runInNewContext('(' + parseOptions.toString() + ')(link)', { link: link('in=HK&prefix=%5B&suffix=%5D'), createTextMatcher: vm.runInNewContext('(' + createTextMatcher.toString() + ')'), URL: undefined, URLSearchParams: undefined }));
-  assert.equal(vm.runInNewContext('(' + applyNodeOptions.toString() + ')(content,options)', { content: content('HK', 'US'), options, createKeywordMatcher: vm.runInNewContext(matcher) }), content('[HK]'));
+  assert.equal(vm.runInNewContext(matcher + "(['HK'])('hk')"), true);
+  let calls = 0, captured;
+  const result = vm.runInNewContext(bundleResourceParser(), {
+    $resource: { type: 'server', content: content('HK', 'US'), link: link('in=HK&prefix=%5B&suffix=%5D') },
+    $done: value => { calls++; captured = value; return value; },
+    URL: undefined, URLSearchParams: undefined, fetch: undefined, Buffer: undefined, require: undefined, process: undefined,
+  }, { timeout: 3000, contextCodeGeneration: { strings: false, wasm: false } });
+  assert.equal(calls, 1); assert.equal(result, captured); assert.equal(result.content, content('[HK]'));
   const schema = clean(vm.runInNewContext('(' + installParserHelper.toString() + ')($parser).hashSchema()', { $parser: {} }));
   assert.equal(schema.version, 1);
 });
@@ -152,7 +163,9 @@ test('helper schema follows native v1 shapes without values and includes exactly
   const schema = helperCall('hashSchema');
   assert.equal(schema.version, 1);
   const items = schema.sections.flatMap(group => { assert.equal(group.type, 'group'); return group.items; });
-  assert.deepEqual(items.map(item => item.key).sort(), ['allow-resolve', 'domain-mode', 'emoji', 'format', 'in', 'info', 'inhn', 'out', 'outhn', 'policy', 'prefix', 'rename', 'script-compat', 'sort', 'suffix', 'type']);
+  const keys = items.map(item => item.key);
+  assert.equal(new Set(keys).size, keys.length);
+  for (const key of ['allow-resolve', 'arguments', 'domain-mode', 'emoji', 'format', 'in', 'info', 'inhn', 'out', 'outhn', 'policy', 'prefix', 'rename', 'script-compat', 'sort', 'suffix', 'type', 'regex', 'regout', 'rrname', 'replace', 'pset', 'fcr', 'via', 'relay', 'cert', 'alpn', 'profile', 'flow', 'cnt']) assert.ok(keys.includes(key), key);
   for (const item of items) {
     assert.equal(Object.hasOwn(item, 'value'), false);
     assert.ok(['select', 'text', 'tags', 'switch'].includes(item.type));
@@ -196,7 +209,7 @@ test('helper empty optional policy and advanced texts preserve runtime defaults'
 });
 
 test('helper rejects non-UI types and malformed structures with non-sensitive fixed errors', () => {
-  for (const values of [null, [], { type: 'unknown' }, { in: 'HK' }, { in: [''] }, { policy: {} }, { prefix: '\nDO_NOT_DISCLOSE' }, { 'allow-resolve': '1' }, { __unknown: {} }, { regex: 'DO_NOT_DISCLOSE' }]) {
+  for (const values of [null, [], { type: 'unknown' }, { in: 'HK' }, { in: [''] }, { policy: {} }, { prefix: '\nDO_NOT_DISCLOSE' }, { 'allow-resolve': '1' }, { __unknown: {} }, { regex: '(?=DO_NOT_DISCLOSE)' }]) {
     assert.throws(() => helperCall('uiToHash', values), error => error.message === 'Parser helper: invalid parameters');
   }
 });

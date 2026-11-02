@@ -53,17 +53,21 @@ npm run test:live
 
 ## QX 资源解析器
 
-QX的`resource_parser_url`指向本仓库的`scripts/resource-parser.js`，源码入口为`src/features/resource-parser/entry.mjs`。构建为不依赖Node、浏览器DOM、URL、Buffer、atob或TextDecoder全局的浏览器IIFE，包含MIT原创代码和yaml 2.9.1 ISC许可。`fragments/resource-parser.conf`只合并`[general]`；本仓库QX配置默认启用，Loon外部解析器仍可选。六个其他客户端不输出未有原生依据的解析器设置。
+QX的`resource_parser_url`指向本仓库的`scripts/resource-parser.js`，源码入口为`src/features/resource-parser/entry.mjs`。构建为不依赖Node、浏览器DOM、URL、Buffer、atob或TextDecoder全局的浏览器IIFE，包含 MIT 原创转换代码、yaml 2.9.1 ISC 许可与静态登记表 Apache-2.0 许可。`fragments/resource-parser.conf`只合并`[general]`；本仓库QX配置默认启用，Loon外部解析器仍可选。六个其他客户端不输出未有原生依据的解析器设置。
 
-宿主输入为`$resource.content`、可选`link`和字符串`type`；每次转换完整校验后调用一次`$done({content})`，失败只返回受控、不含原文的`$done({error})`；整段脚本的最终求值也必须是同一结果对象，不能只检查回调副作用。不输出部分结果或自动降级。未知数字type不猜测含义。解析器不联网、不持久化、不执行订阅中的脚本或自定义表达式、不请求原生UA重试、不更改运行中配置。生成资源可以包含经验证的HTTPS脚本引用，但安装后由QX执行该脚本不在解析器离线权限承诺之内。
+宿主输入为`$resource.content`、可选`link`和字符串`type`；每次转换完整校验后调用一次`$done({content})`，失败只返回受控、不含原文的`$done({error})`；整段脚本的最终求值也必须是同一结果对象，不能只检查回调副作用。不输出部分结果或自动降级。未知数字type不猜测含义。解析器不联网、不持久化、不执行订阅中的脚本或自定义表达式、仅显式 UA 参数可请求原生至多一次重试并携带兜底结果，解析器自身不发请求、不更改运行中配置。生成资源可以包含经验证的HTTPS脚本引用，但安装后由QX执行该脚本不在解析器离线权限承诺之内。
 
-支持已实现的节点URI/原生节点/Clash YAML与sing-box JSON节点字段，严格处理TLS与传输；不支持的协议、传输、mux、未知参数、无法表达的字段或名称冲突导致整份订阅失败。规则支持QX原生及已登记的classical类型、Surge DOMAIN-SET、Clash payload和sing-box headless地址条件。Surge DOMAIN-SET的`.domain`包含根域；Clash的`.domain`排除根域，`+.domain`包含根域；Clash单标签通配不能放大为QX跨点通配。Clash域名payload必须显式`domain-mode=exact`，suffix模式冲突报错。任意新DOMAIN-REGEX、端口/进程/逻辑AND与其他附加条件不得丢弃或转成更宽集合。
+支持已实现的节点URI/原生节点/Clash YAML与sing-box JSON节点字段，严格处理TLS与传输；不支持的协议、传输、mux、未知参数、无法表达的字段导致整份订阅失败；最终名称冲突默认编号，显式 del=1 才去重。规则支持QX原生及已登记的classical类型、Surge DOMAIN-SET、Clash payload和sing-box headless地址条件。Surge DOMAIN-SET的`.domain`包含根域；Clash的`.domain`排除根域，`+.domain`包含根域；Clash单标签通配不能放大为QX跨点通配。Clash 域名 payload 自动识别，显式 suffix 模式冲突报错。纯域名/IP/CIDR 混合列表自动识别。正向域名 AND 与有限域名正则按精确子集编译；超出语法的表达式、端口/进程或逻辑条件整份报错，不扩大匹配范围。
 
-`no-resolve`没有在已查证QX接口中找到等价字段，默认报错；仅显式`allow-resolve=1`移除并在结果注释中标出DNS行为变化。`policy`是显式覆盖所有源策略的操作，也必须输出提示。正则只对已登记的确切表达式生成经过证明的通配或有限枚举；其他表达式整资源失败，不冒称完整正则支持。
+`no-resolve`没有在已查证QX接口中找到等价字段，默认报错；仅显式`allow-resolve=1`移除并在结果注释中标出DNS行为变化。`policy`是显式覆盖所有源策略的操作，也必须输出提示。域名正则使用已登记映射及有界精确编译；不支持的表达式整资源失败，不冒称任意正则等价。
 
-重写支持QX原生已实现动作、Surge/Loon 302/307跳转和可等价的Loon响应体拒绝动作；不同reject语义、header URL替换、未实现的重写DSL、CA/证书设置、本地脚本路径及其他功能段报错。跨宿主Script转换必须显式`script-compat=qx`声明脚本本体已经支持QX，只有可表达字段能转换；该声明不翻译JavaScript宿主API，也不允许忽略timeout、argument、binary-body或max-size等字段。
+重写支持原生动作、302/307、语义已核验的响应拒绝、JSON jq/del/replace、请求/响应头以及 Map Local 精确状态码/头/正文与二进制响应。来源禁用状态、注释和 dst 选择保留。CA、cron、未知执行项与无法兑现的 API/参数整份报错。
 
-helper的三个`$parser`函数按固定官方协议独立可提取；哈希参数只做声明式类型/格式/策略选择与字面名称处理，未知或重复参数不自动忽略。测试必须执行真实生成bundle的节点、规则、重写、错误回调及helper契约；VM测试不宣称QX设备导入成功。用户本地QX配置不得用于测试或被修改。
+模块声明的默认值与显式 `arguments=JSON` 按三重大括号语法传递。已登记、取得许可并固定源码的 Maasea request/response 由独立静态产物桥接 Surge HTTP 契约：参数、正文/字节视图、脚本 metadata、HTTP callback、存储及 once-only done。未知脚本不能仅转换出一条声明就被称为 API 兼容；携带未适配的 timeout/argument/binary/max-size 必须拒绝。运行时不能复制 QX 原生预缓冲、空正文调用或同步 CPU 硬终止行为，文档必须保留这些边界；默认不启用 Worker，不自动替用户导入 CA。
+
+helper 的三个 `$parser` 函数按固定官方协议独立可提取；新参数在 UI/hash/runtime 中一致。节点名称模板必须区分用户模板与来源字面值；正则、变换工作、展开、输出和中间副本均有资源预算，不执行来源代码。显式 native 覆盖需按协议验证是否真正有效，不丢安全字段。
+
+测试须覆盖真实生成 bundle → 原始完整资源 → 发出的静态引用 → 参数改变真实脚本输出，并在 loopback HTTP 观察 header/status/text/binary/jq 实际效果。独立红队复验语义、原子失败、泄漏及放大输入，蓝队运行冻结的磁盘产物。VM 与 Apple JavaScriptCore 不宣称 QX 设备导入成功。用户本地 QX 配置、缓存、节点与连接均不用于测试或被修改。
 
 ## QX 正则缺口的可选兼容处理
 

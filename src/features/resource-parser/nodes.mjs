@@ -4,7 +4,7 @@ import { stripComment } from './comments.mjs';
 const TYPES = new Set(['shadowsocks','vmess','vless','trojan','http','socks5','anytls']);
 const CIPHERS = new Set(['aes-128-gcm','aes-192-gcm','aes-256-gcm','aes-128-cfb','aes-192-cfb','aes-256-cfb','chacha20','chacha20-ietf','chacha20-poly1305','chacha20-ietf-poly1305','xchacha20-ietf-poly1305','rc4-md5','2022-blake3-aes-128-gcm','2022-blake3-aes-256-gcm','2022-blake3-chacha20-poly1305']);
 const NATIVE_KEYS = new Set('method password username ssr-protocol ssr-protocol-param obfs obfs-host obfs-uri over-tls tls-host tls-verification tls-cert-sha256 tls-pubkey-sha256 tls-alpn tls-no-session-ticket tls-no-session-reuse reality-base64-pubkey reality-hex-shortid vless-flow udp-relay udp-over-tcp fast-open aead tls13 server_check_url server_check_user_agent tag'.split(' '));
-const BOOL_KEYS = new Set('over-tls tls-verification tls-no-session-ticket tls-no-session-reuse udp-relay fast-open aead tls13'.split(' '));
+const BOOL_KEYS = new Set('over-tls tls-no-session-ticket tls-no-session-reuse udp-relay fast-open aead tls13'.split(' '));
 const error = reason => { throw new Error('Node conversion failed: '+reason); };
 const own = (o,k) => Object.prototype.hasOwnProperty.call(o,k);
 const object = o => o !== null && typeof o === 'object' && !Array.isArray(o);
@@ -215,8 +215,98 @@ function parseSsr(u) {
   if(!['plain','tls1.2_ticket_auth','tls1.2_ticket_fastauth'].includes(m[5]))error('unsupported SSR obfuscation');
   if(m[5]!=='plain')put(n,'obfs',m[5]);if(q.obfsparam)put(n,'obfs-host',decodeBase64Text(q.obfsparam));return n;
 }
+function parseSsd(u) {
+  if(Object.keys(u.query).length||u.tag)error('unsupported SSD URI options');
+  const source=strictJson(decodeBase64Text(u.authority));if(!object(source))error('invalid SSD document');
+  keys(source,['airport','port','encryption','password','servers','plugin','plugin_options','traffic_used','traffic_total','expiry','url'],'SSD document');
+  if(!Array.isArray(source.servers)||!source.servers.length||source.servers.length>2000)error('empty or oversized SSD subscription');
+  // SSD defaults are inherited independently by each server, never by its sibling.
+  // Connection fields follow the SSD format's per-server override contract.
+  return source.servers.map(server=>{
+    if(!object(server))error('invalid SSD server');
+    keys(server,['id','server','port','encryption','password','plugin','plugin_options','remarks','ratio'],'SSD server');
+    const value={...source,...server},n=node('shadowsocks',{host:server.server,port:value.port},server.remarks);
+    for(const key of ['plugin','plugin_options'])if(own(value,key)&&typeof value[key]!=='string')error('invalid SSD plugin option');
+    put(n,'method',value.encryption);put(n,'password',value.password);
+    let plugin=value.plugin;
+    // Older SSD producers omitted the simple-obfs executable name. Its two
+    // documented options are unambiguous; other unnamed plugins are rejected.
+    if(!plugin&&value.plugin_options){
+      if(!/^obfs=(?:http|tls)(?:;obfs-host=[^;]+)?;?$/.test(value.plugin_options))error('plugin options without plugin');
+      plugin='simple-obfs';
+    }
+    ssPlugin(n,plugin==='v2ray'?'v2ray-plugin':plugin,value.plugin_options);return n;
+  });
+}
+function legacyUri(u) {
+  if(!['vmess','vless','socks','ssocks','http','https'].includes(u.scheme))return u;
+  let authority=u.authority,literal=false;
+  if(!authority.includes('@')&&/^[A-Za-z0-9+/_=-]+$/.test(authority)){
+    // A raw hostname is also Base64-shaped. Decode only a complete endpoint;
+    // encoded credentials remain literal after this one decoding layer.
+    let decoded;try{decoded=decodeBase64Text(authority);}catch{}
+    if(decoded&&(/@/.test(decoded)||/^\[[^\]]+\]:\d+$/.test(decoded)||/^[^:]+:\d+$/.test(decoded))){authority=decoded;literal=true;}
+  }
+  const query={...u.query};aliases(query,[['remark','remarks'],['obfs','type'],['obfsParam','host'],['tls','security']]);
+  const shadowrocket=['remark','remarks','obfs','obfsParam','tls'].some(key=>own(query,key))||u.scheme==='vmess'||literal&&u.scheme==='vless';
+  const tag=u.tag||query.remarks||query.remark;
+  delete query.remarks;delete query.remark;
+  if(own(query,'obfs')){const modes={none:'tcp',websocket:'ws',http:'tcp'};if(!own(modes,query.obfs))error('unsupported transport');if(query.obfs==='http'){if(own(query,'headerType'))error('duplicate HTTP-header options');query.headerType='http';}query.type=modes[query.obfs];delete query.obfs;}
+  if(own(query,'tls')){query.security=bool(query.tls)?'tls':'none';delete query.tls;}
+  if(own(query,'obfsParam')){
+    let value=query.obfsParam;
+    if(value.startsWith('{')){const headers=strictJson(value);if(!object(headers))error('invalid websocket headers');keys(headers,['Host','host'],'WebSocket headers');aliases(headers,[['Host','host']]);value=headers.Host??headers.host;if(typeof value!=='string')error('invalid websocket Host');}
+    query.host=value;delete query.obfsParam;
+  }
+  if(own(query,'mux')&&shadowrocket&&['vmess','vless'].includes(u.scheme)){if(bool(query.mux))error('multiplexing unsupported');delete query.mux;}
+  // Shadowrocket's websocket Host is its default TLS name. Standard VLESS
+  // links continue to use their server address when SNI is absent.
+  if(shadowrocket&&query.security==='tls'&&query.host){
+    if(query.type==='ws'&&!(query.sni||query.peer))query.sni=query.host;
+    else if((!query.type||query.type==='tcp')&&query.headerType!=='http'){
+      if((query.sni||query.peer)&&(query.sni||query.peer)!==query.host)error('conflicting TLS names');
+      if(!(query.sni||query.peer))query.sni=query.host;delete query.host;
+    }
+  }
+  return {...u,authority,query,tag,literal};
+}
+function parseLegacyVmess(u) {
+  u=legacyUri(u);const q={...u.query};
+  // The old Shadowrocket URI defaults to the legacy header. Zero explicitly
+  // selects AEAD; nonzero alter IDs cannot be represented by a QX header flag.
+  // https://www.v2fly.org/config/protocols/vmess.html#userobject
+  let aead=false;if(own(q,'alterId')){if(!/^0$/.test(q.alterId))error('legacy VMess alter ID unsupported');aead=true;delete q.alterId;}
+  const a=authAddress(u.authority),credentials=u.literal?a.credentials:decode(a.credentials),p=credentials.indexOf(':');
+  const method=p<0?'aes-128-gcm':credentials.slice(0,p),id=p<0?credentials:credentials.slice(p+1);
+  const n=parseGenericUri({...u,authority:id+'@'+(a.host.includes(':')?'['+a.host+']':a.host)+':'+a.port,query:q,literal:true},true);
+  put(n,'method',method==='auto'?'chacha20-poly1305':method==='chacha20-ietf-poly1305'?'chacha20-poly1305':method);putBool(n,'aead',aead);return n;
+}
+function parseQuantumultVmess(u,body) {
+  // The producer writes a named CSV declaration inside a single Base64 layer.
+  // https://github.com/tindy2013/subconverter/blob/master/src/generator/config/subexport.cpp
+  // Its importer defaults alter ID to zero, unlike the old Shadowrocket URI.
+  // https://github.com/tindy2013/subconverter/blob/master/src/parser/subparser.cpp
+  keys(u.query,['tfo','allowInsecure'],'Quantumult VMess URI');
+  const p=body.indexOf('='),parts=csv(body.slice(p+1));if(parts.shift().toLowerCase()!=='vmess')error('invalid Quantumult VMess');
+  const n=node('vmess',{host:parts.shift(),port:parts.shift()},u.tag||body.slice(0,p).trim());
+  const method=parts.shift();put(n,'method',method==='auto'?'chacha20-poly1305':method==='chacha20-ietf-poly1305'?'chacha20-poly1305':method);put(n,'password',uuid(parts.shift()));
+  const o=assignment(parts);keys(o,['group','over-tls','tls-host','certificate','obfs','obfs-path','obfs-header','tfo','udp','aead'],'Quantumult VMess');
+  if(o.obfs!==undefined&&!['ws','http'].includes(o.obfs))error('unsupported transport');
+  let transportHost;if(o['obfs-header']!==undefined){
+    if(!/^Host:\s*[^\s\[\]]*$/i.test(o['obfs-header']))error('unsupported websocket headers');
+    transportHost=o['obfs-header'].slice(5).trim();
+  }
+  if(o.certificate!==undefined&&!['0','1'].includes(o.certificate))error('invalid certificate verification');
+  if(o.certificate!==undefined&&u.query.allowInsecure!==undefined)error('duplicate TLS verification options');
+  if(o.tfo!==undefined&&u.query.tfo!==undefined)error('duplicate fast-open options');
+  tlsTransport(n,{network:o.obfs||'tcp',security:bool(o['over-tls']??false)?'tls':'none',host:transportHost,path:o['obfs-path'],sni:o['tls-host'],insecure:o.certificate===undefined?u.query.allowInsecure:o.certificate==='0'});
+  putBool(n,'aead',o.aead??true);putBool(n,'fast-open',o.tfo??u.query.tfo);putBool(n,'udp-relay',o.udp);return n;
+}
 function parseVmess(u) {
-  if(Object.keys(u.query).length)error('unsupported VMess URI');const preferences=nativePreferences(strictJson(decodeBase64Text(u.authority)),['fp']),o=preferences.source;
+  let decoded;if(!u.authority.includes('@')){try{decoded=decodeBase64Text(u.authority);}catch{}}
+  if(decoded&&/^[^=]+\s*=\s*vmess\s*,/i.test(decoded))return parseQuantumultVmess(u,decoded);
+  if(!decoded||!decoded.trimStart().startsWith('{'))return parseLegacyVmess(u);
+  if(Object.keys(u.query).length)error('unsupported VMess URI');const preferences=nativePreferences(strictJson(decoded),['fp']),o=preferences.source;
   keys(o,['v','ps','add','port','id','aid','scy','net','type','host','path','tls','sni','alpn','allowInsecure','skip-cert-verify'],'VMess URI');
   aliases(o,[['allowInsecure','skip-cert-verify']]);
   if(o.v!==undefined&&String(o.v)!=='2')error('unsupported VMess version');if(o.net&&!['tcp','ws'].includes(o.net))error('unsupported transport');if(o.type&&!['none','http'].includes(o.type))error('unsupported TCP header');if(o.type==='http'&&o.net&&o.net!=='tcp')error('unsupported TCP header');
@@ -224,8 +314,9 @@ function parseVmess(u) {
   if(o.aid!==undefined){if(!/^\d+$/.test(String(o.aid)))error('invalid alter ID');if(+o.aid!==0)error('legacy VMess alter ID unsupported');}
   tlsTransport(n,{network:o.type==='http'?'http':o.net||'tcp',security:o.tls==='tls'?'tls':o.tls?o.tls:'none',host:o.host,path:o.path,sni:o.sni,alpn:o.alpn,insecure:o.allowInsecure??o['skip-cert-verify']});n.adaptations=preferences.adaptations;return n;
 }
-function parseGenericUri(u) {
-  const type=({https:'http',socks:'socks5',socks5s:'socks5'})[u.scheme]||u.scheme;if(!TYPES.has(type))error('unsupported protocol');
+function parseGenericUri(u,normalized=false) {
+  if(!normalized)u=legacyUri(u);
+  const type=({https:'http',socks:'socks5',ssocks:'socks5',socks5s:'socks5'})[u.scheme]||u.scheme;if(!TYPES.has(type))error('unsupported protocol');
   const preferences=nativePreferences(u.query,['fp','spx']);
   const capability=realityMlkemCapability(preferences.source,u.query.security==='reality',true);u={...u,query:capability.source};
   keys(u.query,['encryption','security','type','headerType','host','path','sni','peer','pbk','sid','flow','alpn','allowInsecure','insecure','udp','tfo'],'URI options');
@@ -234,17 +325,17 @@ function parseGenericUri(u) {
   if(u.query.headerType&&!['none','http'].includes(u.query.headerType))error('unsupported TCP header');if(u.query.headerType==='http'&&u.query.type&&u.query.type!=='tcp')error('unsupported TCP header');
   if(u.query.encryption&&!(type==='vless'&&u.query.encryption==='none'))error('unsupported encryption');
   if(u.query.sni&&u.query.peer&&u.query.sni!==u.query.peer)error('conflicting TLS names');if(u.query.allowInsecure!==undefined&&u.query.insecure!==undefined)error('duplicate TLS option');
-  const defaults={http:u.scheme==='https'?443:80,socks5:u.scheme==='socks5s'?443:1080,trojan:443,vless:443,anytls:443};
+  const defaults={http:u.scheme==='https'?443:80,socks5:['socks5s','ssocks'].includes(u.scheme)?443:1080,trojan:443,vless:443,vmess:443,anytls:443};
   const a=authAddress(u.authority,defaults[type]),n=node(type,a,u.tag);
-  if(type==='vless'){put(n,'method','none');put(n,'password',uuid(decode(a.credentials)));}
+  if(type==='vless'||type==='vmess'){let credentials=u.literal?a.credentials:decode(a.credentials);if(type==='vless'&&credentials.startsWith('none:'))credentials=credentials.slice(5);put(n,'method','none');put(n,'password',uuid(credentials));}
   else if(type==='trojan'||type==='anytls')put(n,'password',decode(a.credentials));
-  else if(a.credentials){const p=a.credentials.indexOf(':');if(p<0)error('invalid credentials');put(n,'username',decode(a.credentials.slice(0,p)));put(n,'password',decode(a.credentials.slice(p+1)));}
-  const defaultTls=['trojan','anytls','https','socks5s'].includes(u.scheme);
+  else if(a.credentials){const p=a.credentials.indexOf(':');if(p<0)error('invalid credentials');put(n,'username',u.literal?a.credentials.slice(0,p):decode(a.credentials.slice(0,p)));put(n,'password',u.literal?a.credentials.slice(p+1):decode(a.credentials.slice(p+1)));}
+  const defaultTls=['trojan','anytls','https','socks5s','ssocks'].includes(u.scheme);
   if(defaultTls&&u.query.security==='none')error('TLS required by URI scheme');
   tlsTransport(n,{network:u.query.headerType==='http'?'http':u.query.type||'tcp',security:u.query.security||(defaultTls?'tls':'none'),host:u.query.host,path:u.query.path,sni:u.query.sni||u.query.peer,publicKey:u.query.pbk,shortId:u.query.sid,flow:u.query.flow,alpn:u.query.alpn,insecure:u.query.allowInsecure??u.query.insecure});
   putBool(n,'udp-relay',u.query.udp);putBool(n,'fast-open',u.query.tfo);n.adaptations=preferences.adaptations.concat(capability.adaptations);return n;
 }
-function fromUri(line) {const u=uri(line);return u.scheme==='ss'?parseSs(u):u.scheme==='ssr'?parseSsr(u):u.scheme==='vmess'?parseVmess(u):parseGenericUri(u);}
+function fromUri(line) {const u=uri(line);return u.scheme==='ss'?parseSs(u):u.scheme==='ssr'?parseSsr(u):u.scheme==='ssd'?parseSsd(u):u.scheme==='vmess'?parseVmess(u):parseGenericUri(u);}
 const OBJECT_KEYS='name tag type server port server_port password username uuid cipher method remarks plugin plugin-opts plugin_opts udp udp-relay tfo fast-open tls servername sni skip-cert-verify network ws-opts flow reality-opts alpn alterId alter-id security version id transport tcp-fast-open udp_over_tcp protocol protocol-param obfs obfs-param'.split(' ');
 function fromObject(o,context='node object') {
   if(!object(o))error('invalid node object');
@@ -352,6 +443,13 @@ function validate(n,index) {
   const f=n.fields;
   keys(f,NATIVE_KEYS,'QX native');
   for(const k of Object.keys(f)){text(f[k]);if(BOOL_KEYS.has(k)&&!['true','false'].includes(f[k]))error('invalid native boolean');}
+  if(f['tls-verification']&&!['true','false'].includes(f['tls-verification'])){
+    // QX 1.7.0 build 938 separates certificate verification from TLS SNI.
+    // https://t.me/QuanXNews/415
+    const domain=f['tls-verification'];
+    if(domain.length>253||!domain.includes('.')||/^\d+(?:\.\d+){3}$/.test(domain)||domain.split('.').some(label=>! /^[a-z0-9](?:[a-z0-9-]{0,61}[a-z0-9])?$/i.test(label)))error('invalid certificate verification domain');
+    n.adaptations=(n.adaptations||[]).concat('tls-verification-domain');
+  }
   if(n.type==='shadowsocks'){if(!CIPHERS.has(f.method)||!f.password)error('unsupported cipher or credentials');}
   if(n.type==='vmess'||n.type==='vless'){uuid(f.password);if(n.type==='vless'&&f.method!=='none')error('unsupported VLESS method');if(n.type==='vmess'&&!['none','aes-128-gcm','chacha20-poly1305','chacha20-ietf-poly1305'].includes(f.method))error('unsupported VMess method');}
   if(['trojan','anytls'].includes(n.type)&&!f.password)error('missing password');
@@ -380,16 +478,34 @@ function fromNative(line) {
 function lines(input) {
   const nativePattern=/^(?:shadowsocks|vmess|vless|trojan|http|socks5|anytls)\s*=\s*(?:\[[^\]]+\]|[^,:]+):\d+(?:\s*,|\s*$)/i,uriPattern=/^[a-z][a-z0-9+.-]*:\/\//i;
   // Native fields and URI fragments may contain literal comment-like text.
-  // Validate directives in every source, but strip inline comments only from Proxy declarations.
-  const raw=input.replace(/^\uFEFF/,'').split(/\r?\n/).map(line=>{line=line.trim();const stripped=stripComment(line,error).trim();return !stripped?'':uriPattern.test(line)||nativePattern.test(line)?line:stripped;}),hasSections=raw.some(l=>/^\[[^\]]+\]$/.test(l));let section='',out=[];
+  // Their complete tails are data. Standalone directives and foreign Proxy
+  // declaration comments still pass through the executable-directive guard.
+  const raw=input.replace(/^\uFEFF/,'').split(/\r?\n/).map(line=>{line=line.trim();return uriPattern.test(line)||nativePattern.test(line)?line:stripComment(line,error).trim();}),hasSections=raw.some(l=>/^\[[^\]]+\]$/.test(l));let section='',out=[];
   for(const line of raw){if(!line)continue;const m=/^\[([^\]]+)\]$/.exec(line);if(m){section=m[1].toLowerCase();continue;}
     if(hasSections&&!['proxy','server_local'].includes(section))continue;
-    if(uriPattern.test(line))out.push(fromUri(line));
+    if(uriPattern.test(line)){const parsed=fromUri(line);out.push(...(Array.isArray(parsed)?parsed:[parsed]));}
     else if(section!=='proxy'&&nativePattern.test(line))out.push(fromNative(line));else out.push(fromProxy(line));
     if(out.length>2000)error('node limit exceeded');
   }return out;
 }
 export function createNodeParser(utils={}) {
+  function finishNodes(result,options) {
+    if(!result.length||result.length>2000)error('empty or oversized subscription');const names=new Set();
+    const output=result.map((n,i)=>{validate(n,i);if(names.has(n.fields.tag)&&!options.allowDuplicateNames)error('duplicate node name');names.add(n.fields.tag);return n.original||n.type+'='+(n.host.includes(':')?'['+n.host+']':n.host)+':'+n.port+', '+Object.keys(n.fields).map(k=>k+'='+n.fields[k]).join(', ');}).join('\n')+'\n';
+    // Publish metadata only after the complete subscription has validated.
+    if(options&&options.adaptations instanceof Set)for(const n of result)for(const key of n.adaptations||[])if(own(NATIVE_PREFERENCES,key)||key===REALITY_MLKEM_HINT||key==='tls-verification-domain')options.adaptations.add(key);
+    return output;
+  }
+  // Internal post-transformation boundary: canonical native rows have already
+  // passed source scanning. Recheck every field and final name without treating
+  // decoded credentials or names as fresh source comments or directives.
+  function validateNative(input,options={}) {
+    try {
+      if(typeof input!=='string'||input.length>4194304||/[\u0000\u2028\u2029]/.test(input))error('invalid native resource');
+      const rows=input.trim().split(/\r?\n/);if(!input.trim()||rows.length>2000)error('empty or oversized subscription');
+      return finishNodes(rows.map(line=>fromNative(line.trim())),{adaptations:options.adaptations});
+    }catch(e){if(e instanceof Error&&e.message.startsWith('Node conversion failed: '))throw e;error('invalid native resource');}
+  }
   function parseNodes(input,options={}) {
     try {
       let value=input;
@@ -408,14 +524,10 @@ export function createNodeParser(utils={}) {
         const serversEnvelope=object(value)&&source===value.servers;
         if(serversEnvelope&&own(value,'version')&&value.version!==1)error('unsupported SIP008 version');
         const sip008=serversEnvelope&&value.version===1;
-        for(const item of source){const singbox=object(value)&&source===value.outbounds;if(object(item)&&['selector','urltest','direct','block','dns'].includes(item.type)&&singbox)continue;result.push(sip008?fromSip008(item):typeof item==='string'?fromUri(item):singbox?fromSingbox(item):fromObject(item,object(value)&&source===value.proxies?'Clash node':'node object'));}
+        for(const item of source){const singbox=object(value)&&source===value.outbounds;if(object(item)&&['selector','urltest','direct','block','dns'].includes(item.type)&&singbox)continue;const parsed=sip008?fromSip008(item):typeof item==='string'?fromUri(item):singbox?fromSingbox(item):fromObject(item,object(value)&&source===value.proxies?'Clash node':'node object');result.push(...(Array.isArray(parsed)?parsed:[parsed]));if(result.length>2000)error('node limit exceeded');}
       }
-      if(!result.length||result.length>2000)error('empty or oversized subscription');const names=new Set();
-      const output=result.map((n,i)=>{validate(n,i);if(names.has(n.fields.tag))error('duplicate node name');names.add(n.fields.tag);return n.original||n.type+'='+(n.host.includes(':')?'['+n.host+']':n.host)+':'+n.port+', '+Object.keys(n.fields).map(k=>k+'='+n.fields[k]).join(', ');}).join('\n')+'\n';
-      // Publish metadata only after the complete subscription has validated.
-      if(options&&options.adaptations instanceof Set)for(const n of result)for(const key of n.adaptations||[])if(own(NATIVE_PREFERENCES,key)||key===REALITY_MLKEM_HINT)options.adaptations.add(key);
-      return output;
+      return finishNodes(result,options);
     }catch(e){if(e instanceof Error&&e.message.startsWith('Node conversion failed: '))throw e;error('invalid node resource');}
   }
-  return {parseNodes,decodeBase64Text,looksLikeEncodedSubscription};
+  return {parseNodes,validateNative,decodeBase64Text,looksLikeEncodedSubscription};
 }
