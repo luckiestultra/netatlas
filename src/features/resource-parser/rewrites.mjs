@@ -1,5 +1,8 @@
 import { createTextMatcher } from './options.mjs';
 import { stripComment } from './comments.mjs';
+import { parseRules } from './rules.mjs';
+import { createDomainAndCompiler } from './domain-and.mjs';
+import { extractRewriteInstallation } from './rewrite-installation.mjs';
 // Original NetAtlas conversion; scripts are referenced, never loaded/executed.
 // https://github.com/crossutility/Quantumult-X/blob/master/sample.conf
 // https://manual.nssurge.com/http/url-rewrite.html
@@ -44,6 +47,7 @@ function hostnames(value) {
   value = value.replace(/^%APPEND%\s*/i, '');
   if (!value || value.includes('%')) fail('unsupported MITM hostname operation');
   const names = value.split(',').map(name => name.trim());
+  if (names.at(-1) === '') names.pop(); // A single trailing comma is common in native lists.
   if (names.length > 5000 || names.some(name => !name || name.length > 253 || name.split('.').some(label => !label || label.length > 63 || !/^[a-z0-9*?_-]+$/i.test(label)))) fail('invalid MITM hostname');
   return names;
 }
@@ -52,13 +56,21 @@ function hostnames(value) {
 // quoted arguments may contain commas. Never use a naive comma split here.
 function fields(value) {
   const chunks = [];
-  let part = '', quote = '', escaped = false;
+  let part = '', quote = '', escaped = false, jsonQuote = false;
   let square = 0, round = 0, curly = 0;
-  for (const character of value) {
+  for (let index = 0; index < value.length; index++) {
+    const character = value[index];
     if (escaped) { part += character; escaped = false; continue; }
     if (character === '\\') { part += character; escaped = true; continue; }
-    if (quote) { part += character; if (character === quote) quote = ''; continue; }
-    if (character === '"' || character === "'") { quote = character; part += character; continue; }
+    if (quote) {
+      part += character;
+      // Common modules wrap JSON arguments in quotes without escaping every
+      // inner JSON quote. Only a complete field boundary ends that wrapper.
+      if (character === quote && (jsonQuote || /^\s*(?:$|,\s*[a-z][a-z0-9-]*\s*=)/i.test(value.slice(index + 1)))) { quote = ''; jsonQuote = false; }
+      continue;
+    }
+    if (character === '"' && curly > 0) { quote = character; jsonQuote = true; part += character; continue; }
+    if ((character === '"' || character === "'") && !square && !round && part.trimEnd().endsWith('=')) { quote = character; part += character; continue; }
     if (character === '[') square++;
     else if (character === ']') square--;
     else if (character === '(' && !square) round++;
@@ -87,12 +99,28 @@ function fields(value) {
 
 export function parseRewrites(text, options = {}, utils = {}) {
   if (typeof text !== 'string' || /[\x00\x0b\x0c]/.test(text)) fail('invalid resource');
+  text = extractRewriteInstallation(text) ?? text;
   if (options.scriptCompatibility !== undefined && options.scriptCompatibility !== 'qx') fail('unknown script compatibility declaration');
   let output = [];
   let hosts = [];
   let section = null;
   let compatibilityWarning = false;
+  let sourceScriptSettings = false;
+  let mixedFilter = false;
+  let urlRejectWarning = false;
+  let filterFinalSeen = false;
+  let pendingFilters = [];
+  const domainAndCompiler = createDomainAndCompiler();
   const emit = line => { if (output.length >= 20000) fail('output limit exceeded'); output.push(line); };
+  function flushFilters() {
+    if (!pendingFilters.length) return;
+    if (filterFinalSeen) fail('filter condition follows final');
+    const content = parseRules(pendingFilters.join('\n'), {}, { domainAndCompiler, allowEmpty: true });
+    if (/^final,/m.test(content)) filterFinalSeen = true;
+    if (content) for (const line of content.trimEnd().split('\n')) emit(line);
+    pendingFilters = [];
+    if (content) mixedFilter = true;
+  }
   function native(line) {
     const match = /^(\S+)(?:\s+(.+?))?\s+(url|url-and-header)\s+(\S+)(?:\s+(.+))?$/.exec(line);
     if (!match) fail('unsupported native rewrite');
@@ -113,7 +141,6 @@ export function parseRewrites(text, options = {}, utils = {}) {
     emit([expression, headers, mode, action, argument].filter(value => value !== undefined).join(' '));
   }
   function foreignScript(line) {
-    if (options.scriptCompatibility !== 'qx') fail('cross-host script needs an explicit QX compatibility declaration');
     let data;
     const loon = /^(http-request|http-response)\s+(\S+)\s+(.+)$/.exec(line);
     if (loon) {
@@ -127,13 +154,19 @@ export function parseRewrites(text, options = {}, utils = {}) {
       if (!surge) fail('unsupported script declaration');
       data = fields(surge[1]);
     }
-    const allowed = new Set(['type', 'pattern', 'requires-body', 'script-path', 'tag', 'enable']);
+    const allowed = new Set(['type', 'pattern', 'requires-body', 'script-path', 'tag', 'enable', 'argument', 'timeout', 'max-size', 'binary-body-mode', 'binary-mode']);
     if (Object.keys(data).some(key => !allowed.has(key))) fail('unsupported script option; preserving its semantics is not possible');
     if (!['http-request', 'http-response'].includes(data.type)) fail('unsupported script trigger');
     if (data.enable !== undefined && data.enable !== 'true') fail('disabled script cannot be emitted as active');
-    if (data['requires-body'] !== undefined && !['true', 'false'].includes(data['requires-body'])) fail('invalid requires-body option');
+    const boolean = value => value === 'true' || value === '1' ? true : value === 'false' || value === '0' ? false : null;
+    if (data['requires-body'] !== undefined && boolean(data['requires-body']) === null) fail('invalid requires-body option');
+    for (const key of ['binary-body-mode', 'binary-mode']) if (own(data, key) && boolean(data[key]) === null) fail('invalid binary body option');
+    if (own(data, 'max-size') && !/^(?:-1|0|[1-9][0-9]{0,9})$/.test(data['max-size'])) fail('invalid max-size option');
+    if (own(data, 'timeout') && !/^(?:[1-9][0-9]{0,5})(?:\.[0-9]{1,3})?$/.test(data.timeout)) fail('invalid timeout option');
+    if (['argument', 'timeout', 'max-size', 'binary-body-mode', 'binary-mode'].some(key => own(data, key))) sourceScriptSettings = true;
     const direction = data.type === 'http-request' ? 'request' : 'response';
-    const body = data['requires-body'] === 'true' ? 'body' : 'header';
+    const body = boolean(data['requires-body']) === true ? 'body' : 'header';
+    if (body === 'header' && ['binary-body-mode', 'binary-mode'].some(key => boolean(data[key]) === true)) fail('binary body mode needs requires-body');
     emit(`${pattern(data.pattern)} url script-${direction}-${body} ${httpsReference(data['script-path'])}`);
     compatibilityWarning = true;
   }
@@ -159,11 +192,26 @@ export function parseRewrites(text, options = {}, utils = {}) {
     if (!line) continue;
     if (/^[#;]/.test(line) || line.startsWith('//')) { stripComment(line, fail); continue; }
     if (/^\[.*\]$/.test(line)) {
+      flushFilters();
       section = line.slice(1, -1).trim().toLowerCase();
-      if (!['url rewrite', 'rewrite', 'rewrite_local', 'script', 'mitm'].includes(section)) fail('unsupported executable or configuration section');
+      if (!['url rewrite', 'rewrite', 'rewrite_local', 'script', 'mitm', 'rule', 'filter_local'].includes(section)) fail('unsupported executable or configuration section');
       continue;
     }
     if (section !== null && section !== 'rewrite_local' || section === null && !/\surl(?:-and-header)?\s/.test(line)) line = stripComment(line, fail);
+    if (!line) continue;
+    if (/^URL-REGEX\s*,/i.test(line) && ['rule', 'filter_local', null].includes(section)) {
+      flushFilters();
+      const match = /^URL-REGEX\s*,\s*(.+)\s*,\s*REJECT\s*$/i.exec(line);
+      if (!match) fail('URL-REGEX routing policy cannot be represented as a rewrite');
+      emit(pattern(match[1].trim()) + ' url reject-200');
+      urlRejectWarning = true;
+      continue;
+    }
+    if (section === 'rule' || section === 'filter_local' || section === null && /^(?:HOST|DOMAIN|IP|GEOIP|USER-AGENT|AND|FINAL|MATCH)[A-Z0-9_-]*\s*,/i.test(line)) {
+      pendingFilters.push(line);
+      continue;
+    }
+    flushFilters();
     if (/^hostname\s*=/i.test(line)) {
       if (section !== null && section !== 'mitm' && section !== 'rewrite_local') fail('hostname in wrong section');
       hosts.push(...hostnames(line.slice(line.indexOf('=') + 1).trim()));
@@ -175,6 +223,7 @@ export function parseRewrites(text, options = {}, utils = {}) {
     else if (section === null && /^\S+\s+(?:302|307|reject(?:-200|-img|-dict|-array)?)(?:\s|$)/.test(line)) foreignRewrite(line, 'rewrite');
     else native(line);
   }
+  flushFilters();
   const include = options.in ?? [], exclude = options.out ?? [];
   const keep = createTextMatcher(include), remove = createTextMatcher(exclude);
   const ruleCount = output.length;
@@ -186,6 +235,14 @@ export function parseRewrites(text, options = {}, utils = {}) {
   if (!output.length && !hosts.length) fail('empty resource');
   if (hosts.length) emit('hostname = ' + [...new Set(hosts)].join(', '));
   if (compatibilityWarning && output.length >= 20000) fail('output limit exceeded');
-  if (compatibilityWarning) output.unshift('# NetAtlas: user declares referenced scripts QX compatible; script APIs are not translated.');
+  const warnings = [];
+  if (compatibilityWarning) warnings.push(options.scriptCompatibility === 'qx'
+    ? '# NetAtlas: user declares referenced scripts QX compatible; script APIs are not translated.'
+    : '# NetAtlas: external script declarations converted; script APIs are not translated.');
+  if (sourceScriptSettings) warnings.push('# NetAtlas: source argument/max-size/timeout settings are not applied; binary scripts must use QX bodyBytes.');
+  if (mixedFilter) warnings.push('# NetAtlas: mixed rewrite/filter snippets require Quantumult X 1.5.2 build 844 or later.');
+  if (urlRejectWarning) warnings.push('# NetAtlas: URL-REGEX REJECT becomes reject-200 HTTP response blocking; connection-close semantics are not preserved.');
+  if (warnings.length + output.length > 20000) fail('output limit exceeded');
+  output.unshift(...warnings);
   return output.join('\n') + '\n';
 }

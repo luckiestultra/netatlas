@@ -29,7 +29,7 @@ export function installParserHelper(parser) {
         { type: 'text', key: 'rename', label: '字面替换', description: '旧名@新名，用 + 连接；前缀@、@后缀、字段☠️ 也可用。字面 @/+ 编码为 %40/%2B；也接受 JSON 配对列表。' },
         select('domain-mode', '纯域名匹配方式', ['exact', 'suffix']),
         { type: 'switch', key: 'allow-resolve', label: '允许丢弃 no-resolve', description: '仅显式允许时转换；可能增加 DNS 查询。', onValue: '1', offValue: '0' },
-        { type: 'text', key: 'script-compat', label: '脚本兼容声明', description: '仅在已确认脚本支持 QX 时填写 qx。' },
+        { type: 'text', key: 'script-compat', label: '脚本兼容声明', description: '可选填写 qx；省略也会转换声明，脚本 API 不会自动翻译。' },
       ] },
     ] };
   };

@@ -13,7 +13,7 @@ const own = (value,key) => Object.prototype.hasOwnProperty.call(value,key);
 const nodeParser = createNodeParser({parseYaml});
 
 function isRewriteLine(value) {
-  return /^\[(?:url rewrite|rewrite|rewrite_local|script|mitm)\]$/i.test(value) || /\surl(?:-and-header)?\s/.test(value) || /^hostname\s*=/i.test(value) || /^\S+\s+(?:302|307|reject(?:-\w+)?)(?:\s|$)/.test(value) || /^\S+\s+\S+\s+(?:302|307)$/.test(value);
+  return /^\[(?:url rewrite|rewrite|rewrite_local|script|mitm)\]$/i.test(value) || /^URL-REGEX\s*,/i.test(value) || /\surl(?:-and-header)?\s/.test(value) || /^hostname\s*=/i.test(value) || /^\S+\s+(?:302|307|reject(?:-\w+)?)(?:\s|$)/.test(value) || /^\S+\s+\S+\s+(?:302|307)$/.test(value);
 }
 
 function detect(text, data) {
@@ -37,6 +37,8 @@ function detect(text, data) {
       else if (/^\[(?:rule|filter_local)\]$/i.test(value) || /^(?:DOMAIN|HOST|IP|GEOIP|USER-AGENT|FINAL|MATCH|PROCESS|AND|OR|NOT|DEST-PORT|DST-PORT)[A-Z0-9_-]*\s*,/i.test(value)) kinds.add('filter');
     }
   }
+  // Since QX 1.5.2 build 844 a rewrite snippet may contain native filters.
+  if (!data && kinds.size === 2 && kinds.has('filter') && kinds.has('rewrite')) return 'rewrite';
   if (kinds.size !== 1) fail(kinds.size ? 'mixed resource; select type explicitly' : 'unknown resource; select type and format explicitly');
   return [...kinds][0];
 }

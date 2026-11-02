@@ -1,0 +1,42 @@
+{
+  "version": 1,
+  "scope": "Public original-input regression snapshots; no third-party script bodies are redistributed by this registry.",
+  "minimumMixedSnippetBuild": 844,
+  "cases": [
+    {
+      "id": "youtube-enhance-module",
+      "url": "https://raw.githubusercontent.com/Maasea/sgmodule/refs/heads/master/YouTube.Enhance.sgmodule",
+      "sha256": "9c7464733c54417da36aff09482d1287cee5ecd531ad856842912704b5b3f64d",
+      "rewriteRows": 3,
+      "filterRows": 0,
+      "hostnames": 2
+    },
+    {
+      "id": "dragonread-loon-plugin",
+      "url": "https://raw.githubusercontent.com/Moli-X/Tool/176029a3ed5ba84447b9c36af040c225eb170e82/Loon/Plugin/Kelee/DragonRead_remove_ads.plugin",
+      "sha256": "1a459ad7165273fcbcb17a7b9b626b9136b571ca65c97cfe58dace7ec193bbcc",
+      "rewriteRows": 1,
+      "filterRows": 65,
+      "hostnames": 0,
+      "sourceDomainConjunctions": 21,
+      "compiledConjunctionRows": 39,
+      "ordinaryFilterRows": 26
+    },
+    {
+      "id": "mgtv-js-installation",
+      "url": "https://raw.githubusercontent.com/WeiGiegie/666/main/mgtv.js",
+      "sha256": "82ba32455cb20e5ea943c4cc8c7f5d4a09137a21eb99aed0408203dc09047ada",
+      "rewriteRows": 3,
+      "filterRows": 0,
+      "hostnames": 11
+    },
+    {
+      "id": "zhihu-js-installation",
+      "url": "https://raw.githubusercontent.com/gjwj666/qx/main/zhbd.js",
+      "sha256": "18802155a8c873b5ca5a728a51fc348c265a3e3c068bcab9cd443aed833a40c8",
+      "rewriteRows": 5,
+      "filterRows": 0,
+      "hostnames": 34
+    }
+  ]
+}

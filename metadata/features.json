@@ -788,7 +788,8 @@
       },
       "validation": {
         "unit": "Executed QX node/rule/rewrite conversion, strict option and generated-bundle VM/helper tests; Loon fixed URL/hash/GET/syntax/source-contract verification.",
-        "nativeApp": "not-run"
+        "nativeApp": "not-run",
+        "publicUpstreams": "npm run test:parser-upstreams: complete original YouTube/DragonRead/MGTV/Zhihu inputs with original URLs, SHA-256 snapshots, generated converter and one-completion/no-I/O contract; no downloaded business JavaScript execution."
       },
       "sources": [
         "https://github.com/crossutility/Quantumult-X/blob/master/resource-parser.js",

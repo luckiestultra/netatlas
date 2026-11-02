@@ -6,7 +6,7 @@
     "vendoredJavaScript": true,
     "independentQxImplementation": true,
     "scope": "Original MIT NetAtlas QX implementation bundles the ISC-licensed yaml 2.9.1 browser dependency. Loon remains an external AGPL release recipe; no KOP-XIAO parser source is copied.",
-    "verification": "QX conversion and helper tests execute the generated browser bundle in a restricted VM. Loon retains verified upstream GET bytes and non-executing syntax review. Native application imports are not run."
+    "verification": "QX conversion/helper tests execute the generated browser bundle in a restricted VM. A separate four-public-source gate checks original URLs and complete source bytes without evaluating downloaded business JavaScript. Loon retains verified upstream GET bytes and non-executing syntax review. Native application imports are not run."
   },
   "clients": {
     "quantumultX": {
@@ -90,6 +90,22 @@
           },
           "nodes": 2000,
           "structuredDocuments": "Existing YAML/JSON depth, value-node and alias budgets remain unchanged; large plain-rule allowance does not apply to structured or encoded input."
+        },
+        "rewriteResources": {
+          "mixedSnippetMinimumBuild": 844,
+          "mixedSnippetSource": "https://t.me/QuanXNews/294",
+          "installationComments": "Statically extracts explicit rewrite_local/mitm sections from leading JavaScript installation comments only. Business JavaScript is never evaluated; task_local examples are not installed.",
+          "domainConjunctions": {
+            "conditions": "Two to four positive flat DOMAIN/HOST exact, suffix or keyword predicates; exact glob intersection, not OR or source-row deletion.",
+            "limits": {
+              "productStates": 65536,
+              "intermediateCharacters": 2097152,
+              "patternsPerState": 512
+            },
+            "budgetScope": "One whole resource, including all mixed rewrite/filter chunks. Other logical/IP/port conjunctions fail atomically."
+          },
+          "foreignScriptDeclarations": "Common Surge/Loon HTTP declarations convert by default without an added fragment option; referenced JavaScript APIs are not translated. Source argument/max-size/timeout settings are not applied; binary scripts must implement QX bodyBytes. Fixed output comments expose these differences without echoing argument values.",
+          "urlRegexReject": "URL-REGEX REJECT converts to QX reject-200 response blocking with an explicit comment that connection-close semantics differ. Other URL routing policies fail."
         }
       },
       "permissions": {
@@ -126,10 +142,11 @@
         "https://github.com/MetaCubeX/mihomo/blob/v1.19.33/adapter/outbound/vless.go",
         "https://github.com/MHSanaei/3x-ui/blob/1a5100ea166361cc2a01d8f245d616fb18baa0dd/internal/sub/service.go#L1243",
         "https://github.com/MHSanaei/3x-ui/pull/6712",
-        "https://github.com/crossutility/Quantumult-X/blob/master/ios26-safari-fingerprint.txt"
+        "https://github.com/crossutility/Quantumult-X/blob/master/ios26-safari-fingerprint.txt",
+        "https://t.me/QuanXNews/294"
       ],
-      "behavior": "Atomic offline conversion of supported node subscriptions, rules and rewrites to native QX text. Preserves SS password encoding layers, sing-box UoT defaults and verified Clash WSS Host/SNI/ALPN semantics; rejects executable directives and untranslatable built-ins. Bounded keyword filtering/renaming, common sort/type aliases, info=0/1 quota notices, emoji=0/1/2/-1 and official parser-helper UI are implemented. Only declared fp/spx/client-fingerprint client preferences use documented native QX defaults with fixed notices. A true Reality ML-KEM capability hint is satisfied by native QX support with a fixed notice; false/incompatible hints fail. Other unknown options remain errors; not a complete KOP option replacement. Referenced HTTPS scripts are emitted only, never fetched or executed.",
-      "limitations": "Except the declared client-preference adaptations and native Reality true-capability handling, unsupported protocols, transports, fields, unregistered domain regex, conjunctive headless conditions, ambiguous domain formats, local scripts and certificate settings fail the complete resource. Clash VMess/VLESS WS+Reality cannot activate source-ignored Reality settings. GEOIP labels need matching categories in the selected database. reg/regout, sfilter/srename and connection-override options are not implemented. Explicit allow-resolve changes DNS semantics; script-compat=qx declares user-verified API compatibility and does not translate JavaScript. Native QX import/device execution not run.",
+      "behavior": "Atomic offline conversion of supported node subscriptions, rules and rewrites to native QX text. Preserves SS password encoding layers, sing-box UoT defaults and verified Clash WSS Host/SNI/ALPN semantics. Supports leading JavaScript installation comments, modern mixed rewrite/filter resources, and exact bounded positive-domain AND intersections. Common Surge/Loon script declarations convert with fixed comments for unmapped options and untranslated script APIs. Bounded keyword filtering/renaming, common sort/type aliases, info=0/1 quota notices, emoji=0/1/2/-1 and official parser-helper UI are implemented. Declared fp/spx/client-fingerprint client preferences and true Reality ML-KEM capability hints use documented native QX behavior with fixed notices. Other unknown options remain errors; not a complete KOP option replacement. Referenced HTTPS scripts are emitted only, never fetched or executed.",
+      "limitations": "Unsupported protocols, transports, fields, unregistered domain regex, conjunctive headless conditions, logical predicates outside the bounded positive-domain AND subset, ambiguous domain formats, local scripts and certificate settings fail the complete resource. Declared client-preference/native Reality adaptations and documented rewrite declaration/URL-REGEX REJECT conversions have explicit differences. Clash VMess/VLESS WS+Reality cannot activate source-ignored Reality settings. GEOIP labels need matching categories in the selected database. reg/regout, sfilter/srename and connection-override options are not implemented. Explicit allow-resolve changes DNS semantics; optional script-compat=qx declares user-verified API compatibility but does not translate JavaScript or restore source arguments. Native QX import/device execution and referenced business-script behavior are not run.",
       "artifacts": [
         "scripts/resource-parser.js",
         "fragments/resource-parser.conf"
@@ -142,7 +159,7 @@
       "defaultEnabled": true,
       "externalOnly": false,
       "nativeApp": "not-run",
-      "verification": "Executed conversion/helper/VM tests and static browser bundle checks; not native device execution."
+      "verification": "Executed conversion/helper/VM tests, independent source-predicate comparisons and static browser bundle checks. npm run test:parser-upstreams separately fetches four full original public resources and replays only the generated converter with original URLs and SHA-256 snapshot checks; native device and business scripts are not executed."
     },
     "loon": {
       "client": "loon",

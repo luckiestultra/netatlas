@@ -89,13 +89,18 @@ test('native QX rewrites and HTTPS script references pass without executing or f
   for (const url of ['script.js', 'file:///private/secret.js', 'http://example.com/script.js', 'https://user:secret@example.com/a.js']) assert.throws(() => parseRewrites('^https://a.example/ url script-response-body ' + url));
 });
 
-test('cross-host scripts require explicit API compatibility and reject unmappable fields', () => {
+test('cross-host script declarations convert by default with visible API and source-setting limits', () => {
   const source = '[Script]\nname = type=http-response, pattern=^https://example.com/, requires-body=true, script-path=https://example.com/a.js';
-  assert.throws(() => parseRewrites(source), /compatib/i);
+  assert.match(parseRewrites(source), /external script declarations converted; script APIs are not translated/);
   assert.match(parseRewrites(source, { scriptCompatibility: 'qx' }), /^# .*QX/m);
   assert.match(parseRewrites(source, { scriptCompatibility: 'qx' }), /url script-response-body https:\/\/example.com\/a.js/);
   assert.match(parseRewrites('[Script]\nhttp-request ^https://example.com/ script-path=https://example.com/a.js, requires-body=false, tag=Name', { scriptCompatibility: 'qx' }), /url script-request-header/);
-  for (const field of ['timeout=20', 'argument=secret', 'max-size=100', 'binary-body-mode=true', 'enable=false']) assert.throws(() => parseRewrites(source + ', ' + field, { scriptCompatibility: 'qx' }));
+  for (const field of ['timeout=20', 'argument=secret', 'max-size=100', 'binary-body-mode=true']) {
+    const converted = parseRewrites(source + ', ' + field, { scriptCompatibility: 'qx' });
+    assert.match(converted, /source argument\/max-size\/timeout settings are not applied/);
+    assert.doesNotMatch(converted, /secret/);
+  }
+  for (const field of ['enable=false', 'unknown=secret', 'requires-body=maybe', 'binary-body-mode=maybe', 'max-size=NaN', 'timeout=Infinity']) assert.throws(() => parseRewrites(source + ', ' + field, { scriptCompatibility: 'qx' }));
   assert.throws(() => parseRewrites('[Script]\nhttp-request ^https://example.com/ script-path=https://example.com/a.js, type=http-response', { scriptCompatibility: 'qx' }));
 });
 

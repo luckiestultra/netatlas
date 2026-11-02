@@ -1,5 +1,6 @@
 import { createTextMatcher } from './options.mjs';
 import { stripComment } from './comments.mjs';
+import { createDomainAndCompiler, parseDomainAnd } from './domain-and.mjs';
 // Original NetAtlas converter. Only documented QX conditions are emitted.
 // QX: https://github.com/crossutility/Quantumult-X/blob/master/sample.conf
 // Headless OR/AND semantics: https://sing-box.sagernet.org/configuration/rule-set/headless-rule/
@@ -94,6 +95,7 @@ export function parseRules(text, options = {}, utils = {}) {
   let sourceRow = null, outputSize = 0;
   let finalSeen = false;
   let resolveWarning = false;
+  const domainAnd = typeof utils.domainAndCompiler === 'function' ? utils.domainAndCompiler : createDomainAndCompiler();
   const emit = line => {
     outputSize += line.length + 1;
     if (output.length >= lineLimit || outputSize > textLimit) fail('output limit exceeded');
@@ -145,6 +147,16 @@ export function parseRules(text, options = {}, utils = {}) {
   }
   function classical(line) {
     sourceRow = line;
+    if (/^AND\s*,/i.test(line)) {
+      if (finalSeen) fail('condition follows final');
+      const parsed = parseDomainAnd(line);
+      if (replacement === null) {
+        policy(parsed.policy);
+        if (/^(?:REJECT-(?:TINYGIF|DROP|NO-DROP)|CELLULAR(?:-ONLY)?|HYBRID|NO-HYBRID)$/i.test(parsed.policy)) fail('unsupported built-in policy; choose an explicit target policy');
+      }
+      for (const value of domainAnd(parsed.conditions)) add('host-wildcard', value, parsed.policy);
+      return;
+    }
     const parts = line.split(',').map(part => part.trim());
     const type = parts.shift();
     if (['FINAL', 'MATCH'].includes(type.toUpperCase())) {
@@ -239,7 +251,10 @@ export function parseRules(text, options = {}, utils = {}) {
     }
   }
   const selected = output.filter((line, index) => (!include.length || keep(line)) && !excluded[index]);
-  if (!selected.length) fail('empty resource after filtering');
+  if (!selected.length) {
+    if (utils.allowEmpty === true && output.length === 0) return '';
+    fail('empty resource after filtering');
+  }
   const warnings = [];
   if (replacement !== null) warnings.push('# NetAtlas: explicit policy override replaces every source policy.');
   if (resolveWarning) warnings.push('# NetAtlas: explicit allow-resolve removes no-resolve; DNS lookup behavior changes.');

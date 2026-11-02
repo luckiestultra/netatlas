@@ -10,7 +10,8 @@ export function stripComment(line, fail) {
     if (quote) { if (char === quote) quote = ''; continue; }
     if ((char === '"' || char === "'") && (index === 0 || /[\s,=]/.test(line[index - 1]))) { quote = char; continue; }
     if ((index === 0 || /\s/.test(line[index - 1])) && (char === '#' || char === ';' || line.slice(index, index + 2) === '//')) {
-      if (directive.test(line.slice(index))) fail('unsupported executable directive; its conditions cannot be preserved');
+      const tail = line.slice(index);
+      if (directive.test(tail) && !/^(?:#!|\/\/!)system\s*=\s*$/i.test(tail)) fail('unsupported executable directive; its conditions cannot be preserved');
       return line.slice(0, index).trimEnd();
     }
   }

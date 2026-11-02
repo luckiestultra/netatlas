@@ -1,6 +1,6 @@
 # QX 资源解析器逐项对照与差异
 
-基线 NetAtlas `fd60d6b81a9969fb81bf0c3134880de294d9f169`；KOP 公开源码 SHA-256 `1315ad57a31a2431a9fdf3d9fa0c892f7e91b9fa74f1c81bdaac04d521817b67`。2026-11-02 对照41类功能，使用53组同输入 Apple JavaScriptCore 案例定位差异；大型公开文件和本轮最终脚本另作完整复放。大资源限额、分流/重写/hostname字面筛选和HTTP正则外层引号的问题已在本轮修复。下列源码行号以该基线/公开快照为准，工作树改动可能移动行号。
+历史对照基线为 NetAtlas `fd60d6b81a9969fb81bf0c3134880de294d9f169`；KOP 公开源码 SHA-256 为 `1315ad57a31a2431a9fdf3d9fa0c892f7e91b9fa74f1c81bdaac04d521817b67`。2026-11-02 的41类功能、53组同输入 Apple JavaScriptCore 案例用于定位差异；下表已更新随后完成的JS安装注释、混合分流/重写与HTTP脚本声明转换。大资源限额、字面筛选和HTTP正则外层引号修复仍保留。旧源码行号只指历史基线/公开快照；新增行为以所列测试和当前源码为准。
 
 **结论：目前是覆盖常用场景的独立实现，不能称为 KOP 完整替代。** 正常参数仍有拒绝项和静默不同项；有意拒绝的可执行脚本、证书/宿主行为单独列出，不按默认必须支持计。节点对照只使用合成地址/凭据；规则另用用户给出的公开原文。本轮不请求私人订阅，也不操作本地QX或系统代理。
 
@@ -30,19 +30,22 @@
 | 规则 | 大型antiAD文本配额与out=普通域名 | 旧20k/2Mi限制会拒绝；本轮已改为纯文本8Mi/250k | P1 本轮已修 | core.mjs:MAX_TEXT/convertResource; rules.mjs:MAX_LINES | KOP:Rule_Handle2335-2427无同等20k限制；真实公开原文已在隔离引擎复放；不能用缩小样本冒充完整 |
 | 规则 | 裸域名/IP/CIDR混合列表与Clash域名payload | KOP启发式默认suffix；我方要求显式domain-set/domain-mode，混合裸IP不直接识别 | P2 不同输入约定 | rules.mjs:domainLine,clash/headless branches | KOP:1218-1225,2506-2567；动态rules-bare-list；直接复刻suffix推断会改变语义，必须区分格式而非默认扩大匹配 |
 | 规则 | GEOIP/ASN、基础host/IP/UA/classical、DOMAIN-SET | 主要支持并校验 | 已实现 | rules.mjs:7-12,90-136 | KOP:Rule_Policy2430-2503；数据库类别实际取决于所用MMDB；不能算完整任意条件转换 |
+| 规则 | 有证明的域名条件AND合取 | 已支持明确域名条件子集的精确交集编译；其他逻辑谓词仍拒绝 | P1 本轮已修 | domain-and.mjs; resource-parser-domain-and.test.mjs | DragonRead真实21条AND精确编为39条host-wildcard；不展开为更宽后缀，不推广到端口/IP等任意AND |
 | 规则 | 简单任意DOMAIN-REGEX | KOP转换有限简单语法，我方仅登记的确切表达式 | P2 正则子集差异 | rules.mjs:61-76 | KOP:2454-2465；动态rules-simple-domain-regex；不要求复刻复杂regex到glob的近似，应先补有证明的锚定字面子集 |
 | 规则 | {# note #}行首说明 | KOP按宿主版本保留/剥除，我方失败 | P2 正常元数据缺口 | core.mjs:structured detection; rules.mjs:classical | KOP:1119-1142,1169,2431-2438；动态rules-notes；946时KOP剥注释后规则可用 |
 | 规则 | 禁用行 / hide=0 | KOP能输出或忽略禁用行，我方拒绝负号条件/hash hide | P2 常用预览/迁移缺口 | rules.mjs:classical; options.mjs:41-46 | KOP:2387,2409,2415；动态rules-hide/rules-disabled-native；必须保持禁用，不得恢复活动规则 |
 | 规则 | pset / replace / fcr / via / relay | KOP支持按条件改策略/文本/网络标记或节点转规则，我方hash拒绝 | P2 正常扩展未实现 | options.mjs:41-46; rules.mjs:extras handling | KOP:1518-1528,2416-2422,2572-2623；动态rules-pset/replace/network-flags；连接/接口改变必须显式使用，不能自动激活 |
 | 规则 | no-resolve/pre-matching/extended-matching及特殊REJECT策略 | KOP移除或折为reject；我方默认拒绝，allow-resolve/policy可显式声明变义 | 有意语义边界 | rules.mjs:95-106 | KOP:2446-2451；动态rules-no-resolve；不计为默认必须忽略的字段 |
 | 重写 | QX基础重写/302/307/四种静态reject体/HTTP脚本引用/jsonjq原生 | 主要支持 | 已实现子集 | rewrites.mjs:88-147 | KOP:2092-2203,3602-3707；KOP L2102/L3668-3669常删除行首^http的锚点，本实现保留来源锚点与内部pattern，不宣称转换后正则逐字相同；不能据此宣称整个Surge/Loon模块兼容 |
+| 重写 | JS正文前明确QX安装注释 | 静态提取前导注释中的rewrite_local/mitm，保留原声明与顺序；容忍单个hostname尾逗号 | P1 本轮已修 | rewrite-installation.mjs; resource-parser-rewrite-installation.test.mjs | 不执行JS、不扫描正文字符串/template；明确task/debug区不进入重写；未知安装字段、段、证书设置或坏行仍失败。业务脚本效果与hostname范围不由解析成功背书 |
 | 重写 | 成对引号包裹HTTP URL pattern | 旧实现保留引号；本轮去外层包装引号，保留内部转义与非HTTP字面词 | P2 本轮已修 | rewrites.mjs:pattern/native/foreignRewrite | KOP:3545-3570,3639,3699；动态rewrite-quoted-pattern及新增回归；不复制KOP对http_status等非scheme词的过宽处理；未作QX原生流量命中测试 |
 | 重写 | Loon JSON-JQ / JSON del / JSON replace DSL | KOP转原生jsonjq；我方仅收原生jsonjq动作 | P2 常用转换缺口 | rewrites.mjs:102-104,132-147 | KOP:1771-2090,3644-3652；动态rewrite-jq；这是数据变换DSL，不等于来源JS eval |
 | 重写 | Surge Map Local的简单内联静态正文 | KOP可转{}、[]、空文本/tiny-gif等；我方拒绝整个Map Local section | P2 常用转换缺口 | rewrites.mjs:153-155 | KOP:1640-1704,3635-3642；动态rewrite-map-local，{}→reject-dict；只应补可证明保留的静态子集 |
-| 重写 | 重写资源混合原生分流 | KOP844+可混合；我方只接受rewrite而拒绝host行 | P2 常用模块差异 | core.mjs:detect; rewrites.mjs:149-168 | KOP:653,3623-3626,3673-3675；动态rewrite-mixed-filter；需有宿主版本支持依据和明确资源类型 |
+| 重写 | 重写资源混合原生分流 | 已支持原生filter与rewrite混合，保持条目顺序和各自策略 | P1 本轮已修 | core.mjs:detect; rewrites.mjs:parseRewrites; resource-parser-mixed-modules.test.mjs | 宿主最低Quantumult X 1.5.2 build 844，见[官方发布记录](https://t.me/QuanXNews/294)；不是任意逻辑条件都可转；转换结果固定提示最低版本 |
 | 重写 | echo-response本地Data文件 | KOP有条件保留本地文件引用；我方拒绝该动作 | P2/P3 显式依赖边界 | rewrites.mjs:88-104 | KOP:3691-3697；动态rewrite-native-echo-local；不应把远程URL或内联正文错当本地文件，也不能自动部署文件 |
-| 重写 | header-replace/URL-REGEX→rewrite/dst | KOP有专门转换，我方未覆盖相同DSL/hash | P2 待逐型验证 | rewrites.mjs:132-147; options.mjs:41-46 | KOP:1722-1757,2148-2165；首个裸header样例KOP原样返回，不能算验证转换正确；带section需另验 |
-| 重写 | 跨宿主脚本API、cron、CA、timeout/argument/binary-body/max-size | KOP可映射/忽略部分；我方声明兼容且仅限可表达字段，否则拒绝 | 有意安全/语义边界 | rewrites.mjs:107-130,153-163 | KOP:2119-2185,3689；动态rewrite-script-simple/qx-declared；不把执行源代码或私钥导入算默认必须支持 |
+| 重写 | header-replace / URL-REGEX / dst | URL-REGEX REJECT→reject-200已实现并披露变义；其他policy、header DSL与dst/hash仍未覆盖 | 已实现子集 / P2差异 | rewrites.mjs:parseRewrites/foreignRewrite; options.mjs | REJECT从connection-close变成HTTP响应阻断，固定comment说明；KOP:1722-1757,2148-2165。不能把这一项扩写成任意URL路由策略或header转换已支持 |
+| 重写 | Surge/Loon HTTP脚本声明与requires-body | 默认转换http-request/http-response，无需script-compat参数；requires-body支持true/false及1/0 | P1 本轮已修 | rewrites.mjs:foreignScript; resource-parser-mixed-modules.test.mjs | 只转换触发声明，不翻译JS API；输出固定comment说明。argument/max-size/timeout校验后不应用，binary脚本必须使用QX bodyBytes；不能把可返回content称为同功能运行验证 |
+| 执行边界 | 源脚本API、自定义参数、cron与CA | 不执行来源JS、不导入任务或证书；未知或不支持的条件/字段仍原子拒绝 | 有意边界 | rewrites.mjs:foreignScript/parseRewrites; rewrite-installation.mjs | script-compat=qx仍可记录用户声明但不是默认转换前提；固定comment披露未应用参数与API差异，未合并的适配或宿主行为不会自动带入 |
 | 宿主 | helper UI与类型aliases、local首行参数 | 我方支持规范参数子集；未知项保留但转换会报错 | 已实现子集 | helper.mjs:1-34; core.mjs:53-64; options.mjs:59-69 | KOP:115-510,561-565,1196-1217；完整KOP schema字段不等于我方已实现；不能只有UI选项没有运行语义 |
 | 宿主 | UA=1重试、扫码订阅引导、profile=111批量导入 | KOP支持host retry/URL Scheme通知；我方仅content/error | P2/P3 可选host功能 | core.mjs:completeResource; metadata/resource-parsers.json | KOP:535-552,811-832,948-977,1145-1164；动态node-user-agent-retry返回retry而非自行网络；此功能额外宿主行为需明确实现范围 |
 | 宿主 | cnt/dbg/ntf/flow/b64等诊断及返回格式选项 | KOP有多个提示/返回info选项；我方受控本地用量通知、纯native文本返回 | P3 不同接口 | options.mjs:41-46; subscription-info.mjs:3-44 | KOP:603-649,1030-1106；不应回显真实订阅、节点凭据或来源原文来追求所有debug功能 |
@@ -56,6 +59,8 @@
 
 若曾依照旧NetAtlas说明把分流或hostname筛选的域名点号写成 `ads\.example`，应改回字面 `ads.example`；节点名称筛选中的 `\.` 仍用于字面点。本轮不增加任何模式开关。
 
+当前仍未建立KOP整份解析器主代码的适用再发布许可；其中MIT/BSD版权头只能覆盖相应内嵌库，不能给主实现补授权。本次没有复制、换名或封装KOP主源码。参考公开接口行为并补齐常用输入，不等于已经移植其完整引擎；上表节点格式、参数与命名等未实现矩阵继续保留。
+
 ## 本轮真实公开资源
 
 截图原文为 [anti-ad-quanx.txt](https://github.com/privacy-protection-tools/anti-AD/blob/86b500b98c7a5f982e7da9ce13aa1bb0ed5b73bc/anti-ad-quanx.txt)，SHA-256 `a24d2a010cc6d6e777ce4caef6f97bd01b593adc2fe051b1b28a011c9f4b4be9`：3,868,444个ASCII字节，101,518条规则（另4行注释），`VER=20261101054604`。
@@ -65,6 +70,27 @@ https://raw.githubusercontent.com/privacy-protection-tools/anti-AD/master/anti-a
 ```
 
 旧KOP完整原文输出101,515条活动规则，仅删除三个指定域名，保留 `wxsnsad.tc.qq.com`、`wxsnsdy.tc.qq.com`、`wxsnsdy.video.qq.com`。旧NetAtlas先因2Mi/20k限额拒绝；10条缩样又复现6条近似误删。最终公开脚本的同输入逐行/顺序复核及全套检查记录见[验证记录](validation.md)。不会使用实际私人订阅作为公共夹具，也没有操作用户本地QX。
+
+## 四个原链接的完整输入回归
+
+保留下面四个原URL，不先替换成手工精简的片段。登记只保存公开URL、输入SHA-256及输出计数，不vendor未建立再发布许可的JS正文；完整未经改写的来源只在真实HTTP验收时作为输入文本使用。回归合同见[来源清单](../metadata/resource-parser-upstreams.json)。
+
+| 原始公开来源 | 完整输入的原生输出合同 | 明确边界 |
+| --- | --- | --- |
+| [YouTube.Enhance.sgmodule](https://raw.githubusercontent.com/Maasea/sgmodule/refs/heads/master/YouTube.Enhance.sgmodule) | 3条HTTP脚本rewrite、2个hostname | 原JS URL保留；argument/max-size/timeout不应用及binary/QX bodyBytes要求由固定comment披露，未翻译脚本API |
+| [DragonRead_remove_ads.plugin](https://raw.githubusercontent.com/Moli-X/Tool/176029a3ed5ba84447b9c36af040c225eb170e82/Loon/Plugin/Kelee/DragonRead_remove_ads.plugin) | 21条域名AND精确编为39条wildcard，加26条原filter，共65条filter；另1条URL rewrite | URL-REGEX REJECT转为reject-200并固定说明HTTP响应阻断与connection-close不同；不宣称这一项语义等价 |
+| [mgtv.js](https://raw.githubusercontent.com/WeiGiegie/666/main/mgtv.js) | 安装注释中3条rewrite、11个唯一hostname | 只读取明确安装声明，JS正文不执行；原有宽hostname及业务行为不替用户背书 |
+| [zhbd.js](https://raw.githubusercontent.com/gjwj666/qx/main/zhbd.js) | 安装注释中5条rewrite、34个唯一hostname | 保留声明顺序、脚本URL与原mask，不执行正文或擅自收窄MITM范围 |
+
+对最终发布成品执行：
+
+```sh
+npm run test:parser-upstreams
+```
+
+[验收工具](../tools/check-resource-parser-upstreams.mjs)从四个原URL真实GET完整输入，核对固定SHA-256，再运行磁盘上的`clients/quantumultX/scripts/resource-parser.js`成品；不是仅测试源码函数或缩小夹具。隔离环境禁止网络、存储和来源JS执行，检查只完成一次、最终求值对象与完成对象相同，以及原生输出与计数。来源hash变化、HTTP失败或旧成品不能满足合同都会失败，应审查来源/构建后重跑，不把失败写成已通过。
+
+混合分流/重写需要[Quantumult X 1.5.2 build 844或更新版本](https://t.me/QuanXNews/294)；helper UI的1.5.6 build 918要求是另一个接口，不能混用。原业务JS可能修改应用状态/凭据，原hostname也可能较宽；解析器忠实输出源声明，不承诺脚本API、业务效果、播放或原生流量命中。QX App实际导入与运行仍为not-run。
 
 ## 依据与复现
 

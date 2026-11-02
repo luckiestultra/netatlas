@@ -354,3 +354,20 @@ npm run test:native
 ~~~
 
 完整私有节点/订阅/DNS的填写和支持范围见[接入说明](profile-setup.md)，来源许可见[第三方声明](../THIRD_PARTY_NOTICES.md)。
+
+## 2026-11-02：四个原始重写资源的解析闭环
+
+最终生成解析器 SHA-256：`74c2a3fc33eba01c6e4699e46097c10fc251a9c693e16ff758a7017c7794ea26`。使用[登记的四个原URL](../metadata/resource-parser-upstreams.json)真实GET完整正文，核对输入hash后直接重放生成文件，不使用手工缩小的资源或替换链接。
+
+| 完整公开输入 | 最终原生输出 |
+| --- | --- |
+| YouTube.Enhance.sgmodule | 3条HTTP脚本重写、2个唯一hostname |
+| DragonRead_remove_ads.plugin | 1条URL重写、65条分流；其中21条域名AND精确编成39条host-wildcard，另26条原生分流 |
+| mgtv.js | 安装注释中的3条重写、11个唯一hostname |
+| zhbd.js | 安装注释中的5条重写、34个唯一hostname |
+
+独立红队对指定rewrite类型和自动识别两种入口共8次重放，VM与裸系统JavaScriptCore的输出hash一致。每次只调用一次`$done`，最终求值与完成参数对象相同，输入未修改；网络、存储与来源业务代码执行为零。蓝队另在裸JavaScriptCore对同一冻结文件完成4次完整输入验收。域名AND使用独立来源谓词做1,617,122次合成比较及173,043次真实21条规则的边界比较，未发现误匹配或漏匹配；这依赖QX的原生glob语义，不代表已进行App流量测试。
+
+红队补充的跨分段FINAL状态、未外包引号JSON参数和符号链接CLI入口均先复现失败，再修复转绿。另覆盖跨分段共享AND预算、空交集不能隐藏非法条件、未知/重复字段与禁止重定向等边界；完整源不是可执行夹具。四源下载门禁通过`npm run test:parser-upstreams`单独运行，不把滚动上游网络请求混入默认离线测试。
+
+最终`npm test`：801项、793通过、0失败，8项需要显式启用的原生测试跳过；`npm run check`通过八客户端/1,152产物的重建一致性与格式、策略、来源校验。外部脚本API、argument/max-size/timeout、二进制bodyBytes及URL-REGEX REJECT的响应方式差异仍按[能力对照](resource-parser-comparison.md)说明，不能将解析通过写成业务脚本等价或QX实机通过。未操作用户本地QX或私人订阅，未复制缺少整份再发布许可的KOP主实现。

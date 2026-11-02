@@ -2,7 +2,7 @@
   "version": 1,
   "builder": "netatlas@0.1.0",
   "input": {
-    "sha256": "295f20f1ee58fad7f385fbb552ace3aad419b5199052a8ace71bb232d3056e2c",
+    "sha256": "e15349154d1595c421597a3b4754452540afa33d83e61ad1a44c59152fb86d34",
     "files": [
       {
         "path": "LICENSE",
@@ -22,7 +22,7 @@
       },
       {
         "path": "metadata/features.json",
-        "sha256": "52691b8d4ff38ca30c70e87a9f1edd5c0b46eee71139b5e67b1131c00d2c706e"
+        "sha256": "e5df19b0e99df4977acbdee339898839b6bd1d3785f001d1f40d904ec8682cb3"
       },
       {
         "path": "metadata/https-upgrade.json",
@@ -57,8 +57,12 @@
         "sha256": "bf5c6969eae14a3358c24333f7e3c549a272e5260b6ef30c9a4a381b3e1d06d7"
       },
       {
+        "path": "metadata/resource-parser-upstreams.json",
+        "sha256": "d0d323fc16b97fb66374ba3d88d151445db12f07c706767544ae1175dbcc2740"
+      },
+      {
         "path": "metadata/resource-parsers.json",
-        "sha256": "e032a56075dc31457a9e97fd037e5d07883607a76b406adffc38d85aa8b0dccb"
+        "sha256": "b21820db6c2e74380324f8286463ff31abfa046ec63a35941e2814b11e5f40b5"
       },
       {
         "path": "metadata/routing.json",
@@ -74,7 +78,7 @@
       },
       {
         "path": "package.json",
-        "sha256": "3171931dce590f2ce334dbfdd97d633fb3c2ed8319f96404bc54913bc9e8757f"
+        "sha256": "c8d4a1c882062e42619d10ad5893028ebd4ca9f7c8ded5d4f0353ebab3b562fc"
       },
       {
         "path": "src/features/app-exceptions/quantumultX.list",
@@ -158,11 +162,15 @@
       },
       {
         "path": "src/features/resource-parser/comments.mjs",
-        "sha256": "1b5a0767085210e9ae4cba03817c12de1103dd9b6439ec104b7eda4403034427"
+        "sha256": "356fb6e7395b642195e504515c03e04d89de0c338d11bda243e25db6d23217e1"
       },
       {
         "path": "src/features/resource-parser/core.mjs",
-        "sha256": "4096cafa521e59dcc52fe5d495f14e7cd96700e68dec50023d67dca2205606c7"
+        "sha256": "2d67893def636a7ced49bf86ac9d5c66cb67be197a01fae861867083bea498b5"
+      },
+      {
+        "path": "src/features/resource-parser/domain-and.mjs",
+        "sha256": "68bab6e4f300c889f0cf9a98c2f20100bd53cd4d7e84b52e5ad3db7fddf1bd98"
       },
       {
         "path": "src/features/resource-parser/entry.mjs",
@@ -170,7 +178,7 @@
       },
       {
         "path": "src/features/resource-parser/helper.mjs",
-        "sha256": "47b042a3ed8012eb7e470a2e47e9e04debb0fdc614e92af4b6e5e2fb79f1f8b4"
+        "sha256": "a645d57a27b118196728b8c0b197d97dd29082c1c3a69f97c68547aacbcdd839"
       },
       {
         "path": "src/features/resource-parser/limits.mjs",
@@ -185,12 +193,16 @@
         "sha256": "8ce2034b2664582bae258f302ab928b25e7f22e053d30dffecc8ddcb2274a05b"
       },
       {
+        "path": "src/features/resource-parser/rewrite-installation.mjs",
+        "sha256": "72696f8448bbe39e6fd5bd903f73983c36cf2d749ea09a807eb6db4c1c78b9cd"
+      },
+      {
         "path": "src/features/resource-parser/rewrites.mjs",
-        "sha256": "42bed8d1cf191e5154e32639ecae1956a36a9db6d110d02645793a5b9fb03804"
+        "sha256": "9946634808ac1c452c289ec68e678b96af38e7cf2c184a962eb48a6762a49ec0"
       },
       {
         "path": "src/features/resource-parser/rules.mjs",
-        "sha256": "38d9f5a1465d74e27cc3b91f0f8c0f6f8f07799aad19ff25401dd56c2ca34a6f"
+        "sha256": "c8fa3062779e6cd5f6d92ea710b5eda8129ac95446d706a189f45ffc6ae6b1f2"
       },
       {
         "path": "src/features/resource-parser/subscription-info.mjs",
@@ -1061,6 +1073,10 @@
         "sha256": "2e15940246e12e7e7925733027d7eecb2616b3f29a68fdc5323510f0945bf695"
       },
       {
+        "path": "tools/check-resource-parser-upstreams.mjs",
+        "sha256": "8e2b8a2b0d4efb2a78caa4294d161544a68bfed5d03414e18cbe226f006acea1"
+      },
+      {
         "path": "tools/lib/anti-ad.mjs",
         "sha256": "fd747cc48c9d87a3bea4341ae1c411abe0553e00ce737ba8cdf8f07405b8ff9a"
       },
@@ -1190,7 +1206,7 @@
       },
       {
         "path": "tools/lib/resource-parsers.mjs",
-        "sha256": "fb3113319cd2c86df0df641709ebe79d3c8a36e8f9ddb0b5dcefa2a6a7e577ba"
+        "sha256": "c87e46944d93c68fbdfde24f7db362eb3766d6c9bd96f99d83c3a50fb26457fc"
       },
       {
         "path": "tools/lib/routing-extensions.mjs",
@@ -1255,7 +1271,7 @@
       "id": "quantumultX",
       "name": "Quantumult X",
       "manifest": "quantumultX/manifest.json",
-      "sha256": "a01947d04d3c0371d094d8e5d64e7525177f4ace37b14f4adfdeca9b093df5d7",
+      "sha256": "dba87d18452266c0f69632fc6a15150d413cfd2d4b63da8f989db7432ad62cd4",
       "rulesets": 119,
       "entries": 136966,
       "defaultRuleSets": 116,
@@ -1265,7 +1281,7 @@
       "id": "surge",
       "name": "Surge",
       "manifest": "surge/manifest.json",
-      "sha256": "2b26c7980d81ed07061132528ec84fc1d292cce3c27729d74bb7cf63cd896e8b",
+      "sha256": "32a5cf9338bf305df1ffaf0f524ef6e3576978cb8684910311a7bf2f9cc2e55d",
       "rulesets": 119,
       "entries": 136966,
       "defaultRuleSets": 116,
@@ -1275,7 +1291,7 @@
       "id": "loon",
       "name": "Loon",
       "manifest": "loon/manifest.json",
-      "sha256": "b70475def8215fc41f0f5617b0a9c749e3d69f60ae2d8cd4a0a6745e4c69e9c7",
+      "sha256": "9a12e909a4392d76ae76019042a7a9cc8524e52822c0209872e9122795fcb929",
       "rulesets": 119,
       "entries": 136966,
       "defaultRuleSets": 116,
@@ -1285,7 +1301,7 @@
       "id": "shadowrocket",
       "name": "Shadowrocket",
       "manifest": "shadowrocket/manifest.json",
-      "sha256": "fbf551bc7b9fb61fcfd9270e95586a6314d04eb455de692b67a10afde2f2a1a2",
+      "sha256": "5921f22e11a20fb2bbb50ee4cf6e3d78b255ff371f02e2ceb8f8d64490633c1e",
       "rulesets": 119,
       "entries": 136966,
       "defaultRuleSets": 116,
@@ -1295,7 +1311,7 @@
       "id": "egern",
       "name": "Egern",
       "manifest": "egern/manifest.json",
-      "sha256": "f4cc79dceb3d415b4e42ef8e85d30d44011fe8f4ce01d40ff7b3a0e6f16a4e97",
+      "sha256": "3793a24f0b01856cb97c54e1a9d433bad06ed757dbe8941aac25cea0c4b9b468",
       "rulesets": 119,
       "entries": 136966,
       "defaultRuleSets": 116,
@@ -1305,7 +1321,7 @@
       "id": "stash",
       "name": "Stash",
       "manifest": "stash/manifest.json",
-      "sha256": "3dcb1cf79c76e1981defa83ac473922ad3823b0cac29ed3b0df130e3ee5f2d4d",
+      "sha256": "639af811ed02629024f7d3e78ce3b996a4e2d2c1fa2d2a5f6dfb851c34059c7f",
       "rulesets": 119,
       "entries": 136966,
       "defaultRuleSets": 116,
@@ -1315,7 +1331,7 @@
       "id": "mihomo",
       "name": "Mihomo",
       "manifest": "mihomo/manifest.json",
-      "sha256": "5e02e1a3447a57becfbe751833b7a9941278fef94e55238a507ed5e31e0a46de",
+      "sha256": "05ba2326d6e31331cfa3abbf487ed8b2f720308ea3d5453a912d99bcba45d6c8",
       "rulesets": 119,
       "entries": 136966,
       "defaultRuleSets": 116,
@@ -1325,12 +1341,12 @@
       "id": "singBox",
       "name": "sing-box",
       "manifest": "singBox/manifest.json",
-      "sha256": "79d913f64056f5087ddc5433204083170eba45c995b910b5c8549371a804218a",
+      "sha256": "518033bea307e9d167fd82046203bf5570755dca841223bdf92287a53ea44b47",
       "rulesets": 119,
       "entries": 136966,
       "defaultRuleSets": 116,
       "defaultEntries": 29175
     }
   ],
-  "contentSha256": "e57ec2f69efea80f37a189c9145660afdda6d63dbc3a4c90dbab9de89a2045ed"
+  "contentSha256": "7fa15aff1eefef1fd305adbda41fe6abbe092055e0054bcfe54d588ec53a1551"
 }

@@ -16,6 +16,7 @@
     "sync": "node tools/sync.mjs",
     "check": "node tools/build.mjs --check && node tools/validate.mjs",
     "test:live": "node tools/live.mjs",
+    "test:parser-upstreams": "node tools/check-resource-parser-upstreams.mjs",
     "test:native": "node tools/native.mjs",
     "profile": "node tools/profile.mjs"
   },
