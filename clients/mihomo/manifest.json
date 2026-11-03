@@ -2,7 +2,7 @@
   "version": 1,
   "client": "mihomo",
   "builder": "netatlas@0.1.0",
-  "inputSha256": "59506a811390b3f189b09efa4724b9f09b08043c220314662c98f8ac4a2fc166",
+  "inputSha256": "2761a9e0e625d1dad56ac81e2a915db8d296de2423791dfecc9f7e33a7ae69c6",
   "baseUrl": "https://raw.githubusercontent.com/luckiestultra/netatlas/main",
   "targetVersion": "1.19.33",
   "counts": {

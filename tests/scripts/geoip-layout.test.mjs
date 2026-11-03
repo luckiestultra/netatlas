@@ -15,7 +15,7 @@ test('QX title shows a compact Chinese location while the second line retains th
   const result = parseGeoResponse(response(japan()));
   const card = formatQuantumultX(result);
   assert.equal(card.title, '🇯🇵 日本 东京');
-  assert.equal(card.subtitle, 'Example · AS64500 · 203.0.113.10');
+  assert.equal(card.subtitle, 'ASIA/TOKYO · AS64500 · 203.0.113.10');
   assert.equal(card.ip, '203.0.113.10');
   assert.match(card.description, /州\/省: 东京都/);
   assert.match(card.description, /城市: 东京/);
@@ -36,23 +36,23 @@ test('California has a short display label without changing provider location da
   assert.match(card.description, /州\/省: 加利福尼亚州/);
 });
 
-test('long provider names shorten while the second line retains ASN and IPv4', () => {
+test('provider names stay in details while timezone, ASN and IPv4 form the network line', () => {
   const organization = 'A very long provider organization with all its legal suffixes';
   const result = parseGeoResponse(response(japan({ connection: { asn: 64500, org: organization } })));
   const card = formatQuantumultX(result);
   assert.ok(card.subtitle.length <= 36);
-  assert.match(card.subtitle, /… · AS64500 · /);
+  assert.equal(card.subtitle, 'ASIA/TOKYO · AS64500 · 203.0.113.10');
   assert.ok(card.subtitle.endsWith(result.ip));
   assert.ok(card.description.includes(organization));
   assert.equal(card.subtitle.split(result.ip).length - 1, 1);
 });
 
-test('Unicode carrier labels shorten on code-point boundaries and remain complete in details', () => {
+test('Unicode organization text stays in details without changing the timezone line', () => {
   const organization = 'a'.repeat(9) + '😀 Organization Unlimited';
   const card = formatQuantumultX(parseGeoResponse(response(japan({
     connection: { asn: 64500, org: organization },
   }))));
-  assert.ok(card.subtitle.endsWith('… · AS64500 · 203.0.113.10'));
+  assert.equal(card.subtitle, 'ASIA/TOKYO · AS64500 · 203.0.113.10');
   assert.ok(card.description.includes(organization));
   assert.ok(card.subtitle.isWellFormed());
 });
@@ -85,16 +85,16 @@ test('the generated QX script keeps the native final-return contract with the co
   vm.runInContext('var calls=0;var $done=function(value){calls++;return value;}', context);
   const card = vm.runInContext(script, context, { timeout: 1000 });
   assert.equal(card.title, '🇯🇵 日本 东京');
-  assert.equal(card.subtitle, 'Example · AS64500 · 203.0.113.10');
+  assert.equal(card.subtitle, 'ASIA/TOKYO · AS64500 · 203.0.113.10');
   assert.equal(context.calls, 1);
   assert.deepEqual(Object.keys(card).sort(), ['description', 'ip', 'subtitle', 'title']);
 });
 
 
-test('QX network line shows available organizations while preserving ASN and IPv4', () => {
+test('QX network line uses timezone independently of the organization', () => {
   for (const org of ['Example', 'EXAMPLE TRANSIT GMBH', '字宽不同的运营商名称😀']) {
     const card = formatQuantumultX(parseGeoResponse(response(japan({ connection: { asn: 64500, org } }))));
-    assert.ok(card.subtitle.endsWith(' · AS64500 · 203.0.113.10'));
+    assert.equal(card.subtitle, 'ASIA/TOKYO · AS64500 · 203.0.113.10');
     assert.ok(card.description.includes(org));
     assert.ok(card.subtitle.length <= 36);
   }

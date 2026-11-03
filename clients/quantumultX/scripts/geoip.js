@@ -284,22 +284,15 @@ var AtlasGeoIP = (function createGeoIP() {
     var value = [result.asn, result.ip].filter(Boolean).join(' · ');
     // Long IPv6 uses the line alone; QX still controls the native label width.
     if (value.length > 36) return result.ip;
-    var organization = text(result.organization).replace(/\s+/g, ' ').trim();
-    var available = 36 - value.length - 3;
-    if (!organization || available < 2) return value;
-    // Conservative text budget, not a native pixel measurement. Reserve ASN/IP
-    // first; shorten only the carrier, on code-point boundaries.
-    var characters = Array.from(organization);
-    var width = function (character) { return /^[\x20-\x7e]$/.test(character) ? 1 : 2; };
-    var fullWidth = characters.reduce(function (sum, character) { return sum + width(character); }, 0);
-    if (fullWidth <= available) return organization + ' · ' + value;
-    var shortened = '', used = 0;
-    for (var index = 0; index < characters.length; index += 1) {
-      var next = width(characters[index]);
-      if (used + next + 2 > available) break;
-      shortened += characters[index]; used += next;
+    // Original display field: timezone, not ISP/organization. Try whole timezone,
+    // then the final slash component, then its prefix; never invent a label.
+    var timezone = text(result.timezone).replace(/[_-]/g, ' ').replace(/\s+/g, ' ').trim().toUpperCase();
+    var slash = timezone.lastIndexOf('/');
+    var candidates = slash < 0 ? [timezone] : [timezone, timezone.slice(slash + 1), timezone.slice(0, slash)];
+    for (var index = 0; index < candidates.length; index += 1) {
+      if (candidates[index] && candidates[index].length + 3 + value.length <= 36) return candidates[index] + ' · ' + value;
     }
-    return shortened ? shortened.replace(/\s+$/, '') + '… · ' + value : value;
+    return value;
   }
   function details(result) {
     return lines([
