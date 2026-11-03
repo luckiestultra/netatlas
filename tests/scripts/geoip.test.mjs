@@ -261,7 +261,7 @@ test('ip-api empty AS data does not throw and ISP remains in details', () => {
   assert.equal(result.asn, '');
   assert.equal(result.country, 'France');
   assert.equal(result.organization, 'Example Transit');
-  assert.equal(formatQuantumultX(result).subtitle, result.ip);
+  assert.equal(formatQuantumultX(result).subtitle, 'Example Transit · ' + result.ip);
   assert.match(formatQuantumultX(result).description, /Example Transit/);
 });
 
