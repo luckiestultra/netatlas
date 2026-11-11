@@ -319,6 +319,14 @@ function parseGenericUri(u,normalized=false) {
   const type=({https:'http',socks:'socks5',ssocks:'socks5',socks5s:'socks5'})[u.scheme]||u.scheme;if(!TYPES.has(type))error('unsupported protocol');
   const preferences=nativePreferences(u.query,['fp','spx']);
   const capability=realityMlkemCapability(preferences.source,u.query.security==='reality',true);u={...u,query:capability.source};
+  // V2RayN exports inactive transport fields on every URI. Discard only
+  // explicitly empty placeholders and the no-op QUIC cipher on TCP/WS.
+  if(type==='vless'&&(!u.query.type||['tcp','ws'].includes(u.query.type))){
+    const query={...u.query};
+    for(const key of ['pcs','serviceName'])if(query[key]==='')delete query[key];
+    if(query.quicSecurity===''||query.quicSecurity==='none')delete query.quicSecurity;
+    u={...u,query};
+  }
   keys(u.query,['encryption','security','type','headerType','host','path','sni','peer','pbk','sid','flow','alpn','allowInsecure','insecure','udp','tfo'],'URI options');
   aliases(u.query,[['sni','peer'],['allowInsecure','insecure']]);
   if(u.query.type&&!['tcp','ws'].includes(u.query.type))error('unsupported transport');
@@ -475,7 +483,7 @@ function validate(n,index) {
 function fromNative(line) {
   const parts=csv(line),p=parts[0].indexOf('='),type=parts[0].slice(0,p).trim().toLowerCase();const n=node(type,endpoint(parts[0].slice(p+1).trim()));n.fields=assignment(parts.slice(1));keys(n.fields,NATIVE_KEYS,'QX native');if(n.fields.tag)n.original=line;return n;
 }
-function lines(input) {
+function lines(input,options={}) {
   const nativePattern=/^(?:shadowsocks|vmess|vless|trojan|http|socks5|anytls)\s*=\s*(?:\[[^\]]+\]|[^,:]+):\d+(?:\s*,|\s*$)/i,uriPattern=/^[a-z][a-z0-9+.-]*:\/\//i;
   // Native fields and URI fragments may contain literal comment-like text.
   // Their complete tails are data. Standalone directives and foreign Proxy
@@ -483,6 +491,7 @@ function lines(input) {
   const raw=input.replace(/^\uFEFF/,'').split(/\r?\n/).map(line=>{line=line.trim();return uriPattern.test(line)||nativePattern.test(line)?line:stripComment(line,error).trim();}),hasSections=raw.some(l=>/^\[[^\]]+\]$/.test(l));let section='',out=[];
   for(const line of raw){if(!line)continue;const m=/^\[([^\]]+)\]$/.exec(line);if(m){section=m[1].toLowerCase();continue;}
     if(hasSections&&!['proxy','server_local'].includes(section))continue;
+    if(options.skipped && /^(?:hysteria2|hy2):\/\//i.test(line)){options.skipped.count++;continue;}
     if(uriPattern.test(line)){const parsed=fromUri(line);out.push(...(Array.isArray(parsed)?parsed:[parsed]));}
     else if(section!=='proxy'&&nativePattern.test(line))out.push(fromNative(line));else out.push(fromProxy(line));
     if(out.length>2000)error('node limit exceeded');
@@ -517,7 +526,7 @@ export function createNodeParser(utils={}) {
         else if(/^(?:proxies|outbounds|servers|nodes)\s*:/m.test(value)){if(!utils.parseYaml)error('YAML unavailable');value=utils.parseYaml(value);}
       }
       let result;
-      if(typeof value==='string')result=lines(value);
+      if(typeof value==='string')result=lines(value,options);
       else{
         let source=Array.isArray(value)?value:object(value)?value.proxies||value.servers||value.nodes||value.outbounds:null;if(!Array.isArray(source))error('missing nodes');
         if(source.length>2000)error('node limit exceeded');result=[];

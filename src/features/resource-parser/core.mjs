@@ -105,13 +105,15 @@ function convertResource(resource, environment = {}, options = optionsFor(resour
   let content, notice = null;
   if (type === 'server') {
     const adaptations = new Set();
+    const skipped = { count: 0 };
     const status = data ? { text, info: null } : extractStatus(text);
-    const nativeNodes = nodeParser.parseNodes(data ?? status.text, { adaptations, allowDuplicateNames: true });
+    const nativeNodes = nodeParser.parseNodes(data ?? status.text, { adaptations, skipped, allowDuplicateNames: true });
     content = applyNodeOptions(nativeNodes,options,{ tag: resource.tag });
     nodeParser.validateNative(content, { adaptations });
     // Fixed notices contain no source values and bypass name filtering only
     // after the complete source and all node transformations have succeeded.
     const notes = [];
+    if (skipped.count) notes.push('# NetAtlas: skipped ' + skipped.count + ' unsupported Hysteria2 nodes.');
     if (adaptations.has('fp') || adaptations.has('client-fingerprint')) notes.push('# NetAtlas: QX uses its native TLS fingerprint; source fp/client-fingerprint preferences are not preserved.');
     if (adaptations.has('spx')) notes.push('# NetAtlas: QX has no Reality spider-path setting; source spx is omitted.');
     if (adaptations.has('support-x25519mlkem768')) notes.push('# NetAtlas: QX uses its native Reality handshake for X25519MLKEM768 support.');
@@ -123,6 +125,10 @@ function convertResource(resource, environment = {}, options = optionsFor(resour
     const info = options.flow ? quotaDetails(quotaResource, options.flow) : null;
     const noticeResource = options.flow && options.flow !== '1' && info ? { ...quotaResource, info: `upload=0;download=${info.bytes_used};total=${info.bytes_used + info.bytes_remaining};expire=${info.expire_date}` } : quotaResource;
     if (options.info || options.flow) notice = subscriptionNotification(noticeResource,nativeNodes);
+    if (skipped.count) {
+      const message = '已跳过 ' + skipped.count + ' 条 Quantumult X 不支持的 Hysteria2 节点。';
+      notice = notice ? { ...notice, message: notice.message + '\n' + message } : { title: '部分节点不受支持', subtitle: '其余节点已转换', message };
+    }
     if (options.relay) content = parseRules(relayRules(content, options.relay), {}, { build });
     const rows = content.split('\n').filter(row => row && !row.startsWith('#')).length;
     if (options.b64) content = encodeBase64Text(content);

@@ -87,7 +87,7 @@ test('invalid or absent quota metadata never rejects nodes or echoes untrusted h
 
 test('failed subscriptions emit neither a quota notification nor partially converted nodes', () => {
   const notices = [];
-  const result = run(resource(exact, { content: nodes('台湾01') + 'hysteria2://PRIVATE_FIXTURE@proxy.example:443#Bad' }), (...args) => notices.push(args));
+  const result = run(resource(exact, { content: nodes('台湾01') + 'tuic://PRIVATE_FIXTURE@proxy.example:443#Bad' }), (...args) => notices.push(args));
   assert.equal(typeof result.error, 'string');
   assert.equal(result.content, undefined);
   assert.deepEqual(notices, []);

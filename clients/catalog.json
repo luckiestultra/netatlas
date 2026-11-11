@@ -2,7 +2,7 @@
   "version": 1,
   "builder": "netatlas@0.1.0",
   "input": {
-    "sha256": "2761a9e0e625d1dad56ac81e2a915db8d296de2423791dfecc9f7e33a7ae69c6",
+    "sha256": "41662d72de689734c4c05f337b094f4aea408efe9750377d578c55ffa91151d6",
     "files": [
       {
         "path": "LICENSE",
@@ -166,7 +166,7 @@
       },
       {
         "path": "src/features/resource-parser/core.mjs",
-        "sha256": "7f350e56f64535ca98ee352f3747ac018a475cdeb4f536adfa373f7b4cab41e0"
+        "sha256": "be7408de75bb48b0cda33517ee7175d65204a06f494881a8218033c3e77510d4"
       },
       {
         "path": "src/features/resource-parser/domain-and.mjs",
@@ -210,7 +210,7 @@
       },
       {
         "path": "src/features/resource-parser/nodes.mjs",
-        "sha256": "3e8d285ca1efc102732e20938b1f5e6ffe68c19ea83efb155de7d0fe13f20ed4"
+        "sha256": "e211753d2ed5682762d5b0ca3c70212562d0761d53803af3b2810fef7c1d2b5e"
       },
       {
         "path": "src/features/resource-parser/options.mjs",
@@ -1327,7 +1327,7 @@
       "id": "quantumultX",
       "name": "Quantumult X",
       "manifest": "quantumultX/manifest.json",
-      "sha256": "66b8ebd47bb5296a7f8ca42d0aa71048b3b2510f04968437e2256f777b123d18",
+      "sha256": "81cc0c24798789951fc212ed35c46a4f7d3d3580b393a0c8d721d72110d4ab46",
       "rulesets": 119,
       "entries": 136966,
       "defaultRuleSets": 116,
@@ -1337,7 +1337,7 @@
       "id": "surge",
       "name": "Surge",
       "manifest": "surge/manifest.json",
-      "sha256": "fc1a34001888b1058cf3fc2b71f3ebd1e354d3a2d757cfe88e6a16a63797e6a8",
+      "sha256": "5a57d40b3c177d0c4eea221f6ec41b5f244faf22604f22bf1895eca82bcd5d66",
       "rulesets": 119,
       "entries": 136966,
       "defaultRuleSets": 116,
@@ -1347,7 +1347,7 @@
       "id": "loon",
       "name": "Loon",
       "manifest": "loon/manifest.json",
-      "sha256": "4818276ee8444c6e22b39237fd14e4d5d01bd6918c5b9d0c42b576414609572a",
+      "sha256": "28f803d5c5dad318d2dbe674f39ab3b55b846e6eb903312406588782bb08d4ab",
       "rulesets": 119,
       "entries": 136966,
       "defaultRuleSets": 116,
@@ -1357,7 +1357,7 @@
       "id": "shadowrocket",
       "name": "Shadowrocket",
       "manifest": "shadowrocket/manifest.json",
-      "sha256": "00e820239a6c6f9e45e75adb2906bf70a22df845747b9c21f2f2c0055b726dfc",
+      "sha256": "3399fc0e208013befc8b143645ebbad4da058a5da9b365a5b8ad2d026487cfb1",
       "rulesets": 119,
       "entries": 136966,
       "defaultRuleSets": 116,
@@ -1367,7 +1367,7 @@
       "id": "egern",
       "name": "Egern",
       "manifest": "egern/manifest.json",
-      "sha256": "8ad4726e795fb7d8f1816bfe52a746b6b7880db3c0f7a4e0c21cb04a3e821820",
+      "sha256": "ee3f7d6d26ad3150d208b8c087b5be5b9fe9fb54c091bbf9195bd92e68c1c4d3",
       "rulesets": 119,
       "entries": 136966,
       "defaultRuleSets": 116,
@@ -1377,7 +1377,7 @@
       "id": "stash",
       "name": "Stash",
       "manifest": "stash/manifest.json",
-      "sha256": "fa38311975498aa303634eec64756a4f782a5a354d3c5ccf1c3410d8b87e5246",
+      "sha256": "81f1b6dcb4f51bc752e55a189dbdaec0a1036e6cfb0608216fa00b35600343d2",
       "rulesets": 119,
       "entries": 136966,
       "defaultRuleSets": 116,
@@ -1387,7 +1387,7 @@
       "id": "mihomo",
       "name": "Mihomo",
       "manifest": "mihomo/manifest.json",
-      "sha256": "6c918270feacb2531e7c85e5a3750abdbb10f96d18bb91a8dad736eb520f93c3",
+      "sha256": "4bdc717fcf7296424580bbbfe66319675abd654c543abcb4b61bc39559ef2146",
       "rulesets": 119,
       "entries": 136966,
       "defaultRuleSets": 116,
@@ -1397,12 +1397,12 @@
       "id": "singBox",
       "name": "sing-box",
       "manifest": "singBox/manifest.json",
-      "sha256": "d7cec2dad599a7b55b7fbc21e56836176c7fe7fc27d7c8b0207f2682f040ff5a",
+      "sha256": "79e8e1b6ca376ff896c0e027fe8c6b3f1f1ba9bcf5a88e0f780006426cd4ab25",
       "rulesets": 119,
       "entries": 136966,
       "defaultRuleSets": 116,
       "defaultEntries": 29175
     }
   ],
-  "contentSha256": "8558a2b53259c5f44e697ff6b75a2a8bd1e569c77000f229423d308bb5d6a0cf"
+  "contentSha256": "833d01933f2231f40be5db1cf74b720dbe8a8bddfdf4d5a7c3cad2b40f82667d"
 }

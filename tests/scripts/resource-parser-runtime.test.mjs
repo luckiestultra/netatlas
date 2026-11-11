@@ -22,7 +22,7 @@ test('fragment overrides are deliberate; filters preserve original rules unless 
   assert.throws(()=>parseResource({content:'DOMAIN,example.test,DIRECT',link:'https://example.test/#prefix=x'}),/not valid for/);
 });
 test('atomic failures contain no partial content, input, subscription URL or credentials', () => {
-  for(const content of [native+'\nhysteria2://secret@proxy.example:443#Bad','DOMAIN,example.test,DIRECT\nPROCESS-NAME,private.exe,Proxy','payload: [one, two]\nproxies: []','<html>secret</html>','a'.repeat(2*1024*1024+1)]) {
+  for(const content of [native+'\ntuic://secret@proxy.example:443#Bad','DOMAIN,example.test,DIRECT\nPROCESS-NAME,private.exe,Proxy','payload: [one, two]\nproxies: []','<html>secret</html>','a'.repeat(2*1024*1024+1)]) {
     const calls=[];
     completeResource({content,link:'https://example.test/?token=very-private'}, value=>calls.push(value));
     assert.equal(calls.length,1);
