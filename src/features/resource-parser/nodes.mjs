@@ -481,7 +481,16 @@ function validate(n,index) {
   const name=text(f.tag||n.name||n.type+'-'+(index+1));f.tag=name;return n;
 }
 function fromNative(line) {
-  const parts=csv(line),p=parts[0].indexOf('='),type=parts[0].slice(0,p).trim().toLowerCase();const n=node(type,endpoint(parts[0].slice(p+1).trim()));n.fields=assignment(parts.slice(1));keys(n.fields,NATIVE_KEYS,'QX native');if(n.fields.tag)n.original=line;return n;
+  const parts=csv(line),p=parts[0].indexOf('='),type=parts[0].slice(0,p).trim().toLowerCase();
+  // Some providers put literal commas in a final unquoted tag. Keep the
+  // whole name while emitting commas that cannot be mistaken for fields.
+  const tagIndex=parts.findIndex((part,i)=>i>0&&/^tag\s*=/i.test(part));
+  let normalized=false;
+  if(tagIndex>0&&parts.slice(tagIndex+1).length&&parts.slice(tagIndex+1).every(part=>part&&!part.includes('='))){
+    parts.splice(tagIndex,parts.length-tagIndex,parts.slice(tagIndex).join('，'));
+    normalized=true;
+  }
+  const n=node(type,endpoint(parts[0].slice(p+1).trim()));n.fields=assignment(parts.slice(1));keys(n.fields,NATIVE_KEYS,'QX native');if(n.fields.tag&&!normalized)n.original=line;return n;
 }
 function lines(input,options={}) {
   const nativePattern=/^(?:shadowsocks|vmess|vless|trojan|http|socks5|anytls)\s*=\s*(?:\[[^\]]+\]|[^,:]+):\d+(?:\s*,|\s*$)/i,uriPattern=/^[a-z][a-z0-9+.-]*:\/\//i;

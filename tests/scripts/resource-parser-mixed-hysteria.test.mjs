@@ -23,3 +23,14 @@ test('unsupported-only and malformed supported nodes fail without partial output
   }
   for(const altered of [good.replace('serviceName=','serviceName=grpc'),good.replace('quicSecurity=none','quicSecurity=aes-128-gcm'),good.replace('pcs=','pcs=secret')])assert.throws(()=>parseResource({type:'server',content:altered}));
 });
+
+test('QX native subscription accepts comma-separated text in a final tag without treating it as options',()=>{
+  const node='shadowsocks=quota.example:443, method=aes-128-gcm, password=example, fast-open=false, udp-relay=false, tag=流量信息,剩余100GB,到期2027';
+  const resource={type:'server',content:encoded(node+'\n'+good),link:'https://example.test/sub'};
+  const output=parseResource(resource).content;
+  assert.match(output,/tag=流量信息，剩余100GB，到期2027/);
+  assert.equal(output.split('\n').filter(l=>/^(vless|shadowsocks)=/.test(l)).length,2);
+  for(const attack of [node+', tls-verification=false',node+', password=changed',node+',tag=other']){
+    assert.throws(()=>parseResource({type:'server',content:encoded(attack)}));
+  }
+});

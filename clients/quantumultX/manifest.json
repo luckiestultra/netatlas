@@ -2,7 +2,7 @@
   "version": 1,
   "client": "quantumultX",
   "builder": "netatlas@0.1.0",
-  "inputSha256": "41662d72de689734c4c05f337b094f4aea408efe9750377d578c55ffa91151d6",
+  "inputSha256": "9af95a95d1d99c2854ee490d62ea258a4e46b57467961cd6e66382fbb096dd63",
   "baseUrl": "https://raw.githubusercontent.com/luckiestultra/netatlas/main",
   "targetVersion": null,
   "counts": {
@@ -11503,8 +11503,8 @@
     },
     {
       "path": "scripts/resource-parser.js",
-      "sha256": "ee4601650d30db4ae5eca4d127818122e658e2d151e15be1cbdf664599f411a7",
-      "bytes": 246643
+      "sha256": "10778cb9fc545a4c0421f87c06e85fe1021754fb6d279286f64c6e4b5cf3de99",
+      "bytes": 246826
     },
     {
       "path": "scripts/rewrite-actions.js",
