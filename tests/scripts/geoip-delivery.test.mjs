@@ -14,6 +14,7 @@ test('QX main and mirror configuration URLs have no version query or fragment', 
   for (const base of [baseUrl, baseUrl + '/', 'https://mirror.example/netatlas']) {
     const artifacts = new Map(renderFeatures('quantumultX', { baseUrl: base }).map(file => [file.path, file.content]));
     const line = checker(artifacts.get('fragments/geoip.conf'));
+    assert.equal(line.split(',')[0], 'geo_location_checker=http://ip-api.com/json/?lang=zh-CN');
     const url = new URL(scriptUrl(line));
     assert.equal(url.href, base.replace(/\/+$/, '') + '/clients/quantumultX/scripts/geoip.js');
     assert.equal(url.search, '');

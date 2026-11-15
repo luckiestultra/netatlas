@@ -21,7 +21,7 @@ test('QX native response parser completes once and never performs another networ
   assert.equal(results.length, 1);
   assert.equal(results[0].ip, '192.0.2.10');
   assert.match(results[0].title, /英国.*Oxford/);
-  assert.ok(results[0].subtitle.endsWith('192.0.2.10'));
+  assert.ok(results[0].subtitle.includes('192.0.2.10'));
   assert.doesNotMatch(script, /\$task|\$prefs|\$persistentStore|\$surge/);
 });
 
@@ -130,7 +130,7 @@ test('Surge synchronous HTTP-client failure produces an error panel instead of a
 
 test('feature URLs use the requested public base, including a trailing slash', () => {
   const qx = files('quantumultX');
-  assert.match(qx.get('fragments/geoip.conf'), /geo_location_checker=http:\/\/ipwho\.is\/\?lang=zh-CN, https:\/\/raw\.githubusercontent\.com\/luckiestultra\/netatlas\/main\/clients\/quantumultX\/scripts\/geoip\.js/);
+  assert.match(qx.get('fragments/geoip.conf'), /geo_location_checker=http:\/\/ip-api\.com\/json\/\?lang=zh-CN, https:\/\/raw\.githubusercontent\.com\/luckiestultra\/netatlas\/main\/clients\/quantumultX\/scripts\/geoip\.js/);
   const surge = files('surge');
   assert.match(surge.get('modules/geoip.sgmodule'), /script-path=https:\/\/raw\.githubusercontent\.com\/luckiestultra\/netatlas\/main\/clients\/surge\/scripts\/geoip\.js/);
   assert.deepEqual(renderFeatures('surge', { baseUrl: baseUrl + '/' }), renderFeatures('surge', { baseUrl }));

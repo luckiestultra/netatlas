@@ -14,5 +14,5 @@ export function renderGeoIPScript(client) {
 export function quantumultXGeoIPChecker(baseUrl) {
   const url = publicArtifactUrl(baseUrl, 'quantumultX', 'scripts/geoip.js');
   if (!url) return null;
-  return 'geo_location_checker=http://ipwho.is/?lang=zh-CN, ' + url;
+  return 'geo_location_checker=http://ip-api.com/json/?lang=zh-CN, ' + url;
 }

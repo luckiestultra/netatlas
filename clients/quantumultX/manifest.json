@@ -2,7 +2,7 @@
   "version": 1,
   "client": "quantumultX",
   "builder": "netatlas@0.1.0",
-  "inputSha256": "9af95a95d1d99c2854ee490d62ea258a4e46b57467961cd6e66382fbb096dd63",
+  "inputSha256": "4bdcec71da03f8f890a4328cd06fe217f40cc2eb0109ed4687df742ffe6123d9",
   "baseUrl": "https://raw.githubusercontent.com/luckiestultra/netatlas/main",
   "targetVersion": null,
   "counts": {
@@ -10743,8 +10743,8 @@
     },
     {
       "path": "fragments/geoip.conf",
-      "sha256": "3d1c1db6a4cdd7aa570f0a6ce242fb563642c814d72da77fc248f523f73f21c4",
-      "bytes": 256
+      "sha256": "6249de20c1c4ee37a02c73da32138d1d9ba841308893ed5c09417336912a9fe3",
+      "bytes": 263
     },
     {
       "path": "fragments/native-routing.conf",
@@ -10778,8 +10778,8 @@
     },
     {
       "path": "profiles/default.conf",
-      "sha256": "617ef9bffd9d0f66d46232b45d96c404cffce5517f0d58778e96b4ba301d5a63",
-      "bytes": 28905
+      "sha256": "7765bb77c1076393f6d37bb054fe4123f449653d0c06e5e4a195346b3780da6b",
+      "bytes": 28912
     },
     {
       "path": "profiles/input.example.json",
@@ -11498,8 +11498,8 @@
     },
     {
       "path": "scripts/geoip.js",
-      "sha256": "31804d98a6d6a5d1308044f03ad16fcbc0af1c5567cb82f1342ee0b9019bf9e2",
-      "bytes": 22790
+      "sha256": "dfc6e5cb3da8fd34b6eb8d0668ed2cbe938037bb17b0f40c35d99abaa27015a3",
+      "bytes": 22777
     },
     {
       "path": "scripts/resource-parser.js",

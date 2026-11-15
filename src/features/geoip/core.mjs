@@ -238,16 +238,16 @@ export function createGeoIP() {
     return values.join(' ');
   }
   function networkLine(result) {
-    var value = [result.asn, result.ip].filter(Boolean).join(' · ');
+    var value = [result.ip, result.asn].filter(Boolean).join('·');
     // Long IPv6 uses the line alone; QX still controls the native label width.
     if (value.length > 36) return result.ip;
-    // Original display field: timezone, not ISP/organization. Try whole timezone,
-    // then the final slash component, then its prefix; never invent a label.
+    // Keep the timezone label, but remove separator padding so the full IPv4
+    // and ASN fit more reliably in QX's pixel-truncated native subtitle.
     var timezone = text(result.timezone).replace(/[_-]/g, ' ').replace(/\s+/g, ' ').trim().toUpperCase();
     var slash = timezone.lastIndexOf('/');
     var candidates = slash < 0 ? [timezone] : [timezone, timezone.slice(slash + 1), timezone.slice(0, slash)];
     for (var index = 0; index < candidates.length; index += 1) {
-      if (candidates[index] && candidates[index].length + 3 + value.length <= 36) return candidates[index] + ' · ' + value;
+      if (candidates[index] && candidates[index].length + 1 + value.length <= 36) return candidates[index] + '·' + value;
     }
     return value;
   }

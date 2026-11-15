@@ -68,7 +68,7 @@ test('ipwho.is localized nested fields retain region, city, timezone and connect
   assert.equal(result.timezone, 'America/Los_Angeles');
   const card = formatQuantumultX(result);
   assert.equal(card.title, '🇺🇸 美国 加州 洛杉矶');
-  assert.ok(card.subtitle.endsWith('203.0.113.86'));
+  assert.ok(card.subtitle.includes('203.0.113.86'));
   assert.match(card.subtitle, /AS64500/);
   assert.match(card.description, /时区: America\/Los_Angeles/);
 });
@@ -202,7 +202,7 @@ test('QX location retains country, reported region and reported city with Chines
   }));
   const card = formatQuantumultX(result);
   assert.equal(card.title, '🇺🇸 美国 加州 洛杉矶');
-  assert.ok(card.subtitle.endsWith('203.0.113.81'));
+  assert.ok(card.subtitle.includes('203.0.113.81'));
   assert.match(card.description, /国家\/地区: 美国/);
   assert.match(card.description, /州\/省: 加利福尼亚州/);
   assert.match(card.description, /城市: 洛杉矶/);

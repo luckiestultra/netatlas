@@ -17,22 +17,22 @@
 - clients/quantumultX/scripts/geoip.js
 - clients/quantumultX/fragments/geoip.conf：只有设置了公开构建 baseUrl 才生成。
 
-主配置 default.conf 已包含该 checker；其他既有配置可使用 geoip.conf 合并到 [general]。该片段**不是重写订阅，也不是完整配置**。它使用 http://ipwho.is/?lang=zh-CN，并引用本仓库生成的公开脚本地址。内置 geo_location_checker 仅支持 HTTP 查询源；脚本接收原生 $response，只调用一次 $done，不会再发请求或更改节点。内置定位宿主将 $done 定义为返回参数本身的函数，并消费整段脚本的最终求值结果；适配器的外层函数必须 return $done(...)，否则即使调用了 $done，宿主拿到的仍是 undefined。回归测试同时校验四字段对象和最终求值结果。
+主配置 default.conf 已包含该 checker；其他既有配置可使用 geoip.conf 合并到 [general]。该片段**不是重写订阅，也不是完整配置**。它使用 http://ip-api.com/json/?lang=zh-CN，并引用本仓库生成的公开脚本地址。内置 geo_location_checker 仅支持 HTTP 查询源；脚本接收原生 $response，只调用一次 $done，不会再发请求或更改节点。内置定位宿主将 $done 定义为返回参数本身的函数，并消费整段脚本的最终求值结果；适配器的外层函数必须 return $done(...)，否则即使调用了 $done，宿主拿到的仍是 undefined。回归测试同时校验四字段对象和最终求值结果。
 
-QX 标题输出国旗、中文国家和实际地点，例如 `🇺🇸 美国 加州 洛杉矶` 或 `🇯🇵 日本 东京`；同名地区/城市去重，已登记的地区可用短名。第二行使用查询源返回的时区标签、ASN 与完整 IP，例如 `AMERICA · AS6079 · 198.51.100.174`。字段依据旧 IP-API.js：使用 `timezone`，不是运营商/组织；依次尝试完整时区、最后斜线后的部分、最后斜线前的部分，选取使完整网络行不超过36码元的候选，否则仅输出 ASN/IP。显示标签由本实现明确转大写，不据国家名猜测时区，不自行添加省略号。完整时区、运营商、省州和城市保留在 `description`。长 IPv6 的第二行仅显示完整地址。QX 原生标签按像素宽度裁剪，脚本没有界面宽度信息，仍不能保证任意窄窗口或长 IPv6 都完整显示。独立 `ip` 和 `description` 字段也保留完整 IP；不保证 QX 界面会展示 `description`。蓝色星标由 QX 根据连接入口与查询出口地址是否不同添加，脚本不人为补星。
+QX 标题输出国旗、中文国家和实际地点，例如 `🇺🇸 美国 加州 洛杉矶` 或 `🇯🇵 日本 东京`；同名地区/城市去重，已登记的地区可用短名。第二行保留时区标签、完整 IP 和 ASN，并压紧分隔符，例如 `NEW YORK·198.247.125.20·AS2914`，减少 QX 原生标签按像素宽度裁切的机会。字段使用查询源返回的 `timezone`，不以运营商/组织替代；依次尝试完整时区、最后斜线后的部分、最后斜线前的部分，选取使完整网络行不超过36码元的候选，否则显示 IP 与 ASN。显示标签由本实现明确转大写，不据国家名猜测时区，不自行添加省略号。完整时区、运营商、省州和城市保留在 `description`。长 IPv6 的第二行仅显示完整地址；QX 原生标签仍可能裁切长 IPv6。独立 `ip` 和 `description` 字段也保留完整 IP；不保证 QX 界面会展示 `description`。蓝色星标由 QX 根据连接入口与查询出口地址是否不同添加，脚本不人为补星。
 
 常见城市/地区按已登记名称显示中文，未登记的地名及组织保持原文；不推断缺失地点。用户自行替换已确认的旧缓存后，截图已显示中文地点和完整 IP，证实先前返回值修复可用；此次紧凑布局尚未在 QX 界面验证。完整生成脚本的 VM/Apple JavaScriptCore 测试与原生界面实测分别记录。
 
 渲染接口未传 baseUrl 时省略该片段；传入 baseUrl 只负责构造地址，不检查远端是否已发布。使用前需先推送对应脚本并确认直链存在。不声称未经确认的本地脚本文件名引用可用。IPinfo 的 HTTPS 查询可以由其他客户端适配器使用，不能直接当作 QX 内置 checker 的查询地址。
 
-依据：[官方响应脚本示例](https://github.com/crossutility/Quantumult-X/blob/master/sample-location-with-script.js)、[官方 HTTP 限制说明](https://github.com/crossutility/Quantumult-X/blob/master/sample-fetch-opts-policy.js)、[ipwho.is HTTP、中文字段与配额说明](https://ipwhois.io/documentation)、[IPinfo 新旧响应说明](https://ipinfo.io/developers)。
+依据：[官方响应脚本示例](https://github.com/crossutility/Quantumult-X/blob/master/sample-location-with-script.js)、[官方 HTTP 限制说明](https://github.com/crossutility/Quantumult-X/blob/master/sample-fetch-opts-policy.js)、[IP-API HTTP、中文字段与使用限制](https://ip-api.com/docs/api:json)、[IPinfo 新旧响应说明](https://ipinfo.io/developers)。
 
-默认源选用 ipwho.is 是因为其 HTTP 接口提供中文省州/城市，以及独立 ASN、组织、时区字段；不代表其地理数据库一定优于其他服务。按当前官方文档，免费端点每个查询方 IP 每日 1000 次、没有 SLA；共享出口会共享配额，限流时脚本报告错误，不会擅自向其他服务重试。省州/城市/ASN 缺失时保持空值，不借用时区、运营商或节点名称猜位置。
+默认源选用 ip-api.com 是因为其 HTTP JSON 接口支持简体中文、省州/城市和 ASN 字段，与 QX 内置 checker 兼容；不代表其地理数据库一定优于其他服务。其免费端点每个 IP 每分钟限 45 次，不提供 HTTPS 且仅允许非商业用途；共享出口会共享限额，限流时脚本报告错误，不会擅自向其他服务重试。省州/城市/ASN 缺失时保持空值，不借用时区、运营商或节点名称猜位置。
 
 已有配置在现有 `[general]` 下替换对应两行，不添加重复项。本项目不会自动改写本机配置：
 
 ```ini
-geo_location_checker=http://ipwho.is/?lang=zh-CN, https://raw.githubusercontent.com/luckiestultra/netatlas/main/clients/quantumultX/scripts/geoip.js
+geo_location_checker=http://ip-api.com/json/?lang=zh-CN, https://raw.githubusercontent.com/luckiestultra/netatlas/main/clients/quantumultX/scripts/geoip.js
 resource_parser_url=https://raw.githubusercontent.com/luckiestultra/netatlas/main/clients/quantumultX/scripts/resource-parser.js
 ```
 
