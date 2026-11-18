@@ -1,6 +1,6 @@
 import test from 'node:test';
 import assert from 'node:assert/strict';
-import { cp, mkdtemp, symlink, readFile } from 'node:fs/promises';
+import { cp, mkdtemp, symlink, readFile, rm } from 'node:fs/promises';
 import { tmpdir } from 'node:os';
 import { resolve } from 'node:path';
 import { execFile } from 'node:child_process';
@@ -8,8 +8,9 @@ import { promisify } from 'node:util';
 
 const execute=promisify(execFile);
 const root=resolve(import.meta.dirname,'..');
-test('custom public URLs can be built, checked and validated through the actual CLIs',async()=>{
+test('custom public URLs can be built, checked and validated through the actual CLIs',async t=>{
   const directory=await mkdtemp(resolve(tmpdir(),'netatlas-cli-'));
+  t.after(()=>rm(directory,{recursive:true,force:true}));
   for(const path of ['src','metadata','tools','package.json','package-lock.json','LICENSE','THIRD_PARTY_NOTICES.md']){
     await cp(resolve(root,path),resolve(directory,path),{recursive:true});
   }

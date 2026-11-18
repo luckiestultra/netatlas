@@ -1,6 +1,6 @@
 # 八客户端完整配置接入
 
-主配置位于 `clients/<client>/profiles/default.<原生扩展名>`。直接在对应 App 中作为独立配置导入，再添加自己的节点或订阅、选择实际节点即可；日常使用不需要 Node.js、构建命令或本地生成器。配置包含明确 DNS、40 个本仓库远程规则资源、国内域名/IPv4/IPv6 兜底与最终策略，不附送私人节点。
+主配置位于 `clients/<client>/profiles/default.<原生扩展名>`。直接在对应 App 中作为独立配置导入，再添加自己的节点或订阅、选择实际节点即可；日常使用不需要 Node.js、构建命令或本地生成器。配置包含明确 DNS、116 个本仓库公共规则资源（及各端支持的原生补充条件）、国内域名/IPv4/IPv6 兜底与最终策略，不附送私人节点。
 
 所有客户端 ID：`quantumultX`、`surge`、`loon`、`shadowrocket`、`egern`、`stash`、`mihomo`、`singBox`。QX、Surge、Loon、Shadowrocket 使用 `.conf`，Egern、Stash、Mihomo 使用 `.yaml`，sing-box 使用 `.json`。每个客户端 README 列出主配置和资源入口。
 
@@ -19,9 +19,9 @@
 
 没有配置可用节点时，不能把主配置视为已连通。多数客户端的公开“节点选择”初始为 REJECT；QX、Shadowrocket 使用 App 内置节点选择，结果取决于 App 现有节点与选择状态。导入配置也不代表 App 已切换到它，既有选择可能保留。本仓库的生成与测试不会读取或改动你现用的 QX、其他应用配置或系统代理。
 
-业务策略使用“AI服务、苹果服务、谷歌服务、微软服务、开发服务、即时通讯、游戏平台、国外媒体、国外网站”，最终交给“漏网之鱼”。苹果服务初始直连，其他业务通常跟随“节点选择”；可在 App 分别切换。另有“自动选择”和香港、台湾、日本、韩国、新加坡、美国六个地区组。地区组只匹配节点名称，不提供节点，也不保证空组自动回退到其他地区；先确认有匹配节点再选择。
+业务策略使用“规则修正、AI服务、苹果服务、国内服务、国内媒体、谷歌服务、微软服务、开发服务、即时通讯、游戏平台、国外媒体、Bybit、国外网站”，最终交给“漏网之鱼”。规则修正、苹果服务、国内服务与国内媒体初始直连，其他业务通常跟随“节点选择”；可在 App 分别切换。另有“自动选择”和香港、台湾、日本、韩国、新加坡、美国六个地区组。地区组只匹配节点名称，不提供节点，也不保证空组自动回退到其他地区；先确认有匹配节点再选择。
 
-40 个规则资源由客户端独立拉取更新，主配置保持精简；规则内容刷新与主配置升级分开进行。支持明确间隔的适配器使用一天刷新，Loon 由 App 管理规则刷新。策略组、DNS 或功能配置变化时，再升级主配置。`rules/` 下仍按 `openai`、`netflix`、`github` 等具体 App/服务 ID 平铺，中文业务组仅控制策略，不改变资源路径。
+默认远程规则资源由客户端独立拉取更新，主配置保持精简；规则内容刷新与主配置升级分开进行。支持明确间隔的适配器使用一天刷新，Loon 由 App 管理规则刷新。策略组、DNS 或功能配置变化时，再升级主配置。`rules/` 下仍按 `openai`、`netflix`、`github` 等具体 App/服务 ID 平铺，中文业务组仅控制策略，不改变资源路径。
 
 QX 默认主配置已经接入本仓库 GeoIP 查询脚本；独立 GeoIP 片段继续提供给其他已有配置使用。重写与 MITM 默认关闭，不安装证书；其他可选模块、片段按客户端 README 单独选择。
 
@@ -84,7 +84,7 @@ npm run profile -- --client quantumultX --input private/quantumultX.json --outpu
 
 ### 本地导入器支持范围
 
-sing-box 支持原生 JSON 数组/`outbounds`，基本 Clash YAML/JSON `proxies`，及常见 VLESS、Trojan、Shadowsocks SIP002、VMess 的普通/整批 Base64 URI；支持已实现的 TCP、WebSocket、gRPC 传输，WS 自定义鉴权头会完整保留。原生 JSON 是复杂选项的首选格式。
+sing-box 支持原生 JSON 数组/`outbounds`，基本 Clash YAML/JSON `proxies`，及常见 VLESS、Trojan、Hysteria2（`hy2://`/`hysteria2://`）、AnyTLS、Shadowsocks SIP002、VMess 的普通/整批 Base64 URI；支持已实现的 TCP、WebSocket、gRPC 传输，WS 自定义鉴权头会完整保留。原生 JSON 是复杂选项的首选格式。
 
 不把未知功能静默简化：SS 插件、HY2 混淆、TLS 包装 SOCKS、VMess TCP HTTP header 等尚未转换的特征会明确拒绝，要求提供正确原生 outbounds。Clash 的 `fingerprint` 是[整张 DER 证书的 SHA-256](https://github.com/MetaCubeX/mihomo/blob/v1.19.33/component/ca/fingerprint.go)，不能改名当作 sing-box 的 SPKI pin；无法等价转换时在发布前拒绝，`client-fingerprint` 仍单独表示客户端握手指纹。显式 ALPN 按来源格式校验并保留顺序；SS 的 Base64 凭据解码后不再做第二次 URI 解码。原生 outbounds 的依赖必须完整，不能删除 selector 后留下悬空 detour。这样失败不会把能用的配置覆盖成握手错误的节点。不要把“支持某类订阅”理解为已经实现该类所有扩展字段。
 
@@ -102,7 +102,7 @@ Shadowrocket 本地导入器支持原生 `[Proxy]` 节点文本或 `{"nodes":["M
 | Surge/Loon | 明确本地引导服务器和国内 DoH 直连，不以代理解析代理自己的地址 | 代理连接保留目的主机名给节点；系统/客户端承担本地 LAN 解析 |
 | Shadowrocket | direct-dns-server + proxy-dns-server 独立引导，明确 DoH/系统回退 | 保留原生代理远端解析机制与本地系统回退 |
 | Egern | 独立 bootstrap/proxy_nameservers；按原有分流顺序生成 forward | LAN→local、拦截→reject、直连→domestic、服务代理→remote，服务例外优先宽泛 CN |
-| Mihomo | 独立 proxy-server-nameserver；直连 DNS 遵循 nameserver-policy | remote 经 Proxy；LAN local；明确服务 DNS 先于 CN；CN IP 兜底可触发解析 |
+| Mihomo | 独立 proxy-server-nameserver；直连 DNS 遵循 nameserver-policy | 代理服务 DNS 按各自业务组（`#<策略组>`）远端转发，兜底经 Proxy；LAN local；明确服务 DNS 先于 CN；CN IP 兜底可触发解析 |
 | Stash | 原生引导与独立 proxy-server-nameserver | nameserver-policy + follow-rule；国内 DoH IP 命中 CN 直连、国外 DoH IP 走 Proxy；LAN 系统 |
 | sing-box | 节点域名独立 bootstrap；默认 DNS 及 route resolve 尊重 DNS 规则 | local/domestic/remote 三类目的解析，remote detour Proxy；不以 bootstrap 强行绕过分流 |
 
@@ -112,13 +112,13 @@ Shadowrocket 本地导入器支持原生 `[Proxy]` 节点文本或 `{"nodes":["M
 {"bootstrap":"https://223.5.5.5/dns-query","domestic":"https://223.5.5.5/dns-query","remote":"https://1.1.1.1/dns-query","local":"system"}
 ~~~
 
-INI/Apple 客户端的 bootstrap 使用原生 IP 端点（如 `223.5.5.5`）；前三者的远端解析由节点处理，不假装同一 `remote` 字段能改变节点侧 DNS。Mihomo 支持私有 `listenerPorts:{mixed:7890,dns:1053}`，sing-box 支持 `listenerPorts:{mixed:7890}`；仅改变回环端口，不允许开启 LAN 或系统代理。
+INI/Apple 客户端的 bootstrap 使用原生 IP 端点（如 `223.5.5.5`）；前三者的远端解析由节点处理，不假装同一 `remote` 字段能改变节点侧 DNS。Egern、Stash、Mihomo、sing-box 的国内/远端 DNS 规则按策略组的初始默认方向（如“苹果服务”默认直连）静态生成；运行期若在面板将初始直连组临时切往代理，连接路由改变但静态 DNS 选择器仍指向国内上游（Mihomo 的初始代理业务组已各自绑定对应 `#<策略组>` 出口）。Mihomo 支持私有 `listenerPorts:{mixed:7890,dns:1053}`，sing-box 支持 `listenerPorts:{mixed:7890}`；仅改变回环端口，不允许开启 LAN 或系统代理。
 
 ## 分流优先级与数据
 
 LAN / 连接探测 / 规则修正白名单 / 隐私拦截 → 具体 AI/媒体/社交/开发服务 → Apple/GitHub/Google/Microsoft 广覆盖 → CN 域名 → 支持端原生 ASN / GeoIP → CN IPv4/IPv6 → 最终策略。默认配置最终交给“漏网之鱼”，高级内联配置最终交给 Proxy。明确服务例外优先 CN，例如 google.cn 仍按谷歌服务策略决定，DNS 分类也保留服务例外优先 CN 的顺序；各 App 的原生匹配规则仍有差异。
 
-默认引用115个公共规则资源，共29,153条，并按宿主能力接入ASN/GeoIP/源正则补充；高级standalone将支持条件内联。CN 域名 8,387 条（原 19 个全部保持语义覆盖），IPv4 6,174 条、IPv6 3,475 条；固定 MIT 上游及精确非可移植表达式记录见来源清单。CN CIDR 允许解析未匹配域名以完成兜底，LAN CIDR 保留 `no-resolve`。这些规则是网络分类，不是完美地理位置真值；CN源正则通过独立资源按原生能力恢复，不能跨八端笼统称完整；详细支持、更新与未支持条件见[八端支持表](coverage.md#原生条件的八端支持)。anti-AD 另有 100,682 条可选资源。
+默认引用 116 个公共规则资源，共 29,175 条，并按宿主能力接入 ASN/GeoIP/源正则补充；高级 standalone 将支持条件内联。CN 域名 8,387 条（原 19 个全部保持语义覆盖），IPv4 6,174 条、IPv6 3,475 条；固定 MIT 上游及精确非可移植表达式记录见来源清单。CN CIDR 允许解析未匹配域名以完成兜底，LAN CIDR 保留 `no-resolve`。这些规则是网络分类，不是完美地理位置真值；CN源正则通过独立资源按原生能力恢复，不能跨八端笼统称完整；详细支持、更新与未支持条件见[八端支持表](coverage.md#原生条件的八端支持)。anti-AD 另有 100,682 条可选资源。
 
 ## 验证如何复现
 

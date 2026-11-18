@@ -2,7 +2,7 @@
   "version": 1,
   "client": "shadowrocket",
   "builder": "netatlas@0.1.0",
-  "inputSha256": "4bdcec71da03f8f890a4328cd06fe217f40cc2eb0109ed4687df742ffe6123d9",
+  "inputSha256": "e93d8bbbeb60f06edfa2e8a98f2493bc3367166d335434293d0f816a050361ad",
   "baseUrl": "https://raw.githubusercontent.com/luckiestultra/netatlas/main",
   "targetVersion": null,
   "counts": {

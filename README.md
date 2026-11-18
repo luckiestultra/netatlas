@@ -2,11 +2,11 @@
 
 面向 Quantumult X、Surge、Loon、Shadowrocket、Egern、Stash、Mihomo 和 sing-box 的原生配置与规则仓库。先选客户端，再取用主配置、具体服务分流或可选功能。
 
-主配置面向客户端直接导入：保留 DNS、节点/订阅入口、中文业务策略、自动选择与六地区测速，独立订阅本客户端的 **115 份公共规则资源（29,153 条）和各端支持的原生补充条件**。不需要先安装 Node.js。节点与订阅由你自己提供，具体接入字段见各客户端 README。
+主配置面向客户端直接导入：保留 DNS、节点/订阅入口、中文业务策略、自动选择与六地区测速，独立订阅本客户端的 **116 份公共规则资源（29,175 条）和各端支持的原生补充条件**。不需要先安装 Node.js。节点与订阅由你自己提供，具体接入字段见各客户端 README。
 
 QX 默认使用 App 内置 proxy，Shadowrocket 使用首页 PROXY；其余客户端在导入后添加原生节点/订阅并选择实际节点。地区组按节点名称筛选，只有存在匹配节点时才选择，不保证空组回退。QX 主配置已接入出口定位；重写、MITM 和证书不自动启用。
 
-规则资源按具体应用或服务平铺；AI、苹果、谷歌、微软、开发、通讯、游戏、媒体及最终兜底可独立选择出口。另有可选 anti-AD **100,682 条**和 global **6,985 条**；合计 **118 套、136,944 条**规范数据。完整内联版本与私有 CLI 保留为高级选项。六 GUI 可选功能现含 47 项快速搜索、59 项网站重定向、独立 BiliIntl 参数资源，以及 BoxJS、ScriptHub、Sub-Store 安装包。QX/Loon 另有外部资源解析器片段；Surge 有原创正文替换工具。入口与实质差异见[逐项覆盖清单](docs/coverage.md)。
+规则资源按具体应用或服务平铺；AI、苹果、国内服务/媒体、谷歌、微软、开发、通讯、游戏、国外媒体、Bybit、国外网站及最终兜底可独立选择出口。另有可选 anti-AD **100,682 条**、global **6,985 条**和 google-cn **124 条**；合计 **119 套、136,966 条**规范数据。完整内联版本与私有 CLI 保留为高级选项。六 GUI 可选功能现含 47 项快速搜索、59 项网站重定向、独立 BiliIntl 参数资源，以及 BoxJS、ScriptHub、Sub-Store 安装包。QX/Loon 另有外部资源解析器片段；Surge 有原创正文替换工具。入口与实质差异见[逐项覆盖清单](docs/coverage.md)。
 七端已接入完整 **5,231 个 ASN 编号**与原生 **CN GeoIP 数据库**条件；sing-box 1.14 不支持这两类原生条件。完整 **50 条 Unbreak** 在八端保留原始条件，原有 3 条连接探测另行保留。源正则按客户端原生能力补齐：Egern/Stash/Mihomo/sing-box 为 24/24，QX/Shadowrocket 为 14/24，Surge/Loon 为 16/24；其余逐条标为未支持，不拿 URL 正则或近似后缀补数。两种主配置均实际接入支持项，详见[原生条件支持表](docs/coverage.md#原生条件的八端支持)。
 
 QX另提供[服务兼容补充](docs/qx-compatibility.md)：ChatGPT/ViuTV关联CDN分流与Speedtest按协议区分的广告重写，均为独立可选。扩大范围和HTTP(S)限制明确披露，不计为剩余正则的无损恢复。
@@ -56,7 +56,7 @@ clients/<client>/
 
 ## 本地维护
 
-要求 Node.js 24.x。
+要求 Node.js 24+。
 
 ~~~sh
 npm ci
@@ -69,6 +69,7 @@ npm run test:native
 ~~~sh
 npm run build -- --check             # 比较生成结果，不写入
 npm run validate -- --client singBox # 筛选一个客户端的校验
+npm run clean                        # 清理历史构建备份与临时缓存，保留已验证内核二进制
 npm run sync -- --latest --dry-run   # 检查候选上游，不更新源文件
 npm run sync -- --repository anti-ad --latest --dry-run # 只移动指定来源的候选版本，仍验证全目录
 npm run test:live                    # 单独联网检查 GeoIP；不打印真实出口 IP

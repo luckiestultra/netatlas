@@ -32,7 +32,7 @@ function checkReferences(groups, rules, fallback, extra=[]) {
   if(!proxy)throw new Error('Missing Proxy selector');
 }
 
-export function inspectProfile(clientId,text) {
+export function inspectProfile(clientId,text,{parsed}={}) {
   const client=getClient(clientId);let groups=[],rules=[],fallback,object,iniNodes=[];
   if(client.profileFormat==='ini'){
     const sections=ini(text);const isQx=clientId==='quantumultX';
@@ -60,19 +60,19 @@ export function inspectProfile(clientId,text) {
     });
     for(const line of lines){const [type,value,policy]=line.split(',').map(x=>x.trim());if(/^(final|match)$/i.test(type)){if(fallback)throw new Error('Multiple final rules');fallback=value;continue;}if(fallback)throw new Error('Rules after final fallback');rules.push({...normalizeRoutingEntry({type:(isQx?qxTypes:classicTypes)[type],value}),policy});}
   }else if(clientId==='singBox'){
-    object=JSON.parse(text);
+    object=parsed??JSON.parse(text);
     if(!Array.isArray(object.inbounds)||object.inbounds.some(inbound=>inbound.listen!=='127.0.0.1'||inbound.set_system_proxy!==false))throw new Error('Nonlocal or system proxy listener');
     if(!Array.isArray(object.outbounds)||!object.route)throw new Error('Missing native outbounds or route');
     groups=object.outbounds.filter(out=>out.type==='selector').map(out=>({name:out.tag,choices:out.outbounds}));
     for(const rule of object.route.rules??[]){if(rule.action==='resolve'&&Object.keys(rule).length===1)continue;const fields=Object.keys(rule).filter(key=>!['action','outbound'].includes(key));if(!['route','reject'].includes(rule.action)||fields.length!==1||(rule.action==='reject'&&rule.outbound))throw new Error('Unexpected route shape');const field=fields[0];if(!Array.isArray(rule[field]))throw new Error('Invalid route values');for(const value of rule[field])rules.push({...normalizeRoutingEntry({type:field==='domain'?'domain':field==='domain_suffix'?'domain-suffix':field==='domain_keyword'?'domain-keyword':field==='domain_regex'?'domain-regex':field==='ip_cidr'?(value.includes(':')?'ip-cidr6':'ip-cidr'):null,value}),policy:rule.action==='reject'?'REJECT':rule.outbound});}
     fallback=object.route.final;
   }else if(clientId==='egern'){
-    object=parse(text);
+    object=parsed??parse(text);
     if(object.allow_external_connections!==false)throw new Error('External listener must be disabled');
     groups=(object.policy_groups??[]).map(item=>({name:item.select?.name,choices:item.select?.policies??[]}));
     for(const rule of object.rules??[]){const keys=Object.keys(rule);if(keys.length!==1)throw new Error('Invalid native rule shape');const key=keys[0];if(key==='default'){if(fallback)throw new Error('Multiple default rules');fallback=rule.default.policy;continue;}if(fallback)throw new Error('Rule after default');rules.push({...normalizeRoutingEntry({type:egernTypes[key],value:key==='asn'?String(rule[key].match).replace(/^AS/,''):rule[key].match}),policy:rule[key].policy});}
   }else{
-    object=parse(text);
+    object=parsed??parse(text);
     if(object['allow-lan']!==false||object['bind-address']!=='127.0.0.1')throw new Error('LAN listener must stay local');
     groups=(object['proxy-groups']??[]).map(group=>({name:group.name,choices:group.proxies??[]}));
     for(const line of object.rules??[]){const [type,value,policy]=line.split(',');if(type==='MATCH'){if(fallback)throw new Error('Multiple MATCH rules');fallback=value;continue;}if(fallback)throw new Error('Rule after MATCH');rules.push({...normalizeRoutingEntry({type:classicTypes[type],value}),policy});}
@@ -86,8 +86,9 @@ export function inspectProfile(clientId,text) {
 }
 
 export function validateProfile(clientId,text,rulesets,{requireRejectDefault=false}={}) {
-  validateNativeRoutingSettings(clientId,text,rulesets);
-  const inspected=inspectProfile(clientId,text);
+  const parsed=['egern','stash','mihomo','singBox'].includes(clientId)?(clientId==='singBox'?JSON.parse(text):parse(text)):undefined;
+  validateNativeRoutingSettings(clientId,text,rulesets,parsed);
+  const inspected=inspectProfile(clientId,text,{parsed});
   const expected=expandedProfileEntries(clientId,rulesets).map(({rulesetId,...entry})=>entry);
   if(JSON.stringify(inspected.rules)!==JSON.stringify(expected))throw new Error(`${clientId}: profile rules differ from the ordered canonical rules or policies`);
   if(inspected.fallback!=='Proxy')throw new Error('Final policy must explicitly use Proxy');

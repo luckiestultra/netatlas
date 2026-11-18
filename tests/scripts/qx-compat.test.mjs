@@ -1,6 +1,6 @@
 import test from 'node:test';
 import assert from 'node:assert/strict';
-import { mkdtemp, cp, readFile, writeFile } from 'node:fs/promises';
+import { mkdtemp, cp, readFile, writeFile, rm } from 'node:fs/promises';
 import { tmpdir } from 'node:os';
 import { resolve } from 'node:path';
 import { renderQxCompatibility, loadQxCompatibility, qxCompatibility } from '../../tools/lib/qx-compat.mjs';
@@ -88,8 +88,9 @@ test('the seven other clients gain no QX artifact or pretend regex capability',(
   for(const baseUrl of [null,'',false,0])assert.throws(()=>renderQxCompatibility('quantumultX',{baseUrl}),/baseUrl/);
 });
 
-test('changed metadata cannot be validated while rendering the loaded compatibility registry',async()=>{
+test('changed metadata cannot be validated while rendering the loaded compatibility registry',async t=>{
   const temporary=await mkdtemp(resolve(tmpdir(),'netatlas-qx-compat-'));
+  t.after(()=>rm(temporary,{recursive:true,force:true}));
   await cp(resolve(root,'metadata'),resolve(temporary,'metadata'),{recursive:true});
   const path=resolve(temporary,'metadata/qx-compat.json');
   const data=JSON.parse(await readFile(path,'utf8'));data.routes[0].pattern='*.azure.com';

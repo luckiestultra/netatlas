@@ -2,7 +2,7 @@
 
 本表按规则语义、实际安装资源和宿主能力核对；不以文件数量、主配置长短或“有同名文件”判定完整。对照来源为[固定功能清单](https://github.com/Centralmatrix3/Matrix-io/tree/a2f8c41c1bc81518d6ea39087e2b2f756503ca3b)。仅用作功能/类型参考，没有复制其未声明许可的代码和规则负载，也未沿用其品牌。
 
-当前118套、136,944条规范数据，为八种格式生成；anti-AD、global和google-cn为可选集合。完整许可与原始数据见[来源清单](../metadata/upstreams.json)、[GPL原始数据与许可](../src/vendor/rule-sources/blackmatrix7/)。源码许可分开，不把GPL/AGPL标为MIT。
+当前 119 套、136,966 条规范数据，为八种格式生成；anti-AD、global 和 google-cn 为可选集合，另有自有维护的 [Bybit 专项规则](rules/bybit.md)。完整许可与原始数据见[来源清单](../metadata/upstreams.json)、[GPL原始数据与许可](../src/vendor/rule-sources/blackmatrix7/)。源码许可分开，不把GPL/AGPL标为MIT。
 
 ## 八客户端功能
 

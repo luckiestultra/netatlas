@@ -16,7 +16,7 @@ src/rules/<category>/<id>.json 是唯一规范输入；metadata/upstreams.json �
 
 ## 已接入数据
 
-当前公共规范目录为118个规则集、136,944条；默认115组、29,153条，另有可选anti-AD、global、google-cn。确切来源和逐条件排除见metadata/upstreams.json；不把未纳入公共模型的条件静默丢弃，原生补充层另见本文后节。
+当前公共规范目录为 119 个规则集、136,966 条；默认 116 组、29,175 条，另有可选 anti-AD、global、google-cn。确切来源和逐条件排除见 metadata/upstreams.json；不把未纳入公共模型的条件静默丢弃，原生补充层另见本文后节。
 
 数据来自固定 MIT DLC、MIT反广告与国家网段，以及固定 GPL-2.0-only 服务数据；自有LAN、连接探测和经审计的精确端点补充采用MIT。具体服务在企业/媒体父集合之前，业务策略不从category猜测。Unbreak保留全部50条件及混合来源原始许可，原有三个连接探测另成集合。
 

@@ -44,7 +44,7 @@ for (const [client, render] of [['mihomo', mihomo], ['stash', stash]]) {
     const policy = config.dns['nameserver-policy'];
     assert.equal(policy['+.home.arpa'], 'system');
     assert.match(policy['rule-set:apple'][0], /223\.5\.5\.5/);
-    assert.match(policy['rule-set:ai'][0], /1\.1\.1\.1/);
+    assert.match(policy['rule-set:ai'][0], client === 'mihomo' ? /1\.1\.1\.1\/dns-query#AI服务$/ : /^https:\/\/1\.1\.1\.1\/dns-query$/);
     assert.equal(policy['rule-set:china-ipv4'], undefined);
     assert.ok(Object.keys(policy).length < 10);
     assert.doesNotMatch(JSON.stringify(config), /DOMAIN-SUFFIX,|geosite:|GEOIP/);

@@ -122,7 +122,7 @@ function authAddress(authority,defaultPort) {
   let ep;if(/^\[[^\]]+\]$/.test(address)||!address.includes(':'))ep={host:host(address),port:defaultPort};else ep=endpoint(address);
   if(!ep.port)error('missing port');return {...ep,credentials};
 }
-function node(type, address, name) {if(!TYPES.has(type))error('unsupported protocol');return {type,host:host(address.host),port:port(address.port),fields:{},name};}
+function node(type, address, name) {if(!TYPES.has(type))error('unsupported protocol');return {type,host:host(address.host),port:port(address.port),fields:{},name:typeof name==='string'?name.replace(/,/g,'，'):name};}
 function put(n,k,v) {if(v!==undefined&&v!==null&&v!=='')n.fields[k]=text(v);}
 function putBool(n,k,v) {if(v!==undefined)n.fields[k]=String(bool(v));}
 function uuid(value) {const v=text(value);if(!/^[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}$/i.test(v))error('invalid UUID');return v;}
@@ -500,7 +500,7 @@ function lines(input,options={}) {
   const raw=input.replace(/^\uFEFF/,'').split(/\r?\n/).map(line=>{line=line.trim();return uriPattern.test(line)||nativePattern.test(line)?line:stripComment(line,error).trim();}),hasSections=raw.some(l=>/^\[[^\]]+\]$/.test(l));let section='',out=[];
   for(const line of raw){if(!line)continue;const m=/^\[([^\]]+)\]$/.exec(line);if(m){section=m[1].toLowerCase();continue;}
     if(hasSections&&!['proxy','server_local'].includes(section))continue;
-    if(options.skipped && /^(?:hysteria2|hy2):\/\//i.test(line)){options.skipped.count++;continue;}
+    if(options.skipped && (/^(?:hysteria2|hy2):\/\//i.test(line) || section!=='server_local' && /^[^=]+\s*=\s*(?:hysteria2|hy2)\s*(?:,|$)/i.test(line))){options.skipped.count++;continue;}
     if(uriPattern.test(line)){const parsed=fromUri(line);out.push(...(Array.isArray(parsed)?parsed:[parsed]));}
     else if(section!=='proxy'&&nativePattern.test(line))out.push(fromNative(line));else out.push(fromProxy(line));
     if(out.length>2000)error('node limit exceeded');
@@ -542,7 +542,7 @@ export function createNodeParser(utils={}) {
         const serversEnvelope=object(value)&&source===value.servers;
         if(serversEnvelope&&own(value,'version')&&value.version!==1)error('unsupported SIP008 version');
         const sip008=serversEnvelope&&value.version===1;
-        for(const item of source){const singbox=object(value)&&source===value.outbounds;if(object(item)&&['selector','urltest','direct','block','dns'].includes(item.type)&&singbox)continue;const parsed=sip008?fromSip008(item):typeof item==='string'?fromUri(item):singbox?fromSingbox(item):fromObject(item,object(value)&&source===value.proxies?'Clash node':'node object');result.push(...(Array.isArray(parsed)?parsed:[parsed]));if(result.length>2000)error('node limit exceeded');}
+        for(const item of source){const singbox=object(value)&&source===value.outbounds;if(object(item)&&['selector','urltest','direct','block','dns'].includes(item.type)&&singbox)continue;if(options.skipped&&!sip008&&(typeof item==='string'&&/^(?:hysteria2|hy2):\/\//i.test(item.trim())||object(item)&&typeof item.type==='string'&&/^(?:hysteria2|hy2)$/i.test(item.type))){options.skipped.count++;continue;}const parsed=sip008?fromSip008(item):typeof item==='string'?fromUri(item):singbox?fromSingbox(item):fromObject(item,object(value)&&source===value.proxies?'Clash node':'node object');result.push(...(Array.isArray(parsed)?parsed:[parsed]));if(result.length>2000)error('node limit exceeded');}
       }
       return finishNodes(result,options);
     }catch(e){if(e instanceof Error&&e.message.startsWith('Node conversion failed: '))throw e;error('invalid node resource');}

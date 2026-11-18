@@ -2,6 +2,7 @@ import assert from 'node:assert/strict';
 import test from 'node:test';
 import vm from 'node:vm';
 import { spawnSync } from 'node:child_process';
+import { fileURLToPath } from 'node:url';
 import { parseOptions, applyNodeOptions } from '../../src/features/resource-parser/options.mjs';
 import { parseResource } from '../../src/features/resource-parser/core.mjs';
 import { createNodeParser } from '../../src/features/resource-parser/nodes.mjs';
@@ -108,7 +109,8 @@ test('native JavaScriptCore bounds actual bundled name work and preserves litera
   // Three native-engine cases share a process; parallel full-suite load also
   // includes interpreter startup. The deterministic work-budget assertions
   // below remain the guard, rather than an idle-machine wall-clock promise.
-  const result=spawnSync('python3',['tests/helpers/youtube-jsc.py'],{input:program,encoding:'utf8',timeout:15000,maxBuffer:65536});
+  const helper=fileURLToPath(new URL('../helpers/youtube-jsc.py',import.meta.url));
+  const result=spawnSync('python3',[helper],{input:program,encoding:'utf8',timeout:15000,maxBuffer:65536});
   assert.equal(result.error,undefined);assert.equal(result.status,0,result.stderr);const actual=JSON.parse(result.stdout);
   for(let i=0;i<cases.length;i++){assert.equal(actual[i].calls,1);if(cases[i].error)assert.match(actual[i].error,/invalid (?:node names or parameters|parameters)/);else{assert.equal(actual[i].error,null);assert.equal(actual[i].count,cases[i].count);}}
 });

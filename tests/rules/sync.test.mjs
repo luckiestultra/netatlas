@@ -1,7 +1,7 @@
 import test from 'node:test';
 import assert from 'node:assert/strict';
 import { createHash } from 'node:crypto';
-import { mkdtemp, mkdir, readFile, writeFile, chmod, rename, symlink, cp } from 'node:fs/promises';
+import { mkdtemp, mkdir, readFile, writeFile, chmod, rename, symlink, cp, rm } from 'node:fs/promises';
 import { execFile } from 'node:child_process';
 import { promisify } from 'node:util';
 import path from 'node:path';
@@ -63,6 +63,8 @@ test('include depth and file bytes are bounded', async () => {
     readFile: async name => name === 'a' ? 'include:b\ninclude:b' : 'example.org', maxVisits: 2
   }), /expansion count/);
 });
+
+test.after(() => rm(path.join(root, '.cache', 'sync-tests'), { recursive: true, force: true }));
 
 async function sandbox() {
   await mkdir(path.join(root, '.cache', 'sync-tests'), { recursive: true });

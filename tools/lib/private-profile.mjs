@@ -1,4 +1,4 @@
-import { readFile, mkdir, writeFile, rename, lstat } from 'node:fs/promises';
+import { readFile, mkdir, writeFile, rename, lstat, readdir, rm } from 'node:fs/promises';
 import path from 'node:path';
 import { randomUUID, createHash } from 'node:crypto';
 import { parse as parseYaml } from 'yaml';
@@ -35,6 +35,8 @@ export async function fetchSubscriptionText(value){
  fail('Subscription redirect limit exceeded');
 }
 function decoded64(text){try{return Buffer.from(text.replace(/-/g,'+').replace(/_/g,'/'),'base64').toString('utf8');}catch{fail('Invalid encoded subscription');}}
+function safeDecode(value){try{return decodeURIComponent(value);}catch{fail('Invalid percent-encoded subscription URI');}}
+function truthyInsecure(value){return !(value===undefined||value===null||value===''||value===false||value===0||/^(?:0|false)$/i.test(String(value)));}
 function subscriptionAlpn(value,allowString=false){
  if(value===undefined)return undefined;
  const protocols=allowString&&typeof value==='string'?(value===''?[]:value.split(',')):value;
@@ -56,10 +58,11 @@ function transport(type,host,pathValue){
 function uriNode(line,index){
  if(line.startsWith('vmess://')){
   let item;try{item=JSON.parse(decoded64(line.slice(8)));}catch{fail('Invalid VMess subscription node');}
+  if(truthyInsecure(item.allowInsecure)||truthyInsecure(item['skip-cert-verify']))fail('Subscription requests disabled TLS verification');
   if((!item.net||item.net==='tcp')&&item.type&&!['none',''].includes(item.type))fail('VMess TCP header obfuscation requires native sing-box outbounds');
   const alpn=subscriptionAlpn(item.alpn,true);
   if(alpn?.length&&item.tls!=='tls')fail('Subscription ALPN requires TLS');
-  return {type:'vmess',tag:item.ps||`Subscription-${index+1}`,server:item.add,server_port:Number(item.port),uuid:item.id,security:item.scy||'auto',alter_id:Number(item.aid||0),...(item.tls==='tls'?{tls:{enabled:true,server_name:item.sni||item.host||item.add,...(alpn!==undefined?{alpn}:{})}}:{}),...(item.net&&item.net!=='tcp'?{transport:transport(item.net,item.host,item.path)}:{})};
+  return {type:'vmess',tag:item.ps||`Subscription-${index+1}`,server:item.add,server_port:Number(item.port),uuid:item.id,security:item.scy||'auto',alter_id:Number(item.alterId??item.aid??0),...(item.tls==='tls'?{tls:{enabled:true,server_name:item.sni||item.host||item.add,...(alpn!==undefined?{alpn}:{})}}:{}),...(item.net&&item.net!=='tcp'?{transport:transport(item.net,item.host,item.path)}:{})};
  }
  if(line.startsWith('ss://')){
   const raw=line.slice(5).split('#')[0];let credentials,endpoint,base64Credentials=false;
@@ -69,22 +72,34 @@ function uriNode(line,index){
   const pivot=credentials.indexOf(':');if(pivot<0)fail('Invalid Shadowsocks credentials');
   // SIP002 percent decoding applies only to raw userinfo, never decoded Base64.
   let method=credentials.slice(0,pivot),password=credentials.slice(pivot+1);
-  if(!base64Credentials){method=decodeURIComponent(method);password=decodeURIComponent(password);}
-  return {type:'shadowsocks',tag:decodeURIComponent(line.split('#')[1]||`Subscription-${index+1}`),server:parsed.hostname.replace(/^\[|\]$/g,''),server_port:Number(parsed.port),method,password};
+  if(!base64Credentials){method=safeDecode(method);password=safeDecode(password);}
+  return {type:'shadowsocks',tag:safeDecode(line.split('#')[1]||`Subscription-${index+1}`),server:parsed.hostname.replace(/^\[|\]$/g,''),server_port:Number(parsed.port),method,password};
  }
  let uri;try{uri=new URL(line);}catch{fail('Invalid subscription node URI');}
- const type=uri.protocol.slice(0,-1);if(!['vless','trojan'].includes(type))fail('Unsupported subscription node URI');
- const q=uri.searchParams;const security=q.get('security')||(type==='trojan'?'tls':'none');
+ const rawScheme=uri.protocol.slice(0,-1).toLowerCase();
+ const type=rawScheme==='hy2'?'hysteria2':rawScheme;
+ if(!['vless','trojan','hysteria2','anytls'].includes(type))fail('Unsupported subscription node URI');
+ const q=uri.searchParams;
+ if(truthyInsecure(q.get('allowInsecure'))||truthyInsecure(q.get('insecure')))fail('Subscription requests disabled TLS verification');
+ if(type==='hysteria2'){
+  if((q.get('obfs')&&q.get('obfs')!=='none')||q.get('obfs-password'))fail('Subscription obfuscation requires native sing-box outbounds');
+  if(q.get('pinSHA256'))fail('Certificate pins in URI subscriptions require native sing-box outbounds');
+  if(q.get('mport'))fail('Hysteria2 port hopping requires native sing-box outbounds');
+ }
+ const mandatoryTls=['trojan','hysteria2','anytls'].includes(type);
+ if(mandatoryTls&&q.get('security')&&q.get('security')!=='tls')fail('Subscription protocol requires TLS');
+ const security=q.get('security')||(mandatoryTls?'tls':'none');
  if(q.get('headerType')&&q.get('headerType')!=='none')fail('TCP header obfuscation requires native sing-box outbounds');
- if(q.get('allowInsecure')==='1'||q.get('insecure')==='1')fail('Subscription requests disabled TLS verification');
- const tls=security==='none'?undefined:{enabled:true,server_name:q.get('sni')||q.get('peer')||uri.hostname,...(q.get('fp')?{utls:{enabled:true,fingerprint:q.get('fp')}}:{}),...(security==='reality'?{reality:{enabled:true,public_key:q.get('pbk'),short_id:q.get('sid')||''},utls:{enabled:true,fingerprint:q.get('fp')||'chrome'}}:{})};
+ const allowUtls=type!=='hysteria2';
+ const tls=security==='none'?undefined:{enabled:true,server_name:q.get('sni')||q.get('peer')||uri.hostname,...(allowUtls&&q.get('fp')?{utls:{enabled:true,fingerprint:q.get('fp')}}:{}),...(security==='reality'?{reality:{enabled:true,public_key:q.get('pbk'),short_id:q.get('sid')||''},utls:{enabled:true,fingerprint:q.get('fp')||'chrome'}}:{})};
  if(!['none','tls','reality'].includes(security))fail('Unsupported subscription TLS mode');
  if(q.getAll('alpn').length>1)fail('Ambiguous subscription ALPN query');
  const alpn=subscriptionAlpn(q.has('alpn')?q.get('alpn'):undefined,true);
  if(alpn?.length&&!tls)fail('Subscription ALPN requires TLS');
  if(tls&&alpn!==undefined)tls.alpn=alpn;
- const trans=transport(q.get('type'),q.get('host'),q.get('serviceName')||q.get('path'));
- return {type,tag:decodeURIComponent(uri.hash.slice(1)||`Subscription-${index+1}`),server:uri.hostname.replace(/^\[|\]$/g,''),server_port:Number(uri.port)||(tls?443:0),[type==='vless'?'uuid':'password']:decodeURIComponent(uri.username),...(type==='vless'&&q.get('flow')?{flow:q.get('flow')}:{}),...(tls?{tls}:{}),...(trans?{transport:trans}:{})};
+ if((type==='hysteria2'||type==='anytls')&&q.get('type')&&q.get('type')!=='tcp'&&!(type==='hysteria2'&&q.get('type')==='udp'))fail('Unsupported subscription transport; provide native sing-box outbounds instead');
+ const trans=['hysteria2','anytls'].includes(type)?undefined:transport(q.get('type'),q.get('host'),q.get('serviceName')||q.get('path'));
+ return {type,tag:safeDecode(uri.hash.slice(1)||`Subscription-${index+1}`),server:uri.hostname.replace(/^\[|\]$/g,''),server_port:Number(uri.port)||(tls?443:0),[type==='vless'?'uuid':'password']:safeDecode(uri.username),...(type==='vless'&&q.get('flow')?{flow:q.get('flow')}:{}),...(tls?{tls}:{}),...(trans?{transport:trans}:{})};
 }
 function clashNode(item){
  const map={ss:'shadowsocks',socks5:'socks',http:'http',vmess:'vmess',vless:'vless',trojan:'trojan',hysteria2:'hysteria2',tuic:'tuic',anytls:'anytls'};
@@ -93,7 +108,7 @@ function clashNode(item){
  if(item.obfs||item['obfs-password'])fail('Subscription obfuscation requires native sing-box outbounds');
  if(type==='socks'&&item.tls)fail('TLS-wrapped SOCKS requires native sing-box outbounds');
  if(item['ws-opts']?.['v2ray-http-upgrade']||item['ws-opts']?.['v2ray-http-upgrade-fast-open'])fail('HTTP upgrade subscriptions require native sing-box outbounds');
- if(item['skip-cert-verify'])fail('Subscription requests disabled TLS verification');
+ if(truthyInsecure(item['skip-cert-verify']))fail('Subscription requests disabled TLS verification');
  // Mihomo fingerprint pins SHA256(cert.Raw); sing-box 1.14's SPKI pin hashes different bytes.
  // https://github.com/MetaCubeX/mihomo/blob/v1.19.33/component/ca/fingerprint.go
  if(item.fingerprint!==undefined&&item.fingerprint!=='')fail('Clash certificate fingerprint pins require native sing-box outbounds with an explicitly chosen TLS constraint');
@@ -186,7 +201,20 @@ export async function createPrivateProfile({root,client,inputFile,outputFile,fet
  const now=await snapshot(output);if((now?digest(now):null)!==(previous?digest(previous):null))fail('Private output changed while subscriptions were loading');
  await mkdir(path.dirname(output),{recursive:true,mode:0o700});const staged=output+'.pending-'+randomUUID();await assertManagedPaths(root,[staged]);
  await writeFile(staged,profile.content,{flag:'wx',mode:0o600});
- if(previous)await writeFile(output+'.previous-'+randomUUID(),previous,{flag:'wx',mode:0o600});
+ let backupName=null;
+ if(previous){backupName=path.basename(output)+'.previous-'+randomUUID();await writeFile(path.join(path.dirname(output),backupName),previous,{flag:'wx',mode:0o600});}
  await rename(staged,output);
+ if(backupName){
+  const dir=path.dirname(output),prefix=path.basename(output)+'.previous-';
+  const entries=await readdir(dir,{withFileTypes:true});
+  const candidates=[];
+  for(const entry of entries){
+   if(!entry.isFile()||entry.isSymbolicLink()||!entry.name.startsWith(prefix)||entry.name===backupName)continue;
+   const full=path.join(dir,entry.name);
+   candidates.push({full,mtimeMs:(await lstat(full)).mtimeMs});
+  }
+  candidates.sort((a,b)=>b.mtimeMs-a.mtimeMs);
+  for(const stale of candidates.slice(1))await rm(stale.full,{force:true});
+ }
  return {client,path:output,counts:{nodes:nodes.length,subscriptions:subscriptions.length},format:profile.format};
 }

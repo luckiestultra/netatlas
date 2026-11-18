@@ -27,9 +27,7 @@ jobs:
         run: npm ci
       - name: Run offline tests
         run: npm test
-      - name: Check generated files
-        run: npm run build -- --check
-      - name: Validate all clients
-        run: npm run validate
+      - name: Check generated files and validate all clients
+        run: npm run check
       - name: Check pinned native kernels on Linux
         run: npm run test:native

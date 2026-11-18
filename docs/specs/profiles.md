@@ -6,7 +6,7 @@
 
 客户端 ID 固定为 quantumultX、surge、loon、shadowrocket、egern、stash、mihomo、singBox。服务和功能 ID 使用小写英文与短横线。
 
-`tools/lib/managed-profiles.mjs` 导出 `renderManagedProfile(client, {rulesets, baseUrl, ...options})`，结果为 `path`、`content`、`format`，生成公开默认配置 `profiles/default.<原生扩展名>`。默认配置使用 40 个本仓库远程规则资源和客户端原生节点/订阅入口，日常接入在 App 中完成，不要求用户运行生成器。`baseUrl` 决定同一仓库发布根地址；规则 URL 指向 `clients/<client>/rules/<id>.<原生扩展名>`。
+`tools/lib/managed-profiles.mjs` 导出 `renderManagedProfile(client, {rulesets, baseUrl, ...options})`，结果为 `path`、`content`、`format`，生成公开默认配置 `profiles/default.<原生扩展名>`。默认配置使用 116 个本仓库公共远程规则资源（及各端支持的原生补充条件）和客户端原生节点/订阅入口，日常接入在 App 中完成，不要求用户运行生成器。`baseUrl` 决定同一仓库发布根地址；规则 URL 指向 `clients/<client>/rules/<id>.<原生扩展名>`。
 
 `tools/lib/profiles.mjs` 的 `renderProfile(client, {rulesets, baseUrl, ...options})` 与 `profileFormats` 保留为高级内联接口。它仍返回 `profiles/default.*` 形式的内部结果路径；构建器将这份内容另存为 `profiles/standalone.<原生扩展名>`，同时保留默认远程资源配置。内联文件不依赖远程规则 URL；私有 CLI 继续按指定输出路径生成内联配置。
 
@@ -45,7 +45,7 @@ clients/<client>/
 
 `private-profile.mjs` 与 `tools/profile.mjs` 作为高级工具，负责本地订阅的受限拉取、原生节点 materialize、权限和输入/旧输出保护。六种客户端保留原生订阅；sing-box/Shadowrocket 不伪造 provider，支持格式在本地展开。复杂未实现的握手字段明确失败而非静默删除。输入/输出仅限忽略目录 private/，不触碰用户现用客户端配置。格式、协议范围、失败保护与命令见[完整接入](../profile-setup.md)。
 
-DNS 与 CN 分流是完整配置的一部分。115个默认公共资源包含29,153条规范规则，另实际接入各端支持的原生补充条件；当前 CN 含 8,387 域名、6,174 IPv4、3,475 IPv6，在具体服务后作为兜底。基础设施 resolve 动作单独验证，不当作规范规则；CN CIDR 允许主动解析而 LAN CIDR 保留 no-resolve。DNS 独立处理 bootstrap、国内、远端与 LAN，代理自己的地址不通过自身代理递归解析。默认配置通过原生规则资源参与 DNS 分类，不再批量内联同一批域名；高级 standalone 保留完整内联。细节见[完整接入](../profile-setup.md)。
+DNS 与 CN 分流是完整配置的一部分。116 个默认公共资源包含 29,175 条规范规则，另实际接入各端支持的原生补充条件；当前 CN 含 8,387 域名、6,174 IPv4、3,475 IPv6，在具体服务后作为兜底。基础设施 resolve 动作单独验证，不当作规范规则；CN CIDR 允许主动解析而 LAN CIDR 保留 no-resolve。DNS 独立处理 bootstrap、国内、远端与 LAN，代理自己的地址不通过自身代理递归解析。默认配置通过原生规则资源参与 DNS 分类，不再批量内联同一批域名；高级 standalone 保留完整内联。细节见[完整接入](../profile-setup.md)。
 
 校验器区分默认 App 配置与高级内联配置，以及 REJECT 初始选择、App 内置节点选择和私有实际节点；识别本地节点、原生来源/匹配器及必要基础设施规则。闭源 GUI 无环境时使用官方与固定高星配置交叉验证，并明确没有原生运行证据。
 

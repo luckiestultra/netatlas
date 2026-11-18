@@ -52,7 +52,7 @@ flowchart LR
 
 规则源只描述精确域名、域名后缀、域名关键词、IPv4 CIDR 和 IPv6 CIDR。category 是内部标签，公开 rules/ 按具体应用或服务 ID 平铺。固定策略与优先级由 routing.json 决定；主配置的业务组、地区筛选和服务映射由 managed-policies.json 维护。新增未映射服务归入国外网站，可单独登记业务策略，不为八个客户端复制规则事实。
 
-`routing.excludedFromDefault` 指定只单独发布的可选大规则集。当前 anti-ad 有 100,682 条，不进入默认 40 组主配置；仍为八客户端生成独立规则与安装包/合并片段。清单分别记录默认与可选数量，不能把所有可下载规则误认为全部默认生效。
+`routing.excludedFromDefault` 指定只单独发布的可选大规则集。当前 anti-ad 有 100,682 条，不进入默认 116 组主配置；仍为八客户端生成独立规则与安装包/合并片段。清单分别记录默认与可选数量，不能把所有可下载规则误认为全部默认生效。
 
 DNS、策略组、最终策略、规则执行阶段和 MITM 要求保留客户端差异。Egern、Mihomo、sing-box 的 YAML/JSON 结构分别适配；文件后缀相同也不隐含兼容。
 

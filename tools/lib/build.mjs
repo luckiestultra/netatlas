@@ -1,7 +1,8 @@
-import { readFile, writeFile, readdir, mkdir, lstat, rename } from 'node:fs/promises';
-import { resolve, dirname, relative } from 'node:path';
+import { readFile, writeFile, readdir, mkdir, lstat, rename, rm } from 'node:fs/promises';
+import { resolve, dirname, relative, basename } from 'node:path';
 import { createHash, randomUUID } from 'node:crypto';
-import { clients } from './clients.mjs';
+import { clients, getClient } from './clients.mjs';
+import { pruneSubdirectories } from './clean.mjs';
 import { normalizeRuleset } from './rules.mjs';
 import { orderedRulesets } from './policies.mjs';
 import { renderRuleset, decodeRuleset } from './exporters.mjs';
@@ -22,6 +23,7 @@ import { loadQxCompatibility } from './qx-compat.mjs';
 export const defaultBaseUrl='https://raw.githubusercontent.com/luckiestultra/netatlas/main';
 export const sha256=value=>createHash('sha256').update(value).digest('hex');
 const json=value=>JSON.stringify(value,null,2)+'\n';
+const englishOrder=new Intl.Collator('en');
 async function exists(path){try{await lstat(path);return true;}catch(error){if(error.code==='ENOENT')return false;throw error;}}
 export async function filesUnder(root){
   const result=[];
@@ -93,7 +95,9 @@ function clientReadme(client,rulesets,features,baseUrl,featureRegistry,sourceReg
     mihomo:'在 GUI 前端导入主配置，在 proxy-providers 添加自己的 Mihomo 原生订阅，将 provider 名称加入节点选择、自动选择和地区组的 use（include-all 也会纳入节点）。也可填写 proxies；加载后选择实际节点。',
     singBox:'主配置面向 sing-box 1.14.4 核心。填入原生 outbounds，并将节点 tag 加入节点选择、自动选择和对应地区组的 outbounds，更新 selector.default。核心没有通用机场订阅 provider；支持订阅合并的前端需按其说明接入。需要本地转换时再使用下方高级工具，不向在线转换站上传秘密。',
   };
-  const licenseFor=id=>{const record=sourceRegistry.rulesets.find(item=>item.id===id);return record.source.repository?sourceRegistry.repositories.find(repo=>repo.id===record.source.repository).license:record.source.license;};
+  const recordsById=new Map(sourceRegistry.rulesets.map(item=>[item.id,item]));
+  const reposById=new Map(sourceRegistry.repositories.map(repo=>[repo.id,repo]));
+  const licenseFor=id=>{const record=recordsById.get(id);return record.source.repository?reposById.get(record.source.repository).license:record.source.license;};
   const rows=rulesets.map(rule=>`| [${rule.id}${ids.has(rule.id)?'':'（可选）'}](rules/${rule.id}.${client.ruleExtension}) | ${rule.entries.length.toLocaleString('en-US')} | ${licenseFor(rule.id)} |`).join('\n');
   const extensions=profileRoutingResources(client.id,rulesets),activeExtensions=profileRoutingResources(client.id,embedded);
   const regex=regexRoutingFor(client.id),native=nativeRoutingSettings(client.id);
@@ -161,15 +165,21 @@ npm run profile -- --client ${client.id} --input private/${client.id}.json --out
 `;
 }
 
-export async function createBuild(root,{baseUrl=defaultBaseUrl}={}){
+export async function createBuild(root,{baseUrl=defaultBaseUrl,client:clientId}={}){
+  const selectedClients=clientId?[getClient(clientId)]:clients;
   const input=await inputIdentity(root);
   const {rulesets,sources,registry}=await loadCatalog(root);
+  const reposById=new Map(registry.repositories.map(repo=>[repo.id,repo]));
   const featureRegistry=await loadFeatureRegistry(root);
   await Promise.all([loadNativeRouting(root),loadRegexRouting(root),loadQxCompatibility(root)]);
   for(const source of sources)if(input.files.find(file=>file.path===source.path)?.sha256!==source.sha256)throw new Error('Build inputs changed while reading the catalog');
   const files=new Map(),catalog=[];
   const put=(path,content)=>{if(files.has(path))throw new Error('Duplicate artifact: '+path);files.set(path,content);};
-  for(const client of clients){
+  const embedded=profileRulesetsFor(rulesets);
+  const embeddedIds=new Set(embedded.map(rule=>rule.id));
+  const defaultEntries=embedded.reduce((sum,rule)=>sum+rule.entries.length,0);
+  const totalEntries=rulesets.reduce((sum,rule)=>sum+rule.entries.length,0);
+  for(const client of selectedClients){
     const prefix=client.id+'/';
     const profile=renderManagedProfile(client.id,{rulesets,baseUrl});
     const validation=validateManagedProfile(client.id,profile.content,rulesets,{baseUrl});
@@ -193,12 +203,10 @@ export async function createBuild(root,{baseUrl=defaultBaseUrl}={}){
     if(baseUrl)for(const feature of clientFeatures)for(const path of feature.clients[client.id].artifacts)if(!emitted.has(path))throw new Error(`Declared feature artifact was not emitted: ${client.id}/${path}`);
     for(const artifact of features)put(prefix+artifact.path,artifact.content);
     put(prefix+'README.md',clientReadme(client,rulesets,features,baseUrl,featureRegistry,registry));
-    const artifacts=[...files].filter(([path])=>path.startsWith(prefix)).map(([path,content])=>({path:path.slice(prefix.length),sha256:sha256(content),bytes:Buffer.byteLength(content)})).sort((a,b)=>a.path.localeCompare(b.path,'en'));
-    const embedded=profileRulesetsFor(rulesets);
-    const embeddedIds=new Set(embedded.map(rule=>rule.id));
+    const artifacts=[...files].filter(([path])=>path.startsWith(prefix)).map(([path,content])=>({path:path.slice(prefix.length),sha256:sha256(content),bytes:Buffer.byteLength(content)})).sort((a,b)=>englishOrder.compare(a.path,b.path));
     const manifest={
       version:1,client:client.id,builder:'netatlas@0.1.0',inputSha256:input.sha256,baseUrl,targetVersion:client.targetVersion??null,
-      counts:{defaultRuleSets:embedded.length,defaultEntries:embedded.reduce((sum,rule)=>sum+rule.entries.length,0),optionalRuleSets:rulesets.length-embedded.length,totalEntries:rulesets.reduce((sum,rule)=>sum+rule.entries.length,0)},
+      counts:{defaultRuleSets:embedded.length,defaultEntries,optionalRuleSets:rulesets.length-embedded.length,totalEntries},
       routingExtensions:{
         native:nativeRoutingSettings(client.id),
         regex:{supportedExpressions:regexRoutingFor(client.id).supportedExpressions,unsupportedExpressions:regexRoutingFor(client.id).unsupportedExpressions,expressions:regexRoutingFor(client.id).expressions},
@@ -206,24 +214,28 @@ export async function createBuild(root,{baseUrl=defaultBaseUrl}={}){
       },
       validation:{profile:validation.level,rules:'canonical-semantic-round-trip',native:'not-run',nativeRequirement:client.nativeVerification,features:'host-contract-tests-run-separately'},
       features:clientFeatures.map(feature=>({id:feature.id,defaultEnabled:client.id==='quantumultX'&&['geoip','resource-parser'].includes(feature.id),license:feature.license??'MIT (original code)',adapter:feature.clients[client.id],upstream:feature.upstream??null,sourceRegistry:feature.sourceRegistry??null})),
-      sources:{repositories:registry.repositories,rules:registry.rulesets.map(record=>({id:record.id,tag:record.category,defaultProfile:embeddedIds.has(record.id),source:record.source,license:record.source.repository?registry.repositories.find(repo=>repo.id===record.source.repository).license:record.source.license,sha256:record.outputSha256,entries:record.entryCount,updatedAt:record.updatedAt,projection:record.selection??'first-party-selection',excludedExpressions:record.appliedExclusions??[]})),inputs:sources},
+      sources:{repositories:registry.repositories,rules:registry.rulesets.map(record=>({id:record.id,tag:record.category,defaultProfile:embeddedIds.has(record.id),source:record.source,license:record.source.repository?reposById.get(record.source.repository).license:record.source.license,sha256:record.outputSha256,entries:record.entryCount,updatedAt:record.updatedAt,projection:record.selection??'first-party-selection',excludedExpressions:record.appliedExclusions??[]})),inputs:sources},
       artifacts
     };
     put(prefix+'manifest.json',json(manifest));
-    catalog.push({id:client.id,name:client.name,manifest:prefix+'manifest.json',sha256:sha256(files.get(prefix+'manifest.json')),rulesets:rulesets.length,entries:rulesets.reduce((sum,set)=>sum+set.entries.length,0),defaultRuleSets:embedded.length,defaultEntries:embedded.reduce((sum,set)=>sum+set.entries.length,0)});
+    catalog.push({id:client.id,name:client.name,manifest:prefix+'manifest.json',sha256:sha256(files.get(prefix+'manifest.json')),rulesets:rulesets.length,entries:totalEntries,defaultRuleSets:embedded.length,defaultEntries});
   }
-  const catalogBody={version:1,builder:'netatlas@0.1.0',input,clients:catalog};
-  put('catalog.json',json({...catalogBody,contentSha256:sha256(json(catalogBody))}));
+  if(!clientId){
+    const catalogBody={version:1,builder:'netatlas@0.1.0',input,clients:catalog};
+    put('catalog.json',json({...catalogBody,contentSha256:sha256(json(catalogBody))}));
+  }
   if((await inputIdentity(root)).sha256!==input.sha256)throw new Error('Build inputs changed during rendering; no output was published');
-  return {files,clients,rulesets,sourceRoot:resolve(root),inputSha256:input.sha256};
+  return {files,clients:selectedClients,rulesets,sourceRoot:resolve(root),inputSha256:input.sha256,partial:Boolean(clientId)};
 }
 
-export async function compareBuild(root,build){
-  const directory=resolve(root,'clients');
-  const actual=new Set(await filesUnder(directory)),differences=[];
+export async function compareBuild(root,build,{client}={}){
+  const targetClient=client?getClient(client).id:null;
+  const directory=targetClient?resolve(root,'clients',targetClient):resolve(root,'clients');
+  const actual=new Set((await filesUnder(directory)).map(path=>targetClient?`${targetClient}/${path}`:path)),differences=[];
   for(const [path,expected] of build.files){
+    if(targetClient&&!path.startsWith(targetClient+'/'))continue;
     if(!actual.delete(path)){differences.push('missing: '+path);continue;}
-    if((await readFile(resolve(directory,path),'utf8'))!==expected)differences.push('changed: '+path);
+    if((await readFile(resolve(root,'clients',path),'utf8'))!==expected)differences.push('changed: '+path);
   }
   for(const path of actual)differences.push('extra: '+path);
   return differences;
@@ -252,7 +264,8 @@ async function assertGeneratedUnmodified(directory){
   for(const path of paths)if(!allowed.has(path))throw new Error('Manual file in generated tree; preserve before building: '+path);
 }
 
-export async function publishBuild(root,build){
+export async function publishBuild(root,build,{maxBackups=2}={}){
+  if(build.partial)throw new Error('Refusing to publish a partial single-client build');
   await assertManagedPaths(root,['clients','.cache/build']);
   const directory=resolve(root,'clients');
   if((await inputIdentity(build.sourceRoot)).sha256!==build.inputSha256)throw new Error('Build inputs changed before publication; rebuild from current sources');
@@ -268,5 +281,8 @@ export async function publishBuild(root,build){
   const previous=await exists(directory);
   if(previous)await rename(directory,backup);
   try{await rename(stage,directory);}catch(error){if(previous)await rename(backup,directory);throw error;}
-  return {changed:true,backup:previous?backup:null};
+  if(!previous){await rm(batch,{recursive:true,force:true});return {changed:true,backup:null};}
+  if(maxBackups<=0){await rm(batch,{recursive:true,force:true});return {changed:true,backup:null};}
+  await pruneSubdirectories(root,'.cache/build',{keep:maxBackups-1,preserve:new Set([basename(batch)])});
+  return {changed:true,backup};
 }

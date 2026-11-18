@@ -99,14 +99,14 @@ function upstreamsFor(options) {
   return values;
 }
 
-function domainPolicies(entries, groups, domestic, remote, local = 'system') {
+function domainPolicies(entries, groups, domestic, remoteFor, local = 'system') {
   const direct = new Set(['DIRECT', ...groups.filter(group => group.choices[0] === 'DIRECT').map(group => group.name)]);
   const policy = {};
   for (const entry of entries) {
     if (!['domain', 'domain-suffix'].includes(entry.type) || entry.policy === 'REJECT') continue;
     const key = (entry.type === 'domain-suffix' ? '+.' : '') + entry.value;
     // Keep an earlier explicit service when a later CN list repeats its key.
-    if (!Object.hasOwn(policy, key)) policy[key] = [direct.has(entry.policy) ? domestic : remote];
+    if (!Object.hasOwn(policy, key)) policy[key] = [direct.has(entry.policy) ? domestic : remoteFor(entry.policy)];
   }
   for (const domain of lanDomains) policy['+.' + domain] = local === 'system' ? 'system' : [local];
   return policy;
@@ -157,7 +157,7 @@ function clashConfig(client, entries, groups, options) {
     'default-nameserver': [upstreams.bootstrap],
     'proxy-server-nameserver': [upstreams.bootstrap + (client === 'mihomo' ? '#DIRECT' : '')],
     nameserver: [upstreams.remote + (client === 'mihomo' ? '#Proxy' : '')],
-    'nameserver-policy': domainPolicies(entries, groups, upstreams.domestic + (client === 'mihomo' ? '#DIRECT' : ''), upstreams.remote + (client === 'mihomo' ? '#Proxy' : ''), upstreams.local === 'system' ? 'system' : upstreams.local + (client === 'mihomo' ? '#DIRECT' : '')),
+    'nameserver-policy': domainPolicies(entries, groups, upstreams.domestic + (client === 'mihomo' ? '#DIRECT' : ''), group => upstreams.remote + (client === 'mihomo' ? `#${group}` : ''), upstreams.local === 'system' ? 'system' : upstreams.local + (client === 'mihomo' ? '#DIRECT' : '')),
     ...(client === 'mihomo'
       ? { 'direct-nameserver': [upstreams.domestic + '#DIRECT'], 'direct-nameserver-follow-policy': true, 'respect-rules': false }
       : { 'follow-rule': true }),

@@ -1,6 +1,6 @@
 import test from 'node:test';
 import assert from 'node:assert/strict';
-import { mkdtemp, mkdir, writeFile, symlink, readFile } from 'node:fs/promises';
+import { mkdtemp, mkdir, writeFile, symlink, readFile, rm } from 'node:fs/promises';
 import { createHash } from 'node:crypto';
 import { tmpdir } from 'node:os';
 import path from 'node:path';
@@ -20,8 +20,9 @@ test('the Unbreak supplement is an original two-exact-domain selection grounded 
   assert.ok(supplement.references.some(value => value.startsWith('https://github.com/chromium/chromium/blob/')));
 });
 
-test('local supplements fail closed on integrity, path, schema, license and unnormalized entries', async () => {
+test('local supplements fail closed on integrity, path, schema, license and unnormalized entries', async t => {
   const directory = await mkdtemp(path.join(tmpdir(), 'netatlas-supplement-'));
+  t.after(() => rm(directory, { recursive: true, force: true }));
   await mkdir(path.join(directory, 'src/supplements'), { recursive: true });
   const object = { version: 1, id: 'fixture', license: 'MIT', author: 'NetAtlas contributors', updatedAt: '2026-10-31T00:00:00Z', references: ['https://source.example/endpoint'], entries: [{ type: 'domain', value: 'api.example' }] };
   const filename = 'src/supplements/fixture.json';

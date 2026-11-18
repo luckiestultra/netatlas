@@ -2,7 +2,7 @@
   "version": 1,
   "builder": "netatlas@0.1.0",
   "input": {
-    "sha256": "4bdcec71da03f8f890a4328cd06fe217f40cc2eb0109ed4687df742ffe6123d9",
+    "sha256": "e93d8bbbeb60f06edfa2e8a98f2493bc3367166d335434293d0f816a050361ad",
     "files": [
       {
         "path": "LICENSE",
@@ -78,7 +78,7 @@
       },
       {
         "path": "package.json",
-        "sha256": "c8d4a1c882062e42619d10ad5893028ebd4ca9f7c8ded5d4f0353ebab3b562fc"
+        "sha256": "e4b9c01e8483199c8fd99de6a678f911a57a8883e57953978a77286f795df5f0"
       },
       {
         "path": "src/features/app-exceptions/quantumultX.list",
@@ -210,7 +210,7 @@
       },
       {
         "path": "src/features/resource-parser/nodes.mjs",
-        "sha256": "44762bceb9446ade32d8c313b50642f5a46a002667453a7e20589bfcd5f57729"
+        "sha256": "3aad1a405f2d33653155ed94d54879089cc980a85f5b333c28702075dbba579b"
       },
       {
         "path": "src/features/resource-parser/options.mjs",
@@ -1125,6 +1125,10 @@
         "sha256": "8e2b8a2b0d4efb2a78caa4294d161544a68bfed5d03414e18cbe226f006acea1"
       },
       {
+        "path": "tools/clean.mjs",
+        "sha256": "8575b188b5da28aaa6858761213754701db5ad7e6ecadeb3727a91642cff1b5a"
+      },
+      {
         "path": "tools/lib/anti-ad.mjs",
         "sha256": "fd747cc48c9d87a3bea4341ae1c411abe0553e00ce737ba8cdf8f07405b8ff9a"
       },
@@ -1134,11 +1138,15 @@
       },
       {
         "path": "tools/lib/build.mjs",
-        "sha256": "8c076edd6ed47a8ddc0c5785646857dba839e9a25a1d063052b23748e11ff998"
+        "sha256": "0aa1d8d8a89a6ab74bc26a71838cecd78467551c42a86754de130b1c126698c5"
       },
       {
         "path": "tools/lib/classical-source.mjs",
         "sha256": "8d6f74efdd19906fb0eac99decb2cdb89a9764d3ac08e27d4e2b52fd6a590f3c"
+      },
+      {
+        "path": "tools/lib/clean.mjs",
+        "sha256": "dbcca844f5ffa0e62ab333a291728ec6cff5388114e9e0a3439a16570bda22ab"
       },
       {
         "path": "tools/lib/clients.mjs",
@@ -1146,7 +1154,7 @@
       },
       {
         "path": "tools/lib/exporters.mjs",
-        "sha256": "e2570d8c9968f903d02e02d6b0aa143c400c4e05fd9058062d396d0b90d6536b"
+        "sha256": "9b74a4d129bc32e17b2e4b715579c3bf0a2d18f6a69e6cec2c2c81687629dddd"
       },
       {
         "path": "tools/lib/feature-registry.mjs",
@@ -1174,7 +1182,7 @@
       },
       {
         "path": "tools/lib/managed-native.mjs",
-        "sha256": "43f91c4159433dc9f40b46cd5a4ecbb4e6b53a36e3212678e4791adbdda6f883"
+        "sha256": "197f2431adc1a33ed960254d3c52af1c55ccf7a74749a2de2d5f8bc7bf066d22"
       },
       {
         "path": "tools/lib/managed-paths.mjs",
@@ -1186,7 +1194,7 @@
       },
       {
         "path": "tools/lib/managed-validation.mjs",
-        "sha256": "793fe50756fb808874d808a2e6da7658eb8ea5096be7922a90af3ee741c00633"
+        "sha256": "ba8f73af8a1a5fd4adc5e01a89585e6804712bcd4ac5e51ca46294f6e02a9f7b"
       },
       {
         "path": "tools/lib/managed-workflow.mjs",
@@ -1198,7 +1206,7 @@
       },
       {
         "path": "tools/lib/native.mjs",
-        "sha256": "8c7fcc0087ef85f4fcb37ceaa2944b5f41a915a0f706540f9c01220799f5af7d"
+        "sha256": "ccdc88f7e2ca020469f24c145c139dccc8822a242e87ed317e2d35d97dc463b6"
       },
       {
         "path": "tools/lib/policies.mjs",
@@ -1206,7 +1214,7 @@
       },
       {
         "path": "tools/lib/private-profile.mjs",
-        "sha256": "17096b594788fe424d835475d646c5e888226eb3bcea63ef908a477f8f6a8122"
+        "sha256": "65406f37fbace8977623067ee05228c28a4c01f90778d5745bc89f6787642720"
       },
       {
         "path": "tools/lib/profile-workflow.mjs",
@@ -1218,7 +1226,7 @@
       },
       {
         "path": "tools/lib/profiles-native.mjs",
-        "sha256": "e1234109b5765b56b4457f4ba71e3c4976da4dab30d2cd7a3d66916bd34ca011"
+        "sha256": "3693c2e754d14ebef23fd8ed24f8c56f6458c631dcc83d2fdf4529358000dc9d"
       },
       {
         "path": "tools/lib/profiles.mjs",
@@ -1262,7 +1270,7 @@
       },
       {
         "path": "tools/lib/routing-extensions.mjs",
-        "sha256": "300ac18816dcf570b18682356bf9576ac35dd8b41474af24189358606dff155f"
+        "sha256": "0c2c489911988c16cf2bc4c2c1c4e1de7533088ff4927aa8b75a3de1e96dc340"
       },
       {
         "path": "tools/lib/rule-supplements.mjs",
@@ -1270,7 +1278,7 @@
       },
       {
         "path": "tools/lib/rules.mjs",
-        "sha256": "7a28b74dd4a39a87c870cb33d56cffd4acb5d1981070b269bc6f609f509121f9"
+        "sha256": "79f0417d81f79aad33ee2a2bd29cf5e30137fe3a80f895cfe16e5a49e42aa4c3"
       },
       {
         "path": "tools/lib/script-runtime.mjs",
@@ -1294,7 +1302,7 @@
       },
       {
         "path": "tools/lib/validation.mjs",
-        "sha256": "720b72999279b4c90ec87847479f538c804780f3ffb94ba4a379f4e8964efb4b"
+        "sha256": "710c42497542564e3d128e8411f3443aa5ebe182a01a23d2dafdb59a31332c3b"
       },
       {
         "path": "tools/lib/youtube-enhance.mjs",
@@ -1318,7 +1326,7 @@
       },
       {
         "path": "tools/validate.mjs",
-        "sha256": "04fbaef6f13b3002a005dbad761bb44a42a86cb6a568dcf66b810c09d2372182"
+        "sha256": "05810e93f259132d1c68d4af20a323b40c59664e2502c9cc012fcdd6c85b9d9e"
       }
     ]
   },
@@ -1327,7 +1335,7 @@
       "id": "quantumultX",
       "name": "Quantumult X",
       "manifest": "quantumultX/manifest.json",
-      "sha256": "2240fe87461f9d342f54820e1d5d9f171780d747276b1ad634d9937fea1d9f0f",
+      "sha256": "d5d5d917f58fefc2c86182b0d415a781f816dce0800bf6dbab3aa6fe9d2cf952",
       "rulesets": 119,
       "entries": 136966,
       "defaultRuleSets": 116,
@@ -1337,7 +1345,7 @@
       "id": "surge",
       "name": "Surge",
       "manifest": "surge/manifest.json",
-      "sha256": "331dda8b73314d3799d9d8c543964a1b163f2c52eaf31b92594f06d47ae35500",
+      "sha256": "43e0b81d12efec5532b59cb9e09f6ad01deb0763b7f7712cd8927825616477d3",
       "rulesets": 119,
       "entries": 136966,
       "defaultRuleSets": 116,
@@ -1347,7 +1355,7 @@
       "id": "loon",
       "name": "Loon",
       "manifest": "loon/manifest.json",
-      "sha256": "a32b6ae49f1f844aaae024ea8ca34710da1ac8048320ffb478d12d8ba256b107",
+      "sha256": "c31fc6d6a3c4c1cd91013c2033520e5ba7350af663b25529b7d15b25797b3421",
       "rulesets": 119,
       "entries": 136966,
       "defaultRuleSets": 116,
@@ -1357,7 +1365,7 @@
       "id": "shadowrocket",
       "name": "Shadowrocket",
       "manifest": "shadowrocket/manifest.json",
-      "sha256": "c7c1d6e09d18014638acc862f148e552cb57311284f48fcd3fb263618e97444b",
+      "sha256": "c70b09182e91279cb27ba1ade91bce0213d9f414366e73e0f8136a909a699eca",
       "rulesets": 119,
       "entries": 136966,
       "defaultRuleSets": 116,
@@ -1367,7 +1375,7 @@
       "id": "egern",
       "name": "Egern",
       "manifest": "egern/manifest.json",
-      "sha256": "38f8062290abacccf3ab888f7a753fce75afec6af98a1d688603a9fae2ab95a7",
+      "sha256": "552ce0dd952a47c3b3b1484cd9b11284841b4c8251c9c9b4e6326773638b869f",
       "rulesets": 119,
       "entries": 136966,
       "defaultRuleSets": 116,
@@ -1377,7 +1385,7 @@
       "id": "stash",
       "name": "Stash",
       "manifest": "stash/manifest.json",
-      "sha256": "5a731bdcf30304a41f4594540252678f47141c5b73b5bd49e9e9e7fe3ed8e38b",
+      "sha256": "180618ec2a6a71556e5562cf0dd3d10ce19f0aabe4296c1fd450d779e2d3a9a1",
       "rulesets": 119,
       "entries": 136966,
       "defaultRuleSets": 116,
@@ -1387,7 +1395,7 @@
       "id": "mihomo",
       "name": "Mihomo",
       "manifest": "mihomo/manifest.json",
-      "sha256": "8ca80d5e9974f23151c55513c5735d171c9584b3bc826568fc43ce0e4a100a19",
+      "sha256": "faa6347fb97533fba4a680473c4e08c7b8be22a8a83e565f516023f9bc69779d",
       "rulesets": 119,
       "entries": 136966,
       "defaultRuleSets": 116,
@@ -1397,12 +1405,12 @@
       "id": "singBox",
       "name": "sing-box",
       "manifest": "singBox/manifest.json",
-      "sha256": "16b76f7b32ea8cb9eee2be8c7831194a7acc77acca1e4b3ac28fea0d4f548f01",
+      "sha256": "2e834ad38f81a12051e30e114d471ee224340af66b1f92862870e2af95b609ab",
       "rulesets": 119,
       "entries": 136966,
       "defaultRuleSets": 116,
       "defaultEntries": 29175
     }
   ],
-  "contentSha256": "dbd44685906236488cc10d915e43e037a1516a77cbad09b3eafce0eb88e10a43"
+  "contentSha256": "bab20d81a476f5e2b649237dbc1e93464aaa1b0a234dbab3114f4a5888828cdb"
 }

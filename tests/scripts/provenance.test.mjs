@@ -1,12 +1,15 @@
 import test from 'node:test';
 import assert from 'node:assert/strict';
-import { cp, mkdir, mkdtemp, readFile, writeFile } from 'node:fs/promises';
+import { cp, mkdir, mkdtemp, readFile, writeFile, rm } from 'node:fs/promises';
 import { tmpdir } from 'node:os';
 import { resolve } from 'node:path';
 import { loadFeatureRegistry } from '../../tools/lib/feature-registry.mjs';
 const root=resolve(import.meta.dirname,'../..');
+const tempDirs=[];
+test.after(()=>Promise.all(tempDirs.map(dir=>rm(dir,{recursive:true,force:true}))));
 async function fixture(){
   const dir=await mkdtemp(resolve(tmpdir(),'netatlas-feature-source-'));
+  tempDirs.push(dir);
   await mkdir(resolve(dir,'metadata'));
   for(const path of ['metadata/features.json','metadata/https-upgrade.json','src/features/https-upgrade','src/features/redirects'])await cp(resolve(root,path),resolve(dir,path),{recursive:true});
   return dir;

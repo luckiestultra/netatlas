@@ -21,15 +21,20 @@ export function normalizeRoutingEntry(entry) {
   return { type, value };
 }
 
+const registeredById = new Map(upstreams.rulesets.map(record => [record.id, record]));
+
 export function profileRoutingResources(client, rulesets) {
   const active = new Set(rulesets.map(rule => rule.id));
+  const regexResources = regexRoutingFor(client).resources;
+  const candidateIds = new Set(regexResources.map(resource => resource.sourceId));
   // A private caller may reuse an ID for a deliberately smaller rule fixture.
   // Restore exclusions only for the exact registered source projection.
   const exact = new Set(rulesets.filter(rule => {
-    const registered = upstreams.rulesets.find(record => record.id === rule.id);
+    if (!candidateIds.has(rule.id)) return false;
+    const registered = registeredById.get(rule.id);
     return registered?.outputSha256 === createHash('sha256').update(JSON.stringify(rule, null, 2) + '\n').digest('hex');
   }).map(rule => rule.id));
-  return [...regexRoutingFor(client).resources.filter(resource => exact.has(resource.sourceId)), ...nativeRoutingFor(client).filter(resource => active.has(resource.sourceId))];
+  return [...regexResources.filter(resource => exact.has(resource.sourceId)), ...nativeRoutingFor(client).filter(resource => active.has(resource.sourceId))];
 }
 
 export function expandedProfileEntries(client, rulesets) {
@@ -51,11 +56,11 @@ export function withNativeRoutingSettings(client, value, rulesets) {
   return fields.length ? value.replace(/^(\[general\])$/im, `$1\n${fields.join('\n')}`) : value;
 }
 
-export function validateNativeRoutingSettings(client, text, rulesets) {
+export function validateNativeRoutingSettings(client, text, rulesets, parsedValue) {
   if (!profileRulesetsFor(rulesets).some(rule => rule.id === 'china-ipv4')) return;
   const expected = nativeRoutingSettings(client);
   if (['egern', 'stash', 'mihomo', 'singBox'].includes(client)) {
-    const value = client === 'singBox' ? JSON.parse(text) : parse(text);
+    const value = parsedValue ?? (client === 'singBox' ? JSON.parse(text) : parse(text));
     for (const [key, setting] of Object.entries(expected.configFields)) {
       if (JSON.stringify(value[key]) !== JSON.stringify(setting)) throw new Error(`Wrong native database setting: ${key}`);
     }

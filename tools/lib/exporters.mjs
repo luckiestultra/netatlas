@@ -8,6 +8,7 @@ const quantumult = { domain: 'host', 'domain-suffix': 'host-suffix', 'domain-key
 const egern = { domain: 'domain_set', 'domain-suffix': 'domain_suffix_set', 'domain-keyword': 'domain_keyword_set', 'ip-cidr': 'ip_cidr_set', 'ip-cidr6': 'ip_cidr6_set' };
 const singBox = { domain: 'domain', 'domain-suffix': 'domain_suffix', 'domain-keyword': 'domain_keyword', 'ip-cidr': 'ip_cidr', 'ip-cidr6': 'ip_cidr' };
 const json = value => `${JSON.stringify(value, null, 2)}\n`;
+const englishOrder = new Intl.Collator('en');
 
 export function renderRuleset(clientId, input) {
   const client = getClient(clientId);
@@ -54,5 +55,5 @@ export function decodeRuleset(clientId, text) {
       entries.push(normalizeEntry({ type: mapping[type], value }));
     }
   }
-  return entries.sort((a, b) => `${a.type}:${a.value}`.localeCompare(`${b.type}:${b.value}`, 'en'));
+  return entries.sort((a, b) => englishOrder.compare(`${a.type}:${a.value}`, `${b.type}:${b.value}`));
 }

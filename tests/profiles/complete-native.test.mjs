@@ -59,7 +59,7 @@ for (const [id, render] of [['mihomo', mihomo], ['stash', stash]]) {
     assert.ok(config.dns['proxy-server-nameserver'].length);
     assert.equal(config.dns['nameserver-policy']['+.home.arpa'], 'system');
     assert.match(config.dns['nameserver-policy']['+.domestic.example'][0], /223\.5\.5\.5/);
-    assert.match(config.dns['nameserver-policy']['+.google.cn'][0], /1\.1\.1\.1/);
+    assert.match(config.dns['nameserver-policy']['+.google.cn'][0], id === 'mihomo' ? /1\.1\.1\.1\/dns-query#service$/ : /^https:\/\/1\.1\.1\.1\/dns-query$/);
     assert.match(config.dns['nameserver-policy']['+.cn'][0], /223\.5\.5\.5/);
     assert.match(config.dns['nameserver-policy']['+.apple.example'][0], /223\.5\.5\.5/);
     if (id === 'mihomo') {

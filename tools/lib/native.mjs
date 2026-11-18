@@ -981,5 +981,7 @@ export async function runNativeVerification({ root, onProgress = () => {} }) {
   const subscriptionIntegrity = await testSubscriptionIntegrityWorkflow({ root, binaries: installed.binaries });
   const report = { status: 'passed', startedAt, completedAt: new Date().toISOString(), artifacts: installed.artifacts, checks, routing, nativeDatabases, optionalRulesets, privateWorkflow, managedWorkflow, subscriptionTls, parserPlugins, subscriptionIntegrity };
   await writeNativeReport({ root, report });
+  const { cleanCache } = await import('./clean.mjs');
+  await cleanCache(root, { keepBuildBackups: 2 });
   return report;
 }

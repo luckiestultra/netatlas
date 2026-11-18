@@ -91,7 +91,9 @@ function clash(client, model, options) {
   config.rules = [...model.rules.map(rule => `RULE-SET,${rule.id},${rule.policy}`), `MATCH,${fallbackGroup}`];
   const direct = directPolicies(model);
   const domestic = client === 'mihomo' ? config.dns['direct-nameserver'][0] : options.dnsUpstreams?.domestic ?? 'https://223.5.5.5/dns-query';
-  const remote = config.dns.nameserver[0].replace('#Proxy', `#${rootGroup}`);
+  const baseRemote = config.dns.nameserver[0];
+  const remote = baseRemote.replace('#Proxy', `#${rootGroup}`);
+  const remoteFor = policy => client === 'mihomo' ? baseRemote.replace('#Proxy', `#${policy}`) : remote;
   const local = config.dns['nameserver-policy']['+.home.arpa'];
   config.dns.nameserver = [remote];
   // Each policy points at the actual remote provider, rather than copying its
@@ -99,7 +101,7 @@ function clash(client, model, options) {
   config.dns['nameserver-policy'] = {
     ...Object.fromEntries(lanDomains.map(domain => [`+.${domain}`, local])),
     ...Object.fromEntries(model.rules.filter(rule => domainRule(rule) && rule.policy !== 'REJECT').map(rule => [
-      `rule-set:${rule.id}`, [direct.has(rule.policy) ? domestic : remote],
+      `rule-set:${rule.id}`, [direct.has(rule.policy) ? domestic : remoteFor(rule.policy)],
     ])),
   };
   // Stash routes DNS transport with follow-rule; resolver addresses themselves

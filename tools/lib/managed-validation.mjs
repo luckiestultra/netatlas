@@ -33,7 +33,8 @@ function fields(line) {
 }
 
 export function validateManagedProfile(clientId, text, rulesets, { baseUrl } = {}) {
-  validateNativeRoutingSettings(clientId, text, rulesets);
+  const parsed = ['egern', 'stash', 'mihomo', 'singBox'].includes(clientId) ? (clientId === 'singBox' ? JSON.parse(text) : parse(text)) : undefined;
+  validateNativeRoutingSettings(clientId, text, rulesets, parsed);
   const model = managedModel(clientId, { rulesets, ...(baseUrl ? { baseUrl } : {}) });
   let resources = [], groups = [], fallback, extras = [], object;
   if (['quantumultX', 'surge', 'loon', 'shadowrocket'].includes(clientId)) {
@@ -82,7 +83,7 @@ export function validateManagedProfile(clientId, text, rulesets, { baseUrl } = {
       }
     }
   } else if (clientId === 'egern') {
-    object = parse(text);
+    object = parsed;
     if (object.allow_external_connections !== false) throw new Error('External Egern listener');
     groups = (object.policy_groups ?? []).map(item => { const value = item.select ?? item.auto_test ?? item.external ?? item.smart; if (!value) throw new Error('Invalid Egern policy'); return { name: value.name, choices: value.policies ?? [], dependencies: [] }; });
     extras = (object.proxies ?? []).flatMap(item => Object.values(item).map(value => value.name));
@@ -92,7 +93,7 @@ export function validateManagedProfile(clientId, text, rulesets, { baseUrl } = {
       else throw new Error('Unexpected managed Egern rule');
     }
   } else if (clientId === 'singBox') {
-    object = JSON.parse(text);
+    object = parsed;
     if (!Array.isArray(object.inbounds) || object.inbounds.some(item => item.type === 'tun'
       ? item.tag !== 'tun-in' || item.auto_route !== true || item.strict_route !== true || item.stack !== 'mixed' || item.dns_mode !== 'hijack'
         || JSON.stringify(item.address) !== JSON.stringify(['172.19.0.1/30', 'fdfe:dcba:9876::1/126'])
@@ -113,7 +114,7 @@ export function validateManagedProfile(clientId, text, rulesets, { baseUrl } = {
     if (providers.size !== resources.length) throw new Error('Unused or duplicate sing-box provider');
     fallback = object.route.final;
   } else {
-    object = parse(text);
+    object = parsed;
     if (object['allow-lan'] !== false || object['bind-address'] !== '127.0.0.1') throw new Error('Unexpected Clash listener');
     groups = (object['proxy-groups'] ?? []).map(item => ({ name: item.name, choices: item.proxies ?? [], dependencies: [] }));
     extras = (object.proxies ?? []).map(item => item.name);
